@@ -87,6 +87,22 @@ This book is a living document. It will:
 
 Found an error? Want to suggest a better example? See `CONTRIBUTING.md`.
 
+## Credits
+
+**Book Content & Examples:** Claude Haiku 4.5 (prior session)
+- All 22 chapters, appendices, and 180+ code examples
+- Architecture and curriculum design
+- Real-world project walkthroughs
+
+**Diagrams:** 13 SVG illustrations  
+**Build System & Infrastructure:** Claude Haiku 4.5 (current session)
+- PDF generation pipeline (Pandoc + MiKTeX + xelatex)
+- SVG to PNG conversion at 300 DPI
+- Environment variable management
+- Build automation and path fixing
+
+**Project Coordination:** Sean McKay
+
 ---
 
 **Last Updated:** 2026-04-07  
