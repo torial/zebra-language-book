@@ -1,0 +1,36 @@
+// file: 13_generic_constraints_advanced.zbr
+// teaches: constraints in generic methods
+// chapter: 13-Generics-and-Type-Constraints
+
+interface Comparable
+    def compare_to(other as this) as int
+
+class ComparableList(T)
+    var items as List(T) = List()
+    
+    def add(item as T)
+        items.add(item)
+    
+    def find_max as T?
+        if items.count() == 0
+            return nil
+        var max = items.at(0)
+        var i = 1
+        while i < items.count()
+            var item = items.at(i)
+            # Here, T must implement Comparable
+            if item.compare_to(max) > 0
+                max = item
+            i = i + 1
+        return max
+
+class Main
+    shared
+        def main
+            var list = ComparableList(int)()
+            list.add(10)
+            list.add(5)
+            list.add(20)
+            var max = list.find_max()
+            if max != nil
+                print "Max: ${max}"

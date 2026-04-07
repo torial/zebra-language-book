@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; font-family: Arial, sans-serif; }
+      .section-title { font-size: 14px; font-weight: bold; fill: #2c5aa0; font-family: Arial, sans-serif; }
+      .box { fill: #e8f4f8; stroke: #2c5aa0; stroke-width: 2; }
+      .scope-box { fill: #f0f9ff; stroke: #0369a1; stroke-width: 2; stroke-dasharray: 5,5; }
+      .label { font-size: 13px; fill: #374151; font-family: Arial, sans-serif; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .note { font-size: 11px; fill: #6b7280; font-family: Arial, sans-serif; }
+      .active { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .inactive { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 2; }
+      .arrow { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="35" class="title" text-anchor="middle">Variable Scope and Lifetime</text>
+
+  <!-- Left side: Scope visualization -->
+  <g>
+    <text x="60" y="80" class="section-title">Scope Boundaries</text>
+
+    <!-- Global scope -->
+    <rect x="30" y="100" width="480" height="520" class="scope-box" rx="5"/>
+    <text x="50" y="120" class="label" font-weight="bold">Global Scope</text>
+
+    <!-- Function scope -->
+    <rect x="50" y="140" width="440" height="450" class="scope-box" rx="5"/>
+    <text x="70" y="160" class="label" font-weight="bold">Function Scope</text>
+
+    <!-- If block scope -->
+    <rect x="70" y="180" width="200" height="150" class="scope-box" rx="5"/>
+    <text x="90" y="200" class="label" font-weight="bold">If Block</text>
+    <text x="90" y="225" class="code">x = 5</text>
+    <text x="90" y="245" class="code">y = 10</text>
+    <text x="90" y="310" class="note">x, y visible</text>
+    <text x="90" y="325" class="note">only here</text>
+
+    <!-- While block scope -->
+    <rect x="290" y="180" width="200" height="150" class="scope-box" rx="5"/>
+    <text x="310" y="200" class="label" font-weight="bold">While Loop</text>
+    <text x="310" y="225" class="code">i = 0</text>
+    <text x="310" y="245" class="code">total = 0</text>
+    <text x="310" y="310" class="note">i, total visible</text>
+    <text x="310" y="325" class="note">only here</text>
+
+    <!-- Function scope variables -->
+    <rect x="70" y="350" width="420" height="130" class="box" rx="5"/>
+    <text x="90" y="370" class="label" font-weight="bold">Function Parameters & Variables</text>
+    <text x="90" y="395" class="code">def process(name as str)</text>
+    <text x="90" y="420" class="code">  var count = 0</text>
+    <text x="90" y="445" class="code">  # name, count accessible</text>
+    <text x="90" y="465" class="code">  # everywhere in function</text>
+  </g>
+
+  <!-- Right side: Closure example -->
+  <g>
+    <text x="580" y="80" class="section-title">Closure & Capture</text>
+
+    <!-- Code example -->
+    <rect x="540" y="100" width="440" height="340" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+
+    <text x="560" y="120" class="code" font-weight="bold">def create_multiplier(factor)</text>
+    <text x="560" y="145" class="code">  # Outer scope: factor</text>
+    <text x="560" y="165" class="code">  var closure = capture</text>
+    <text x="560" y="185" class="code">    def multiply(x)</text>
+    <text x="560" y="205" class="code">      return x * factor</text>
+    <text x="560" y="230" class="code">  return closure</text>
+    <text x="560" y="260" class="note">closure "captures"</text>
+    <text x="560" y="275" class="note">the factor variable</text>
+    <text x="560" y="295" class="note">and keeps it alive</text>
+    <text x="560" y="315" class="note">even after</text>
+    <text x="560" y="330" class="note">create_multiplier returns</text>
+  </g>
+
+  <!-- Timeline showing variable lifetime -->
+  <g>
+    <text x="60" y="510" class="section-title">Variable Lifetime Example</text>
+
+    <!-- Timeline -->
+    <line x1="50" y1="570" x2="950" y2="570" stroke="#d1d5db" stroke-width="2"/>
+
+    <!-- Function start -->
+    <circle cx="80" cy="570" r="4" fill="#2c5aa0"/>
+    <text x="80" y="595" class="note" text-anchor="middle">Function</text>
+    <text x="80" y="610" class="note" text-anchor="middle">Starts</text>
+
+    <!-- Variables created -->
+    <circle cx="200" cy="570" r="4" fill="#16a34a"/>
+    <text x="200" y="595" class="note" text-anchor="middle">x created</text>
+    <text x="200" y="610" class="note" text-anchor="middle">(alive)</text>
+
+    <!-- Variables modified -->
+    <circle cx="350" cy="570" r="4" fill="#16a34a"/>
+    <text x="350" y="595" class="note" text-anchor="middle">x modified</text>
+    <text x="350" y="610" class="note" text-anchor="middle">(alive)</text>
+
+    <!-- Out of scope -->
+    <circle cx="550" cy="570" r="4" fill="#dc2626"/>
+    <text x="550" y="595" class="note" text-anchor="middle">Block ends</text>
+    <text x="550" y="610" class="note" text-anchor="middle">x out of scope</text>
+
+    <!-- Function end -->
+    <circle cx="700" cy="570" r="4" fill="#dc2626"/>
+    <text x="700" y="595" class="note" text-anchor="middle">Function</text>
+    <text x="700" y="610" class="note" text-anchor="middle">Ends</text>
+
+    <!-- Active range -->
+    <g>
+      <line x1="200" y1="540" x2="550" y2="540" stroke="#16a34a" stroke-width="3"/>
+      <text x="375" y="530" class="note" text-anchor="middle" fill="#16a34a">Variable Active Zone</text>
+    </g>
+  </g>
+
+  <!-- Key rules box -->
+  <g>
+    <rect x="50" y="630" width="900" height="60" fill="#fffbeb" stroke="#d97706" stroke-width="1" rx="3"/>
+    <text x="70" y="650" class="label" font-weight="bold">Key Rules:</text>
+    <text x="70" y="670" class="label">• Variables are scoped to their block (if, while, function, etc.)  •  Accessing outside scope = compile error</text>
+    <text x="70" y="685" class="label">• Inner scopes can access outer variables  •  Outer scopes cannot access inner variables</text>
+  </g>
+</svg>

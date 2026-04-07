@@ -1,0 +1,23 @@
+// file: 14_guard_clauses.zbr
+// teaches: guard clause pattern
+// chapter: 14-Contracts-and-Assertions
+
+class FileProcessor
+    shared
+        def process_file(path as str) as Result(str, str)
+            # Preconditions as guard clauses
+            if path == nil or path.len == 0
+                return Result.err("Path cannot be empty")
+            
+            if not path.contains(".")
+                return Result.err("Path must have extension")
+            
+            # Rest of method
+            return Result.ok("Processed")
+
+class Main
+    shared
+        def main
+            var r = FileProcessor.process_file("")
+            if r.isErr()
+                print r.errValue()

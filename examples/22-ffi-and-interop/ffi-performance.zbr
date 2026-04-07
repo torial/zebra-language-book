@@ -1,0 +1,29 @@
+// file: ffi-performance.zbr
+// teaches: FFI performance tradeoffs
+// chapter: 22
+
+def main()
+    # FFI calls are expensive compared to Zebra calls
+    # If you're calling an FFI function in a tight loop,
+    # consider moving the loop into C
+    
+    # BAD: Loop in Zebra, FFI call per iteration
+    var sum = 0
+    for i in 0.to(1000000)
+        sum = sum + expensive_c_function(i)
+    
+    # BETTER: Pass the whole array to C
+    var nums = List(int)()
+    for i in 0.to(1000000)
+        nums.add(i)
+    
+    sum = sum_all(nums)  # Single FFI call
+
+def expensive_c_function(n as int) as int
+    return n * 2
+
+def sum_all(nums as List(int)) as int
+    var total = 0
+    for num in nums
+        total = total + num
+    return total

@@ -1,0 +1,63 @@
+// file: stdlib-math-operations.zbr
+// teaches: basic math operations in Zebra
+// chapter: 19
+
+def main()
+    // Arithmetic operators
+    var a = 10
+    var b = 3
+    
+    println(a + b)      # 13
+    println(a - b)      # 7
+    println(a * b)      # 30
+    println(a / b)      # 3 (integer division)
+    println(a % b)      # 1 (modulo/remainder)
+    
+    // Floating-point math
+    var x = 10.5
+    var y = 3.2
+    
+    println(x + y)      # 13.7
+    println(x - y)      # 7.3
+    println(x * y)      # 33.6
+    println(x / y)      # ~3.28
+    
+    // Comparison operators
+    println(a > b)      # true
+    println(a < b)      # false
+    println(a >= b)     # true
+    println(a == b)     # false
+    println(a != b)     # true
+    
+    // Logical operators
+    var condition1 = true
+    var condition2 = false
+    
+    println(condition1 and condition2)  # false
+    println(condition1 or condition2)   # true
+    println(not condition1)             # false
+    
+    // Common patterns: min/max
+    def min(a as int, b as int) as int
+        if a < b
+            return a
+        else
+            return b
+    
+    def max(a as int, b as int) as int
+        if a > b
+            return a
+        else
+            return b
+    
+    println(min(5, 3))  # 3
+    println(max(5, 3))  # 5
+    
+    // Absolute value
+    def abs_value(n as int) as int
+        if n < 0
+            return 0 - n
+        else
+            return n
+    
+    println(abs_value(-42))  # 42

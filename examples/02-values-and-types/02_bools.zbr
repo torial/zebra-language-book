@@ -1,0 +1,17 @@
+// file: 02_bools.zbr
+// teaches: boolean values, logic
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var is_ready as bool = true
+            var is_finished as bool = false
+            
+            print is_ready
+            print is_finished
+            
+            // Logic
+            print true and false   // false
+            print true or false    // true
+            print not true         // false

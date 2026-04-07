@@ -1,0 +1,20 @@
+// file: 04_closures.zbr
+// teaches: closures and variable capture
+// chapter: 04-Functions-and-Scope
+
+class Multiplier
+    shared
+        def make_multiplier(factor as int) as def(int)
+            return def(x as int)
+                capture
+                    var factor as int = factor
+                return x * factor
+
+class Main
+    shared
+        def main
+            var double = Multiplier.make_multiplier(2)
+            var triple = Multiplier.make_multiplier(3)
+            
+            print double(5)             // 10
+            print triple(5)             // 15

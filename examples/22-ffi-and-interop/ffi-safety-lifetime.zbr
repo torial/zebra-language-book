@@ -1,0 +1,32 @@
+// file: ffi-safety-lifetime.zbr
+// teaches: avoiding pointer lifetime issues
+// chapter: 22
+
+# UNSAFE: Reference to local variable
+# def dangerous() as int
+#     var local = 42
+#     var ptr = address_of(local)  # Get pointer
+#     # local goes out of scope here
+#     # ptr now points to garbage!
+#     return 0
+
+# SAFE: Return value, not reference
+def safe_return(n as int) as int
+    var result = n * 2
+    # result is copied into return value
+    # No dangling pointers
+    return result
+
+# SAFE: Use parameters
+def safe_parameter(numbers as List(int)) as int
+    # List is passed by reference, lives in caller's scope
+    # Safe to use while caller owns it
+    return numbers.at(0)
+
+def main()
+    var my_list = List(int)()
+    my_list.add(42)
+    
+    # Safe—my_list is still alive
+    var first = safe_parameter(my_list)
+    # After main returns, my_list is cleaned up

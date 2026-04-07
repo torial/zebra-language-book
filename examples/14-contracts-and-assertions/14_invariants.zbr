@@ -1,0 +1,36 @@
+// file: 14_invariants.zbr
+// teaches: class invariants
+// chapter: 14-Contracts-and-Assertions
+
+class Account
+    var balance as int
+    var transaction_count as int = 0
+    
+    # Invariant: balance >= 0 (can't have negative money)
+    # Invariant: transaction_count >= 0
+    
+    def deposit(amount as int)
+        if amount < 0
+            return  # Reject negative deposits
+        
+        balance = balance + amount
+        transaction_count = transaction_count + 1
+        
+        # Check invariants
+        if balance < 0
+            print "ERROR: Balance negative!"
+        if transaction_count < 0
+            print "ERROR: Transaction count negative!"
+    
+    def check_invariants as bool
+        return balance >= 0 and transaction_count >= 0
+
+class Main
+    shared
+        def main
+            var acct = Account()
+            acct.balance = 100
+            acct.deposit(50)
+            
+            if not acct.check_invariants()
+                print "Invariant violated!"

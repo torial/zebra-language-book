@@ -1,0 +1,36 @@
+// file: file-analyze.zbr
+// teaches: analyzing file contents
+// chapter: 20
+
+def main()
+    var filename = "document.txt"
+    
+    var result = File.read(filename)
+    
+    if result.isErr()
+        println("Cannot read file")
+        return
+    
+    var content = result.value()
+    
+    // Line count
+    var lines = content.split("\n")
+    println("Lines: ${lines.count()}")
+    
+    // Word count
+    var word_count = 0
+    for line in lines
+        var words = line.split(" ")
+        word_count = word_count + words.count()
+    println("Words: ${word_count}")
+    
+    // Character count
+    println("Characters: ${content.len}")
+    
+    // Find longest line
+    var longest_line = ""
+    for line in lines
+        if line.len > longest_line.len
+            longest_line = line
+    
+    println("Longest line (${longest_line.len} chars): ${longest_line.substring(0, 50)}")

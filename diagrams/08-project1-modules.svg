@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
+      .module-box { fill: #e0f2fe; stroke: #0369a1; stroke-width: 2; }
+      .main-box { fill: #f0fdf4; stroke: #16a34a; stroke-width: 3; }
+      .stdlib-box { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .label { font-size: 13px; fill: #374151; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .arrow { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .data-arrow { stroke: #0369a1; stroke-width: 2; fill: none; marker-end: url(#data-arrow); stroke-dasharray: 3,3; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+    <marker id="data-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0369a1" />
+    </marker>
+  </defs>
+
+  <text x="500" y="40" class="title" text-anchor="middle">Project 1: CLI Tool - Module Architecture</text>
+
+  <!-- Standard Library (bottom) -->
+  <rect x="350" y="600" width="300" height="80" class="stdlib-box" rx="5"/>
+  <text x="500" y="625" class="label" text-anchor="middle" font-weight="bold">Standard Library</text>
+  <text x="500" y="645" class="code" text-anchor="middle">File, CommandLine, Result</text>
+
+  <!-- Modules -->
+  <!-- cli_args module -->
+  <g>
+    <rect x="50" y="350" width="200" height="120" class="module-box" rx="5"/>
+    <text x="150" y="375" class="label" text-anchor="middle" font-weight="bold">cli_args.zbr</text>
+    <text x="150" y="400" class="code" text-anchor="middle" font-size="11">CliArgs class</text>
+    <text x="150" y="420" class="code" text-anchor="middle" font-size="11">CommandParser</text>
+    <text x="150" y="440" class="label" text-anchor="middle" font-size="10">Parses command line</text>
+  </g>
+
+  <!-- file_processor module -->
+  <g>
+    <rect x="300" y="350" width="200" height="120" class="module-box" rx="5"/>
+    <text x="400" y="375" class="label" text-anchor="middle" font-weight="bold">file_processor.zbr</text>
+    <text x="400" y="400" class="code" text-anchor="middle" font-size="11">FileProcessor</text>
+    <text x="400" y="420" class="code" text-anchor="middle" font-size="11">Stats, counting</text>
+    <text x="400" y="440" class="label" text-anchor="middle" font-size="10">File I/O and analysis</text>
+  </g>
+
+  <!-- pattern_search module -->
+  <g>
+    <rect x="550" y="350" width="200" height="120" class="module-box" rx="5"/>
+    <text x="650" y="375" class="label" text-anchor="middle" font-weight="bold">pattern_search.zbr</text>
+    <text x="650" y="400" class="code" text-anchor="middle" font-size="11">PatternMatcher</text>
+    <text x="650" y="420" class="code" text-anchor="middle" font-size="11">search functions</text>
+    <text x="650" y="440" class="label" text-anchor="middle" font-size="10">Pattern matching</text>
+  </g>
+
+  <!-- Main module -->
+  <g>
+    <rect x="275" y="150" width="450" height="140" class="main-box" rx="5"/>
+    <text x="500" y="180" class="label" text-anchor="middle" font-weight="bold" font-size="14">project1_main.zbr</text>
+    <text x="500" y="205" class="label" text-anchor="middle">Application class</text>
+    <text x="500" y="225" class="code" text-anchor="middle" font-size="11">- handle_count()</text>
+    <text x="500" y="240" class="code" text-anchor="middle" font-size="11">- handle_search()</text>
+    <text x="500" y="255" class="code" text-anchor="middle" font-size="11">- handle_stats()</text>
+    <text x="500" y="275" class="label" text-anchor="middle" font-size="10">Orchestrates modules</text>
+  </g>
+
+  <!-- Dependencies -->
+  <!-- cli_args -> main -->
+  <path d="M 150 350 Q 350 300 350 290" class="arrow"/>
+  <text x="280" y="315" class="label" font-size="11">uses</text>
+
+  <!-- file_processor -> main -->
+  <path d="M 400 350 L 400 290" class="arrow"/>
+  <text x="410" y="320" class="label" font-size="11">uses</text>
+
+  <!-- pattern_search -> main -->
+  <path d="M 650 350 Q 550 300 550 290" class="arrow"/>
+  <text x="600" y="315" class="label" font-size="11">uses</text>
+
+  <!-- file_processor -> stdlib -->
+  <path d="M 400 470 L 400 600" class="data-arrow"/>
+
+  <!-- Data flow example -->
+  <g>
+    <text x="50" y="80" class="label" font-weight="bold">Data Flow Example (count command)</text>
+
+    <rect x="50" y="100" width="900" height="40" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" rx="3"/>
+    <text x="60" y="125" class="code">CLI args → CommandParser → CliArgs → Application.run() → FileProcessor → File stats</text>
+  </g>
+</svg>

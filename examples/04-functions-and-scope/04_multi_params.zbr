@@ -1,0 +1,15 @@
+// file: 04_multi_params.zbr
+// teaches: multiple parameters
+// chapter: 04-Functions-and-Scope
+
+class String
+    shared
+        def pad(text as str, width as int, fill as str) as str
+            // (Implementation would go here)
+            return text
+
+class Main
+    shared
+        def main
+            var padded = String.pad("hi", 10, "*")
+            print padded

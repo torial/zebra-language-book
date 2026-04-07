@@ -1,0 +1,23 @@
+// file: 06_interpolation.zbr
+// teaches: string interpolation
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            var name = "Alice"
+            var age = 30
+            
+            // Simple interpolation
+            print "Name: ${name}"               // Name: Alice
+            
+            // Expressions in interpolation
+            print "Age next year: ${age + 1}"   // Age next year: 31
+            
+            // Method calls
+            var lower_name = name.lower()
+            print "Lowercase: ${lower_name}"    // Lowercase: alice
+            
+            // Format specifiers (if supported)
+            var price = 19.99
+            print "Price: ${price:.2f}"         // Price: 19.99

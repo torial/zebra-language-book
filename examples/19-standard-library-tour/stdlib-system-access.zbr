@@ -1,0 +1,50 @@
+// file: stdlib-system-access.zbr
+// teaches: accessing system information
+// chapter: 19
+
+def main()
+    // Command-line arguments
+    var args = System.args()
+    println("Argument count: ${args.count()}")
+    
+    if args.count() > 0
+        println("First argument: ${args.at(0)}")
+        println("All arguments:")
+        for arg in args
+            println("  - ${arg}")
+    
+    // Environment variables
+    var home = System.env("HOME")
+    if home != nil
+        println("Home directory: ${home}")
+    
+    var path = System.env("PATH")
+    if path != nil
+        var dirs = path.split(":")  # On Unix; Windows uses ";"
+        println("PATH has ${dirs.count()} directories")
+    
+    // Get current working directory
+    var cwd = System.cwd()
+    println("Current directory: ${cwd}")
+    
+    // Practical example: parse arguments
+    def parse_arguments(args as List(str)) as HashMap(str, str)?
+        var options = HashMap(str, str)()
+        var i = 0
+        
+        while i < args.count()
+            var arg = args.at(i)
+            
+            if arg.startsWith("--")
+                var key = arg.substring(2, arg.len)
+                var value = ""
+                
+                if i + 1 < args.count() and not args.at(i + 1).startsWith("--")
+                    value = args.at(i + 1)
+                    i = i + 1
+                
+                options.put(key, value)
+            
+            i = i + 1
+        
+        return options

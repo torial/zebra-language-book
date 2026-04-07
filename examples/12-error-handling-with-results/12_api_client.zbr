@@ -1,0 +1,28 @@
+// file: 12_api_client.zbr
+// teaches: results in realistic code
+// chapter: 12-Error-Handling-with-Results
+
+class APIClient
+    shared
+        def fetch_user(user_id as int) as Result(str, str)
+            if user_id <= 0
+                return Result.err("Invalid user ID")
+            # Simulate API call
+            if user_id == 1
+                return Result.ok("Alice")
+            return Result.err("User not found")
+        
+        def fetch_and_greet(user_id as int) as Result(str, str)
+            var user_result = fetch_user(user_id)
+            if user_result.isErr()
+                return Result.err(user_result.errValue())
+            
+            var user = user_result.okValue()
+            var greeting = "Hello, ${user}!"
+            return Result.ok(greeting)
+
+class Main
+    shared
+        def main
+            var result = APIClient.fetch_and_greet(1)
+            print result.unwrapOr("Error: Could not greet")

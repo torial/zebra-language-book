@@ -1,0 +1,45 @@
+// file: 10_computed.zbr
+// teaches: expensive computed properties
+// chapter: 10-Properties-and-Computed-Values
+
+class DataSet
+    var numbers as List(int) = List()
+    
+    def sum as int
+        var total = 0
+        for num in numbers
+            total = total + num
+        return total
+    
+    def average as float
+        if numbers.count() == 0
+            return 0.0
+        return sum / numbers.count()
+    
+    def min_value as int
+        var min = numbers.at(0)
+        for num in numbers
+            if num < min
+                min = num
+        return min
+    
+    def max_value as int
+        var max = numbers.at(0)
+        for num in numbers
+            if num > max
+                max = num
+        return max
+
+class Main
+    shared
+        def main
+            var data = DataSet()
+            data.numbers.add(10)
+            data.numbers.add(20)
+            data.numbers.add(30)
+            data.numbers.add(40)
+            
+            print "Sum: ${data.sum()}"           // 100
+            print "Average: ${data.average()}"   // 25
+            print "Min: ${data.min_value()}"     // 10
+            print "Max: ${data.max_value()}"     // 40

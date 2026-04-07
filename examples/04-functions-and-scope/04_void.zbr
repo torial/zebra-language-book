@@ -1,0 +1,15 @@
+// file: 04_void.zbr
+// teaches: functions that don't return values
+// chapter: 04-Functions-and-Scope
+
+class Logger
+    shared
+        def log(message as str)
+            print "[LOG] ${message}"
+
+class Main
+    shared
+        def main
+            Logger.log("Application started")
+            Logger.log("Processing data")
+            Logger.log("Done")

@@ -1,0 +1,24 @@
+// file: 15_pipeline_custom.zbr
+// teaches: custom functions in pipelines
+// chapter: 15-Pipelines-and-Function-Composition
+
+class Utils
+    shared
+        def double(x as int) as int
+            return x * 2
+        
+        def add_ten(x as int) as int
+            return x + 10
+        
+        def format_result(x as int) as str
+            return "Result: ${x}"
+
+class Main
+    shared
+        def main
+            var result = 5
+                -> Utils.double(.)
+                -> Utils.add_ten(.)
+                -> Utils.format_result(.)
+            
+            print result  # Output: Result: 20

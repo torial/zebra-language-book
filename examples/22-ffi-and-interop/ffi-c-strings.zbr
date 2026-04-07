@@ -1,0 +1,32 @@
+// file: ffi-c-strings.zbr
+// teaches: passing strings to C functions
+// chapter: 22
+
+shared class CString
+    shared
+        # C strlen: int strlen(const char* s)
+        def strlen(s as str) as int
+            # Native C implementation
+            return 0
+        
+        # C strcmp: int strcmp(const char* a, const char* b)
+        def strcmp(a as str, b as str) as int
+            # Returns: 0 if equal, <0 if a<b, >0 if a>b
+            return 0
+        
+        # C strcpy: char* strcpy(char* dest, const char* src)
+        # WARNING: strcpy is dangerous! Buffer overflow risk!
+        # Better to use strncpy or avoid it entirely
+
+def main()
+    var text = "Hello, World!"
+    var length = CString.strlen(text)
+    println("Length: ${length}")
+    
+    var cmp = CString.strcmp("apple", "apple")
+    if cmp == 0
+        println("Strings are equal")
+    
+    cmp = CString.strcmp("apple", "banana")
+    if cmp < 0
+        println("apple comes before banana")

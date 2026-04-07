@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
+      .class-box { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .class-name { fill: #0284c7; stroke: #0284c7; }
+      .fields-section { fill: #f0f9ff; stroke: #0284c7; stroke-width: 1; }
+      .methods-section { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+      .shared-section { fill: #fef3c7; stroke: #d97706; stroke-width: 1; }
+      .label { font-size: 13px; fill: #374151; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .section-title { font-size: 11px; font-weight: bold; fill: #374151; }
+    </style>
+  </defs>
+
+  <text x="500" y="40" class="title" text-anchor="middle">Class Structure in Zebra</text>
+
+  <!-- BankAccount class example -->
+  <g>
+    <text x="60" y="90" class="label" font-weight="bold">BankAccount Class Layout:</text>
+
+    <!-- Main class box -->
+    <rect x="50" y="110" width="350" height="480" class="class-box" rx="5"/>
+
+    <!-- Class name header -->
+    <rect x="50" y="110" width="350" height="35" class="class-name" rx="5,5,0,0"/>
+    <text x="225" y="135" class="label" text-anchor="middle" font-weight="bold" fill="white">class BankAccount</text>
+
+    <!-- Fields section -->
+    <rect x="50" y="145" width="350" height="120" class="fields-section" rx="0"/>
+    <text x="65" y="163" class="section-title">Instance Fields:</text>
+    <text x="65" y="185" class="code">var account_id as int</text>
+    <text x="65" y="205" class="code">var owner as str</text>
+    <text x="65" y="225" class="code">var balance as float</text>
+    <text x="65" y="245" class="code">var is_open as bool = true</text>
+
+    <!-- Instance methods section -->
+    <rect x="50" y="265" width="350" height="140" class="methods-section" rx="0"/>
+    <text x="65" y="283" class="section-title">Instance Methods:</text>
+    <text x="65" y="305" class="code">def deposit(amount as float)</text>
+    <text x="65" y="325" class="code">def withdraw(amount as float)</text>
+    <text x="65" y="345" class="code">def check_balance as float</text>
+    <text x="65" y="365" class="code">def close_account()</text>
+
+    <!-- Shared/Static section -->
+    <rect x="50" y="405" width="350" height="185" class="shared-section" rx="0,0,5,5"/>
+    <text x="65" y="423" class="section-title">Shared (Static) Members:</text>
+    <text x="65" y="445" class="code">shared var next_account_id = 1001</text>
+    <text x="65" y="465" class="code">shared def create(owner as str)</text>
+    <text x="65" y="485" class="code">  var account = BankAccount()</text>
+    <text x="65" y="505" class="code">  account.account_id = next_id</text>
+    <text x="65" y="525" class="code">  next_account_id = next_id + 1</text>
+    <text x="65" y="545" class="code">  return account</text>
+    <text x="65" y="565" class="label" font-size="10" fill="#6b7280">Shared across all instances</text>
+  </g>
+
+  <!-- Usage example -->
+  <g>
+    <text x="450" y="90" class="label" font-weight="bold">Creating and Using Instances:</text>
+
+    <rect x="440" y="110" width="500" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+
+    <text x="460" y="135" class="code">var account1 = BankAccount.create("Alice")</text>
+    <text x="460" y="160" class="code"># account1 instance created</text>
+    <text x="460" y="180" class="code"># Fields: account_id=1001, owner="Alice",</text>
+    <text x="460" y="200" class="code">#         balance=0, is_open=true</text>
+
+    <text x="460" y="230" class="code">account1.deposit(1000)   # Call instance method</text>
+    <text x="460" y="250" class="code">var bal = account1.check_balance()  # bal = 1000</text>
+
+    <text x="460" y="280" class="code">var account2 = BankAccount.create("Bob")</text>
+    <text x="460" y="300" class="code"># account2 separate instance, different fields</text>
+  </g>
+
+  <!-- Memory layout -->
+  <g>
+    <text x="450" y="340" class="label" font-weight="bold">Memory Layout:</text>
+
+    <!-- account1 instance -->
+    <g>
+      <rect x="440" y="360" width="220" height="150" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" rx="3"/>
+      <text x="550" y="380" class="label" text-anchor="middle" font-weight="bold">account1 (Instance)</text>
+
+      <rect x="450" y="395" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="460" y="410" class="code">account_id: 1001</text>
+
+      <rect x="450" y="415" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="460" y="430" class="code">owner: "Alice"</text>
+
+      <rect x="450" y="435" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="460" y="450" class="code">balance: 1000.0</text>
+
+      <rect x="450" y="455" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="460" y="470" class="code">is_open: true</text>
+
+      <text x="550" y="490" class="label" text-anchor="middle" font-size="10" fill="#6b7280">Own copy of all</text>
+      <text x="550" y="505" class="label" text-anchor="middle" font-size="10" fill="#6b7280">instance fields</text>
+    </g>
+
+    <!-- account2 instance -->
+    <g>
+      <rect x="700" y="360" width="220" height="150" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" rx="3"/>
+      <text x="810" y="380" class="label" text-anchor="middle" font-weight="bold">account2 (Instance)</text>
+
+      <rect x="710" y="395" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="720" y="410" class="code">account_id: 1002</text>
+
+      <rect x="710" y="415" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="720" y="430" class="code">owner: "Bob"</text>
+
+      <rect x="710" y="435" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="720" y="450" class="code">balance: 0.0</text>
+
+      <rect x="710" y="455" width="200" height="20" fill="#f0f9ff" stroke="#0369a1" stroke-width="1"/>
+      <text x="720" y="470" class="code">is_open: true</text>
+
+      <text x="810" y="490" class="label" text-anchor="middle" font-size="10" fill="#6b7280">Separate copy,</text>
+      <text x="810" y="505" class="label" text-anchor="middle" font-size="10" fill="#6b7280">independent data</text>
+    </g>
+
+    <!-- Shared data -->
+    <g>
+      <rect x="440" y="530" width="480" height="100" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="3"/>
+      <text x="680" y="555" class="label" text-anchor="middle" font-weight="bold">Shared Static Data (Class Level)</text>
+      <rect x="460" y="570" width="440" height="25" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+      <text x="470" y="587" class="code">next_account_id: 1003  (shared, used by all instances)</text>
+    </g>
+  </g>
+
+  <!-- Key differences -->
+  <g>
+    <rect x="440" y="670" width="500" height="25" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" rx="3"/>
+    <text x="460" y="688" class="label" font-weight="bold">Instance fields: one per object  •  Shared fields: one for entire class</text>
+  </g>
+</svg>

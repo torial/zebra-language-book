@@ -1,0 +1,39 @@
+// file: 06_text_processing.zbr
+// teaches: practical text operations
+// chapter: 06-Strings-and-Unicode
+
+class Parser
+    shared
+        def parse_csv_line(line as str) as List(str)
+            return line.split(",")
+        
+        def normalize_whitespace(text as str) as str
+            // Replace multiple spaces with one
+            var lines as List(str) = List()
+            for line in text.split("\n")
+                var trimmed = line.trim()
+                if trimmed.len > 0
+                    lines.add(trimmed)
+            return "\n".join(lines)
+        
+        def extract_numbers(text as str) as List(str)
+            var results as List(str) = List()
+            var pattern = Regex.compile("\\d+")
+            for match in pattern.findAll(text)
+                results.add(match)
+            return results
+
+class Main
+    shared
+        def main
+            // Parse CSV
+            var csv_line = "Alice,30,alice@example.com"
+            var fields = Parser.parse_csv_line(csv_line)
+            print "Name: ${fields.at(0)}"
+            print "Age: ${fields.at(1)}"
+            
+            // Extract numbers
+            var text = "I was born in 1990 and moved in 2005"
+            var years = Parser.extract_numbers(text)
+            for year in years
+                print year

@@ -1,0 +1,24 @@
+// file: 06_unicode.zbr
+// teaches: unicode support
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            // Emoji
+            var emoji = "Hello 👋 🌍 🎉"
+            print emoji
+            print emoji.len                     // Byte length
+            print emoji.codePointCount()        // Character count
+            
+            // Chinese
+            var chinese = "你好世界"  // Hello World in Chinese
+            print chinese
+            
+            // Arabic (right-to-left)
+            var arabic = "مرحبا بالعالم"  // Hello World
+            print arabic
+            
+            // Mixed scripts
+            var mixed = "Hello 世界 مرحبا"
+            print mixed

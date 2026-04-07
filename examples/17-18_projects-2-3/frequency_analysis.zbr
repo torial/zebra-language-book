@@ -1,0 +1,63 @@
+// file: frequency_analysis.zbr
+// teaches: frequency counting and sorting
+// project: Project-3-Data-Analysis
+
+class WordFrequency
+    var word as str
+    var count as int
+    
+    def init(word as str, count as int)
+        this.word = word
+        this.count = count
+    
+    def to_string as str
+        return "${word}: ${count}"
+
+class FrequencyAnalyzer
+    shared
+        def analyze_text(text as str) as List(WordFrequency)
+            var words = text.lower().split(" ")
+            var freq as HashMap(str, int) = HashMap()
+            
+            # Count occurrences
+            for word in words
+                var cleaned = word.trim()
+                if cleaned.len > 0
+                    if freq.contains(cleaned)
+                        freq.put(cleaned, freq.fetch(cleaned) + 1)
+                    else
+                        freq.put(cleaned, 1)
+            
+            # Convert to list and sort by frequency
+            var results as List(WordFrequency) = List()
+            for word, count in freq
+                var wf = WordFrequency(word, count)
+                results.add(wf)
+            
+            # Simple bubble sort (in-place)
+            var i = 0
+            while i < results.count()
+                var j = 0
+                while j < results.count() - 1
+                    var current = results.at(j)
+                    var next = results.at(j + 1)
+                    if current.count < next.count
+                        # Swap (simplified)
+                        var temp = current
+                        results.at(j) = next
+                        results.at(j + 1) = temp
+                    j = j + 1
+                i = i + 1
+            
+            return results
+        
+        def top_words(text as str, limit as int) as List(WordFrequency)
+            var all_freqs = analyze_text(text)
+            var results as List(WordFrequency) = List()
+            
+            var i = 0
+            while i < limit and i < all_freqs.count()
+                results.add(all_freqs.at(i))
+                i = i + 1
+            
+            return results

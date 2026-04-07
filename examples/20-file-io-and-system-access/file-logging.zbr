@@ -1,0 +1,46 @@
+// file: file-logging.zbr
+// teaches: generating timestamped log files
+// chapter: 20
+
+class Logger
+    var filename as str
+    var entries as List(str)
+    
+    def init(filename as str)
+        this.filename = filename
+        this.entries = List(str)()
+    
+    def log(message as str)
+        var timestamp = get_timestamp()
+        var entry = "${timestamp} [INFO] ${message}"
+        this.entries.add(entry)
+        println(entry)
+    
+    def error(message as str)
+        var timestamp = get_timestamp()
+        var entry = "${timestamp} [ERROR] ${message}"
+        this.entries.add(entry)
+        println(entry)
+    
+    def save() as bool
+        var content = entries.join("\n")
+        var result = File.write(filename, content)
+        return result.isOk()
+
+def get_timestamp() as str
+    // Placeholder—in real code, use actual time
+    return "2025-03-15 14:30:00"
+
+def main()
+    var logger = Logger("app.log")
+    
+    logger.log("Application started")
+    logger.log("Configuration loaded")
+    logger.error("Failed to connect to database")
+    logger.log("Retrying connection...")
+    logger.log("Connection successful")
+    
+    if logger.save()
+        println("Log saved to ${logger.filename}")
+    else
+        println("Failed to save log")

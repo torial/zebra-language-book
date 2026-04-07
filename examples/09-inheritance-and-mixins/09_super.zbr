@@ -1,0 +1,26 @@
+// file: 09_super.zbr
+// teaches: calling parent implementation
+// chapter: 09-Inheritance-and-Mixins
+
+class Vehicle
+    var speed as int = 0
+    
+    def accelerate
+        speed = speed + 10
+        print "Accelerating to ${speed} mph"
+
+class Car
+    inherits Vehicle
+        def accelerate  // Override but call parent
+            # First call parent implementation
+            super.accelerate()
+            # Then add custom behavior
+            print "Car is now cruising smoothly"
+
+class Main
+    shared
+        def main
+            var car = Car()
+            car.accelerate()
+            // Accelerating to 10 mph
+            // Car is now cruising smoothly

@@ -1,0 +1,40 @@
+// file: stdlib-type-conversions.zbr
+// teaches: converting between types and strings
+// chapter: 19
+
+def main()
+    // String to int
+    var num_str = "42"
+    var num = num_str.toInt()
+    println(num)  # 42
+    
+    // String to float
+    var float_str = "3.14"
+    var float_val = float_str.toFloat()
+    println(float_val)  # 3.14
+    
+    // Int to string
+    var num2 = 100
+    var str2 = num2.toString()
+    println(str2)  # "100"
+    
+    // Float to string
+    var pi = 3.14159
+    var pi_str = pi.toString()
+    println(pi_str)  # "3.14159"
+    
+    // Boolean to string
+    var flag = true
+    var flag_str = flag.toString()
+    println(flag_str)  # "true"
+    
+    // Error handling for conversions
+    var user_input = "not a number"
+    var parsed = user_input.toInt()
+    if parsed == nil
+        println("Invalid number")
+    
+    // Safe conversions with nil checking
+    var value as int? = "123".toInt()
+    if value != nil
+        println("Parsed successfully: ${value}")

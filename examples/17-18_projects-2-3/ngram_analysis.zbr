@@ -1,0 +1,74 @@
+// file: ngram_analysis.zbr
+// teaches: n-gram extraction and pattern detection
+// project: Project-3-Data-Analysis
+
+class NGram
+    var gram as str
+    var count as int
+    var positions as List(int)  # Track where it appears
+    
+    def init(gram as str)
+        this.gram = gram
+        count = 1
+        positions = List()
+
+class NGramAnalyzer
+    shared
+        def extract_ngrams(text as str, n as int) as HashMap(str, NGram)
+            var words = text.lower().split(" ")
+            var ngrams as HashMap(str, NGram) = HashMap()
+            
+            var i = 0
+            while i < words.count() - (n - 1)
+                var gram = ""
+                var j = 0
+                while j < n
+                    var word = words.at(i + j).trim()
+                    if j > 0
+                        gram = gram.concat(" ")
+                    gram = gram.concat(word)
+                    j = j + 1
+                
+                if ngrams.contains(gram)
+                    var ng = ngrams.fetch(gram)
+                    ng.count = ng.count + 1
+                    ng.positions.add(i)
+                else
+                    var ng = NGram(gram)
+                    ng.positions.add(i)
+                    ngrams.put(gram, ng)
+                
+                i = i + 1
+            
+            return ngrams
+        
+        def top_ngrams(text as str, n as int, limit as int) as List(NGram)
+            var all_grams = extract_ngrams(text, n)
+            var results as List(NGram) = List()
+            
+            # Simple sorting
+            for gram, ng in all_grams
+                results.add(ng)
+            
+            # Bubble sort by count
+            var i = 0
+            while i < results.count()
+                var j = 0
+                while j < results.count() - 1
+                    var current = results.at(j)
+                    var next = results.at(j + 1)
+                    if current.count < next.count
+                        var temp = current
+                        results.at(j) = next
+                        results.at(j + 1) = temp
+                    j = j + 1
+                i = i + 1
+            
+            # Return top N
+            var top as List(NGram) = List()
+            i = 0
+            while i < limit and i < results.count()
+                top.add(results.at(i))
+                i = i + 1
+            
+            return top

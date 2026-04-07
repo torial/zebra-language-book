@@ -1,0 +1,18 @@
+// file: 15_pipeline_chain.zbr
+// teaches: chaining operations
+// chapter: 15-Pipelines-and-Function-Composition
+
+class StringProcessor
+    shared
+        def process(text as str) as str
+            return text
+                -> .lower()
+                -> .trim()
+                -> .replace("  ", " ")
+
+class Main
+    shared
+        def main
+            var input = "  HELLO   WORLD  "
+            var output = StringProcessor.process(input)
+            print output  # Output: hello world

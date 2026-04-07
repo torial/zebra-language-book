@@ -1,0 +1,15 @@
+// file: file-read-simple.zbr
+// teaches: simple file reading with error handling
+// chapter: 20
+
+def main()
+    var filename = "example.txt"
+    
+    var result = File.read(filename)
+    
+    branch result
+        on ok(content)
+            println("File contents:")
+            println(content)
+        on err(error)
+            println("Error reading file: ${error}")

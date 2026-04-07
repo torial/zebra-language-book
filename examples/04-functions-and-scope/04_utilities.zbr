@@ -1,0 +1,26 @@
+// file: 04_utilities.zbr
+// teaches: practical function use
+// chapter: 04-Functions-and-Scope
+
+class String
+    shared
+        def repeat(text as str, times as int) as str
+            var result = ""
+            var i = 0
+            while i < times
+                result = result.concat(text)
+                i = i + 1
+            return result
+        
+        def pad_left(text as str, width as int) as str
+            var padding_needed = width - text.len
+            if padding_needed <= 0
+                return text
+            var padding = repeat(" ", padding_needed)
+            return padding.concat(text)
+
+class Main
+    shared
+        def main
+            var padded = String.pad_left("hello", 10)
+            print "[${padded}]"         // [     hello]

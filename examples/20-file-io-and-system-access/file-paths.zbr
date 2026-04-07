@@ -1,0 +1,23 @@
+// file: file-paths.zbr
+// teaches: path operations and directory access
+// chapter: 20
+
+def main()
+    var cwd = System.cwd()
+    println("Current directory: ${cwd}")
+    
+    // Build path (simple string concatenation)
+    var data_dir = cwd + "/data"
+    var file_path = data_dir + "/input.txt"
+    println("Full path: ${file_path}")
+    
+    // Extract filename from path
+    var path = "/home/user/documents/report.txt"
+    var filename = path.substring(path.lastIndexOf("/") + 1, path.len)
+    println("Filename: ${filename}")
+    
+    // Extract directory from path
+    var last_slash = path.lastIndexOf("/")
+    if last_slash > 0
+        var directory = path.substring(0, last_slash)
+        println("Directory: ${directory}")

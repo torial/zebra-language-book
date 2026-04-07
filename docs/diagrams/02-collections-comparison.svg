@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; font-family: Arial, sans-serif; }
+      .section-title { font-size: 16px; font-weight: bold; fill: #2c5aa0; font-family: Arial, sans-serif; }
+      .box-header { fill: #2c5aa0; stroke: #2c5aa0; }
+      .box-content { fill: #e8f4f8; stroke: #2c5aa0; stroke-width: 2; }
+      .list-item { fill: #ecfdf5; stroke: #059669; stroke-width: 1; }
+      .label { font-size: 13px; fill: #374151; font-family: Arial, sans-serif; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .note { font-size: 11px; fill: #6b7280; font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="35" class="title" text-anchor="middle">Collections Comparison in Zebra</text>
+
+  <!-- LIST Section -->
+  <g>
+    <text x="80" y="80" class="section-title">List(T) - Ordered</text>
+
+    <!-- Visual representation -->
+    <g>
+      <rect x="30" y="100" width="300" height="150" fill="none" stroke="#d1d5db" stroke-width="1" stroke-dasharray="5,5" rx="3"/>
+
+      <!-- Items -->
+      <rect x="40" y="115" width="35" height="35" class="list-item"/>
+      <text x="57" y="140" class="code" text-anchor="middle">A</text>
+
+      <rect x="85" y="115" width="35" height="35" class="list-item"/>
+      <text x="102" y="140" class="code" text-anchor="middle">B</text>
+
+      <rect x="130" y="115" width="35" height="35" class="list-item"/>
+      <text x="147" y="140" class="code" text-anchor="middle">C</text>
+
+      <rect x="175" y="115" width="35" height="35" class="list-item"/>
+      <text x="192" y="140" class="code" text-anchor="middle">D</text>
+
+      <!-- Index labels -->
+      <text x="57" y="165" class="note" text-anchor="middle">[0]</text>
+      <text x="102" y="165" class="note" text-anchor="middle">[1]</text>
+      <text x="147" y="165" class="note" text-anchor="middle">[2]</text>
+      <text x="192" y="165" class="note" text-anchor="middle">[3]</text>
+
+      <!-- Properties -->
+      <text x="40" y="195" class="label">✓ Order preserved</text>
+      <text x="40" y="215" class="label">✓ Fast random access</text>
+      <text x="40" y="235" class="label">✓ Duplicates allowed</text>
+    </g>
+
+    <!-- Usage -->
+    <text x="40" y="270" class="label" font-weight="bold">Usage:</text>
+    <text x="40" y="290" class="code">var items = List()</text>
+    <text x="40" y="310" class="code">items.add(value)</text>
+    <text x="40" y="330" class="code">var x = items.at(0)</text>
+  </g>
+
+  <!-- HASHMAP Section -->
+  <g>
+    <text x="380" y="80" class="section-title">HashMap(K, V) - Key-Value</text>
+
+    <!-- Visual representation -->
+    <g>
+      <rect x="330" y="100" width="300" height="150" fill="none" stroke="#d1d5db" stroke-width="1" stroke-dasharray="5,5" rx="3"/>
+
+      <!-- Key-Value pairs -->
+      <rect x="340" y="115" width="55" height="35" class="list-item"/>
+      <text x="367" y="140" class="code" text-anchor="middle" font-size="11">"name"</text>
+
+      <text x="405" y="140" class="label">→</text>
+
+      <rect x="420" y="115" width="55" height="35" class="list-item"/>
+      <text x="447" y="140" class="code" text-anchor="middle">"Joe"</text>
+
+      <!-- Second pair -->
+      <rect x="485" y="115" width="55" height="35" class="list-item"/>
+      <text x="512" y="140" class="code" text-anchor="middle" font-size="11">"age"</text>
+
+      <text x="550" y="140" class="label">→</text>
+
+      <rect x="565" y="115" width="55" height="35" class="list-item"/>
+      <text x="592" y="140" class="code" text-anchor="middle">30</text>
+
+      <!-- Properties -->
+      <text x="340" y="195" class="label">✓ Fast key lookup</text>
+      <text x="340" y="215" class="label">✓ Unordered</text>
+      <text x="340" y="235" class="label">✓ Unique keys</text>
+    </g>
+
+    <!-- Usage -->
+    <text x="340" y="270" class="label" font-weight="bold">Usage:</text>
+    <text x="340" y="290" class="code">var map = HashMap()</text>
+    <text x="340" y="310" class="code">map.put(key, value)</text>
+    <text x="340" y="330" class="code">var x = map.fetch(key)</text>
+  </g>
+
+  <!-- SET Section -->
+  <g>
+    <text x="680" y="80" class="section-title">Set(T) - Unique Items</text>
+
+    <!-- Visual representation -->
+    <g>
+      <rect x="630" y="100" width="300" height="150" fill="none" stroke="#d1d5db" stroke-width="1" stroke-dasharray="5,5" rx="3"/>
+
+      <!-- Items in circular arrangement -->
+      <circle cx="660" cy="140" r="18" class="list-item"/>
+      <text x="660" y="145" class="code" text-anchor="middle">A</text>
+
+      <circle cx="710" cy="125" r="18" class="list-item"/>
+      <text x="710" y="130" class="code" text-anchor="middle">B</text>
+
+      <circle cx="760" cy="140" r="18" class="list-item"/>
+      <text x="760" y="145" class="code" text-anchor="middle">C</text>
+
+      <circle cx="790" cy="175" r="18" class="list-item"/>
+      <text x="790" y="180" class="code" text-anchor="middle">D</text>
+
+      <circle cx="735" cy="190" r="18" class="list-item"/>
+      <text x="735" y="195" class="code" text-anchor="middle">E</text>
+
+      <!-- Properties -->
+      <text x="640" y="245" class="label">✓ No duplicates</text>
+      <text x="640" y="265" class="label">✓ Fast membership check</text>
+      <text x="640" y="285" class="label">✓ Unordered</text>
+    </g>
+
+    <!-- Usage -->
+    <text x="640" y="320" class="label" font-weight="bold">Usage:</text>
+    <text x="640" y="340" class="code">var s = Set()</text>
+    <text x="640" y="360" class="code">s.add(value)</text>
+    <text x="640" y="380" class="code">if s.contains(x)</text>
+  </g>
+
+  <!-- Iteration Examples -->
+  <g>
+    <text x="50" y="450" class="section-title">Iteration Patterns</text>
+
+    <!-- List iteration -->
+    <g>
+      <rect x="30" y="470" width="300" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+      <text x="40" y="490" class="label" font-weight="bold">List - Index Based</text>
+      <text x="40" y="510" class="code">for item in list</text>
+      <text x="40" y="530" class="code">  print item</text>
+      <text x="40" y="555" class="label" font-weight="bold">Or with index:</text>
+      <text x="40" y="575" class="code">var i = 0</text>
+      <text x="40" y="595" class="code">while i &lt; list.count()</text>
+      <text x="40" y="615" class="code">  print list.at(i)</text>
+      <text x="40" y="635" class="code">  i = i + 1</text>
+    </g>
+
+    <!-- HashMap iteration -->
+    <g>
+      <rect x="360" y="470" width="300" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+      <text x="370" y="490" class="label" font-weight="bold">HashMap - Key-Value Pair</text>
+      <text x="370" y="510" class="code">for key, value in map</text>
+      <text x="370" y="530" class="code">  print key.concat("=")</text>
+      <text x="370" y="550" class="code">  print value</text>
+      <text x="370" y="575" class="label" font-weight="bold">Check membership:</text>
+      <text x="370" y="595" class="code">if map.contains(key)</text>
+      <text x="370" y="615" class="code">  var v = map.fetch(key)</text>
+      <text x="370" y="635" class="code">  # Do something</text>
+    </g>
+
+    <!-- Set iteration -->
+    <g>
+      <rect x="690" y="470" width="280" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+      <text x="700" y="490" class="label" font-weight="bold">Set - Unique Items</text>
+      <text x="700" y="510" class="code">for item in set</text>
+      <text x="700" y="530" class="code">  print item</text>
+      <text x="700" y="555" class="label" font-weight="bold">Check membership:</text>
+      <text x="700" y="575" class="code">if set.contains(item)</text>
+      <text x="700" y="595" class="code">  print "Found"</text>
+      <text x="700" y="620" class="label" font-size="11">No direct indexing</text>
+      <text x="700" y="635" class="label" font-size="11">No ordering</text>
+    </g>
+  </g>
+</svg>

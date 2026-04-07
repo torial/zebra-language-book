@@ -1,0 +1,19 @@
+// file: 06_replace.zbr
+// teaches: string replacement
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            var text = "cat and dog and bird"
+            
+            // Replace (first occurrence, or all)
+            var once = text.replace("and", "or")      // Replaces once
+            print once
+            
+            var all = text.replaceAll("and", "or")    // Replaces all
+            print all
+            
+            // Case conversion replacement
+            var lower = "Hello World".lower()
+            print lower                         // hello world

@@ -1,0 +1,15 @@
+// file: 05_conditions.zbr
+// teaches: boolean logic
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            var age as int = 25
+            var has_license as bool = true
+            
+            if age >= 18 and has_license
+                print "Can drive"
+            
+            if age < 16 or not has_license
+                print "Cannot drive"

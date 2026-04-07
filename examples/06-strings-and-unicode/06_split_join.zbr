@@ -1,0 +1,20 @@
+// file: 06_split_join.zbr
+// teaches: splitting and joining strings
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            // Split
+            var csv = "apple,banana,cherry"
+            var fruits = csv.split(",")
+            for fruit in fruits
+                print fruit
+            
+            // Join
+            var items as List(str) = List()
+            items.add("one")
+            items.add("two")
+            items.add("three")
+            var result = ", ".join(items)
+            print result                        // one, two, three

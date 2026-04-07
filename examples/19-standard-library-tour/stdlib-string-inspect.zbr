@@ -1,0 +1,29 @@
+// file: stdlib-string-inspect.zbr
+// teaches: string properties and inspection methods
+// chapter: 19
+
+def main()
+    var text = "Hello, World!"
+    
+    // Length
+    println(text.len)           # 13
+    
+    // Check if empty
+    if text.len == 0
+        println("Empty string")
+    
+    // Character access
+    var first_char = text.charAt(0)     # 'H'
+    var last_char = text.charAt(text.len - 1)   # '!'
+    println(first_char)
+    println(last_char)
+    
+    // Check existence
+    if text.contains("World")
+        println("Found World")
+    
+    if text.startsWith("Hello")
+        println("Greeting detected")
+    
+    if text.endsWith("!")
+        println("Exclamation found")

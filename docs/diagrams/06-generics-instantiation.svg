@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
+      .section { font-size: 14px; font-weight: bold; fill: #2c5aa0; }
+      .generic { fill: #e8f4f8; stroke: #2c5aa0; stroke-width: 2; }
+      .concrete { fill: #f0f9ff; stroke: #0369a1; stroke-width: 2; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .label { font-size: 13px; fill: #374151; }
+      .arrow { stroke: #0369a1; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0369a1" />
+    </marker>
+  </defs>
+
+  <text x="500" y="40" class="title" text-anchor="middle">Generic Type Instantiation</text>
+
+  <!-- Generic Template -->
+  <g>
+    <text x="60" y="90" class="section">Step 1: Generic Template</text>
+    <rect x="50" y="110" width="350" height="130" class="generic" rx="5"/>
+    <text x="70" y="135" class="code" font-weight="bold">class Container(T)</text>
+    <text x="70" y="160" class="code">  var item as T</text>
+    <text x="70" y="185" class="code">  def get as T</text>
+    <text x="70" y="210" class="code">    return item</text>
+    <text x="200" y="240" class="label" text-anchor="middle" fill="#6b7280">T is a parameter</text>
+  </g>
+
+  <!-- Instantiation with int -->
+  <g>
+    <path d="M 420 170 L 480 170" class="arrow"/>
+    <text x="450" y="155" class="label" text-anchor="middle" font-size="12">Substitute</text>
+    <text x="450" y="168" class="label" text-anchor="middle" font-size="12">T = int</text>
+
+    <text x="550" y="90" class="section">Step 2a: Container(int)</text>
+    <rect x="540" y="110" width="400" height="130" class="concrete" rx="5"/>
+    <text x="560" y="135" class="code" font-weight="bold">class Container(int)</text>
+    <text x="560" y="160" class="code">  var item as int</text>
+    <text x="560" y="185" class="code">  def get as int</text>
+    <text x="560" y="210" class="code">    return item</text>
+  </g>
+
+  <!-- Instantiation with str -->
+  <g>
+    <path d="M 420 280 L 480 280" class="arrow"/>
+    <text x="450" y="265" class="label" text-anchor="middle" font-size="12">Substitute</text>
+    <text x="450" y="278" class="label" text-anchor="middle" font-size="12">T = str</text>
+
+    <text x="550" y="200" class="section">Step 2b: Container(str)</text>
+    <rect x="540" y="220" width="400" height="130" class="concrete" rx="5"/>
+    <text x="560" y="245" class="code" font-weight="bold">class Container(str)</text>
+    <text x="560" y="270" class="code">  var item as str</text>
+    <text x="560" y="295" class="code">  def get as str</text>
+    <text x="560" y="320" class="code">    return item</text>
+  </g>
+
+  <!-- Usage examples -->
+  <g>
+    <text x="60" y="310" class="section">Step 3: Instantiation at Use</text>
+
+    <rect x="50" y="330" width="900" height="80" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+    <text x="70" y="355" class="code">var int_box = Container(int)()  # Creates Container with int item</text>
+    <text x="70" y="380" class="code">var str_box = Container(str)()  # Creates Container with str item</text>
+    <text x="70" y="405" class="code"># Each is a separate, fully-typed class at compile time</text>
+  </g>
+
+  <!-- Multiple parameters example -->
+  <g>
+    <text x="60" y="460" class="section">Multiple Type Parameters: Pair(K, V)</text>
+
+    <rect x="50" y="480" width="900" height="90" fill="#f0f9ff" stroke="#0369a1" stroke-width="1" rx="3"/>
+    <text x="70" y="505" class="code" font-weight="bold">class Pair(K, V)</text>
+    <text x="70" y="530" class="code">var pair1 = Pair(str, int)()   # K=str, V=int</text>
+    <text x="70" y="555" class="code">var pair2 = Pair(int, float)() # K=int, V=float</text>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+// file: 15_pipeline_basics.zbr
+// teaches: pipeline operator
+// chapter: 15-Pipelines-and-Function-Composition
+
+class Main
+    shared
+        def main
+            var text = "HELLO WORLD"
+            
+            # Without pipeline (nested calls)
+            var result1 = text.lower().split(" ")
+            
+            # With pipeline (left-to-right)
+            var result2 = text
+                -> .lower()
+                -> .split(" ")
+            
+            # Both are equivalent
+            for word in result2
+                print word

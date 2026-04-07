@@ -1,0 +1,30 @@
+// file: 10_lazy_init.zbr
+// teaches: lazy initialization
+// chapter: 10-Properties-and-Computed-Values
+
+class Database
+    var connection as str?   = nil
+    var is_connected as bool = false
+    
+    def get_connection as str
+        if connection == nil
+            # Expensive operation: only when needed
+            connection = "Connected to DB"
+            is_connected = true
+        return connection
+
+class Main
+    shared
+        def main
+            var db = Database()
+            
+            # Connection not created yet
+            print "Is connected: ${db.is_connected()}"  // false
+            
+            # Access connection (now it's created)
+            var conn = db.get_connection()
+            print conn                                  // Connected to DB
+            
+            # Already exists
+            var conn2 = db.get_connection()
+            print conn2                                 // Connected to DB

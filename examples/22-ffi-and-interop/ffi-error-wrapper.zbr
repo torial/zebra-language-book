@@ -1,0 +1,21 @@
+// file: ffi-error-wrapper.zbr
+// teaches: wrapping C error handling in Zebra
+// chapter: 22
+
+# Example: C library with exception-like behavior
+# Rather than exposing this complexity to Zebra code,
+# wrap it in a simpler Zebra interface
+
+shared class SafeLibrary
+    shared
+        # C function might throw (via setjmp/longjmp)
+        def risky_operation(input as str) as Result(str, str)
+            # Wrapper function (in C or Zig) handles exceptions
+            # and returns a Result to Zebra
+            return Result.err("Operation failed")
+
+def main()
+    var result = SafeLibrary.risky_operation("data")
+    
+    if result.isErr()
+        println("Operation failed safely")

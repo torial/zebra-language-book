@@ -1,0 +1,27 @@
+// file: 14_dual_verify.zbr
+// teaches: verifying both input and output
+// chapter: 14-Contracts-and-Assertions
+
+class StringHandler
+    shared
+        def reverse_string(text as str) as str
+            # Precondition
+            if text == nil
+                return ""
+            
+            var original_len = text.len
+            
+            # Do work
+            var result = text.reverse()
+            
+            # Postcondition: length unchanged
+            if result.len != original_len
+                raise "Postcondition failed: length changed"
+            
+            return result
+
+class Main
+    shared
+        def main
+            var s = StringHandler.reverse_string("hello")
+            print s

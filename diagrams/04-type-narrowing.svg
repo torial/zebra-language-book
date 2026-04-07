@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
+      .section { font-size: 14px; font-weight: bold; fill: #2c5aa0; }
+      .code { font-size: 12px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .before { fill: #fed7aa; stroke: #ea580c; stroke-width: 2; }
+      .after { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .label { font-size: 13px; fill: #374151; }
+      .arrow-thick { stroke: #0369a1; stroke-width: 3; fill: none; marker-end: url(#arrow-big); }
+    </style>
+    <marker id="arrow-big" markerWidth="15" markerHeight="15" refX="13" refY="7" orient="auto">
+      <polygon points="0 0, 15 7, 0 14" fill="#0369a1" />
+    </marker>
+  </defs>
+
+  <text x="500" y="40" class="title" text-anchor="middle">Type Narrowing in Zebra</text>
+
+  <!-- Example 1: Nullable check -->
+  <g>
+    <text x="50" y="100" class="section">Example 1: Nullable Type Check</text>
+
+    <!-- Before -->
+    <g>
+      <text x="60" y="135" class="label" font-weight="bold">Before Check:</text>
+      <rect x="50" y="150" width="350" height="120" class="before" rx="5"/>
+      <text x="70" y="175" class="code">var name as str? = nil</text>
+      <text x="70" y="200" class="code"># name could be nil or string</text>
+      <text x="70" y="225" class="code"># Type: str? (nullable)</text>
+      <text x="70" y="250" class="code">print name  # ERROR!</text>
+    </g>
+
+    <!-- Arrow -->
+    <path d="M 420 200 L 480 200" class="arrow-thick"/>
+
+    <!-- After -->
+    <g>
+      <text x="510" y="135" class="label" font-weight="bold">After Check:</text>
+      <rect x="500" y="150" width="350" height="120" class="after" rx="5"/>
+      <text x="520" y="175" class="code">if name != nil</text>
+      <text x="520" y="200" class="code">  # name is guaranteed not nil</text>
+      <text x="520" y="225" class="code">  # Type: str (non-nullable)</text>
+      <text x="520" y="250" class="code">  print name  # OK!</text>
+    </g>
+  </g>
+
+  <!-- Example 2: Deeper narrowing -->
+  <g>
+    <text x="50" y="320" class="section">Example 2: Result Type Narrowing</text>
+
+    <!-- Before -->
+    <g>
+      <text x="60" y="355" class="label" font-weight="bold">Before Check:</text>
+      <rect x="50" y="370" width="350" height="140" class="before" rx="5"/>
+      <text x="70" y="395" class="code">var result = parse_int("42")</text>
+      <text x="70" y="420" class="code"># result is Result(int, str)</text>
+      <text x="70" y="445" class="code"># Could be Ok or Err</text>
+      <text x="70" y="470" class="code">var x = result.okValue()</text>
+      <text x="70" y="495" class="code"># ERROR! Could be Err</text>
+    </g>
+
+    <!-- Arrow -->
+    <path d="M 420 420 L 480 420" class="arrow-thick"/>
+
+    <!-- After -->
+    <g>
+      <text x="510" y="355" class="label" font-weight="bold">After Check:</text>
+      <rect x="500" y="370" width="350" height="140" class="after" rx="5"/>
+      <text x="520" y="395" class="code">if result.isOk()</text>
+      <text x="520" y="420" class="code">  var x = result.okValue()</text>
+      <text x="520" y="445" class="code">  # Guaranteed to be Ok now</text>
+      <text x="520" y="470" class="code">  # Type is narrowed to Ok variant</text>
+      <text x="520" y="495" class="code">  print x  # OK!</text>
+    </g>
+  </g>
+
+  <!-- Type narrowing rules -->
+  <g>
+    <rect x="50" y="560" width="900" height="120" fill="#f0f9ff" stroke="#0369a1" stroke-width="2" rx="5"/>
+    <text x="70" y="585" class="section">Zebra's Type Narrowing Guarantees</text>
+
+    <text x="70" y="610" class="label">✓ Type checker understands control flow</text>
+    <text x="70" y="630" class="label">✓ After nil check (if x != nil), x is guaranteed non-nil in that scope</text>
+    <text x="70" y="650" class="label">✓ After Result check (if x.isOk()), x is guaranteed Ok in that scope</text>
+    <text x="70" y="670" class="label">✓ Narrowing scope ends at block boundary (outside if block, original type restored)</text>
+  </g>
+</svg>

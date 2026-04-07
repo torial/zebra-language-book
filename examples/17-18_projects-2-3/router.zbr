@@ -1,0 +1,84 @@
+// file: router.zbr
+// teaches: request routing and dispatching
+// project: Project-2-HTTP-Server
+
+interface RequestHandler
+    def handle(request as HttpRequest) as HttpResponse
+
+class Router
+    var routes as HashMap(str, RequestHandler) = HashMap()
+    
+    def register(path as str, handler as RequestHandler)
+        routes.put(path, handler)
+    
+    def route_request(request as HttpRequest) as Result(HttpResponse, str)
+        if routes.contains(request.path)
+            var handler = routes.fetch(request.path)
+            var response = handler.handle(request)
+            return Result.ok(response)
+        
+        # Path not found
+        return Result.ok(HttpResponse.not_found())
+    
+    def list_routes as List(str)
+        var paths as List(str) = List()
+        for path in routes
+            paths.add(path)
+        return paths
+
+class UserHandler
+    implements RequestHandler
+        shared var users as HashMap(int, User) = HashMap()
+        shared var next_id as int = 1
+        
+        def handle(request as HttpRequest) as HttpResponse
+            if request.method == "GET"
+                return handle_get(request)
+            elif request.method == "POST"
+                return handle_post(request)
+            elif request.method == "PUT"
+                return handle_put(request)
+            elif request.method == "DELETE"
+                return handle_delete(request)
+            
+            return HttpResponse.bad_request("Method not allowed")
+        
+        def handle_get(request as HttpRequest) as HttpResponse
+            # If path is /api/users, list all users
+            if request.path == "/api/users"
+                var response_body = "["
+                var first = true
+                for id, user in users
+                    if not first
+                        response_body = response_body.concat(",")
+                    response_body = response_body.concat(user.to_json())
+                    first = false
+                response_body = response_body.concat("]")
+                return HttpResponse.ok(response_body)
+            
+            return HttpResponse.not_found()
+        
+        def handle_post(request as HttpRequest) as HttpResponse
+            # Create new user from JSON body
+            # Simplified: real impl would parse JSON properly
+            var user = User()
+            user.id = next_id
+            user.name = "User ${next_id}"
+            user.email = "user${next_id}@example.com"
+            
+            users.put(user.id, user)
+            next_id = next_id + 1
+            
+            return HttpResponse.created(user.to_json())
+        
+        def handle_put(request as HttpRequest) as HttpResponse
+            return HttpResponse.bad_request("PUT not yet implemented")
+        
+        def handle_delete(request as HttpRequest) as HttpResponse
+            return HttpResponse.bad_request("DELETE not yet implemented")
+
+class HealthHandler
+    implements RequestHandler
+        def handle(request as HttpRequest) as HttpResponse
+            var response = "{\"status\": \"healthy\"}"
+            return HttpResponse.ok(response)

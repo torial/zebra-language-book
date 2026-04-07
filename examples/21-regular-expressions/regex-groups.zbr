@@ -1,0 +1,44 @@
+// file: regex-groups.zbr
+// teaches: grouping and alternation patterns
+// chapter: 21
+
+def main()
+    // Alternation: |
+    var greeting_re = Regex.compile("hello|hi|hey")
+    
+    if greeting_re.matches("hello")
+        println("Matches 'hello'")
+    
+    if greeting_re.matches("hi")
+        println("Matches 'hi'")
+    
+    if greeting_re.matches("hey")
+        println("Matches 'hey'")
+    
+    if not greeting_re.matches("goodbye")
+        println("Doesn't match 'goodbye'")
+    
+    // Groups with quantifiers
+    var repeating_group = Regex.compile("(ab)+")  // ab, abab, ababab, etc.
+    
+    if repeating_group.matches("ab")
+        println("Matches 'ab'")
+    
+    if repeating_group.matches("abab")
+        println("Matches 'abab'")
+    
+    if repeating_group.matches("ababab")
+        println("Matches 'ababab'")
+    
+    if not repeating_group.matches("aba")
+        println("Doesn't match 'aba'")
+    
+    // Optional group
+    var optional_group = Regex.compile("colou?r|color")
+    // Actually redundant—simpler: colou?r
+    
+    if optional_group.matches("color")
+        println("Matches 'color'")
+    
+    if optional_group.matches("colour")
+        println("Matches 'colour'")

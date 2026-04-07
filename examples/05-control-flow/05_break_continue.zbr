@@ -1,0 +1,20 @@
+// file: 05_break_continue.zbr
+// teaches: loop control
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            // Break: exit loop early
+            var i = 0
+            while true
+                if i == 5
+                    break
+                print i
+                i = i + 1
+            
+            // Continue: skip to next iteration
+            for num in 1..10
+                if num % 2 == 0
+                    continue
+                print num  // Prints odd numbers only

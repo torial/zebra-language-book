@@ -1,0 +1,14 @@
+// file: file-exists.zbr
+// teaches: checking if files exist
+// chapter: 20
+
+def main()
+    var config_file = "config.ini"
+    
+    if File.exists(config_file)
+        println("Configuration file found")
+        var content = File.read(config_file)
+        // Process config
+    else
+        println("No configuration file. Using defaults.")
+        // Use defaults

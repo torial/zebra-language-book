@@ -1,0 +1,20 @@
+// file: 05_guards.zbr
+// teaches: guard conditions
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def process(name as str)
+            # Early return if invalid
+            if name.len == 0
+                return
+            if name.len > 100
+                return
+            
+            # Process only if valid
+            print "Processing: ${name}"
+
+        def main
+            process("")            // Returns early
+            process("Alice")       // Processes
+            process("x" * 200)     // Returns early

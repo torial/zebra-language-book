@@ -1,0 +1,21 @@
+// file: 03_iteration.zbr
+// teaches: different iteration styles
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            var items as List(str) = List()
+            items.add("first")
+            items.add("second")
+            items.add("third")
+            
+            // Simple iteration
+            for item in items
+                print item
+            
+            // Iteration with index (if supported)
+            var i = 0
+            while i < items.count()
+                print "${i}: ${items.at(i)}"
+                i = i + 1

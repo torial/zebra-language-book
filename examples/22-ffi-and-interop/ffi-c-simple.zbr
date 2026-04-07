@@ -1,0 +1,22 @@
+// file: ffi-c-simple.zbr
+// teaches: calling basic C functions
+// chapter: 22
+
+// Declare C function signature
+// Note: This example assumes the function is available at link time
+shared class Math
+    shared
+        def sqrt(x as float) as float
+            # This would be implemented in C
+            return 0.0
+        
+        def pow(base as float, exponent as float) as float
+            # C function: double pow(double, double)
+            return 0.0
+
+def main()
+    var result = Math.sqrt(16.0)
+    println(result)  # 4.0
+    
+    var power = Math.pow(2.0, 8.0)
+    println(power)  # 256.0

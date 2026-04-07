@@ -1,0 +1,68 @@
+// file: http_server.zbr
+// teaches: network server programming
+// project: Project-2-HTTP-Server
+
+class HttpServer
+    var port as int
+    var router as Router
+    var is_running as bool = false
+    
+    def init(port as int)
+        this.port = port
+        router = Router()
+    
+    def register_handler(path as str, handler as RequestHandler)
+        router.register(path, handler)
+    
+    def start as Result(bool, str)
+        is_running = true
+        
+        # Register default handlers
+        register_handler("/health", HealthHandler())
+        register_handler("/api/users", UserHandler())
+        
+        print "Server starting on port ${port}..."
+        print "Available routes:"
+        var routes = router.list_routes()
+        for route in routes
+            print "  ${route}"
+        
+        # Main server loop
+        # In real implementation, this would:
+        # 1. Create TCP socket listening on port
+        # 2. Accept connections in loop
+        # 3. Parse HTTP request from socket
+        # 4. Route request to handler
+        # 5. Send response back to client
+        # 6. Close connection
+        
+        # Simplified simulation
+        handle_request_simulation()
+        
+        return Result.ok(true)
+    
+    def handle_request_simulation
+        # Simulate receiving a GET /health request
+        var request = HttpRequest()
+        request.method = "GET"
+        request.path = "/health"
+        request.body = ""
+        request.query = HashMap()
+        request.headers = HashMap()
+        
+        var result = router.route_request(request)
+        if result.isOk()
+            var response = result.okValue()
+            print response.format_response()
+
+class Main
+    shared
+        def main
+            var server = HttpServer(8080)
+            
+            var result = server.start()
+            
+            if result.isErr()
+                print "Error: ${result.errValue()}"
+            else
+                print "Server running. (Ctrl+C to stop)"

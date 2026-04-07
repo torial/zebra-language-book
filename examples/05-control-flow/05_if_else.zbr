@@ -1,0 +1,17 @@
+// file: 05_if_else.zbr
+// teaches: if-else branching
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            var score as int = 75
+            
+            if score >= 90
+                print "A"
+            elif score >= 80
+                print "B"
+            elif score >= 70
+                print "C"
+            else
+                print "F"

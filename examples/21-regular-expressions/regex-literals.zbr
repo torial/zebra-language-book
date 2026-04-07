@@ -1,0 +1,26 @@
+// file: regex-literals.zbr
+// teaches: basic regex literal matching
+// chapter: 21
+
+def main()
+    var text = "The cat sat on the mat"
+    var pattern = "cat"
+    
+    if text.matches(pattern)
+        println("Pattern found!")
+    
+    // Case-sensitive
+    if not text.matches("CAT")
+        println("'CAT' doesn't match 'cat'")
+    
+    // Substring matching
+    if text.contains("sat")
+        println("'sat' is in the text")
+    
+    // Note: for simple substring matching, use .contains()
+    // Don't overcomplicate with regex
+    
+    // Finding position
+    var pos = text.indexOf("mat")  # 19
+    if pos >= 0
+        println("Found at position ${pos}")

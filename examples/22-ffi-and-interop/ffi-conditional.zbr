@@ -1,0 +1,17 @@
+// file: ffi-conditional.zbr
+// teaches: platform-specific compilation
+// chapter: 22
+
+shared class OSSpecific
+    shared
+        def platform_name() as str
+            # This might vary based on compilation target
+            return "Unknown"
+        
+        def file_separator() as str
+            # Windows: \, Unix: /
+            return "/"
+
+def main()
+    println("Platform: ${OSSpecific.platform_name()}")
+    println("Separator: ${OSSpecific.file_separator()}")

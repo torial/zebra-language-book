@@ -1,0 +1,17 @@
+// file: 06_char_iter.zbr
+// teaches: iterating over characters
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            var text = "Hello"
+            
+            // Iterate characters
+            for char in text.chars()
+                print char
+            
+            // Byte iteration
+            var data = "AB"
+            for byte in data.bytes()
+                print byte                      // 65, 66 (ASCII values)

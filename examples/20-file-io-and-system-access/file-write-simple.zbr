@@ -1,0 +1,14 @@
+// file: file-write-simple.zbr
+// teaches: basic file writing
+// chapter: 20
+
+def main()
+    var content = "Hello, File!\nLine 2\nLine 3\n"
+    var filename = "output.txt"
+    
+    var result = File.write(filename, content)
+    
+    if result.isOk()
+        println("File written successfully")
+    else
+        println("Error: ${result.error()}")

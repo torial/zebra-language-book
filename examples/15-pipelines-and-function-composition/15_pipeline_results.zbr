@@ -1,0 +1,28 @@
+// file: 15_pipeline_results.zbr
+// teaches: pipelines with error handling
+// chapter: 15-Pipelines-and-Function-Composition
+
+class SafeParser
+    shared
+        def parse_int(text as str) as Result(int, str)
+            if text.len == 0
+                return Result.err("Empty string")
+            # Simplified parsing
+            if text == "42"
+                return Result.ok(42)
+            return Result.err("Not a number")
+        
+        def double_it(x as int) as int
+            return x * 2
+
+class Main
+    shared
+        def main
+            var input = "42"
+            var result = input
+                -> SafeParser.parse_int(.)
+            
+            if result.isOk()
+                var doubled = result.okValue()
+                    -> SafeParser.double_it(.)
+                print doubled

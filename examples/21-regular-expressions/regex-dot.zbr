@@ -1,0 +1,26 @@
+// file: regex-dot.zbr
+// teaches: dot wildcard in regex patterns
+// chapter: 21
+
+def main()
+    var re = Regex.compile("c.t")
+    
+    // Matches: cat, cot, cut, c9t, c t
+    if re.matches("cat")
+        println("Matches 'cat'")
+    
+    if re.matches("cot")
+        println("Matches 'cot'")
+    
+    if re.matches("cut")
+        println("Matches 'cut'")
+    
+    if not re.matches("coat")  # 'oa' is two chars, not one
+        println("Doesn't match 'coat'")
+    
+    // Practical: match email-ish pattern (simplified)
+    var email_pattern = ".+@.+"
+    var email_re = Regex.compile(email_pattern)
+    
+    if email_re.matches("user@example.com")
+        println("Valid email pattern")

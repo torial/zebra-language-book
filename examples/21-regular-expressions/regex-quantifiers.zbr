@@ -1,0 +1,67 @@
+// file: regex-quantifiers.zbr
+// teaches: repetition quantifiers
+// chapter: 21
+
+def main()
+    // * = zero or more
+    var re_star = Regex.compile("ab*c")  // ac, abc, abbc, abbbc, etc.
+    
+    if re_star.matches("ac")
+        println("Matches 'ac' (zero b's)")
+    
+    if re_star.matches("abc")
+        println("Matches 'abc' (one b)")
+    
+    if re_star.matches("abbbc")
+        println("Matches 'abbbc' (three b's)")
+    
+    if not re_star.matches("aXc")
+        println("Doesn't match 'aXc' (X is not b)")
+    
+    // + = one or more
+    var re_plus = Regex.compile("ab+c")  // abc, abbc, abbbc, etc. (NOT ac)
+    
+    if not re_plus.matches("ac")
+        println("Doesn't match 'ac' (need at least one b)")
+    
+    if re_plus.matches("abc")
+        println("Matches 'abc'")
+    
+    if re_plus.matches("abbc")
+        println("Matches 'abbc'")
+    
+    // ? = zero or one
+    var re_optional = Regex.compile("colou?r")  // color or colour
+    
+    if re_optional.matches("color")
+        println("Matches 'color' (American spelling)")
+    
+    if re_optional.matches("colour")
+        println("Matches 'colour' (British spelling)")
+    
+    if not re_optional.matches("coloor")
+        println("Doesn't match 'coloor' (too many o's)")
+    
+    // Exact count: {n}
+    var re_exact = Regex.compile("a{3}")  // exactly three a's
+    
+    if re_exact.matches("aaa")
+        println("Matches 'aaa'")
+    
+    if not re_exact.matches("aa")
+        println("Doesn't match 'aa'")
+    
+    // Range: {n,m}
+    var re_range = Regex.compile("a{2,4}")  // 2 to 4 a's
+    
+    if re_range.matches("aa")
+        println("Matches 'aa'")
+    
+    if re_range.matches("aaa")
+        println("Matches 'aaa'")
+    
+    if re_range.matches("aaaa")
+        println("Matches 'aaaa'")
+    
+    if not re_range.matches("aaaaa")
+        println("Doesn't match 'aaaaa' (too many)")

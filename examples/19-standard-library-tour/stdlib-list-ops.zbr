@@ -1,0 +1,37 @@
+// file: stdlib-list-ops.zbr
+// teaches: list operations and patterns
+// chapter: 19
+
+def main()
+    var items = List(str)()
+    
+    // Add items
+    items.add("apple")
+    items.add("banana")
+    items.add("cherry")
+    println(items.count())  # 3
+    
+    // Access by index
+    println(items.at(0))    # "apple"
+    println(items.at(2))    # "cherry"
+    
+    // Check contents
+    if items.contains("banana")
+        println("Found banana")
+    
+    // Remove specific item
+    items.remove("banana")
+    println(items.count())  # 2
+    
+    // Iterate over list
+    for fruit in items
+        println("Fruit: ${fruit}")
+    
+    // Find index of item
+    var pos = items.indexOf("apple")  # 0 or -1 if not found
+    if pos >= 0
+        println("Found at position ${pos}")
+    
+    // Clear list
+    items.clear()
+    println(items.count())  # 0

@@ -1,0 +1,26 @@
+// file: 04_higher_order.zbr
+// teaches: functions as arguments
+// chapter: 04-Functions-and-Scope
+
+class Array
+    shared
+        def map(items as List(int), transform as def(int))
+            var result as List(int) = List()
+            for item in items
+                var transformed = transform(item)
+                result.add(transformed)
+            return result
+
+class Main
+    shared
+        def main
+            var nums as List(int) = List()
+            nums.add(1)
+            nums.add(2)
+            nums.add(3)
+            
+            var double_it = def(x as int) = x * 2
+            var doubled = Array.map(nums, double_it)
+            
+            for d in doubled
+                print d                 // 2, 4, 6

@@ -1,0 +1,23 @@
+// file: ffi-zig-basic.zbr
+// teaches: calling Zig functions from Zebra
+// chapter: 22
+
+shared class ZigMath
+    shared
+        # Zig function: pub fn gcd(a: i64, b: i64) -> i64
+        def gcd(a as int, b as int) as int
+            # Implementation in Zig
+            return 0
+        
+        # Zig function: pub fn is_prime(n: u64) -> bool
+        def is_prime(n as int) as bool
+            return false
+
+def main()
+    var result = ZigMath.gcd(48, 18)
+    println(result)  # 6
+    
+    if ZigMath.is_prime(17)
+        println("17 is prime")
+    else
+        println("17 is not prime")

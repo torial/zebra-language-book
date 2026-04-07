@@ -1,0 +1,27 @@
+// file: 03_list_ops.zbr
+// teaches: list manipulation
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            var nums as List(int) = List()
+            nums.add(10)
+            nums.add(20)
+            nums.add(30)
+            
+            // Check existence
+            var has_twenty = nums.contains(20)
+            print has_twenty                    // true
+            
+            // Find index
+            var idx = nums.indexOf(20)
+            print idx                           // 1
+            
+            // Remove
+            nums.remove(20)
+            print nums.count()                  // 2
+            
+            // Clear
+            nums.clear()
+            print nums.count()                  // 0

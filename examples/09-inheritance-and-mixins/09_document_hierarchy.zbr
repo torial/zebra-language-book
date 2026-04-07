@@ -1,0 +1,47 @@
+// file: 09_document_hierarchy.zbr
+// teaches: realistic inheritance use
+// chapter: 09-Inheritance-and-Mixins
+
+class Document
+    var title as str = ""
+    var content as str = ""
+    var created_at as str = ""
+    
+    def preview as str
+        var lines = content.split("\n")
+        if lines.count() > 3
+            return lines.at(0).concat("\n").concat(lines.at(1)).concat("\n").concat(lines.at(2))
+        return content
+
+class BlogPost
+    inherits Document
+        var author as str = ""
+        var tags as List(str) = List()
+        
+        def get_summary as str
+            return "Posted by ${author}: ${preview()}"
+
+class Report
+    inherits Document
+        var department as str = ""
+        var sections as List(str) = List()
+        
+        def is_complete as bool
+            return sections.count() > 0
+
+class Main
+    shared
+        def main
+            var post = BlogPost()
+            post.title = "Learning Zebra"
+            post.content = "Zebra is awesome\nLine 2\nLine 3\nLine 4"
+            post.author = "Alice"
+            post.tags.add("programming")
+            print post.get_summary()
+            
+            var report = Report()
+            report.title = "Q1 Report"
+            report.department = "Engineering"
+            report.sections.add("Achievements")
+            report.sections.add("Challenges")
+            print "Report complete: ${report.is_complete()}"

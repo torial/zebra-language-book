@@ -1,0 +1,18 @@
+// file: 02_conversions.zbr
+// teaches: type conversion
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var x as int = 42
+            var s = x.toString()      // int → str
+            print s
+            
+            var pi as float = 3.14
+            var i = pi.toInt()        // float → int (loses decimal)
+            print i                   // 3
+            
+            var flag = true
+            var b = flag.toString()   // bool → str
+            print b                   // true

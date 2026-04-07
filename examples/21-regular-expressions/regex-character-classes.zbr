@@ -1,0 +1,39 @@
+// file: regex-character-classes.zbr
+// teaches: character classes and ranges
+// chapter: 21
+
+def main()
+    // Single character from a set
+    var re1 = Regex.compile("[aeiou]")  # Match any vowel
+    
+    if re1.matches("a")
+        println("'a' is a vowel")
+    
+    if re1.matches("e")
+        println("'e' is a vowel")
+    
+    if not re1.matches("x")
+        println("'x' is not a vowel")
+    
+    // Character ranges
+    var digit_re = Regex.compile("[0-9]")  # Any digit
+    
+    if digit_re.matches("5")
+        println("'5' is a digit")
+    
+    if not digit_re.matches("a")
+        println("'a' is not a digit")
+    
+    var letter_re = Regex.compile("[a-zA-Z]")  # Any letter
+    
+    if letter_re.matches("X")
+        println("'X' is a letter")
+    
+    // Negation: NOT in set
+    var non_vowel_re = Regex.compile("[^aeiou]")
+    
+    if non_vowel_re.matches("b")
+        println("'b' is not a vowel")
+    
+    if not non_vowel_re.matches("a")
+        println("'a' is a vowel (excluded by ^)")

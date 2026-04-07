@@ -1,0 +1,36 @@
+// file: stdlib-hashmap-ops.zbr
+// teaches: hashmap operations and patterns
+// chapter: 19
+
+def main()
+    var scores = HashMap(str, int)()
+    
+    // Add key-value pairs
+    scores.put("Alice", 95)
+    scores.put("Bob", 87)
+    scores.put("Charlie", 92)
+    
+    // Retrieve value
+    var alice_score = scores.fetch("Alice")  # 95
+    if alice_score != nil
+        println("Alice scored: ${alice_score}")
+    
+    // Check if key exists
+    if scores.contains("Bob")
+        println("Bob's record found")
+    
+    // Update value
+    scores.put("Bob", 89)  # Overwrites previous
+    
+    // Remove key
+    scores.remove("Charlie")
+    
+    // Iterate over key-value pairs
+    for key in scores.keys()
+        var value = scores.fetch(key)
+        if value != nil
+            println("${key}: ${value}")
+    
+    // Get all keys
+    var all_keys = scores.keys()
+    println(all_keys.count())  # 2

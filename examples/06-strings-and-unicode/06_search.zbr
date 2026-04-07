@@ -1,0 +1,24 @@
+// file: 06_search.zbr
+// teaches: searching in strings
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            var text = "Hello, World!"
+            
+            // Contains
+            print text.contains("World")        // true
+            print text.contains("xyz")          // false
+            
+            // Index
+            var idx = text.indexOf("World")
+            print idx                           // 7
+            
+            // Not found returns -1 or special value
+            var not_found = text.indexOf("xyz")
+            print not_found
+            
+            // Starts/ends with
+            print text.startsWith("Hello")      // true
+            print text.endsWith("!")            // true

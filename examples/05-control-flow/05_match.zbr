@@ -1,0 +1,18 @@
+// file: 05_match.zbr
+// teaches: pattern matching
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            var color as str = "red"
+            
+            branch color
+                on "red"
+                    print "Stop"
+                on "yellow"
+                    print "Caution"
+                on "green"
+                    print "Go"
+                else
+                    print "Unknown"

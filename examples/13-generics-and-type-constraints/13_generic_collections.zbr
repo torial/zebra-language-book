@@ -1,0 +1,21 @@
+// file: 13_generic_collections.zbr
+// teaches: using generic stdlib types
+// chapter: 13-Generics-and-Type-Constraints
+
+class Main
+    shared
+        def main
+            var numbers as List(int) = List()
+            numbers.add(1)
+            numbers.add(2)
+            numbers.add(3)
+            
+            for n in numbers
+                print n
+            
+            var ages as HashMap(str, int) = HashMap()
+            ages.put("Alice", 30)
+            ages.put("Bob", 25)
+            
+            for name, age in ages
+                print "${name}: ${age}"

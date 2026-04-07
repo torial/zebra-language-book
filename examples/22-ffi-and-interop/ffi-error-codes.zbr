@@ -1,0 +1,40 @@
+// file: ffi-error-codes.zbr
+// teaches: handling C-style error codes
+// chapter: 22
+
+shared class CFile
+    shared
+        # C fopen: FILE* fopen(const char* filename, const char* mode)
+        # Returns NULL on error
+        def open_file(filename as str, mode as str) as Result(int, str)
+            # In real C, this returns FILE* (opaque pointer)
+            # For now, return 0 to indicate error
+            var file_handle = 0  # Attempt to open
+            
+            if file_handle == 0
+                return Result.err("Cannot open file: ${filename}")
+            else
+                return Result.ok(file_handle)
+        
+        # C close: int fclose(FILE* f)
+        # Returns 0 on success, EOF on error
+        def close_file(file_handle as int) as Result(bool, str)
+            var status = 0  # Attempt to close
+            
+            if status == 0
+                return Result.ok(true)
+            else
+                return Result.err("Error closing file")
+
+def main()
+    var result = CFile.open_file("data.txt", "r")
+    
+    branch result
+        on ok(handle)
+            println("File opened: ${handle}")
+            
+            var close_result = CFile.close_file(handle)
+            if close_result.isOk()
+                println("File closed")
+        on err(error)
+            println("Error: ${error}")

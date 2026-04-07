@@ -1,0 +1,18 @@
+// file: 02_strings.zbr
+// teaches: string type, string operations
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var greeting as str = "Hello"
+            var name as str = "World"
+            
+            print greeting
+            print greeting.len      // 5
+            print greeting.upper()  // HELLO
+            print name.lower()      // world
+            
+            // Concatenation
+            var message = greeting.concat(" ").concat(name)
+            print message           // Hello World

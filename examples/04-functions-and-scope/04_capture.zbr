@@ -1,0 +1,21 @@
+// file: 04_capture.zbr
+// teaches: capture blocks
+// chapter: 04-Functions-and-Scope
+
+class Counter
+    shared
+        def make_counter
+            var count as int = 0
+            return def()
+                capture
+                    var count as int = count
+                count = count + 1
+                return count
+
+class Main
+    shared
+        def main
+            var counter = Counter.make_counter()
+            print counter()             // 1
+            print counter()             // 2
+            print counter()             // 3

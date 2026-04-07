@@ -1,0 +1,18 @@
+// file: 02_nullables.zbr
+// teaches: nullable types introduction
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var name as str? = "Alice"    // Can hold str or nil
+            var empty as str? = nil       // Explicitly nil
+            
+            // You must check before using
+            if name != nil
+                print name                // Safe to use
+            
+            if empty != nil
+                print empty
+            else
+                print "Name is empty"

@@ -1,0 +1,28 @@
+// file: stdlib-string-extract-concat.zbr
+// teaches: substring extraction and string concatenation
+// chapter: 19
+
+def main()
+    var text = "Hello, World!"
+    
+    // Extract substring
+    var hello = text.substring(0, 5)    # "Hello"
+    var world = text.substring(7, 12)   # "World"
+    println(hello)
+    println(world)
+    
+    // Concatenate strings
+    var greeting = hello.concat(", ").concat(world)
+    println(greeting)  # "Hello, World"
+    
+    // String interpolation (often cleaner)
+    var result = "${hello}, ${world}"
+    println(result)
+    
+    // Building strings in loops
+    var parts = List(str)()
+    for i in 1.to(5)
+        parts.add("Item-${i}")
+    
+    var result_str = parts.join(", ")
+    println(result_str)  # "Item-1, Item-2, Item-3, Item-4, Item-5"

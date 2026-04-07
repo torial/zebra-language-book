@@ -1,0 +1,25 @@
+// file: 03_lists.zbr
+// teaches: list creation and access
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            // Create an empty list
+            var fruits as List(str) = List()
+            
+            // Add items
+            fruits.add("apple")
+            fruits.add("banana")
+            fruits.add("cherry")
+            
+            // Access by index
+            print fruits.at(0)   // apple
+            print fruits.at(1)   // banana
+            
+            // Check size
+            print fruits.count() // 3
+            
+            // Iterate
+            for fruit in fruits
+                print fruit

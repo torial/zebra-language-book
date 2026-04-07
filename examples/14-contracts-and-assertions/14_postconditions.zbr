@@ -1,0 +1,25 @@
+// file: 14_postconditions.zbr
+// teaches: postcondition checking
+// chapter: 14-Contracts-and-Assertions
+
+class List
+    var items as List(int) = List()
+    var count as int = 0
+    
+    def add(item as int)
+        items.add(item)
+        count = count + 1
+        
+        # Postcondition: count must equal items.count()
+        if count != items.count()
+            # In a real system, raise an error
+            print "ERROR: List invariant broken!"
+
+class Main
+    shared
+        def main
+            var list = List()
+            list.add(1)
+            list.add(2)
+            list.add(3)
+            # Postcondition: count should be 3

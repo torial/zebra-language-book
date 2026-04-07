@@ -1,0 +1,25 @@
+// file: 05_match_type.zbr
+// teaches: type-based matching
+// chapter: 05-Control-Flow
+
+class Animal
+    pass
+
+class Dog
+    inherits Animal
+    def bark
+        print "Woof!"
+
+class Cat
+    inherits Animal
+    def meow
+        print "Meow!"
+
+class Main
+    shared
+        def main
+            var pet as Animal = Dog()
+            
+            if pet implements Dog
+                var d = pet to Dog
+                d.bark()

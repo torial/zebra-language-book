@@ -1,0 +1,69 @@
+// file: pattern_search.zbr
+// teaches: pattern matching and filtering
+// project: Project-1-CLI-Tool
+
+class PatternMatcher
+    shared
+        def search_lines(filename as str, pattern as str) as Result(List(str), str)
+            var content_result = FileProcessor.read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            var lines = content.split("\n")
+            
+            var matches as List(str) = List()
+            var line_num = 0
+            
+            for line in lines
+                line_num = line_num + 1
+                if line.contains(pattern)
+                    # Format: "line_number: content"
+                    var formatted = "${line_num}: ${line}"
+                    matches.add(formatted)
+            
+            if matches.count() == 0
+                return Result.err("No matches found for pattern: ${pattern}")
+            
+            return Result.ok(matches)
+        
+        def search_with_context(filename as str, pattern as str, context_lines as int) as Result(List(str), str)
+            var content_result = FileProcessor.read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            var lines = content.split("\n")
+            
+            var results as List(str) = List()
+            var line_num = 0
+            
+            for line in lines
+                line_num = line_num + 1
+                if line.contains(pattern)
+                    # Add context lines before
+                    var start = line_num - context_lines - 1
+                    if start < 0
+                        start = 0
+                    
+                    var i = start
+                    while i < line_num - 1
+                        results.add(lines.at(i))
+                        i = i + 1
+                    
+                    # Add the matching line (with marker)
+                    results.add("> ${line_num}: ${line}")
+                    
+                    # Add context lines after
+                    var end = line_num + context_lines
+                    if end > lines.count()
+                        end = lines.count()
+                    
+                    i = line_num
+                    while i < end
+                        results.add(lines.at(i))
+                        i = i + 1
+            
+            return Result.ok(results)

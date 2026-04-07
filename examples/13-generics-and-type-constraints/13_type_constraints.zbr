@@ -1,0 +1,30 @@
+// file: 13_type_constraints.zbr
+// teaches: interface constraints
+// chapter: 13-Generics-and-Type-Constraints
+
+interface Printable
+    def display as str
+
+class Dog
+    implements Printable
+        def display as str
+            return "Woof!"
+
+class Cat
+    implements Printable
+        def display as str
+            return "Meow!"
+
+class Printer
+    shared
+        def print_item(item as Printable)
+            print item.display()
+
+class Main
+    shared
+        def main
+            var dog = Dog()
+            var cat = Cat()
+            
+            Printer.print_item(dog)  # Output: Woof!
+            Printer.print_item(cat)  # Output: Meow!

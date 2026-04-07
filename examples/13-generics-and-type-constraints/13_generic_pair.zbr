@@ -1,0 +1,27 @@
+// file: 13_generic_pair.zbr
+// teaches: multiple type parameters
+// chapter: 13-Generics-and-Type-Constraints
+
+class Pair(K, V)
+    var key as K
+    var value as V
+    
+    def set_key(k as K)
+        key = k
+    
+    def set_value(v as V)
+        value = v
+    
+    def get_key as K
+        return key
+    
+    def get_value as V
+        return value
+
+class Main
+    shared
+        def main
+            var p = Pair(str, int)()
+            p.set_key("count")
+            p.set_value(42)
+            print "Key: ${p.get_key()}, Value: ${p.get_value()}"

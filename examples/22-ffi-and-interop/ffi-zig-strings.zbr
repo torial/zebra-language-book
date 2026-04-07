@@ -1,0 +1,28 @@
+// file: ffi-zig-strings.zbr
+// teaches: Zig string interop
+// chapter: 22
+
+shared class ZigString
+    shared
+        # Zig function with slices
+        # pub fn string_length(s: []const u8) -> usize
+        def string_length(s as str) as int
+            return 0
+        
+        # Case conversion
+        # pub fn to_uppercase(allocator: Allocator, s: []const u8) -> ![]u8
+        def to_uppercase(s as str) as str
+            return ""
+        
+        # String validation
+        # pub fn is_valid_utf8(s: []const u8) -> bool
+        def is_valid_utf8(data as str) as bool
+            return true
+
+def main()
+    var text = "Hello, Zig!"
+    var len = ZigString.string_length(text)
+    println("Length: ${len}")
+    
+    var upper = ZigString.to_uppercase(text)
+    println("Uppercase: ${upper}")

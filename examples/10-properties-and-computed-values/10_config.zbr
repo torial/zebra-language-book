@@ -1,0 +1,37 @@
+// file: 10_config.zbr
+// teaches: configuration management
+// chapter: 10-Properties-and-Computed-Values
+
+class Config
+    var host as str = "localhost"
+    var port as int = 8080
+    var debug as bool = false
+    
+    def set_host(h as str) as bool
+        if h.len == 0
+            return false
+        host = h
+        return true
+    
+    def set_port(p as int) as bool
+        if p < 1 or p > 65535
+            return false
+        port = p
+        return true
+    
+    def get_url as str
+        return "http://${host}:${port}"
+    
+    def set_debug(d as bool)
+        debug = d
+
+class Main
+    shared
+        def main
+            var config = Config()
+            config.set_host("example.com")
+            config.set_port(443)
+            config.set_debug(true)
+            
+            print config.get_url()     // http://example.com:443
+            print "Debug: ${config.debug}"  // true

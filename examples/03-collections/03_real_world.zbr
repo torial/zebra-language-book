@@ -1,0 +1,36 @@
+// file: 03_real_world.zbr
+// teaches: collections in realistic scenarios
+// chapter: 03-Collections
+
+class Student
+    var name as str
+    var gpa as float
+
+class Main
+    shared
+        def main
+            // List of students
+            var students as List(Student) = List()
+            
+            var alice = Student()
+            alice.name = "Alice"
+            alice.gpa = 3.9
+            students.add(alice)
+            
+            var bob = Student()
+            bob.name = "Bob"
+            bob.gpa = 3.5
+            students.add(bob)
+            
+            // Calculate average GPA
+            var total = 0.0
+            for student in students
+                total = total + student.gpa
+            var average = total / students.count()
+            print "Average GPA: ${average}"
+            
+            // Find student by name
+            var target_name = "Alice"
+            for student in students
+                if student.name == target_name
+                    print "Found: ${student.name} (${student.gpa})"

@@ -1,0 +1,11 @@
+// file: 05_if.zbr
+// teaches: conditional execution
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            var age as int = 18
+            
+            if age >= 18
+                print "You can vote"

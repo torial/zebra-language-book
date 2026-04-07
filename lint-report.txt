@@ -1,0 +1,1190 @@
+ZEBRA PROGRAMMING BOOK - LINTING REPORT
+======================================================================
+
+STATISTICS
+----------------------------------------------------------------------
+Files scanned:     26
+Chapters:          26
+Code blocks:       519
+Diagram refs:      13
+Link checks:       13
+Errors:            13
+Warnings:          1096
+
+ISSUES
+----------------------------------------------------------------------
+
+Part-1-Foundations\01-Getting-Started.md
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+
+Part-1-Foundations\02-Values-and-Types.md
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '// file:' tag
+  ⚠️ WARNING: Code block #23 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #24 missing '// file:' tag
+  ⚠️ WARNING: Code block #24 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #24 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/01-type-hierarchy.svg
+
+Part-1-Foundations\03-Collections.md
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/02-collections-comparison.svg
+
+Part-1-Foundations\04-Functions-and-Scope.md
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/03-scope-and-lifetime.svg
+
+Part-1-Foundations\05-Control-Flow.md
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+
+Part-1-Foundations\06-Strings-and-Unicode.md
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '// file:' tag
+  ⚠️ WARNING: Code block #23 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/13-unicode-representation.svg
+
+Part-2-Objects-and-Interfaces\07-Classes-and-Instances.md
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/12-class-structure.svg
+  ⚠️ INFO: Language name should be capitalized
+
+Part-2-Objects-and-Interfaces\08-Interfaces-and-Protocols.md
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+
+Part-2-Objects-and-Interfaces\09-Inheritance-and-Mixins.md
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/10-class-hierarchy.svg
+
+Part-2-Objects-and-Interfaces\10-Properties-and-Computed-Values.md
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+
+Part-3-Advanced-Features\11-Nil-Tracking-and-Safety.md
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/04-type-narrowing.svg
+
+Part-3-Advanced-Features\12-Error-Handling-with-Results.md
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/05-error-propagation.svg
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-3-Advanced-Features\13-15_Remaining-Advanced.md
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ INFO: Language name should be capitalized
+
+Part-3-Advanced-Features\13-Generics-and-Type-Constraints.md
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/06-generics-instantiation.svg
+
+Part-3-Advanced-Features\14-Contracts-and-Assertions.md
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+
+Part-3-Advanced-Features\15-Pipelines-and-Function-Composition.md
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/07-pipeline-flow.svg
+  ⚠️ INFO: Language name should be capitalized
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-4-Practical-Projects\16-Project-1-CLI-Tool.md
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/08-project1-modules.svg
+  ⚠️ INFO: Language name should be capitalized
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-4-Practical-Projects\17-18_Projects-2-3.md
+  ⚠️ WARNING: Missing metadata section (Audience, Time, Prerequisites)
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ✗ ERROR: Diagram not found: ../diagrams/09-http-cycle.svg
+  ✗ ERROR: Diagram not found: ../diagrams/11-analysis-pipeline.svg
+
+Part-5-Ecosystem\19-22_Final-Chapters.md
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+
+Part-5-Ecosystem\19-Standard-Library-Tour.md
+  ⚠️ WARNING: Code block #1 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #2 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #3 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #4 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #5 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #6 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #7 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #8 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #9 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #10 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #11 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #12 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #13 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+  ⚠️ WARNING: Code block #14 chapter tag '19' doesn't match file '19-Standard-Library-Tour'
+
+Part-5-Ecosystem\20-File-IO-and-System-Access.md
+  ⚠️ WARNING: Code block #1 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #2 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #3 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #4 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #5 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #6 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #7 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #8 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #9 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #10 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #11 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #12 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #13 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #14 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ WARNING: Code block #15 chapter tag '20' doesn't match file '20-File-IO-and-System-Access'
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-5-Ecosystem\21-Regular-Expressions.md
+  ⚠️ WARNING: Code block #1 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #2 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #3 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #4 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #5 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #6 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #7 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #8 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #9 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #10 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #11 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #12 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #13 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #14 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #15 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #16 chapter tag '21' doesn't match file '21-Regular-Expressions'
+  ⚠️ WARNING: Code block #17 chapter tag '21' doesn't match file '21-Regular-Expressions'
+
+Part-5-Ecosystem\22-FFI-and-Interop.md
+  ⚠️ WARNING: Code block #1 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #2 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #3 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #4 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #5 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #6 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #7 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #8 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #9 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #10 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #11 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #12 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #13 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #14 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #15 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #16 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #17 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ WARNING: Code block #18 chapter tag '22' doesn't match file '22-FFI-and-Interop'
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-5-Ecosystem\Appendix-A-Grammar.md
+  ⚠️ WARNING: Missing metadata section (Audience, Time, Prerequisites)
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '// file:' tag
+  ⚠️ WARNING: Code block #23 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #24 missing '// file:' tag
+  ⚠️ WARNING: Code block #24 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #24 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #25 missing '// file:' tag
+  ⚠️ WARNING: Code block #25 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #25 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #26 missing '// file:' tag
+  ⚠️ WARNING: Code block #26 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #26 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #27 missing '// file:' tag
+  ⚠️ WARNING: Code block #27 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #27 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #28 missing '// file:' tag
+  ⚠️ WARNING: Code block #28 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #28 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #29 missing '// file:' tag
+  ⚠️ WARNING: Code block #29 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #29 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #30 missing '// file:' tag
+  ⚠️ WARNING: Code block #30 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #30 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #31 missing '// file:' tag
+  ⚠️ WARNING: Code block #31 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #31 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #32 missing '// file:' tag
+  ⚠️ WARNING: Code block #32 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #32 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #33 missing '// file:' tag
+  ⚠️ WARNING: Code block #33 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #33 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #34 missing '// file:' tag
+  ⚠️ WARNING: Code block #34 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #34 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #35 missing '// file:' tag
+  ⚠️ WARNING: Code block #35 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #35 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #36 missing '// file:' tag
+  ⚠️ WARNING: Code block #36 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #36 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #37 missing '// file:' tag
+  ⚠️ WARNING: Code block #37 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #37 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #38 missing '// file:' tag
+  ⚠️ WARNING: Code block #38 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #38 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #39 missing '// file:' tag
+  ⚠️ WARNING: Code block #39 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #39 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #40 missing '// file:' tag
+  ⚠️ WARNING: Code block #40 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #40 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #41 missing '// file:' tag
+  ⚠️ WARNING: Code block #41 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #41 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #42 missing '// file:' tag
+  ⚠️ WARNING: Code block #42 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #42 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #43 missing '// file:' tag
+  ⚠️ WARNING: Code block #43 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #43 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #44 missing '// file:' tag
+  ⚠️ WARNING: Code block #44 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #44 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #45 missing '// file:' tag
+  ⚠️ WARNING: Code block #45 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #45 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #46 missing '// file:' tag
+  ⚠️ WARNING: Code block #46 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #46 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #47 missing '// file:' tag
+  ⚠️ WARNING: Code block #47 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #47 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #48 missing '// file:' tag
+  ⚠️ WARNING: Code block #48 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #48 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #49 missing '// file:' tag
+  ⚠️ WARNING: Code block #49 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #49 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #50 missing '// file:' tag
+  ⚠️ WARNING: Code block #50 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #50 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #51 missing '// file:' tag
+  ⚠️ WARNING: Code block #51 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #51 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #52 missing '// file:' tag
+  ⚠️ WARNING: Code block #52 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #52 missing '// chapter:' tag
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-5-Ecosystem\Appendix-B-Stdlib.md
+  ⚠️ WARNING: Missing metadata section (Audience, Time, Prerequisites)
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '// file:' tag
+  ⚠️ WARNING: Code block #23 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #24 missing '// file:' tag
+  ⚠️ WARNING: Code block #24 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #24 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #25 missing '// file:' tag
+  ⚠️ WARNING: Code block #25 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #25 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #26 missing '// file:' tag
+  ⚠️ WARNING: Code block #26 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #26 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #27 missing '// file:' tag
+  ⚠️ WARNING: Code block #27 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #27 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #28 missing '// file:' tag
+  ⚠️ WARNING: Code block #28 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #28 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #29 missing '// file:' tag
+  ⚠️ WARNING: Code block #29 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #29 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #30 missing '// file:' tag
+  ⚠️ WARNING: Code block #30 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #30 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #31 missing '// file:' tag
+  ⚠️ WARNING: Code block #31 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #31 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #32 missing '// file:' tag
+  ⚠️ WARNING: Code block #32 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #32 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #33 missing '// file:' tag
+  ⚠️ WARNING: Code block #33 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #33 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #34 missing '// file:' tag
+  ⚠️ WARNING: Code block #34 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #34 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #35 missing '// file:' tag
+  ⚠️ WARNING: Code block #35 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #35 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #36 missing '// file:' tag
+  ⚠️ WARNING: Code block #36 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #36 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #37 missing '// file:' tag
+  ⚠️ WARNING: Code block #37 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #37 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #38 missing '// file:' tag
+  ⚠️ WARNING: Code block #38 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #38 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #39 missing '// file:' tag
+  ⚠️ WARNING: Code block #39 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #39 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #40 missing '// file:' tag
+  ⚠️ WARNING: Code block #40 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #40 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #41 missing '// file:' tag
+  ⚠️ WARNING: Code block #41 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #41 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #42 missing '// file:' tag
+  ⚠️ WARNING: Code block #42 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #42 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #43 missing '// file:' tag
+  ⚠️ WARNING: Code block #43 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #43 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #44 missing '// file:' tag
+  ⚠️ WARNING: Code block #44 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #44 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #45 missing '// file:' tag
+  ⚠️ WARNING: Code block #45 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #45 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #46 missing '// file:' tag
+  ⚠️ WARNING: Code block #46 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #46 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #47 missing '// file:' tag
+  ⚠️ WARNING: Code block #47 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #47 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #48 missing '// file:' tag
+  ⚠️ WARNING: Code block #48 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #48 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #49 missing '// file:' tag
+  ⚠️ WARNING: Code block #49 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #49 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #50 missing '// file:' tag
+  ⚠️ WARNING: Code block #50 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #50 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #51 missing '// file:' tag
+  ⚠️ WARNING: Code block #51 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #51 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #52 missing '// file:' tag
+  ⚠️ WARNING: Code block #52 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #52 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #53 missing '// file:' tag
+  ⚠️ WARNING: Code block #53 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #53 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #54 missing '// file:' tag
+  ⚠️ WARNING: Code block #54 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #54 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #55 missing '// file:' tag
+  ⚠️ WARNING: Code block #55 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #55 missing '// chapter:' tag
+  ⚠️ INFO: Should use Result(T, E) notation
+
+Part-5-Ecosystem\Appendix-C-Troubleshooting.md
+  ⚠️ WARNING: Missing metadata section (Audience, Time, Prerequisites)
+  ⚠️ WARNING: Code block #1 missing '// file:' tag
+  ⚠️ WARNING: Code block #1 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #1 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #2 missing '// file:' tag
+  ⚠️ WARNING: Code block #2 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #2 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #3 missing '// file:' tag
+  ⚠️ WARNING: Code block #3 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #3 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '// file:' tag
+  ⚠️ WARNING: Code block #4 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #5 missing '// file:' tag
+  ⚠️ WARNING: Code block #5 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #5 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #6 missing '// file:' tag
+  ⚠️ WARNING: Code block #6 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #6 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #7 missing '// file:' tag
+  ⚠️ WARNING: Code block #7 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #7 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '// file:' tag
+  ⚠️ WARNING: Code block #8 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #9 missing '// file:' tag
+  ⚠️ WARNING: Code block #9 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #9 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '// file:' tag
+  ⚠️ WARNING: Code block #10 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #11 missing '// file:' tag
+  ⚠️ WARNING: Code block #11 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '// file:' tag
+  ⚠️ WARNING: Code block #12 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #13 missing '// file:' tag
+  ⚠️ WARNING: Code block #13 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #13 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #14 missing '// file:' tag
+  ⚠️ WARNING: Code block #14 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #14 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #15 missing '// file:' tag
+  ⚠️ WARNING: Code block #15 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #15 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #16 missing '// file:' tag
+  ⚠️ WARNING: Code block #16 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #16 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #17 missing '// file:' tag
+  ⚠️ WARNING: Code block #17 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #17 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '// file:' tag
+  ⚠️ WARNING: Code block #18 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '// file:' tag
+  ⚠️ WARNING: Code block #19 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '// file:' tag
+  ⚠️ WARNING: Code block #20 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '// file:' tag
+  ⚠️ WARNING: Code block #21 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '// file:' tag
+  ⚠️ WARNING: Code block #22 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '// file:' tag
+  ⚠️ WARNING: Code block #23 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #24 missing '// file:' tag
+  ⚠️ WARNING: Code block #24 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #24 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #25 missing '// file:' tag
+  ⚠️ WARNING: Code block #25 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #25 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #26 missing '// file:' tag
+  ⚠️ WARNING: Code block #26 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #26 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #27 missing '// file:' tag
+  ⚠️ WARNING: Code block #27 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #27 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #28 missing '// file:' tag
+  ⚠️ WARNING: Code block #28 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #28 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #29 missing '// file:' tag
+  ⚠️ WARNING: Code block #29 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #29 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #30 missing '// file:' tag
+  ⚠️ WARNING: Code block #30 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #30 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #31 missing '// file:' tag
+  ⚠️ WARNING: Code block #31 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #31 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #32 missing '// file:' tag
+  ⚠️ WARNING: Code block #32 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #32 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #33 missing '// file:' tag
+  ⚠️ WARNING: Code block #33 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #33 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #34 missing '// file:' tag
+  ⚠️ WARNING: Code block #34 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #34 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #35 missing '// file:' tag
+  ⚠️ WARNING: Code block #35 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #35 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #36 missing '// file:' tag
+  ⚠️ WARNING: Code block #36 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #36 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #37 missing '// file:' tag
+  ⚠️ WARNING: Code block #37 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #37 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #38 missing '// file:' tag
+  ⚠️ WARNING: Code block #38 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #38 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #39 missing '// file:' tag
+  ⚠️ WARNING: Code block #39 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #39 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #40 missing '// file:' tag
+  ⚠️ WARNING: Code block #40 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #40 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #41 missing '// file:' tag
+  ⚠️ WARNING: Code block #41 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #41 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #42 missing '// file:' tag
+  ⚠️ WARNING: Code block #42 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #42 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #43 missing '// file:' tag
+  ⚠️ WARNING: Code block #43 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #43 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #44 missing '// file:' tag
+  ⚠️ WARNING: Code block #44 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #44 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #45 missing '// file:' tag
+  ⚠️ WARNING: Code block #45 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #45 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #46 missing '// file:' tag
+  ⚠️ WARNING: Code block #46 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #46 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #47 missing '// file:' tag
+  ⚠️ WARNING: Code block #47 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #47 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #48 missing '// file:' tag
+  ⚠️ WARNING: Code block #48 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #48 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #49 missing '// file:' tag
+  ⚠️ WARNING: Code block #49 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #49 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #50 missing '// file:' tag
+  ⚠️ WARNING: Code block #50 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #50 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #51 missing '// file:' tag
+  ⚠️ WARNING: Code block #51 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #51 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #52 missing '// file:' tag
+  ⚠️ WARNING: Code block #52 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #52 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #53 missing '// file:' tag
+  ⚠️ WARNING: Code block #53 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #53 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #54 missing '// file:' tag
+  ⚠️ WARNING: Code block #54 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #54 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #55 missing '// file:' tag
+  ⚠️ WARNING: Code block #55 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #55 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #56 missing '// file:' tag
+  ⚠️ WARNING: Code block #56 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #56 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #57 missing '// file:' tag
+  ⚠️ WARNING: Code block #57 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #57 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #58 missing '// file:' tag
+  ⚠️ WARNING: Code block #58 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #58 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #59 missing '// file:' tag
+  ⚠️ WARNING: Code block #59 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #59 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #60 missing '// file:' tag
+  ⚠️ WARNING: Code block #60 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #60 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #61 missing '// file:' tag
+  ⚠️ WARNING: Code block #61 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #61 missing '// chapter:' tag
+  ⚠️ WARNING: Code block #62 missing '// file:' tag
+  ⚠️ WARNING: Code block #62 missing '// teaches:' tag
+  ⚠️ WARNING: Code block #62 missing '// chapter:' tag
+
+======================================================================
+END OF REPORT

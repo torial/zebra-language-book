@@ -1,0 +1,19 @@
+// file: 11_nullable.zbr
+// teaches: nullable types
+// chapter: 11-Nil-Tracking-and-Safety
+
+class User
+    var name as str      # Can't be nil
+    var nickname as str? # Can be nil
+    var bio as str?      # Can be nil
+
+class Main
+    shared
+        def main
+            var user = User()
+            user.name = "Alice"    # ✅ Fine
+            user.nickname = nil    # ✅ Allowed (it's str?)
+            user.bio = "Developer" # ✅ Can assign string to str?
+            
+            # This won't compile:
+            # var empty as str = nil  # ❌ str can't be nil

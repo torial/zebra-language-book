@@ -1,0 +1,28 @@
+// file: ffi-numeric-types.zbr
+// teaches: numeric type marshaling
+// chapter: 22
+
+shared class Numeric
+    shared
+        # Zebra int (64-bit) → C int32_t (32-bit)
+        # Be careful with overflow!
+        def c_int32_function(n as int) as int
+            return 0
+        
+        # Zebra float → C float or double
+        def c_double_function(x as float) as float
+            return 0.0
+        
+        # Boolean: Zebra bool → C bool (or int 0/1)
+        def c_bool_function(flag as bool) as bool
+            return false
+
+def main()
+    # Small numbers are safe
+    var result = Numeric.c_int32_function(100)
+    println(result)
+    
+    # Large numbers may overflow in C int32
+    # Be careful!
+    var large_num = 2147483647 + 1  # Exceeds int32 max
+    # Don't pass to C int32 functions!

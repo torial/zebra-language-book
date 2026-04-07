@@ -1,0 +1,21 @@
+// file: stdlib-string-case.zbr
+// teaches: case conversion methods
+// chapter: 19
+
+def main()
+    var text = "Zebra Programming"
+    
+    // Uppercase
+    var upper = text.upper()        # "ZEBRA PROGRAMMING"
+    println(upper)
+    
+    // Lowercase
+    var lower = text.lower()        # "zebra programming"
+    println(lower)
+    
+    // Practical example: case-insensitive comparison
+    def case_insensitive_equals(a as str, b as str) as bool
+        return a.lower() == b.lower()
+    
+    if case_insensitive_equals("Zebra", "ZEBRA")
+        println("Same language, different case")

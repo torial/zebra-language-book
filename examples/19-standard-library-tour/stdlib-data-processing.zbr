@@ -1,0 +1,45 @@
+// file: stdlib-data-processing.zbr
+// teaches: combining stdlib functions for data processing
+// chapter: 19
+
+def main()
+    // Parse CSV and calculate statistics
+    var data = "Alice,95,Engineering
+Bob,87,Sales
+Charlie,92,Engineering
+Diana,88,Sales"
+    
+    var lines = data.split("\n")
+    var scores = List(int)()
+    var dept_map = HashMap(str, int)()
+    
+    for line in lines
+        var parts = line.split(",")
+        if parts.count() == 3
+            var name = parts.at(0)
+            var score = parts.at(1).toInt()
+            var dept = parts.at(2).trim()
+            
+            if score != nil
+                scores.add(score)
+            
+            // Track count by department
+            var current = dept_map.fetch(dept)
+            if current != nil
+                dept_map.put(dept, current + 1)
+            else
+                dept_map.put(dept, 1)
+    
+    // Calculate average
+    var total = 0
+    for score in scores
+        total = total + score
+    
+    var average = total / scores.count()
+    println("Average score: ${average}")
+    
+    // Report by department
+    println("Departments:")
+    for dept in dept_map.keys()
+        var count = dept_map.fetch(dept)
+        println("  ${dept}: ${count} people")

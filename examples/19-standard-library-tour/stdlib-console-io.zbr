@@ -1,0 +1,39 @@
+// file: stdlib-console-io.zbr
+// teaches: printing to console
+// chapter: 19
+
+def main()
+    // Simple output
+    print("Hello, ")
+    println("World!")  # Adds newline
+    
+    // Output of different types
+    println(42)
+    println(3.14)
+    println(true)
+    
+    // String interpolation (covered earlier)
+    var name = "Alice"
+    var age = 30
+    println("${name} is ${age} years old")
+    
+    // Formatted output
+    var price = 19.99
+    println("Price: $${price}")
+    
+    // Error output (if available)
+    System.errln("This is an error message")
+    
+    // Practical: status messages
+    def process_items(items as List(str))
+        for item in items
+            print("Processing ${item}... ")
+            // Do work here
+            println("Done")
+    
+    var items = List(str)()
+    items.add("file1.txt")
+    items.add("file2.txt")
+    items.add("file3.txt")
+    
+    process_items(items)

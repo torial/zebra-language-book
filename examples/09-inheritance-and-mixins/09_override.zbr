@@ -1,0 +1,26 @@
+// file: 09_override.zbr
+// teaches: overriding parent methods
+// chapter: 09-Inheritance-and-Mixins
+
+class Animal
+    def speak as str
+        return "Some sound"
+
+class Dog
+    inherits Animal
+        def speak as str  // Override parent method
+            return "Woof!"
+
+class Cat
+    inherits Animal
+        def speak as str  // Different implementation
+            return "Meow!"
+
+class Main
+    shared
+        def main
+            var dog = Dog()
+            print dog.speak()  // Woof!
+            
+            var cat = Cat()
+            print cat.speak()  // Meow!

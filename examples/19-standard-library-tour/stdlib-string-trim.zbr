@@ -1,0 +1,29 @@
+// file: stdlib-string-trim.zbr
+// teaches: removing whitespace from strings
+// chapter: 19
+
+def main()
+    var input = "  Hello, World!  \n"
+    
+    // Trim both sides
+    var trimmed = input.trim()      # "Hello, World!"
+    println("'${trimmed}'")
+    
+    // Trim left side only
+    var right_padded = "  left-trimmed"
+    println("'${right_padded.trimLeft()}'")  # "'left-trimmed'"
+    
+    // Trim right side only
+    var left_padded = "right-trimmed  "
+    println("'${left_padded.trimRight()}'")  # "'right-trimmed  '"
+    
+    // Practical use: parsing user input
+    def parse_number_from_input(input as str) as int?
+        var trimmed = input.trim()
+        if trimmed.len == 0
+            return nil
+        return trimmed.toInt()
+    
+    var num = parse_number_from_input("  42  ")
+    if num != nil
+        println("Parsed: ${num}")

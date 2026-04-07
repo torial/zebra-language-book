@@ -1,0 +1,26 @@
+// file: 14_early_return.zbr
+// teaches: fail fast principle
+// chapter: 14-Contracts-and-Assertions
+
+class Validator
+    shared
+        def validate_email(email as str) as bool
+            # Check preconditions first
+            if email == nil
+                return false
+            
+            if email.len == 0
+                return false
+            
+            if not email.contains("@")
+                return false
+            
+            # If all preconditions pass, do real work
+            var parts = email.split("@")
+            return parts.count() == 2
+
+class Main
+    shared
+        def main
+            var valid = Validator.validate_email("user@example.com")
+            print valid

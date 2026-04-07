@@ -1,0 +1,8 @@
+// file: hello.zbr
+// teaches: hello world, print statement
+// chapter: 01-Getting-Started
+
+class Main
+    shared
+        def main
+            print "Hello, Zebra!"

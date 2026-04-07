@@ -1,0 +1,18 @@
+// file: regex-greedy.zbr
+// teaches: understanding greedy matching
+// chapter: 21
+
+def main()
+    // Greedy: matches as much as possible
+    var text = "<name>John</name> and <name>Jane</name>"
+    
+    // This is too greedy!
+    var greedy = Regex.compile("<name>.*</name>")
+    // Matches: <name>John</name> and <name>Jane</name> (TOO MUCH!)
+    
+    // Better: be more specific
+    var specific = Regex.compile("<name>[^<]+</name>")
+    // Matches: <name>John</name> or <name>Jane</name> (correctly)
+    
+    // For non-greedy, many regex engines use .*? (with ?)
+    // Check Zebra's specific syntax for your version

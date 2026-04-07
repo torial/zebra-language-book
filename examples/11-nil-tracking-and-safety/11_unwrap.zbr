@@ -1,0 +1,16 @@
+// file: 11_unwrap.zbr
+// teaches: unwrap operator
+// chapter: 11-Nil-Tracking-and-Safety
+
+class Main
+    shared
+        def main
+            var name as str? = "Alice"
+            
+            # Unwrap: assert it's not nil
+            var safe_name = name to!
+            print safe_name        # Now just str
+            
+            # If it WAS nil, this would crash
+            var empty as str? = nil
+            # var crash = empty to!  # ❌ Would panic at runtime

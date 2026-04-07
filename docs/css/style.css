@@ -1,0 +1,267 @@
+/* Zebra Programming Book - Main Stylesheet */
+
+:root {
+    --primary: #0284c7;
+    --success: #16a34a;
+    --warning: #d97706;
+    --error: #dc2626;
+    --bg-light: #f9fafb;
+    --bg-dark: #1f2937;
+    --text-light: #374151;
+    --text-dark: #f3f4f6;
+    --border: #e5e7eb;
+    --code-bg: #f3f4f6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: white;
+}
+
+/* Layout */
+.container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--bg-light);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.content {
+    padding: 3rem;
+    max-width: 900px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 600;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin: 1rem 0;
+}
+
+code {
+    background: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Monaco', monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+/* Links */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+/* Images */
+figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+/* Navigation */
+.sidebar-nav {
+    margin: 2rem 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 0.95em;
+}
+
+.sidebar-nav a:hover {
+    color: var(--primary);
+}
+
+/* Search */
+.sidebar-search {
+    margin-top: 2rem;
+}
+
+#search-box {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+/* Index page */
+.index-page .hero {
+    background: linear-gradient(135deg, var(--primary), #0369a1);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-size: 1.3em;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    background: var(--bg-light);
+}
+
+.feature {
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.feature h3 {
+    margin-top: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-bottom: 1px solid var(--border);
+        position: static;
+        height: auto;
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    .sidebar {
+        background: #111827;
+        border-color: #374151;
+    }
+
+    .content {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    code {
+        background: #374151;
+    }
+
+    pre {
+        background: #0f172a;
+    }
+}

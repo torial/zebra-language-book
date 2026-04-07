@@ -1,0 +1,14 @@
+// file: 05_while.zbr
+// teaches: while loop
+// chapter: 05-Control-Flow
+
+class Main
+    shared
+        def main
+            var count as int = 0
+            
+            while count < 5
+                print "Count: ${count}"
+                count = count + 1
+            
+            print "Done!"

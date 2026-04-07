@@ -1,0 +1,28 @@
+// file: stdlib-string-split-join.zbr
+// teaches: splitting and joining strings
+// chapter: 19
+
+def main()
+    // Split by delimiter
+    var csv_line = "John,25,Engineer,San Francisco"
+    var fields = csv_line.split(",")
+    
+    // fields is a List(str)
+    println(fields.count())     # 4
+    println(fields.at(0))       # "John"
+    println(fields.at(1))       # "25"
+    
+    // Process fields
+    var names = List(str)()
+    for field in fields
+        if field.len > 0
+            names.add(field)
+    
+    // Join with separator
+    var rejoined = names.join(" | ")
+    println(rejoined)  # "John | 25 | Engineer | San Francisco"
+    
+    // Multi-character delimiter
+    var text = "apple::orange::banana"
+    var fruits = text.split("::")
+    println(fruits.join(", "))  # "apple, orange, banana"

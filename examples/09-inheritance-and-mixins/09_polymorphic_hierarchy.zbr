@@ -1,0 +1,29 @@
+// file: 09_polymorphic_hierarchy.zbr
+// teaches: treating children as parents
+// chapter: 09-Inheritance-and-Mixins
+
+class AnimalShelter
+    var animals as List(Animal) = List()
+    
+    def add_animal(animal as Animal)
+        animals.add(animal)
+    
+    def announce_arrivals
+        for animal in animals
+            print "We have ${animal.name}"
+            print "It says: ${animal.sound()}"
+
+class Main
+    shared
+        def main
+            var shelter = AnimalShelter()
+            
+            var dog = Dog()
+            dog.name = "Rex"
+            shelter.add_animal(dog)
+            
+            var cat = Cat()
+            cat.name = "Mittens"
+            shelter.add_animal(cat)
+            
+            shelter.announce_arrivals()

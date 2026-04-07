@@ -1,0 +1,27 @@
+// file: 11_nil_check.zbr
+// teaches: nil checking
+// chapter: 11-Nil-Tracking-and-Safety
+
+class Main
+    shared
+        def main
+            var nickname as str? = "Bobby"
+            var empty as str? = nil
+            
+            # Check before using
+            if nickname != nil
+                print nickname     # Safe: known to not be nil
+            
+            if empty == nil
+                print "No nickname set"
+            else
+                print empty
+            
+            # Two ways to check:
+            if nickname != nil
+                print "Has nickname"
+            
+            if nickname == nil
+                print "No nickname"
+            else
+                print "Has: ${nickname}"

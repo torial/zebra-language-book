@@ -1,0 +1,45 @@
+// file: 11_database.zbr
+// teaches: nil in realistic scenarios
+// chapter: 11-Nil-Tracking-and-Safety
+
+class User
+    var id as int
+    var name as str
+    var email as str?
+
+class UserDatabase
+    shared
+        def find_user(user_id as int) as User?
+            if user_id == 1
+                var user = User()
+                user.id = 1
+                user.name = "Alice"
+                user.email = "alice@example.com"
+                return user
+            return nil
+        
+        def find_user_email(user_id as int) as str?
+            var user = find_user(user_id)
+            if user == nil
+                return nil
+            return user.email
+
+class Main
+    shared
+        def main
+            var user = UserDatabase.find_user(1)
+            if user != nil
+                print user.name
+                if user.email != nil
+                    print user.email
+                else
+                    print "No email on file"
+            else
+                print "User not found"
+            
+            # Chaining nil checks
+            var email = UserDatabase.find_user_email(999)
+            if email != nil
+                print "Email: ${email}"
+            else
+                print "User not found"

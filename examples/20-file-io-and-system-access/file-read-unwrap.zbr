@@ -1,0 +1,23 @@
+// file: file-read-unwrap.zbr
+// teaches: safe error handling for file reads
+// chapter: 20
+
+def main()
+    var filename = "config.txt"
+    
+    var result = File.read(filename)
+    
+    // Option 1: Check then access
+    if result.isOk()
+        var content = result.value()  # Safe to access
+        println("Read ${content.len} characters")
+    else
+        var error = result.error()
+        println("Cannot read config: ${error}")
+    
+    // Option 2: Using unwrapOr with fallback
+    var content = File.read(filename).unwrapOr("")
+    if content.len == 0
+        println("Using default configuration")
+    else
+        println("Configuration loaded: ${content.len} bytes")

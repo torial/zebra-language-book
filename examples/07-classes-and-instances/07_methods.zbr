@@ -1,0 +1,29 @@
+// file: 07_methods.zbr
+// teaches: instance methods
+// chapter: 07-Classes-and-Instances
+
+class Counter
+    var count as int = 0
+    
+    def increment
+        count = count + 1
+    
+    def decrement
+        count = count - 1
+    
+    def reset
+        count = 0
+    
+    def get_count as int
+        return count
+
+class Main
+    shared
+        def main
+            var counter = Counter()
+            counter.increment()
+            counter.increment()
+            counter.increment()
+            print counter.get_count()  // 3
+            counter.reset()
+            print counter.get_count()  // 0

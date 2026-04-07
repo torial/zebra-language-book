@@ -1,0 +1,23 @@
+// file: 13_generic_methods.zbr
+// teaches: generic methods
+// chapter: 13-Generics-and-Type-Constraints
+
+class Utils
+    shared
+        def identity(value as T) as T
+            return value
+        
+        def first_of_three(a as T, b as T, c as T) as T
+            return a
+
+class Main
+    shared
+        def main
+            var x = Utils.identity(42)
+            print x  # Output: 42
+            
+            var y = Utils.identity("hello")
+            print y  # Output: hello
+            
+            var z = Utils.first_of_three(1, 2, 3)
+            print z  # Output: 1

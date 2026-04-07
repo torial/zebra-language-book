@@ -1,0 +1,35 @@
+// file: 09_inheritance_basic.zbr
+// teaches: class inheritance
+// chapter: 09-Inheritance-and-Mixins
+
+class Animal
+    var name as str = ""
+    var age as int = 0
+    
+    def greet
+        print "I'm ${name}, ${age} years old"
+
+class Dog
+    inherits Animal
+        def bark
+            print "${name} says: Woof!"
+
+class Cat
+    inherits Animal
+        def meow
+            print "${name} says: Meow!"
+
+class Main
+    shared
+        def main
+            var dog = Dog()
+            dog.name = "Buddy"
+            dog.age = 3
+            dog.greet()      // I'm Buddy, 3 years old
+            dog.bark()       // Buddy says: Woof!
+            
+            var cat = Cat()
+            cat.name = "Whiskers"
+            cat.age = 2
+            cat.greet()      // I'm Whiskers, 2 years old
+            cat.meow()       // Whiskers says: Meow!

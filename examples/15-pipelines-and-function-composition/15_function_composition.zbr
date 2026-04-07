@@ -1,0 +1,27 @@
+// file: 15_function_composition.zbr
+// teaches: composing functions
+// chapter: 15-Pipelines-and-Function-Composition
+
+class Transform
+    shared
+        def lowercase(text as str) as str
+            return text.lower()
+        
+        def remove_spaces(text as str) as str
+            return text.replace(" ", "")
+        
+        def reverse_it(text as str) as str
+            return text.reverse()
+        
+        def compose_all(text as str) as str
+            return text
+                -> Transform.lowercase(.)
+                -> Transform.remove_spaces(.)
+                -> Transform.reverse_it(.)
+
+class Main
+    shared
+        def main
+            var input = "HELLO WORLD"
+            var output = Transform.compose_all(input)
+            print output  # Output: dlrowolleh

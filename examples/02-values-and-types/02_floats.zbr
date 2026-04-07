@@ -1,0 +1,16 @@
+// file: 02_floats.zbr
+// teaches: float types, precision
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var pi as float = 3.14159
+            var precise as float64 = 3.141592653589793
+            
+            print pi
+            print precise
+            
+            // Arithmetic
+            var result = pi * 2.0
+            print result

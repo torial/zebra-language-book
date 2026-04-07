@@ -1,0 +1,24 @@
+# Generated files
+zebra-programming-book.pdf
+*.png
+!diagrams/*.png
+
+# Temp files
+*.tmp
+*~
+.DS_Store
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.exe
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db

@@ -1,0 +1,30 @@
+// file: stdlib-string-search.zbr
+// teaches: searching and replacing in strings
+// chapter: 19
+
+def main()
+    var message = "The quick brown fox jumps over the lazy dog"
+    
+    // Find first occurrence
+    var pos = message.indexOf("fox")  # 16
+    if pos >= 0
+        println("Found 'fox' at position ${pos}")
+    
+    // Count occurrences (manual approach)
+    var text = "apple apple apple"
+    var count = 0
+    var search_pos = 0
+    while search_pos >= 0
+        search_pos = text.indexOf("apple", search_pos)
+        if search_pos >= 0
+            count = count + 1
+            search_pos = search_pos + 1
+    println(count)  # 3
+    
+    // Replace first occurrence
+    var replaced = message.replace("fox", "cat")
+    println(replaced)  # "The quick brown cat jumps over the lazy dog"
+    
+    // Replace all occurrences
+    var all_replaced = message.replaceAll("the", "a")
+    println(all_replaced)

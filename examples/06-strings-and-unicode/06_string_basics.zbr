@@ -1,0 +1,26 @@
+// file: 06_string_basics.zbr
+// teaches: string creation
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            // Simple string
+            var greeting = "Hello"
+            print greeting
+            
+            // With quotes inside
+            var quoted = "She said \"Hello\""
+            print quoted
+            
+            // Multi-line (if supported)
+            var poem = """
+            Roses are red
+            Violets are blue
+            """
+            print poem
+            
+            // Escape sequences
+            var path = "C:\\Users\\Name\\Documents"
+            var tab = "Name\tAge\tCity"
+            var newline = "Line1\nLine2"

@@ -1,0 +1,28 @@
+// file: 03_sets.zbr
+// teaches: sets for uniqueness
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            var unique_ids as Set(int) = Set()
+            
+            // Add values
+            unique_ids.add(1)
+            unique_ids.add(2)
+            unique_ids.add(3)
+            unique_ids.add(2)    // Duplicate, won't add again
+            
+            print unique_ids.count()            // 3
+            
+            // Check membership
+            var has_two = unique_ids.contains(2)
+            print has_two                       // true
+            
+            // Remove
+            unique_ids.remove(2)
+            print unique_ids.count()            // 2
+            
+            // Iterate
+            for id in unique_ids
+                print id

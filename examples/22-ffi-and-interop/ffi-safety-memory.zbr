@@ -1,0 +1,36 @@
+// file: ffi-safety-memory.zbr
+// teaches: FFI memory safety
+// chapter: 22
+
+# SAFE: Zebra owns memory
+def safe_pattern(data as str) as int
+    # Zebra created the string
+    # Pass it to C for reading only
+    # C should NOT modify or deallocate
+    return data.len
+
+# UNSAFE: C allocates memory Zebra must free
+# shared class Unsafe
+#     shared
+#         def allocate_buffer() as str
+#             # C allocates memory with malloc
+#             # Zebra must call free
+#             # This is error-prone! Don't do this.
+#             return ""
+
+# BETTER: Provide deallocation function
+shared class BetterAlloc
+    shared
+        # C allocates
+        def create_buffer(size as int) as int
+            return 0  # Returns opaque handle
+        
+        # Zebra must call this to free
+        def destroy_buffer(handle as int)
+            pass
+
+def main()
+    var buf = BetterAlloc.create_buffer(1024)
+    # Use buffer...
+    BetterAlloc.destroy_buffer(buf)
+    # buf is now invalid! Don't use it again.

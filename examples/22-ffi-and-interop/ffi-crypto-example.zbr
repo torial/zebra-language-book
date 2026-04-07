@@ -1,0 +1,29 @@
+// file: ffi-crypto-example.zbr
+// teaches: practical FFI example with crypto
+// chapter: 22
+
+shared class Crypto
+    shared
+        # OpenSSL/BoringSSL: compute SHA256
+        def sha256(input as str) as str
+            # C function: 
+            # void SHA256(const unsigned char* d, size_t n, unsigned char* md)
+            return ""
+        
+        # Verify hash matches expected value
+        def verify_sha256(input as str, expected_hash as str) as bool
+            var computed = sha256(input)
+            return computed == expected_hash
+
+def main()
+    var message = "Secret password"
+    var hash = Crypto.sha256(message)
+    println("SHA256: ${hash}")
+    
+    # Verify integrity
+    var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
+    
+    if Crypto.verify_sha256(message, stored_hash)
+        println("Hash verified!")
+    else
+        println("Hash mismatch!")

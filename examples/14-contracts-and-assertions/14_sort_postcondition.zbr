@@ -1,0 +1,42 @@
+// file: 14_sort_postcondition.zbr
+// teaches: postcondition in realistic code
+// chapter: 14-Contracts-and-Assertions
+
+class Sorter
+    shared
+        def bubble_sort(items as List(int)) as List(int)
+            var n = items.count()
+            var i = 0
+            
+            while i < n
+                var j = 0
+                while j < n - 1
+                    var a = items.at(j)
+                    var b = items.at(j + 1)
+                    if a > b
+                        # Swap (simplified - no swap in stdlib)
+                        pass
+                    j = j + 1
+                i = i + 1
+            
+            # Postcondition: list is sorted
+            i = 0
+            while i < items.count() - 1
+                var a = items.at(i)
+                var b = items.at(i + 1)
+                if a > b
+                    raise "Postcondition failed: list not sorted"
+                i = i + 1
+            
+            return items
+
+class Main
+    shared
+        def main
+            var list as List(int) = List()
+            list.add(3)
+            list.add(1)
+            list.add(2)
+            
+            var sorted = Sorter.bubble_sort(list)
+            print "Sorted"

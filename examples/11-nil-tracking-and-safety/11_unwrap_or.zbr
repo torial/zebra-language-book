@@ -1,0 +1,23 @@
+// file: 11_unwrap_or.zbr
+// teaches: safe unwrapping
+// chapter: 11-Nil-Tracking-and-Safety
+
+class Main
+    shared
+        def get_user_name(user_id as int) as str?
+            if user_id == 1
+                return "Alice"
+            return nil
+        
+        def main
+            var name = get_user_name(1)
+            
+            # Option 1: Check and use default
+            if name != nil
+                print name
+            else
+                print "Unknown user"
+            
+            # Option 2: if method exists, unwrapOr
+            # var safe_name = name.unwrapOr("Guest")
+            # print safe_name

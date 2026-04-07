@@ -1,0 +1,24 @@
+// file: 12_result_basic.zbr
+// teaches: result type
+// chapter: 12-Error-Handling-with-Results
+
+class Validator
+    shared
+        def parse_int(text as str) as Result(int, str)
+            if text.len == 0
+                return Result.err("Empty string")
+            # Simplified: real parsing more complex
+            var value as int = 42
+            return Result.ok(value)
+
+class Main
+    shared
+        def main
+            var result = Validator.parse_int("123")
+            
+            if result.isOk()
+                var value = result.okValue()
+                print "Parsed: ${value}"
+            elif result.isErr()
+                var error = result.errValue()
+                print "Error: ${error}"

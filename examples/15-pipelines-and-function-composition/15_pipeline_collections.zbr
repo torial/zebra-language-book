@@ -1,0 +1,22 @@
+// file: 15_pipeline_collections.zbr
+// teaches: piping through collections
+// chapter: 15-Pipelines-and-Function-Composition
+
+class DataProcessor
+    shared
+        def count_words(text as str) as int
+            return text
+                -> .lower()
+                -> .split(" ")
+                -> .count()
+
+class Main
+    shared
+        def main
+            var input = "The Quick Brown Fox"
+            var words = input
+                -> .lower()
+                -> .split(" ")
+            
+            var count = words.count()
+            print "Word count: ${count}"

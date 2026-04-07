@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
+      .input-box { fill: #bfdbfe; stroke: #0284c7; stroke-width: 2; }
+      .process-box { fill: #e0e7ff; stroke: #4f46e5; stroke-width: 2; }
+      .output-box { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .label { font-size: 13px; fill: #374151; }
+      .code { font-size: 11px; fill: #1f2937; font-family: 'Monaco', monospace; }
+      .arrow { stroke: #0284c7; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0 0, 12 6, 0 12" fill="#0284c7" />
+    </marker>
+  </defs>
+
+  <text x="500" y="40" class="title" text-anchor="middle">Project 3: Text Analysis Pipeline</text>
+
+  <!-- Main pipeline flow -->
+  <g>
+    <!-- Input -->
+    <rect x="30" y="100" width="100" height="60" class="input-box" rx="5"/>
+    <text x="80" y="135" class="label" text-anchor="middle" font-weight="bold">Text File</text>
+
+    <!-- Read -->
+    <path d="M 130 130 L 180 130" class="arrow"/>
+    <rect x="185" y="100" width="100" height="60" class="process-box" rx="5"/>
+    <text x="235" y="130" class="code" text-anchor="middle">read()</text>
+    <text x="235" y="145" class="label" text-anchor="middle" font-size="10">File I/O</text>
+
+    <!-- Tokenize -->
+    <path d="M 285 130 L 335 130" class="arrow"/>
+    <rect x="340" y="100" width="100" height="60" class="process-box" rx="5"/>
+    <text x="390" y="130" class="code" text-anchor="middle">split()</text>
+    <text x="390" y="145" class="label" text-anchor="middle" font-size="10">Words</text>
+
+    <!-- Frequency Analysis -->
+    <path d="M 440 130 L 490 130" class="arrow"/>
+    <rect x="495" y="100" width="100" height="60" class="process-box" rx="5"/>
+    <text x="545" y="125" class="label" text-anchor="middle" font-size="11">Frequency</text>
+    <text x="545" y="145" class="label" text-anchor="middle" font-size="10">Analysis</text>
+
+    <!-- N-gram Analysis -->
+    <path d="M 595 130 L 645 130" class="arrow"/>
+    <rect x="650" y="100" width="100" height="60" class="process-box" rx="5"/>
+    <text x="700" y="125" class="label" text-anchor="middle" font-size="11">N-gram</text>
+    <text x="700" y="145" class="label" text-anchor="middle" font-size="10">Analysis</text>
+
+    <!-- Output -->
+    <path d="M 750 130 L 800 130" class="arrow"/>
+    <rect x="805" y="100" width="100" height="60" class="output-box" rx="5"/>
+    <text x="855" y="130" class="label" text-anchor="middle" font-weight="bold">Report</text>
+  </g>
+
+  <!-- Detailed steps -->
+  <g>
+    <text x="50" y="210" class="label" font-weight="bold">Detailed Processing Steps:</text>
+
+    <!-- Step 1: Read -->
+    <g>
+      <rect x="30" y="230" width="200" height="100" fill="#f0f9ff" stroke="#0369a1" stroke-width="1" rx="3"/>
+      <text x="130" y="255" class="label" text-anchor="middle" font-weight="bold">Step 1: Read</text>
+      <text x="45" y="280" class="code">File.read(path)</text>
+      <text x="45" y="300" class="code">→ string content</text>
+      <text x="45" y="320" class="label" font-size="11">Input: raw text</text>
+    </g>
+
+    <!-- Step 2: Frequency -->
+    <g>
+      <rect x="270" y="230" width="200" height="100" fill="#f5f3ff" stroke="#4f46e5" stroke-width="1" rx="3"/>
+      <text x="370" y="255" class="label" text-anchor="middle" font-weight="bold">Step 2: Frequency</text>
+      <text x="285" y="280" class="code">Count word occurrences</text>
+      <text x="285" y="300" class="code">Sort by frequency</text>
+      <text x="285" y="320" class="label" font-size="11">Output: sorted list</text>
+    </g>
+
+    <!-- Step 3: N-grams -->
+    <g>
+      <rect x="510" y="230" width="200" height="100" fill="#f5f3ff" stroke="#4f46e5" stroke-width="1" rx="3"/>
+      <text x="610" y="255" class="label" text-anchor="middle" font-weight="bold">Step 3: N-grams</text>
+      <text x="525" y="280" class="code">Extract 2-grams,</text>
+      <text x="525" y="300" class="code">3-grams with counts</text>
+      <text x="525" y="320" class="label" font-size="11">Output: patterns</text>
+    </g>
+
+    <!-- Step 4: Report -->
+    <g>
+      <rect x="750" y="230" width="200" height="100" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" rx="3"/>
+      <text x="850" y="255" class="label" text-anchor="middle" font-weight="bold">Step 4: Report</text>
+      <text x="765" y="280" class="code">Combine results</text>
+      <text x="765" y="300" class="code">Format output</text>
+      <text x="765" y="320" class="label" font-size="11">Output: analysis</text>
+    </g>
+  </g>
+
+  <!-- Similarity metrics section -->
+  <g>
+    <text x="50" y="380" class="label" font-weight="bold">Similarity Metrics (Optional Extension):</text>
+
+    <!-- Jaccard -->
+    <g>
+      <rect x="30" y="400" width="220" height="120" fill="#fef3c7" stroke="#d97706" stroke-width="1" rx="3"/>
+      <text x="140" y="425" class="label" text-anchor="middle" font-weight="bold">Jaccard Similarity</text>
+      <text x="45" y="450" class="code">intersection / union</text>
+      <text x="45" y="470" class="label" font-size="10">Measures word overlap</text>
+      <text x="45" y="490" class="label" font-size="10">Range: 0 (no match)</text>
+      <text x="45" y="505" class="label" font-size="10">to 1 (identical)</text>
+    </g>
+
+    <!-- Cosine -->
+    <g>
+      <rect x="290" y="400" width="220" height="120" fill="#fef3c7" stroke="#d97706" stroke-width="1" rx="3"/>
+      <text x="400" y="425" class="label" text-anchor="middle" font-weight="bold">Cosine Similarity</text>
+      <text x="305" y="450" class="code">2*common / total</text>
+      <text x="305" y="470" class="label" font-size="10">Measures angle between</text>
+      <text x="305" y="490" class="label" font-size="10">word vectors</text>
+      <text x="305" y="505" class="label" font-size="10">Range: 0 to 1</text>
+    </g>
+
+    <!-- Hamming -->
+    <g>
+      <rect x="550" y="400" width="220" height="120" fill="#fef3c7" stroke="#d97706" stroke-width="1" rx="3"/>
+      <text x="660" y="425" class="label" text-anchor="middle" font-weight="bold">Hamming Distance</text>
+      <text x="565" y="450" class="code">differing positions</text>
+      <text x="565" y="470" class="label" font-size="10">Counts position</text>
+      <text x="565" y="490" class="label" font-size="10">mismatches</text>
+      <text x="565" y="505" class="label" font-size="10">Lower = more similar</text>
+    </g>
+
+    <!-- Use case -->
+    <g>
+      <rect x="810" y="400" width="160" height="120" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" rx="3"/>
+      <text x="890" y="425" class="label" text-anchor="middle" font-weight="bold">Use Cases</text>
+      <text x="825" y="450" class="label" font-size="10">• Plagiarism</text>
+      <text x="825" y="468" class="label" font-size="10">detection</text>
+      <text x="825" y="486" class="label" font-size="10">• Document</text>
+      <text x="825" y="504" class="label" font-size="10">comparison</text>
+    </g>
+  </g>
+
+  <!-- Example output -->
+  <g>
+    <rect x="30" y="570" width="940" height="110" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
+    <text x="50" y="595" class="label" font-weight="bold">Example Output Report:</text>
+    <text x="50" y="620" class="code">File: document.txt | Lines: 450 | Words: 3200 | Unique: 850</text>
+    <text x="50" y="640" class="code">Top words: [("the", 250), ("and", 180), ("a", 165)]</text>
+    <text x="50" y="660" class="code">Top bigrams: [("to the", 45), ("in the", 42), ("of the", 39)]</text>
+  </g>
+</svg>

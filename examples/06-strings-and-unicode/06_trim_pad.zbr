@@ -1,0 +1,19 @@
+// file: 06_trim_pad.zbr
+// teaches: trimming and padding
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            var padded = "  hello  "
+            
+            // Trim whitespace
+            print "|${padded.trim()}|"          // |hello|
+            print "|${padded.trimLeft()}|"      // |hello  |
+            print "|${padded.trimRight()}|"     // |  hello|
+            
+            // Padding
+            var short = "hi"
+            print short.padLeft(10, "*")        // ********hi
+            print short.padRight(10, "-")       // hi--------
+            print short.center(10, "*")         // ****hi****

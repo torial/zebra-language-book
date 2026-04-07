@@ -1,0 +1,39 @@
+// file: cli_args.zbr
+// teaches: argument parsing
+// project: Project-1-CLI-Tool
+
+class CliArgs
+    var command as str
+    var filename as str
+    var pattern as str?
+    
+    def init(command as str, filename as str)
+        this.command = command
+        this.filename = filename
+        pattern = nil
+
+class CommandParser
+    shared
+        def parse(args as List(str)) as Result(CliArgs, str)
+            # Precondition: at least 2 arguments (program name + command + filename)
+            if args.count() < 3
+                return Result.err("Usage: textool [command] [file]")
+            
+            var command = args.at(1)
+            var filename = args.at(2)
+            
+            # Validate command
+            if not valid_command(command)
+                return Result.err("Unknown command: ${command}")
+            
+            # Create args object
+            var cli_args = CliArgs(command, filename)
+            
+            # Add pattern if provided
+            if args.count() >= 4
+                cli_args.pattern = args.at(3)
+            
+            return Result.ok(cli_args)
+        
+        def valid_command(cmd as str) as bool
+            return cmd == "count" or cmd == "search" or cmd == "stats"

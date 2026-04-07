@@ -1,0 +1,26 @@
+// file: ffi-batching.zbr
+// teaches: batching FFI operations
+// chapter: 22
+
+shared class Batch
+    shared
+        # Process one item (slow)
+        def process_item(item as str) as str
+            return item.upper()
+        
+        # Process many items (fast)
+        def process_batch(items as List(str)) as List(str)
+            # Single FFI call for all items
+            return items
+
+def main()
+    var items = List(str)()
+    for i in 0.to(100)
+        items.add("item-${i}")
+    
+    # GOOD: Batch processing
+    var results = Batch.process_batch(items)
+    
+    # BAD: Individual calls
+    # for item in items
+    #     var result = Batch.process_item(item)  # 100 FFI calls!

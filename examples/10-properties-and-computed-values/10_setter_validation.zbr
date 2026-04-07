@@ -1,0 +1,36 @@
+// file: 10_setter_validation.zbr
+// teaches: setters with validation
+// chapter: 10-Properties-and-Computed-Values
+
+class Account
+    var balance as float = 0.0
+    
+    def deposit(amount as float) as bool
+        if amount <= 0.0
+            return false
+        balance = balance + amount
+        return true
+    
+    def withdraw(amount as float) as bool
+        if amount <= 0.0
+            return false
+        if amount > balance
+            return false
+        balance = balance - amount
+        return true
+    
+    def get_balance as float
+        return balance
+
+class Main
+    shared
+        def main
+            var account = Account()
+            account.deposit(100.0)
+            print account.get_balance()    // 100
+            
+            account.withdraw(25.0)
+            print account.get_balance()    // 75
+            
+            account.withdraw(100.0)  // Fails (not enough balance)
+            print account.get_balance()    // 75 (unchanged)

@@ -1,0 +1,20 @@
+// file: 04_functions.zbr
+// teaches: function definition and calling
+// chapter: 04-Functions-and-Scope
+
+class Math
+    shared
+        def add(a as int, b as int) as int
+            return a + b
+        
+        def multiply(x as int, y as int) as int
+            return x * y
+
+class Main
+    shared
+        def main
+            var result1 = Math.add(5, 3)
+            print result1                       // 8
+            
+            var result2 = Math.multiply(4, 7)
+            print result2                       // 28

@@ -1,0 +1,31 @@
+// file: 14_preconditions.zbr
+// teaches: precondition checking
+// chapter: 14-Contracts-and-Assertions
+
+class Bank
+    var balance as int = 100
+    
+    def withdraw(amount as int) as Result(bool, str)
+        # Precondition: amount must be positive
+        if amount <= 0
+            return Result.err("Amount must be positive")
+        
+        # Precondition: sufficient funds
+        if balance < amount
+            return Result.err("Insufficient funds")
+        
+        balance = balance - amount
+        return Result.ok(true)
+
+class Main
+    shared
+        def main
+            var bank = Bank()
+            
+            var r1 = bank.withdraw(50)
+            if r1.isOk()
+                print "Withdrew 50"
+            
+            var r2 = bank.withdraw(-10)
+            if r2.isErr()
+                print "Error: ${r2.errValue()}"

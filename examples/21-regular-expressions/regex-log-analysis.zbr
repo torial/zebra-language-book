@@ -1,0 +1,35 @@
+// file: regex-log-analysis.zbr
+// teaches: using regex for real log analysis
+// chapter: 21
+
+def analyze_logs(filename as str)
+    var result = File.read(filename)
+    if result.isErr()
+        println("Error: ${result.error()}")
+        return
+    
+    var content = result.value()
+    var lines = content.split("\n")
+    
+    var error_count = 0
+    var warning_count = 0
+    var error_lines = List(str)()
+    
+    for line in lines
+        if line.contains("[ERROR]")
+            error_count = error_count + 1
+            error_lines.add(line)
+        elif line.contains("[WARN]")
+            warning_count = warning_count + 1
+    
+    println("Log Analysis:")
+    println("  Errors: ${error_count}")
+    println("  Warnings: ${warning_count}")
+    
+    if error_count > 0
+        println("\nErrors:")
+        for error_line in error_lines
+            println("  ${error_line}")
+
+def main()
+    analyze_logs("app.log")

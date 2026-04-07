@@ -1,0 +1,26 @@
+// file: ffi-platform-specific.zbr
+// teaches: handling platform differences
+// chapter: 22
+
+shared class Platform
+    shared
+        # Windows: GetFileSize
+        # Unix: stat
+        def get_file_size(filename as str) as Result(int, str)
+            # Implementation varies by platform
+            return Result.ok(0)
+        
+        def get_environment_variable(name as str) as str?
+            # Implemented via getenv (Unix) or GetEnvironmentVariable (Windows)
+            return nil
+        
+        def sleep_milliseconds(ms as int)
+            # Windows: Sleep()
+            # Unix: usleep()
+            pass
+
+def main()
+    var size_result = Platform.get_file_size("data.txt")
+    
+    if size_result.isOk()
+        println("File size: ${size_result.value()} bytes")

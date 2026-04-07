@@ -1,0 +1,20 @@
+// file: 04_scope.zbr
+// teaches: variable scope
+// chapter: 04-Functions-and-Scope
+
+class Calculator
+    shared
+        var global_val as int = 100  // Shared (class-level)
+        
+        def compute
+            var local_val as int = 50  // Local to this function
+            print local_val             // ✅ Can access
+            print global_val            // ✅ Can access class-level
+        
+        def other
+            # print local_val  # ❌ Can't access, it's not here
+
+class Main
+    shared
+        def main
+            Calculator.compute()

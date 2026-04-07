@@ -1,0 +1,31 @@
+// file: 12_error_propagation.zbr
+// teaches: propagating errors
+// chapter: 12-Error-Handling-with-Results
+
+class Parser
+    shared
+        def parse_config(text as str) as Result(str, str)
+            # Parse JSON/config
+            if text.len == 0
+                return Result.err("Empty config")
+            return Result.ok("parsed")
+
+class System
+    shared
+        def load_system(config_text as str) as Result(str, str)
+            var parsed = Parser.parse_config(config_text)
+            if parsed.isErr()
+                return Result.err(parsed.errValue())
+            
+            var data = parsed.okValue()
+            # Continue processing
+            return Result.ok("System loaded")
+
+class Main
+    shared
+        def main
+            var system = System.load_system("")
+            if system.isErr()
+                print "Failed: ${system.errValue()}"
+            else
+                print system.okValue()

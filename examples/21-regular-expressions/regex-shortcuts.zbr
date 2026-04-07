@@ -1,0 +1,44 @@
+// file: regex-shortcuts.zbr
+// teaches: common regex shortcuts
+// chapter: 21
+
+def main()
+    // \d = [0-9] = digit
+    var digit_re = Regex.compile("\\d")
+    
+    if digit_re.matches("7")
+        println("Found digit")
+    
+    // \w = [a-zA-Z0-9_] = word character
+    var word_re = Regex.compile("\\w")
+    
+    if word_re.matches("a")
+        println("'a' is a word character")
+    
+    if word_re.matches("_")
+        println("'_' is a word character")
+    
+    if not word_re.matches("-")
+        println("'-' is not a word character")
+    
+    // \s = whitespace (space, tab, newline)
+    var space_re = Regex.compile("\\s")
+    
+    if space_re.matches(" ")
+        println("Space matches whitespace")
+    
+    if space_re.matches("\t")
+        println("Tab matches whitespace")
+    
+    // Inverse (uppercase)
+    // \D = not digit
+    // \W = not word character
+    // \S = not whitespace
+    
+    var not_digit = Regex.compile("\\D")
+    
+    if not_digit.matches("x")
+        println("'x' is not a digit")
+    
+    if not not_digit.matches("5")
+        println("'5' is a digit (excluded by \\D)")

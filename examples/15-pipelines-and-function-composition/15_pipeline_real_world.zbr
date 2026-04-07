@@ -1,0 +1,37 @@
+// file: 15_pipeline_real_world.zbr
+// teaches: realistic pipeline
+// chapter: 15-Pipelines-and-Function-Composition
+
+class DataAnalysis
+    shared
+        def parse_numbers(line as str) as List(int)
+            var numbers as List(int) = List()
+            var parts = line.split(",")
+            for part in parts
+                # Simplified: real parsing more complex
+                var num = part.trim().toInt()
+                numbers.add(num)
+            return numbers
+        
+        def sum_list(items as List(int)) as int
+            var total = 0
+            for item in items
+                total = total + item
+            return total
+        
+        def average(total as int, count as int) as float
+            if count == 0
+                return 0.0
+            return total / count
+
+class Main
+    shared
+        def main
+            var csv_line = "10, 20, 30, 40"
+            
+            var avg = csv_line
+                -> DataAnalysis.parse_numbers(.)
+                -> DataAnalysis.sum_list(.)
+                -> DataAnalysis.average(., 4)
+            
+            print "Average: ${avg}"

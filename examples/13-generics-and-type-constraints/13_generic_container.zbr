@@ -1,0 +1,23 @@
+// file: 13_generic_container.zbr
+// teaches: generic class definition
+// chapter: 13-Generics-and-Type-Constraints
+
+class Container(T)
+    var item as T
+    
+    def set(value as T)
+        item = value
+    
+    def get as T
+        return item
+
+class Main
+    shared
+        def main
+            var int_box = Container(int)()
+            int_box.set(42)
+            print int_box.get()  # Output: 42
+            
+            var str_box = Container(str)()
+            str_box.set("hello")
+            print str_box.get()  # Output: hello

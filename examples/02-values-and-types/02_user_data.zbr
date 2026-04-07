@@ -1,0 +1,27 @@
+// file: 02_user_data.zbr
+// teaches: realistic variable use
+// chapter: 02-Values-and-Types
+
+class User
+    var id as int
+    var name as str
+    var email as str
+    var age as int
+    var is_active as bool
+
+class Main
+    shared
+        def main
+            // Create a user
+            var user = User()
+            user.id = 1
+            user.name = "Alice"
+            user.email = "alice@example.com"
+            user.age = 30
+            user.is_active = true
+            
+            // Display
+            print "User: ${user.name}"
+            print "Email: ${user.email}"
+            print "Age: ${user.age}"
+            print "Active: ${user.is_active}"

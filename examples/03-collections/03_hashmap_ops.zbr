@@ -1,0 +1,26 @@
+// file: 03_hashmap_ops.zbr
+// teaches: hashmap manipulation
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            var config as HashMap(str, str) = HashMap()
+            config.put("host", "localhost")
+            config.put("port", "8080")
+            config.put("debug", "true")
+            
+            // Count entries
+            print config.count()                // 3
+            
+            // Remove entry
+            config.remove("debug")
+            print config.count()                // 2
+            
+            // Check contains
+            if config.contains("host")
+                print config.fetch("host")      // localhost
+            
+            // Iterate over keys and values
+            for key, value in config
+                print "${key} = ${value}"

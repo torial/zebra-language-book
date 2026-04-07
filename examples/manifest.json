@@ -1,0 +1,1267 @@
+{
+  "version": "1.0",
+  "total_examples": 180,
+  "generated": "1775579309.2146854",
+  "examples": [
+    {
+      "chapter": "01-Getting-Started",
+      "file": "hello.zbr",
+      "teaches": "hello world, print statement",
+      "project": null,
+      "path": "examples/01-getting-started/hello.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "greet.zbr",
+      "teaches": "variables, string interpolation",
+      "project": null,
+      "path": "examples/01-getting-started/greet.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_integers.zbr",
+      "teaches": "integer types, arithmetic",
+      "project": null,
+      "path": "examples/02-values-and-types/02_integers.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_floats.zbr",
+      "teaches": "float types, precision",
+      "project": null,
+      "path": "examples/02-values-and-types/02_floats.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_bools.zbr",
+      "teaches": "boolean values, logic",
+      "project": null,
+      "path": "examples/02-values-and-types/02_bools.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_strings.zbr",
+      "teaches": "string type, string operations",
+      "project": null,
+      "path": "examples/02-values-and-types/02_strings.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_comparisons.zbr",
+      "teaches": "comparison operators",
+      "project": null,
+      "path": "examples/02-values-and-types/02_comparisons.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_conversions.zbr",
+      "teaches": "type conversion",
+      "project": null,
+      "path": "examples/02-values-and-types/02_conversions.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_nullables.zbr",
+      "teaches": "nullable types introduction",
+      "project": null,
+      "path": "examples/02-values-and-types/02_nullables.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_user_data.zbr",
+      "teaches": "realistic variable use",
+      "project": null,
+      "path": "examples/02-values-and-types/02_user_data.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_lists.zbr",
+      "teaches": "list creation and access",
+      "project": null,
+      "path": "examples/03-collections/03_lists.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_list_ops.zbr",
+      "teaches": "list manipulation",
+      "project": null,
+      "path": "examples/03-collections/03_list_ops.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_iteration.zbr",
+      "teaches": "different iteration styles",
+      "project": null,
+      "path": "examples/03-collections/03_iteration.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_hashmaps.zbr",
+      "teaches": "hashmap creation and access",
+      "project": null,
+      "path": "examples/03-collections/03_hashmaps.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_hashmap_ops.zbr",
+      "teaches": "hashmap manipulation",
+      "project": null,
+      "path": "examples/03-collections/03_hashmap_ops.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_sets.zbr",
+      "teaches": "sets for uniqueness",
+      "project": null,
+      "path": "examples/03-collections/03_sets.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_real_world.zbr",
+      "teaches": "collections in realistic scenarios",
+      "project": null,
+      "path": "examples/03-collections/03_real_world.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_patterns.zbr",
+      "teaches": "collection patterns",
+      "project": null,
+      "path": "examples/03-collections/03_patterns.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_functions.zbr",
+      "teaches": "function definition and calling",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_functions.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_multi_params.zbr",
+      "teaches": "multiple parameters",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_multi_params.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_void.zbr",
+      "teaches": "functions that don't return values",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_void.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_scope.zbr",
+      "teaches": "variable scope",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_scope.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_closures.zbr",
+      "teaches": "closures and variable capture",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_closures.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_capture.zbr",
+      "teaches": "capture blocks",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_capture.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_utilities.zbr",
+      "teaches": "practical function use",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_utilities.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_patterns.zbr",
+      "teaches": "early return pattern",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_patterns.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_higher_order.zbr",
+      "teaches": "functions as arguments",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_higher_order.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_if.zbr",
+      "teaches": "conditional execution",
+      "project": null,
+      "path": "examples/05-control-flow/05_if.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_if_else.zbr",
+      "teaches": "if-else branching",
+      "project": null,
+      "path": "examples/05-control-flow/05_if_else.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_conditions.zbr",
+      "teaches": "boolean logic",
+      "project": null,
+      "path": "examples/05-control-flow/05_conditions.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_match.zbr",
+      "teaches": "pattern matching",
+      "project": null,
+      "path": "examples/05-control-flow/05_match.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_match_type.zbr",
+      "teaches": "type-based matching",
+      "project": null,
+      "path": "examples/05-control-flow/05_match_type.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_for.zbr",
+      "teaches": "for loop iteration",
+      "project": null,
+      "path": "examples/05-control-flow/05_for.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_while.zbr",
+      "teaches": "while loop",
+      "project": null,
+      "path": "examples/05-control-flow/05_while.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_break_continue.zbr",
+      "teaches": "loop control",
+      "project": null,
+      "path": "examples/05-control-flow/05_break_continue.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_guards.zbr",
+      "teaches": "guard conditions",
+      "project": null,
+      "path": "examples/05-control-flow/05_guards.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_validation.zbr",
+      "teaches": "practical control flow",
+      "project": null,
+      "path": "examples/05-control-flow/05_validation.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_string_basics.zbr",
+      "teaches": "string creation",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_string_basics.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_string_props.zbr",
+      "teaches": "string properties and methods",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_string_props.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_interpolation.zbr",
+      "teaches": "string interpolation",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_interpolation.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_search.zbr",
+      "teaches": "searching in strings",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_search.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_split_join.zbr",
+      "teaches": "splitting and joining strings",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_split_join.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_trim_pad.zbr",
+      "teaches": "trimming and padding",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_trim_pad.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_replace.zbr",
+      "teaches": "string replacement",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_replace.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_unicode.zbr",
+      "teaches": "unicode support",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_unicode.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_char_iter.zbr",
+      "teaches": "iterating over characters",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_char_iter.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_regex_intro.zbr",
+      "teaches": "regular expressions introduction",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_regex_intro.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06_text_processing.zbr",
+      "teaches": "practical text operations",
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06_text_processing.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_class_basic.zbr",
+      "teaches": "class definition",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_class_basic.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_init.zbr",
+      "teaches": "field initialization",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_init.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_methods.zbr",
+      "teaches": "instance methods",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_methods.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_shared.zbr",
+      "teaches": "shared (class) methods",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_shared.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_user_system.zbr",
+      "teaches": "realistic class design",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_user_system.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08_interface_basic.zbr",
+      "teaches": "interface definition",
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08_interface_basic.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08_interface_methods.zbr",
+      "teaches": "interface with multiple methods",
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08_interface_methods.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08_polymorphism.zbr",
+      "teaches": "polymorphic behavior",
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08_polymorphism.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08_collection_interface.zbr",
+      "teaches": "storing different implementations",
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08_collection_interface.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08_logger_system.zbr",
+      "teaches": "realistic interface use",
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08_logger_system.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_inheritance_basic.zbr",
+      "teaches": "class inheritance",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_inheritance_basic.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_override.zbr",
+      "teaches": "overriding parent methods",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_override.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_super.zbr",
+      "teaches": "calling parent implementation",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_super.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_hierarchy.zbr",
+      "teaches": "inheritance hierarchies",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_hierarchy.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_polymorphic_hierarchy.zbr",
+      "teaches": "treating children as parents",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_mixins.zbr",
+      "teaches": "mixin composition",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_mixins.zbr"
+    },
+    {
+      "chapter": "09-Inheritance-and-Mixins",
+      "file": "09_document_hierarchy.zbr",
+      "teaches": "realistic inheritance use",
+      "project": null,
+      "path": "examples/09-inheritance-and-mixins/09_document_hierarchy.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_getter.zbr",
+      "teaches": "computed properties",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_getter.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_derived.zbr",
+      "teaches": "deriving values from fields",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_derived.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_setter_validation.zbr",
+      "teaches": "setters with validation",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_setter_validation.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_setter_effects.zbr",
+      "teaches": "setters with side effects",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_setter_effects.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_computed.zbr",
+      "teaches": "expensive computed properties",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_computed.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_lazy_init.zbr",
+      "teaches": "lazy initialization",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_lazy_init.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_temperature.zbr",
+      "teaches": "properties in realistic scenarios",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_temperature.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10_config.zbr",
+      "teaches": "configuration management",
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10_config.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_nullable.zbr",
+      "teaches": "nullable types",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_nullable.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_nil_check.zbr",
+      "teaches": "nil checking",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_nil_check.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_narrowing.zbr",
+      "teaches": "type narrowing",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_narrowing.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_unwrap.zbr",
+      "teaches": "unwrap operator",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_unwrap.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_unwrap_or.zbr",
+      "teaches": "safe unwrapping",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_unwrap_or.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_database.zbr",
+      "teaches": "nil in realistic scenarios",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_database.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_result_basic.zbr",
+      "teaches": "result type",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_result_basic.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_result_unwrap.zbr",
+      "teaches": "result unwrapping",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_result_unwrap.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_error_propagation.zbr",
+      "teaches": "propagating errors",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_error_propagation.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_api_client.zbr",
+      "teaches": "results in realistic code",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_api_client.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_container.zbr",
+      "teaches": "generic class definition",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_container.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_pair.zbr",
+      "teaches": "multiple type parameters",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_pair.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_methods.zbr",
+      "teaches": "generic methods",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_methods.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_collections.zbr",
+      "teaches": "using generic stdlib types",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_collections.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_type_constraints.zbr",
+      "teaches": "interface constraints",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_type_constraints.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_constraints_advanced.zbr",
+      "teaches": "constraints in generic methods",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_constraints_advanced.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_cache.zbr",
+      "teaches": "realistic generic class",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_cache.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_preconditions.zbr",
+      "teaches": "precondition checking",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_preconditions.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_postconditions.zbr",
+      "teaches": "postcondition checking",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_postconditions.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_invariants.zbr",
+      "teaches": "class invariants",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_invariants.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_assertions.zbr",
+      "teaches": "assertions",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_assertions.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_sort_postcondition.zbr",
+      "teaches": "postcondition in realistic code",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_sort_postcondition.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_guard_clauses.zbr",
+      "teaches": "guard clause pattern",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_guard_clauses.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_early_return.zbr",
+      "teaches": "fail fast principle",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_early_return.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_dual_verify.zbr",
+      "teaches": "verifying both input and output",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_dual_verify.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_basics.zbr",
+      "teaches": "pipeline operator",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_chain.zbr",
+      "teaches": "chaining operations",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_collections.zbr",
+      "teaches": "piping through collections",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_custom.zbr",
+      "teaches": "custom functions in pipelines",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_custom.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_real_world.zbr",
+      "teaches": "realistic pipeline",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_real_world.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_function_composition.zbr",
+      "teaches": "composing functions",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_function_composition.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15_pipeline_results.zbr",
+      "teaches": "pipelines with error handling",
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_results.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "cli_args.zbr",
+      "teaches": "argument parsing",
+      "project": "Project-1-CLI-Tool",
+      "path": "examples/16-project-1-cli-tool/cli_args.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "file_processor.zbr",
+      "teaches": "file I/O and text processing",
+      "project": "Project-1-CLI-Tool",
+      "path": "examples/16-project-1-cli-tool/file_processor.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "pattern_search.zbr",
+      "teaches": "pattern matching and filtering",
+      "project": "Project-1-CLI-Tool",
+      "path": "examples/16-project-1-cli-tool/pattern_search.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "project1_main.zbr",
+      "teaches": "orchestrating modules",
+      "project": "Project-1-CLI-Tool",
+      "path": "examples/16-project-1-cli-tool/project1_main.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "http_types.zbr",
+      "teaches": "protocol data structures",
+      "project": "Project-2-HTTP-Server",
+      "path": "examples/17-18_projects-2-3/http_types.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "router.zbr",
+      "teaches": "request routing and dispatching",
+      "project": "Project-2-HTTP-Server",
+      "path": "examples/17-18_projects-2-3/router.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "http_server.zbr",
+      "teaches": "network server programming",
+      "project": "Project-2-HTTP-Server",
+      "path": "examples/17-18_projects-2-3/http_server.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "frequency_analysis.zbr",
+      "teaches": "frequency counting and sorting",
+      "project": "Project-3-Data-Analysis",
+      "path": "examples/17-18_projects-2-3/frequency_analysis.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "ngram_analysis.zbr",
+      "teaches": "n-gram extraction and pattern detection",
+      "project": "Project-3-Data-Analysis",
+      "path": "examples/17-18_projects-2-3/ngram_analysis.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "similarity_analysis.zbr",
+      "teaches": "similarity metrics and comparison",
+      "project": "Project-3-Data-Analysis",
+      "path": "examples/17-18_projects-2-3/similarity_analysis.zbr"
+    },
+    {
+      "chapter": "17-18_Projects-2-3",
+      "file": "analysis_main.zbr",
+      "teaches": "combining analysis modules",
+      "project": "Project-3-Data-Analysis",
+      "path": "examples/17-18_projects-2-3/analysis_main.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-inspect.zbr",
+      "teaches": "string properties and inspection methods",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-inspect.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-case.zbr",
+      "teaches": "case conversion methods",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-case.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-search.zbr",
+      "teaches": "searching and replacing in strings",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-search.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-split-join.zbr",
+      "teaches": "splitting and joining strings",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-split-join.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-trim.zbr",
+      "teaches": "removing whitespace from strings",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-trim.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-string-extract-concat.zbr",
+      "teaches": "substring extraction and string concatenation",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-string-extract-concat.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-list-ops.zbr",
+      "teaches": "list operations and patterns",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-list-ops.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-hashmap-ops.zbr",
+      "teaches": "hashmap operations and patterns",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-hashmap-ops.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-set-ops.zbr",
+      "teaches": "set operations for uniqueness",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-set-ops.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-type-conversions.zbr",
+      "teaches": "converting between types and strings",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-type-conversions.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-math-operations.zbr",
+      "teaches": "basic math operations in Zebra",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-math-operations.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-system-access.zbr",
+      "teaches": "accessing system information",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-system-access.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-console-io.zbr",
+      "teaches": "printing to console",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-console-io.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-data-processing.zbr",
+      "teaches": "combining stdlib functions for data processing",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-data-processing.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-read-simple.zbr",
+      "teaches": "simple file reading with error handling",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-read-simple.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-read-unwrap.zbr",
+      "teaches": "safe error handling for file reads",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-read-unwrap.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-read-lines.zbr",
+      "teaches": "efficient line-by-line file reading",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-read-lines.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-analyze.zbr",
+      "teaches": "analyzing file contents",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-analyze.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-write-simple.zbr",
+      "teaches": "basic file writing",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-write-simple.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-write-building.zbr",
+      "teaches": "efficiently building and writing file content",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-write-building.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-append.zbr",
+      "teaches": "appending content to existing files",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-append.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-batch-process.zbr",
+      "teaches": "processing multiple files",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-batch-process.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-convert.zbr",
+      "teaches": "reading one format and writing another",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-convert.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-exists.zbr",
+      "teaches": "checking if files exist",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-exists.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-delete.zbr",
+      "teaches": "safely deleting files",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-delete.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-paths.zbr",
+      "teaches": "path operations and directory access",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-paths.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-config-management.zbr",
+      "teaches": "loading and parsing configuration files",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-config-management.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-logging.zbr",
+      "teaches": "generating timestamped log files",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-logging.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "file-data-import.zbr",
+      "teaches": "importing and exporting structured data",
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/file-data-import.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-literals.zbr",
+      "teaches": "basic regex literal matching",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-literals.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-dot.zbr",
+      "teaches": "dot wildcard in regex patterns",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-dot.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-character-classes.zbr",
+      "teaches": "character classes and ranges",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-character-classes.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-shortcuts.zbr",
+      "teaches": "common regex shortcuts",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-shortcuts.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-quantifiers.zbr",
+      "teaches": "repetition quantifiers",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-quantifiers.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-anchors.zbr",
+      "teaches": "position anchors in regex",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-anchors.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-groups.zbr",
+      "teaches": "grouping and alternation patterns",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-groups.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-email.zbr",
+      "teaches": "email validation pattern (simplified)",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-email.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-phone.zbr",
+      "teaches": "phone number pattern matching",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-phone.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-url.zbr",
+      "teaches": "URL pattern matching",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-url.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-finding.zbr",
+      "teaches": "finding matches within text",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-finding.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-extract-structured.zbr",
+      "teaches": "extracting data from formatted text",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-extract-structured.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-replace.zbr",
+      "teaches": "pattern-based text replacement",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-replace.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-transform.zbr",
+      "teaches": "using regex for data transformation",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-transform.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-greedy.zbr",
+      "teaches": "understanding greedy matching",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-greedy.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-escaping.zbr",
+      "teaches": "escaping special characters",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-escaping.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-log-analysis.zbr",
+      "teaches": "using regex for real log analysis",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-log-analysis.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-simple.zbr",
+      "teaches": "calling basic C functions",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-simple.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-strings.zbr",
+      "teaches": "passing strings to C functions",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-strings.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-arrays.zbr",
+      "teaches": "passing arrays to C functions",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-arrays.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-pointers.zbr",
+      "teaches": "handling pointers in FFI",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-pointers.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-zig-basic.zbr",
+      "teaches": "calling Zig functions from Zebra",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-zig-basic.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-zig-strings.zbr",
+      "teaches": "Zig string interop",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-zig-strings.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-error-codes.zbr",
+      "teaches": "handling C-style error codes",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-error-codes.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-error-wrapper.zbr",
+      "teaches": "wrapping C error handling in Zebra",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-error-wrapper.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-numeric-types.zbr",
+      "teaches": "numeric type marshaling",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-numeric-types.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-structures.zbr",
+      "teaches": "passing structures across FFI boundary",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-structures.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-platform-specific.zbr",
+      "teaches": "handling platform differences",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-platform-specific.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-conditional.zbr",
+      "teaches": "platform-specific compilation",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-conditional.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-safety-memory.zbr",
+      "teaches": "FFI memory safety",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-safety-memory.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-safety-types.zbr",
+      "teaches": "type safety across FFI boundaries",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-safety-types.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-safety-lifetime.zbr",
+      "teaches": "avoiding pointer lifetime issues",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-safety-lifetime.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-crypto-example.zbr",
+      "teaches": "practical FFI example with crypto",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-crypto-example.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-performance.zbr",
+      "teaches": "FFI performance tradeoffs",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-performance.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-batching.zbr",
+      "teaches": "batching FFI operations",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-batching.zbr"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+// file: 14_assertions.zbr
+// teaches: assertions
+// chapter: 14-Contracts-and-Assertions
+
+class Math
+    shared
+        def divide(a as int, b as int) as int
+            # Assertion: b must not be zero
+            if b == 0
+                raise "Assertion failed: divide by zero"
+            
+            var result = a / b
+            
+            # Assertion: result * b == a (for integer division)
+            if result * b != a
+                raise "Assertion failed: division check"
+            
+            return result
+
+class Main
+    shared
+        def main
+            var x = Math.divide(10, 2)
+            print x  # Output: 5
+            
+            var y = Math.divide(10, 0)  # Raises

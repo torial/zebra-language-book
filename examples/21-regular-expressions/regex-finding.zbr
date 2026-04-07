@@ -1,0 +1,41 @@
+// file: regex-finding.zbr
+// teaches: finding matches within text
+// chapter: 21
+
+def main()
+    var text = "The prices are: $10, $25, and $100"
+    
+    // Find prices (simple pattern)
+    var price_pattern = Regex.compile("\\$\\d+")
+    
+    // Find first match
+    if price_pattern.matches(text)
+        println("Contains price pattern")
+    
+    // Extract all prices
+    var prices = List(str)()
+    
+    // Manual extraction (since full regex API varies)
+    var search_start = 0
+    while search_start < text.len
+        var dollar_pos = text.indexOf("$", search_start)
+        if dollar_pos < 0
+            break
+        
+        var num_start = dollar_pos + 1
+        var num_end = num_start
+        
+        while num_end < text.len
+            var char = text.charAt(num_end)
+            if Regex.compile("\\d").matches(char)
+                num_end = num_end + 1
+            else
+                break
+        
+        var price = text.substring(dollar_pos, num_end)
+        prices.add(price)
+        search_start = num_end
+    
+    println("Found prices:")
+    for price in prices
+        println("  ${price}")

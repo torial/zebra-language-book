@@ -1,0 +1,97 @@
+// file: file_processor.zbr
+// teaches: file I/O and text processing
+// project: Project-1-CLI-Tool
+
+class FileProcessor
+    shared
+        def read_file(filename as str) as Result(str, str)
+            # Check if file exists first
+            if not File.exists(filename)
+                return Result.err("File not found: ${filename}")
+            
+            # Read the entire file
+            var content = File.read(filename)
+            
+            if content.len == 0
+                return Result.err("File is empty: ${filename}")
+            
+            return Result.ok(content)
+        
+        def count_lines(filename as str) as Result(int, str)
+            var content_result = read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            var lines = content.split("\n")
+            
+            # Count non-empty lines (common behavior)
+            var count = 0
+            for line in lines
+                if line.trim().len > 0
+                    count = count + 1
+            
+            return Result.ok(count)
+        
+        def count_words(filename as str) as Result(int, str)
+            var content_result = read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            var words = content.split(" ")
+            
+            var count = 0
+            for word in words
+                if word.trim().len > 0
+                    count = count + 1
+            
+            return Result.ok(count)
+        
+        def count_chars(filename as str) as Result(int, str)
+            var content_result = read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            return Result.ok(content.len)
+        
+        def get_stats(filename as str) as Result(Stats, str)
+            var content_result = read_file(filename)
+            
+            if content_result.isErr()
+                return Result.err(content_result.errValue())
+            
+            var content = content_result.okValue()
+            
+            var lines = content.split("\n")
+            var line_count = lines.count()
+            var word_count = 0
+            var char_count = content.len
+            
+            for line in lines
+                var words = line.split(" ")
+                for word in words
+                    if word.len > 0
+                        word_count = word_count + 1
+            
+            var stats = Stats(filename, line_count, word_count, char_count)
+            return Result.ok(stats)
+
+class Stats
+    var filename as str
+    var lines as int
+    var words as int
+    var chars as int
+    
+    def init(filename as str, lines as int, words as int, chars as int)
+        this.filename = filename
+        this.lines = lines
+        this.words = words
+        this.chars = chars
+    
+    def display as str
+        return "${lines} lines, ${words} words, ${chars} chars: ${filename}"

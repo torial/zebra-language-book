@@ -1,0 +1,27 @@
+// file: 09_hierarchy.zbr
+// teaches: inheritance hierarchies
+// chapter: 09-Inheritance-and-Mixins
+
+class Animal
+    var name as str = ""
+    def sound as str
+        return "?"
+
+class Mammal
+    inherits Animal
+        def warm_blooded as bool
+            return true
+
+class Dog
+    inherits Mammal
+        def sound as str
+            return "Woof!"
+
+class Main
+    shared
+        def main
+            var dog = Dog()
+            dog.name = "Buddy"
+            print dog.name             // Buddy
+            print dog.sound()          // Woof!
+            print dog.warm_blooded()   // true

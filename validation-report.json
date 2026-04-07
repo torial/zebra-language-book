@@ -1,0 +1,1269 @@
+{
+  "total": 180,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 180,
+  "examples": [
+    {
+      "file": "01-getting-started/greet.zbr",
+      "path": "examples/01-getting-started/greet.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "01-getting-started/hello.zbr",
+      "path": "examples/01-getting-started/hello.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_bools.zbr",
+      "path": "examples/02-values-and-types/02_bools.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_comparisons.zbr",
+      "path": "examples/02-values-and-types/02_comparisons.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_conversions.zbr",
+      "path": "examples/02-values-and-types/02_conversions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_floats.zbr",
+      "path": "examples/02-values-and-types/02_floats.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_integers.zbr",
+      "path": "examples/02-values-and-types/02_integers.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_nullables.zbr",
+      "path": "examples/02-values-and-types/02_nullables.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_strings.zbr",
+      "path": "examples/02-values-and-types/02_strings.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "02-values-and-types/02_user_data.zbr",
+      "path": "examples/02-values-and-types/02_user_data.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_hashmap_ops.zbr",
+      "path": "examples/03-collections/03_hashmap_ops.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_hashmaps.zbr",
+      "path": "examples/03-collections/03_hashmaps.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_iteration.zbr",
+      "path": "examples/03-collections/03_iteration.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_list_ops.zbr",
+      "path": "examples/03-collections/03_list_ops.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_lists.zbr",
+      "path": "examples/03-collections/03_lists.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_patterns.zbr",
+      "path": "examples/03-collections/03_patterns.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_real_world.zbr",
+      "path": "examples/03-collections/03_real_world.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "03-collections/03_sets.zbr",
+      "path": "examples/03-collections/03_sets.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_capture.zbr",
+      "path": "examples/04-functions-and-scope/04_capture.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_closures.zbr",
+      "path": "examples/04-functions-and-scope/04_closures.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_functions.zbr",
+      "path": "examples/04-functions-and-scope/04_functions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_higher_order.zbr",
+      "path": "examples/04-functions-and-scope/04_higher_order.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_multi_params.zbr",
+      "path": "examples/04-functions-and-scope/04_multi_params.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_patterns.zbr",
+      "path": "examples/04-functions-and-scope/04_patterns.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_scope.zbr",
+      "path": "examples/04-functions-and-scope/04_scope.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_utilities.zbr",
+      "path": "examples/04-functions-and-scope/04_utilities.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "04-functions-and-scope/04_void.zbr",
+      "path": "examples/04-functions-and-scope/04_void.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_break_continue.zbr",
+      "path": "examples/05-control-flow/05_break_continue.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_conditions.zbr",
+      "path": "examples/05-control-flow/05_conditions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_for.zbr",
+      "path": "examples/05-control-flow/05_for.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_guards.zbr",
+      "path": "examples/05-control-flow/05_guards.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_if.zbr",
+      "path": "examples/05-control-flow/05_if.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_if_else.zbr",
+      "path": "examples/05-control-flow/05_if_else.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_match.zbr",
+      "path": "examples/05-control-flow/05_match.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_match_type.zbr",
+      "path": "examples/05-control-flow/05_match_type.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_validation.zbr",
+      "path": "examples/05-control-flow/05_validation.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "05-control-flow/05_while.zbr",
+      "path": "examples/05-control-flow/05_while.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_char_iter.zbr",
+      "path": "examples/06-strings-and-unicode/06_char_iter.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_interpolation.zbr",
+      "path": "examples/06-strings-and-unicode/06_interpolation.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_regex_intro.zbr",
+      "path": "examples/06-strings-and-unicode/06_regex_intro.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_replace.zbr",
+      "path": "examples/06-strings-and-unicode/06_replace.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_search.zbr",
+      "path": "examples/06-strings-and-unicode/06_search.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_split_join.zbr",
+      "path": "examples/06-strings-and-unicode/06_split_join.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_string_basics.zbr",
+      "path": "examples/06-strings-and-unicode/06_string_basics.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_string_props.zbr",
+      "path": "examples/06-strings-and-unicode/06_string_props.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_text_processing.zbr",
+      "path": "examples/06-strings-and-unicode/06_text_processing.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_trim_pad.zbr",
+      "path": "examples/06-strings-and-unicode/06_trim_pad.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "06-strings-and-unicode/06_unicode.zbr",
+      "path": "examples/06-strings-and-unicode/06_unicode.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "07-classes-and-instances/07_class_basic.zbr",
+      "path": "examples/07-classes-and-instances/07_class_basic.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "07-classes-and-instances/07_init.zbr",
+      "path": "examples/07-classes-and-instances/07_init.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "07-classes-and-instances/07_methods.zbr",
+      "path": "examples/07-classes-and-instances/07_methods.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "07-classes-and-instances/07_shared.zbr",
+      "path": "examples/07-classes-and-instances/07_shared.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "07-classes-and-instances/07_user_system.zbr",
+      "path": "examples/07-classes-and-instances/07_user_system.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "08-interfaces-and-protocols/08_collection_interface.zbr",
+      "path": "examples/08-interfaces-and-protocols/08_collection_interface.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "08-interfaces-and-protocols/08_interface_basic.zbr",
+      "path": "examples/08-interfaces-and-protocols/08_interface_basic.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "08-interfaces-and-protocols/08_interface_methods.zbr",
+      "path": "examples/08-interfaces-and-protocols/08_interface_methods.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "08-interfaces-and-protocols/08_logger_system.zbr",
+      "path": "examples/08-interfaces-and-protocols/08_logger_system.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "08-interfaces-and-protocols/08_polymorphism.zbr",
+      "path": "examples/08-interfaces-and-protocols/08_polymorphism.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_document_hierarchy.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_document_hierarchy.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_hierarchy.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_hierarchy.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_inheritance_basic.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_inheritance_basic.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_mixins.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_mixins.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_override.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_override.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "09-inheritance-and-mixins/09_super.zbr",
+      "path": "examples/09-inheritance-and-mixins/09_super.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_computed.zbr",
+      "path": "examples/10-properties-and-computed-values/10_computed.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_config.zbr",
+      "path": "examples/10-properties-and-computed-values/10_config.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_derived.zbr",
+      "path": "examples/10-properties-and-computed-values/10_derived.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_getter.zbr",
+      "path": "examples/10-properties-and-computed-values/10_getter.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_lazy_init.zbr",
+      "path": "examples/10-properties-and-computed-values/10_lazy_init.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_setter_effects.zbr",
+      "path": "examples/10-properties-and-computed-values/10_setter_effects.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_setter_validation.zbr",
+      "path": "examples/10-properties-and-computed-values/10_setter_validation.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "10-properties-and-computed-values/10_temperature.zbr",
+      "path": "examples/10-properties-and-computed-values/10_temperature.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_database.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_database.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_narrowing.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_narrowing.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_nil_check.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_nil_check.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_nullable.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_nullable.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_unwrap.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_unwrap.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "11-nil-tracking-and-safety/11_unwrap_or.zbr",
+      "path": "examples/11-nil-tracking-and-safety/11_unwrap_or.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "12-error-handling-with-results/12_api_client.zbr",
+      "path": "examples/12-error-handling-with-results/12_api_client.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "12-error-handling-with-results/12_error_propagation.zbr",
+      "path": "examples/12-error-handling-with-results/12_error_propagation.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "12-error-handling-with-results/12_result_basic.zbr",
+      "path": "examples/12-error-handling-with-results/12_result_basic.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "12-error-handling-with-results/12_result_unwrap.zbr",
+      "path": "examples/12-error-handling-with-results/12_result_unwrap.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_cache.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_cache.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_collections.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_collections.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_constraints_advanced.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_constraints_advanced.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_container.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_container.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_methods.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_methods.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_generic_pair.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_generic_pair.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "13-generics-and-type-constraints/13_type_constraints.zbr",
+      "path": "examples/13-generics-and-type-constraints/13_type_constraints.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_assertions.zbr",
+      "path": "examples/14-contracts-and-assertions/14_assertions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_dual_verify.zbr",
+      "path": "examples/14-contracts-and-assertions/14_dual_verify.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_early_return.zbr",
+      "path": "examples/14-contracts-and-assertions/14_early_return.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_guard_clauses.zbr",
+      "path": "examples/14-contracts-and-assertions/14_guard_clauses.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_invariants.zbr",
+      "path": "examples/14-contracts-and-assertions/14_invariants.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_postconditions.zbr",
+      "path": "examples/14-contracts-and-assertions/14_postconditions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_preconditions.zbr",
+      "path": "examples/14-contracts-and-assertions/14_preconditions.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "14-contracts-and-assertions/14_sort_postcondition.zbr",
+      "path": "examples/14-contracts-and-assertions/14_sort_postcondition.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_function_composition.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_function_composition.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_basics.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_chain.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_collections.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_custom.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_custom.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_real_world.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_real_world.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "15-pipelines-and-function-composition/15_pipeline_results.zbr",
+      "path": "examples/15-pipelines-and-function-composition/15_pipeline_results.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "16-project-1-cli-tool/cli_args.zbr",
+      "path": "examples/16-project-1-cli-tool/cli_args.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "16-project-1-cli-tool/file_processor.zbr",
+      "path": "examples/16-project-1-cli-tool/file_processor.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "16-project-1-cli-tool/pattern_search.zbr",
+      "path": "examples/16-project-1-cli-tool/pattern_search.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "16-project-1-cli-tool/project1_main.zbr",
+      "path": "examples/16-project-1-cli-tool/project1_main.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/analysis_main.zbr",
+      "path": "examples/17-18_projects-2-3/analysis_main.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/frequency_analysis.zbr",
+      "path": "examples/17-18_projects-2-3/frequency_analysis.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/http_server.zbr",
+      "path": "examples/17-18_projects-2-3/http_server.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/http_types.zbr",
+      "path": "examples/17-18_projects-2-3/http_types.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/ngram_analysis.zbr",
+      "path": "examples/17-18_projects-2-3/ngram_analysis.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/router.zbr",
+      "path": "examples/17-18_projects-2-3/router.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "17-18_projects-2-3/similarity_analysis.zbr",
+      "path": "examples/17-18_projects-2-3/similarity_analysis.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-console-io.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-console-io.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-data-processing.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-data-processing.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-hashmap-ops.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-hashmap-ops.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-list-ops.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-list-ops.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-math-operations.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-math-operations.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-set-ops.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-set-ops.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-case.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-case.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-extract-concat.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-extract-concat.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-inspect.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-inspect.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-search.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-search.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-split-join.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-split-join.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-string-trim.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-string-trim.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-system-access.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-system-access.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "19-standard-library-tour/stdlib-type-conversions.zbr",
+      "path": "examples/19-standard-library-tour/stdlib-type-conversions.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-analyze.zbr",
+      "path": "examples/20-file-io-and-system-access/file-analyze.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-append.zbr",
+      "path": "examples/20-file-io-and-system-access/file-append.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-batch-process.zbr",
+      "path": "examples/20-file-io-and-system-access/file-batch-process.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-config-management.zbr",
+      "path": "examples/20-file-io-and-system-access/file-config-management.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-convert.zbr",
+      "path": "examples/20-file-io-and-system-access/file-convert.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-data-import.zbr",
+      "path": "examples/20-file-io-and-system-access/file-data-import.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-delete.zbr",
+      "path": "examples/20-file-io-and-system-access/file-delete.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-exists.zbr",
+      "path": "examples/20-file-io-and-system-access/file-exists.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-logging.zbr",
+      "path": "examples/20-file-io-and-system-access/file-logging.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-paths.zbr",
+      "path": "examples/20-file-io-and-system-access/file-paths.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-read-lines.zbr",
+      "path": "examples/20-file-io-and-system-access/file-read-lines.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-read-simple.zbr",
+      "path": "examples/20-file-io-and-system-access/file-read-simple.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-read-unwrap.zbr",
+      "path": "examples/20-file-io-and-system-access/file-read-unwrap.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-write-building.zbr",
+      "path": "examples/20-file-io-and-system-access/file-write-building.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "20-file-io-and-system-access/file-write-simple.zbr",
+      "path": "examples/20-file-io-and-system-access/file-write-simple.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-anchors.zbr",
+      "path": "examples/21-regular-expressions/regex-anchors.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-character-classes.zbr",
+      "path": "examples/21-regular-expressions/regex-character-classes.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-dot.zbr",
+      "path": "examples/21-regular-expressions/regex-dot.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-email.zbr",
+      "path": "examples/21-regular-expressions/regex-email.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-escaping.zbr",
+      "path": "examples/21-regular-expressions/regex-escaping.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-extract-structured.zbr",
+      "path": "examples/21-regular-expressions/regex-extract-structured.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-finding.zbr",
+      "path": "examples/21-regular-expressions/regex-finding.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-greedy.zbr",
+      "path": "examples/21-regular-expressions/regex-greedy.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-groups.zbr",
+      "path": "examples/21-regular-expressions/regex-groups.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-literals.zbr",
+      "path": "examples/21-regular-expressions/regex-literals.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-log-analysis.zbr",
+      "path": "examples/21-regular-expressions/regex-log-analysis.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-phone.zbr",
+      "path": "examples/21-regular-expressions/regex-phone.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-quantifiers.zbr",
+      "path": "examples/21-regular-expressions/regex-quantifiers.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-replace.zbr",
+      "path": "examples/21-regular-expressions/regex-replace.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-shortcuts.zbr",
+      "path": "examples/21-regular-expressions/regex-shortcuts.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-transform.zbr",
+      "path": "examples/21-regular-expressions/regex-transform.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "21-regular-expressions/regex-url.zbr",
+      "path": "examples/21-regular-expressions/regex-url.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-batching.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-batching.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-c-arrays.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-c-arrays.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-c-pointers.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-c-pointers.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-c-simple.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-c-simple.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-c-strings.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-c-strings.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-conditional.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-conditional.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-crypto-example.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-crypto-example.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-error-codes.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-error-codes.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-error-wrapper.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-error-wrapper.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-numeric-types.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-numeric-types.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-performance.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-performance.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-platform-specific.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-platform-specific.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-safety-lifetime.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-safety-lifetime.zbr",
+      "status": "skipped",
+      "message": "Syntax check failed",
+      "details": "Must have at least one class"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-safety-memory.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-safety-memory.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-safety-types.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-safety-types.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-structures.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-structures.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-zig-basic.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-zig-basic.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    },
+    {
+      "file": "22-ffi-and-interop/ffi-zig-strings.zbr",
+      "path": "examples/22-ffi-and-interop/ffi-zig-strings.zbr",
+      "status": "skipped",
+      "message": "Compiler not found",
+      "details": "zebra command not in PATH"
+    }
+  ],
+  "timestamp": "2026-04-07T09:43:32.884476"
+}

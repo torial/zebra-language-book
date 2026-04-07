@@ -1,0 +1,68 @@
+// file: http_types.zbr
+// teaches: protocol data structures
+// project: Project-2-HTTP-Server
+
+class HttpRequest
+    var method as str           # GET, POST, PUT, DELETE
+    var path as str             # /api/users, /api/users/123
+    var query as HashMap(str, str)  # URL parameters
+    var headers as HashMap(str, str)
+    var body as str             # Request body for POST/PUT
+
+class HttpResponse
+    var status_code as int      # 200, 201, 400, 404, 500
+    var status_message as str   # "OK", "Created", "Not Found"
+    var headers as HashMap(str, str)
+    var body as str             # Response body (JSON, HTML, etc.)
+    
+    shared
+        def ok(body as str) as HttpResponse
+            var resp = HttpResponse()
+            resp.status_code = 200
+            resp.status_message = "OK"
+            resp.body = body
+            return resp
+        
+        def created(body as str) as HttpResponse
+            var resp = HttpResponse()
+            resp.status_code = 201
+            resp.status_message = "Created"
+            resp.body = body
+            return resp
+        
+        def bad_request(message as str) as HttpResponse
+            var resp = HttpResponse()
+            resp.status_code = 400
+            resp.status_message = "Bad Request"
+            resp.body = message
+            return resp
+        
+        def not_found as HttpResponse
+            var resp = HttpResponse()
+            resp.status_code = 404
+            resp.status_message = "Not Found"
+            resp.body = "Resource not found"
+            return resp
+        
+        def internal_error(message as str) as HttpResponse
+            var resp = HttpResponse()
+            resp.status_code = 500
+            resp.status_message = "Internal Server Error"
+            resp.body = message
+            return resp
+    
+    def format_response as str
+        var output = "HTTP/1.1 ${status_code} ${status_message}\r\n"
+        output = output.concat("Content-Length: ${body.len}\r\n")
+        output = output.concat("Content-Type: application/json\r\n")
+        output = output.concat("\r\n")
+        output = output.concat(body)
+        return output
+
+class User
+    var id as int
+    var name as str
+    var email as str
+    
+    def to_json as str
+        return "{\"id\": ${id}, \"name\": \"${name}\", \"email\": \"${email}\"}"

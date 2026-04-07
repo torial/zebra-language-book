@@ -1,0 +1,23 @@
+// file: 06_regex_intro.zbr
+// teaches: regular expressions introduction
+// chapter: 06-Strings-and-Unicode
+
+class Main
+    shared
+        def main
+            // Simple pattern
+            var email = "alice@example.com"
+            var pattern = Regex.compile("[a-z]+@[a-z]+\\.[a-z]+")
+            
+            var is_valid = pattern.match(email)
+            print is_valid                      // true
+            
+            // Find matches
+            var text = "I have 2 apples and 3 oranges"
+            var digit_pattern = Regex.compile("\\d+")
+            var found = digit_pattern.find(text)
+            print found                         // 2
+            
+            // Replace
+            var clean = digit_pattern.replace(text, "X")
+            print clean                         // I have X apples and X oranges

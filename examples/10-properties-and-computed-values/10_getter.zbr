@@ -1,0 +1,21 @@
+// file: 10_getter.zbr
+// teaches: computed properties
+// chapter: 10-Properties-and-Computed-Values
+
+class Person
+    var birth_year as int = 2000
+    
+    def age as int
+        return 2024 - birth_year
+    
+    def name_length as int
+        var name = "Alice"
+        return name.len
+
+class Main
+    shared
+        def main
+            var person = Person()
+            person.birth_year = 1990
+            print person.age()         // 34
+            print person.name_length() // 5

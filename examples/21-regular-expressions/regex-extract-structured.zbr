@@ -1,0 +1,29 @@
+// file: regex-extract-structured.zbr
+// teaches: extracting data from formatted text
+// chapter: 21
+
+def extract_person_data(line as str) as HashMap(str, str)?
+    // Expected format: Name | Age | Email
+    var pattern = Regex.compile("^(.+)\\|(.+)\\|(.+)$")
+    
+    // Simplified: just split by |
+    var parts = line.split("|")
+    if parts.count() != 3
+        return nil
+    
+    var data = HashMap(str, str)()
+    data.put("name", parts.at(0).trim())
+    data.put("age", parts.at(1).trim())
+    data.put("email", parts.at(2).trim())
+    
+    return data
+
+def main()
+    var record = "John Smith | 30 | john@example.com"
+    
+    var extracted = extract_person_data(record)
+    
+    if extracted != nil
+        println("Name: ${extracted.fetch("name")}")
+        println("Age: ${extracted.fetch("age")}")
+        println("Email: ${extracted.fetch("email")}")

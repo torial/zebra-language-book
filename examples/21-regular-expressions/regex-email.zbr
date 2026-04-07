@@ -1,0 +1,41 @@
+// file: regex-email.zbr
+// teaches: email validation pattern (simplified)
+// chapter: 21
+
+def main()
+    // Very basic email pattern
+    // In production, use an email verification service
+    var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
+    
+    if email_pattern.matches("user@example.com")
+        println("Valid format")
+    
+    if not email_pattern.matches("invalid.email@")
+        println("Invalid: missing domain")
+    
+    if not email_pattern.matches("no-at-sign.com")
+        println("Invalid: no @ sign")
+    
+    // Better validation: check length, etc.
+    def is_valid_email(email as str) as bool
+        // Must have @ and .
+        if not email.contains("@")
+            return false
+        
+        var parts = email.split("@")
+        if parts.count() != 2
+            return false  // Multiple @ signs
+        
+        var local = parts.at(0)
+        var domain = parts.at(1)
+        
+        if local.len == 0 or domain.len == 0
+            return false  // Empty parts
+        
+        if not domain.contains(".")
+            return false  // No TLD
+        
+        return true
+    
+    if is_valid_email("alice@example.com")
+        println("Email looks valid")

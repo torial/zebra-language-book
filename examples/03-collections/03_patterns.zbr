@@ -1,0 +1,30 @@
+// file: 03_patterns.zbr
+// teaches: collection patterns
+// chapter: 03-Collections
+
+class Main
+    shared
+        def main
+            var numbers as List(int) = List()
+            numbers.add(1)
+            numbers.add(2)
+            numbers.add(3)
+            numbers.add(4)
+            numbers.add(5)
+            
+            // Filter: keep only even numbers
+            var evens as List(int) = List()
+            for num in numbers
+                if num % 2 == 0
+                    evens.add(num)
+            
+            print "Evens: "
+            for e in evens
+                print e
+            
+            // Count matching items
+            var count_gt_3 = 0
+            for num in numbers
+                if num > 3
+                    count_gt_3 = count_gt_3 + 1
+            print "Numbers > 3: ${count_gt_3}"

@@ -1,0 +1,20 @@
+// file: 12_result_unwrap.zbr
+// teaches: result unwrapping
+// chapter: 12-Error-Handling-with-Results
+
+class Main
+    shared
+        def main
+            var result = Validator.parse_int("42")
+            
+            # Option 1: Check and use
+            if result.isOk()
+                var val = result.okValue()
+                print val
+            
+            # Option 2: Get with default
+            var val = result.unwrapOr(0)
+            print val
+            
+            # Option 3: Unwrap (crashes if error)
+            # var val = result.unwrap()

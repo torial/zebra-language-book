@@ -1,0 +1,25 @@
+// file: regex-escaping.zbr
+// teaches: escaping special characters
+// chapter: 21
+
+def main()
+    // These characters have special meaning:
+    // . ^ $ * + ? { } [ ] \ | ( )
+    
+    // To match a literal dot
+    var file_extension = Regex.compile("\\.txt$")
+    
+    if file_extension.matches("document.txt")
+        println("Matches text file")
+    
+    // To match a literal dollar sign
+    var price_pattern = Regex.compile("\\$[0-9]+")
+    
+    if price_pattern.matches("$50")
+        println("Matches price")
+    
+    // To match a literal backslash
+    var path_pattern = Regex.compile("C:\\\\Users")  // Note: double backslash
+    
+    if path_pattern.matches("C:\\Users")
+        println("Matches Windows path")

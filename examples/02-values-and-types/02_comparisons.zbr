@@ -1,0 +1,20 @@
+// file: 02_comparisons.zbr
+// teaches: comparison operators
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var x as int = 10
+            var y as int = 20
+            
+            print x == y    // false (equal)
+            print x != y    // true (not equal)
+            print x < y     // true (less than)
+            print x > y     // false (greater than)
+            print x <= y    // true (less or equal)
+            print x >= y    // false (greater or equal)
+            
+            var name = "Alice"
+            print name == "Alice"   // true
+            print name == "Bob"     // false

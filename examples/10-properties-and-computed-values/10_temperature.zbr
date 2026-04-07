@@ -1,0 +1,39 @@
+// file: 10_temperature.zbr
+// teaches: properties in realistic scenarios
+// chapter: 10-Properties-and-Computed-Values
+
+class Temperature
+    var celsius as float = 0.0
+    
+    def fahrenheit as float
+        return celsius * 9.0 / 5.0 + 32.0
+    
+    def kelvin as float
+        return celsius + 273.15
+    
+    def set_from_fahrenheit(f as float)
+        celsius = (f - 32.0) * 5.0 / 9.0
+    
+    def set_from_kelvin(k as float)
+        celsius = k - 273.15
+    
+    def is_freezing as bool
+        return celsius <= 0.0
+    
+    def is_boiling as bool
+        return celsius >= 100.0
+
+class Main
+    shared
+        def main
+            var temp = Temperature()
+            temp.celsius = 25.0
+            
+            print "Celsius: ${temp.celsius}"
+            print "Fahrenheit: ${temp.fahrenheit()}"
+            print "Kelvin: ${temp.kelvin()}"
+            print "Freezing: ${temp.is_freezing()}"
+            print "Boiling: ${temp.is_boiling()}"
+            
+            temp.set_from_fahrenheit(98.6)
+            print "Body temp in Celsius: ${temp.celsius}"

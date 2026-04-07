@@ -1,0 +1,21 @@
+// file: 07_shared.zbr
+// teaches: shared (class) methods
+// chapter: 07-Classes-and-Instances
+
+class Math
+    shared
+        def abs(x as int) as int
+            if x < 0
+                return 0 - x
+            return x
+        
+        def max(a as int, b as int) as int
+            if a > b
+                return a
+            return b
+
+class Main
+    shared
+        def main
+            print Math.abs(-5)      // 5
+            print Math.max(10, 20)  // 20

@@ -1,0 +1,48 @@
+// file: 09_mixins.zbr
+// teaches: mixin composition
+// chapter: 09-Inheritance-and-Mixins
+
+class Swimmer
+    def swim
+        print "Swimming!"
+
+class Runner
+    def run
+        print "Running!"
+
+class Duck
+    inherits Swimmer
+        var name as str = ""
+        
+        def quack
+            print "${name} quacks!"
+
+class Dog
+    inherits Swimmer
+        var name as str = ""
+        def bark
+            print "${name} barks!"
+
+class Athlete
+    inherits Runner
+        var name as str = ""
+        def compete
+            run()
+            print "${name} is competing!"
+
+class Main
+    shared
+        def main
+            var duck = Duck()
+            duck.name = "Donald"
+            duck.swim()        // Swimming!
+            duck.quack()       // Donald quacks!
+            
+            var dog = Dog()
+            dog.name = "Buddy"
+            dog.swim()         // Swimming!
+            dog.bark()         // Buddy barks!
+            
+            var athlete = Athlete()
+            athlete.name = "Alice"
+            athlete.compete()  // Running! Alice is competing!

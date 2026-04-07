@@ -1,0 +1,42 @@
+// file: 05_validation.zbr
+// teaches: practical control flow
+// chapter: 05-Control-Flow
+
+class Email
+    var address as str
+
+class Validator
+    shared
+        def validate_email(email as str) as bool
+            # Check not empty
+            if email.len == 0
+                return false
+            
+            # Check has @
+            if not email.contains("@")
+                return false
+            
+            # Check has domain
+            var parts = email.split("@")
+            if parts.count() != 2
+                return false
+            
+            var domain = parts.at(1)
+            if not domain.contains(".")
+                return false
+            
+            return true
+
+class Main
+    shared
+        def main
+            var emails as List(str) = List()
+            emails.add("alice@example.com")
+            emails.add("invalid.email")
+            emails.add("bob@domain.co")
+            
+            for email in emails
+                if Validator.validate_email(email)
+                    print "Valid: ${email}"
+                else
+                    print "Invalid: ${email}"

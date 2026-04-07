@@ -1,0 +1,60 @@
+// file: file-config-management.zbr
+// teaches: loading and parsing configuration files
+// chapter: 20
+
+class Config
+    var host as str = "localhost"
+    var port as int = 8080
+    var debug as bool = false
+    
+    shared
+        def from_file(filename as str) as Result(Config, str)
+            var content_result = File.read(filename)
+            
+            if content_result.isErr()
+                return Result.err("Cannot read config file: ${content_result.error()}")
+            
+            var content = content_result.value()
+            var config = Config()
+            var lines = content.split("\n")
+            
+            for line in lines
+                line = line.trim()
+                
+                // Skip empty lines and comments
+                if line.len == 0 or line.startsWith("#")
+                    continue
+                
+                // Parse key=value
+                if not line.contains("=")
+                    continue
+                
+                var parts = line.split("=")
+                if parts.count() != 2
+                    continue
+                
+                var key = parts.at(0).trim()
+                var value = parts.at(1).trim()
+                
+                // Set config values
+                if key == "host"
+                    config.host = value
+                elif key == "port"
+                    var port_val = value.toInt()
+                    if port_val != nil
+                        config.port = port_val
+                elif key == "debug"
+                    config.debug = value.lower() == "true"
+            
+            return Result.ok(config)
+
+def main()
+    var result = Config.from_file("app.conf")
+    
+    if result.isErr()
+        println("Error: ${result.error()}")
+        return
+    
+    var config = result.value()
+    println("Server: ${config.host}:${config.port}")
+    println("Debug: ${config.debug}")

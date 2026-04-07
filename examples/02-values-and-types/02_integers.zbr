@@ -1,0 +1,16 @@
+// file: 02_integers.zbr
+// teaches: integer types, arithmetic
+// chapter: 02-Values-and-Types
+
+class Main
+    shared
+        def main
+            var age as int = 25
+            var population as int = 8_000_000_000  // Underscores for readability
+            var tiny as int8 = 100
+            var huge as int64 = 9_223_372_036_854_775_807
+            
+            print age
+            print population
+            print tiny
+            print huge

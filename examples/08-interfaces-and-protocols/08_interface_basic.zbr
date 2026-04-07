@@ -1,0 +1,34 @@
+// file: 08_interface_basic.zbr
+// teaches: interface definition
+// chapter: 08-Interfaces-and-Protocols
+
+interface Animal
+    def speak as str
+    def move
+
+class Dog
+    implements Animal
+        def speak as str
+            return "Woof!"
+        
+        def move
+            print "Running on four legs"
+
+class Bird
+    implements Animal
+        def speak as str
+            return "Tweet!"
+        
+        def move
+            print "Flying through the air"
+
+class Main
+    shared
+        def main
+            var dog as Animal = Dog()
+            print dog.speak()      // Woof!
+            dog.move()             // Running on four legs
+            
+            var bird as Animal = Bird()
+            print bird.speak()     // Tweet!
+            bird.move()            // Flying through the air

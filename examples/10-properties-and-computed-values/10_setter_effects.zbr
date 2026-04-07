@@ -1,0 +1,33 @@
+// file: 10_setter_effects.zbr
+// teaches: setters with side effects
+// chapter: 10-Properties-and-Computed-Values
+
+class User
+    var username as str = ""
+    var email as str = ""
+    var last_modified as str = ""
+    
+    def set_username(new_name as str) as bool
+        if new_name.len < 3
+            return false
+        username = new_name
+        last_modified = "2024-01-01"  // Update timestamp
+        return true
+    
+    def set_email(new_email as str) as bool
+        if not new_email.contains("@")
+            return false
+        email = new_email
+        last_modified = "2024-01-01"  // Update timestamp
+        return true
+
+class Main
+    shared
+        def main
+            var user = User()
+            if user.set_username("alice")
+                print "Username set"
+            
+            if user.set_email("alice@example.com")
+                print "Email set"
+                print "Last modified: ${user.last_modified}"

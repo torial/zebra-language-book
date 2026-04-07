@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .box { fill: #e8f4f8; stroke: #2c5aa0; stroke-width: 2; }
+      .nullable-box { fill: #fff4e6; stroke: #d97706; stroke-width: 2; }
+      .title { font-size: 24px; font-weight: bold; fill: #1f2937; font-family: Arial, sans-serif; }
+      .label { font-size: 14px; fill: #374151; font-family: Arial, sans-serif; }
+      .note { font-size: 12px; fill: #6b7280; font-family: Arial, sans-serif; font-style: italic; }
+      .arrow { stroke: #6b7280; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow-label { font-size: 11px; fill: #6b7280; font-family: Arial, sans-serif; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#6b7280" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="40" class="title" text-anchor="middle">Zebra Type Hierarchy</text>
+
+  <!-- Primitive Types -->
+  <g>
+    <text x="50" y="100" class="label" font-weight="bold">Primitive Types</text>
+
+    <!-- int -->
+    <rect x="30" y="130" width="80" height="50" class="box" rx="5"/>
+    <text x="70" y="165" class="label" text-anchor="middle">int</text>
+
+    <!-- float -->
+    <rect x="150" y="130" width="80" height="50" class="box" rx="5"/>
+    <text x="190" y="165" class="label" text-anchor="middle">float</text>
+
+    <!-- bool -->
+    <rect x="270" y="130" width="80" height="50" class="box" rx="5"/>
+    <text x="310" y="165" class="label" text-anchor="middle">bool</text>
+
+    <!-- str -->
+    <rect x="390" y="130" width="80" height="50" class="box" rx="5"/>
+    <text x="430" y="165" class="label" text-anchor="middle">str</text>
+
+    <!-- char -->
+    <rect x="510" y="130" width="80" height="50" class="box" rx="5"/>
+    <text x="550" y="165" class="label" text-anchor="middle">char</text>
+  </g>
+
+  <!-- Collections -->
+  <g>
+    <text x="50" y="250" class="label" font-weight="bold">Generic Collections</text>
+
+    <!-- List(T) -->
+    <rect x="30" y="280" width="110" height="60" class="box" rx="5"/>
+    <text x="85" y="310" class="label" text-anchor="middle" font-weight="bold">List(T)</text>
+    <text x="85" y="330" class="note" text-anchor="middle">Ordered</text>
+
+    <!-- HashMap(K,V) -->
+    <rect x="190" y="280" width="120" height="60" class="box" rx="5"/>
+    <text x="250" y="310" class="label" text-anchor="middle" font-weight="bold">HashMap(K,V)</text>
+    <text x="250" y="330" class="note" text-anchor="middle">Key-Value</text>
+
+    <!-- Set(T) -->
+    <rect x="370" y="280" width="110" height="60" class="box" rx="5"/>
+    <text x="425" y="310" class="label" text-anchor="middle" font-weight="bold">Set(T)</text>
+    <text x="425" y="330" class="note" text-anchor="middle">Unique</text>
+  </g>
+
+  <!-- Nullable Types -->
+  <g>
+    <text x="50" y="430" class="label" font-weight="bold">Nullable Types (T?)</text>
+    <text x="50" y="455" class="note">Any type can be nullable with ?</text>
+
+    <!-- Example: int vs int? -->
+    <rect x="30" y="480" width="100" height="70" class="box" rx="5"/>
+    <text x="80" y="510" class="label" text-anchor="middle" font-weight="bold">int</text>
+    <text x="80" y="530" class="note" text-anchor="middle">Value or</text>
+    <text x="80" y="545" class="note" text-anchor="middle">error</text>
+
+    <rect x="180" y="480" width="100" height="70" class="nullable-box" rx="5"/>
+    <text x="230" y="510" class="label" text-anchor="middle" font-weight="bold">int?</text>
+    <text x="230" y="530" class="note" text-anchor="middle">Value,</text>
+    <text x="230" y="545" class="note" text-anchor="middle">nil, or error</text>
+
+    <!-- Example: str vs str? -->
+    <rect x="330" y="480" width="100" height="70" class="box" rx="5"/>
+    <text x="380" y="510" class="label" text-anchor="middle" font-weight="bold">str</text>
+    <text x="380" y="530" class="note" text-anchor="middle">Always a</text>
+    <text x="380" y="545" class="note" text-anchor="middle">string</text>
+
+    <rect x="480" y="480" width="100" height="70" class="nullable-box" rx="5"/>
+    <text x="530" y="510" class="label" text-anchor="middle" font-weight="bold">str?</text>
+    <text x="530" y="530" class="note" text-anchor="middle">String or</text>
+    <text x="530" y="545" class="note" text-anchor="middle">nil</text>
+  </g>
+
+  <!-- Result Type -->
+  <g>
+    <text x="650" y="250" class="label" font-weight="bold">Error Handling</text>
+
+    <rect x="630" y="280" width="140" height="100" class="box" rx="5" style="fill: #f0f9ff; stroke: #0369a1;"/>
+    <text x="700" y="310" class="label" text-anchor="middle" font-weight="bold">Result(T, E)</text>
+    <text x="700" y="335" class="note" text-anchor="middle">Success:</text>
+    <text x="700" y="350" class="note" text-anchor="middle">Ok(value: T)</text>
+    <text x="700" y="370" class="note" text-anchor="middle">Failure:</text>
+    <text x="700" y="385" class="note" text-anchor="middle">Err(error: E)</text>
+  </g>
+
+  <!-- Bottom note -->
+  <text x="400" y="590" class="note" text-anchor="middle">Nil tracking with ? ensures safety at compile time, not runtime</text>
+</svg>

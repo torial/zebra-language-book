@@ -1,0 +1,43 @@
+// file: regex-anchors.zbr
+// teaches: position anchors in regex
+// chapter: 21
+
+def main()
+    // ^ = start of string
+    var starts_with_hello = Regex.compile("^hello")
+    
+    if starts_with_hello.matches("hello world")
+        println("Matches: string starts with 'hello'")
+    
+    if not starts_with_hello.matches("say hello")
+        println("Doesn't match: 'hello' is not at start")
+    
+    // $ = end of string
+    var ends_with_txt = Regex.compile("\\.txt$")
+    
+    if ends_with_txt.matches("document.txt")
+        println("Matches: filename ends with .txt")
+    
+    if not ends_with_txt.matches("document.txt.bak")
+        println("Doesn't match: .txt is not at end")
+    
+    // Combining ^ and $
+    var exact_pattern = Regex.compile("^[a-z]+$")  // Only lowercase letters
+    
+    if exact_pattern.matches("hello")
+        println("Matches: all lowercase")
+    
+    if not exact_pattern.matches("Hello")
+        println("Doesn't match: has uppercase")
+    
+    if not exact_pattern.matches("hello123")
+        println("Doesn't match: has numbers")
+    
+    // Word boundary: \b
+    var word_boundary = Regex.compile("\\bhello\\b")
+    
+    if word_boundary.matches("hello world")
+        println("Matches: 'hello' is a word")
+    
+    if not word_boundary.matches("helloworld")
+        println("Doesn't match: 'hello' is part of 'helloworld'")

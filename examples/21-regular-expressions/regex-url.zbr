@@ -1,0 +1,35 @@
+// file: regex-url.zbr
+// teaches: URL pattern matching
+// chapter: 21
+
+def main()
+    // Basic HTTP(S) URL
+    var url_pattern = Regex.compile("https?://[a-z0-9]+\\.[a-z0-9]+")
+    
+    if url_pattern.matches("https://example.com")
+        println("Valid HTTPS URL")
+    
+    if url_pattern.matches("http://example.co.uk")
+        println("Valid HTTP URL")
+    
+    if not url_pattern.matches("ftp://example.com")
+        println("Doesn't match: FTP not in pattern")
+    
+    // More complete
+    def is_valid_url(url as str) as bool
+        if not url.startsWith("http://") and not url.startsWith("https://")
+            return false
+        
+        var after_protocol = url.substring(7, url.len)
+        if after_protocol.len == 0
+            return false
+        
+        // Must have at least one dot
+        if not after_protocol.contains(".")
+            return false
+        
+        // No spaces
+        if after_protocol.contains(" ")
+            return false
+        
+        return true

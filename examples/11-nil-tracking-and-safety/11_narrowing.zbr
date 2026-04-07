@@ -1,0 +1,13 @@
+// file: 11_narrowing.zbr
+// teaches: type narrowing
+// chapter: 11-Nil-Tracking-and-Safety
+
+class Main
+    shared
+        def process_name(input as str?)
+            if input == nil
+                return  # Exit early if nil
+            
+            # From here, input is narrowed to str
+            print input.len        # ✅ Safe: know it's str
+            print input.upper()    # ✅ Safe

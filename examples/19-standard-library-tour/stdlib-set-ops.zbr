@@ -1,0 +1,43 @@
+// file: stdlib-set-ops.zbr
+// teaches: set operations for uniqueness
+// chapter: 19
+
+def main()
+    var visited_cities = Set(str)()
+    
+    // Add items
+    visited_cities.add("New York")
+    visited_cities.add("London")
+    visited_cities.add("Tokyo")
+    
+    // Try adding duplicate
+    visited_cities.add("New York")  # No-op, already exists
+    println(visited_cities.count())  # 3
+    
+    // Check membership
+    if visited_cities.contains("Paris")
+        println("Been to Paris")
+    else
+        println("Haven't visited Paris yet")
+    
+    // Remove item
+    visited_cities.remove("Tokyo")
+    
+    // Iterate over set
+    for city in visited_cities
+        println("Visited: ${city}")
+    
+    // Practical: remove duplicates from list
+    var numbers = List(int)()
+    numbers.add(1)
+    numbers.add(2)
+    numbers.add(2)
+    numbers.add(3)
+    numbers.add(3)
+    numbers.add(3)
+    
+    var unique = Set(int)()
+    for num in numbers
+        unique.add(num)
+    
+    println(unique.count())  # 3

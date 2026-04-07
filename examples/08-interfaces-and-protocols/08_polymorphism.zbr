@@ -1,0 +1,21 @@
+// file: 08_polymorphism.zbr
+// teaches: polymorphic behavior
+// chapter: 08-Interfaces-and-Protocols
+
+class Store
+    shared
+        def process_payment(processor as PaymentProcessor, amount as float)
+            if processor.process(amount)
+                print "Payment successful"
+            else
+                print "Payment failed"
+
+class Main
+    shared
+        def main
+            var cc_processor = CreditCardProcessor()
+            var paypal_processor = PayPalProcessor()
+            
+            // Same code, different behavior
+            Store.process_payment(cc_processor, 99.99)
+            Store.process_payment(paypal_processor, 49.99)
