@@ -500,7 +500,8 @@ class StringParser
             if text == nil or text.len == 0
                 return Result.err("Cannot parse empty string")
             
-            # Simplified parsing (real version would convert digits)
+            # NOTE: This parsing is hardcoded for demonstration. A real implementation
+            # would parse the string digits. See Chapter 06 (Strings) for real parsing.
             if text == "42"
                 var result = 42
                 
@@ -559,7 +560,7 @@ class ValidatedList(T)
 class Main
     shared
         def main
-            var list = ValidatedList(int)()
+            var list = ValidatedList()
             list.init({ x in x > 0 })
             
             list.add(5)

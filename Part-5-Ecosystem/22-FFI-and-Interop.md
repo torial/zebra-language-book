@@ -127,7 +127,7 @@ shared class CArray
             return max_val
 
 def main()
-    var numbers = List(int)()
+    var numbers = List()
     numbers.add(10)
     numbers.add(20)
     numbers.add(15)
@@ -525,13 +525,13 @@ shared class TypeSafety
 
 def main()
     # Correct usage
-    var ints = List(int)()
+    var ints = List()
     ints.add(1)
     ints.add(2)
     ints.add(3)
     # process_array(ints)  # Would need implementation
     
-    var floats = List(float)()
+    var floats = List()
     floats.add(1.5)
     floats.add(2.5)
     # var total = sum(floats)  # Correct
@@ -571,7 +571,7 @@ def safe_parameter(numbers as List(int)) as int
     return numbers.at(0)
 
 def main()
-    var my_list = List(int)()
+    var my_list = List()
     my_list.add(42)
     
     # Safe—my_list is still alive
@@ -639,7 +639,7 @@ def main()
         sum = sum + expensive_c_function(i)
     
     # BETTER: Pass the whole array to C
-    var nums = List(int)()
+    var nums = List()
     for i in 0.to(1000000)
         nums.add(i)
     
@@ -674,7 +674,7 @@ shared class Batch
             return items
 
 def main()
-    var items = List(str)()
+    var items = List()
     for i in 0.to(100)
         items.add("item-${i}")
     

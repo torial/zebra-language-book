@@ -73,7 +73,7 @@ if result != nil
 
 **Example:**
 ```zebra
-var numbers = List(int)()
+var numbers = List()
 numbers.add(42)         # OK
 numbers.add("hello")    # ERROR: expecting int, got str
 ```
@@ -81,10 +81,10 @@ numbers.add("hello")    # ERROR: expecting int, got str
 **Solution:**
 Check the collection's declared type and add matching values:
 ```zebra
-var numbers = List(int)()
+var numbers = List()
 numbers.add(42)
 
-var names = List(str)()
+var names = List()
 names.add("hello")
 ```
 
@@ -180,7 +180,7 @@ else
 
 **Example:**
 ```zebra
-var items = List(int)()
+var items = List()
 items.add(42)
 
 var first = items.at(0)     # OK
@@ -190,7 +190,7 @@ var third = items.at(-1)    # ERROR: negative index
 
 **Solution:**
 ```zebra
-var items = List(int)()
+var items = List()
 items.add(42)
 
 if items.count() > 0
@@ -214,13 +214,13 @@ for item in items
 
 **Example:**
 ```zebra
-var items = List(int)()
+var items = List()
 items.remove(42)        # ERROR: can't remove from empty list
 ```
 
 **Solution:**
 ```zebra
-var items = List(int)()
+var items = List()
 
 if items.count() > 0
     items.remove(42)
@@ -234,7 +234,7 @@ if items.count() > 0
 
 **Example:**
 ```zebra
-var map = HashMap(str, int)()
+var map = HashMap()
 var value = map.fetch("key")  # Returns nil, not an error
 
 # But if you don't check nil:
@@ -244,7 +244,7 @@ var result = num + 1           # ERROR: num is nil!
 
 **Solution:**
 ```zebra
-var map = HashMap(str, int)()
+var map = HashMap()
 var value = map.fetch("key")
 
 if value != nil
@@ -674,7 +674,7 @@ for item in items
     result = result + item + ", "
 
 # FAST
-var parts = List(str)()
+var parts = List()
 for item in items
     parts.add(item)
 var result = parts.join(", ")
@@ -778,7 +778,7 @@ else
 ### Safe Collection Access
 
 ```zebra
-var items = List(int)()
+var items = List()
 
 for i in 0.to(items.count())
     var item = items.at(i)  # Always safe with this pattern

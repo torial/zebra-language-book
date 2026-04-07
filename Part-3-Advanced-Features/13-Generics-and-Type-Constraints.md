@@ -2,7 +2,7 @@
 
 **Audience:** Experienced programmers  
 **Time:** 120 minutes  
-**Prerequisites:** 02-Values-and-Types, 08-Interfaces-and-Protocols  
+**Prerequisites:** 02-Values-and-Types, 07-Classes-and-Instances, 08-Interfaces-and-Protocols  
 **You'll learn:** Generic types, type parameters, constraints, practical uses, common pitfalls
 
 ---
@@ -233,7 +233,7 @@ class ComparableList(T)
 class Main
     shared
         def main
-            var list = ComparableList(int)()
+            var list = ComparableList()
             list.add(10)
             list.add(5)
             list.add(20)

@@ -201,14 +201,14 @@ Don't write to a file in a loop. Build the content first, then write once.
 
 def main()
     // Build content in memory
-    var lines = List(str)()
+    var lines = List()
     
     // Generate report
     lines.add("Sales Report")
     lines.add("=" + "=" + "=" + "=" + "=" + "=")
     lines.add("")
     
-    var items = List(str)()
+    var items = List()
     items.add("Product A")
     items.add("Product B")
     items.add("Product C")
@@ -267,12 +267,12 @@ def main()
 
 def main()
     // List of files to process
-    var files = List(str)()
+    var files = List()
     files.add("data1.txt")
     files.add("data2.txt")
     files.add("data3.txt")
     
-    var results = HashMap(str, int)()
+    var results = HashMap()
     
     for filename in files
         print("Processing ${filename}... ")
@@ -321,7 +321,7 @@ def main()
     var lines = csv_content.split("\n")
     
     // Convert to tab-separated
-    var output_lines = List(str)()
+    var output_lines = List()
     
     for line in lines
         var fields = line.split(",")
@@ -491,7 +491,7 @@ class Logger
     
     def init(filename as str)
         this.filename = filename
-        this.entries = List(str)()
+        this.entries = List()
     
     def log(message as str)
         var timestamp = get_timestamp()
@@ -566,7 +566,7 @@ class Person
                 return Result.err(content_result.error())
             
             var content = content_result.value()
-            var people = List(Person)()
+            var people = List()
             var lines = content.split("\n")
             
             for line in lines
@@ -594,13 +594,13 @@ def main()
     println("Loaded ${people.count()} people")
     
     // Filter and export
-    var adults = List(Person)()
+    var adults = List()
     for person in people
         if person.age >= 18
             adults.add(person)
     
     // Save filtered data
-    var output_lines = List(str)()
+    var output_lines = List()
     for person in adults
         output_lines.add(person.to_csv_line())
     

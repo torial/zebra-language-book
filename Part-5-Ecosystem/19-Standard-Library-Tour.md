@@ -146,7 +146,7 @@ def main()
     println(fields.at(1))       # "25"
     
     // Process fields
-    var names = List(str)()
+    var names = List()
     for field in fields
         if field.len > 0
             names.add(field)
@@ -220,7 +220,7 @@ def main()
     println(result)
     
     // Building strings in loops
-    var parts = List(str)()
+    var parts = List()
     for i in 1.to(5)
         parts.add("Item-${i}")
     
@@ -244,7 +244,7 @@ Lists are ordered, mutable collections that grow dynamically. They're your go-to
 // chapter: 19
 
 def main()
-    var items = List(str)()
+    var items = List()
     
     // Add items
     items.add("apple")
@@ -288,7 +288,7 @@ HashMaps store key-value pairs. Use them when you need to look up values by name
 // chapter: 19
 
 def main()
-    var scores = HashMap(str, int)()
+    var scores = HashMap()
     
     // Add key-value pairs
     scores.put("Alice", 95)
@@ -331,7 +331,7 @@ Sets store unique items with no duplicates. Use them for membership testing and 
 // chapter: 19
 
 def main()
-    var visited_cities = Set(str)()
+    var visited_cities = Set()
     
     // Add items
     visited_cities.add("New York")
@@ -356,7 +356,7 @@ def main()
         println("Visited: ${city}")
     
     // Practical: remove duplicates from list
-    var numbers = List(int)()
+    var numbers = List()
     numbers.add(1)
     numbers.add(2)
     numbers.add(2)
@@ -364,7 +364,7 @@ def main()
     numbers.add(3)
     numbers.add(3)
     
-    var unique = Set(int)()
+    var unique = Set()
     for num in numbers
         unique.add(num)
     
@@ -532,7 +532,7 @@ def main()
     
     // Practical example: parse arguments
     def parse_arguments(args as List(str)) as HashMap(str, str)?
-        var options = HashMap(str, str)()
+        var options = HashMap()
         var i = 0
         
         while i < args.count()
@@ -593,7 +593,7 @@ def main()
             // Do work here
             println("Done")
     
-    var items = List(str)()
+    var items = List()
     items.add("file1.txt")
     items.add("file2.txt")
     items.add("file3.txt")
@@ -620,8 +620,8 @@ Charlie,92,Engineering
 Diana,88,Sales"
     
     var lines = data.split("\n")
-    var scores = List(int)()
-    var dept_map = HashMap(str, int)()
+    var scores = List()
+    var dept_map = HashMap()
     
     for line in lines
         var parts = line.split(",")

@@ -104,7 +104,7 @@ if num != nil
 
 Create a list:
 ```zebra
-var items = List(ElementType)()
+var items = List()
 ```
 
 ### Basic Operations
@@ -121,7 +121,7 @@ items.indexOf(element)      # int: position (-1 if not found)
 
 **Example:**
 ```zebra
-var numbers = List(int)()
+var numbers = List()
 numbers.add(1)
 numbers.add(2)
 numbers.add(3)
@@ -142,7 +142,7 @@ for item in items
 
 Create a HashMap:
 ```zebra
-var map = HashMap(KeyType, ValueType)()
+var map = HashMap()
 ```
 
 ### Basic Operations
@@ -164,7 +164,7 @@ map.values()                # List(ValueType): all values
 
 **Example:**
 ```zebra
-var scores = HashMap(str, int)()
+var scores = HashMap()
 scores.put("Alice", 95)
 scores.put("Bob", 87)
 
@@ -180,7 +180,7 @@ if scores.contains("Alice")
 
 Create a Set:
 ```zebra
-var unique = Set(ElementType)()
+var unique = Set()
 ```
 
 ### Basic Operations
@@ -201,7 +201,7 @@ for item in unique
 
 **Example:**
 ```zebra
-var colors = Set(str)()
+var colors = Set()
 colors.add("red")
 colors.add("blue")
 colors.add("red")           # No-op, already exists
@@ -436,7 +436,7 @@ println("Upper: ${"hello".upper()}")
 ### List
 
 ```zebra
-var items = List(int)()             # Empty list
+var items = List()             # Empty list
 ```
 
 To initialize with values, add them after creation.
@@ -444,13 +444,13 @@ To initialize with values, add them after creation.
 ### HashMap
 
 ```zebra
-var map = HashMap(str, int)()       # Empty map
+var map = HashMap()       # Empty map
 ```
 
 ### Set
 
 ```zebra
-var unique = Set(str)()             # Empty set
+var unique = Set()             # Empty set
 ```
 
 ---
@@ -545,7 +545,7 @@ var content = result.value()
 ### Iteration
 
 ```zebra
-var items = List(int)()
+var items = List()
 items.add(1)
 items.add(2)
 

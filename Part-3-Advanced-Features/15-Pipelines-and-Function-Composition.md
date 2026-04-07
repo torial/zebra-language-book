@@ -268,7 +268,8 @@ class SafeParser
         def parse_int(text as str) as Result(int, str)
             if text.len == 0
                 return Result.err("Empty string")
-            # Simplified parsing
+            # NOTE: Hardcoded for demonstration. A real implementation would parse
+            # the string into an integer. See Chapter 06 (Strings) for actual parsing.
             if text == "42"
                 return Result.ok(42)
             return Result.err("Not a number")

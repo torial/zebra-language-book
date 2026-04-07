@@ -33,9 +33,9 @@ if x != nil
 ### Collection Types
 
 ```zebra
-var numbers as List(int) = List(int)()
-var mapping as HashMap(str, int) = HashMap(str, int)()
-var unique as Set(str) = Set(str)()
+var numbers as List(int) = List()
+var mapping as HashMap(str, int) = HashMap()
+var unique as Set(str) = Set()
 
 numbers.add(1)
 mapping.put("key", 42)
@@ -50,10 +50,10 @@ unique.add("value")
 var result as Result(int, str) = Result.ok(42)
 
 branch result
-    on ok(value)
-        println(value)
-    on err(error)
-        println("Error: ${error}")
+    on Result.ok as value
+        print value
+    on Result.err as error
+        print "Error: ${error}"
 ```
 
 **References:** Chapter 12 (Error Handling with Results)
@@ -393,7 +393,7 @@ def first(items as List(T)) as T?
         return items.at(0)
     return nil
 
-var nums = List(int)()
+var nums = List()
 nums.add(42)
 var first_num = first(nums)  # Type is int?
 ```
@@ -542,7 +542,7 @@ text.charAt(0)                  # Get character at position
 ### List Operations
 
 ```zebra
-var items = List(str)()
+var items = List()
 
 items.add("apple")              # Add item
 items.remove("apple")           # Remove item
@@ -558,7 +558,7 @@ for item in items
 ### HashMap Operations
 
 ```zebra
-var map = HashMap(str, int)()
+var map = HashMap()
 
 map.put("a", 1)                 # Add/update
 map.fetch("a")                  # Get value (returns nullable)
@@ -575,7 +575,7 @@ for key in map.keys()
 ### Set Operations
 
 ```zebra
-var unique = Set(str)()
+var unique = Set()
 
 unique.add("apple")             # Add item
 unique.remove("apple")          # Remove item
@@ -720,9 +720,9 @@ namespace MyApp.Utils
 | `str` | `"hello"` | Variable | UTF-8 encoded strings |
 | `char` | `'x'` | 32-bit | Unicode character |
 | `T?` | `42` or `nil` | Depends on T | T or nil |
-| `List(T)` | `List(int)()` | Dynamic | Ordered collection |
-| `HashMap(K,V)` | `HashMap(str, int)()` | Dynamic | Key-value pairs |
-| `Set(T)` | `Set(str)()` | Dynamic | Unique items |
+| `List(T)` | `List()` | Dynamic | Ordered collection |
+| `HashMap(K,V)` | `HashMap()` | Dynamic | Key-value pairs |
+| `Set(T)` | `Set()` | Dynamic | Unique items |
 | `Result(T, E)` | `Result.ok(42)` | Depends | Success or error |
 
 ---

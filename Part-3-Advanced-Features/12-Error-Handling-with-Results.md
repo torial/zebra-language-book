@@ -2,8 +2,8 @@
 
 **Audience:** All  
 **Time:** 120 minutes  
-**Prerequisites:** 02-Values, 11-Nil-Tracking  
-**You'll learn:** Result type, Ok/Err pattern, error propagation, error chains
+**Prerequisites:** 02-Values, 04-Functions, 07-Classes, 11-Nil-Tracking  
+**You'll learn:** Result type, Ok/Err pattern, error propagation, unwrapping safely
 
 ---
 
@@ -31,7 +31,9 @@ class Validator
         def parse_int(text as str) as Result(int, str)
             if text.len == 0
                 return Result.err("Empty string")
-            # Simplified: real parsing more complex
+            # NOTE: This example uses a hardcoded value (42) for simplicity.
+            # A real implementation would parse the string to extract the actual number.
+            # See Chapter 06 (Strings and Unicode) for parsing techniques.
             var value as int = 42
             return Result.ok(value)
 

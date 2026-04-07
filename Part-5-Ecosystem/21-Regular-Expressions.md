@@ -523,7 +523,7 @@ def main()
         println("Contains price pattern")
     
     // Extract all prices
-    var prices = List(str)()
+    var prices = List()
     
     // Manual extraction (since full regex API varies)
     var search_start = 0
@@ -567,7 +567,7 @@ def extract_person_data(line as str) as HashMap(str, str)?
     if parts.count() != 3
         return nil
     
-    var data = HashMap(str, str)()
+    var data = HashMap()
     data.put("name", parts.at(0).trim())
     data.put("age", parts.at(1).trim())
     data.put("email", parts.at(2).trim())
@@ -732,7 +732,7 @@ def analyze_logs(filename as str)
     
     var error_count = 0
     var warning_count = 0
-    var error_lines = List(str)()
+    var error_lines = List()
     
     for line in lines
         if line.contains("[ERROR]")
