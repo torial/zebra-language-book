@@ -34,24 +34,24 @@ This is **Design by Contract** (from Eiffel, a language Zebra inherits from).
 A **precondition** says "if you call me, the input must be valid":
 
 ```zebra
-// file: 14_preconditions.zbr
-// teaches: precondition checking
-// chapter: 14-Contracts-and-Assertions
+# file: 14_preconditions.zbr
+# teaches: precondition checking
+# chapter: 14-Contracts-and-Assertions
 
 class Bank
     var balance as int = 100
     
-    def withdraw(amount as int) as Result(bool, str)
+    def withdraw(amount as int) as bool throws
         # Precondition: amount must be positive
         if amount <= 0
-            return Result.err("Amount must be positive")
+            raise "Amount must be positive"
         
         # Precondition: sufficient funds
         if balance < amount
-            return Result.err("Insufficient funds")
+            raise "Insufficient funds"
         
         balance = balance - amount
-        return Result.ok(true)
+        return true
 
 class Main
     shared
@@ -76,9 +76,9 @@ Notice: you check preconditions **at the start** of the method. If a preconditio
 A **postcondition** says "when I return, the output will be valid":
 
 ```zebra
-// file: 14_postconditions.zbr
-// teaches: postcondition checking
-// chapter: 14-Contracts-and-Assertions
+# file: 14_postconditions.zbr
+# teaches: postcondition checking
+# chapter: 14-Contracts-and-Assertions
 
 class List
     var items as List(int) = List()
@@ -112,9 +112,9 @@ Postconditions are checked **before returning**. If a postcondition fails, the m
 An **invariant** is a property that must **always** be true:
 
 ```zebra
-// file: 14_invariants.zbr
-// teaches: class invariants
-// chapter: 14-Contracts-and-Assertions
+# file: 14_invariants.zbr
+# teaches: class invariants
+# chapter: 14-Contracts-and-Assertions
 
 class Account
     var balance as int
@@ -159,9 +159,9 @@ In complex classes, you might check invariants at the **start and end** of every
 **Assertions** stop execution if a condition is false. Use them to catch bugs during development:
 
 ```zebra
-// file: 14_assertions.zbr
-// teaches: assertions
-// chapter: 14-Contracts-and-Assertions
+# file: 14_assertions.zbr
+# teaches: assertions
+# chapter: 14-Contracts-and-Assertions
 
 class Math
     shared
@@ -196,9 +196,9 @@ class Main
 Here's a practical example: verify that a sort function actually sorted the list:
 
 ```zebra
-// file: 14_sort_postcondition.zbr
-// teaches: postcondition in realistic code
-// chapter: 14-Contracts-and-Assertions
+# file: 14_sort_postcondition.zbr
+# teaches: postcondition in realistic code
+# chapter: 14-Contracts-and-Assertions
 
 class Sorter
     shared
@@ -247,22 +247,22 @@ class Main
 ### Pattern 1: Guard Clauses (Precondition Pattern)
 
 ```zebra
-// file: 14_guard_clauses.zbr
-// teaches: guard clause pattern
-// chapter: 14-Contracts-and-Assertions
+# file: 14_guard_clauses.zbr
+# teaches: guard clause pattern
+# chapter: 14-Contracts-and-Assertions
 
 class FileProcessor
     shared
-        def process_file(path as str) as Result(str, str)
+        def process_file(path as str) as str throws
             # Preconditions as guard clauses
             if path == nil or path.len == 0
-                return Result.err("Path cannot be empty")
+                raise "Path cannot be empty"
             
             if not path.contains(".")
-                return Result.err("Path must have extension")
+                raise "Path must have extension"
             
             # Rest of method
-            return Result.ok("Processed")
+            return "Processed"
 
 class Main
     shared
@@ -275,9 +275,9 @@ class Main
 ### Pattern 2: Return Early on Precondition Failure
 
 ```zebra
-// file: 14_early_return.zbr
-// teaches: fail fast principle
-// chapter: 14-Contracts-and-Assertions
+# file: 14_early_return.zbr
+# teaches: fail fast principle
+# chapter: 14-Contracts-and-Assertions
 
 class Validator
     shared
@@ -306,9 +306,9 @@ class Main
 ### Pattern 3: Dual Verification (Assert Both Sides)
 
 ```zebra
-// file: 14_dual_verify.zbr
-// teaches: verifying both input and output
-// chapter: 14-Contracts-and-Assertions
+# file: 14_dual_verify.zbr
+# teaches: verifying both input and output
+# chapter: 14-Contracts-and-Assertions
 
 class StringHandler
     shared
@@ -342,14 +342,14 @@ class Main
 ### Mistake 1: Confusing Preconditions with Postconditions
 
 ```zebra
-// WRONG - checking output before doing work
+# WRONG - checking output before doing work
 def add(a as int, b as int) as int
     var result = a + b
     if a < 0  # This is a PRECONDITION, not postcondition
         raise "Error"
     return result
 
-// CORRECT
+# CORRECT
 def add(a as int, b as int) as int
     if a < 0 or b < 0  # Precondition
         raise "Error: inputs must be non-negative"
@@ -365,28 +365,28 @@ def add(a as int, b as int) as int
 ### Mistake 2: Silent Failures Instead of Assertions
 
 ```zebra
-// WRONG - silently ignores contract violation
+# WRONG - silently ignores contract violation
 def process(items as List(int))
     if items.count() == 0
         pass  # Just exit, no indication of problem
     for item in items
         print item
 
-// CORRECT - assert or return error
-def process(items as List(int)) as Result(bool, str)
+# CORRECT - assert or return error
+def process(items as List(int)) as bool throws
     if items.count() == 0
-        return Result.err("Cannot process empty list")
+        raise "Cannot process empty list"
     
     for item in items
         print item
     
-    return Result.ok(true)
+    return true
 ```
 
 ### Mistake 3: Expensive Assertions in Performance-Critical Code
 
 ```zebra
-// PROBLEMATIC - expensive check in loop
+# PROBLEMATIC - expensive check in loop
 def hot_path(items as List(int))
     for item in items
         # Checking invariants on every iteration is slow
@@ -394,12 +394,12 @@ def hot_path(items as List(int))
             raise "Invalid item"
         # Do actual work
 
-// BETTER - check precondition once, trust throughout
+# BETTER - check precondition once, trust throughout
 def hot_path(items as List(int))
     # Single precondition check
     for item in items
         if not validate_item(item)
-            return Result.err("Invalid list")
+            raise "Invalid list"
     
     # Now do work without re-checking
     for item in items
@@ -410,13 +410,13 @@ def hot_path(items as List(int))
 ### Mistake 4: Assertions That Can't Fail
 
 ```zebra
-// POINTLESS - this can never be false
+# POINTLESS - this can never be false
 if x > 5
     # Postcondition that can't fail
     if x >= 5
         print "OK"
 
-// MEANINGFUL - check for real invariants
+# MEANINGFUL - check for real invariants
 if x > 5
     # Check for unexpected state
     if x < 0
@@ -438,37 +438,37 @@ Create a `BankAccount` class with `deposit` and `withdraw` methods. Use precondi
 class BankAccount
     var balance as int = 0
     
-    def deposit(amount as int) as Result(bool, str)
+    def deposit(amount as int) as bool throws
         # Precondition: positive amount
         if amount <= 0
-            return Result.err("Deposit amount must be positive")
+            raise "Deposit amount must be positive"
         
         var old_balance = balance
         balance = balance + amount
         
         # Postcondition: balance increased by amount
         if balance != old_balance + amount
-            return Result.err("Postcondition failed: balance update")
+            raise "Postcondition failed: balance update"
         
-        return Result.ok(true)
+        return true
     
-    def withdraw(amount as int) as Result(bool, str)
+    def withdraw(amount as int) as bool throws
         # Precondition: positive amount
         if amount <= 0
-            return Result.err("Withdrawal amount must be positive")
+            raise "Withdrawal amount must be positive"
         
         # Precondition: sufficient funds
         if balance < amount
-            return Result.err("Insufficient funds")
+            raise "Insufficient funds"
         
         var old_balance = balance
         balance = balance - amount
         
         # Postcondition: balance decreased by amount
         if balance != old_balance - amount
-            return Result.err("Postcondition failed: balance update")
+            raise "Postcondition failed: balance update"
         
-        return Result.ok(true)
+        return true
 
 class Main
     shared
@@ -495,10 +495,10 @@ Write a `StringParser` that parses input strings with clear pre and postconditio
 ```zebra
 class StringParser
     shared
-        def parse_number(text as str) as Result(int, str)
+        def parse_number(text as str) as int throws
             # Precondition: non-empty string
             if text == nil or text.len == 0
-                return Result.err("Cannot parse empty string")
+                raise "Cannot parse empty string"
             
             # NOTE: This parsing is hardcoded for demonstration. A real implementation
             # would parse the string digits. See Chapter 06 (Strings) for real parsing.
@@ -507,11 +507,11 @@ class StringParser
                 
                 # Postcondition: result can be converted back to string
                 if result.toString() != text
-                    return Result.err("Postcondition failed")
+                    raise "Postcondition failed"
                 
-                return Result.ok(result)
+                return result
             
-            return Result.err("Not a valid number")
+            raise "Not a valid number"
 
 class Main
     shared

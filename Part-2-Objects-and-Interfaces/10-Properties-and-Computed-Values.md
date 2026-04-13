@@ -22,9 +22,9 @@
 ### Simple Getter
 
 ```zebra
-// file: 10_getter.zbr
-// teaches: computed properties
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_getter.zbr
+# teaches: computed properties
+# chapter: 10-Properties-and-Computed-Values
 
 class Person
     var birth_year as int = 2000
@@ -41,16 +41,16 @@ class Main
         def main
             var person = Person()
             person.birth_year = 1990
-            print person.age()         // 34
-            print person.name_length() // 5
+            print person.age()         # 34
+            print person.name_length() # 5
 ```
 
 ### Derived Properties
 
 ```zebra
-// file: 10_derived.zbr
-// teaches: deriving values from fields
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_derived.zbr
+# teaches: deriving values from fields
+# chapter: 10-Properties-and-Computed-Values
 
 class Rectangle
     var width as int = 0
@@ -72,9 +72,9 @@ class Main
             rect.width = 10
             rect.height = 10
             
-            print "Area: ${rect.area()}"         // 100
-            print "Perimeter: ${rect.perimeter()}" // 40
-            print "Square: ${rect.is_square()}"    // true
+            print "Area: ${rect.area()}"         # 100
+            print "Perimeter: ${rect.perimeter()}" # 40
+            print "Square: ${rect.is_square()}"    # true
 ```
 
 ---
@@ -84,9 +84,9 @@ class Main
 ### Controlling Field Assignment
 
 ```zebra
-// file: 10_setter_validation.zbr
-// teaches: setters with validation
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_setter_validation.zbr
+# teaches: setters with validation
+# chapter: 10-Properties-and-Computed-Values
 
 class Account
     var balance as float = 0.0
@@ -113,21 +113,21 @@ class Main
         def main
             var account = Account()
             account.deposit(100.0)
-            print account.get_balance()    // 100
+            print account.get_balance()    # 100
             
             account.withdraw(25.0)
-            print account.get_balance()    // 75
+            print account.get_balance()    # 75
             
-            account.withdraw(100.0)  // Fails (not enough balance)
-            print account.get_balance()    // 75 (unchanged)
+            account.withdraw(100.0)  # Fails (not enough balance)
+            print account.get_balance()    # 75 (unchanged)
 ```
 
 ### Setter with Side Effects
 
 ```zebra
-// file: 10_setter_effects.zbr
-// teaches: setters with side effects
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_setter_effects.zbr
+# teaches: setters with side effects
+# chapter: 10-Properties-and-Computed-Values
 
 class User
     var username as str = ""
@@ -138,14 +138,14 @@ class User
         if new_name.len < 3
             return false
         username = new_name
-        last_modified = "2024-01-01"  // Update timestamp
+        last_modified = "2024-01-01"  # Update timestamp
         return true
     
     def set_email(new_email as str) as bool
         if not new_email.contains("@")
             return false
         email = new_email
-        last_modified = "2024-01-01"  // Update timestamp
+        last_modified = "2024-01-01"  # Update timestamp
         return true
 
 class Main
@@ -165,9 +165,9 @@ class Main
 ## Computed Properties
 
 ```zebra
-// file: 10_computed.zbr
-// teaches: expensive computed properties
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_computed.zbr
+# teaches: expensive computed properties
+# chapter: 10-Properties-and-Computed-Values
 
 class DataSet
     var numbers as List(int) = List()
@@ -206,10 +206,10 @@ class Main
             data.numbers.add(30)
             data.numbers.add(40)
             
-            print "Sum: ${data.sum()}"           // 100
-            print "Average: ${data.average()}"   // 25
-            print "Min: ${data.min_value()}"     // 10
-            print "Max: ${data.max_value()}"     // 40
+            print "Sum: ${data.sum()}"           # 100
+            print "Average: ${data.average()}"   # 25
+            print "Min: ${data.min_value()}"     # 10
+            print "Max: ${data.max_value()}"     # 40
 ```
 
 ---
@@ -217,9 +217,9 @@ class Main
 ## Lazy Initialization
 
 ```zebra
-// file: 10_lazy_init.zbr
-// teaches: lazy initialization
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_lazy_init.zbr
+# teaches: lazy initialization
+# chapter: 10-Properties-and-Computed-Values
 
 class Database
     var connection as str?   = nil
@@ -238,15 +238,15 @@ class Main
             var db = Database()
             
             # Connection not created yet
-            print "Is connected: ${db.is_connected()}"  // false
+            print "Is connected: ${db.is_connected()}"  # false
             
             # Access connection (now it's created)
             var conn = db.get_connection()
-            print conn                                  // Connected to DB
+            print conn                                  # Connected to DB
             
             # Already exists
             var conn2 = db.get_connection()
-            print conn2                                 // Connected to DB
+            print conn2                                 # Connected to DB
 ```
 
 ---
@@ -254,9 +254,9 @@ class Main
 ## Real World: Temperature Converter
 
 ```zebra
-// file: 10_temperature.zbr
-// teaches: properties in realistic scenarios
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_temperature.zbr
+# teaches: properties in realistic scenarios
+# chapter: 10-Properties-and-Computed-Values
 
 class Temperature
     var celsius as float = 0.0
@@ -300,9 +300,9 @@ class Main
 ## Real World: Configuration
 
 ```zebra
-// file: 10_config.zbr
-// teaches: configuration management
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_config.zbr
+# teaches: configuration management
+# chapter: 10-Properties-and-Computed-Values
 
 class Config
     var host as str = "localhost"
@@ -336,7 +336,7 @@ class Main
             config.set_debug(true)
             
             print config.get_url()     // http://example.com:443
-            print "Debug: ${config.debug}"  // true
+            print "Debug: ${config.debug}"  # true
 ```
 
 ---
@@ -350,10 +350,10 @@ class BankAccount
     var balance as float = 0.0
     
     def get_balance as float
-        return balance  // Can read
+        return balance  # Can read
     
     def deposit(amount as float)
-        balance = balance + amount  // Can modify only via methods
+        balance = balance + amount  # Can modify only via methods
     
     # No setter: direct assignment not allowed
 ```

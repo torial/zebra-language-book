@@ -22,9 +22,9 @@ Zebra says: **Explicit nil is safe. Implicit nil is forbidden.**
 ### Marking Optionality
 
 ```zebra
-// file: 11_nullable.zbr
-// teaches: nullable types
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_nullable.zbr
+# teaches: nullable types
+# chapter: 11-Nil-Tracking-and-Safety
 
 class User
     var name as str      # Can't be nil
@@ -52,9 +52,9 @@ class Main
 ### Safe Access Pattern
 
 ```zebra
-// file: 11_nil_check.zbr
-// teaches: nil checking
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_nil_check.zbr
+# teaches: nil checking
+# chapter: 11-Nil-Tracking-and-Safety
 
 class Main
     shared
@@ -88,9 +88,9 @@ class Main
 After checking, the type is narrowed:
 
 ```zebra
-// file: 11_narrowing.zbr
-// teaches: type narrowing
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_narrowing.zbr
+# teaches: type narrowing
+# chapter: 11-Nil-Tracking-and-Safety
 
 class Main
     shared
@@ -110,9 +110,9 @@ class Main
 **Warning:** Only use when you're absolutely certain the value isn't nil.
 
 ```zebra
-// file: 11_unwrap.zbr
-// teaches: unwrap operator
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_unwrap.zbr
+# teaches: unwrap operator
+# chapter: 11-Nil-Tracking-and-Safety
 
 class Main
     shared
@@ -133,9 +133,9 @@ class Main
 ## Unwrap with Fallback
 
 ```zebra
-// file: 11_unwrap_or.zbr
-// teaches: safe unwrapping
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_unwrap_or.zbr
+# teaches: safe unwrapping
+# chapter: 11-Nil-Tracking-and-Safety
 
 class Main
     shared
@@ -163,9 +163,9 @@ class Main
 ## Real World: Database Queries
 
 ```zebra
-// file: 11_database.zbr
-// teaches: nil in realistic scenarios
-// chapter: 11-Nil-Tracking-and-Safety
+# file: 11_database.zbr
+# teaches: nil in realistic scenarios
+# chapter: 11-Nil-Tracking-and-Safety
 
 class User
     var id as int

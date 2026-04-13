@@ -75,9 +75,9 @@ zig build
 Create a file named `hello.zbr`:
 
 ```zebra
-// file: hello.zbr
-// teaches: hello world, print statement
-// chapter: 01-Getting-Started
+# file: hello.zbr
+# teaches: hello world, print statement
+# chapter: 01-Getting-Started
 
 class Main
     shared
@@ -175,9 +175,9 @@ zebra -kif hello.zbr
 ## Your Second Program (A Little Interesting)
 
 ```zebra
-// file: greet.zbr
-// teaches: variables, string interpolation
-// chapter: 01-Getting-Started
+# file: greet.zbr
+# teaches: variables, string interpolation
+# chapter: 01-Getting-Started
 
 class Main
     shared
@@ -207,7 +207,7 @@ When you make a mistake, Zebra tells you clearly:
 class Main
     shared
         def main
-            print "Hello " + 5  // ❌ Can't add string + number
+            print "Hello " + 5  # ❌ Can't add string + number
 ```
 
 **Error:**
@@ -248,6 +248,53 @@ my-project/
 ```
 
 Later chapters will show how to use multiple files. For now, keep everything in one `.zbr` file.
+
+---
+
+## Using Other Files: `use` and `exposing`
+
+When your program spans multiple files, Zebra's `use` statement imports another module:
+
+```zebra
+# file: math_utils.zbr
+class MathUtils
+    shared
+        def square(n as int) as int
+            return n * n
+```
+
+```zebra
+# file: main.zbr
+use MathUtils
+
+class Main
+    shared
+        def main
+            var result = MathUtils.square(5)
+            print result  # 25
+```
+
+### Selective Imports with `exposing`
+
+Use `exposing` to import specific names directly into scope:
+
+```zebra
+use MathUtils exposing square
+
+class Main
+    shared
+        def main
+            var result = square(5)  # No MathUtils. prefix needed
+            print result
+```
+
+You can expose multiple names:
+
+```zebra
+use ast exposing Stmt, Expr, TypeRef, DeclVar
+```
+
+This keeps your code clean when you use many names from a module. You'll see `use...exposing` extensively in later chapters.
 
 ---
 

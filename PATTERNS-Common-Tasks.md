@@ -9,71 +9,53 @@ Copy-paste patterns for typical programming tasks.
 ### Read Entire File Safely
 
 ```zebra
-var filename = "data.txt"
-var result = File.read(filename)
-
-if result.isErr()
-    println("Cannot read file: ${result.error()}")
+var content = File.read("data.txt") catch ""
+if content.len == 0
+    print "Cannot read file"
     return
-
-var content = result.value()
 # Use content...
 ```
 
 ### Write File Safely
 
 ```zebra
-var filename = "output.txt"
-var content = "File contents here"
-
-var result = File.write(filename, content)
-
-if result.isErr()
-    println("Cannot write file: ${result.error()}")
-    return
-
-println("File written successfully")
+try
+    File.write("output.txt", "File contents here")
+    print "File written successfully"
+catch |err|
+    print "Cannot write file: ${err}"
 ```
 
 ### Process File Line by Line
 
 ```zebra
-var result = File.read("file.txt")
-
-if result.isErr()
-    return
-
-var content = result.value()
+var content = File.read("file.txt") catch ""
 var lines = content.split("\n")
 
 for line in lines
     if line.trim().len == 0
         continue  # Skip empty lines
-    
+
     # Process line...
-    println(line)
+    print line
 ```
 
 ### Read CSV File
 
 ```zebra
-var result = File.read("data.csv")
-if result.isErr()
-    return
-
-var content = result.value()
+var content = File.read("data.csv") catch ""
 var lines = content.split("\n")
 var records = List(List(str))()
 
 for line in lines
     if line.trim().len == 0
         continue
-    
+
     var fields = line.split(",")
     records.add(fields)
 
 for record in records
-    println(record)  # Each field: record.at(0), record.at(1), etc.
+    print record  # Each field: record.at(0), record.at(1), etc.
 ```
 
 ---
@@ -87,7 +69,7 @@ var text = "one two three four five"
 var words = text.split(" ")
 
 for word in words
-    println("Word: ${word}")
+    print "Word: ${word}"
 ```
 
 ### Build String from Parts
@@ -116,7 +98,7 @@ var result2 = text.replaceAll("Hello", "Hi")  # "Hi World Hi"
 # Find position
 var pos = text.indexOf("World")
 if pos >= 0
-    println("Found at position ${pos}")
+    print "Found at position ${pos}"
 ```
 
 ### Extract Substring
@@ -161,11 +143,11 @@ numbers.add(3)
 
 ```zebra
 for item in items
-    println(item)
+    print item
 
 # With index
 for i in 0.to(items.count())
-    println("${i}: ${items.at(i)}")
+    print "${i}: ${items.at(i}")
 ```
 
 ### Find Item in List
@@ -175,7 +157,7 @@ var target = "apple"
 
 for item in items
     if item == target
-        println("Found it!")
+        print "Found it!"
         break
 ```
 
@@ -221,9 +203,12 @@ items.add("banana")
 items.add("apple")
 items.add("cherry")
 
-var unique = Set(str)()
+var seen = HashMap(str, bool)()
+var unique = List(str)()
 for item in items
-    unique.add(item)
+    if not seen.contains(item)
+        seen.set(item, true)
+        unique.add(item)
 
 # unique has: apple, banana, cherry (duplicates removed)
 ```
@@ -241,7 +226,7 @@ for item in items
     if item == "apple"
         count = count + 1
 
-println(count)  # 2
+print count  # 2
 ```
 
 ---
@@ -253,31 +238,31 @@ println(count)  # 2
 ```zebra
 var scores = HashMap(str, int)()
 
-scores.put("Alice", 95)
-scores.put("Bob", 87)
-scores.put("Charlie", 92)
+scores.set("Alice", 95)
+scores.set("Bob", 87)
+scores.set("Charlie", 92)
 
-var alice_score = scores.fetch("Alice")
+var alice_score = scores.get("Alice")
 if alice_score != nil
-    println("Alice: ${alice_score}")
+    print "Alice: ${alice_score}"
 ```
 
 ### Loop Over HashMap
 
 ```zebra
 for key in scores.keys()
-    var value = scores.fetch(key)
+    var value = scores.get(key)
     if value != nil
-        println("${key}: ${value}")
+        print "${key}: ${value}"
 ```
 
 ### Check if Key Exists
 
 ```zebra
 if scores.contains("Alice")
-    println("Alice found")
+    print "Alice found"
 else
-    println("Alice not found")
+    print "Alice not found"
 ```
 
 ### Count by Category
@@ -293,11 +278,11 @@ items.add("red")
 var counts = HashMap(str, int)()
 
 for item in items
-    var current = counts.fetch(item)
+    var current = counts.get(item)
     if current != nil
-        counts.put(item, current + 1)
+        counts.set(item, current + 1)
     else
-        counts.put(item, 1)
+        counts.set(item, 1)
 
 # counts: red->3, blue->2
 ```
@@ -309,72 +294,60 @@ for item in items
 ### Safe Function that Can Fail
 
 ```zebra
-def divide(a as int, b as int) as Result(int, str)
+def divide(a as int, b as int) as int throws
     if b == 0
-        return Result.err("Cannot divide by zero")
-    
-    return Result.ok(a / b)
+        raise "Cannot divide by zero"
+    return a / b
 
-def main()
-    var result = divide(10, 2)
-    
-    if result.isErr()
-        println("Error: ${result.error()}")
-        return
-    
-    var value = result.value()
-    println("Result: ${value}")
+class Main
+    shared
+        def main
+            var value = divide(10, 2) catch 0
+            print "Result: ${value}"
+
+            try
+                var v = divide(10, 0)
+                print v
+            catch |err|
+                print "Error: ${err}"
 ```
 
 ### Propagate Errors Up
 
 ```zebra
-def process_file(filename as str) as Result(int, str)
-    var read_result = File.read(filename)
-    
-    if read_result.isErr()
-        return Result.err(read_result.error())
-    
-    var content = read_result.value()
+def process_file(filename as str) as int throws
+    var content = File.read(filename)
     var line_count = content.split("\n").count()
-    
-    return Result.ok(line_count)
+    return line_count
 ```
 
 ### Handle Multiple Errors
 
 ```zebra
-def calculate(a_str as str, b_str as str) as Result(int, str)
+def calculate(a_str as str, b_str as str) as int throws
     var a = a_str.toInt()
     if a == nil
-        return Result.err("Invalid first number")
-    
+        raise "Invalid first number"
+
     var b = b_str.toInt()
     if b == nil
-        return Result.err("Invalid second number")
-    
-    return Result.ok(a + b)
+        raise "Invalid second number"
+
+    return a + b
 ```
 
 ### Try Multiple Operations
 
 ```zebra
-def process_data() as Result(bool, str)
+def process_data() throws
     # Step 1
-    var read_result = File.read("input.txt")
-    if read_result.isErr()
-        return Result.err("Cannot read input")
-    var input = read_result.value()
-    
+    var input = File.read("input.txt")
+
     # Step 2: Process
     var processed = input.upper()
-    
+
     # Step 3
-    var write_result = File.write("output.txt", processed)
-    if write_result.isErr()
-        return Result.err("Cannot write output")
-    
-    return Result.ok(true)
+    File.write("output.txt", processed)
 ```
 
 ---
@@ -387,9 +360,9 @@ def process_data() as Result(bool, str)
 var x as int? = get_value()
 
 if x != nil
-    println("Value: ${x}")
+    print "Value: ${x}"
 else
-    println("No value")
+    print "No value"
 ```
 
 ### Use Default Value
@@ -397,7 +370,7 @@ else
 ```zebra
 var x as int? = get_value()
 var value = x.unwrapOr(0)  # Use 0 if nil
-println(value)
+print value
 ```
 
 ### Optional Chain
@@ -407,7 +380,7 @@ var user as User? = get_user()
 
 if user != nil
     if user.address != nil
-        println(user.address)
+        print user.address
 ```
 
 ### Nested Null Checks
@@ -419,7 +392,7 @@ if data != nil
     var items = data.items
     if items != nil
         for item in items
-            println(item)
+            print item
 ```
 
 ---
@@ -433,9 +406,9 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    println(num + 1)
+    print num + 1
 else
-    println("Invalid number")
+    print "Invalid number"
 ```
 
 ### Number to String
@@ -450,7 +423,7 @@ var message = "The answer is ${text}"
 
 ```zebra
 var num = 42
-println("The answer is ${num}")
+print "The answer is ${num}"
 ```
 
 ### Type Checking
@@ -463,7 +436,7 @@ var as_str = value.toString()  # Force conversion
 
 # Check compatibility
 if value > 0
-    println("Positive")
+    print "Positive"
 ```
 
 ---
@@ -485,7 +458,7 @@ class Person
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
-println(person.describe())
+print person.describe()
 ```
 
 ### Use Inheritance
@@ -503,7 +476,7 @@ class Dog is Animal
 
 var dog = Dog()
 dog.name = "Buddy"
-println(dog.speak())
+print dog.speak()
 ```
 
 ### Implement Interface
@@ -520,7 +493,7 @@ class Circle is Shape
 
 var circle = Circle()
 circle.radius = 5.0
-println(circle.area())
+print circle.area()
 ```
 
 ### Static Methods
@@ -544,7 +517,7 @@ var result = Math.add(2, 3)  # 5
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
 if email_pattern.matches("user@example.com")
-    println("Valid email")
+    print "Valid email"
 ```
 
 ### Find Matches
@@ -557,7 +530,7 @@ var matches = numbers.findAll(text)
 # matches = ["3", "7"]
 
 for match in matches
-    println(match)
+    print match
 ```
 
 ### Split by Pattern
@@ -586,61 +559,51 @@ var replaced = pattern.replaceAll(text, "X")
 ### Read Arguments
 
 ```zebra
-def main()
-    var args = System.args()
-    
-    if args.count() > 0
-        println("Arguments:")
-        for arg in args
-            println("  - ${arg}")
-    else
-        println("No arguments provided")
+class Main
+    shared
+        def main
+            var args = sys.args()
+
+            if args.count() > 0
+                print "Arguments:"
+                for arg in args
+                    print "  - ${arg}"
+            else
+                print "No arguments provided"
 ```
 
 ### Parse Flags
 
 ```zebra
-def main()
-    var args = System.args()
-    var verbose = false
-    var input_file = ""
-    
-    for arg in args
-        if arg == "-v" or arg == "--verbose"
-            verbose = true
-        elif arg.startsWith("--input=")
-            input_file = arg.substring(8, arg.len)
-    
-    println("Verbose: ${verbose}")
-    println("Input: ${input_file}")
+class Main
+    shared
+        def main
+            var args = sys.args()
+            var verbose = false
+            var input_file = ""
+
+            for arg in args
+                if arg == "-v" or arg == "--verbose"
+                    verbose = true
+                elif arg.startsWith("--input=")
+                    input_file = arg.substring(8, arg.len)
+
+            print "Verbose: ${verbose}"
+            print "Input: ${input_file}"
 ```
 
 ---
 
 ## Environment Variables
 
-### Read Environment Variables
+### Environment and Exit
 
 ```zebra
-var home = System.env("HOME")
-if home != nil
-    println("Home: ${home}")
-else
-    println("HOME not set")
+# Exit with status code
+sys.exit(1)
 
-var path = System.env("PATH")
-```
-
-### Check Required Variables
-
-```zebra
-var api_key = System.env("API_KEY")
-
-if api_key == nil
-    println("Error: API_KEY environment variable not set")
-    System.exit(1)
-
-println("Using API key: ${api_key}")
+# Use Arg for structured argument parsing
+var result = Arg.parse()
 ```
 
 ---
@@ -651,7 +614,7 @@ println("Using API key: ${api_key}")
 
 ```zebra
 for i in 0.to(10)
-    println(i)  # 0, 1, 2, ..., 9
+    print i  # 0, 1, 2, ..., 9
 ```
 
 ### While Loop
@@ -659,7 +622,7 @@ for i in 0.to(10)
 ```zebra
 var i = 0
 while i < 10
-    println(i)
+    print i
     i = i + 1
 ```
 
@@ -668,7 +631,7 @@ while i < 10
 ```zebra
 var count = 0
 while count < 5
-    println(count)
+    print count
     count = count + 1
 ```
 
@@ -677,7 +640,7 @@ while count < 5
 ```zebra
 for item in items
     if item == target
-        println("Found!")
+        print "Found!"
         break
 
 while condition
@@ -692,7 +655,7 @@ for item in items
     if item == skip_value
         continue
     
-    println(item)
+    print item
 ```
 
 ---
@@ -702,50 +665,40 @@ for item in items
 ### CSV Reader
 
 ```zebra
-def read_csv(filename as str) as Result(List(List(str)), str)
-    var result = File.read(filename)
-    
-    if result.isErr()
-        return Result.err(result.error())
-    
-    var content = result.value()
+def read_csv(filename as str) as List(List(str)) throws
+    var content = File.read(filename)
     var lines = content.split("\n")
     var records = List(List(str))()
-    
+
     for line in lines
         if line.trim().len == 0
             continue
-        
+
         var fields = line.split(",")
         records.add(fields)
-    
-    return Result.ok(records)
+
+    return records
 ```
 
 ### Word Counter
 
 ```zebra
-def count_words(filename as str) as Result(HashMap(str, int), str)
-    var result = File.read(filename)
-    
-    if result.isErr()
-        return Result.err(result.error())
-    
-    var content = result.value()
+def count_words(filename as str) as HashMap(str, int) throws
+    var content = File.read(filename)
     var text = content.lower()
     var words = text.split(" ")
     var counts = HashMap(str, int)()
-    
+
     for word in words
         var clean = word.trim()
         if clean.len > 0
-            var current = counts.fetch(clean)
+            var current = counts.get(clean)
             if current != nil
-                counts.put(clean, current + 1)
+                counts.set(clean, current + 1)
             else
-                counts.put(clean, 1)
-    
-    return Result.ok(counts)
+                counts.set(clean, 1)
+
+    return counts
 ```
 
 ### Pipeline Processing
@@ -769,7 +722,7 @@ var result = input
 
 ```zebra
 var x = 42
-println("x = ${x}")
+print "x = ${x}"
 ```
 
 ### Check Collection Size
@@ -778,18 +731,18 @@ println("x = ${x}")
 var items = List(int)()
 items.add(1)
 items.add(2)
-println("Count: ${items.count()}")
+print "Count: ${items.count(}")
 ```
 
 ### Trace Execution
 
 ```zebra
 def function()
-    println("Start")
+    print "Start"
     # ... code ...
-    println("After step 1")
+    print "After step 1"
     # ... code ...
-    println("Done")
+    print "Done"
 ```
 
 ### Assert Conditions

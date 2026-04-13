@@ -22,29 +22,29 @@
 ### String Literals
 
 ```zebra
-// file: 06_string_basics.zbr
-// teaches: string creation
-// chapter: 06-Strings-and-Unicode
+# file: 06_string_basics.zbr
+# teaches: string creation
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
-            // Simple string
+            # Simple string
             var greeting = "Hello"
             print greeting
             
-            // With quotes inside
+            # With quotes inside
             var quoted = "She said \"Hello\""
             print quoted
             
-            // Multi-line (if supported)
+            # Multi-line (if supported)
             var poem = """
             Roses are red
             Violets are blue
             """
             print poem
             
-            // Escape sequences
+            # Escape sequences
             var path = "C:\\Users\\Name\\Documents"
             var tab = "Name\tAge\tCity"
             var newline = "Line1\nLine2"
@@ -53,37 +53,37 @@ class Main
 ### String Properties
 
 ```zebra
-// file: 06_string_props.zbr
-// teaches: string properties and methods
-// chapter: 06-Strings-and-Unicode
+# file: 06_string_props.zbr
+# teaches: string properties and methods
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
             var text = "Hello, World!"
             
-            // Length
-            print text.len                      // 13
+            # Length
+            print text.len                      # 13
             
-            // Character at index
+            # Character at index
             var first_char = text[0]
-            print first_char                    // H
+            print first_char                    # H
             
-            // Substring/slice
+            # Substring/slice
             var part = text[0..4]
-            print part                          // Hello
+            print part                          # Hello
             
-            // Case conversion
-            print text.upper()                  // HELLO, WORLD!
-            print text.lower()                  // hello, world!
+            # Case conversion
+            print text.upper()                  # HELLO, WORLD!
+            print text.lower()                  # hello, world!
 ```
 
 ### String Interpolation
 
 ```zebra
-// file: 06_interpolation.zbr
-// teaches: string interpolation
-// chapter: 06-Strings-and-Unicode
+# file: 06_interpolation.zbr
+# teaches: string interpolation
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
@@ -91,19 +91,19 @@ class Main
             var name = "Alice"
             var age = 30
             
-            // Simple interpolation
-            print "Name: ${name}"               // Name: Alice
+            # Simple interpolation
+            print "Name: ${name}"               # Name: Alice
             
-            // Expressions in interpolation
-            print "Age next year: ${age + 1}"   // Age next year: 31
+            # Expressions in interpolation
+            print "Age next year: ${age + 1}"   # Age next year: 31
             
-            // Method calls
+            # Method calls
             var lower_name = name.lower()
-            print "Lowercase: ${lower_name}"    // Lowercase: alice
+            print "Lowercase: ${lower_name}"    # Lowercase: alice
             
-            // Format specifiers (if supported)
+            # Format specifiers (if supported)
             var price = 19.99
-            print "Price: ${price:.2f}"         // Price: 19.99
+            print "Price: ${price:.2f}"         # Price: 19.99
 ```
 
 ---
@@ -113,103 +113,103 @@ class Main
 ### Searching
 
 ```zebra
-// file: 06_search.zbr
-// teaches: searching in strings
-// chapter: 06-Strings-and-Unicode
+# file: 06_search.zbr
+# teaches: searching in strings
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
             var text = "Hello, World!"
             
-            // Contains
-            print text.contains("World")        // true
-            print text.contains("xyz")          // false
+            # Contains
+            print text.contains("World")        # true
+            print text.contains("xyz")          # false
             
-            // Index
+            # Index
             var idx = text.indexOf("World")
-            print idx                           // 7
+            print idx                           # 7
             
-            // Not found returns -1 or special value
+            # Not found returns -1 or special value
             var not_found = text.indexOf("xyz")
             print not_found
             
-            // Starts/ends with
-            print text.startsWith("Hello")      // true
-            print text.endsWith("!")            // true
+            # Starts/ends with
+            print text.startsWith("Hello")      # true
+            print text.endsWith("!")            # true
 ```
 
 ### Splitting and Joining
 
 ```zebra
-// file: 06_split_join.zbr
-// teaches: splitting and joining strings
-// chapter: 06-Strings-and-Unicode
+# file: 06_split_join.zbr
+# teaches: splitting and joining strings
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
-            // Split
+            # Split
             var csv = "apple,banana,cherry"
             var fruits = csv.split(",")
             for fruit in fruits
                 print fruit
             
-            // Join
+            # Join
             var items as List(str) = List()
             items.add("one")
             items.add("two")
             items.add("three")
             var result = ", ".join(items)
-            print result                        // one, two, three
+            print result                        # one, two, three
 ```
 
 ### Trimming and Padding
 
 ```zebra
-// file: 06_trim_pad.zbr
-// teaches: trimming and padding
-// chapter: 06-Strings-and-Unicode
+# file: 06_trim_pad.zbr
+# teaches: trimming and padding
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
             var padded = "  hello  "
             
-            // Trim whitespace
-            print "|${padded.trim()}|"          // |hello|
-            print "|${padded.trimLeft()}|"      // |hello  |
-            print "|${padded.trimRight()}|"     // |  hello|
+            # Trim whitespace
+            print "|${padded.trim()}|"          # |hello|
+            print "|${padded.trimLeft()}|"      # |hello  |
+            print "|${padded.trimRight()}|"     # |  hello|
             
-            // Padding
+            # Padding
             var short = "hi"
-            print short.padLeft(10, "*")        // ********hi
-            print short.padRight(10, "-")       // hi--------
-            print short.center(10, "*")         // ****hi****
+            print short.padLeft(10, "*")        # ********hi
+            print short.padRight(10, "-")       # hi--------
+            print short.center(10, "*")         # ****hi****
 ```
 
 ### Replacing
 
 ```zebra
-// file: 06_replace.zbr
-// teaches: string replacement
-// chapter: 06-Strings-and-Unicode
+# file: 06_replace.zbr
+# teaches: string replacement
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
             var text = "cat and dog and bird"
             
-            // Replace (first occurrence, or all)
-            var once = text.replace("and", "or")      // Replaces once
+            # Replace (first occurrence, or all)
+            var once = text.replace("and", "or")      # Replaces once
             print once
             
-            var all = text.replaceAll("and", "or")    // Replaces all
+            var all = text.replaceAll("and", "or")    # Replaces all
             print all
             
-            // Case conversion replacement
+            # Case conversion replacement
             var lower = "Hello World".lower()
-            print lower                         // hello world
+            print lower                         # hello world
 ```
 
 ---
@@ -221,28 +221,28 @@ class Main
 ### Unicode Basics
 
 ```zebra
-// file: 06_unicode.zbr
-// teaches: unicode support
-// chapter: 06-Strings-and-Unicode
+# file: 06_unicode.zbr
+# teaches: unicode support
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
-            // Emoji
+            # Emoji
             var emoji = "Hello 👋 🌍 🎉"
             print emoji
-            print emoji.len                     // Byte length
-            print emoji.codePointCount()        // Character count
+            print emoji.len                     # Byte length
+            print emoji.codePointCount()        # Character count
             
-            // Chinese
-            var chinese = "你好世界"  // Hello World in Chinese
+            # Chinese
+            var chinese = "你好世界"  # Hello World in Chinese
             print chinese
             
-            // Arabic (right-to-left)
-            var arabic = "مرحبا بالعالم"  // Hello World
+            # Arabic (right-to-left)
+            var arabic = "مرحبا بالعالم"  # Hello World
             print arabic
             
-            // Mixed scripts
+            # Mixed scripts
             var mixed = "Hello 世界 مرحبا"
             print mixed
 ```
@@ -250,23 +250,23 @@ class Main
 ### Character Iteration
 
 ```zebra
-// file: 06_char_iter.zbr
-// teaches: iterating over characters
-// chapter: 06-Strings-and-Unicode
+# file: 06_char_iter.zbr
+# teaches: iterating over characters
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
             var text = "Hello"
             
-            // Iterate characters
+            # Iterate characters
             for char in text.chars()
                 print char
             
-            // Byte iteration
+            # Byte iteration
             var data = "AB"
             for byte in data.bytes()
-                print byte                      // 65, 66 (ASCII values)
+                print byte                      # 65, 66 (ASCII values)
 ```
 
 ---
@@ -278,29 +278,29 @@ Regular expressions let you search and validate text patterns.
 ### Basic Patterns
 
 ```zebra
-// file: 06_regex_intro.zbr
-// teaches: regular expressions introduction
-// chapter: 06-Strings-and-Unicode
+# file: 06_regex_intro.zbr
+# teaches: regular expressions introduction
+# chapter: 06-Strings-and-Unicode
 
 class Main
     shared
         def main
-            // Simple pattern
+            # Simple pattern
             var email = "alice@example.com"
             var pattern = Regex.compile("[a-z]+@[a-z]+\\.[a-z]+")
             
             var is_valid = pattern.match(email)
-            print is_valid                      // true
+            print is_valid                      # true
             
-            // Find matches
+            # Find matches
             var text = "I have 2 apples and 3 oranges"
             var digit_pattern = Regex.compile("\\d+")
             var found = digit_pattern.find(text)
-            print found                         // 2
+            print found                         # 2
             
-            // Replace
+            # Replace
             var clean = digit_pattern.replace(text, "X")
-            print clean                         // I have X apples and X oranges
+            print clean                         # I have X apples and X oranges
 ```
 
 ---
@@ -308,9 +308,9 @@ class Main
 ## Real World: Text Processing
 
 ```zebra
-// file: 06_text_processing.zbr
-// teaches: practical text operations
-// chapter: 06-Strings-and-Unicode
+# file: 06_text_processing.zbr
+# teaches: practical text operations
+# chapter: 06-Strings-and-Unicode
 
 class Parser
     shared
@@ -318,7 +318,7 @@ class Parser
             return line.split(",")
         
         def normalize_whitespace(text as str) as str
-            // Replace multiple spaces with one
+            # Replace multiple spaces with one
             var lines as List(str) = List()
             for line in text.split("\n")
                 var trimmed = line.trim()
@@ -336,13 +336,13 @@ class Parser
 class Main
     shared
         def main
-            // Parse CSV
+            # Parse CSV
             var csv_line = "Alice,30,alice@example.com"
             var fields = Parser.parse_csv_line(csv_line)
             print "Name: ${fields.at(0)}"
             print "Age: ${fields.at(1)}"
             
-            // Extract numbers
+            # Extract numbers
             var text = "I was born in 1990 and moved in 2005"
             var years = Parser.extract_numbers(text)
             for year in years
@@ -374,7 +374,7 @@ def parse_url(url as str) as HashMap(str, str)
     var result as HashMap(str, str) = HashMap()
     var parts = url.split("://")
     if parts.count() == 2
-        result.put("protocol", parts.at(0))
+        result.set("protocol", parts.at(0))
     return result
 ```
 
@@ -465,7 +465,7 @@ class Main
     shared
         def main
             var reversed = Reverser.reverse("hello")
-            print reversed  // olleh
+            print reversed  # olleh
 ```
 
 </details>

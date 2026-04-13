@@ -35,9 +35,9 @@ Key principles:
 The simplest approach: load the entire file into memory. Good for small files.
 
 ```zebra
-// file: file-read-simple.zbr
-// teaches: simple file reading with error handling
-// chapter: 20
+# file: file-read-simple.zbr
+# teaches: simple file reading with error handling
+# chapter: 20
 
 def main()
     var filename = "example.txt"
@@ -46,10 +46,10 @@ def main()
     
     branch result
         on ok(content)
-            println("File contents:")
-            println(content)
+            print "File contents:"
+            print content
         on err(error)
-            println("Error reading file: ${error}")
+            print "Error reading file: ${error}"
 ```
 
 ### Safe Extraction with the Result Pattern
@@ -57,29 +57,29 @@ def main()
 When you're sure the file should exist, you can use unwrap methods carefully.
 
 ```zebra
-// file: file-read-unwrap.zbr
-// teaches: safe error handling for file reads
-// chapter: 20
+# file: file-read-unwrap.zbr
+# teaches: safe error handling for file reads
+# chapter: 20
 
 def main()
     var filename = "config.txt"
     
     var result = File.read(filename)
     
-    // Option 1: Check then access
+    # Option 1: Check then access
     if result.isOk()
         var content = result.value()  # Safe to access
-        println("Read ${content.len} characters")
+        print "Read ${content.len} characters"
     else
         var error = result.error()
-        println("Cannot read config: ${error}")
+        print "Cannot read config: ${error}"
     
-    // Option 2: Using unwrapOr with fallback
+    # Option 2: Using unwrapOr with fallback
     var content = File.read(filename).unwrapOr("")
     if content.len == 0
-        println("Using default configuration")
+        print "Using default configuration"
     else
-        println("Configuration loaded: ${content.len} bytes")
+        print "Configuration loaded: ${content.len} bytes"
 ```
 
 ### Processing Large Files: Line by Line
@@ -87,49 +87,49 @@ def main()
 For files too large to fit in memory, read line-by-line.
 
 ```zebra
-// file: file-read-lines.zbr
-// teaches: efficient line-by-line file reading
-// chapter: 20
+# file: file-read-lines.zbr
+# teaches: efficient line-by-line file reading
+# chapter: 20
 
 def main()
     var filename = "large_log.txt"
     
-    // Read entire file first
+    # Read entire file first
     var result = File.read(filename)
     
     if result.isErr()
-        println("Error: ${result.error()}")
+        print "Error: ${result.error(}")
         return
     
     var content = result.value()
     var lines = content.split("\n")
     
-    // Process line by line
+    # Process line by line
     var line_count = 0
     var error_count = 0
     
     for line in lines
         line_count = line_count + 1
         
-        // Skip empty lines
+        # Skip empty lines
         if line.trim().len == 0
             continue
         
-        // Check for errors (assuming "ERROR" in log means error line)
+        # Check for errors (assuming "ERROR" in log means error line)
         if line.contains("ERROR")
             error_count = error_count + 1
-            println("Line ${line_count}: ${line}")
+            print "Line ${line_count}: ${line}"
     
-    println("Total lines: ${line_count}")
-    println("Errors found: ${error_count}")
+    print "Total lines: ${line_count}"
+    print "Errors found: ${error_count}"
 ```
 
 ### Counting and Analyzing Files
 
 ```zebra
-// file: file-analyze.zbr
-// teaches: analyzing file contents
-// chapter: 20
+# file: file-analyze.zbr
+# teaches: analyzing file contents
+# chapter: 20
 
 def main()
     var filename = "document.txt"
@@ -137,32 +137,32 @@ def main()
     var result = File.read(filename)
     
     if result.isErr()
-        println("Cannot read file")
+        print "Cannot read file"
         return
     
     var content = result.value()
     
-    // Line count
+    # Line count
     var lines = content.split("\n")
-    println("Lines: ${lines.count()}")
+    print "Lines: ${lines.count(}")
     
-    // Word count
+    # Word count
     var word_count = 0
     for line in lines
         var words = line.split(" ")
         word_count = word_count + words.count()
-    println("Words: ${word_count}")
+    print "Words: ${word_count}"
     
-    // Character count
-    println("Characters: ${content.len}")
+    # Character count
+    print "Characters: ${content.len}"
     
-    // Find longest line
+    # Find longest line
     var longest_line = ""
     for line in lines
         if line.len > longest_line.len
             longest_line = line
     
-    println("Longest line (${longest_line.len} chars): ${longest_line.substring(0, 50)}")
+    print "Longest line (${longest_line.len} chars: ${longest_line.substring(0, 50)}")
 ```
 
 ---
@@ -174,9 +174,9 @@ def main()
 Write content to a file, overwriting if it exists.
 
 ```zebra
-// file: file-write-simple.zbr
-// teaches: basic file writing
-// chapter: 20
+# file: file-write-simple.zbr
+# teaches: basic file writing
+# chapter: 20
 
 def main()
     var content = "Hello, File!\nLine 2\nLine 3\n"
@@ -185,9 +185,9 @@ def main()
     var result = File.write(filename, content)
     
     if result.isOk()
-        println("File written successfully")
+        print "File written successfully"
     else
-        println("Error: ${result.error()}")
+        print "Error: ${result.error(}")
 ```
 
 ### Building Content Then Writing
@@ -195,15 +195,15 @@ def main()
 Don't write to a file in a loop. Build the content first, then write once.
 
 ```zebra
-// file: file-write-building.zbr
-// teaches: efficiently building and writing file content
-// chapter: 20
+# file: file-write-building.zbr
+# teaches: efficiently building and writing file content
+# chapter: 20
 
 def main()
-    // Build content in memory
+    # Build content in memory
     var lines = List()
     
-    // Generate report
+    # Generate report
     lines.add("Sales Report")
     lines.add("=" + "=" + "=" + "=" + "=" + "=")
     lines.add("")
@@ -219,30 +219,30 @@ def main()
     lines.add("")
     lines.add("Total: $300")
     
-    // Join with newlines
+    # Join with newlines
     var content = lines.join("\n")
     
-    // Write once
+    # Write once
     var result = File.write("report.txt", content)
     
     if result.isOk()
-        println("Report written to report.txt")
+        print "Report written to report.txt"
 ```
 
 ### Appending to Files
 
 ```zebra
-// file: file-append.zbr
-// teaches: appending content to existing files
-// chapter: 20
+# file: file-append.zbr
+# teaches: appending content to existing files
+# chapter: 20
 
 def main()
     var filename = "log.txt"
     
-    // Read existing content
+    # Read existing content
     var existing = File.read(filename).unwrapOr("")
     
-    // Append new content
+    # Append new content
     var timestamp = "2025-03-15 14:30:00"
     var message = "Application started"
     
@@ -251,7 +251,7 @@ def main()
     var result = File.write(filename, new_content)
     
     if result.isOk()
-        println("Log entry added")
+        print "Log entry added"
 ```
 
 ---
@@ -261,12 +261,12 @@ def main()
 ### Batch Processing
 
 ```zebra
-// file: file-batch-process.zbr
-// teaches: processing multiple files
-// chapter: 20
+# file: file-batch-process.zbr
+# teaches: processing multiple files
+# chapter: 20
 
 def main()
-    // List of files to process
+    # List of files to process
     var files = List()
     files.add("data1.txt")
     files.add("data2.txt")
@@ -275,52 +275,51 @@ def main()
     var results = HashMap()
     
     for filename in files
-        print("Processing ${filename}... ")
-        
+        print "Processing ${filename}... "
         var content_result = File.read(filename)
         
         if content_result.isErr()
-            println("FAILED: ${content_result.error()}")
-            results.put(filename, 0)
+            print "FAILED: ${content_result.error(}")
+            results.set(filename, 0)
             continue
         
         var content = content_result.value()
         var line_count = content.split("\n").count()
         
-        results.put(filename, line_count)
-        println("OK (${line_count} lines)")
+        results.set(filename, line_count)
+        print "OK (${line_count} lines")
     
-    // Summary
-    println("\nSummary:")
+    # Summary
+    print "\nSummary:"
     var total = 0
     for filename in results.keys()
-        var count = results.fetch(filename)
+        var count = results.get(filename)
         if count != nil
             total = total + count
-            println("${filename}: ${count} lines")
+            print "${filename}: ${count} lines"
     
-    println("Total: ${total} lines")
+    print "Total: ${total} lines"
 ```
 
 ### Converting and Reformatting Files
 
 ```zebra
-// file: file-convert.zbr
-// teaches: reading one format and writing another
-// chapter: 20
+# file: file-convert.zbr
+# teaches: reading one format and writing another
+# chapter: 20
 
 def main()
-    // Read CSV
+    # Read CSV
     var csv_result = File.read("data.csv")
     
     if csv_result.isErr()
-        println("Error reading CSV")
+        print "Error reading CSV"
         return
     
     var csv_content = csv_result.value()
     var lines = csv_content.split("\n")
     
-    // Convert to tab-separated
+    # Convert to tab-separated
     var output_lines = List()
     
     for line in lines
@@ -330,11 +329,11 @@ def main()
     
     var output = output_lines.join("\n")
     
-    // Write TSV
+    # Write TSV
     var write_result = File.write("data.tsv", output)
     
     if write_result.isOk()
-        println("Conversion complete: data.tsv")
+        print "Conversion complete: data.tsv"
 ```
 
 ---
@@ -344,28 +343,28 @@ def main()
 ### Checking File Existence
 
 ```zebra
-// file: file-exists.zbr
-// teaches: checking if files exist
-// chapter: 20
+# file: file-exists.zbr
+# teaches: checking if files exist
+# chapter: 20
 
 def main()
     var config_file = "config.ini"
     
     if File.exists(config_file)
-        println("Configuration file found")
+        print "Configuration file found"
         var content = File.read(config_file)
-        // Process config
+        # Process config
     else
-        println("No configuration file. Using defaults.")
-        // Use defaults
+        print "No configuration file. Using defaults."
+        # Use defaults
 ```
 
 ### File Deletion
 
 ```zebra
-// file: file-delete.zbr
-// teaches: safely deleting files
-// chapter: 20
+# file: file-delete.zbr
+# teaches: safely deleting files
+# chapter: 20
 
 def main()
     var temp_file = "temp.txt"
@@ -374,39 +373,39 @@ def main()
         var result = File.delete(temp_file)
         
         if result.isOk()
-            println("Temporary file deleted")
+            print "Temporary file deleted"
         else
-            println("Error deleting file: ${result.error()}")
+            print "Error deleting file: ${result.error(}")
     else
-        println("File doesn't exist")
+        print "File doesn't exist"
 ```
 
 ### Working with Paths
 
 ```zebra
-// file: file-paths.zbr
-// teaches: path operations and directory access
-// chapter: 20
+# file: file-paths.zbr
+# teaches: path operations and directory access
+# chapter: 20
 
 def main()
-    var cwd = System.cwd()
-    println("Current directory: ${cwd}")
+    var cwd = sys.cwd()
+    print "Current directory: ${cwd}"
     
-    // Build path (simple string concatenation)
+    # Build path (simple string concatenation)
     var data_dir = cwd + "/data"
     var file_path = data_dir + "/input.txt"
-    println("Full path: ${file_path}")
+    print "Full path: ${file_path}"
     
-    // Extract filename from path
+    # Extract filename from path
     var path = "/home/user/documents/report.txt"
     var filename = path.substring(path.lastIndexOf("/") + 1, path.len)
-    println("Filename: ${filename}")
+    print "Filename: ${filename}"
     
-    // Extract directory from path
+    # Extract directory from path
     var last_slash = path.lastIndexOf("/")
     if last_slash > 0
         var directory = path.substring(0, last_slash)
-        println("Directory: ${directory}")
+        print "Directory: ${directory}"
 ```
 
 ---
@@ -414,9 +413,9 @@ def main()
 ## Practical Patterns: Config File Management
 
 ```zebra
-// file: file-config-management.zbr
-// teaches: loading and parsing configuration files
-// chapter: 20
+# file: file-config-management.zbr
+# teaches: loading and parsing configuration files
+# chapter: 20
 
 class Config
     var host as str = "localhost"
@@ -424,11 +423,11 @@ class Config
     var debug as bool = false
     
     shared
-        def from_file(filename as str) as Result(Config, str)
+        def from_file(filename as str) as Config throws
             var content_result = File.read(filename)
             
             if content_result.isErr()
-                return Result.err("Cannot read config file: ${content_result.error()}")
+                raise "Cannot read config file: ${content_result.error(}")
             
             var content = content_result.value()
             var config = Config()
@@ -437,11 +436,11 @@ class Config
             for line in lines
                 line = line.trim()
                 
-                // Skip empty lines and comments
+                # Skip empty lines and comments
                 if line.len == 0 or line.startsWith("#")
                     continue
                 
-                // Parse key=value
+                # Parse key=value
                 if not line.contains("=")
                     continue
                 
@@ -452,7 +451,7 @@ class Config
                 var key = parts.at(0).trim()
                 var value = parts.at(1).trim()
                 
-                // Set config values
+                # Set config values
                 if key == "host"
                     config.host = value
                 elif key == "port"
@@ -462,18 +461,18 @@ class Config
                 elif key == "debug"
                     config.debug = value.lower() == "true"
             
-            return Result.ok(config)
+            return config
 
 def main()
     var result = Config.from_file("app.conf")
     
     if result.isErr()
-        println("Error: ${result.error()}")
+        print "Error: ${result.error(}")
         return
     
     var config = result.value()
-    println("Server: ${config.host}:${config.port}")
-    println("Debug: ${config.debug}")
+    print "Server: ${config.host}:${config.port}"
+    print "Debug: ${config.debug}"
 ```
 
 ---
@@ -481,9 +480,9 @@ def main()
 ## Practical Patterns: Log File Generation
 
 ```zebra
-// file: file-logging.zbr
-// teaches: generating timestamped log files
-// chapter: 20
+# file: file-logging.zbr
+# teaches: generating timestamped log files
+# chapter: 20
 
 class Logger
     var filename as str
@@ -497,13 +496,13 @@ class Logger
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
         this.entries.add(entry)
-        println(entry)
+        print entry
     
     def error(message as str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
         this.entries.add(entry)
-        println(entry)
+        print entry
     
     def save() as bool
         var content = entries.join("\n")
@@ -511,7 +510,7 @@ class Logger
         return result.isOk()
 
 def get_timestamp() as str
-    // Placeholder—in real code, use actual time
+    # Placeholder—in real code, use actual time
     return "2025-03-15 14:30:00"
 
 def main()
@@ -524,9 +523,9 @@ def main()
     logger.log("Connection successful")
     
     if logger.save()
-        println("Log saved to ${logger.filename}")
+        print "Log saved to ${logger.filename}"
     else
-        println("Failed to save log")
+        print "Failed to save log"
 ```
 
 ---
@@ -534,9 +533,9 @@ def main()
 ## Practical Patterns: Data Import/Export
 
 ```zebra
-// file: file-data-import.zbr
-// teaches: importing and exporting structured data
-// chapter: 20
+# file: file-data-import.zbr
+# teaches: importing and exporting structured data
+# chapter: 20
 
 class Person
     var name as str
@@ -559,11 +558,11 @@ class Person
             person.email = parts.at(2).trim()
             return person
         
-        def load_from_csv(filename as str) as Result(List(Person), str)
+        def load_from_csv(filename as str) as List(Person) throws
             var content_result = File.read(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.error())
+                raise content_result.error()
             
             var content = content_result.value()
             var people = List()
@@ -577,29 +576,29 @@ class Person
                 if person != nil
                     people.add(person)
             
-            return Result.ok(people)
+            return people
     
     def to_csv_line() as str
         return "${name},${age},${email}"
 
 def main()
-    // Load data
+    # Load data
     var result = Person.load_from_csv("people.csv")
     
     if result.isErr()
-        println("Error: ${result.error()}")
+        print "Error: ${result.error(}")
         return
     
     var people = result.value()
-    println("Loaded ${people.count()} people")
+    print "Loaded ${people.count(} people")
     
-    // Filter and export
+    # Filter and export
     var adults = List()
     for person in people
         if person.age >= 18
             adults.add(person)
     
-    // Save filtered data
+    # Save filtered data
     var output_lines = List()
     for person in adults
         output_lines.add(person.to_csv_line())
@@ -608,7 +607,7 @@ def main()
     var write_result = File.write("adults.csv", csv_output)
     
     if write_result.isOk()
-        println("Exported ${adults.count()} adults to adults.csv")
+        print "Exported ${adults.count(} adults to adults.csv")
 ```
 
 ---

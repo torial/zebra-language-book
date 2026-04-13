@@ -45,9 +45,9 @@ Pipelines make **data transformations** flow naturally, like reading prose.
 The `->` operator passes the left-hand value to the right-hand expression:
 
 ```zebra
-// file: 15_pipeline_basics.zbr
-// teaches: pipeline operator
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_basics.zbr
+# teaches: pipeline operator
+# chapter: 15-Pipelines-and-Function-Composition
 
 class Main
     shared
@@ -76,9 +76,9 @@ Notice how pipeline reads more naturally: "take text, lowercase it, split it". E
 Pipelines shine when you have many sequential transformations:
 
 ```zebra
-// file: 15_pipeline_chain.zbr
-// teaches: chaining operations
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_chain.zbr
+# teaches: chaining operations
+# chapter: 15-Pipelines-and-Function-Composition
 
 class StringProcessor
     shared
@@ -105,9 +105,9 @@ Each line applies one transformation. This is **much clearer** than deeply neste
 Pipelines work great with lists and maps:
 
 ```zebra
-// file: 15_pipeline_collections.zbr
-// teaches: piping through collections
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_collections.zbr
+# teaches: piping through collections
+# chapter: 15-Pipelines-and-Function-Composition
 
 class DataProcessor
     shared
@@ -138,9 +138,9 @@ Here, the pipeline takes a string, lowercases it, splits into a list, and we can
 You can pipe to **any function** that takes one argument:
 
 ```zebra
-// file: 15_pipeline_custom.zbr
-// teaches: custom functions in pipelines
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_custom.zbr
+# teaches: custom functions in pipelines
+# chapter: 15-Pipelines-and-Function-Composition
 
 class Utils
     shared
@@ -173,9 +173,9 @@ The `.` placeholder represents the piped value. `5 -> Utils.double(.)` means "ca
 A practical example: process a CSV-like dataset:
 
 ```zebra
-// file: 15_pipeline_real_world.zbr
-// teaches: realistic pipeline
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_real_world.zbr
+# teaches: realistic pipeline
+# chapter: 15-Pipelines-and-Function-Composition
 
 class DataAnalysis
     shared
@@ -221,9 +221,9 @@ This reads as: "Parse CSV, sum values, calculate average." Much clearer than nes
 You can create **composed functions** that combine multiple operations:
 
 ```zebra
-// file: 15_function_composition.zbr
-// teaches: composing functions
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_function_composition.zbr
+# teaches: composing functions
+# chapter: 15-Pipelines-and-Function-Composition
 
 class Transform
     shared
@@ -259,20 +259,20 @@ Each step is a self-contained function. Composition lets you **reuse them in dif
 Pipelines work nicely with error handling:
 
 ```zebra
-// file: 15_pipeline_results.zbr
-// teaches: pipelines with error handling
-// chapter: 15-Pipelines-and-Function-Composition
+# file: 15_pipeline_results.zbr
+# teaches: pipelines with error handling
+# chapter: 15-Pipelines-and-Function-Composition
 
 class SafeParser
     shared
-        def parse_int(text as str) as Result(int, str)
+        def parse_int(text as str) as int throws
             if text.len == 0
-                return Result.err("Empty string")
+                raise "Empty string"
             # NOTE: Hardcoded for demonstration. A real implementation would parse
             # the string into an integer. See Chapter 06 (Strings) for actual parsing.
             if text == "42"
-                return Result.ok(42)
-            return Result.err("Not a number")
+                return 42
+            raise "Not a number"
         
         def double_it(x as int) as int
             return x * 2
@@ -299,11 +299,11 @@ When an error occurs, stop the pipeline and handle the error.
 ### Mistake 1: Forgetting the Dot Placeholder
 
 ```zebra
-// WRONG
+# WRONG
 var result = 5
     -> Utils.double()  # Error: double() takes 1 argument, 0 given
 
-// CORRECT
+# CORRECT
 var result = 5
     -> Utils.double(.)
 ```
@@ -311,13 +311,13 @@ var result = 5
 ### Mistake 2: Breaking the Chain at the Wrong Place
 
 ```zebra
-// WRONG - trying to pipe to an intermediate value
+# WRONG - trying to pipe to an intermediate value
 var result = "HELLO"
     -> .lower()
     -> .split(" ")
     first_word = .at(0)  # Error: can't pipe to assignment
 
-// CORRECT
+# CORRECT
 var result = "HELLO"
     -> .lower()
     -> .split(" ")
@@ -327,11 +327,11 @@ var first_word = result.at(0)
 ### Mistake 3: Piping to Functions with Multiple Parameters
 
 ```zebra
-// WRONG - only pipes the first argument
+# WRONG - only pipes the first argument
 var result = 10
     -> Utils.add(., 5)  # Accidentally clear, but could be confusing
 
-// This is actually fine, but consider:
+# This is actually fine, but consider:
 var result = 10
     -> Utils.add(.)  # Error: add() requires 2 arguments
 ```
@@ -339,7 +339,7 @@ var result = 10
 ### Mistake 4: Over-Piping (Readability)
 
 ```zebra
-// TOO MUCH - hard to follow after many steps
+# TOO MUCH - hard to follow after many steps
 var result = "data"
     -> .lower()
     -> .trim()
@@ -350,7 +350,7 @@ var result = "data"
     -> Sorter.sort(.)
     -> Formatter.join_with_commas(.)
 
-// BETTER - break into logical chunks
+# BETTER - break into logical chunks
 var cleaned = "data"
     -> .lower()
     -> .trim()
@@ -406,10 +406,10 @@ Build a pipeline that: parses an integer, doubles it, adds 10, and formats as a 
 ```zebra
 class NumUtils
     shared
-        def parse_safe(text as str) as Result(int, str)
+        def parse_safe(text as str) as int throws
             if text == "5"
-                return Result.ok(5)
-            return Result.err("Invalid number")
+                return 5
+            raise "Invalid number"
         
         def double_it(x as int) as int
             return x * 2

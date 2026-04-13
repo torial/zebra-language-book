@@ -32,9 +32,9 @@ class Container(T)
 The simplest generic is a **container that holds a single value**:
 
 ```zebra
-// file: 13_generic_container.zbr
-// teaches: generic class definition
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_container.zbr
+# teaches: generic class definition
+# chapter: 13-Generics-and-Type-Constraints
 
 class Container(T)
     var item as T
@@ -65,9 +65,9 @@ Notice the syntax:
 You can have **multiple type parameters**:
 
 ```zebra
-// file: 13_generic_pair.zbr
-// teaches: multiple type parameters
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_pair.zbr
+# teaches: multiple type parameters
+# chapter: 13-Generics-and-Type-Constraints
 
 class Pair(K, V)
     var key as K
@@ -101,9 +101,9 @@ class Main
 You can also write **generic methods** within regular classes:
 
 ```zebra
-// file: 13_generic_methods.zbr
-// teaches: generic methods
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_methods.zbr
+# teaches: generic methods
+# chapter: 13-Generics-and-Type-Constraints
 
 class Utils
     shared
@@ -135,9 +135,9 @@ The type parameter `T` is inferred from the arguments you pass.
 You already use generics implicitly with `List` and `HashMap`:
 
 ```zebra
-// file: 13_generic_collections.zbr
-// teaches: using generic stdlib types
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_collections.zbr
+# teaches: using generic stdlib types
+# chapter: 13-Generics-and-Type-Constraints
 
 class Main
     shared
@@ -151,8 +151,8 @@ class Main
                 print n
             
             var ages as HashMap(str, int) = HashMap()
-            ages.put("Alice", 30)
-            ages.put("Bob", 25)
+            ages.set("Alice", 30)
+            ages.set("Bob", 25)
             
             for name, age in ages
                 print "${name}: ${age}"
@@ -167,9 +167,9 @@ These are all generic types. The standard library provides them pre-built.
 Sometimes you want a generic that works with **any type that implements an interface**:
 
 ```zebra
-// file: 13_type_constraints.zbr
-// teaches: interface constraints
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_type_constraints.zbr
+# teaches: interface constraints
+# chapter: 13-Generics-and-Type-Constraints
 
 interface Printable
     def display as str
@@ -204,9 +204,9 @@ Here, `Printer.print_item` accepts **any type** that implements `Printable`. Thi
 More advanced: constraints on generic methods:
 
 ```zebra
-// file: 13_generic_constraints_advanced.zbr
-// teaches: constraints in generic methods
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_constraints_advanced.zbr
+# teaches: constraints in generic methods
+# chapter: 13-Generics-and-Type-Constraints
 
 interface Comparable
     def compare_to(other as this) as int
@@ -249,9 +249,9 @@ class Main
 A practical example: a **cache that works with any type**:
 
 ```zebra
-// file: 13_generic_cache.zbr
-// teaches: realistic generic class
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_cache.zbr
+# teaches: realistic generic class
+# chapter: 13-Generics-and-Type-Constraints
 
 class Cache(K, V)
     var data as HashMap(K, V) = HashMap()
@@ -265,11 +265,11 @@ class Cache(K, V)
             # Evict first key (simplistic LRU simulation)
             # In real code, track access order
             pass
-        data.put(key, value)
+        data.set(key, value)
     
     def get(key as K) as V?
         if data.contains(key)
-            return data.fetch(key)
+            return data.get(key)
         return nil
     
     def clear
@@ -280,9 +280,9 @@ class Main
         def main
             var cache = Cache(str, int)()
             cache.init(3)
-            cache.put("a", 1)
-            cache.put("b", 2)
-            cache.put("c", 3)
+            cache.set("a", 1)
+            cache.set("b", 2)
+            cache.set("c", 3)
             
             var val = cache.get("b")
             if val != nil
@@ -296,11 +296,11 @@ class Main
 ### Mistake 1: Forgetting to Instantiate Generic Parameters
 
 ```zebra
-// WRONG
+# WRONG
 var box = Container()  # Error: T not specified
 box.set(42)
 
-// CORRECT
+# CORRECT
 var box = Container(int)()
 box.set(42)
 ```
@@ -308,11 +308,11 @@ box.set(42)
 ### Mistake 2: Mixing Types in a Generic Container
 
 ```zebra
-// WRONG
+# WRONG
 var box = Container(int)()
 box.set("hello")  # Error: Expected int, got str
 
-// CORRECT
+# CORRECT
 var box = Container(str)()
 box.set("hello")
 ```
@@ -320,7 +320,7 @@ box.set("hello")
 ### Mistake 3: Using Constraints Incorrectly
 
 ```zebra
-// WRONG - method doesn't actually require Comparable
+# WRONG - method doesn't actually require Comparable
 def find_max(items as List(T)) as T
     var max = items.at(0)
     var item = items.at(1)
@@ -328,7 +328,7 @@ def find_max(items as List(T)) as T
         max = item
     return max
 
-// CORRECT - either don't use >, or require Comparable interface
+# CORRECT - either don't use >, or require Comparable interface
 def find_max(items as List(T)) as T
     var max = items.at(0)
     for item in items
@@ -340,7 +340,7 @@ def find_max(items as List(T)) as T
 ### Mistake 4: Type Erasure at Runtime
 
 ```zebra
-// DANGER - at runtime, type information is lost
+# DANGER - at runtime, type information is lost
 def process(items as List(T))
     for item in items
         if item isa int  # This may not work as expected

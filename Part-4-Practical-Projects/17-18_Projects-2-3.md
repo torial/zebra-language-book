@@ -21,9 +21,9 @@
 Define the data structures for HTTP communication:
 
 ```zebra
-// file: http_types.zbr
-// teaches: protocol data structures
-// project: Project-2-HTTP-Server
+# file: http_types.zbr
+# teaches: protocol data structures
+# project: Project-2-HTTP-Server
 
 class HttpRequest
     var method as str           # GET, POST, PUT, DELETE
@@ -98,9 +98,9 @@ class User
 Implement the routing system that maps paths to handlers:
 
 ```zebra
-// file: router.zbr
-// teaches: request routing and dispatching
-// project: Project-2-HTTP-Server
+# file: router.zbr
+# teaches: request routing and dispatching
+# project: Project-2-HTTP-Server
 
 interface RequestHandler
     def handle(request as HttpRequest) as HttpResponse
@@ -109,16 +109,16 @@ class Router
     var routes as HashMap(str, RequestHandler) = HashMap()
     
     def register(path as str, handler as RequestHandler)
-        routes.put(path, handler)
+        routes.set(path, handler)
     
-    def route_request(request as HttpRequest) as Result(HttpResponse, str)
+    def route_request(request as HttpRequest) as HttpResponse throws
         if routes.contains(request.path)
-            var handler = routes.fetch(request.path)
+            var handler = routes.get(request.path)
             var response = handler.handle(request)
-            return Result.ok(response)
+            return response
         
         # Path not found
-        return Result.ok(HttpResponse.not_found())
+        return HttpResponse.not_found()
     
     def list_routes as List(str)
         var paths as List(str) = List()
@@ -166,7 +166,7 @@ class UserHandler
             user.name = "User ${next_id}"
             user.email = "user${next_id}@example.com"
             
-            users.put(user.id, user)
+            users.set(user.id, user)
             next_id = next_id + 1
             
             return HttpResponse.created(user.to_json())
@@ -191,9 +191,9 @@ class HealthHandler
 Build the actual server that listens for connections:
 
 ```zebra
-// file: http_server.zbr
-// teaches: network server programming
-// project: Project-2-HTTP-Server
+# file: http_server.zbr
+# teaches: network server programming
+# project: Project-2-HTTP-Server
 
 class HttpServer
     var port as int
@@ -207,7 +207,7 @@ class HttpServer
     def register_handler(path as str, handler as RequestHandler)
         router.register(path, handler)
     
-    def start as Result(bool, str)
+    def start as bool throws
         is_running = true
         
         # Register default handlers
@@ -232,7 +232,7 @@ class HttpServer
         # Simplified simulation
         handle_request_simulation()
         
-        return Result.ok(true)
+        return true
     
     def handle_request_simulation
         # Simulate receiving a GET /health request
@@ -306,9 +306,9 @@ curl -X POST http://localhost:8080/api/users
 Start with counting word frequencies:
 
 ```zebra
-// file: frequency_analysis.zbr
-// teaches: frequency counting and sorting
-// project: Project-3-Data-Analysis
+# file: frequency_analysis.zbr
+# teaches: frequency counting and sorting
+# project: Project-3-Data-Analysis
 
 class WordFrequency
     var word as str
@@ -332,9 +332,9 @@ class FrequencyAnalyzer
                 var cleaned = word.trim()
                 if cleaned.len > 0
                     if freq.contains(cleaned)
-                        freq.put(cleaned, freq.fetch(cleaned) + 1)
+                        freq.set(cleaned, freq.get(cleaned) + 1)
                     else
-                        freq.put(cleaned, 1)
+                        freq.set(cleaned, 1)
             
             # Convert to list and sort by frequency
             var results as List(WordFrequency) = List()
@@ -378,9 +378,9 @@ class FrequencyAnalyzer
 Extract contiguous sequences of N words:
 
 ```zebra
-// file: ngram_analysis.zbr
-// teaches: n-gram extraction and pattern detection
-// project: Project-3-Data-Analysis
+# file: ngram_analysis.zbr
+# teaches: n-gram extraction and pattern detection
+# project: Project-3-Data-Analysis
 
 class NGram
     var gram as str
@@ -410,13 +410,13 @@ class NGramAnalyzer
                     j = j + 1
                 
                 if ngrams.contains(gram)
-                    var ng = ngrams.fetch(gram)
+                    var ng = ngrams.get(gram)
                     ng.count = ng.count + 1
                     ng.positions.add(i)
                 else
                     var ng = NGram(gram)
                     ng.positions.add(i)
-                    ngrams.put(gram, ng)
+                    ngrams.set(gram, ng)
                 
                 i = i + 1
             
@@ -461,9 +461,9 @@ class NGramAnalyzer
 Compare texts using Jaccard and other similarity metrics:
 
 ```zebra
-// file: similarity_analysis.zbr
-// teaches: similarity metrics and comparison
-// project: Project-3-Data-Analysis
+# file: similarity_analysis.zbr
+# teaches: similarity metrics and comparison
+# project: Project-3-Data-Analysis
 
 class SimilarityMetrics
     shared
@@ -536,9 +536,9 @@ class SimilarityMetrics
 Tie together all analysis tools:
 
 ```zebra
-// file: analysis_main.zbr
-// teaches: combining analysis modules
-// project: Project-3-Data-Analysis
+# file: analysis_main.zbr
+# teaches: combining analysis modules
+# project: Project-3-Data-Analysis
 
 class TextAnalysisReport
     var source_file as str
@@ -550,11 +550,11 @@ class TextAnalysisReport
 
 class AnalysisApplication
     shared
-        def analyze_file(filename as str) as Result(TextAnalysisReport, str)
+        def analyze_file(filename as str) as TextAnalysisReport throws
             var content_result = File.read(filename)
             
             if content_result.len == 0
-                return Result.err("File not found or empty")
+                raise "File not found or empty"
             
             var content = content_result
             var words = content.split(" ")
@@ -563,7 +563,7 @@ class AnalysisApplication
             for word in words
                 var cleaned = word.lower().trim()
                 if cleaned.len > 0
-                    unique_words_set.put(cleaned, 1)
+                    unique_words_set.set(cleaned, 1)
             
             var freq_analyzer = FrequencyAnalyzer()
             var top_words = freq_analyzer.top_words(content, 10)
@@ -580,7 +580,7 @@ class AnalysisApplication
             report.bigrams = bigrams
             report.trigrams = trigrams
             
-            return Result.ok(report)
+            return report
         
         def print_report(report as TextAnalysisReport)
             print "==== Text Analysis Report ===="

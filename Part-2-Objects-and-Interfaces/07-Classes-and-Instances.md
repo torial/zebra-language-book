@@ -25,9 +25,9 @@ Code: A Car class has fields (color, speed) and methods (accelerate, brake)
 ### Simple Class
 
 ```zebra
-// file: 07_class_basic.zbr
-// teaches: class definition
-// chapter: 07-Classes-and-Instances
+# file: 07_class_basic.zbr
+# teaches: class definition
+# chapter: 07-Classes-and-Instances
 
 class Person
     var name as str
@@ -42,7 +42,7 @@ class Main
             var person = Person()
             person.name = "Alice"
             person.age = 30
-            person.greet()  // Hi, I'm Alice
+            person.greet()  # Hi, I'm Alice
 ```
 
 **Breakdown:**
@@ -54,9 +54,9 @@ class Main
 ### Fields and Initialization
 
 ```zebra
-// file: 07_init.zbr
-// teaches: field initialization
-// chapter: 07-Classes-and-Instances
+# file: 07_init.zbr
+# teaches: field initialization
+# chapter: 07-Classes-and-Instances
 
 class Rectangle
     var width as int = 0
@@ -71,15 +71,15 @@ class Main
             var rect = Rectangle()
             rect.width = 10
             rect.height = 5
-            print rect.area()  // 50
+            print rect.area()  # 50
 ```
 
 ### Instance Methods
 
 ```zebra
-// file: 07_methods.zbr
-// teaches: instance methods
-// chapter: 07-Classes-and-Instances
+# file: 07_methods.zbr
+# teaches: instance methods
+# chapter: 07-Classes-and-Instances
 
 class Counter
     var count as int = 0
@@ -103,17 +103,17 @@ class Main
             counter.increment()
             counter.increment()
             counter.increment()
-            print counter.get_count()  // 3
+            print counter.get_count()  # 3
             counter.reset()
-            print counter.get_count()  // 0
+            print counter.get_count()  # 0
 ```
 
 ### Shared Methods (Class Methods)
 
 ```zebra
-// file: 07_shared.zbr
-// teaches: shared (class) methods
-// chapter: 07-Classes-and-Instances
+# file: 07_shared.zbr
+# teaches: shared (class) methods
+# chapter: 07-Classes-and-Instances
 
 class Math
     shared
@@ -130,8 +130,8 @@ class Math
 class Main
     shared
         def main
-            print Math.abs(-5)      // 5
-            print Math.max(10, 20)  // 20
+            print Math.abs(-5)      # 5
+            print Math.max(10, 20)  # 20
 ```
 
 ### If you're new to programming
@@ -151,9 +151,9 @@ class Main
 ## Real World: User Management
 
 ```zebra
-// file: 07_user_system.zbr
-// teaches: realistic class design
-// chapter: 07-Classes-and-Instances
+# file: 07_user_system.zbr
+# teaches: realistic class design
+# chapter: 07-Classes-and-Instances
 
 class User
     var username as str = ""

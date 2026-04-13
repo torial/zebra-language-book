@@ -27,29 +27,29 @@ A `List` holds multiple values of the same type in order.
 ### Creating Lists
 
 ```zebra
-// file: 03_lists.zbr
-// teaches: list creation and access
-// chapter: 03-Collections
+# file: 03_lists.zbr
+# teaches: list creation and access
+# chapter: 03-Collections
 
 class Main
     shared
         def main
-            // Create an empty list
+            # Create an empty list
             var fruits as List(str) = List()
             
-            // Add items
+            # Add items
             fruits.add("apple")
             fruits.add("banana")
             fruits.add("cherry")
             
-            // Access by index
-            print fruits.at(0)   // apple
-            print fruits.at(1)   // banana
+            # Access by index
+            print fruits.at(0)   # apple
+            print fruits.at(1)   # banana
             
-            // Check size
-            print fruits.count() // 3
+            # Check size
+            print fruits.count() # 3
             
-            // Iterate
+            # Iterate
             for fruit in fruits
                 print fruit
 ```
@@ -57,9 +57,9 @@ class Main
 ### List Operations
 
 ```zebra
-// file: 03_list_ops.zbr
-// teaches: list manipulation
-// chapter: 03-Collections
+# file: 03_list_ops.zbr
+# teaches: list manipulation
+# chapter: 03-Collections
 
 class Main
     shared
@@ -69,29 +69,29 @@ class Main
             nums.add(20)
             nums.add(30)
             
-            // Check existence
+            # Check existence
             var has_twenty = nums.contains(20)
-            print has_twenty                    // true
+            print has_twenty                    # true
             
-            // Find index
+            # Find index
             var idx = nums.indexOf(20)
-            print idx                           // 1
+            print idx                           # 1
             
-            // Remove
+            # Remove
             nums.remove(20)
-            print nums.count()                  // 2
+            print nums.count()                  # 2
             
-            // Clear
+            # Clear
             nums.clear()
-            print nums.count()                  // 0
+            print nums.count()                  # 0
 ```
 
 ### Iteration Patterns
 
 ```zebra
-// file: 03_iteration.zbr
-// teaches: different iteration styles
-// chapter: 03-Collections
+# file: 03_iteration.zbr
+# teaches: different iteration styles
+# chapter: 03-Collections
 
 class Main
     shared
@@ -101,11 +101,11 @@ class Main
             items.add("second")
             items.add("third")
             
-            // Simple iteration
+            # Simple iteration
             for item in items
                 print item
             
-            // Iteration with index (if supported)
+            # Iteration with index (if supported)
             var i = 0
             while i < items.count()
                 print "${i}: ${items.at(i)}"
@@ -149,30 +149,30 @@ A `HashMap` stores key-value pairs. Fast lookup by key.
 ### Creating and Using HashMaps
 
 ```zebra
-// file: 03_hashmaps.zbr
-// teaches: hashmap creation and access
-// chapter: 03-Collections
+# file: 03_hashmaps.zbr
+# teaches: hashmap creation and access
+# chapter: 03-Collections
 
 class Main
     shared
         def main
-            // Create empty HashMap
+            # Create empty HashMap
             var ages as HashMap(str, int) = HashMap()
             
-            // Add key-value pairs
-            ages.put("Alice", 30)
-            ages.put("Bob", 25)
-            ages.put("Carol", 28)
+            # Add key-value pairs
+            ages.set("Alice", 30)
+            ages.set("Bob", 25)
+            ages.set("Carol", 28)
             
-            // Retrieve by key
-            var alice_age = ages.fetch("Alice")
-            print alice_age                     // 30
+            # Retrieve by key
+            var alice_age = ages.get("Alice")
+            print alice_age                     # 30
             
-            // Check if key exists
+            # Check if key exists
             var has_alice = ages.contains("Alice")
-            print has_alice                     // true
+            print has_alice                     # true
             
-            // Iterate
+            # Iterate
             for name, age in ages
                 print "${name}: ${age}"
 ```
@@ -180,30 +180,30 @@ class Main
 ### HashMap Operations
 
 ```zebra
-// file: 03_hashmap_ops.zbr
-// teaches: hashmap manipulation
-// chapter: 03-Collections
+# file: 03_hashmap_ops.zbr
+# teaches: hashmap manipulation
+# chapter: 03-Collections
 
 class Main
     shared
         def main
             var config as HashMap(str, str) = HashMap()
-            config.put("host", "localhost")
-            config.put("port", "8080")
-            config.put("debug", "true")
+            config.set("host", "localhost")
+            config.set("port", "8080")
+            config.set("debug", "true")
             
-            // Count entries
-            print config.count()                // 3
+            # Count entries
+            print config.count()                # 3
             
-            // Remove entry
+            # Remove entry
             config.remove("debug")
-            print config.count()                // 2
+            print config.count()                # 2
             
-            // Check contains
+            # Check contains
             if config.contains("host")
-                print config.fetch("host")      // localhost
+                print config.get("host")      # localhost
             
-            // Iterate over keys and values
+            # Iterate over keys and values
             for key, value in config
                 print "${key} = ${value}"
 ```
@@ -228,39 +228,36 @@ for name, age in ages
 
 ---
 
-## Sets
+## Deduplication with HashMap
 
-A `Set` holds unique values. No duplicates.
+Need unique values? Use a `HashMap` where keys track membership:
 
 ```zebra
-// file: 03_sets.zbr
-// teaches: sets for uniqueness
-// chapter: 03-Collections
+# file: 03_dedup.zbr
+# teaches: using HashMap for uniqueness
+# chapter: 03-Collections
 
 class Main
     shared
         def main
-            var unique_ids as Set(int) = Set()
+            var seen as HashMap(int, bool) = HashMap()
+            var unique as List(int) = List()
             
-            // Add values
-            unique_ids.add(1)
-            unique_ids.add(2)
-            unique_ids.add(3)
-            unique_ids.add(2)    // Duplicate, won't add again
+            var ids as List(int) = List()
+            ids.add(1)
+            ids.add(2)
+            ids.add(3)
+            ids.add(2)    # Duplicate
             
-            print unique_ids.count()            // 3
+            for id in ids
+                if not seen.contains(id)
+                    seen.set(id, true)
+                    unique.add(id)
             
-            // Check membership
-            var has_two = unique_ids.contains(2)
-            print has_two                       // true
+            print unique.count()    # 3
             
-            // Remove
-            unique_ids.remove(2)
-            print unique_ids.count()            // 2
-            
-            // Iterate
-            for id in unique_ids
-                print id
+            # Check membership
+            print seen.contains(2)  # true
 ```
 
 ---
@@ -268,9 +265,9 @@ class Main
 ## Real World: Data Processing
 
 ```zebra
-// file: 03_real_world.zbr
-// teaches: collections in realistic scenarios
-// chapter: 03-Collections
+# file: 03_real_world.zbr
+# teaches: collections in realistic scenarios
+# chapter: 03-Collections
 
 class Student
     var name as str
@@ -279,7 +276,7 @@ class Student
 class Main
     shared
         def main
-            // List of students
+            # List of students
             var students as List(Student) = List()
             
             var alice = Student()
@@ -292,14 +289,14 @@ class Main
             bob.gpa = 3.5
             students.add(bob)
             
-            // Calculate average GPA
+            # Calculate average GPA
             var total = 0.0
             for student in students
                 total = total + student.gpa
             var average = total / students.count()
             print "Average GPA: ${average}"
             
-            // Find student by name
+            # Find student by name
             var target_name = "Alice"
             for student in students
                 if student.name == target_name
@@ -313,9 +310,9 @@ class Main
 ### Filter and Transform
 
 ```zebra
-// file: 03_patterns.zbr
-// teaches: collection patterns
-// chapter: 03-Collections
+# file: 03_patterns.zbr
+# teaches: collection patterns
+# chapter: 03-Collections
 
 class Main
     shared
@@ -327,7 +324,7 @@ class Main
             numbers.add(4)
             numbers.add(5)
             
-            // Filter: keep only even numbers
+            # Filter: keep only even numbers
             var evens as List(int) = List()
             for num in numbers
                 if num % 2 == 0
@@ -337,7 +334,7 @@ class Main
             for e in evens
                 print e
             
-            // Count matching items
+            # Count matching items
             var count_gt_3 = 0
             for num in numbers
                 if num > 3
@@ -352,19 +349,19 @@ class Main
 > ❌ **Mistake:** Forgetting type parameters
 >
 > ```zebra
-> var items = List()  // What type? List(what)?
+> var items = List()  # What type? List(what)?
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var items as List(str) = List()  // Clear: list of strings
+> var items as List(str) = List()  # Clear: list of strings
 > ```
 
 > ❌ **Mistake:** Iterating and modifying
 >
 > ```zebra
 > for item in items
->     items.remove(item)  // ❌ Unsafe: modifying while iterating
+>     items.remove(item)  # ❌ Unsafe: modifying while iterating
 > ```
 >
 > ✅ **Better:**
@@ -381,13 +378,13 @@ class Main
 >
 > ```zebra
 > var map as HashMap(str, int) = HashMap()
-> map.put(1, 100)  // ❌ Key should be str, not int
+> map.set(1, 100)  # ❌ Key should be str, not int
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var map as HashMap(str, int) = HashMap()
-> map.put("count", 100)  // ✅ Key is str
+> map.set("count", 100)  # ✅ Key is str
 > ```
 
 ---
@@ -415,7 +412,7 @@ class Main
             for num in nums
                 sum = sum + num
             
-            print "Sum: ${sum}"  // 100
+            print "Sum: ${sum}"  # 100
 ```
 
 </details>
@@ -432,20 +429,20 @@ class Main
     shared
         def main
             var phone_book as HashMap(str, str) = HashMap()
-            phone_book.put("Alice", "555-1234")
-            phone_book.put("Bob", "555-5678")
-            phone_book.put("Carol", "555-9999")
+            phone_book.set("Alice", "555-1234")
+            phone_book.set("Bob", "555-5678")
+            phone_book.set("Carol", "555-9999")
             
             var name = "Bob"
             if phone_book.contains(name)
-                print "${name}'s number: ${phone_book.fetch(name)}"
+                print "${name}'s number: ${phone_book.get(name)}"
 ```
 
 </details>
 
 ### Exercise 3: Unique Words
 
-Count unique words in a sentence (using Set):
+Count unique words in a sentence (using HashMap for deduplication):
 
 <details>
 <summary>Solution</summary>
@@ -457,12 +454,12 @@ class Main
             var text = "the quick brown fox jumps over the lazy dog"
             var words = text.split(" ")
             
-            var unique as Set(str) = Set()
+            var seen as HashMap(str, bool) = HashMap()
             for word in words
-                unique.add(word)
+                seen.set(word, true)
             
             print "Total words: ${words.count()}"
-            print "Unique words: ${unique.count()}"
+            print "Unique words: ${seen.count()}"
 ```
 
 </details>
@@ -481,7 +478,7 @@ class Main
 
 - **List(T)** holds ordered items, access by index
 - **HashMap(K,V)** holds key-value pairs, fast lookup
-- **Set(T)** holds unique values
+- **Deduplication** — use HashMap keys for unique-value tracking
 - **Iteration** with `for item in collection` is the main pattern
 - **Type parameters** are required: `List(str)` not just `List`
 - **Modifying while iterating** is unsafe; collect changes first

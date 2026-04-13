@@ -22,9 +22,9 @@
 ### Simple Interface
 
 ```zebra
-// file: 08_interface_basic.zbr
-// teaches: interface definition
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_interface_basic.zbr
+# teaches: interface definition
+# chapter: 08-Interfaces-and-Protocols
 
 interface Animal
     def speak as str
@@ -50,12 +50,12 @@ class Main
     shared
         def main
             var dog as Animal = Dog()
-            print dog.speak()      // Woof!
-            dog.move()             // Running on four legs
+            print dog.speak()      # Woof!
+            dog.move()             # Running on four legs
             
             var bird as Animal = Bird()
-            print bird.speak()     // Tweet!
-            bird.move()            // Flying through the air
+            print bird.speak()     # Tweet!
+            bird.move()            # Flying through the air
 ```
 
 **Key points:**
@@ -66,9 +66,9 @@ class Main
 ### Multiple Methods
 
 ```zebra
-// file: 08_interface_methods.zbr
-// teaches: interface with multiple methods
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_interface_methods.zbr
+# teaches: interface with multiple methods
+# chapter: 08-Interfaces-and-Protocols
 
 interface PaymentProcessor
     def process(amount as float) as bool
@@ -109,9 +109,9 @@ class PayPalProcessor
 ### Using Different Implementations
 
 ```zebra
-// file: 08_polymorphism.zbr
-// teaches: polymorphic behavior
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_polymorphism.zbr
+# teaches: polymorphic behavior
+# chapter: 08-Interfaces-and-Protocols
 
 class Store
     shared
@@ -127,7 +127,7 @@ class Main
             var cc_processor = CreditCardProcessor()
             var paypal_processor = PayPalProcessor()
             
-            // Same code, different behavior
+            # Same code, different behavior
             Store.process_payment(cc_processor, 99.99)
             Store.process_payment(paypal_processor, 49.99)
 ```
@@ -135,9 +135,9 @@ class Main
 ### Collections of Interface Types
 
 ```zebra
-// file: 08_collection_interface.zbr
-// teaches: storing different implementations
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_collection_interface.zbr
+# teaches: storing different implementations
+# chapter: 08-Interfaces-and-Protocols
 
 class Zoo
     var animals as List(Animal) = List()
@@ -170,9 +170,9 @@ class Main
 ## Real World: Logging System
 
 ```zebra
-// file: 08_logger_system.zbr
-// teaches: realistic interface use
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_logger_system.zbr
+# teaches: realistic interface use
+# chapter: 08-Interfaces-and-Protocols
 
 interface Logger
     def debug(message as str)
@@ -278,7 +278,7 @@ class OldSystemAdapter
         var old_system as OldSystem = OldSystem()
         
         def process(data as str)
-            // Adapt new interface to old system
+            # Adapt new interface to old system
             old_system.old_process(data)
 ```
 
@@ -464,11 +464,11 @@ class MemoryDatabase
     var data as HashMap(str, str) = HashMap()
     implements Database
         def save(key as str, value as str) as bool
-            data.put(key, value)
+            data.set(key, value)
             return true
         def load(key as str) as str?
             if data.contains(key)
-                return data.fetch(key)
+                return data.get(key)
             return nil
         def delete(key as str) as bool
             data.remove(key)

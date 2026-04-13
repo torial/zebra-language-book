@@ -46,19 +46,19 @@ Learning what exists prevents reinventing wheels.
 ```zebra
 class FileIO
     shared
-        def read_file(path as str) as Result(str, str)
+        def read_file(path as str) as str throws
             # Read entire file
-            return Result.ok("content")
+            return "content"
         
-        def write_file(path as str, content as str) as Result(bool, str)
+        def write_file(path as str, content as str) as bool throws
             # Write file
-            return Result.ok(true)
+            return true
         
         def file_exists(path as str) as bool
             return true
         
-        def delete_file(path as str) as Result(bool, str)
-            return Result.ok(true)
+        def delete_file(path as str) as bool throws
+            return true
 ```
 
 ### Line-by-Line Reading
@@ -66,13 +66,13 @@ class FileIO
 ```zebra
 class LineReader
     shared
-        def process_lines(path as str) as Result(int, str)
+        def process_lines(path as str) as int throws
             var lines = 0
             var content = read_file(path).unwrapOr("")
             for line in content.split("\n")
                 if line.len > 0
                     lines = lines + 1
-            return Result.ok(lines)
+            return lines
 ```
 
 ### System Access
@@ -136,13 +136,13 @@ class System
 ### Common Patterns
 
 ```zebra
-// Email
+# Email
 var email_re = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
-// Phone
+# Phone
 var phone_re = Regex.compile("\\d{3}-\\d{3}-\\d{4}")
 
-// URL
+# URL
 var url_re = Regex.compile("https?://[a-z0-9]+\\.[a-z]+")
 ```
 
@@ -212,8 +212,8 @@ class ZigInterop
 ### Type Marshaling
 
 ```zebra
-// C expects: int foo(const char* str, int* out_len)
-// Zebra code:
+# C expects: int foo(const char* str, int* out_len)
+# Zebra code:
 def call_c_func(input as str)
     var out_len as int = 0
     var result = c_func(input, out_len)
@@ -331,30 +331,30 @@ def function_name(param as Type) as ReturnType
 **Common Tasks:**
 
 ```zebra
-// Read file
+# Read file
 var content = File.read("file.txt")
 
-// Parse lines
+# Parse lines
 var lines = content.split("\n")
 
-// Count items
+# Count items
 for item in items
     count = count + 1
 
-// Search list
+# Search list
 for item in items
     if item.contains("search")
         print item
 
-// Convert types
+# Convert types
 var num = "42".toInt()
 
-// Handle nil
+# Handle nil
 var value as str? = get_value()
 if value != nil
     print value
 
-// Handle errors
+# Handle errors
 var result = operation()
 if result.isErr()
     print result.errValue()

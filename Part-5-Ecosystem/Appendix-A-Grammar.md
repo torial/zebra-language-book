@@ -25,7 +25,7 @@ var x as int? = nil         # Can be int or nil
 var s as str? = "hello"     # Can be string or nil
 
 if x != nil
-    println(x)              # Safe to use x here
+    print x              # Safe to use x here
 ```
 
 **References:** Chapter 11 (Nil Tracking and Safety)
@@ -35,28 +35,30 @@ if x != nil
 ```zebra
 var numbers as List(int) = List()
 var mapping as HashMap(str, int) = HashMap()
-var unique as Set(str) = Set()
 
 numbers.add(1)
-mapping.put("key", 42)
-unique.add("value")
+mapping.set("key", 42)
 ```
 
 **References:** Chapter 03 (Collections)
 
-### Result Types
+### Error Handling
 
 ```zebra
-var result as Result(int, str) = Result.ok(42)
+def parse(text as str) as int throws
+    if text.len == 0
+        raise "Empty input"
+    return 42
 
-branch result
-    on Result.ok as value
-        print value
-    on Result.err as error
-        print "Error: ${error}"
+var value = parse("hello") catch 0
+
+try
+    var v = parse("")
+catch |err|
+    print "Error: ${err}"
 ```
 
-**References:** Chapter 12 (Error Handling with Results)
+**References:** Chapter 12 (Error Handling)
 
 ---
 
@@ -128,7 +130,7 @@ class Person
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
-println(person.describe())
+print person.describe()
 ```
 
 **References:** Chapter 07 (Classes and Instances)
@@ -175,7 +177,7 @@ class Dog is Animal
 
 var dog = Dog()
 dog.name = "Buddy"
-println(dog.speak())  # "Woof!"
+print dog.speak()  # "Woof!"
 ```
 
 **References:** Chapter 09 (Inheritance and Mixins)
@@ -211,11 +213,11 @@ class Circle is Shape
 
 ```zebra
 if x > 10
-    println("Large")
+    print "Large"
 elif x > 5
-    println("Medium")
+    print "Medium"
 else
-    println("Small")
+    print "Small"
 ```
 
 **References:** Chapter 05 (Control Flow)
@@ -225,7 +227,7 @@ else
 ```zebra
 var i = 0
 while i < 10
-    println(i)
+    print i
     i = i + 1
 ```
 
@@ -235,10 +237,10 @@ while i < 10
 
 ```zebra
 for item in collection
-    println(item)
+    print item
 
 for i in 0.to(10)
-    println(i)  # 0, 1, 2, ..., 9
+    print i  # 0, 1, 2, ..., 9
 ```
 
 **References:** Chapter 05 (Control Flow)
@@ -255,7 +257,7 @@ while i < 10
         i = i + 1
         continue         # Skip to next iteration
     
-    println(i)
+    print i
     i = i + 1
 ```
 
@@ -268,17 +270,28 @@ var value as int? = 42
 
 branch value
     on nil
-        println("Value is nil")
+        print "Value is nil"
     on _
-        println("Value is ${value}")
+        print "Value is ${value}"
 
-var result as Result(str, int) = Result.ok("success")
+```
 
-branch result
-    on ok(msg)
-        println(msg)
-    on err(code)
-        println("Error: ${code}")
+### Error Handling
+
+```zebra
+def load(path as str) as str throws
+    if path.len == 0
+        raise "Empty path"
+    return "data"
+
+# Catch expression
+var data = load("") catch "default"
+
+# Try/catch block
+try
+    var d = load("")
+catch |err|
+    print "Error: ${err}"
 ```
 
 **References:** Chapter 12 (Error Handling)
@@ -372,11 +385,11 @@ def example()
     
     if true
         var y = 20         # y is only visible here
-        println(x)         # x is visible (outer scope)
-        println(y)         # y is visible
+        print x         # x is visible (outer scope)
+        print y         # y is visible
     
-    println(x)             # x is visible
-    # println(y)           # ERROR: y is out of scope
+    print x             # x is visible
+    # print y           # ERROR: y is out of scope
 ```
 
 **References:** Chapter 04 (Functions and Scope)
@@ -438,39 +451,36 @@ def compare(a as T, b as T) as int where T can be Comparable
 
 ## Error Handling
 
-### Result Type
+### Fallible Functions
 
 ```zebra
-def divide(a as int, b as int) as Result(int, str)
+def divide(a as int, b as int) as int throws
     if b == 0
-        return Result.err("Division by zero")
-    return Result.ok(a / b)
+        raise "Division by zero"
+    return a / b
 ```
 
-### Checking Results
+### Catch Expression
 
 ```zebra
-var result = divide(10, 2)
+# Inline fallback
+var value = divide(10, 0) catch 0
 
-if result.isOk()
-    println(result.value())
-elif result.isErr()
-    println(result.error())
+# Catch with binding
+var result = divide(10, 0) catch |e| -1
 ```
 
-### Unwrapping Results
+### Try/Catch Block
 
 ```zebra
-var result = divide(10, 2)
-
-# Unwrap with default
-var value = result.unwrapOr(0)  # 0 if error
-
-# Unwrap or panic
-# var value = result.unwrap()  # Crashes if error
+try
+    var value = divide(10, 0)
+    print value
+catch |err|
+    print "Error: ${err}"
 ```
 
-**References:** Chapter 12 (Error Handling with Results)
+**References:** Chapter 12 (Error Handling)
 
 ---
 
@@ -483,10 +493,10 @@ var x as int? = nil
 
 if x != nil
     # Safe to use x as int here
-    println(x + 1)
+    print x + 1
 
 if x == nil
-    println("x is nil")
+    print "x is nil"
 ```
 
 ### Safe Navigation
@@ -552,7 +562,7 @@ items.contains("apple")         # Check membership
 items.clear()                   # Remove all items
 
 for item in items
-    println(item)               # Iterate
+    print item               # Iterate
 ```
 
 ### HashMap Operations
@@ -560,29 +570,28 @@ for item in items
 ```zebra
 var map = HashMap()
 
-map.put("a", 1)                 # Add/update
-map.fetch("a")                  # Get value (returns nullable)
+map.set("a", 1)                 # Add/update
+map.get("a")                  # Get value (returns nullable)
 map.contains("a")               # Check key exists
 map.remove("a")                 # Remove key
 map.keys()                       # Get all keys
 
 for key in map.keys()
-    var value = map.fetch(key)
+    var value = map.get(key)
     if value != nil
-        println("${key} => ${value}")
+        print "${key} => ${value}"
 ```
 
-### Set Operations
+### Deduplication (via HashMap)
 
 ```zebra
-var unique = Set()
+var seen as HashMap(str, bool) = HashMap()
 
-unique.add("apple")             # Add item
-unique.remove("apple")          # Remove item
-unique.contains("apple")        # Check membership
+seen.set("apple", true)         # Track item
+seen.contains("apple")          # Check membership
 
-for item in unique
-    println(item)               # Iterate
+for key in seen.keys()
+    print key                # Iterate unique items
 ```
 
 **References:** Chapter 03 (Collections)
@@ -655,10 +664,11 @@ class Person is Serializable
 ### Importing
 
 ```zebra
-use System
+use MathUtils
+use ast exposing Stmt, Expr, TypeRef
 
-# Access namespaced functionality
-var args = System.args()
+# Access module functionality
+var args = sys.args()
 ```
 
 ### Defining Namespaces
@@ -722,8 +732,8 @@ namespace MyApp.Utils
 | `T?` | `42` or `nil` | Depends on T | T or nil |
 | `List(T)` | `List()` | Dynamic | Ordered collection |
 | `HashMap(K,V)` | `HashMap()` | Dynamic | Key-value pairs |
-| `Set(T)` | `Set()` | Dynamic | Unique items |
-| `Result(T, E)` | `Result.ok(42)` | Depends | Success or error |
+| `struct` | `Point(3, 4)` | Stack | Value type |
+| `union` | `Shape.circle(5)` | Stack | Tagged union |
 
 ---
 
@@ -734,7 +744,7 @@ namespace MyApp.Utils
 ```zebra
 var x as int? = 42
 if x != nil
-    println(x + 1)
+    print x + 1
 ```
 
 ### Null Coalescing (using unwrapOr)
@@ -749,16 +759,16 @@ var value = x.unwrapOr(0)  # Use 0 if x is nil
 ```zebra
 var result = operation()
 if result.isErr()
-    println("Error: ${result.error()}")
+    print "Error: ${result.error(}")
 else
-    println("Success: ${result.value()}")
+    print "Success: ${result.value(}")
 ```
 
 ### For-Each Loop
 
 ```zebra
 for item in collection
-    println(item)
+    print item
 ```
 
 ### String Interpolation
@@ -766,7 +776,7 @@ for item in collection
 ```zebra
 var name = "Alice"
 var age = 30
-println("${name} is ${age} years old")
+print "${name} is ${age} years old"
 ```
 
 ---

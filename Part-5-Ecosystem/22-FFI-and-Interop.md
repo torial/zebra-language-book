@@ -33,12 +33,12 @@ FFI (Foreign Function Interface) lets you call these from Zebra. This chapter co
 The simplest case: C functions with primitive types.
 
 ```zebra
-// file: ffi-c-simple.zbr
-// teaches: calling basic C functions
-// chapter: 22
+# file: ffi-c-simple.zbr
+# teaches: calling basic C functions
+# chapter: 22
 
-// Declare C function signature
-// Note: This example assumes the function is available at link time
+# Declare C function signature
+# Note: This example assumes the function is available at link time
 shared class Math
     shared
         def sqrt(x as float) as float
@@ -51,10 +51,10 @@ shared class Math
 
 def main()
     var result = Math.sqrt(16.0)
-    println(result)  # 4.0
+    print result  # 4.0
     
     var power = Math.pow(2.0, 8.0)
-    println(power)  # 256.0
+    print power  # 256.0
 ```
 
 ### String Marshaling
@@ -62,9 +62,9 @@ def main()
 Strings require special care because Zebra and C have different string representations.
 
 ```zebra
-// file: ffi-c-strings.zbr
-// teaches: passing strings to C functions
-// chapter: 22
+# file: ffi-c-strings.zbr
+# teaches: passing strings to C functions
+# chapter: 22
 
 shared class CString
     shared
@@ -85,15 +85,15 @@ shared class CString
 def main()
     var text = "Hello, World!"
     var length = CString.strlen(text)
-    println("Length: ${length}")
+    print "Length: ${length}"
     
     var cmp = CString.strcmp("apple", "apple")
     if cmp == 0
-        println("Strings are equal")
+        print "Strings are equal"
     
     cmp = CString.strcmp("apple", "banana")
     if cmp < 0
-        println("apple comes before banana")
+        print "apple comes before banana"
 ```
 
 ### Working with Arrays
@@ -101,9 +101,9 @@ def main()
 Arrays are commonly passed to C functions.
 
 ```zebra
-// file: ffi-c-arrays.zbr
-// teaches: passing arrays to C functions
-// chapter: 22
+# file: ffi-c-arrays.zbr
+# teaches: passing arrays to C functions
+# chapter: 22
 
 shared class CArray
     shared
@@ -133,10 +133,10 @@ def main()
     numbers.add(15)
     
     var sum = CArray.sum_array(numbers)
-    println("Sum: ${sum}")  # 45
+    print "Sum: ${sum}"  # 45
     
     var max_val = CArray.max_array(numbers)
-    println("Max: ${max_val}")  # 20
+    print "Max: ${max_val}"  # 20
 ```
 
 ### Pointers and Memory Management
@@ -144,9 +144,9 @@ def main()
 This is where FFI gets dangerous.
 
 ```zebra
-// file: ffi-c-pointers.zbr
-// teaches: handling pointers in FFI
-// chapter: 22
+# file: ffi-c-pointers.zbr
+# teaches: handling pointers in FFI
+# chapter: 22
 
 shared class CMemory
     shared
@@ -155,10 +155,10 @@ shared class CMemory
         # These are low-level and error-prone
         
         # Better: allocate in Zebra, pass to C
-        def process_buffer(data as str) as Result(int, str)
+        def process_buffer(data as str) as int throws
             # Zebra owns the memory, C just reads it
             # Safe! C cannot deallocate
-            return Result.ok(data.len)
+            return data.len
 
 def main()
     var my_data = "Important data"
@@ -167,9 +167,9 @@ def main()
     var result = CMemory.process_buffer(my_data)
     
     if result.isOk()
-        println("Processed: ${result.value()} bytes")
+        print "Processed: ${result.value(} bytes")
     else
-        println("Error: ${result.error()}")
+        print "Error: ${result.error(}")
     
     # Zebra's scoping ensures my_data is cleaned up automatically
 ```
@@ -183,9 +183,9 @@ Zig is closer to Zebra, making interop more ergonomic.
 ### Basic Zig Interop
 
 ```zebra
-// file: ffi-zig-basic.zbr
-// teaches: calling Zig functions from Zebra
-// chapter: 22
+# file: ffi-zig-basic.zbr
+# teaches: calling Zig functions from Zebra
+# chapter: 22
 
 shared class ZigMath
     shared
@@ -200,12 +200,12 @@ shared class ZigMath
 
 def main()
     var result = ZigMath.gcd(48, 18)
-    println(result)  # 6
+    print result  # 6
     
     if ZigMath.is_prime(17)
-        println("17 is prime")
+        print "17 is prime"
     else
-        println("17 is not prime")
+        print "17 is not prime"
 ```
 
 ### Zig String Handling
@@ -213,9 +213,9 @@ def main()
 Zig's string handling is different from C's.
 
 ```zebra
-// file: ffi-zig-strings.zbr
-// teaches: Zig string interop
-// chapter: 22
+# file: ffi-zig-strings.zbr
+# teaches: Zig string interop
+# chapter: 22
 
 shared class ZigString
     shared
@@ -237,10 +237,10 @@ shared class ZigString
 def main()
     var text = "Hello, Zig!"
     var len = ZigString.string_length(text)
-    println("Length: ${len}")
+    print "Length: ${len}"
     
     var upper = ZigString.to_uppercase(text)
-    println("Uppercase: ${upper}")
+    print "Uppercase: ${upper}"
 ```
 
 ---
@@ -252,46 +252,46 @@ def main()
 Many C functions return error codes rather than throwing exceptions.
 
 ```zebra
-// file: ffi-error-codes.zbr
-// teaches: handling C-style error codes
-// chapter: 22
+# file: ffi-error-codes.zbr
+# teaches: handling C-style error codes
+# chapter: 22
 
 shared class CFile
     shared
         # C fopen: FILE* fopen(const char* filename, const char* mode)
         # Returns NULL on error
-        def open_file(filename as str, mode as str) as Result(int, str)
+        def open_file(filename as str, mode as str) as int throws
             # In real C, this returns FILE* (opaque pointer)
             # For now, return 0 to indicate error
             var file_handle = 0  # Attempt to open
             
             if file_handle == 0
-                return Result.err("Cannot open file: ${filename}")
+                raise "Cannot open file: ${filename}"
             else
-                return Result.ok(file_handle)
+                return file_handle
         
         # C close: int fclose(FILE* f)
         # Returns 0 on success, EOF on error
-        def close_file(file_handle as int) as Result(bool, str)
+        def close_file(file_handle as int) as bool throws
             var status = 0  # Attempt to close
             
             if status == 0
-                return Result.ok(true)
+                return true
             else
-                return Result.err("Error closing file")
+                raise "Error closing file"
 
 def main()
     var result = CFile.open_file("data.txt", "r")
     
     branch result
         on ok(handle)
-            println("File opened: ${handle}")
+            print "File opened: ${handle}"
             
             var close_result = CFile.close_file(handle)
             if close_result.isOk()
-                println("File closed")
+                print "File closed"
         on err(error)
-            println("Error: ${error}")
+            print "Error: ${error}"
 ```
 
 ### Exception-Like Patterns
@@ -299,9 +299,9 @@ def main()
 Some C libraries use setjmp/longjmp for exceptions. These are complex to use from Zebra—consider wrapping in a C shim.
 
 ```zebra
-// file: ffi-error-wrapper.zbr
-// teaches: wrapping C error handling in Zebra
-// chapter: 22
+# file: ffi-error-wrapper.zbr
+# teaches: wrapping C error handling in Zebra
+# chapter: 22
 
 # Example: C library with exception-like behavior
 # Rather than exposing this complexity to Zebra code,
@@ -310,16 +310,16 @@ Some C libraries use setjmp/longjmp for exceptions. These are complex to use fro
 shared class SafeLibrary
     shared
         # C function might throw (via setjmp/longjmp)
-        def risky_operation(input as str) as Result(str, str)
+        def risky_operation(input as str) as str throws
             # Wrapper function (in C or Zig) handles exceptions
             # and returns a Result to Zebra
-            return Result.err("Operation failed")
+            raise "Operation failed"
 
 def main()
     var result = SafeLibrary.risky_operation("data")
     
     if result.isErr()
-        println("Operation failed safely")
+        print "Operation failed safely"
 ```
 
 ---
@@ -331,9 +331,9 @@ def main()
 Most numeric types map directly:
 
 ```zebra
-// file: ffi-numeric-types.zbr
-// teaches: numeric type marshaling
-// chapter: 22
+# file: ffi-numeric-types.zbr
+# teaches: numeric type marshaling
+# chapter: 22
 
 shared class Numeric
     shared
@@ -353,7 +353,7 @@ shared class Numeric
 def main()
     # Small numbers are safe
     var result = Numeric.c_int32_function(100)
-    println(result)
+    print result
     
     # Large numbers may overflow in C int32
     # Be careful!
@@ -366,9 +366,9 @@ def main()
 Collections require more care:
 
 ```zebra
-// file: ffi-structures.zbr
-// teaches: passing structures across FFI boundary
-// chapter: 22
+# file: ffi-structures.zbr
+# teaches: passing structures across FFI boundary
+# chapter: 22
 
 class Point
     var x as float
@@ -393,7 +393,7 @@ def main()
     var p2 = Point(3.0, 4.0)
     
     var dist = Geometry.distance(p1, p2)
-    println(dist)  # ~5.0 (3-4-5 triangle)
+    print dist  # ~5.0 (3-4-5 triangle)
 ```
 
 ---
@@ -405,17 +405,17 @@ def main()
 Different platforms have different APIs.
 
 ```zebra
-// file: ffi-platform-specific.zbr
-// teaches: handling platform differences
-// chapter: 22
+# file: ffi-platform-specific.zbr
+# teaches: handling platform differences
+# chapter: 22
 
 shared class Platform
     shared
         # Windows: GetFileSize
         # Unix: stat
-        def get_file_size(filename as str) as Result(int, str)
+        def get_file_size(filename as str) as int throws
             # Implementation varies by platform
-            return Result.ok(0)
+            return 0
         
         def get_environment_variable(name as str) as str?
             # Implemented via getenv (Unix) or GetEnvironmentVariable (Windows)
@@ -430,15 +430,15 @@ def main()
     var size_result = Platform.get_file_size("data.txt")
     
     if size_result.isOk()
-        println("File size: ${size_result.value()} bytes")
+        print "File size: ${size_result.value(} bytes")
 ```
 
 ### Conditional Compilation
 
 ```zebra
-// file: ffi-conditional.zbr
-// teaches: platform-specific compilation
-// chapter: 22
+# file: ffi-conditional.zbr
+# teaches: platform-specific compilation
+# chapter: 22
 
 shared class OSSpecific
     shared
@@ -451,8 +451,8 @@ shared class OSSpecific
             return "/"
 
 def main()
-    println("Platform: ${OSSpecific.platform_name()}")
-    println("Separator: ${OSSpecific.file_separator()}")
+    print "Platform: ${OSSpecific.platform_name(}")
+    print "Separator: ${OSSpecific.file_separator(}")
 ```
 
 ---
@@ -464,9 +464,9 @@ def main()
 The biggest FFI risk: memory management.
 
 ```zebra
-// file: ffi-safety-memory.zbr
-// teaches: FFI memory safety
-// chapter: 22
+# file: ffi-safety-memory.zbr
+# teaches: FFI memory safety
+# chapter: 22
 
 # SAFE: Zebra owns memory
 def safe_pattern(data as str) as int
@@ -507,9 +507,9 @@ def main()
 Type mismatches can cause crashes.
 
 ```zebra
-// file: ffi-safety-types.zbr
-// teaches: type safety across FFI boundaries
-// chapter: 22
+# file: ffi-safety-types.zbr
+# teaches: type safety across FFI boundaries
+# chapter: 22
 
 shared class TypeSafety
     shared
@@ -545,9 +545,9 @@ def main()
 Pointers can outlive their targets.
 
 ```zebra
-// file: ffi-safety-lifetime.zbr
-// teaches: avoiding pointer lifetime issues
-// chapter: 22
+# file: ffi-safety-lifetime.zbr
+# teaches: avoiding pointer lifetime issues
+# chapter: 22
 
 # UNSAFE: Reference to local variable
 # def dangerous() as int
@@ -584,9 +584,9 @@ def main()
 ## Practical Example: Crypto Library Integration
 
 ```zebra
-// file: ffi-crypto-example.zbr
-// teaches: practical FFI example with crypto
-// chapter: 22
+# file: ffi-crypto-example.zbr
+# teaches: practical FFI example with crypto
+# chapter: 22
 
 shared class Crypto
     shared
@@ -604,15 +604,15 @@ shared class Crypto
 def main()
     var message = "Secret password"
     var hash = Crypto.sha256(message)
-    println("SHA256: ${hash}")
+    print "SHA256: ${hash}"
     
     # Verify integrity
     var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
     
     if Crypto.verify_sha256(message, stored_hash)
-        println("Hash verified!")
+        print "Hash verified!"
     else
-        println("Hash mismatch!")
+        print "Hash mismatch!"
 ```
 
 ---
@@ -624,9 +624,9 @@ def main()
 FFI calls have overhead:
 
 ```zebra
-// file: ffi-performance.zbr
-// teaches: FFI performance tradeoffs
-// chapter: 22
+# file: ffi-performance.zbr
+# teaches: FFI performance tradeoffs
+# chapter: 22
 
 def main()
     # FFI calls are expensive compared to Zebra calls
@@ -658,9 +658,9 @@ def sum_all(nums as List(int)) as int
 ### Batching Operations
 
 ```zebra
-// file: ffi-batching.zbr
-// teaches: batching FFI operations
-// chapter: 22
+# file: ffi-batching.zbr
+# teaches: batching FFI operations
+# chapter: 22
 
 shared class Batch
     shared

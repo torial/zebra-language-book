@@ -19,17 +19,17 @@ This appendix helps you debug common Zebra programming errors. Each section show
 ```zebra
 var x = 42          # int
 var message = x     # ERROR: trying to assign int to str context
-println("Value: " + x)  # ERROR: can't concatenate string + int directly
+print "Value: " + x  # ERROR: can't concatenate string + int directly
 ```
 
 **Solution:**
 ```zebra
 var x = 42
 var message = x.toString()      # Convert int to string
-println("Value: " + message)    # Now it works
+print "Value: " + message    # Now it works
 
 # Or use interpolation
-println("Value: ${x}")          # Better approach
+print "Value: ${x}"          # Better approach
 ```
 
 ---
@@ -55,7 +55,7 @@ var y = "5".toInt()
 
 if x != nil and y != nil
     var sum = x + y         # 15
-    println(sum)
+    print sum
 ```
 
 **Better:**
@@ -111,7 +111,7 @@ var x as int? = nil
 if x != nil
     var result = x + 1  # Safe—x is definitely int here
 else
-    println("x is nil")
+    print "x is nil"
 ```
 
 **Alternative:**
@@ -157,7 +157,7 @@ if y != nil
 **Example:**
 ```zebra
 var x as int? = nil
-println(x + 1)          # ERROR if x is nil
+print x + 1          # ERROR if x is nil
 ```
 
 **Solution:**
@@ -165,9 +165,9 @@ println(x + 1)          # ERROR if x is nil
 var x as int? = get_value()
 
 if x != nil
-    println(x + 1)
+    print x + 1
 else
-    println("Value not found")
+    print "Value not found"
 ```
 
 ---
@@ -203,7 +203,7 @@ for i in 0.to(items.count())
 **Better:**
 ```zebra
 for item in items
-    println(item)            # No index worries
+    print item            # No index worries
 ```
 
 ---
@@ -235,25 +235,25 @@ if items.count() > 0
 **Example:**
 ```zebra
 var map = HashMap()
-var value = map.fetch("key")  # Returns nil, not an error
+var value = map.get("key")  # Returns nil, not an error
 
 # But if you don't check nil:
-var num = map.fetch("key")
+var num = map.get("key")
 var result = num + 1           # ERROR: num is nil!
 ```
 
 **Solution:**
 ```zebra
 var map = HashMap()
-var value = map.fetch("key")
+var value = map.get("key")
 
 if value != nil
     var result = value + 1
 else
-    println("Key not found")
+    print "Key not found"
 
 # Or use unwrapOr
-var value = map.fetch("key").unwrapOr(0)  # 0 if not found
+var value = map.get("key").unwrapOr(0)  # 0 if not found
 ```
 
 ---
@@ -303,9 +303,9 @@ var text = "hello"
 if text.len > 10
     var char = text.charAt(10)
 else
-    println("Index out of range")
+    print "Index out of range"
 
-// Safe way
+# Safe way
 var last = text.charAt(text.len - 1)  # Get last character
 ```
 
@@ -432,14 +432,14 @@ var result = File.read("file.txt")
 if result.isOk()
     var content = result.value()
 else
-    println("Error: ${result.error()}")
+    print "Error: ${result.error(}")
 
 # Or use branch
 branch result
     on ok(content)
-        println(content)
+        print content
     on err(error)
-        println("Error: ${error}")
+        print "Error: ${error}"
 ```
 
 ---
@@ -576,10 +576,10 @@ var result = File.read("missing.txt")
 var result = File.read("missing.txt")
 
 if result.isErr()
-    println("File not found: ${result.error()}")
+    print "File not found: ${result.error(}")
 else
     var content = result.value()
-    println(content)
+    print content
 
 # Or check first
 if File.exists("missing.txt")
@@ -598,8 +598,8 @@ Check permissions or use a different location:
 var result = File.write("output.txt", content)
 
 if result.isErr()
-    println("Cannot write: ${result.error()}")
-    // Try writing to temp directory instead
+    print "Cannot write: ${result.error(}")
+    # Try writing to temp directory instead
     var temp_result = File.write("/tmp/output.txt", content)
 ```
 
@@ -640,7 +640,7 @@ var pattern = Regex.compile("(abc)")   # Correct
 ```zebra
 var pattern = Regex.compile("^hello$")
 if not pattern.matches("hello world")
-    println("No match")
+    print "No match"
 ```
 
 **Solution:**
@@ -713,7 +713,7 @@ for i in 0.to(items.count())
         process(items.at(i), items.at(j))
 
 # FAST: O(n log n) or O(n)
-// Use appropriate algorithm
+# Use appropriate algorithm
 ```
 
 ---
@@ -724,11 +724,11 @@ for i in 0.to(items.count())
 
 ```zebra
 var x = 10
-println("x = ${x}")          # Check variable value
-println("After operation")   # Check execution flow
+print "x = ${x}"          # Check variable value
+print "After operation"   # Check execution flow
 
 if condition
-    println("Condition true: ${variable}")
+    print "Condition true: ${variable}"
 ```
 
 ### Assertion-Based Debugging
@@ -743,10 +743,10 @@ assert result.isOk(), "Operation must succeed"
 
 ```zebra
 var x = 42
-println(x.toString())        # Force type check
+print x.toString()        # Force type check
 
-var result as Result(int, str) = operation()
-// Type annotation makes intent clear
+var result as int throws = operation()
+# Type annotation makes intent clear
 ```
 
 ### Null Checking
@@ -755,9 +755,9 @@ var result as Result(int, str) = operation()
 var x as int? = get_value()
 
 if x != nil
-    println("Value: ${x}")
+    print "Value: ${x}"
 else
-    println("Value is nil")
+    print "Value is nil"
 ```
 
 ---
@@ -772,7 +772,7 @@ var x as int? = get_value()
 if x != nil
     var result = x + 1
 else
-    println("Value not available")
+    print "Value not available"
 ```
 
 ### Safe Collection Access
@@ -803,7 +803,7 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    println(num + 1)
+    print num + 1
 ```
 
 ### Safe Error Handling
@@ -812,7 +812,7 @@ if num != nil
 var result = risky_operation()
 
 if result.isErr()
-    println("Error: ${result.error()}")
+    print "Error: ${result.error(}")
     return
 
 var value = result.value()

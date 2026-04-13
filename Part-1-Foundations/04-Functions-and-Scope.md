@@ -22,9 +22,9 @@ Functions let you:
 ### Defining Functions
 
 ```zebra
-// file: 04_functions.zbr
-// teaches: function definition and calling
-// chapter: 04-Functions-and-Scope
+# file: 04_functions.zbr
+# teaches: function definition and calling
+# chapter: 04-Functions-and-Scope
 
 class Math
     shared
@@ -38,10 +38,10 @@ class Main
     shared
         def main
             var result1 = Math.add(5, 3)
-            print result1                       // 8
+            print result1                       # 8
             
             var result2 = Math.multiply(4, 7)
-            print result2                       // 28
+            print result2                       # 28
 ```
 
 **Breakdown:**
@@ -53,14 +53,14 @@ class Main
 ### Functions With Multiple Parameters
 
 ```zebra
-// file: 04_multi_params.zbr
-// teaches: multiple parameters
-// chapter: 04-Functions-and-Scope
+# file: 04_multi_params.zbr
+# teaches: multiple parameters
+# chapter: 04-Functions-and-Scope
 
 class String
     shared
         def pad(text as str, width as int, fill as str) as str
-            // (Implementation would go here)
+            # (Implementation would go here)
             return text
 
 class Main
@@ -73,9 +73,9 @@ class Main
 ### Optional Logic (No Return Value)
 
 ```zebra
-// file: 04_void.zbr
-// teaches: functions that don't return values
-// chapter: 04-Functions-and-Scope
+# file: 04_void.zbr
+# teaches: functions that don't return values
+# chapter: 04-Functions-and-Scope
 
 class Logger
     shared
@@ -105,18 +105,18 @@ When a function doesn't return a value, just omit `as <type>`.
 Variables declared inside a function are local (only accessible there):
 
 ```zebra
-// file: 04_scope.zbr
-// teaches: variable scope
-// chapter: 04-Functions-and-Scope
+# file: 04_scope.zbr
+# teaches: variable scope
+# chapter: 04-Functions-and-Scope
 
 class Calculator
     shared
-        var global_val as int = 100  // Shared (class-level)
+        var global_val as int = 100  # Shared (class-level)
         
         def compute
-            var local_val as int = 50  // Local to this function
-            print local_val             // ✅ Can access
-            print global_val            // ✅ Can access class-level
+            var local_val as int = 50  # Local to this function
+            print local_val             # ✅ Can access
+            print global_val            # ✅ Can access class-level
         
         def other
             # print local_val  # ❌ Can't access, it's not here
@@ -132,14 +132,14 @@ class Main
 ```zebra
 class Example
     shared
-        var count as int = 10  // Class-level
+        var count as int = 10  # Class-level
         
         def show
-            var count as int = 5  // Local (shadows class variable)
-            print count           // 5 (local shadows class)
+            var count as int = 5  # Local (shadows class variable)
+            print count           # 5 (local shadows class)
             
         def another
-            print count           // 10 (uses class-level)
+            print count           # 10 (uses class-level)
 ```
 
 Shadowing can be confusing. Rename to clarify intent.
@@ -157,9 +157,9 @@ Shadowing can be confusing. Rename to clarify intent.
 Functions can create inner functions that capture outer variables:
 
 ```zebra
-// file: 04_closures.zbr
-// teaches: closures and variable capture
-// chapter: 04-Functions-and-Scope
+# file: 04_closures.zbr
+# teaches: closures and variable capture
+# chapter: 04-Functions-and-Scope
 
 class Multiplier
     shared
@@ -175,8 +175,8 @@ class Main
             var double = Multiplier.make_multiplier(2)
             var triple = Multiplier.make_multiplier(3)
             
-            print double(5)             // 10
-            print triple(5)             // 15
+            print double(5)             # 10
+            print triple(5)             # 15
 ```
 
 **What's happening:**
@@ -189,9 +189,9 @@ The `capture` block explicitly captures `factor` from the outer scope.
 ### Capture Syntax
 
 ```zebra
-// file: 04_capture.zbr
-// teaches: capture blocks
-// chapter: 04-Functions-and-Scope
+# file: 04_capture.zbr
+# teaches: capture blocks
+# chapter: 04-Functions-and-Scope
 
 class Counter
     shared
@@ -207,9 +207,9 @@ class Main
     shared
         def main
             var counter = Counter.make_counter()
-            print counter()             // 1
-            print counter()             // 2
-            print counter()             // 3
+            print counter()             # 1
+            print counter()             # 2
+            print counter()             # 3
 ```
 
 ---
@@ -217,9 +217,9 @@ class Main
 ## Real World: Reusable Utilities
 
 ```zebra
-// file: 04_utilities.zbr
-// teaches: practical function use
-// chapter: 04-Functions-and-Scope
+# file: 04_utilities.zbr
+# teaches: practical function use
+# chapter: 04-Functions-and-Scope
 
 class String
     shared
@@ -242,7 +242,7 @@ class Main
     shared
         def main
             var padded = String.pad_left("hello", 10)
-            print "[${padded}]"         // [     hello]
+            print "[${padded}]"         # [     hello]
 ```
 
 ---
@@ -252,9 +252,9 @@ class Main
 ### Early Return
 
 ```zebra
-// file: 04_patterns.zbr
-// teaches: early return pattern
-// chapter: 04-Functions-and-Scope
+# file: 04_patterns.zbr
+# teaches: early return pattern
+# chapter: 04-Functions-and-Scope
 
 class Validator
     shared
@@ -285,9 +285,9 @@ class Print
 ### Passing Functions As Arguments
 
 ```zebra
-// file: 04_higher_order.zbr
-// teaches: functions as arguments
-// chapter: 04-Functions-and-Scope
+# file: 04_higher_order.zbr
+# teaches: functions as arguments
+# chapter: 04-Functions-and-Scope
 
 class Array
     shared
@@ -310,7 +310,7 @@ class Main
             var doubled = Array.map(nums, double_it)
             
             for d in doubled
-                print d                 // 2, 4, 6
+                print d                 # 2, 4, 6
 ```
 
 ---
@@ -388,7 +388,7 @@ class Math
 class Main
     shared
         def main
-            print Math.factorial(5)     // 120
+            print Math.factorial(5)     # 120
 ```
 
 </details>
@@ -413,8 +413,8 @@ class Main
     shared
         def main
             var add_10 = Adder.make_adder(10)
-            print add_10(5)              // 15
-            print add_10(20)             // 30
+            print add_10(5)              # 15
+            print add_10(20)             # 30
 ```
 
 </details>

@@ -10,8 +10,8 @@ Zebra is a modern programming language combining:
 - **Python's simplicity** — readable, clear syntax
 - **C#'s power** — strong types, interfaces, generics
 - **Nil safety** — prevents null pointer crashes
-- **Error handling** — explicit Result types instead of exceptions
-- **Performance** — compiles to Zig/WebAssembly
+- **Error handling** — explicit `throws`/`raise`/`catch` instead of hidden exceptions
+- **Performance** — compiles to Zig → machine code
 
 You can read your first working program in 2 minutes.
 
@@ -22,8 +22,10 @@ You can read your first working program in 2 minutes.
 Create a file: `hello.zbr`
 
 ```zebra
-def main()
-    println("Hello, World!")
+class Main
+    shared
+        def main
+            print "Hello, World!"
 ```
 
 Compile and run:
@@ -67,7 +69,7 @@ fruits.add("apple")
 fruits.add("banana")
 
 for fruit in fruits
-    println(fruit)
+    print fruit
 ```
 
 **Key:** Lists are for ordered collections. Use `for...in` to loop.
@@ -78,30 +80,33 @@ for fruit in fruits
 var x = 10
 
 if x > 5
-    println("Large")
+    print "Large"
 else
-    println("Small")
+    print "Small"
 
 while x > 0
-    println(x)
+    print x
     x = x - 1
 ```
 
 **Key:** No parentheses needed. Indentation matters.
 
-### 5. Error Handling with Result
+### 5. Error Handling
 
 ```zebra
-var result = File.read("data.txt")
+# Functions that can fail use `throws`
+var content = File.read("data.txt") catch "could not read"
+print content
 
-if result.isOk()
-    var content = result.value()
-    println(content)
-else
-    println("Error: ${result.error()}")
+# Or use try/catch for more control
+try
+    var data = File.read("data.txt")
+    print data
+catch |err|
+    print "Error: ${err}"
 ```
 
-**Key:** Functions return `Result(SuccessType, ErrorType)`. Check with `.isOk()`.
+**Key:** Functions annotated with `throws` can fail. Use `catch` for fallback or `try`/`catch` for structured handling.
 
 ---
 
@@ -110,21 +115,21 @@ else
 Create `count_lines.zbr`:
 
 ```zebra
-def main()
-    var filename = "input.txt"
-    
-    var result = File.read(filename)
-    
-    if result.isErr()
-        println("Error: ${result.error()}")
-        return
-    
-    var content = result.value()
-    var lines = content.split("\n")
-    
-    println("File: ${filename}")
-    println("Lines: ${lines.count()}")
-    println("Total characters: ${content.len}")
+class Main
+    shared
+        def main
+            var filename = "input.txt"
+
+            var content = File.read(filename) catch ""
+            if content.len == 0
+                print "Error: could not read file"
+                sys.exit(1)
+
+            var lines = content.split("\n")
+
+            print "File: ${filename}"
+            print "Lines: ${lines.count()}"
+            print "Total characters: ${content.len}"
 ```
 
 Run:
@@ -141,29 +146,30 @@ zebra count_lines.zbr
 99% of Zebra code follows this pattern:
 
 ```zebra
-def do_something(input as InputType) as Result(OutputType, ErrorType)
+def do_something(input as str) as str throws
     # 1. Validate input
     if input.len == 0
-        return Result.err("Input is empty")
-    
+        raise "Input is empty"
+
     # 2. Do work
     var result = process(input)
-    
-    # 3. Return success
-    return Result.ok(result)
 
-def main()
-    # 1. Call function
-    var operation_result = do_something("data")
-    
-    # 2. Check for errors
-    if operation_result.isErr()
-        println("Failed: ${operation_result.error()}")
-        return
-    
-    # 3. Use result
-    var value = operation_result.value()
-    println(value)
+    # 3. Return success
+    return result
+
+class Main
+    shared
+        def main
+            # Use catch for simple fallback
+            var value = do_something("data") catch "default"
+            print value
+
+            # Or try/catch for error details
+            try
+                var v = do_something("")
+                print v
+            catch |err|
+                print "Failed: ${err}"
 ```
 
 **This pattern handles errors explicitly. No surprises, no crashes.**
@@ -181,17 +187,14 @@ def main()
 
 ## Troubleshooting Your First Program
 
-**"error: unknown function 'println'"**
-→ Upgrade your Zebra compiler
-
 **"error: file not found"**
-→ Make sure your .zbr file exists and the compiler can find it
+-> Make sure your .zbr file exists and the compiler can find it
 
 **"error: expected str, got int"**
-→ Use `.toString()` or string interpolation: `"${number}"`
+-> Use `.toString()` or string interpolation: `"${number}"`
 
 **Program compiles but does nothing**
-→ Add a `def main()` function — that's your entry point
+-> Add a `class Main` with `shared def main` — that's your entry point
 
 ---
 
@@ -202,7 +205,7 @@ var x = 5                       # Declare variable
 def func() as str               # Define function
 for item in list                # Loop over collection
 if x > 5                        # Conditional
-Result.ok(value)                # Return success
+var v = risky() catch default   # Handle errors
 ```
 
 ---
@@ -210,12 +213,12 @@ Result.ok(value)                # Return success
 ## You're Ready!
 
 You now understand:
-- ✅ Variables and types
-- ✅ Functions
-- ✅ Collections
-- ✅ Control flow
-- ✅ Error handling
+- Variables and types
+- Functions
+- Collections
+- Control flow
+- Error handling
 
 Read Chapter 02 next to understand the type system deeper, or jump straight to Chapter 16 to build a real project.
 
-**Welcome to Zebra! 🦓**
+**Welcome to Zebra!**

@@ -10,16 +10,16 @@ Complete API reference for Zebra's built-in functions and standard library. For 
 
 ```zebra
 print(value)                # Output without newline
-println(value)              # Output with newline
-System.errln(message)       # Error output to stderr
+print value              # Output with newline
+sys.errln(message)       # Error output to stderr
 ```
 
 **Example:**
 ```zebra
-println("Hello, World!")
-print("Loading")
-print(".")
-println(" done")
+print "Hello, World!"
+print "Loading"
+print "."
+print " done"
 ```
 
 ---
@@ -59,7 +59,7 @@ text.lastIndexOf(substring) # int: position of last occurrence
 ```zebra
 if text.contains("World")
     var pos = text.indexOf("World")
-    println("Found at ${pos}")
+    print "Found at ${pos}"
 ```
 
 ### Manipulation
@@ -95,7 +95,7 @@ text.toFloat()              # float?: convert to float (nil if invalid)
 ```zebra
 var num = "42".toInt()
 if num != nil
-    println(num + 1)
+    print num + 1
 ```
 
 ---
@@ -125,15 +125,15 @@ var numbers = List()
 numbers.add(1)
 numbers.add(2)
 numbers.add(3)
-println(numbers.count())    # 3
-println(numbers.at(0))      # 1
+print numbers.count()    # 3
+print numbers.at(0)      # 1
 ```
 
 ### Iteration
 
 ```zebra
 for item in items
-    println(item)
+    print item
 ```
 
 ---
@@ -148,8 +148,8 @@ var map = HashMap()
 ### Basic Operations
 
 ```zebra
-map.put(key, value)         # Add or update key-value pair
-map.fetch(key)              # ValueType?: get value (nil if key not found)
+map.set(key, value)         # Add or update key-value pair
+map.get(key)              # ValueType?: get value (nil if key not found)
 map.contains(key)           # bool: key exists?
 map.remove(key)             # Remove key
 map.clear()                 # Remove all entries
@@ -165,47 +165,27 @@ map.values()                # List(ValueType): all values
 **Example:**
 ```zebra
 var scores = HashMap()
-scores.put("Alice", 95)
-scores.put("Bob", 87)
+scores.set("Alice", 95)
+scores.set("Bob", 87)
 
 if scores.contains("Alice")
-    var score = scores.fetch("Alice")  # 95
+    var score = scores.get("Alice")  # 95
     if score != nil
-        println("Alice: ${score}")
+        print "Alice: ${score}"
 ```
 
 ---
 
-## Set Methods
+## Deduplication Pattern (via HashMap)
 
-Create a Set:
-```zebra
-var unique = Set()
-```
-
-### Basic Operations
+Use HashMap keys for unique-value tracking:
 
 ```zebra
-unique.add(element)         # Add element (no-op if already exists)
-unique.remove(element)      # Remove element
-unique.contains(element)    # bool: element exists?
-unique.clear()              # Remove all elements
-```
-
-### Iteration
-
-```zebra
-for item in unique
-    println(item)
-```
-
-**Example:**
-```zebra
-var colors = Set()
-colors.add("red")
-colors.add("blue")
-colors.add("red")           # No-op, already exists
-println(colors.count())     # 2, not 3
+var seen as HashMap(str, bool) = HashMap()
+seen.set("red", true)
+seen.set("blue", true)
+seen.set("red", true)       # Overwrites, same effect as no-op
+print seen.count()           # 2
 ```
 
 ---
@@ -228,7 +208,7 @@ n.to(end)                   # List(int): numbers from n to end-1
 **Example:**
 ```zebra
 for i in 0.to(10)
-    println(i)
+    print i
 
 var str = 42.toString()     # "42"
 ```
@@ -259,7 +239,7 @@ str_to_float(s)             # float?: string to float
 ```zebra
 var n = str_to_int("42")
 if n != nil
-    println(n)
+    print n
 ```
 
 ---
@@ -301,24 +281,24 @@ not a                       # Logical NOT
 ## System Module
 
 ```zebra
-System.args()               # List(str): command-line arguments
-System.env(name)            # str?: get environment variable (nil if not set)
-System.cwd()                # str: current working directory
-System.exit(code)           # Exit program with code
-System.errln(message)       # Print to standard error
+sys.args()               # List(str): command-line arguments
+sys.env(name)            # str?: get environment variable (nil if not set)
+sys.cwd()                # str: current working directory
+sys.exit(code)           # Exit program with code
+sys.errln(message)       # Print to standard error
 ```
 
 **Example:**
 ```zebra
-var args = System.args()
+var args = sys.args()
 for arg in args
-    println("Argument: ${arg}")
+    print "Argument: ${arg}"
 
-var home = System.env("HOME")
+var home = sys.env("HOME")
 if home != nil
-    println("Home: ${home}")
+    print "Home: ${home}"
 
-println("Current: ${System.cwd()}")
+print "Current directory"
 ```
 
 ---
@@ -338,9 +318,9 @@ var result = File.read("data.txt")
 
 if result.isOk()
     var content = result.value()
-    println(content)
+    print content
 else
-    println("Error: ${result.error()}")
+    print "Error: ${result.error(}")
 
 var write_result = File.write("output.txt", "Hello")
 ```
@@ -371,7 +351,7 @@ pattern.split(text)         # List(str): split by matches
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
 if email_pattern.matches("user@example.com")
-    println("Valid email")
+    print "Valid email"
 
 var numbers = Regex.compile("\\d+")
 var matches = numbers.findAll("abc 123 def 456")
@@ -380,39 +360,32 @@ var matches = numbers.findAll("abc 123 def 456")
 
 ---
 
-## Result Type
+## Error Handling
 
-The `Result(T, E)` type is used for error handling.
+Zebra uses `throws`/`raise`/`catch` for error handling.
 
+**Declare a fallible function:**
 ```zebra
-Result.ok(value)            # Create success result
-Result.err(error)           # Create error result
+def divide(a as int, b as int) as int throws
+    if b == 0
+        raise "Division by zero"
+    return a / b
 ```
 
-**Methods on Result:**
-
+**Handle errors:**
 ```zebra
-var result as Result(int, str) = Result.ok(42)
+# Catch expression (inline fallback)
+var value = divide(10, 0) catch 0
 
-result.isOk()               # bool: is success?
-result.isErr()              # bool: is error?
-result.value()              # T: get success value (unsafe if error!)
-result.error()              # E: get error value (unsafe if success!)
-result.unwrapOr(default)    # T: get value or default if error
-```
+# Catch with binding
+var result = divide(10, 0) catch |e| -1
 
-**Example:**
-```zebra
-var result = divide(10, 2)
-
-if result.isOk()
-    var value = result.value()
-    println(value)
-else
-    println("Error: ${result.error()}")
-
-# Using unwrapOr
-var value = result.unwrapOr(0)
+# Try/catch block
+try
+    var v = divide(10, 0)
+    print v
+catch |err|
+    print "Error: ${err}"
 ```
 
 ---
@@ -424,9 +397,9 @@ Embed expressions in strings using `${}`:
 ```zebra
 var name = "Alice"
 var age = 30
-println("${name} is ${age} years old")
-println("Sum: ${10 + 5}")
-println("Upper: ${"hello".upper()}")
+print "${name} is ${age} years old"
+print "Sum: ${10 + 5}"
+print "Upper: ${"hello".upper(}")
 ```
 
 ---
@@ -447,12 +420,6 @@ To initialize with values, add them after creation.
 var map = HashMap()       # Empty map
 ```
 
-### Set
-
-```zebra
-var unique = Set()             # Empty set
-```
-
 ---
 
 ## Common Type Methods
@@ -470,7 +437,7 @@ var x as int? = 42
 
 if x != nil
     # Safe to use x as int here
-    println(x)
+    print x
 ```
 
 ---
@@ -498,9 +465,9 @@ var value as int? = 42
 
 branch value
     on nil
-        println("Value is nil")
+        print "Value is nil"
     on _
-        println("Value is ${value}")
+        print "Value is ${value}"
 ```
 
 ### Result Pattern Matching
@@ -510,9 +477,9 @@ var result = operation()
 
 branch result
     on ok(value)
-        println("Success: ${value}")
+        print "Success: ${value}"
     on err(error)
-        println("Error: ${error}")
+        print "Error: ${error}"
 ```
 
 ---
@@ -525,9 +492,9 @@ branch result
 var x as int? = nil
 
 if x != nil
-    println(x + 1)
+    print x + 1
 else
-    println("x is nil")
+    print "x is nil"
 ```
 
 ### Error Handling
@@ -536,7 +503,7 @@ else
 var result = File.read("file.txt")
 
 if result.isErr()
-    println("Error: ${result.error()}")
+    print "Error: ${result.error(}")
     return
     
 var content = result.value()
@@ -550,7 +517,7 @@ items.add(1)
 items.add(2)
 
 for item in items
-    println(item)
+    print item
 ```
 
 ### Type Conversion
@@ -560,7 +527,7 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    println(num + 1)
+    print num + 1
 ```
 
 ---

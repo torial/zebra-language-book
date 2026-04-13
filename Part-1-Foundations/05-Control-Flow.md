@@ -21,9 +21,9 @@
 ### Basic If
 
 ```zebra
-// file: 05_if.zbr
-// teaches: conditional execution
-// chapter: 05-Control-Flow
+# file: 05_if.zbr
+# teaches: conditional execution
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -37,9 +37,9 @@ class Main
 ### If / Else
 
 ```zebra
-// file: 05_if_else.zbr
-// teaches: if-else branching
-// chapter: 05-Control-Flow
+# file: 05_if_else.zbr
+# teaches: if-else branching
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -64,9 +64,9 @@ class Main
 ### Multiple Conditions
 
 ```zebra
-// file: 05_conditions.zbr
-// teaches: boolean logic
-// chapter: 05-Control-Flow
+# file: 05_conditions.zbr
+# teaches: boolean logic
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -95,9 +95,9 @@ class Main
 ### Simple Match
 
 ```zebra
-// file: 05_match.zbr
-// teaches: pattern matching
-// chapter: 05-Control-Flow
+# file: 05_match.zbr
+# teaches: pattern matching
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -118,9 +118,9 @@ class Main
 ### Match With Types
 
 ```zebra
-// file: 05_match_type.zbr
-// teaches: type-based matching
-// chapter: 05-Control-Flow
+# file: 05_match_type.zbr
+# teaches: type-based matching
+# chapter: 05-Control-Flow
 
 class Animal
     pass
@@ -170,9 +170,9 @@ branch color
 ### For Loop (Iteration)
 
 ```zebra
-// file: 05_for.zbr
-// teaches: for loop iteration
-// chapter: 05-Control-Flow
+# file: 05_for.zbr
+# teaches: for loop iteration
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -185,7 +185,7 @@ class Main
             for fruit in fruits
                 print fruit
             
-            // With index (if supported)
+            # With index (if supported)
             var i = 0
             while i < fruits.count()
                 print "Item ${i}: ${fruits.at(i)}"
@@ -195,9 +195,9 @@ class Main
 ### While Loop (Condition-Based)
 
 ```zebra
-// file: 05_while.zbr
-// teaches: while loop
-// chapter: 05-Control-Flow
+# file: 05_while.zbr
+# teaches: while loop
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -214,14 +214,14 @@ class Main
 ### Break and Continue
 
 ```zebra
-// file: 05_break_continue.zbr
-// teaches: loop control
-// chapter: 05-Control-Flow
+# file: 05_break_continue.zbr
+# teaches: loop control
+# chapter: 05-Control-Flow
 
 class Main
     shared
         def main
-            // Break: exit loop early
+            # Break: exit loop early
             var i = 0
             while true
                 if i == 5
@@ -229,11 +229,11 @@ class Main
                 print i
                 i = i + 1
             
-            // Continue: skip to next iteration
+            # Continue: skip to next iteration
             for num in 1..10
                 if num % 2 == 0
                     continue
-                print num  // Prints odd numbers only
+                print num  # Prints odd numbers only
 ```
 
 ---
@@ -243,9 +243,9 @@ class Main
 **Guards** are conditions that must be true for code to run.
 
 ```zebra
-// file: 05_guards.zbr
-// teaches: guard conditions
-// chapter: 05-Control-Flow
+# file: 05_guards.zbr
+# teaches: guard conditions
+# chapter: 05-Control-Flow
 
 class Main
     shared
@@ -260,9 +260,9 @@ class Main
             print "Processing: ${name}"
 
         def main
-            process("")            // Returns early
-            process("Alice")       // Processes
-            process("x" * 200)     // Returns early
+            process("")            # Returns early
+            process("Alice")       # Processes
+            process("x" * 200)     # Returns early
 ```
 
 ---
@@ -270,9 +270,9 @@ class Main
 ## Real World: Data Validation
 
 ```zebra
-// file: 05_validation.zbr
-// teaches: practical control flow
-// chapter: 05-Control-Flow
+# file: 05_validation.zbr
+# teaches: practical control flow
+# chapter: 05-Control-Flow
 
 class Email
     var address as str
@@ -490,7 +490,7 @@ class Main
             nums.add(34)
             
             var max = Finder.find_max(nums)
-            print "Max: ${max}"  // 89
+            print "Max: ${max}"  # 89
 ```
 
 </details>
@@ -524,7 +524,7 @@ class Main
             nums.add(6)
             
             var even_count = Counter.count_evens(nums)
-            print "Even numbers: ${even_count}"  // 3
+            print "Even numbers: ${even_count}"  # 3
 ```
 
 </details>

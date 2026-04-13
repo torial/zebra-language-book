@@ -27,9 +27,9 @@ Animal (parent)
 ### Extending a Class
 
 ```zebra
-// file: 09_inheritance_basic.zbr
-// teaches: class inheritance
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_inheritance_basic.zbr
+# teaches: class inheritance
+# chapter: 09-Inheritance-and-Mixins
 
 class Animal
     var name as str = ""
@@ -54,14 +54,14 @@ class Main
             var dog = Dog()
             dog.name = "Buddy"
             dog.age = 3
-            dog.greet()      // I'm Buddy, 3 years old
-            dog.bark()       // Buddy says: Woof!
+            dog.greet()      # I'm Buddy, 3 years old
+            dog.bark()       # Buddy says: Woof!
             
             var cat = Cat()
             cat.name = "Whiskers"
             cat.age = 2
-            cat.greet()      // I'm Whiskers, 2 years old
-            cat.meow()       // Whiskers says: Meow!
+            cat.greet()      # I'm Whiskers, 2 years old
+            cat.meow()       # Whiskers says: Meow!
 ```
 
 **Key points:**
@@ -72,9 +72,9 @@ class Main
 ### Method Overriding
 
 ```zebra
-// file: 09_override.zbr
-// teaches: overriding parent methods
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_override.zbr
+# teaches: overriding parent methods
+# chapter: 09-Inheritance-and-Mixins
 
 class Animal
     def speak as str
@@ -82,30 +82,30 @@ class Animal
 
 class Dog
     inherits Animal
-        def speak as str  // Override parent method
+        def speak as str  # Override parent method
             return "Woof!"
 
 class Cat
     inherits Animal
-        def speak as str  // Different implementation
+        def speak as str  # Different implementation
             return "Meow!"
 
 class Main
     shared
         def main
             var dog = Dog()
-            print dog.speak()  // Woof!
+            print dog.speak()  # Woof!
             
             var cat = Cat()
-            print cat.speak()  // Meow!
+            print cat.speak()  # Meow!
 ```
 
 ### Super Calls (Calling Parent Methods)
 
 ```zebra
-// file: 09_super.zbr
-// teaches: calling parent implementation
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_super.zbr
+# teaches: calling parent implementation
+# chapter: 09-Inheritance-and-Mixins
 
 class Vehicle
     var speed as int = 0
@@ -116,7 +116,7 @@ class Vehicle
 
 class Car
     inherits Vehicle
-        def accelerate  // Override but call parent
+        def accelerate  # Override but call parent
             # First call parent implementation
             super.accelerate()
             # Then add custom behavior
@@ -127,8 +127,8 @@ class Main
         def main
             var car = Car()
             car.accelerate()
-            // Accelerating to 10 mph
-            // Car is now cruising smoothly
+            # Accelerating to 10 mph
+            # Car is now cruising smoothly
 ```
 
 ---
@@ -138,9 +138,9 @@ class Main
 ### Multi-Level Inheritance
 
 ```zebra
-// file: 09_hierarchy.zbr
-// teaches: inheritance hierarchies
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_hierarchy.zbr
+# teaches: inheritance hierarchies
+# chapter: 09-Inheritance-and-Mixins
 
 class Animal
     var name as str = ""
@@ -162,17 +162,17 @@ class Main
         def main
             var dog = Dog()
             dog.name = "Buddy"
-            print dog.name             // Buddy
-            print dog.sound()          // Woof!
-            print dog.warm_blooded()   // true
+            print dog.name             # Buddy
+            print dog.sound()          # Woof!
+            print dog.warm_blooded()   # true
 ```
 
 ### Treating as Parent Type
 
 ```zebra
-// file: 09_polymorphic_hierarchy.zbr
-// teaches: treating children as parents
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_polymorphic_hierarchy.zbr
+# teaches: treating children as parents
+# chapter: 09-Inheritance-and-Mixins
 
 class AnimalShelter
     var animals as List(Animal) = List()
@@ -208,9 +208,9 @@ class Main
 **Mixins** let you compose behavior from multiple sources without deep inheritance chains.
 
 ```zebra
-// file: 09_mixins.zbr
-// teaches: mixin composition
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_mixins.zbr
+# teaches: mixin composition
+# chapter: 09-Inheritance-and-Mixins
 
 class Swimmer
     def swim
@@ -245,17 +245,17 @@ class Main
         def main
             var duck = Duck()
             duck.name = "Donald"
-            duck.swim()        // Swimming!
-            duck.quack()       // Donald quacks!
+            duck.swim()        # Swimming!
+            duck.quack()       # Donald quacks!
             
             var dog = Dog()
             dog.name = "Buddy"
-            dog.swim()         // Swimming!
-            dog.bark()         // Buddy barks!
+            dog.swim()         # Swimming!
+            dog.bark()         # Buddy barks!
             
             var athlete = Athlete()
             athlete.name = "Alice"
-            athlete.compete()  // Running! Alice is competing!
+            athlete.compete()  # Running! Alice is competing!
 ```
 
 ---
@@ -263,9 +263,9 @@ class Main
 ## Real World: Document Hierarchy
 
 ```zebra
-// file: 09_document_hierarchy.zbr
-// teaches: realistic inheritance use
-// chapter: 09-Inheritance-and-Mixins
+# file: 09_document_hierarchy.zbr
+# teaches: realistic inheritance use
+# chapter: 09-Inheritance-and-Mixins
 
 class Document
     var title as str = ""
@@ -338,7 +338,7 @@ class DataProcessor
 class CustomProcessor
     inherits DataProcessor
         def transform(data as str) as str
-            return data.lower()  // Override just this step
+            return data.lower()  # Override just this step
 ```
 
 ### Factory Pattern
@@ -375,7 +375,7 @@ class AnimalFactory
 > class Car
 >     inherits Vehicle
 >         def accelerate
->             print "Car accelerating"  // ❌ Forgot super.accelerate()
+>             print "Car accelerating"  # ❌ Forgot super.accelerate()
 > ```
 >
 > ✅ **Better:**
@@ -383,7 +383,7 @@ class AnimalFactory
 > class Car
 >     inherits Vehicle
 >         def accelerate
->             super.accelerate()       // ✅ Call parent first
+>             super.accelerate()       # ✅ Call parent first
 >             print "Car accelerating"
 > ```
 
@@ -459,13 +459,13 @@ class Main
             var car = Car()
             car.brand = "Toyota"
             car.year = 2023
-            print car.info()        // 2023 Toyota
-            car.start_engine()      // Starting engine / Car engine started
+            print car.info()        # 2023 Toyota
+            car.start_engine()      # Starting engine / Car engine started
             
             var bike = Motorcycle()
             bike.brand = "Harley"
             bike.year = 2022
-            bike.start_engine()     // Starting engine / Motorcycle engine roared to life
+            bike.start_engine()     # Starting engine / Motorcycle engine roared to life
 ```
 
 </details>

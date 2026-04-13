@@ -36,9 +36,9 @@ Create a CLI tool that:
 First, create a module to handle CLI arguments:
 
 ```zebra
-// file: cli_args.zbr
-// teaches: argument parsing
-// project: Project-1-CLI-Tool
+# file: cli_args.zbr
+# teaches: argument parsing
+# project: Project-1-CLI-Tool
 
 class CliArgs
     var command as str
@@ -52,17 +52,17 @@ class CliArgs
 
 class CommandParser
     shared
-        def parse(args as List(str)) as Result(CliArgs, str)
+        def parse(args as List(str)) as CliArgs throws
             # Precondition: at least 2 arguments (program name + command + filename)
             if args.count() < 3
-                return Result.err("Usage: textool [command] [file]")
+                raise "Usage: textool [command] [file]"
             
             var command = args.at(1)
             var filename = args.at(2)
             
             # Validate command
             if not valid_command(command)
-                return Result.err("Unknown command: ${command}")
+                raise "Unknown command: ${command}"
             
             # Create args object
             var cli_args = CliArgs(command, filename)
@@ -71,7 +71,7 @@ class CommandParser
             if args.count() >= 4
                 cli_args.pattern = args.at(3)
             
-            return Result.ok(cli_args)
+            return cli_args
         
         def valid_command(cmd as str) as bool
             return cmd == "count" or cmd == "search" or cmd == "stats"
@@ -84,30 +84,30 @@ class CommandParser
 Build the core file I/O and counting functionality:
 
 ```zebra
-// file: file_processor.zbr
-// teaches: file I/O and text processing
-// project: Project-1-CLI-Tool
+# file: file_processor.zbr
+# teaches: file I/O and text processing
+# project: Project-1-CLI-Tool
 
 class FileProcessor
     shared
-        def read_file(filename as str) as Result(str, str)
+        def read_file(filename as str) as str throws
             # Check if file exists first
             if not File.exists(filename)
-                return Result.err("File not found: ${filename}")
+                raise "File not found: ${filename}"
             
             # Read the entire file
             var content = File.read(filename)
             
             if content.len == 0
-                return Result.err("File is empty: ${filename}")
+                raise "File is empty: ${filename}"
             
-            return Result.ok(content)
+            return content
         
-        def count_lines(filename as str) as Result(int, str)
+        def count_lines(filename as str) as int throws
             var content_result = read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var lines = content.split("\n")
@@ -118,13 +118,13 @@ class FileProcessor
                 if line.trim().len > 0
                     count = count + 1
             
-            return Result.ok(count)
+            return count
         
-        def count_words(filename as str) as Result(int, str)
+        def count_words(filename as str) as int throws
             var content_result = read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var words = content.split(" ")
@@ -134,22 +134,22 @@ class FileProcessor
                 if word.trim().len > 0
                     count = count + 1
             
-            return Result.ok(count)
+            return count
         
-        def count_chars(filename as str) as Result(int, str)
+        def count_chars(filename as str) as int throws
             var content_result = read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
-            return Result.ok(content.len)
+            return content.len
         
-        def get_stats(filename as str) as Result(Stats, str)
+        def get_stats(filename as str) as Stats throws
             var content_result = read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             
@@ -165,7 +165,7 @@ class FileProcessor
                         word_count = word_count + 1
             
             var stats = Stats(filename, line_count, word_count, char_count)
-            return Result.ok(stats)
+            return stats
 
 class Stats
     var filename as str
@@ -190,17 +190,17 @@ class Stats
 Add grep-like pattern search functionality:
 
 ```zebra
-// file: pattern_search.zbr
-// teaches: pattern matching and filtering
-// project: Project-1-CLI-Tool
+# file: pattern_search.zbr
+# teaches: pattern matching and filtering
+# project: Project-1-CLI-Tool
 
 class PatternMatcher
     shared
-        def search_lines(filename as str, pattern as str) as Result(List(str), str)
+        def search_lines(filename as str, pattern as str) as List(str) throws
             var content_result = FileProcessor.read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var lines = content.split("\n")
@@ -216,15 +216,15 @@ class PatternMatcher
                     matches.add(formatted)
             
             if matches.count() == 0
-                return Result.err("No matches found for pattern: ${pattern}")
+                raise "No matches found for pattern: ${pattern}"
             
-            return Result.ok(matches)
+            return matches
         
-        def search_with_context(filename as str, pattern as str, context_lines as int) as Result(List(str), str)
+        def search_with_context(filename as str, pattern as str, context_lines as int) as List(str) throws
             var content_result = FileProcessor.read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var lines = content.split("\n")
@@ -258,7 +258,7 @@ class PatternMatcher
                         results.add(lines.at(i))
                         i = i + 1
             
-            return Result.ok(results)
+            return results
 ```
 
 ---
@@ -268,9 +268,9 @@ class PatternMatcher
 Tie everything together in the main entry point:
 
 ```zebra
-// file: project1_main.zbr
-// teaches: orchestrating modules
-// project: Project-1-CLI-Tool
+# file: project1_main.zbr
+# teaches: orchestrating modules
+# project: Project-1-CLI-Tool
 
 class Application
     var args as CliArgs
@@ -278,7 +278,7 @@ class Application
     def init(parsed_args as CliArgs)
         args = parsed_args
     
-    def run as Result(bool, str)
+    def run as bool throws
         if args.command == "count"
             return handle_count()
         elif args.command == "search"
@@ -286,9 +286,9 @@ class Application
         elif args.command == "stats"
             return handle_stats()
         
-        return Result.err("Unknown command: ${args.command}")
+        raise "Unknown command: ${args.command}"
     
-    def handle_count as Result(bool, str)
+    def handle_count as bool throws
         var lines = FileProcessor.count_lines(args.filename)
         
         if lines.isErr()
@@ -301,11 +301,11 @@ class Application
         print "${words.okValue()} words"
         print "${chars.okValue()} chars"
         
-        return Result.ok(true)
+        return true
     
-    def handle_search as Result(bool, str)
+    def handle_search as bool throws
         if args.pattern == nil
-            return Result.err("Search requires a pattern")
+            raise "Search requires a pattern"
         
         var results = PatternMatcher.search_lines(args.filename, args.pattern)
         
@@ -318,9 +318,9 @@ class Application
         for match in matches
             print match
         
-        return Result.ok(true)
+        return true
     
-    def handle_stats as Result(bool, str)
+    def handle_stats as bool throws
         var stats = FileProcessor.get_stats(args.filename)
         
         if stats.isErr()
@@ -329,7 +329,7 @@ class Application
         var s = stats.okValue()
         print s.display()
         
-        return Result.ok(true)
+        return true
 
 class Main
     shared
@@ -358,19 +358,19 @@ class Main
 ```zebra
 class FileAnalyzer
     shared
-        def analyze(filename as str) as Result(str, str)
+        def analyze(filename as str) as str throws
             var lines_result = FileProcessor.count_lines(filename)
             if lines_result.isErr()
-                return Result.err(lines_result.errValue())
+                raise lines_result.errValue()
             
             var words_result = FileProcessor.count_words(filename)
             if words_result.isErr()
-                return Result.err(words_result.errValue())
+                raise words_result.errValue()
             
             var lines = lines_result.okValue()
             var words = words_result.okValue()
             var report = "Lines: ${lines}, Words: ${words}"
-            return Result.ok(report)
+            return report
 
 class Main
     shared
@@ -431,7 +431,7 @@ zebra textool stats sample.txt        # Show statistics
 Modify the search function to always show line numbers with output:
 
 ```zebra
-def search_with_numbers(filename as str, pattern as str) as Result(List(str), str)
+def search_with_numbers(filename as str, pattern as str) as List(str) throws
     var results = PatternMatcher.search_lines(filename, pattern)
     if results.isErr()
         return results
@@ -447,7 +447,7 @@ Add a new `longest` command that finds and displays the longest line:
 ```zebra
 class FileProcessor
     shared
-        def find_longest_line(filename as str) as Result(str, str)
+        def find_longest_line(filename as str) as str throws
             var content_result = read_file(filename)
             if content_result.isErr()
                 return content_result
@@ -461,7 +461,7 @@ class FileProcessor
                     max_len = line.len
                     longest = line
             
-            return Result.ok("Longest (${max_len} chars): ${longest}")
+            return "Longest (${max_len} chars: ${longest}")
 ```
 
 ### Exercise 3: Statistics Summary
@@ -491,7 +491,7 @@ Add support for a `-i` flag to search case-insensitively:
 ```zebra
 class PatternMatcher
     shared
-        def search_case_insensitive(filename as str, pattern as str) as Result(List(str), str)
+        def search_case_insensitive(filename as str, pattern as str) as List(str) throws
             var content_result = FileProcessor.read_file(filename)
             if content_result.isErr()
                 return content_result
@@ -508,7 +508,7 @@ class PatternMatcher
                 if line.lower().contains(pattern_lower)
                     matches.add("${line_num}: ${line}")
             
-            return Result.ok(matches)
+            return matches
 ```
 
 ### Challenge: Support Multiple Files
@@ -519,7 +519,7 @@ Modify the application to process multiple files at once:
 class Application
     var files as List(str)
     
-    def aggregate_stats(filenames as List(str)) as Result(str, str)
+    def aggregate_stats(filenames as List(str)) as str throws
         var total_lines = 0
         var total_words = 0
         var total_chars = 0
@@ -533,7 +533,7 @@ class Application
                 total_chars = total_chars + s.chars
         
         var result = "Total: ${total_lines} lines, ${total_words} words, ${total_chars} chars"
-        return Result.ok(result)
+        return result
 ```
 
 ---
@@ -591,12 +591,12 @@ Example streaming read:
 
 ```zebra
 # Read and process line-by-line instead of all at once
-def count_lines_streaming(filename as str) as Result(int, str)
+def count_lines_streaming(filename as str) as int throws
     # (Pseudocode - requires file iteration API)
     var count = 0
     # for line in File.read_lines(filename)
     #     count = count + 1
-    return Result.ok(count)
+    return count
 ```
 
 ---

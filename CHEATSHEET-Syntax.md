@@ -28,7 +28,7 @@ def add(a as int, b as int) as int
 var result = add(2, 3)                  # 5
 
 def no_return()
-    println("Just print")
+    print "Just print"
 ```
 
 ---
@@ -39,11 +39,11 @@ def no_return()
 class Person
     var name as str = ""
     var age as int = 0
-    
-    def init(name as str, age as int)
+
+    cue init(name as str, age as int)
         this.name = name
         this.age = age
-    
+
     def describe() as str
         return "${name} is ${age}"
 
@@ -61,12 +61,36 @@ interface Shape
 
 class Circle is Shape
     var radius as float = 0.0
-    
+
     def area() as float
         return 3.14159 * radius * radius
-    
+
     def perimeter() as float
         return 2.0 * 3.14159 * radius
+```
+
+---
+
+## Structs & Unions
+
+```zebra
+struct Point
+    var x as int
+    var y as int
+
+union Value
+    int_ as int
+    str_ as str
+    none_
+
+# Pattern matching
+branch v
+    on Value.int_ as n
+        print n
+    on Value.str_ as s
+        print s
+    else
+        pass
 ```
 
 ---
@@ -91,24 +115,24 @@ class Dog is Animal
 ```zebra
 # If/Elif/Else
 if x > 10
-    println("Large")
+    print "Large"
 elif x > 5
-    println("Medium")
+    print "Medium"
 else
-    println("Small")
+    print "Small"
 
 # While loop
 var i = 0
 while i < 10
-    println(i)
+    print i
     i = i + 1
 
 # For loop
 for item in items
-    println(item)
+    print item
 
 for i in 0.to(10)
-    println(i)  # 0, 1, 2, ..., 9
+    print i  # 0, 1, 2, ..., 9
 
 # Break & Continue
 while true
@@ -117,7 +141,7 @@ while true
     if x == 2
         x = x + 1
         continue
-    println(x)
+    print x
     x = x + 1
 ```
 
@@ -153,7 +177,7 @@ var numbers = List(int)()
 numbers.add(1)
 numbers.add(2)
 for num in numbers
-    println(num)
+    print num
 numbers.count()
 numbers.at(0)
 numbers.contains(1)
@@ -161,16 +185,12 @@ numbers.remove(1)
 
 # HashMap
 var map = HashMap(str, int)()
-map.put("a", 1)
-map.fetch("a")                          # returns int? (nullable)
+map.set("a", 1)
+map.get("a")                          # returns int? (nullable)
 map.contains("a")
 map.remove("a")
-
-# Set
-var unique = Set(str)()
-unique.add("a")
-unique.contains("a")
-unique.remove("a")
+for entry in map.entries()
+    print "${entry.key}: ${entry.value}"
 ```
 
 ---
@@ -189,7 +209,7 @@ text.startsWith("Hello")                # prefix check
 text.endsWith("!")                      # suffix check
 text.split(",")                         # split to List(str)
 text.replace("World", "Zebra")          # replace first
-text.replaceAll("l", "L")               # replace all
+text.replaceAll("l", "L")              # replace all
 text.trim()                             # remove whitespace
 text.substring(0, 5)                    # extract portion
 text.charAt(0)                          # char at position
@@ -203,29 +223,27 @@ text.indexOf("World")                   # find position (-1 if not found)
 
 ---
 
-## Error Handling with Result
+## Error Handling
 
 ```zebra
-# Create Result
-Result.ok(value)
-Result.err(error_message)
+# Functions that can fail use throws
+def parse(text as str) as int throws
+    if text.len == 0
+        raise "Empty input"
+    return 42
 
-# Check Result
-var result = operation()
-if result.isOk()
-    var value = result.value()
-elif result.isErr()
-    var error = result.error()
+# Catch expression (inline fallback)
+var value = parse("abc") catch 0
 
-# Unwrap Result
-var value = result.unwrapOr(default)    # default if error
+# Try/catch block
+try
+    var v = parse("")
+    print v
+catch |err|
+    print "Error: ${err}"
 
-# Pattern match
-branch result
-    on ok(value)
-        println(value)
-    on err(error)
-        println("Error: ${error}")
+# Catch with binding
+var result = parse("x") catch |e| -1
 ```
 
 ---
@@ -239,9 +257,6 @@ var y as int? = nil                     # Explicitly nil
 # Safe check
 if x != nil
     var safe_x = x + 1                  # Safe now
-
-# Safe access with default
-var value = x.unwrapOr(0)               # 0 if x is nil
 ```
 
 ---
@@ -258,10 +273,10 @@ def first(items as List(T)) as T?
 # Generic class
 class Box(T)
     var item as T?
-    
+
     def set(value as T)
         this.item = value
-    
+
     def get() as T?
         return this.item
 
@@ -288,19 +303,14 @@ var parts = upper.split(" ")
 
 ```zebra
 # Read file
-var result = File.read("file.txt")
-if result.isOk()
-    var content = result.value()
+var content = File.read("file.txt") catch ""
 
 # Write file
-var write_result = File.write("output.txt", content)
+File.write("output.txt", content)
 
 # Check existence
 if File.exists("file.txt")
-    println("File exists")
-
-# Delete file
-File.delete("file.txt")
+    print "File exists"
 ```
 
 ---
@@ -323,23 +333,35 @@ pattern.split(text)                     # List(str) (split by match)
 ## System Access
 
 ```zebra
-System.args()                           # List(str): command-line args
-System.env("HOME")                      # str?: environment variable
-System.cwd()                            # str: current directory
-System.exit(code)                       # Exit program
+sys.args()                              # List(str): command-line args
+sys.exit(code)                          # Exit program
+Arg.parse()                             # Structured argument parsing
 ```
 
 ---
 
-## Type Conversion
+## Modules
 
 ```zebra
-# String conversions
-"42".toInt()                            # int?
-"3.14".toFloat()                        # float?
-42.toString()                           # "42"
-3.14.toString()                         # "3.14"
-true.toString()                         # "true"
+use MathUtils                           # Import module
+use ast exposing Stmt, Expr, TypeRef    # Selective import
+```
+
+---
+
+## Math Module
+
+```zebra
+Math.PI                                 # 3.14159...
+Math.E                                  # 2.71828...
+Math.sin(x)                             # Trig functions
+Math.sqrt(x)                            # Square root
+Math.pow(x, y)                          # Power
+Math.abs(x)                             # Absolute value
+Math.min(a, b)                          # Minimum
+Math.max(a, b)                          # Maximum
+Math.floor(x)                           # Round down
+Math.ceil(x)                            # Round up
 ```
 
 ---
@@ -347,12 +369,12 @@ true.toString()                         # "true"
 ## Shared/Static Methods
 
 ```zebra
-class Math
+class MathUtils
     shared
         def add(a as int, b as int) as int
             return a + b
 
-Math.add(2, 3)                          # Call without instance
+MathUtils.add(2, 3)                     # Call without instance
 ```
 
 ---
@@ -376,6 +398,9 @@ Math.add(2, 3)                          # Call without instance
 | `var` | Declare variable |
 | `def` | Define function |
 | `class` | Define class |
+| `struct` | Define value type |
+| `union` | Define tagged union |
+| `enum` | Define enumeration |
 | `interface` | Define interface |
 | `is` | Inherit from class/interface |
 | `if`, `elif`, `else` | Conditional |
@@ -386,72 +411,18 @@ Math.add(2, 3)                          # Call without instance
 | `branch` | Pattern matching |
 | `on` | Pattern case |
 | `return` | Return from function |
+| `raise` | Signal an error |
+| `throws` | Mark function as fallible |
+| `try`, `catch` | Error handling |
+| `except` | Struct update copy |
 | `nil` | Null value |
 | `true`, `false` | Boolean literals |
 | `as` | Type annotation |
 | `shared` | Static/class member |
 | `this` | Current object reference |
+| `use` | Import module |
+| `exposing` | Selective import |
 | `where` | Type constraint |
-
----
-
-## Common Type Patterns
-
-```zebra
-var name as str                         # String variable
-var count as int                        # Integer variable
-var items as List(str)                  # List of strings
-var map as HashMap(str, int)            # Map of str->int
-var maybe as str?                       # Nullable string
-var result as Result(int, str)          # Result: ok(int) or err(str)
-```
-
----
-
-## Common Patterns
-
-### Safe Null Checking
-```zebra
-var x as int? = get_value()
-if x != nil
-    println(x + 1)
-```
-
-### Safe File Reading
-```zebra
-var result = File.read("file.txt")
-if result.isErr()
-    println("Error: ${result.error()}")
-    return
-var content = result.value()
-```
-
-### Loop Through Collection
-```zebra
-for item in items
-    println(item)
-```
-
-### String Interpolation
-```zebra
-var name = "Alice"
-println("Hello, ${name}!")
-```
-
-### Build String from List
-```zebra
-var parts = ["a", "b", "c"]
-var joined = parts.join(",")            # "a,b,c"
-```
-
-### Handle Error Result
-```zebra
-branch operation()
-    on ok(value)
-        println(value)
-    on err(error)
-        println("Failed: ${error}")
-```
 
 ---
 
@@ -467,8 +438,7 @@ branch operation()
 | `T?` | `42` or `nil` | nil |
 | `List(T)` | `List(int)()` | empty |
 | `HashMap(K,V)` | `HashMap(str, int)()` | empty |
-| `Set(T)` | `Set(str)()` | empty |
-| `Result(T,E)` | `Result.ok(42)` | — |
+| `^T` | `^Node` | heap pointer |
 
 ---
 
