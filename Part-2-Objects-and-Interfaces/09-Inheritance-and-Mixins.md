@@ -3,13 +3,19 @@
 **Audience:** All  
 **Time:** 120 minutes  
 **Prerequisites:** 07-Classes, 08-Interfaces  
-**You'll learn:** Extend classes, override methods, super calls, mixins, hierarchies
+**You'll learn:** Interfaces for polymorphism, composition patterns, mixins, hierarchies
 
 ---
 
+> **Note:** Zebra does not support class inheritance. Classes cannot extend other classes.
+> Instead, Zebra uses **interfaces** (Chapter 08) for polymorphism and **composition** for code reuse.
+> The `implements` keyword lets a class satisfy an interface contract.
+> This chapter describes interface-based polymorphism patterns and composition as alternatives
+> to traditional inheritance hierarchies.
+
 ## The Big Picture
 
-**Inheritance** lets classes extend other classes, sharing code and building hierarchies. Instead of duplicating code, parent classes provide common functionality that children specialize.
+**Interfaces** let classes share contracts, enabling polymorphism without the fragile base class problem. Instead of inheriting implementation from a parent, classes implement interface contracts independently.
 
 ```
 Animal (parent)

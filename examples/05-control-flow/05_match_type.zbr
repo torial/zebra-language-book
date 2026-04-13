@@ -2,24 +2,24 @@
 // teaches: type-based matching
 // chapter: 05-Control-Flow
 
-class Animal
-    pass
+interface Animal
+    def speak as str
 
 class Dog
-    inherits Animal
-    def bark
-        print "Woof!"
+    implements Animal
+        def speak as str
+            return "Woof!"
 
 class Cat
-    inherits Animal
-    def meow
-        print "Meow!"
+    implements Animal
+        def speak as str
+            return "Meow!"
 
 class Main
     shared
         def main
             var pet as Animal = Dog()
-            
+
             if pet implements Dog
                 var d = pet to Dog
-                d.bark()
+                print d.speak()

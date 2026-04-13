@@ -1,6 +1,7 @@
 // file: 09_document_hierarchy.zbr
 // teaches: realistic inheritance use
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class Document
     var title as str = ""

@@ -148,28 +148,30 @@ var map = HashMap()
 ### Basic Operations
 
 ```zebra
-map.set(key, value)         # Add or update key-value pair
-map.get(key)              # ValueType?: get value (nil if key not found)
+map.put(key, value)         # Add or update key-value pair
+map.fetch(key)              # ValueType?: get value (nil if key not found)
 map.contains(key)           # bool: key exists?
 map.remove(key)             # Remove key
 map.clear()                 # Remove all entries
 ```
 
+Note: `set` and `get` are reserved keywords in Zebra, so HashMap uses `put` and `fetch` instead.
+
 ### Iteration
 
 ```zebra
-map.keys()                  # List(KeyType): all keys
-map.values()                # List(ValueType): all values
+for key, value in map       # Iterate over key-value pairs
+    print "${key}: ${value}"
 ```
 
 **Example:**
 ```zebra
-var scores = HashMap()
-scores.set("Alice", 95)
-scores.set("Bob", 87)
+var scores = HashMap(str, int)()
+scores.put("Alice", 95)
+scores.put("Bob", 87)
 
 if scores.contains("Alice")
-    var score = scores.get("Alice")  # 95
+    var score = scores.fetch("Alice")  # 95
     if score != nil
         print "Alice: ${score}"
 ```
@@ -182,9 +184,9 @@ Use HashMap keys for unique-value tracking:
 
 ```zebra
 var seen as HashMap(str, bool) = HashMap()
-seen.set("red", true)
-seen.set("blue", true)
-seen.set("red", true)       # Overwrites, same effect as no-op
+seen.put("red", true)
+seen.put("blue", true)
+seen.put("red", true)       # Overwrites, same effect as no-op
 print seen.count()           # 2
 ```
 

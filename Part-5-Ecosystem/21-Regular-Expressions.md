@@ -568,9 +568,9 @@ def extract_person_data(line as str) as HashMap(str, str)?
         return nil
     
     var data = HashMap()
-    data.set("name", parts.at(0).trim())
-    data.set("age", parts.at(1).trim())
-    data.set("email", parts.at(2).trim())
+    data.put("name", parts.at(0).trim())
+    data.put("age", parts.at(1).trim())
+    data.put("email", parts.at(2).trim())
     
     return data
 
@@ -580,9 +580,9 @@ def main()
     var extracted = extract_person_data(record)
     
     if extracted != nil
-        print "Name: ${extracted.get("name"}")
-        print "Age: ${extracted.get("age"}")
-        print "Email: ${extracted.get("email"}")
+        print "Name: ${extracted.fetch("name"}")
+        print "Age: ${extracted.fetch("age"}")
+        print "Email: ${extracted.fetch("email"}")
 ```
 
 ---

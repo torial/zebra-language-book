@@ -39,22 +39,22 @@ The simplest generic is a **container that holds a single value**:
 class Container(T)
     var item as T
     
-    def set(value as T)
+    def store(value as T)
         item = value
     
-    def get as T
+    def retrieve as T
         return item
 
 class Main
     shared
         def main
             var int_box = Container(int)()
-            int_box.set(42)
-            print int_box.get()  # Output: 42
+            int_box.store(42)
+            print int_box.retrieve()  # Output: 42
             
             var str_box = Container(str)()
-            str_box.set("hello")
-            print str_box.get()  # Output: hello
+            str_box.store("hello")
+            print str_box.retrieve()  # Output: hello
 ```
 
 Notice the syntax:
@@ -151,8 +151,8 @@ class Main
                 print n
             
             var ages as HashMap(str, int) = HashMap()
-            ages.set("Alice", 30)
-            ages.set("Bob", 25)
+            ages.put("Alice", 30)
+            ages.put("Bob", 25)
             
             for name, age in ages
                 print "${name}: ${age}"
@@ -265,11 +265,11 @@ class Cache(K, V)
             # Evict first key (simplistic LRU simulation)
             # In real code, track access order
             pass
-        data.set(key, value)
+        data.put(key, value)
     
-    def get(key as K) as V?
+    def lookup(key as K) as V?
         if data.contains(key)
-            return data.get(key)
+            return data.fetch(key)
         return nil
     
     def clear
@@ -280,11 +280,11 @@ class Main
         def main
             var cache = Cache(str, int)()
             cache.init(3)
-            cache.set("a", 1)
-            cache.set("b", 2)
-            cache.set("c", 3)
+            cache.put("a", 1)
+            cache.put("b", 2)
+            cache.put("c", 3)
             
-            var val = cache.get("b")
+            var val = cache.lookup("b")
             if val != nil
                 print "Got: ${val}"
 ```
@@ -298,11 +298,11 @@ class Main
 ```zebra
 # WRONG
 var box = Container()  # Error: T not specified
-box.set(42)
+box.store(42)
 
 # CORRECT
 var box = Container(int)()
-box.set(42)
+box.store(42)
 ```
 
 ### Mistake 2: Mixing Types in a Generic Container
@@ -310,11 +310,11 @@ box.set(42)
 ```zebra
 # WRONG
 var box = Container(int)()
-box.set("hello")  # Error: Expected int, got str
+box.store("hello")  # Error: Expected int, got str
 
 # CORRECT
 var box = Container(str)()
-box.set("hello")
+box.store("hello")
 ```
 
 ### Mistake 3: Using Constraints Incorrectly
@@ -457,10 +457,10 @@ class Main
             var age_box = ValidatedBox(int)()
             age_box.init({ x in x >= 0 and x <= 150 })
             
-            if age_box.set(25)
-                print "Valid age: ${age_box.get()}"
+            if age_box.store(25)
+                print "Valid age: ${age_box.retrieve()}"
             
-            if not age_box.set(200)
+            if not age_box.store(200)
                 print "Invalid age"
 ```
 

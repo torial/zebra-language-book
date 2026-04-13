@@ -160,12 +160,12 @@ class Main
             var ages as HashMap(str, int) = HashMap()
             
             # Add key-value pairs
-            ages.set("Alice", 30)
-            ages.set("Bob", 25)
-            ages.set("Carol", 28)
+            ages.put("Alice", 30)
+            ages.put("Bob", 25)
+            ages.put("Carol", 28)
             
             # Retrieve by key
-            var alice_age = ages.get("Alice")
+            var alice_age = ages.fetch("Alice")
             print alice_age                     # 30
             
             # Check if key exists
@@ -188,9 +188,9 @@ class Main
     shared
         def main
             var config as HashMap(str, str) = HashMap()
-            config.set("host", "localhost")
-            config.set("port", "8080")
-            config.set("debug", "true")
+            config.put("host", "localhost")
+            config.put("port", "8080")
+            config.put("debug", "true")
             
             # Count entries
             print config.count()                # 3
@@ -201,7 +201,7 @@ class Main
             
             # Check contains
             if config.contains("host")
-                print config.get("host")      # localhost
+                print config.fetch("host")    # localhost
             
             # Iterate over keys and values
             for key, value in config
@@ -251,7 +251,7 @@ class Main
             
             for id in ids
                 if not seen.contains(id)
-                    seen.set(id, true)
+                    seen.put(id, true)
                     unique.add(id)
             
             print unique.count()    # 3
@@ -378,13 +378,13 @@ class Main
 >
 > ```zebra
 > var map as HashMap(str, int) = HashMap()
-> map.set(1, 100)  # ❌ Key should be str, not int
+> map.put(1, 100)  # ❌ Key should be str, not int
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var map as HashMap(str, int) = HashMap()
-> map.set("count", 100)  # ✅ Key is str
+> map.put("count", 100)  # ✅ Key is str
 > ```
 
 ---
@@ -429,13 +429,13 @@ class Main
     shared
         def main
             var phone_book as HashMap(str, str) = HashMap()
-            phone_book.set("Alice", "555-1234")
-            phone_book.set("Bob", "555-5678")
-            phone_book.set("Carol", "555-9999")
+            phone_book.put("Alice", "555-1234")
+            phone_book.put("Bob", "555-5678")
+            phone_book.put("Carol", "555-9999")
             
             var name = "Bob"
             if phone_book.contains(name)
-                print "${name}'s number: ${phone_book.get(name)}"
+                print "${name}'s number: ${phone_book.fetch(name)}"
 ```
 
 </details>
@@ -456,7 +456,7 @@ class Main
             
             var seen as HashMap(str, bool) = HashMap()
             for word in words
-                seen.set(word, true)
+                seen.put(word, true)
             
             print "Total words: ${words.count()}"
             print "Unique words: ${seen.count()}"

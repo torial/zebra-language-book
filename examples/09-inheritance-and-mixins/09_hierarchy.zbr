@@ -1,6 +1,7 @@
 // file: 09_hierarchy.zbr
 // teaches: inheritance hierarchies
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class Animal
     var name as str = ""

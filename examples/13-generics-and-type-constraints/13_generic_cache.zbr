@@ -16,7 +16,7 @@ class Cache(K, V)
             pass
         data.put(key, value)
     
-    def get(key as K) as V?
+    def lookup(key as K) as V?
         if data.contains(key)
             return data.fetch(key)
         return nil
@@ -33,6 +33,6 @@ class Main
             cache.put("b", 2)
             cache.put("c", 3)
             
-            var val = cache.get("b")
+            var val = cache.lookup("b")
             if val != nil
                 print "Got: ${val}"

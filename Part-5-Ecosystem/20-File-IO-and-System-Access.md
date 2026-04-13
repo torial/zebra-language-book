@@ -280,23 +280,21 @@ def main()
         
         if content_result.isErr()
             print "FAILED: ${content_result.error(}")
-            results.set(filename, 0)
+            results.put(filename, 0)
             continue
         
         var content = content_result.value()
         var line_count = content.split("\n").count()
         
-        results.set(filename, line_count)
+        results.put(filename, line_count)
         print "OK (${line_count} lines")
     
     # Summary
     print "\nSummary:"
     var total = 0
-    for filename in results.keys()
-        var count = results.get(filename)
-        if count != nil
-            total = total + count
-            print "${filename}: ${count} lines"
+    for filename, count in results
+        total = total + count
+        print "${filename}: ${count} lines"
     
     print "Total: ${total} lines"
 ```

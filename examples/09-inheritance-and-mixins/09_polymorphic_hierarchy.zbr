@@ -1,6 +1,7 @@
 // file: 09_polymorphic_hierarchy.zbr
 // teaches: treating children as parents
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class AnimalShelter
     var animals as List(Animal) = List()

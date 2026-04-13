@@ -207,7 +207,7 @@ var seen = HashMap(str, bool)()
 var unique = List(str)()
 for item in items
     if not seen.contains(item)
-        seen.set(item, true)
+        seen.put(item, true)
         unique.add(item)
 
 # unique has: apple, banana, cherry (duplicates removed)
@@ -238,11 +238,11 @@ print count  # 2
 ```zebra
 var scores = HashMap(str, int)()
 
-scores.set("Alice", 95)
-scores.set("Bob", 87)
-scores.set("Charlie", 92)
+scores.put("Alice", 95)
+scores.put("Bob", 87)
+scores.put("Charlie", 92)
 
-var alice_score = scores.get("Alice")
+var alice_score = scores.fetch("Alice")
 if alice_score != nil
     print "Alice: ${alice_score}"
 ```
@@ -250,10 +250,8 @@ if alice_score != nil
 ### Loop Over HashMap
 
 ```zebra
-for key in scores.keys()
-    var value = scores.get(key)
-    if value != nil
-        print "${key}: ${value}"
+for key, value in scores
+    print "${key}: ${value}"
 ```
 
 ### Check if Key Exists
@@ -278,11 +276,11 @@ items.add("red")
 var counts = HashMap(str, int)()
 
 for item in items
-    var current = counts.get(item)
+    var current = counts.fetch(item)
     if current != nil
-        counts.set(item, current + 1)
+        counts.put(item, current + 1)
     else
-        counts.set(item, 1)
+        counts.put(item, 1)
 
 # counts: red->3, blue->2
 ```
@@ -461,16 +459,15 @@ var person = Person("Alice", 30)
 print person.describe()
 ```
 
-### Use Inheritance
+### Use Interfaces
 
 ```zebra
-class Animal
+interface Animal
+    def speak() as str
+
+class Dog implements Animal
     var name as str = ""
     
-    def speak() as str
-        return "Some sound"
-
-class Dog is Animal
     def speak() as str
         return "Woof!"
 
@@ -485,7 +482,7 @@ print dog.speak()
 interface Shape
     def area() as float
 
-class Circle is Shape
+class Circle implements Shape
     var radius as float = 0.0
     
     def area() as float
@@ -692,11 +689,11 @@ def count_words(filename as str) as HashMap(str, int) throws
     for word in words
         var clean = word.trim()
         if clean.len > 0
-            var current = counts.get(clean)
+            var current = counts.fetch(clean)
             if current != nil
-                counts.set(clean, current + 1)
+                counts.put(clean, current + 1)
             else
-                counts.set(clean, 1)
+                counts.put(clean, 1)
 
     return counts
 ```

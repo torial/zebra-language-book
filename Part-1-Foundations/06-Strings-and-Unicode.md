@@ -374,7 +374,7 @@ def parse_url(url as str) as HashMap(str, str)
     var result as HashMap(str, str) = HashMap()
     var parts = url.split("://")
     if parts.count() == 2
-        result.set("protocol", parts.at(0))
+        result.put("protocol", parts.at(0))
     return result
 ```
 

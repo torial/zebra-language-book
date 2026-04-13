@@ -197,7 +197,7 @@ class Main
 
 ### HashMap Operations
 
-HashMaps store key-value pairs with `.set()` and `.get()`:
+HashMaps store key-value pairs with `.put()` and `.fetch()` (`set` and `get` are reserved keywords):
 
 ```zebra
 # file: stdlib-hashmap-ops.zbr
@@ -210,12 +210,12 @@ class Main
             var scores = HashMap(str, int)()
 
             # Add key-value pairs
-            scores.set("Alice", 95)
-            scores.set("Bob", 87)
-            scores.set("Charlie", 92)
+            scores.put("Alice", 95)
+            scores.put("Bob", 87)
+            scores.put("Charlie", 92)
 
             # Retrieve value
-            var alice_score = scores.get("Alice")
+            var alice_score = scores.fetch("Alice")
             if alice_score != nil
                 print "Alice scored: ${alice_score}"
 
@@ -224,11 +224,11 @@ class Main
                 print "Bob's record found"
 
             # Update value (overwrites previous)
-            scores.set("Bob", 89)
+            scores.put("Bob", 89)
 
             # Iterate over entries
-            for entry in scores.entries()
-                print "${entry.key}: ${entry.value}"
+            for name, score in scores
+                print "${name}: ${score}"
 ```
 
 ---
@@ -460,11 +460,11 @@ class Main
                     var name = parts.at(0)
                     var score = parts.at(1).toInt()
                     if score != nil
-                        scores.set(name, score)
+                        scores.put(name, score)
 
             # Report
-            for entry in scores.entries()
-                print "${entry.key}: ${entry.value}"
+            for name, value in scores
+                print "${name}: ${value}"
 ```
 
 ---
@@ -475,7 +475,7 @@ class Main
 
 2. **String Operations** — Master `.split()`, `.join()`, `.contains()`, `.replace()` and type conversions — you'll use them constantly.
 
-3. **Collections** — `List` for sequences, `HashMap` for key-value lookups. Use `.set()` / `.get()` for HashMap access.
+3. **Collections** — `List` for sequences, `HashMap` for key-value lookups. Use `.put()` / `.fetch()` for HashMap access (`set` and `get` are reserved keywords).
 
 4. **Math Module** — `Math.sin()`, `Math.sqrt()`, `Math.PI` etc. — a real module, not just arithmetic operators.
 

@@ -1,6 +1,7 @@
 // file: 09_override.zbr
 // teaches: overriding parent methods
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class Animal
     def speak as str

@@ -234,27 +234,26 @@ if items.count() > 0
 
 **Example:**
 ```zebra
-var map = HashMap()
-var value = map.get("key")  # Returns nil, not an error
+var map = HashMap(str, int)()
+var value = map.fetch("key")  # Returns nil, not an error
 
 # But if you don't check nil:
-var num = map.get("key")
+var num = map.fetch("key")
 var result = num + 1           # ERROR: num is nil!
 ```
 
 **Solution:**
 ```zebra
-var map = HashMap()
-var value = map.get("key")
+var map = HashMap(str, int)()
+var value = map.fetch("key")
 
 if value != nil
     var result = value + 1
 else
     print "Key not found"
-
-# Or use unwrapOr
-var value = map.get("key").unwrapOr(0)  # 0 if not found
 ```
+
+Note: `set` and `get` are reserved keywords in Zebra. Use `put` and `fetch` instead.
 
 ---
 
@@ -512,7 +511,7 @@ interface Shape
     def area() as float
     def perimeter() as float
 
-class Circle is Shape
+class Circle implements Shape
     var radius as float = 0.0
     
     def area() as float
@@ -527,7 +526,7 @@ interface Shape
     def area() as float
     def perimeter() as float
 
-class Circle is Shape
+class Circle implements Shape
     var radius as float = 0.0
     
     def area() as float
@@ -549,7 +548,7 @@ Create a concrete subclass:
 class Shape          # Abstract-ish
     # ...
 
-class Circle is Shape
+class Circle implements Shape
     # Provide all implementations
     # ...
 

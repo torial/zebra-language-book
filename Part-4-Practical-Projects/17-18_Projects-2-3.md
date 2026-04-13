@@ -109,11 +109,11 @@ class Router
     var routes as HashMap(str, RequestHandler) = HashMap()
     
     def register(path as str, handler as RequestHandler)
-        routes.set(path, handler)
+        routes.put(path, handler)
     
     def route_request(request as HttpRequest) as HttpResponse throws
         if routes.contains(request.path)
-            var handler = routes.get(request.path)
+            var handler = routes.fetch(request.path)
             var response = handler.handle(request)
             return response
         
@@ -166,7 +166,7 @@ class UserHandler
             user.name = "User ${next_id}"
             user.email = "user${next_id}@example.com"
             
-            users.set(user.id, user)
+            users.put(user.id, user)
             next_id = next_id + 1
             
             return HttpResponse.created(user.to_json())
@@ -332,9 +332,9 @@ class FrequencyAnalyzer
                 var cleaned = word.trim()
                 if cleaned.len > 0
                     if freq.contains(cleaned)
-                        freq.set(cleaned, freq.get(cleaned) + 1)
+                        freq.put(cleaned, freq.fetch(cleaned) + 1)
                     else
-                        freq.set(cleaned, 1)
+                        freq.put(cleaned, 1)
             
             # Convert to list and sort by frequency
             var results as List(WordFrequency) = List()
@@ -410,13 +410,13 @@ class NGramAnalyzer
                     j = j + 1
                 
                 if ngrams.contains(gram)
-                    var ng = ngrams.get(gram)
+                    var ng = ngrams.fetch(gram)
                     ng.count = ng.count + 1
                     ng.positions.add(i)
                 else
                     var ng = NGram(gram)
                     ng.positions.add(i)
-                    ngrams.set(gram, ng)
+                    ngrams.put(gram, ng)
                 
                 i = i + 1
             
@@ -563,7 +563,7 @@ class AnalysisApplication
             for word in words
                 var cleaned = word.lower().trim()
                 if cleaned.len > 0
-                    unique_words_set.set(cleaned, 1)
+                    unique_words_set.put(cleaned, 1)
             
             var freq_analyzer = FrequencyAnalyzer()
             var top_words = freq_analyzer.top_words(content, 10)

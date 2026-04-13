@@ -1,6 +1,7 @@
 // file: 09_super.zbr
 // teaches: calling parent implementation
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class Vehicle
     var speed as int = 0

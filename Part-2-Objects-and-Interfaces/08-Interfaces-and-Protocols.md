@@ -464,11 +464,11 @@ class MemoryDatabase
     var data as HashMap(str, str) = HashMap()
     implements Database
         def save(key as str, value as str) as bool
-            data.set(key, value)
+            data.put(key, value)
             return true
         def load(key as str) as str?
             if data.contains(key)
-                return data.get(key)
+                return data.fetch(key)
             return nil
         def delete(key as str) as bool
             data.remove(key)

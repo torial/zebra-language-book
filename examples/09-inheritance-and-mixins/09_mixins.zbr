@@ -1,6 +1,7 @@
 // file: 09_mixins.zbr
 // teaches: mixin composition
 // chapter: 09-Inheritance-and-Mixins
+// NOTE: Zebra does NOT support class inheritance. These examples are aspirational.
 
 class Swimmer
     def swim

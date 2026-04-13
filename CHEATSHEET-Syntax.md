@@ -59,7 +59,7 @@ interface Shape
     def area() as float
     def perimeter() as float
 
-class Circle is Shape
+class Circle implements Shape
     var radius as float = 0.0
 
     def area() as float
@@ -103,7 +103,8 @@ class Animal
     def speak() as str
         return "Sound"
 
-class Dog is Animal
+class Dog
+    var name as str = ""
     def speak() as str
         return "Woof!"
 ```
@@ -131,7 +132,7 @@ while i < 10
 for item in items
     print item
 
-for i in 0.to(10)
+for i in 0..10
     print i  # 0, 1, 2, ..., 9
 
 # Break & Continue
@@ -185,12 +186,12 @@ numbers.remove(1)
 
 # HashMap
 var map = HashMap(str, int)()
-map.set("a", 1)
-map.get("a")                          # returns int? (nullable)
+map.put("a", 1)
+map.fetch("a")                        # retrieve value
 map.contains("a")
 map.remove("a")
-for entry in map.entries()
-    print "${entry.key}: ${entry.value}"
+for key, value in map
+    print "${key}: ${value}"
 ```
 
 ---
@@ -208,12 +209,11 @@ text.contains("World")                  # substring search
 text.startsWith("Hello")                # prefix check
 text.endsWith("!")                      # suffix check
 text.split(",")                         # split to List(str)
-text.replace("World", "Zebra")          # replace first
-text.replaceAll("l", "L")              # replace all
+text.replace("World", "Zebra")          # replace all occurrences
 text.trim()                             # remove whitespace
-text.substring(0, 5)                    # extract portion
-text.charAt(0)                          # char at position
 text.indexOf("World")                   # find position (-1 if not found)
+text.reverse()                          # reverse string
+text.repeat(3)                          # repeat N times
 
 # Type conversion
 "42".toInt()                            # int? (nullable)
@@ -274,14 +274,14 @@ def first(items as List(T)) as T?
 class Box(T)
     var item as T?
 
-    def set(value as T)
+    def store(value as T)
         this.item = value
 
-    def get() as T?
+    def retrieve() as T?
         return this.item
 
 var box = Box(str)()
-box.set("hello")
+box.store("hello")
 ```
 
 ---
@@ -402,7 +402,8 @@ MathUtils.add(2, 3)                     # Call without instance
 | `union` | Define tagged union |
 | `enum` | Define enumeration |
 | `interface` | Define interface |
-| `is` | Inherit from class/interface |
+| `is` | Member attribute / type check |
+| `implements` | Implement interface |
 | `if`, `elif`, `else` | Conditional |
 | `while` | While loop |
 | `for` | For loop |

@@ -37,7 +37,7 @@ var numbers as List(int) = List()
 var mapping as HashMap(str, int) = HashMap()
 
 numbers.add(1)
-mapping.set("key", 42)
+mapping.put("key", 42)
 ```
 
 **References:** Chapter 03 (Collections)
@@ -163,14 +163,11 @@ class Circle
 ### Inheritance
 
 ```zebra
-class Animal
-    var name as str = ""
-    
+interface Animal
     def speak() as str
-        return "Some sound"
 
-class Dog is Animal
-    # Inherits name from Animal
+class Dog implements Animal
+    var name as str = ""
     
     def speak() as str
         return "Woof!"
@@ -180,7 +177,7 @@ dog.name = "Buddy"
 print dog.speak()  # "Woof!"
 ```
 
-**References:** Chapter 09 (Inheritance and Mixins)
+**References:** Chapter 08 (Interfaces and Protocols)
 
 ---
 
@@ -193,7 +190,7 @@ interface Shape
     def area() as float
     def perimeter() as float
 
-class Circle is Shape
+class Circle implements Shape
     var radius as float = 0.0
     
     def area() as float
@@ -419,15 +416,15 @@ var first_num = first(nums)  # Type is int?
 class Box(T)
     var item as T?
     
-    def set(item as T)
+    def store(item as T)
         this.item = item
     
-    def get() as T?
+    def fetch() as T?
         return this.item
 
 var box = Box(str)()
-box.set("Hello")
-var value = box.get()  # Type is str?
+box.store("Hello")
+var value = box.fetch()  # Type is str?
 ```
 
 **References:** Chapter 13 (Generics and Type Constraints)
@@ -568,18 +565,15 @@ for item in items
 ### HashMap Operations
 
 ```zebra
-var map = HashMap()
+var map = HashMap(str, int)()
 
-map.set("a", 1)                 # Add/update
-map.get("a")                  # Get value (returns nullable)
+map.put("a", 1)                 # Add/update
+map.fetch("a")                  # Get value (returns nullable)
 map.contains("a")               # Check key exists
 map.remove("a")                 # Remove key
-map.keys()                       # Get all keys
 
-for key in map.keys()
-    var value = map.get(key)
-    if value != nil
-        print "${key} => ${value}"
+for key, value in map
+    print "${key} => ${value}"
 ```
 
 ### Deduplication (via HashMap)
@@ -587,11 +581,11 @@ for key in map.keys()
 ```zebra
 var seen as HashMap(str, bool) = HashMap()
 
-seen.set("apple", true)         # Track item
+seen.put("apple", true)         # Track item
 seen.contains("apple")          # Check membership
 
-for key in seen.keys()
-    print key                # Iterate unique items
+for key, _ in seen
+    print key                    # Iterate unique items
 ```
 
 **References:** Chapter 03 (Collections)
@@ -648,7 +642,7 @@ mixin Serializable
     def to_json() as str
         return "{}"
 
-class Person is Serializable
+class Person implements Serializable
     var name as str = ""
     
     def to_json() as str
