@@ -1,11 +1,11 @@
-# 02: Values and Types
+﻿# 02: Values and Types
 
 **Audience:** All  
 **Time:** 90 minutes  
 **Prerequisites:** 01-Getting-Started  
 **You'll learn:** Zebra's type system, declaring variables, type inference, value vs. reference semantics
 
----
+--- 
 
 ## The Big Picture
 
@@ -17,7 +17,7 @@ Every value in Zebra has a **type**. The type tells you:
 
 Zebra's type system is **your best friend**—it catches mistakes at compile time instead of in production.
 
-![Type Hierarchy Diagram](../diagrams/01-type-hierarchy.png)
+![Type Hierarchy Diagram](diagrams/01-type-hierarchy.png)
 
 ---
 
@@ -31,12 +31,12 @@ Zebra's type system is **your best friend**—it catches mistakes at compile tim
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var age as int = 25
-            var population as int = 8_000_000_000  # Underscores for readability
-            var tiny as int8 = 100
-            var huge as int64 = 9_223_372_036_854_775_807
+            var age: int = 25
+            var population: int = 8_000_000_000  # Underscores for readability
+            var tiny: int8 = 100
+            var huge: int64 = 9_223_372_036_854_775_807
             
             print age
             print population
@@ -51,8 +51,8 @@ class Main
 
 **Arithmetic:**
 ```zebra
-var x as int = 10
-var y as int = 3
+var x: int = 10
+var y: int = 3
 print x + y    # 13
 print x - y    # 7
 print x * y    # 30
@@ -68,10 +68,10 @@ print x % y    # 1 (remainder)
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var pi as float = 3.14159
-            var precise as float64 = 3.141592653589793
+            var pi: float = 3.14159
+            var precise: float64 = 3.141592653589793
             
             print pi
             print precise
@@ -93,10 +93,10 @@ class Main
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var is_ready as bool = true
-            var is_finished as bool = false
+            var is_ready: bool = true
+            var is_finished: bool = false
             
             print is_ready
             print is_finished
@@ -115,10 +115,10 @@ class Main
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var greeting as str = "Hello"
-            var name as str = "World"
+            var greeting: str = "Hello"
+            var name: str = "World"
             
             print greeting
             print greeting.len      # 5
@@ -145,9 +145,9 @@ class Main
 ### Explicit Types
 
 ```zebra
-var age as int = 25          # age must be int
-var name as str = "Alice"    # name must be str
-var active as bool = true    # active must be bool
+var age: int = 25          # age must be int
+var name: str = "Alice"    # name must be str
+var active: bool = true    # active must be bool
 ```
 
 ### Type Inference
@@ -170,7 +170,7 @@ var pi = 3.14         # Inferred as float
 var x = compute_something()  # What type is x?
 
 # This is clear:
-var payment_amount as float = compute_something()
+var payment_amount: float = compute_something()
 ```
 
 ### Naming Conventions
@@ -178,10 +178,10 @@ var payment_amount as float = compute_something()
 Use `snake_case` for variables:
 
 ```zebra
-var user_id as int = 42           # ✅ Good
-var UserID as int = 42            # ❌ Avoid (that's for classes)
-var user_id_number as int = 42    # ✅ Clear but verbose
-var uid as int = 42               # ❌ Too abbreviated
+var user_id: int = 42           # ✅ Good
+var UserID: int = 42            # ❌ Avoid (that's for classes)
+var user_id_number: int = 42    # ✅ Clear but verbose
+var uid: int = 42               # ❌ Too abbreviated
 ```
 
 ---
@@ -194,10 +194,10 @@ var uid as int = 42               # ❌ Too abbreviated
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var x as int = 10
-            var y as int = 20
+            var x: int = 10
+            var y: int = 20
             
             print x == y    # false (equal)
             print x != y    # true (not equal)
@@ -218,8 +218,8 @@ class Main
 ### Implicit Conversion (When Safe)
 
 ```zebra
-var small as int8 = 100
-var big as int = small  # ✅ Fine: int8 → int is always safe
+var small: int8 = 100
+var big: int = small  # ✅ Fine: int8 → int is always safe
 ```
 
 ### Explicit Conversion
@@ -230,13 +230,13 @@ var big as int = small  # ✅ Fine: int8 → int is always safe
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var x as int = 42
+            var x: int = 42
             var s = x.toString()      # int → str
             print s
             
-            var pi as float = 3.14
+            var pi: float = 3.14
             var i = pi.toInt()        # float → int (loses decimal)
             print i                   # 3
             
@@ -257,10 +257,10 @@ Sometimes a value might not exist. Zebra uses `?` to mark this:
 # chapter: 02-Values-and-Types
 
 class Main
-    shared
+    static
         def main
-            var name as str? = "Alice"    # Can hold str or nil
-            var empty as str? = nil       # Explicitly nil
+            var name: str? = "Alice"    # Can hold str or nil
+            var empty: str? = nil       # Explicitly nil
             
             # You must check before using
             if name != nil
@@ -286,9 +286,9 @@ class Main
 Zebra prevents mixing types unsafely:
 
 ```zebra
-var x as int = "hello"  # ❌ Error: can't assign str to int
-var y as str = 42       # ❌ Error: can't assign int to str
-var z as int = 3.14     # ❌ Error: can't assign float to int
+var x: int = "hello"  # ❌ Error: can't assign str to int
+var y: str = 42       # ❌ Error: can't assign int to str
+var z: int = 3.14     # ❌ Error: can't assign float to int
 ```
 
 **Why?** Type safety catches bugs before they happen. You can't accidentally treat a string as a number.
@@ -303,14 +303,14 @@ var z as int = 3.14     # ❌ Error: can't assign float to int
 # chapter: 02-Values-and-Types
 
 class User
-    var id as int
-    var name as str
-    var email as str
-    var age as int
-    var is_active as bool
+    var id: int
+    var name: str
+    var email: str
+    var age: int
+    var is_active: bool
 
 class Main
-    shared
+    static
         def main
             # Create a user
             var user = User()
@@ -341,14 +341,14 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> var result as int = compute()  # Clear: it's an int
+> var result: int = compute()  # Clear: it's an int
 > ```
 
 > ❌ **Mistake:** Mixing types in arithmetic
 >
 > ```zebra
-> var x as int = 10
-> var y as float = 3.14
+> var x: int = 10
+> var y: float = 3.14
 > print x + y  # ❌ Can't add int + float
 > ```
 >
@@ -356,21 +356,21 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> var x as float = 10.0
-> var y as float = 3.14
+> var x: float = 10.0
+> var y: float = 3.14
 > print x + y  # ✅ Both float
 > ```
 
 > ❌ **Mistake:** Using a nullable type without checking
 >
 > ```zebra
-> var name as str? = nil
+> var name: str? = nil
 > print name.upper()  # ❌ Error: nil doesn't have .upper()
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var name as str? = nil
+> var name: str? = nil
 > if name != nil
 >     print name.upper()  # Safe
 > ```
@@ -421,10 +421,10 @@ Write a program that compares two numbers and prints which is larger:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var x as int = 100
-            var y as int = 75
+            var x: int = 100
+            var y: int = 75
             
             if x > y
                 print "${x} is larger than ${y}"
@@ -448,12 +448,12 @@ Create a data structure to hold user information (name, age, email) and print a 
 
 ```zebra
 class Person
-    var name as str
-    var age as int
-    var email as str
+    var name: str
+    var age: int
+    var email: str
 
 class Main
-    shared
+    static
         def main
             var person = Person()
             person.name = "Carol"

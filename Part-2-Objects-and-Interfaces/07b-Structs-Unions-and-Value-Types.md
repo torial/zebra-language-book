@@ -31,18 +31,18 @@ A struct is like a class, but with **value semantics**. When you assign a struct
 # chapter: 07b-Structs-Unions
 
 struct Point
-    var x as int
-    var y as int
+    var x: int
+    var y: int
 
-    cue init(x as int, y as int)
+    cue init(x: int, y: int)
         this.x = x
         this.y = y
 
-    def distSq() as int
+    def distSq(): int
         return x * x + y * y
 
 class Main
-    shared def main()
+    static def main()
         var a = Point(3, 4)
         var b = a              # copies the entire Point
         print a.distSq()      # 25
@@ -68,27 +68,27 @@ The `except` keyword creates a copy of a struct with specific fields overridden.
 # chapter: 07b-Structs-Unions
 
 struct Config
-    var indent as int
-    var owner as str
-    var verbose as bool
+    var indent: int
+    var owner: str
+    var verbose: bool
 
-    cue init(indent as int, owner as str, verbose as bool)
+    cue init(indent: int, owner: str, verbose: bool)
         this.indent = indent
         this.owner = owner
         this.verbose = verbose
 
-    def indented() as Config
+    def indented(): Config
         var c = this except
             indent = indent + 1
         return c
 
-    def withOwner(name as str) as Config
+    def withOwner(name: str): Config
         var c = this except
             owner = name
         return c
 
 class Main
-    shared def main()
+    static def main()
         var base = Config(0, "nobody", false)
         var inner = base.indented()
         var owned = inner.withOwner("Alice")
@@ -130,7 +130,7 @@ enum Status(int)
     err = 1
 
 class Main
-    shared def main()
+    static def main()
         var c = Color.red
         var s = Status.ok
         print s     # 0
@@ -156,7 +156,7 @@ union Value
     none_
 
 class Main
-    shared def main()
+    static def main()
         var v1 = Value.int_(42)
         var v2 = Value.str_("hello")
         var v3 = Value.none_()
@@ -181,13 +181,13 @@ union Shape
     point                   # no payload
 
 struct Dims
-    var w as float
-    var h as float
-    cue init(w as float, h as float)
+    var w: float
+    var h: float
+    cue init(w: float, h: float)
         this.w = w
         this.h = h
 
-def describe(s as Shape) as str
+def describe(s: Shape): str
     branch s
         on Shape.circle as r
             return "Circle with radius ${r}"
@@ -200,7 +200,7 @@ def describe(s as Shape) as str
     return "unknown"
 
 class Main
-    shared def main()
+    static def main()
         var c = Shape.circle(3.14)
         var r = Shape.rect(Dims(10.0, 5.0))
         print describe(c)    # Circle with radius 3.14
@@ -248,15 +248,15 @@ Structs and unions live on the stack. But what if a type needs to reference itse
 # chapter: 07b-Structs-Unions
 
 struct Node
-    var value as int
-    var next as ^Node?     # optional heap pointer to another Node
+    var value: int
+    var next: ^Node?     # optional heap pointer to another Node
 
-    cue init(value as int, next as ^Node?)
+    cue init(value: int, next: ^Node?)
         this.value = value
         this.next = next
 
 class Main
-    shared def main()
+    static def main()
         var a = Node(1, nil)
         var b = Node(2, nil)
         a.next = b              # auto-boxes: copies b to the heap
@@ -281,9 +281,9 @@ union Expr
     call as ^ExprCall
 
 struct ExprBinary
-    var left as ^Expr
-    var op as BinaryOp
-    var right as ^Expr
+    var left: ^Expr
+    var op: BinaryOp
+    var right: ^Expr
 ```
 
 ---
@@ -301,14 +301,14 @@ union Expr
     neg as ^Expr
 
 struct BinExpr
-    var left as ^Expr
-    var right as ^Expr
+    var left: ^Expr
+    var right: ^Expr
 
-    cue init(left as ^Expr, right as ^Expr)
+    cue init(left: ^Expr, right: ^Expr)
         this.left = left
         this.right = right
 
-def eval(e as Expr) as int
+def eval(e: Expr): int
     branch e
         on Expr.num as n
             return n
@@ -321,7 +321,7 @@ def eval(e as Expr) as int
     return 0
 
 class Main
-    shared def main()
+    static def main()
         # 3 + (neg 2) = 1
         var three = Expr.num(3)
         var two = Expr.neg(Expr.num(2))
@@ -342,16 +342,16 @@ Define a `Color` struct with `r`, `g`, `b` fields (all `int`). Add a `mix` metho
 
 ```zebra
 struct Color
-    var r as int
-    var g as int
-    var b as int
+    var r: int
+    var g: int
+    var b: int
 
-    cue init(r as int, g as int, b as int)
+    cue init(r: int, g: int, b: int)
         this.r = r
         this.g = g
         this.b = b
 
-    def mix(other as Color) as Color
+    def mix(other: Color): Color
         var c = this except
             r = (r + other.r) / 2
             g = (g + other.g) / 2
@@ -359,7 +359,7 @@ struct Color
         return c
 
 class Main
-    shared def main()
+    static def main()
         var red = Color(255, 0, 0)
         var blue = Color(0, 0, 255)
         var purple = red.mix(blue)

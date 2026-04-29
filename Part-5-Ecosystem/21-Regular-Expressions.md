@@ -401,7 +401,7 @@ def main()
         print "Invalid: no @ sign"
     
     # Better validation: check length, etc.
-    def is_valid_email(email as str) as bool
+    def is_valid_email(email: str): bool
         # Must have @ and .
         if not email.contains("@")
             return false
@@ -449,7 +449,7 @@ def main()
         print "Valid international"
     
     # Flexible: accept various formats
-    def is_valid_phone_flexible(phone as str) as bool
+    def is_valid_phone_flexible(phone: str): bool
         # Must have at least 10 digits
         var digits_only = phone.replace("-", "").replace(" ", "").replace("(", "").replace(")", "")
         
@@ -482,7 +482,7 @@ def main()
         print "Doesn't match: FTP not in pattern"
     
     # More complete
-    def is_valid_url(url as str) as bool
+    def is_valid_url(url: str): bool
         if not url.startsWith("http://") and not url.startsWith("https://")
             return false
         
@@ -558,7 +558,7 @@ def main()
 # teaches: extracting data from formatted text
 # chapter: 21
 
-def extract_person_data(line as str) as HashMap(str, str)?
+def extract_person_data(line: str): HashMap(str, str)?
     # Expected format: Name | Age | Email
     var pattern = Regex.compile("^(.+)\\|(.+)\\|(.+)$")
     
@@ -634,7 +634,7 @@ def main()
         print iso_date  # 2025-03-15
     
     # Escape special characters
-    def escape_html(text as str) as str
+    def escape_html(text: str): str
         var escaped = text.replace("&", "&amp;")
         escaped = escaped.replace("<", "&lt;")
         escaped = escaped.replace(">", "&gt;")
@@ -721,7 +721,7 @@ Check documentation for your version.
 # teaches: using regex for real log analysis
 # chapter: 21
 
-def analyze_logs(filename as str)
+def analyze_logs(filename: str)
     var result = File.read(filename)
     if result.isErr()
         print "Error: ${result.error(}")

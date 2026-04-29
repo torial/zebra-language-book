@@ -1,4 +1,4 @@
-# 11: Nil Tracking and Safety
+﻿# 11: Nil Tracking and Safety
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -14,7 +14,7 @@
 > "A billion-dollar mistake." — Tony Hoare, on inventing the null reference
 
 Zebra says: **Explicit nil is safe. Implicit nil is forbidden.**
-
+ 
 ---
 
 ## Nullable Types
@@ -27,12 +27,12 @@ Zebra says: **Explicit nil is safe. Implicit nil is forbidden.**
 # chapter: 11-Nil-Tracking-and-Safety
 
 class User
-    var name as str      # Can't be nil
-    var nickname as str? # Can be nil
-    var bio as str?      # Can be nil
+    var name: str      # Can't be nil
+    var nickname: str? # Can be nil
+    var bio: str?      # Can be nil
 
 class Main
-    shared
+    static
         def main
             var user = User()
             user.name = "Alice"    # ✅ Fine
@@ -40,7 +40,7 @@ class Main
             user.bio = "Developer" # ✅ Can assign string to str?
             
             # This won't compile:
-            # var empty as str = nil  # ❌ str can't be nil
+            # var empty: str = nil  # ❌ str can't be nil
 ```
 
 **Key point:** The `?` mark means "this can be nil or the type."
@@ -57,10 +57,10 @@ class Main
 # chapter: 11-Nil-Tracking-and-Safety
 
 class Main
-    shared
+    static
         def main
-            var nickname as str? = "Bobby"
-            var empty as str? = nil
+            var nickname: str? = "Bobby"
+            var empty: str? = nil
             
             # Check before using
             if nickname != nil
@@ -83,7 +83,7 @@ class Main
 
 ### Type Narrowing
 
-![Type Narrowing Flow](../diagrams/04-type-narrowing.png)
+![Type Narrowing Flow](diagrams/04-type-narrowing.png)
 
 After checking, the type is narrowed:
 
@@ -93,8 +93,8 @@ After checking, the type is narrowed:
 # chapter: 11-Nil-Tracking-and-Safety
 
 class Main
-    shared
-        def process_name(input as str?)
+    static
+        def process_name(input: str?)
             if input == nil
                 return  # Exit early if nil
             
@@ -115,16 +115,16 @@ class Main
 # chapter: 11-Nil-Tracking-and-Safety
 
 class Main
-    shared
+    static
         def main
-            var name as str? = "Alice"
+            var name: str? = "Alice"
             
             # Unwrap: assert it's not nil
             var safe_name = name to!
             print safe_name        # Now just str
             
             # If it WAS nil, this would crash
-            var empty as str? = nil
+            var empty: str? = nil
             # var crash = empty to!  # ❌ Would panic at runtime
 ```
 
@@ -138,8 +138,8 @@ class Main
 # chapter: 11-Nil-Tracking-and-Safety
 
 class Main
-    shared
-        def get_user_name(user_id as int) as str?
+    static
+        def get_user_name(user_id: int): str?
             if user_id == 1
                 return "Alice"
             return nil
@@ -168,13 +168,13 @@ class Main
 # chapter: 11-Nil-Tracking-and-Safety
 
 class User
-    var id as int
-    var name as str
-    var email as str?
+    var id: int
+    var name: str
+    var email: str?
 
 class UserDatabase
-    shared
-        def find_user(user_id as int) as User?
+    static
+        def find_user(user_id: int): User?
             if user_id == 1
                 var user = User()
                 user.id = 1
@@ -183,14 +183,14 @@ class UserDatabase
                 return user
             return nil
         
-        def find_user_email(user_id as int) as str?
+        def find_user_email(user_id: int): str?
             var user = find_user(user_id)
             if user == nil
                 return nil
             return user.email
 
 class Main
-    shared
+    static
         def main
             var user = UserDatabase.find_user(1)
             if user != nil
@@ -217,7 +217,7 @@ class Main
 ### Optional Chaining
 
 ```zebra
-def get_user_city(user_id as int) as str?
+def get_user_city(user_id: int): str?
     var user = find_user(user_id)
     if user == nil
         return nil
@@ -230,7 +230,7 @@ def get_user_city(user_id as int) as str?
 ### Guard Clauses
 
 ```zebra
-def process(data as str?)
+def process(data: str?)
     if data == nil
         return
     if data.len == 0
@@ -256,13 +256,13 @@ def process(data as str?)
 > ❌ **Mistake:** Forgetting to check for nil
 >
 > ```zebra
-> var email as str? = get_email()
+> var email: str? = get_email()
 > print email.len  # ❌ Crash if email is nil!
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var email as str? = get_email()
+> var email: str? = get_email()
 > if email != nil
 >     print email.len  # ✅ Safe
 > ```
@@ -270,13 +270,13 @@ def process(data as str?)
 > ❌ **Mistake:** Using `to!` without certainty
 >
 > ```zebra
-> var value as str? = get_value()
+> var value: str? = get_value()
 > print value to!  # ❌ Crashes if value is nil
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var value as str? = get_value()
+> var value: str? = get_value()
 > if value != nil
 >     print value  # ✅ Safe, or use unwrapOr
 > ```
@@ -284,12 +284,12 @@ def process(data as str?)
 > ❌ **Mistake:** Assigning nil to non-nullable
 >
 > ```zebra
-> var name as str = nil  # ❌ str can't be nil
+> var name: str = nil  # ❌ str can't be nil
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var name as str? = nil  # ✅ Declares it can be nil
+> var name: str? = nil  # ✅ Declares it can be nil
 > ```
 
 ---
@@ -347,14 +347,14 @@ Write a division function that returns nil on error:
 
 ```zebra
 class Calculator
-    shared
-        def safe_divide(a as float, b as float) as float?
+    static
+        def safe_divide(a: float, b: float): float?
             if b == 0.0
                 return nil
             return a / b
 
 class Main
-    shared
+    static
         def main
             var result = Calculator.safe_divide(10.0, 2.0)
             if result != nil
@@ -378,16 +378,16 @@ Write a function that navigates nullable fields:
 
 ```zebra
 class Profile
-    var name as str
-    var bio as str?
+    var name: str
+    var bio: str?
 
 class User
-    var id as int
-    var profile as Profile?
+    var id: int
+    var profile: Profile?
 
 class UserService
-    shared
-        def get_user_bio(user_id as int) as str?
+    static
+        def get_user_bio(user_id: int): str?
             var user = find_user(user_id)
             if user == nil
                 return nil
@@ -396,7 +396,7 @@ class UserService
                 return nil
             return profile.bio
         
-        def find_user(id as int) as User?
+        def find_user(id: int): User?
             if id == 1
                 var user = User()
                 user.id = 1
@@ -408,7 +408,7 @@ class UserService
             return nil
 
 class Main
-    shared
+    static
         def main
             var bio = UserService.get_user_bio(1)
             if bio != nil

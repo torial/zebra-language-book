@@ -1,4 +1,4 @@
-# 04: Functions and Scope
+﻿# 04: Functions and Scope
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -27,15 +27,15 @@ Functions let you:
 # chapter: 04-Functions-and-Scope
 
 class Math
-    shared
-        def add(a as int, b as int) as int
+    static
+        def add(a: int, b: int): int
             return a + b
         
-        def multiply(x as int, y as int) as int
+        def multiply(x: int, y: int): int
             return x * y
 
 class Main
-    shared
+    static
         def main
             var result1 = Math.add(5, 3)
             print result1                       # 8
@@ -58,13 +58,13 @@ class Main
 # chapter: 04-Functions-and-Scope
 
 class String
-    shared
-        def pad(text as str, width as int, fill as str) as str
+    static
+        def pad(text: str, width: int, fill: str): str
             # (Implementation would go here)
             return text
 
 class Main
-    shared
+    static
         def main
             var padded = String.pad("hi", 10, "*")
             print padded
@@ -78,12 +78,12 @@ class Main
 # chapter: 04-Functions-and-Scope
 
 class Logger
-    shared
-        def log(message as str)
+    static
+        def log(message: str)
             print "[LOG] ${message}"
 
 class Main
-    shared
+    static
         def main
             Logger.log("Application started")
             Logger.log("Processing data")
@@ -98,7 +98,7 @@ When a function doesn't return a value, just omit `as <type>`.
 
 **Scope** is where a variable can be accessed.
 
-![Scope and Lifetime](../diagrams/03-scope-and-lifetime.png)
+![Scope and Lifetime](diagrams/03-scope-and-lifetime.png)
 
 ### Local Scope
 
@@ -110,11 +110,11 @@ Variables declared inside a function are local (only accessible there):
 # chapter: 04-Functions-and-Scope
 
 class Calculator
-    shared
-        var global_val as int = 100  # Shared (class-level)
+    static
+        var global_val: int = 100  # Shared (class-level)
         
         def compute
-            var local_val as int = 50  # Local to this function
+            var local_val: int = 50  # Local to this function
             print local_val             # ✅ Can access
             print global_val            # ✅ Can access class-level
         
@@ -122,7 +122,7 @@ class Calculator
             # print local_val  # ❌ Can't access, it's not here
 
 class Main
-    shared
+    static
         def main
             Calculator.compute()
 ```
@@ -131,11 +131,11 @@ class Main
 
 ```zebra
 class Example
-    shared
-        var count as int = 10  # Class-level
+    static
+        var count: int = 10  # Class-level
         
         def show
-            var count as int = 5  # Local (shadows class variable)
+            var count: int = 5  # Local (shadows class variable)
             print count           # 5 (local shadows class)
             
         def another
@@ -162,15 +162,15 @@ Functions can create inner functions that capture outer variables:
 # chapter: 04-Functions-and-Scope
 
 class Multiplier
-    shared
-        def make_multiplier(factor as int) as def(int)
-            return def(x as int)
+    static
+        def make_multiplier(factor: int): def(int)
+            return def(x: int)
                 capture
-                    var factor as int = factor
+                    var factor: int = factor
                 return x * factor
 
 class Main
-    shared
+    static
         def main
             var double = Multiplier.make_multiplier(2)
             var triple = Multiplier.make_multiplier(3)
@@ -194,17 +194,17 @@ The `capture` block explicitly captures `factor` from the outer scope.
 # chapter: 04-Functions-and-Scope
 
 class Counter
-    shared
+    static
         def make_counter
-            var count as int = 0
+            var count: int = 0
             return def()
                 capture
-                    var count as int = count
+                    var count: int = count
                 count = count + 1
                 return count
 
 class Main
-    shared
+    static
         def main
             var counter = Counter.make_counter()
             print counter()             # 1
@@ -222,8 +222,8 @@ class Main
 # chapter: 04-Functions-and-Scope
 
 class String
-    shared
-        def repeat(text as str, times as int) as str
+    static
+        def repeat(text: str, times: int): str
             var result = ""
             var i = 0
             while i < times
@@ -231,7 +231,7 @@ class String
                 i = i + 1
             return result
         
-        def pad_left(text as str, width as int) as str
+        def pad_left(text: str, width: int): str
             var padding_needed = width - text.len
             if padding_needed <= 0
                 return text
@@ -239,7 +239,7 @@ class String
             return padding.concat(text)
 
 class Main
-    shared
+    static
         def main
             var padded = String.pad_left("hello", 10)
             print "[${padded}]"         # [     hello]
@@ -257,8 +257,8 @@ class Main
 # chapter: 04-Functions-and-Scope
 
 class Validator
-    shared
-        def validate_email(email as str) as bool
+    static
+        def validate_email(email: str): bool
             if email.len == 0
                 return false
             if not email.contains("@")
@@ -274,11 +274,11 @@ Zebra doesn't have default arguments, but you can create multiple versions:
 
 ```zebra
 class Print
-    shared
-        def log(message as str)
+    static
+        def log(message: str)
             log(message, "[INFO]")
         
-        def log(message as str, prefix as str)
+        def log(message: str, prefix: str)
             print "${prefix} ${message}"
 ```
 
@@ -290,23 +290,23 @@ class Print
 # chapter: 04-Functions-and-Scope
 
 class Array
-    shared
-        def map(items as List(int), transform as def(int))
-            var result as List(int) = List()
+    static
+        def map(items: List(int), transform as def(int))
+            var result: List(int) = List()
             for item in items
                 var transformed = transform(item)
                 result.add(transformed)
             return result
 
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(1)
             nums.add(2)
             nums.add(3)
             
-            var double_it = def(x as int) = x * 2
+            var double_it = def(x: int) = x * 2
             var doubled = Array.map(nums, double_it)
             
             for d in doubled
@@ -320,13 +320,13 @@ class Main
 > ❌ **Mistake:** Returning wrong type
 >
 > ```zebra
-> def get_age as int
+> def get_age: int
 >     return "25"  # ❌ Returning str, not int
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> def get_age as int
+> def get_age: int
 >     return 25    # ✅ Returning int
 > ```
 
@@ -342,7 +342,7 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> def process as str
+> def process: str
 >     var data = fetch_data()
 >     return data
 >
@@ -354,14 +354,14 @@ class Main
 > ❌ **Mistake:** Forgetting to return
 >
 > ```zebra
-> def compute as int
+> def compute: int
 >     var result = 5 + 3
 >     # Forgot return!
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> def compute as int
+> def compute: int
 >     var result = 5 + 3
 >     return result
 > ```
@@ -402,15 +402,15 @@ Create a function that returns an "adder" function:
 
 ```zebra
 class Adder
-    shared
-        def make_adder(base as int) as def(int)
-            return def(x as int)
+    static
+        def make_adder(base: int): def(int)
+            return def(x: int)
                 capture
-                    var base as int = base
+                    var base: int = base
                 return x + base
 
 class Main
-    shared
+    static
         def main
             var add_10 = Adder.make_adder(10)
             print add_10(5)              # 15
@@ -428,18 +428,18 @@ Write a function that filters a list:
 
 ```zebra
 class Filter
-    shared
-        def even_numbers(nums as List(int)) as List(int)
-            var evens as List(int) = List()
+    static
+        def even_numbers(nums: List(int)) as List(int)
+            var evens: List(int) = List()
             for num in nums
                 if num % 2 == 0
                     evens.add(num)
             return evens
 
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(1)
             nums.add(2)
             nums.add(3)

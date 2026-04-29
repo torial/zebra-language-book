@@ -1,4 +1,4 @@
-# 08: Interfaces and Protocols
+﻿# 08: Interfaces and Protocols
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -14,7 +14,7 @@
 - **Polymorphism** — Treat different objects the same way
 - **Testing** — Mock implementations easily
 - **Flexibility** — Add new implementations without modifying existing code
-
+ 
 ---
 
 ## Defining Interfaces
@@ -27,12 +27,12 @@
 # chapter: 08-Interfaces-and-Protocols
 
 interface Animal
-    def speak as str
+    def speak: str
     def move
 
 class Dog
     implements Animal
-        def speak as str
+        def speak: str
             return "Woof!"
         
         def move
@@ -40,20 +40,20 @@ class Dog
 
 class Bird
     implements Animal
-        def speak as str
+        def speak: str
             return "Tweet!"
         
         def move
             print "Flying through the air"
 
 class Main
-    shared
+    static
         def main
-            var dog as Animal = Dog()
+            var dog: Animal = Dog()
             print dog.speak()      # Woof!
             dog.move()             # Running on four legs
             
-            var bird as Animal = Bird()
+            var bird: Animal = Bird()
             print bird.speak()     # Tweet!
             bird.move()            # Flying through the air
 ```
@@ -71,34 +71,34 @@ class Main
 # chapter: 08-Interfaces-and-Protocols
 
 interface PaymentProcessor
-    def process(amount as float) as bool
-    def refund(transaction_id as str) as bool
-    def get_status(transaction_id as str) as str
+    def process(amount: float): bool
+    def refund(transaction_id: str): bool
+    def get_status(transaction_id: str): str
 
 class CreditCardProcessor
     implements PaymentProcessor
-        def process(amount as float) as bool
+        def process(amount: float): bool
             print "Processing credit card: ${amount}"
             return true
         
-        def refund(transaction_id as str) as bool
+        def refund(transaction_id: str): bool
             print "Refunding transaction: ${transaction_id}"
             return true
         
-        def get_status(transaction_id as str) as str
+        def get_status(transaction_id: str): str
             return "completed"
 
 class PayPalProcessor
     implements PaymentProcessor
-        def process(amount as float) as bool
+        def process(amount: float): bool
             print "Processing PayPal: ${amount}"
             return true
         
-        def refund(transaction_id as str) as bool
+        def refund(transaction_id: str): bool
             print "PayPal refund: ${transaction_id}"
             return true
         
-        def get_status(transaction_id as str) as str
+        def get_status(transaction_id: str): str
             return "pending"
 ```
 
@@ -114,15 +114,15 @@ class PayPalProcessor
 # chapter: 08-Interfaces-and-Protocols
 
 class Store
-    shared
-        def process_payment(processor as PaymentProcessor, amount as float)
+    static
+        def process_payment(processor: PaymentProcessor, amount: float)
             if processor.process(amount)
                 print "Payment successful"
             else
                 print "Payment failed"
 
 class Main
-    shared
+    static
         def main
             var cc_processor = CreditCardProcessor()
             var paypal_processor = PayPalProcessor()
@@ -140,9 +140,9 @@ class Main
 # chapter: 08-Interfaces-and-Protocols
 
 class Zoo
-    var animals as List(Animal) = List()
+    var animals: List(Animal) = List()
     
-    def add_animal(animal as Animal)
+    def add_animal(animal: Animal)
         animals.add(animal)
     
     def make_them_speak
@@ -154,7 +154,7 @@ class Zoo
             animal.move()
 
 class Main
-    shared
+    static
         def main
             var zoo = Zoo()
             zoo.add_animal(Dog())
@@ -175,43 +175,43 @@ class Main
 # chapter: 08-Interfaces-and-Protocols
 
 interface Logger
-    def debug(message as str)
-    def info(message as str)
-    def warn(message as str)
-    def error(message as str)
+    def debug(message: str)
+    def info(message: str)
+    def warn(message: str)
+    def error(message: str)
 
 class ConsoleLogger
     implements Logger
-        def debug(message as str)
+        def debug(message: str)
             print "[DEBUG] ${message}"
         
-        def info(message as str)
+        def info(message: str)
             print "[INFO] ${message}"
         
-        def warn(message as str)
+        def warn(message: str)
             print "[WARN] ${message}"
         
-        def error(message as str)
+        def error(message: str)
             print "[ERROR] ${message}"
 
 class FileLogger
     implements Logger
-        def debug(message as str)
+        def debug(message: str)
             # Write to file: [DEBUG] message
         
-        def info(message as str)
+        def info(message: str)
             # Write to file: [INFO] message
         
-        def warn(message as str)
+        def warn(message: str)
             # Write to file: [WARN] message
         
-        def error(message as str)
+        def error(message: str)
             # Write to file: [ERROR] message
 
 class Application
-    var logger as Logger
+    var logger: Logger
     
-    def set_logger(l as Logger)
+    def set_logger(l: Logger)
         logger = l
     
     def do_work
@@ -220,7 +220,7 @@ class Application
         logger.info("Work complete")
 
 class Main
-    shared
+    static
         def main
             var app = Application()
             
@@ -241,25 +241,25 @@ class Main
 
 ```zebra
 interface SortStrategy
-    def sort(items as List(int))
+    def sort(items: List(int))
 
 class AscendingSort
     implements SortStrategy
-        def sort(items as List(int))
+        def sort(items: List(int))
             # Sort ascending
 
 class DescendingSort
     implements SortStrategy
-        def sort(items as List(int))
+        def sort(items: List(int))
             # Sort descending
 
 class Sorter
-    var strategy as SortStrategy
+    var strategy: SortStrategy
     
-    def set_strategy(s as SortStrategy)
+    def set_strategy(s: SortStrategy)
         strategy = s
     
-    def sort(items as List(int))
+    def sort(items: List(int))
         strategy.sort(items)
 ```
 
@@ -267,17 +267,17 @@ class Sorter
 
 ```zebra
 interface NewSystem
-    def process(data as str)
+    def process(data: str)
 
 class OldSystem
-    def old_process(input as str)
+    def old_process(input: str)
         # Old implementation
 
 class OldSystemAdapter
     implements NewSystem
-        var old_system as OldSystem = OldSystem()
+        var old_system: OldSystem = OldSystem()
         
-        def process(data as str)
+        def process(data: str)
             # Adapt new interface to old system
             old_system.old_process(data)
 ```
@@ -337,12 +337,12 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ```zebra
 > interface Animal
->     def speak as str
+>     def speak: str
 >     def move
 >
 > class Dog
 >     implements Animal
->         def speak as str
+>         def speak: str
 >             return "Woof!"
 >         # ❌ Missing: def move
 > ```
@@ -353,7 +353,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > ```zebra
 > class Dog
 >     implements Animal
->         def speak as str
+>         def speak: str
 >             return "Woof!"
 >         def move
 >             print "Running"
@@ -363,11 +363,11 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ```zebra
 > interface PaymentProcessor
->     def process(amount as float) as bool
+>     def process(amount: float): bool
 >
 > class CreditCard
 >     implements PaymentProcessor
->         def process(amount as int) as bool  # ❌ int, not float
+>         def process(amount: int): bool  # ❌ int, not float
 >             return true
 > ```
 >
@@ -375,7 +375,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > ```zebra
 > class CreditCard
 >     implements PaymentProcessor
->         def process(amount as float) as bool  # ✅ Matches interface
+>         def process(amount: float): bool  # ✅ Matches interface
 >             return true
 > ```
 
@@ -383,7 +383,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ```zebra
 > class Dog  # ❌ Doesn't say implements Animal
->     def speak as str
+>     def speak: str
 >         return "Woof!"
 > ```
 >
@@ -391,7 +391,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > ```zebra
 > class Dog
 >     implements Animal  # ✅ Explicit contract
->         def speak as str
+>         def speak: str
 >             return "Woof!"
 > ```
 
@@ -456,28 +456,28 @@ Create a database interface with multiple implementations:
 
 ```zebra
 interface Database
-    def save(key as str, value as str) as bool
-    def load(key as str) as str?
-    def delete(key as str) as bool
+    def save(key: str, value: str): bool
+    def load(key: str): str?
+    def delete(key: str): bool
 
 class MemoryDatabase
-    var data as HashMap(str, str) = HashMap()
+    var data: HashMap(str, str) = HashMap()
     implements Database
-        def save(key as str, value as str) as bool
+        def save(key: str, value: str): bool
             data.put(key, value)
             return true
-        def load(key as str) as str?
+        def load(key: str): str?
             if data.contains(key)
                 return data.fetch(key)
             return nil
-        def delete(key as str) as bool
+        def delete(key: str): bool
             data.remove(key)
             return true
 
 class Main
-    shared
+    static
         def main
-            var db as Database = MemoryDatabase()
+            var db: Database = MemoryDatabase()
             db.save("user1", "Alice")
             db.save("user2", "Bob")
             
@@ -499,27 +499,27 @@ Create an interface for document processors:
 
 ```zebra
 interface DocumentProcessor
-    def process(content as str) as str
-    def validate(content as str) as bool
+    def process(content: str): str
+    def validate(content: str): bool
 
 class MarkdownProcessor
     implements DocumentProcessor
-        def process(content as str) as str
+        def process(content: str): str
             # Convert markdown to HTML
             return "<html>${content}</html>"
-        def validate(content as str) as bool
+        def validate(content: str): bool
             return content.len > 0
 
 class JSONValidator
     implements DocumentProcessor
-        def process(content as str) as str
+        def process(content: str): str
             return content  # Already valid JSON
-        def validate(content as str) as bool
+        def validate(content: str): bool
             return content.contains("{") and content.contains("}")
 
 class Main
-    shared
-        def process_document(processor as DocumentProcessor, doc as str)
+    static
+        def process_document(processor: DocumentProcessor, doc: str)
             if processor.validate(doc)
                 var result = processor.process(doc)
                 print "Processed: ${result}"

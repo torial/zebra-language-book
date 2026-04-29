@@ -1,4 +1,4 @@
-# 03: Collections
+﻿# 03: Collections
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -16,7 +16,7 @@ Zebra provides:
 - **HashMap(K, V)** — Key-value pairs (like Python's dict)
 - **Set(T)** — Unique values (like Python's set)
 
-![Collections Comparison](../diagrams/02-collections-comparison.png)
+![Collections Comparison](diagrams/02-collections-comparison.png)
 
 ---
 
@@ -32,10 +32,10 @@ A `List` holds multiple values of the same type in order.
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
             # Create an empty list
-            var fruits as List(str) = List()
+            var fruits: List(str) = List()
             
             # Add items
             fruits.add("apple")
@@ -62,9 +62,9 @@ class Main
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(10)
             nums.add(20)
             nums.add(30)
@@ -94,9 +94,9 @@ class Main
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
-            var items as List(str) = List()
+            var items: List(str) = List()
             items.add("first")
             items.add("second")
             items.add("third")
@@ -154,10 +154,10 @@ A `HashMap` stores key-value pairs. Fast lookup by key.
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
             # Create empty HashMap
-            var ages as HashMap(str, int) = HashMap()
+            var ages: HashMap(str, int) = HashMap()
             
             # Add key-value pairs
             ages.put("Alice", 30)
@@ -185,9 +185,9 @@ class Main
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
-            var config as HashMap(str, str) = HashMap()
+            var config: HashMap(str, str) = HashMap()
             config.put("host", "localhost")
             config.put("port", "8080")
             config.put("debug", "true")
@@ -238,12 +238,12 @@ Need unique values? Use a `HashMap` where keys track membership:
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
-            var seen as HashMap(int, bool) = HashMap()
-            var unique as List(int) = List()
+            var seen: HashMap(int, bool) = HashMap()
+            var unique: List(int) = List()
             
-            var ids as List(int) = List()
+            var ids: List(int) = List()
             ids.add(1)
             ids.add(2)
             ids.add(3)
@@ -270,14 +270,14 @@ class Main
 # chapter: 03-Collections
 
 class Student
-    var name as str
-    var gpa as float
+    var name: str
+    var gpa: float
 
 class Main
-    shared
+    static
         def main
             # List of students
-            var students as List(Student) = List()
+            var students: List(Student) = List()
             
             var alice = Student()
             alice.name = "Alice"
@@ -315,9 +315,9 @@ class Main
 # chapter: 03-Collections
 
 class Main
-    shared
+    static
         def main
-            var numbers as List(int) = List()
+            var numbers: List(int) = List()
             numbers.add(1)
             numbers.add(2)
             numbers.add(3)
@@ -325,7 +325,7 @@ class Main
             numbers.add(5)
             
             # Filter: keep only even numbers
-            var evens as List(int) = List()
+            var evens: List(int) = List()
             for num in numbers
                 if num % 2 == 0
                     evens.add(num)
@@ -354,7 +354,7 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> var items as List(str) = List()  # Clear: list of strings
+> var items: List(str) = List()  # Clear: list of strings
 > ```
 
 > ❌ **Mistake:** Iterating and modifying
@@ -366,7 +366,7 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> var to_remove as List(str) = List()
+> var to_remove: List(str) = List()
 > for item in items
 >     if should_remove(item)
 >         to_remove.add(item)
@@ -377,13 +377,13 @@ class Main
 > ❌ **Mistake:** Using wrong key type for HashMap
 >
 > ```zebra
-> var map as HashMap(str, int) = HashMap()
+> var map: HashMap(str, int) = HashMap()
 > map.put(1, 100)  # ❌ Key should be str, not int
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var map as HashMap(str, int) = HashMap()
+> var map: HashMap(str, int) = HashMap()
 > map.put("count", 100)  # ✅ Key is str
 > ```
 
@@ -426,9 +426,9 @@ Create a phone book and look up a number:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var phone_book as HashMap(str, str) = HashMap()
+            var phone_book: HashMap(str, str) = HashMap()
             phone_book.put("Alice", "555-1234")
             phone_book.put("Bob", "555-5678")
             phone_book.put("Carol", "555-9999")
@@ -449,12 +449,12 @@ Count unique words in a sentence (using HashMap for deduplication):
 
 ```zebra
 class Main
-    shared
+    static
         def main
             var text = "the quick brown fox jumps over the lazy dog"
             var words = text.split(" ")
             
-            var seen as HashMap(str, bool) = HashMap()
+            var seen: HashMap(str, bool) = HashMap()
             for word in words
                 seen.put(word, true)
             

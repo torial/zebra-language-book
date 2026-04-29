@@ -27,17 +27,17 @@
 # chapter: 10-Properties-and-Computed-Values
 
 class Person
-    var birth_year as int = 2000
+    var birth_year: int = 2000
     
-    def age as int
+    def age: int
         return 2024 - birth_year
     
-    def name_length as int
+    def name_length: int
         var name = "Alice"
         return name.len
 
 class Main
-    shared
+    static
         def main
             var person = Person()
             person.birth_year = 1990
@@ -53,20 +53,20 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class Rectangle
-    var width as int = 0
-    var height as int = 0
+    var width: int = 0
+    var height: int = 0
     
-    def area as int
+    def area: int
         return width * height
     
-    def perimeter as int
+    def perimeter: int
         return 2 * (width + height)
     
-    def is_square as bool
+    def is_square: bool
         return width == height
 
 class Main
-    shared
+    static
         def main
             var rect = Rectangle()
             rect.width = 10
@@ -89,15 +89,15 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class Account
-    var balance as float = 0.0
+    var balance: float = 0.0
     
-    def deposit(amount as float) as bool
+    def deposit(amount: float): bool
         if amount <= 0.0
             return false
         balance = balance + amount
         return true
     
-    def withdraw(amount as float) as bool
+    def withdraw(amount: float): bool
         if amount <= 0.0
             return false
         if amount > balance
@@ -105,11 +105,11 @@ class Account
         balance = balance - amount
         return true
     
-    def get_balance as float
+    def get_balance: float
         return balance
 
 class Main
-    shared
+    static
         def main
             var account = Account()
             account.deposit(100.0)
@@ -130,18 +130,18 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class User
-    var username as str = ""
-    var email as str = ""
-    var last_modified as str = ""
+    var username: str = ""
+    var email: str = ""
+    var last_modified: str = ""
     
-    def set_username(new_name as str) as bool
+    def set_username(new_name: str): bool
         if new_name.len < 3
             return false
         username = new_name
         last_modified = "2024-01-01"  # Update timestamp
         return true
     
-    def set_email(new_email as str) as bool
+    def set_email(new_email: str): bool
         if not new_email.contains("@")
             return false
         email = new_email
@@ -149,7 +149,7 @@ class User
         return true
 
 class Main
-    shared
+    static
         def main
             var user = User()
             if user.set_username("alice")
@@ -170,27 +170,27 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class DataSet
-    var numbers as List(int) = List()
+    var numbers: List(int) = List()
     
-    def sum as int
+    def sum: int
         var total = 0
         for num in numbers
             total = total + num
         return total
     
-    def average as float
+    def average: float
         if numbers.count() == 0
             return 0.0
         return sum / numbers.count()
     
-    def min_value as int
+    def min_value: int
         var min = numbers.at(0)
         for num in numbers
             if num < min
                 min = num
         return min
     
-    def max_value as int
+    def max_value: int
         var max = numbers.at(0)
         for num in numbers
             if num > max
@@ -198,7 +198,7 @@ class DataSet
         return max
 
 class Main
-    shared
+    static
         def main
             var data = DataSet()
             data.numbers.add(10)
@@ -222,10 +222,10 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class Database
-    var connection as str?   = nil
-    var is_connected as bool = false
+    var connection: str?   = nil
+    var is_connected: bool = false
     
-    def get_connection as str
+    def get_connection: str
         if connection == nil
             # Expensive operation: only when needed
             connection = "Connected to DB"
@@ -233,7 +233,7 @@ class Database
         return connection
 
 class Main
-    shared
+    static
         def main
             var db = Database()
             
@@ -259,28 +259,28 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class Temperature
-    var celsius as float = 0.0
+    var celsius: float = 0.0
     
-    def fahrenheit as float
+    def fahrenheit: float
         return celsius * 9.0 / 5.0 + 32.0
     
-    def kelvin as float
+    def kelvin: float
         return celsius + 273.15
     
-    def set_from_fahrenheit(f as float)
+    def set_from_fahrenheit(f: float)
         celsius = (f - 32.0) * 5.0 / 9.0
     
-    def set_from_kelvin(k as float)
+    def set_from_kelvin(k: float)
         celsius = k - 273.15
     
-    def is_freezing as bool
+    def is_freezing: bool
         return celsius <= 0.0
     
-    def is_boiling as bool
+    def is_boiling: bool
         return celsius >= 100.0
 
 class Main
-    shared
+    static
         def main
             var temp = Temperature()
             temp.celsius = 25.0
@@ -305,30 +305,30 @@ class Main
 # chapter: 10-Properties-and-Computed-Values
 
 class Config
-    var host as str = "localhost"
-    var port as int = 8080
-    var debug as bool = false
+    var host: str = "localhost"
+    var port: int = 8080
+    var debug: bool = false
     
-    def set_host(h as str) as bool
+    def set_host(h: str): bool
         if h.len == 0
             return false
         host = h
         return true
     
-    def set_port(p as int) as bool
+    def set_port(p: int): bool
         if p < 1 or p > 65535
             return false
         port = p
         return true
     
-    def get_url as str
+    def get_url: str
         return "http://${host}:${port}"
     
-    def set_debug(d as bool)
+    def set_debug(d: bool)
         debug = d
 
 class Main
-    shared
+    static
         def main
             var config = Config()
             config.set_host("example.com")
@@ -347,12 +347,12 @@ class Main
 
 ```zebra
 class BankAccount
-    var balance as float = 0.0
+    var balance: float = 0.0
     
-    def get_balance as float
+    def get_balance: float
         return balance  # Can read
     
-    def deposit(amount as float)
+    def deposit(amount: float)
         balance = balance + amount  # Can modify only via methods
     
     # No setter: direct assignment not allowed
@@ -362,9 +362,9 @@ class BankAccount
 
 ```zebra
 class Password
-    var encrypted_password as str = ""
+    var encrypted_password: str = ""
     
-    def set_password(plain as str)
+    def set_password(plain: str)
         # Encrypt and store
         encrypted_password = "encrypted:" + plain
     
@@ -391,7 +391,7 @@ class Password
 >
 > ```zebra
 > class User
->     var age as int = 0
+>     var age: int = 0
 > var user = User()
 > user.age = -5  # ❌ No validation!
 > ```
@@ -399,8 +399,8 @@ class Password
 > ✅ **Better:**
 > ```zebra
 > class User
->     var age as int = 0
->     def set_age(new_age as int) as bool
+>     var age: int = 0
+>     def set_age(new_age: int): bool
 >         if new_age < 0
 >             return false
 >         age = new_age
@@ -411,9 +411,9 @@ class Password
 >
 > ```zebra
 > class DataSet
->     var numbers as List(int) = List()
+>     var numbers: List(int) = List()
 >     
->     def sum as int  # Recalculates every call
+>     def sum: int  # Recalculates every call
 >         var total = 0
 >         for num in numbers
 >             total = total + num
@@ -423,10 +423,10 @@ class Password
 > ✅ **Better (if called often):**
 > ```zebra
 > class DataSet
->     var numbers as List(int) = List()
->     var cached_sum as int? = nil
+>     var numbers: List(int) = List()
+>     var cached_sum: int? = nil
 >     
->     def sum as int
+>     def sum: int
 >         if cached_sum == nil
 >             var total = 0
 >             for num in numbers
@@ -434,7 +434,7 @@ class Password
 >             cached_sum = total
 >         return cached_sum
 >     
->     def add_number(num as int)
+>     def add_number(num: int)
 >         numbers.add(num)
 >         cached_sum = nil  # Invalidate cache
 > ```
@@ -443,9 +443,9 @@ class Password
 >
 > ```zebra
 > class Logger
->     var count as int = 0
+>     var count: int = 0
 >     
->     def get_count as int
+>     def get_count: int
 >         count = count + 1  # ❌ Has side effect!
 >         return count
 > ```
@@ -453,9 +453,9 @@ class Password
 > ✅ **Better:**
 > ```zebra
 > class Logger
->     var count as int = 0
+>     var count: int = 0
 >     
->     def get_count as int
+>     def get_count: int
 >         return count  # ✅ Pure getter, no side effects
 >     
 >     def log_access
@@ -525,31 +525,31 @@ Create a circle class with radius and diameter properties:
 
 ```zebra
 class Circle
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def set_radius(r as float) as bool
+    def set_radius(r: float): bool
         if r <= 0.0
             return false
         radius = r
         return true
     
-    def diameter as float
+    def diameter: float
         return radius * 2.0
     
-    def set_diameter(d as float) as bool
+    def set_diameter(d: float): bool
         if d <= 0.0
             return false
         radius = d / 2.0
         return true
     
-    def area as float
+    def area: float
         return 3.14159 * radius * radius
     
-    def circumference as float
+    def circumference: float
         return 2.0 * 3.14159 * radius
 
 class Main
-    shared
+    static
         def main
             var circle = Circle()
             circle.set_radius(5.0)
@@ -574,36 +574,36 @@ Create a user profile with validated properties:
 
 ```zebra
 class UserProfile
-    var username as str = ""
-    var email as str = ""
-    var age as int = 0
+    var username: str = ""
+    var email: str = ""
+    var age: int = 0
     
-    def set_username(name as str) as bool
+    def set_username(name: str): bool
         if name.len < 3 or name.len > 20
             return false
         username = name
         return true
     
-    def set_email(addr as str) as bool
+    def set_email(addr: str): bool
         if not addr.contains("@") or not addr.contains(".")
             return false
         email = addr
         return true
     
-    def set_age(a as int) as bool
+    def set_age(a: int): bool
         if a < 13 or a > 120
             return false
         age = a
         return true
     
-    def is_adult as bool
+    def is_adult: bool
         return age >= 18
     
-    def is_valid as bool
+    def is_valid: bool
         return username.len > 0 and email.contains("@") and age > 0
 
 class Main
-    shared
+    static
         def main
             var user = UserProfile()
             if user.set_username("alice_wonder")

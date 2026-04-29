@@ -40,12 +40,12 @@ The simplest case: C functions with primitive types.
 # Declare C function signature
 # Note: This example assumes the function is available at link time
 shared class Math
-    shared
-        def sqrt(x as float) as float
+    static
+        def sqrt(x: float): float
             # This would be implemented in C
             return 0.0
         
-        def pow(base as float, exponent as float) as float
+        def pow(base: float, exponent: float): float
             # C function: double pow(double, double)
             return 0.0
 
@@ -67,14 +67,14 @@ Strings require special care because Zebra and C have different string represent
 # chapter: 22
 
 shared class CString
-    shared
+    static
         # C strlen: int strlen(const char* s)
-        def strlen(s as str) as int
+        def strlen(s: str): int
             # Native C implementation
             return 0
         
         # C strcmp: int strcmp(const char* a, const char* b)
-        def strcmp(a as str, b as str) as int
+        def strcmp(a: str, b: str): int
             # Returns: 0 if equal, <0 if a<b, >0 if a>b
             return 0
         
@@ -106,12 +106,12 @@ Arrays are commonly passed to C functions.
 # chapter: 22
 
 shared class CArray
-    shared
+    static
         # C qsort: void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*))
         # This is complex to use in Zebra—better to sort in Zebra
         
         # Example: sum array (simplified C function)
-        def sum_array(numbers as List(int)) as int
+        def sum_array(numbers: List(int)) as int
             # In real C: int sum_array(int* arr, int len)
             var total = 0
             for num in numbers
@@ -119,7 +119,7 @@ shared class CArray
             return total
         
         # Example: find maximum
-        def max_array(numbers as List(int)) as int
+        def max_array(numbers: List(int)) as int
             var max_val = numbers.at(0)
             for num in numbers
                 if num > max_val
@@ -149,13 +149,13 @@ This is where FFI gets dangerous.
 # chapter: 22
 
 shared class CMemory
-    shared
+    static
         # C malloc: void* malloc(size_t size)
         # C free: void free(void* ptr)
         # These are low-level and error-prone
         
         # Better: allocate in Zebra, pass to C
-        def process_buffer(data as str) as int throws
+        def process_buffer(data: str): int throws
             # Zebra owns the memory, C just reads it
             # Safe! C cannot deallocate
             return data.len
@@ -188,14 +188,14 @@ Zig is closer to Zebra, making interop more ergonomic.
 # chapter: 22
 
 shared class ZigMath
-    shared
+    static
         # Zig function: pub fn gcd(a: i64, b: i64) -> i64
-        def gcd(a as int, b as int) as int
+        def gcd(a: int, b: int): int
             # Implementation in Zig
             return 0
         
         # Zig function: pub fn is_prime(n: u64) -> bool
-        def is_prime(n as int) as bool
+        def is_prime(n: int): bool
             return false
 
 def main()
@@ -218,20 +218,20 @@ Zig's string handling is different from C's.
 # chapter: 22
 
 shared class ZigString
-    shared
+    static
         # Zig function with slices
         # pub fn string_length(s: []const u8) -> usize
-        def string_length(s as str) as int
+        def string_length(s: str): int
             return 0
         
         # Case conversion
         # pub fn to_uppercase(allocator: Allocator, s: []const u8) -> ![]u8
-        def to_uppercase(s as str) as str
+        def to_uppercase(s: str): str
             return ""
         
         # String validation
         # pub fn is_valid_utf8(s: []const u8) -> bool
-        def is_valid_utf8(data as str) as bool
+        def is_valid_utf8(data: str): bool
             return true
 
 def main()
@@ -257,10 +257,10 @@ Many C functions return error codes rather than throwing exceptions.
 # chapter: 22
 
 shared class CFile
-    shared
+    static
         # C fopen: FILE* fopen(const char* filename, const char* mode)
         # Returns NULL on error
-        def open_file(filename as str, mode as str) as int throws
+        def open_file(filename: str, mode: str): int throws
             # In real C, this returns FILE* (opaque pointer)
             # For now, return 0 to indicate error
             var file_handle = 0  # Attempt to open
@@ -272,7 +272,7 @@ shared class CFile
         
         # C close: int fclose(FILE* f)
         # Returns 0 on success, EOF on error
-        def close_file(file_handle as int) as bool throws
+        def close_file(file_handle: int): bool throws
             var status = 0  # Attempt to close
             
             if status == 0
@@ -308,9 +308,9 @@ Some C libraries use setjmp/longjmp for exceptions. These are complex to use fro
 # wrap it in a simpler Zebra interface
 
 shared class SafeLibrary
-    shared
+    static
         # C function might throw (via setjmp/longjmp)
-        def risky_operation(input as str) as str throws
+        def risky_operation(input: str): str throws
             # Wrapper function (in C or Zig) handles exceptions
             # and returns a Result to Zebra
             raise "Operation failed"
@@ -336,18 +336,18 @@ Most numeric types map directly:
 # chapter: 22
 
 shared class Numeric
-    shared
+    static
         # Zebra int (64-bit) → C int32_t (32-bit)
         # Be careful with overflow!
-        def c_int32_function(n as int) as int
+        def c_int32_function(n: int): int
             return 0
         
         # Zebra float → C float or double
-        def c_double_function(x as float) as float
+        def c_double_function(x: float): float
             return 0.0
         
         # Boolean: Zebra bool → C bool (or int 0/1)
-        def c_bool_function(flag as bool) as bool
+        def c_bool_function(flag: bool): bool
             return false
 
 def main()
@@ -371,18 +371,18 @@ Collections require more care:
 # chapter: 22
 
 class Point
-    var x as float
-    var y as float
+    var x: float
+    var y: float
     
-    def init(x as float, y as float)
+    def init(x: float, y: float)
         this.x = x
         this.y = y
 
 shared class Geometry
-    shared
+    static
         # C function: float distance(struct Point a, struct Point b)
         # Assuming C expects Point with fields x, y
-        def distance(p1 as Point, p2 as Point) as float
+        def distance(p1: Point, p2: Point): float
             # Implementation
             var dx = p2.x - p1.x
             var dy = p2.y - p1.y
@@ -410,18 +410,18 @@ Different platforms have different APIs.
 # chapter: 22
 
 shared class Platform
-    shared
+    static
         # Windows: GetFileSize
         # Unix: stat
-        def get_file_size(filename as str) as int throws
+        def get_file_size(filename: str): int throws
             # Implementation varies by platform
             return 0
         
-        def get_environment_variable(name as str) as str?
+        def get_environment_variable(name: str): str?
             # Implemented via getenv (Unix) or GetEnvironmentVariable (Windows)
             return nil
         
-        def sleep_milliseconds(ms as int)
+        def sleep_milliseconds(ms: int)
             # Windows: Sleep()
             # Unix: usleep()
             pass
@@ -441,12 +441,12 @@ def main()
 # chapter: 22
 
 shared class OSSpecific
-    shared
-        def platform_name() as str
+    static
+        def platform_name(): str
             # This might vary based on compilation target
             return "Unknown"
         
-        def file_separator() as str
+        def file_separator(): str
             # Windows: \, Unix: /
             return "/"
 
@@ -469,7 +469,7 @@ The biggest FFI risk: memory management.
 # chapter: 22
 
 # SAFE: Zebra owns memory
-def safe_pattern(data as str) as int
+def safe_pattern(data: str): int
     # Zebra created the string
     # Pass it to C for reading only
     # C should NOT modify or deallocate
@@ -478,7 +478,7 @@ def safe_pattern(data as str) as int
 # UNSAFE: C allocates memory Zebra must free
 # shared class Unsafe
 #     shared
-#         def allocate_buffer() as str
+#         def allocate_buffer(): str
 #             # C allocates memory with malloc
 #             # Zebra must call free
 #             # This is error-prone! Don't do this.
@@ -486,13 +486,13 @@ def safe_pattern(data as str) as int
 
 # BETTER: Provide deallocation function
 shared class BetterAlloc
-    shared
+    static
         # C allocates
-        def create_buffer(size as int) as int
+        def create_buffer(size: int): int
             return 0  # Returns opaque handle
         
         # Zebra must call this to free
-        def destroy_buffer(handle as int)
+        def destroy_buffer(handle: int)
             pass
 
 def main()
@@ -512,14 +512,14 @@ Type mismatches can cause crashes.
 # chapter: 22
 
 shared class TypeSafety
-    shared
+    static
         # C expects: void process_array(int* arr, int len)
-        def process_array(arr as List(int))
+        def process_array(arr: List(int))
             # Must match! List(str) would be wrong.
             pass
         
         # C expects: int sum(float* values, int count)
-        def sum(values as List(float)) as int
+        def sum(values: List(float)) as int
             # Values must be floats, not ints
             return 0
 
@@ -550,7 +550,7 @@ Pointers can outlive their targets.
 # chapter: 22
 
 # UNSAFE: Reference to local variable
-# def dangerous() as int
+# def dangerous(): int
 #     var local = 42
 #     var ptr = address_of(local)  # Get pointer
 #     # local goes out of scope here
@@ -558,14 +558,14 @@ Pointers can outlive their targets.
 #     return 0
 
 # SAFE: Return value, not reference
-def safe_return(n as int) as int
+def safe_return(n: int): int
     var result = n * 2
     # result is copied into return value
     # No dangling pointers
     return result
 
 # SAFE: Use parameters
-def safe_parameter(numbers as List(int)) as int
+def safe_parameter(numbers: List(int)) as int
     # List is passed by reference, lives in caller's scope
     # Safe to use while caller owns it
     return numbers.at(0)
@@ -589,15 +589,15 @@ def main()
 # chapter: 22
 
 shared class Crypto
-    shared
+    static
         # OpenSSL/BoringSSL: compute SHA256
-        def sha256(input as str) as str
+        def sha256(input: str): str
             # C function: 
             # void SHA256(const unsigned char* d, size_t n, unsigned char* md)
             return ""
         
         # Verify hash matches expected value
-        def verify_sha256(input as str, expected_hash as str) as bool
+        def verify_sha256(input: str, expected_hash: str): bool
             var computed = sha256(input)
             return computed == expected_hash
 
@@ -645,10 +645,10 @@ def main()
     
     sum = sum_all(nums)  # Single FFI call
 
-def expensive_c_function(n as int) as int
+def expensive_c_function(n: int): int
     return n * 2
 
-def sum_all(nums as List(int)) as int
+def sum_all(nums: List(int)) as int
     var total = 0
     for num in nums
         total = total + num
@@ -663,13 +663,13 @@ def sum_all(nums as List(int)) as int
 # chapter: 22
 
 shared class Batch
-    shared
+    static
         # Process one item (slow)
-        def process_item(item as str) as str
+        def process_item(item: str): str
             return item.upper()
         
         # Process many items (fast)
-        def process_batch(items as List(str)) as List(str)
+        def process_batch(items: List(str)) as List(str)
             # Single FFI call for all items
             return items
 

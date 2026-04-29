@@ -23,7 +23,7 @@ Create a file: `hello.zbr`
 
 ```zebra
 class Main
-    shared
+    static
         def main
             print "Hello, World!"
 ```
@@ -53,7 +53,7 @@ var active = true               # Boolean
 ### 2. Functions
 
 ```zebra
-def greet(name as str) as str
+def greet(name: str): str
     return "Hello, ${name}!"
 
 var message = greet("Bob")      # "Hello, Bob!"
@@ -116,7 +116,7 @@ Create `count_lines.zbr`:
 
 ```zebra
 class Main
-    shared
+    static
         def main
             var filename = "input.txt"
 
@@ -146,7 +146,7 @@ zebra count_lines.zbr
 99% of Zebra code follows this pattern:
 
 ```zebra
-def do_something(input as str) as str throws
+def do_something(input: str): str throws
     # 1. Validate input
     if input.len == 0
         raise "Input is empty"
@@ -158,7 +158,7 @@ def do_something(input as str) as str throws
     return result
 
 class Main
-    shared
+    static
         def main
             # Use catch for simple fallback
             var value = do_something("data") catch "default"
@@ -202,7 +202,7 @@ class Main
 
 ```zebra
 var x = 5                       # Declare variable
-def func() as str               # Define function
+def func(): str               # Define function
 for item in list                # Loop over collection
 if x > 5                        # Conditional
 var v = risky() catch default   # Handle errors

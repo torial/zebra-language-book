@@ -13,8 +13,8 @@ var f = 3.14                            # float
 var b = true                            # bool
 var c = 'x'                             # char
 
-var x as int = 42                       # explicit type
-var y as int? = nil                     # nullable type
+var x: int = 42                       # explicit type
+var y: int? = nil                     # nullable type
 ```
 
 ---
@@ -22,7 +22,7 @@ var y as int? = nil                     # nullable type
 ## Functions
 
 ```zebra
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     return a + b
 
 var result = add(2, 3)                  # 5
@@ -37,14 +37,14 @@ def no_return()
 
 ```zebra
 class Person
-    var name as str = ""
-    var age as int = 0
+    var name: str = ""
+    var age: int = 0
 
-    cue init(name as str, age as int)
+    cue init(name: str, age: int)
         this.name = name
         this.age = age
 
-    def describe() as str
+    def describe(): str
         return "${name} is ${age}"
 
 var person = Person("Alice", 30)
@@ -56,16 +56,16 @@ var person = Person("Alice", 30)
 
 ```zebra
 interface Shape
-    def area() as float
-    def perimeter() as float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
-    var radius as float = 0.0
+    var radius: float = 0.0
 
-    def area() as float
+    def area(): float
         return 3.14159 * radius * radius
 
-    def perimeter() as float
+    def perimeter(): float
         return 2.0 * 3.14159 * radius
 ```
 
@@ -75,8 +75,8 @@ class Circle implements Shape
 
 ```zebra
 struct Point
-    var x as int
-    var y as int
+    var x: int
+    var y: int
 
 union Value
     int_ as int
@@ -99,13 +99,13 @@ branch v
 
 ```zebra
 class Animal
-    var name as str = ""
-    def speak() as str
+    var name: str = ""
+    def speak(): str
         return "Sound"
 
 class Dog
-    var name as str = ""
-    def speak() as str
+    var name: str = ""
+    def speak(): str
         return "Woof!"
 ```
 
@@ -227,7 +227,7 @@ text.repeat(3)                          # repeat N times
 
 ```zebra
 # Functions that can fail use throws
-def parse(text as str) as int throws
+def parse(text: str): int throws
     if text.len == 0
         raise "Empty input"
     return 42
@@ -251,8 +251,8 @@ var result = parse("x") catch |e| -1
 ## Nil Safety
 
 ```zebra
-var x as int? = 42                      # Can be int or nil
-var y as int? = nil                     # Explicitly nil
+var x: int? = 42                      # Can be int or nil
+var y: int? = nil                     # Explicitly nil
 
 # Safe check
 if x != nil
@@ -265,19 +265,19 @@ if x != nil
 
 ```zebra
 # Generic function
-def first(items as List(T)) as T?
+def first(items: List(T)) as T?
     if items.count() > 0
         return items.at(0)
     return nil
 
 # Generic class
 class Box(T)
-    var item as T?
+    var item: T?
 
-    def store(value as T)
+    def store(value: T)
         this.item = value
 
-    def retrieve() as T?
+    def retrieve(): T?
         return this.item
 
 var box = Box(str)()
@@ -370,8 +370,8 @@ Math.ceil(x)                            # Round up
 
 ```zebra
 class MathUtils
-    shared
-        def add(a as int, b as int) as int
+    static
+        def add(a: int, b: int): int
             return a + b
 
 MathUtils.add(2, 3)                     # Call without instance

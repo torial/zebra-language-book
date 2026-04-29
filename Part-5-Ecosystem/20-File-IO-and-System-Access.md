@@ -416,12 +416,12 @@ def main()
 # chapter: 20
 
 class Config
-    var host as str = "localhost"
-    var port as int = 8080
-    var debug as bool = false
+    var host: str = "localhost"
+    var port: int = 8080
+    var debug: bool = false
     
-    shared
-        def from_file(filename as str) as Config throws
+    static
+        def from_file(filename: str): Config throws
             var content_result = File.read(filename)
             
             if content_result.isErr()
@@ -483,31 +483,31 @@ def main()
 # chapter: 20
 
 class Logger
-    var filename as str
-    var entries as List(str)
+    var filename: str
+    var entries: List(str)
     
-    def init(filename as str)
+    def init(filename: str)
         this.filename = filename
         this.entries = List()
     
-    def log(message as str)
+    def log(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
         this.entries.add(entry)
         print entry
     
-    def error(message as str)
+    def error(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
         this.entries.add(entry)
         print entry
     
-    def save() as bool
+    def save(): bool
         var content = entries.join("\n")
         var result = File.write(filename, content)
         return result.isOk()
 
-def get_timestamp() as str
+def get_timestamp(): str
     # Placeholder—in real code, use actual time
     return "2025-03-15 14:30:00"
 
@@ -536,12 +536,12 @@ def main()
 # chapter: 20
 
 class Person
-    var name as str
-    var age as int
-    var email as str
+    var name: str
+    var age: int
+    var email: str
     
-    shared
-        def from_csv_line(line as str) as Person?
+    static
+        def from_csv_line(line: str): Person?
             var parts = line.split(",")
             if parts.count() != 3
                 return nil
@@ -556,7 +556,7 @@ class Person
             person.email = parts.at(2).trim()
             return person
         
-        def load_from_csv(filename as str) as List(Person) throws
+        def load_from_csv(filename: str): List(Person) throws
             var content_result = File.read(filename)
             
             if content_result.isErr()
@@ -576,7 +576,7 @@ class Person
             
             return people
     
-    def to_csv_line() as str
+    def to_csv_line(): str
         return "${name},${age},${email}"
 
 def main()

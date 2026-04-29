@@ -1,4 +1,4 @@
-# 07: Classes and Instances
+﻿# 07: Classes and Instances
 
 **Audience:** All (with beginner sidebar)  
 **Time:** 120 minutes  
@@ -20,7 +20,7 @@ Code: A Car class has fields (color, speed) and methods (accelerate, brake)
 
 ## Defining Classes
 
-![Class Structure](../diagrams/12-class-structure.png)
+![Class Structure](diagrams/12-class-structure.png)
 
 ### Simple Class
 
@@ -30,14 +30,14 @@ Code: A Car class has fields (color, speed) and methods (accelerate, brake)
 # chapter: 07-Classes-and-Instances
 
 class Person
-    var name as str
-    var age as int
+    var name: str
+    var age: int
     
     def greet
         print "Hi, I'm ${name}"
 
 class Main
-    shared
+    static
         def main
             var person = Person()
             person.name = "Alice"
@@ -59,14 +59,14 @@ class Main
 # chapter: 07-Classes-and-Instances
 
 class Rectangle
-    var width as int = 0
-    var height as int = 0
+    var width: int = 0
+    var height: int = 0
     
-    def area as int
+    def area: int
         return width * height
 
 class Main
-    shared
+    static
         def main
             var rect = Rectangle()
             rect.width = 10
@@ -82,7 +82,7 @@ class Main
 # chapter: 07-Classes-and-Instances
 
 class Counter
-    var count as int = 0
+    var count: int = 0
     
     def increment
         count = count + 1
@@ -93,11 +93,11 @@ class Counter
     def reset
         count = 0
     
-    def get_count as int
+    def get_count: int
         return count
 
 class Main
-    shared
+    static
         def main
             var counter = Counter()
             counter.increment()
@@ -116,19 +116,19 @@ class Main
 # chapter: 07-Classes-and-Instances
 
 class Math
-    shared
-        def abs(x as int) as int
+    static
+        def abs(x: int): int
             if x < 0
                 return 0 - x
             return x
         
-        def max(a as int, b as int) as int
+        def max(a: int, b: int): int
             if a > b
                 return a
             return b
 
 class Main
-    shared
+    static
         def main
             print Math.abs(-5)      # 5
             print Math.max(10, 20)  # 20
@@ -156,12 +156,12 @@ class Main
 # chapter: 07-Classes-and-Instances
 
 class User
-    var username as str = ""
-    var email as str = ""
-    var created_at as str = ""
-    var is_active as bool = true
+    var username: str = ""
+    var email: str = ""
+    var created_at: str = ""
+    var is_active: bool = true
     
-    def is_valid as bool
+    def is_valid: bool
         return username.len > 0 and email.contains("@")
     
     def deactivate
@@ -173,26 +173,26 @@ class User
         print "Active: ${is_active}"
 
 class UserManager
-    shared
-        var users as List(User) = List()
+    static
+        var users: List(User) = List()
         
-        def add_user(user as User) as bool
+        def add_user(user: User): bool
             if not user.is_valid
                 return false
             users.add(user)
             return true
         
-        def find_user(username as str) as User?
+        def find_user(username: str): User?
             for user in users
                 if user.username == username
                     return user
             return nil
         
-        def user_count as int
+        def user_count: int
             return users.count()
 
 class Main
-    shared
+    static
         def main
             var user1 = User()
             user1.username = "alice"
@@ -214,10 +214,10 @@ class Main
 
 ```zebra
 class Point
-    var x as int = 0
-    var y as int = 0
+    var x: int = 0
+    var y: int = 0
     
-    def distance_from_origin as float
+    def distance_from_origin: float
         return 0.0  # sqrt(x*x + y*y)
 ```
 
@@ -225,8 +225,8 @@ class Point
 
 ```zebra
 class EmailService
-    shared
-        def send(to as str, subject as str, body as str) as bool
+    static
+        def send(to: str, subject: str, body: str): bool
             # Implementation
             return true
 ```
@@ -235,17 +235,17 @@ class EmailService
 
 ```zebra
 class UserBuilder
-    var username as str = ""
-    var email as str = ""
-    var age as int = 0
+    var username: str = ""
+    var email: str = ""
+    var age: int = 0
     
-    def set_username(name as str)
+    def set_username(name: str)
         username = name
     
-    def set_email(addr as str)
+    def set_email(addr: str)
         email = addr
     
-    def build as User
+    def build: User
         var user = User()
         user.username = username
         user.email = email
@@ -260,7 +260,7 @@ class UserBuilder
 >
 > ```zebra
 > class Person
->     var name as str  # No default value
+>     var name: str  # No default value
 > var p = Person()
 > print p.name  # ❌ Uninitialized!
 > ```
@@ -268,14 +268,14 @@ class UserBuilder
 > ✅ **Better:**
 > ```zebra
 > class Person
->     var name as str = ""  # Has default
+>     var name: str = ""  # Has default
 > ```
 
 > ❌ **Mistake:** Modifying shared fields unintentionally
 >
 > ```zebra
 > class Counter
->     shared var count as int = 0
+>     static var count: int = 0
 >     
 >     def reset
 >         count = 0  # Affects ALL instances!
@@ -284,7 +284,7 @@ class UserBuilder
 > ✅ **Better:**
 > ```zebra
 > class Counter
->     var count as int = 0  # Instance field
+>     var count: int = 0  # Instance field
 >     
 >     def reset
 >         count = 0  # Only this instance
@@ -340,27 +340,27 @@ Create a Product class and a simple store:
 
 ```zebra
 class Product
-    var name as str = ""
-    var price as float = 0.0
-    var quantity as int = 0
+    var name: str = ""
+    var price: float = 0.0
+    var quantity: int = 0
     
-    def total_value as float
+    def total_value: float
         return price * quantity
 
 class Store
-    var products as List(Product) = List()
+    var products: List(Product) = List()
     
-    def add_product(product as Product)
+    def add_product(product: Product)
         products.add(product)
     
-    def total_inventory_value as float
+    def total_inventory_value: float
         var total = 0.0
         for product in products
             total = total + product.total_value()
         return total
 
 class Main
-    shared
+    static
         def main
             var store = Store()
             

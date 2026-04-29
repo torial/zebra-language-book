@@ -1,4 +1,4 @@
-# 09: Inheritance and Mixins
+﻿# 09: Inheritance and Mixins
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -28,7 +28,7 @@ Animal (parent)
 
 ## Basic Inheritance
 
-![Class Hierarchy Example](../diagrams/10-class-hierarchy.png)
+![Class Hierarchy Example](diagrams/10-class-hierarchy.png)
 
 ### Extending a Class
 
@@ -38,8 +38,8 @@ Animal (parent)
 # chapter: 09-Inheritance-and-Mixins
 
 class Animal
-    var name as str = ""
-    var age as int = 0
+    var name: str = ""
+    var age: int = 0
     
     def greet
         print "I'm ${name}, ${age} years old"
@@ -55,7 +55,7 @@ class Cat
             print "${name} says: Meow!"
 
 class Main
-    shared
+    static
         def main
             var dog = Dog()
             dog.name = "Buddy"
@@ -83,21 +83,21 @@ class Main
 # chapter: 09-Inheritance-and-Mixins
 
 class Animal
-    def speak as str
+    def speak: str
         return "Some sound"
 
 class Dog
     inherits Animal
-        def speak as str  # Override parent method
+        def speak: str  # Override parent method
             return "Woof!"
 
 class Cat
     inherits Animal
-        def speak as str  # Different implementation
+        def speak: str  # Different implementation
             return "Meow!"
 
 class Main
-    shared
+    static
         def main
             var dog = Dog()
             print dog.speak()  # Woof!
@@ -114,7 +114,7 @@ class Main
 # chapter: 09-Inheritance-and-Mixins
 
 class Vehicle
-    var speed as int = 0
+    var speed: int = 0
     
     def accelerate
         speed = speed + 10
@@ -129,7 +129,7 @@ class Car
             print "Car is now cruising smoothly"
 
 class Main
-    shared
+    static
         def main
             var car = Car()
             car.accelerate()
@@ -149,22 +149,22 @@ class Main
 # chapter: 09-Inheritance-and-Mixins
 
 class Animal
-    var name as str = ""
-    def sound as str
+    var name: str = ""
+    def sound: str
         return "?"
 
 class Mammal
     inherits Animal
-        def warm_blooded as bool
+        def warm_blooded: bool
             return true
 
 class Dog
     inherits Mammal
-        def sound as str
+        def sound: str
             return "Woof!"
 
 class Main
-    shared
+    static
         def main
             var dog = Dog()
             dog.name = "Buddy"
@@ -181,9 +181,9 @@ class Main
 # chapter: 09-Inheritance-and-Mixins
 
 class AnimalShelter
-    var animals as List(Animal) = List()
+    var animals: List(Animal) = List()
     
-    def add_animal(animal as Animal)
+    def add_animal(animal: Animal)
         animals.add(animal)
     
     def announce_arrivals
@@ -192,7 +192,7 @@ class AnimalShelter
             print "It says: ${animal.sound()}"
 
 class Main
-    shared
+    static
         def main
             var shelter = AnimalShelter()
             
@@ -228,26 +228,26 @@ class Runner
 
 class Duck
     inherits Swimmer
-        var name as str = ""
+        var name: str = ""
         
         def quack
             print "${name} quacks!"
 
 class Dog
     inherits Swimmer
-        var name as str = ""
+        var name: str = ""
         def bark
             print "${name} barks!"
 
 class Athlete
     inherits Runner
-        var name as str = ""
+        var name: str = ""
         def compete
             run()
             print "${name} is competing!"
 
 class Main
-    shared
+    static
         def main
             var duck = Duck()
             duck.name = "Donald"
@@ -274,11 +274,11 @@ class Main
 # chapter: 09-Inheritance-and-Mixins
 
 class Document
-    var title as str = ""
-    var content as str = ""
-    var created_at as str = ""
+    var title: str = ""
+    var content: str = ""
+    var created_at: str = ""
     
-    def preview as str
+    def preview: str
         var lines = content.split("\n")
         if lines.count() > 3
             return lines.at(0).concat("\n").concat(lines.at(1)).concat("\n").concat(lines.at(2))
@@ -286,22 +286,22 @@ class Document
 
 class BlogPost
     inherits Document
-        var author as str = ""
-        var tags as List(str) = List()
+        var author: str = ""
+        var tags: List(str) = List()
         
-        def get_summary as str
+        def get_summary: str
             return "Posted by ${author}: ${preview()}"
 
 class Report
     inherits Document
-        var department as str = ""
-        var sections as List(str) = List()
+        var department: str = ""
+        var sections: List(str) = List()
         
-        def is_complete as bool
+        def is_complete: bool
             return sections.count() > 0
 
 class Main
-    shared
+    static
         def main
             var post = BlogPost()
             post.title = "Learning Zebra"
@@ -326,24 +326,24 @@ class Main
 
 ```zebra
 class DataProcessor
-    def process(data as str)
+    def process(data: str)
         var cleaned = clean(data)
         var transformed = transform(cleaned)
         var validated = validate(transformed)
         return validated
     
-    def clean(data as str) as str
+    def clean(data: str): str
         return data.trim()
     
-    def transform(data as str) as str
+    def transform(data: str): str
         return data.upper()
     
-    def validate(data as str) as bool
+    def validate(data: str): bool
         return data.len > 0
 
 class CustomProcessor
     inherits DataProcessor
-        def transform(data as str) as str
+        def transform(data: str): str
             return data.lower()  # Override just this step
 ```
 
@@ -351,8 +351,8 @@ class CustomProcessor
 
 ```zebra
 class AnimalFactory
-    shared
-        def create(kind as str) as Animal
+    static
+        def create(kind: str): Animal
             if kind == "dog"
                 return Dog()
             elif kind == "cat"
@@ -408,18 +408,18 @@ class AnimalFactory
 >
 > ```zebra
 > class Animal
->     def speak as str
+>     def speak: str
 >
 > class Dog
 >     inherits Animal
->         def speak(volume as int) as str  # ❌ Wrong signature
+>         def speak(volume: int): str  # ❌ Wrong signature
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > class Dog
 >     inherits Animal
->         def speak as str  # ✅ Same signature
+>         def speak: str  # ✅ Same signature
 >             return "Woof!"
 > ```
 
@@ -485,28 +485,28 @@ Create an employee hierarchy (Employee → Manager → Director):
 
 ```zebra
 class Employee
-    var name as str = ""
-    var salary as float = 0.0
+    var name: str = ""
+    var salary: float = 0.0
     
-    def get_info as str
+    def get_info: str
         return "${name}: ${salary}"
 
 class Manager
     inherits Employee
-        var team_size as int = 0
+        var team_size: int = 0
         
-        def get_info as str
+        def get_info: str
             return super.get_info().concat(" (Managing ${team_size} people)")
 
 class Director
     inherits Manager
-        var budget as float = 0.0
+        var budget: float = 0.0
         
-        def get_info as str
+        def get_info: str
             return super.get_info().concat(" (Budget: ${budget})")
 
 class Main
-    shared
+    static
         def main
             var emp = Employee()
             emp.name = "Alice"
@@ -538,41 +538,41 @@ Extend the shape interface from Chapter 08 with inheritance:
 
 ```zebra
 interface Shape
-    def area as float
-    def perimeter as float
+    def area: float
+    def perimeter: float
 
 class BaseShape
     implements Shape
-        def area as float
+        def area: float
             return 0.0
-        def perimeter as float
+        def perimeter: float
             return 0.0
 
 class Circle
     inherits BaseShape
-        var radius as float = 0.0
+        var radius: float = 0.0
         
-        def area as float
+        def area: float
             return 3.14 * radius * radius
         
-        def perimeter as float
+        def perimeter: float
             return 2.0 * 3.14 * radius
 
 class Rectangle
     inherits BaseShape
-        var width as float = 0.0
-        var height as float = 0.0
+        var width: float = 0.0
+        var height: float = 0.0
         
-        def area as float
+        def area: float
             return width * height
         
-        def perimeter as float
+        def perimeter: float
             return 2.0 * (width + height)
 
 class Main
-    shared
+    static
         def main
-            var shapes as List(Shape) = List()
+            var shapes: List(Shape) = List()
             
             var circle = Circle()
             circle.radius = 5.0

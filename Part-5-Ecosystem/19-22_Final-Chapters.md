@@ -45,19 +45,19 @@ Learning what exists prevents reinventing wheels.
 
 ```zebra
 class FileIO
-    shared
-        def read_file(path as str) as str throws
+    static
+        def read_file(path: str): str throws
             # Read entire file
             return "content"
         
-        def write_file(path as str, content as str) as bool throws
+        def write_file(path: str, content: str): bool throws
             # Write file
             return true
         
-        def file_exists(path as str) as bool
+        def file_exists(path: str): bool
             return true
         
-        def delete_file(path as str) as bool throws
+        def delete_file(path: str): bool throws
             return true
 ```
 
@@ -65,8 +65,8 @@ class FileIO
 
 ```zebra
 class LineReader
-    shared
-        def process_lines(path as str) as int throws
+    static
+        def process_lines(path: str): int throws
             var lines = 0
             var content = read_file(path).unwrapOr("")
             for line in content.split("\n")
@@ -79,16 +79,16 @@ class LineReader
 
 ```zebra
 class System
-    shared
-        def args as List(str)
+    static
+        def args: List(str)
             # Command-line arguments
             return List()
         
-        def env(name as str) as str?
+        def env(name: str): str?
             # Environment variables
             return nil
         
-        def cwd as str
+        def cwd: str
             # Current directory
             return "."
 ```
@@ -150,22 +150,22 @@ var url_re = Regex.compile("https?://[a-z0-9]+\\.[a-z]+")
 
 ```zebra
 class RegexOps
-    shared
-        def match(re as Regex, text as str) as bool
+    static
+        def match(re: Regex, text: str): bool
             return re.match(text)
         
-        def find(re as Regex, text as str) as str?
+        def find(re: Regex, text: str): str?
             return re.find(text)
         
-        def findAll(re as Regex, text as str) as List(str)
-            var results as List(str) = List()
+        def findAll(re: Regex, text: str): List(str)
+            var results: List(str) = List()
             # Collect all matches
             return results
         
-        def replace(re as Regex, text as str, replacement as str) as str
+        def replace(re: Regex, text: str, replacement: str): str
             return re.replace(text, replacement)
         
-        def split(re as Regex, text as str) as List(str)
+        def split(re: Regex, text: str): List(str)
             return re.split(text)
 ```
 
@@ -185,12 +185,12 @@ class RegexOps
 
 ```zebra
 class CInterop
-    shared
-        def c_add(a as int, b as int) as int
+    static
+        def c_add(a: int, b: int): int
             # Call C function
             return a + b
         
-        def c_strlen(s as str) as int
+        def c_strlen(s: str): int
             # Call strlen from C stdlib
             return 0
 ```
@@ -199,12 +199,12 @@ class CInterop
 
 ```zebra
 class ZigInterop
-    shared
-        def zig_sqrt(x as float) as float
+    static
+        def zig_sqrt(x: float): float
             # Call Zig function
             return 0.0
         
-        def zig_random as int
+        def zig_random: int
             # Call Zig's random
             return 0
 ```
@@ -214,8 +214,8 @@ class ZigInterop
 ```zebra
 # C expects: int foo(const char* str, int* out_len)
 # Zebra code:
-def call_c_func(input as str)
-    var out_len as int = 0
+def call_c_func(input: str)
+    var out_len: int = 0
     var result = c_func(input, out_len)
     return out_len
 ```
@@ -247,8 +247,8 @@ def call_c_func(input as str)
 **Classes:**
 ```zebra
 class Name
-    var field as Type = default
-    shared
+    var field: Type = default
+    static
         def shared_method
     def instance_method
 ```
@@ -261,7 +261,7 @@ interface Name
 
 **Functions:**
 ```zebra
-def function_name(param as Type) as ReturnType
+def function_name(param: Type): ReturnType
     return value
 ```
 
@@ -350,7 +350,7 @@ for item in items
 var num = "42".toInt()
 
 # Handle nil
-var value as str? = get_value()
+var value: str? = get_value()
 if value != nil
     print value
 

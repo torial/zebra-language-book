@@ -1,4 +1,4 @@
-# 05: Control Flow
+﻿# 05: Control Flow
 
 **Audience:** All  
 **Time:** 90 minutes  
@@ -6,7 +6,7 @@
 **You'll learn:** if/else, match, for loops, while loops, guards, break/continue
 
 ---
-
+ 
 ## The Big Picture
 
 **Control flow** directs which code runs based on conditions. Instead of executing every line in order, you:
@@ -26,9 +26,9 @@
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var age as int = 18
+            var age: int = 18
             
             if age >= 18
                 print "You can vote"
@@ -42,9 +42,9 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var score as int = 75
+            var score: int = 75
             
             if score >= 90
                 print "A"
@@ -69,10 +69,10 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var age as int = 25
-            var has_license as bool = true
+            var age: int = 25
+            var has_license: bool = true
             
             if age >= 18 and has_license
                 print "Can drive"
@@ -100,9 +100,9 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var color as str = "red"
+            var color: str = "red"
             
             branch color
                 on "red"
@@ -136,9 +136,9 @@ class Cat
         print "Meow!"
 
 class Main
-    shared
+    static
         def main
-            var pet as Animal = Dog()
+            var pet: Animal = Dog()
             
             if pet implements Dog
                 var d = pet to Dog
@@ -175,9 +175,9 @@ branch color
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var fruits as List(str) = List()
+            var fruits: List(str) = List()
             fruits.add("apple")
             fruits.add("banana")
             fruits.add("cherry")
@@ -200,9 +200,9 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
-            var count as int = 0
+            var count: int = 0
             
             while count < 5
                 print "Count: ${count}"
@@ -219,7 +219,7 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
+    static
         def main
             # Break: exit loop early
             var i = 0
@@ -248,8 +248,8 @@ class Main
 # chapter: 05-Control-Flow
 
 class Main
-    shared
-        def process(name as str)
+    static
+        def process(name: str)
             # Early return if invalid
             if name.len == 0
                 return
@@ -275,11 +275,11 @@ class Main
 # chapter: 05-Control-Flow
 
 class Email
-    var address as str
+    var address: str
 
 class Validator
-    shared
-        def validate_email(email as str) as bool
+    static
+        def validate_email(email: str): bool
             # Check not empty
             if email.len == 0
                 return false
@@ -300,9 +300,9 @@ class Validator
             return true
 
 class Main
-    shared
+    static
         def main
-            var emails as List(str) = List()
+            var emails: List(str) = List()
             emails.add("alice@example.com")
             emails.add("invalid.email")
             emails.add("bob@domain.co")
@@ -321,7 +321,7 @@ class Main
 ### Early Return
 
 ```zebra
-def process_order(order_id as int) as bool
+def process_order(order_id: int): bool
     var order = fetch_order(order_id)
     
     if order == nil
@@ -409,7 +409,7 @@ else
 >
 > ✅ **Better:**
 > ```zebra
-> var to_remove as List(str) = List()
+> var to_remove: List(str) = List()
 > for fruit in fruits
 >     if fruit == "apple"
 >         to_remove.add(fruit)
@@ -468,8 +468,8 @@ Iterate through a list and find the maximum value:
 
 ```zebra
 class Finder
-    shared
-        def find_max(nums as List(int)) as int
+    static
+        def find_max(nums: List(int)) as int
             if nums.count() == 0
                 return 0
             
@@ -480,9 +480,9 @@ class Finder
             return max_val
 
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(10)
             nums.add(45)
             nums.add(23)
@@ -504,8 +504,8 @@ Count elements matching a condition:
 
 ```zebra
 class Counter
-    shared
-        def count_evens(nums as List(int)) as int
+    static
+        def count_evens(nums: List(int)) as int
             var count = 0
             for num in nums
                 if num % 2 == 0
@@ -513,9 +513,9 @@ class Counter
             return count
 
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(1)
             nums.add(2)
             nums.add(3)

@@ -1,4 +1,4 @@
-# 12: Error Handling
+﻿# 12: Error Handling
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -25,15 +25,15 @@ Mark a function with `throws` to indicate it may produce an error:
 # chapter: 12-Error-Handling
 
 class Validator
-    shared
-        def parse_int(text as str) as int throws
+    static
+        def parse_int(text: str): int throws
             if text.len == 0
                 raise "Empty string"
             # Parse and return
             return 42
 
 class Main
-    shared
+    static
         def main
             var result = Validator.parse_int("123") catch 0
             print result
@@ -56,8 +56,8 @@ Use `raise` to signal that something went wrong:
 # chapter: 12-Error-Handling
 
 class FileLoader
-    shared
-        def load(path as str) as str throws
+    static
+        def load(path: str): str throws
             if path.len == 0
                 raise "Path cannot be empty"
             if not path.endsWith(".txt")
@@ -81,7 +81,7 @@ Use `try`/`catch` blocks for structured error handling:
 # chapter: 12-Error-Handling
 
 class Main
-    shared
+    static
         def main
             try
                 var value = Validator.parse_int("")
@@ -100,7 +100,7 @@ Bind the error value to inspect it:
 # chapter: 12-Error-Handling
 
 class Main
-    shared
+    static
         def main
             try
                 var value = Validator.parse_int("")
@@ -119,7 +119,7 @@ Specify a type for the error binding:
 # chapter: 12-Error-Handling
 
 class Main
-    shared
+    static
         def main
             try
                 var value = Validator.parse_int("")
@@ -140,7 +140,7 @@ For simple cases, use `catch` as an expression to provide a default:
 # chapter: 12-Error-Handling
 
 class Main
-    shared
+    static
         def main
             # Provide a default value if the call fails
             var value = Validator.parse_int("abc") catch 0
@@ -157,7 +157,7 @@ This is the most common pattern for simple error recovery.
 
 ## Error Propagation
 
-![Error Propagation Flow](../diagrams/05-error-propagation.png)
+![Error Propagation Flow](diagrams/05-error-propagation.png)
 
 Functions annotated with `throws` can propagate errors from callees automatically. If a `throws` function calls another `throws` function without catching, the error propagates up:
 
@@ -167,21 +167,21 @@ Functions annotated with `throws` can propagate errors from callees automaticall
 # chapter: 12-Error-Handling
 
 class Parser
-    shared
-        def parse_config(text as str) as str throws
+    static
+        def parse_config(text: str): str throws
             if text.len == 0
                 raise "Empty config"
             return "parsed"
 
 class System
-    shared
-        def load_system(config_text as str) as str throws
+    static
+        def load_system(config_text: str): str throws
             # If parse_config raises, the error propagates up
             var parsed = Parser.parse_config(config_text)
             return "System loaded with: ${parsed}"
 
 class Main
-    shared
+    static
         def main
             var result = System.load_system("data") catch "load failed"
             print result
@@ -197,20 +197,20 @@ class Main
 # chapter: 12-Error-Handling
 
 class APIClient
-    shared
-        def fetch_user(user_id as int) as str throws
+    static
+        def fetch_user(user_id: int): str throws
             if user_id <= 0
                 raise "Invalid user ID"
             if user_id == 1
                 return "Alice"
             raise "User not found"
 
-        def fetch_and_greet(user_id as int) as str throws
+        def fetch_and_greet(user_id: int): str throws
             var user = fetch_user(user_id)
             return "Hello, ${user}!"
 
 class Main
-    shared
+    static
         def main
             # Using catch expression
             var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
@@ -237,14 +237,14 @@ Write a function `safe_divide(a as int, b as int) as int throws` that raises on 
 
 ```zebra
 class MathUtils
-    shared
-        def safe_divide(a as int, b as int) as int throws
+    static
+        def safe_divide(a: int, b: int): int throws
             if b == 0
                 raise "Division by zero"
             return a / b
 
 class Main
-    shared
+    static
         def main
             var r1 = MathUtils.safe_divide(10, 2) catch 0
             var r2 = MathUtils.safe_divide(10, 0) catch 0
@@ -263,8 +263,8 @@ Write two functions that chain: `parse_age(text as str) as int throws` and `vali
 
 ```zebra
 class AgeValidator
-    shared
-        def parse_age(text as str) as int throws
+    static
+        def parse_age(text: str): int throws
             if text.len == 0
                 raise "Empty input"
             var age = text.toInt()
@@ -272,7 +272,7 @@ class AgeValidator
                 raise "Not a number"
             return age
 
-        def validate_age(text as str) as str throws
+        def validate_age(text: str): str throws
             var age = parse_age(text)
             if age < 0
                 raise "Age cannot be negative"
@@ -281,7 +281,7 @@ class AgeValidator
             return "valid"
 
 class Main
-    shared
+    static
         def main
             try
                 var result = AgeValidator.validate_age("25")

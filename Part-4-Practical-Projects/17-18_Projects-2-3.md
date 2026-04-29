@@ -1,4 +1,4 @@
-# Projects 2 & 3: HTTP Server and Data Analysis
+﻿# Projects 2 & 3: HTTP Server and Data Analysis
 
 ## Project 2: HTTP Server (16-18 hours)
 
@@ -12,7 +12,7 @@
 - Stateful server management
 - Error handling in concurrent scenarios
 
-![HTTP Request/Response Cycle](../diagrams/09-http-cycle.png)
+![HTTP Request/Response Cycle](diagrams/09-http-cycle.png)
 
 ---
 
@@ -26,55 +26,55 @@ Define the data structures for HTTP communication:
 # project: Project-2-HTTP-Server
 
 class HttpRequest
-    var method as str           # GET, POST, PUT, DELETE
-    var path as str             # /api/users, /api/users/123
-    var query as HashMap(str, str)  # URL parameters
-    var headers as HashMap(str, str)
-    var body as str             # Request body for POST/PUT
+    var method: str           # GET, POST, PUT, DELETE
+    var path: str             # /api/users, /api/users/123
+    var query: HashMap(str, str)  # URL parameters
+    var headers: HashMap(str, str)
+    var body: str             # Request body for POST/PUT
 
 class HttpResponse
-    var status_code as int      # 200, 201, 400, 404, 500
-    var status_message as str   # "OK", "Created", "Not Found"
-    var headers as HashMap(str, str)
-    var body as str             # Response body (JSON, HTML, etc.)
+    var status_code: int      # 200, 201, 400, 404, 500
+    var status_message: str   # "OK", "Created", "Not Found"
+    var headers: HashMap(str, str)
+    var body: str             # Response body (JSON, HTML, etc.)
     
-    shared
-        def ok(body as str) as HttpResponse
+    static
+        def ok(body: str): HttpResponse
             var resp = HttpResponse()
             resp.status_code = 200
             resp.status_message = "OK"
             resp.body = body
             return resp
         
-        def created(body as str) as HttpResponse
+        def created(body: str): HttpResponse
             var resp = HttpResponse()
             resp.status_code = 201
             resp.status_message = "Created"
             resp.body = body
             return resp
         
-        def bad_request(message as str) as HttpResponse
+        def bad_request(message: str): HttpResponse
             var resp = HttpResponse()
             resp.status_code = 400
             resp.status_message = "Bad Request"
             resp.body = message
             return resp
         
-        def not_found as HttpResponse
+        def not_found: HttpResponse
             var resp = HttpResponse()
             resp.status_code = 404
             resp.status_message = "Not Found"
             resp.body = "Resource not found"
             return resp
         
-        def internal_error(message as str) as HttpResponse
+        def internal_error(message: str): HttpResponse
             var resp = HttpResponse()
             resp.status_code = 500
             resp.status_message = "Internal Server Error"
             resp.body = message
             return resp
     
-    def format_response as str
+    def format_response: str
         var output = "HTTP/1.1 ${status_code} ${status_message}\r\n"
         output = output.concat("Content-Length: ${body.len}\r\n")
         output = output.concat("Content-Type: application/json\r\n")
@@ -83,11 +83,11 @@ class HttpResponse
         return output
 
 class User
-    var id as int
-    var name as str
-    var email as str
+    var id: int
+    var name: str
+    var email: str
     
-    def to_json as str
+    def to_json: str
         return "{\"id\": ${id}, \"name\": \"${name}\", \"email\": \"${email}\"}"
 ```
 
@@ -103,15 +103,15 @@ Implement the routing system that maps paths to handlers:
 # project: Project-2-HTTP-Server
 
 interface RequestHandler
-    def handle(request as HttpRequest) as HttpResponse
+    def handle(request: HttpRequest): HttpResponse
 
 class Router
-    var routes as HashMap(str, RequestHandler) = HashMap()
+    var routes: HashMap(str, RequestHandler) = HashMap()
     
-    def register(path as str, handler as RequestHandler)
+    def register(path: str, handler: RequestHandler)
         routes.put(path, handler)
     
-    def route_request(request as HttpRequest) as HttpResponse throws
+    def route_request(request: HttpRequest): HttpResponse throws
         if routes.contains(request.path)
             var handler = routes.fetch(request.path)
             var response = handler.handle(request)
@@ -120,18 +120,18 @@ class Router
         # Path not found
         return HttpResponse.not_found()
     
-    def list_routes as List(str)
-        var paths as List(str) = List()
+    def list_routes: List(str)
+        var paths: List(str) = List()
         for path in routes
             paths.add(path)
         return paths
 
 class UserHandler
     implements RequestHandler
-        shared var users as HashMap(int, User) = HashMap()
-        shared var next_id as int = 1
+        static var users: HashMap(int, User) = HashMap()
+        static var next_id: int = 1
         
-        def handle(request as HttpRequest) as HttpResponse
+        def handle(request: HttpRequest): HttpResponse
             if request.method == "GET"
                 return handle_get(request)
             elif request.method == "POST"
@@ -143,7 +143,7 @@ class UserHandler
             
             return HttpResponse.bad_request("Method not allowed")
         
-        def handle_get(request as HttpRequest) as HttpResponse
+        def handle_get(request: HttpRequest): HttpResponse
             # If path is /api/users, list all users
             if request.path == "/api/users"
                 var response_body = "["
@@ -158,7 +158,7 @@ class UserHandler
             
             return HttpResponse.not_found()
         
-        def handle_post(request as HttpRequest) as HttpResponse
+        def handle_post(request: HttpRequest): HttpResponse
             # Create new user from JSON body
             # Simplified: real impl would parse JSON properly
             var user = User()
@@ -171,15 +171,15 @@ class UserHandler
             
             return HttpResponse.created(user.to_json())
         
-        def handle_put(request as HttpRequest) as HttpResponse
+        def handle_put(request: HttpRequest): HttpResponse
             return HttpResponse.bad_request("PUT not yet implemented")
         
-        def handle_delete(request as HttpRequest) as HttpResponse
+        def handle_delete(request: HttpRequest): HttpResponse
             return HttpResponse.bad_request("DELETE not yet implemented")
 
 class HealthHandler
     implements RequestHandler
-        def handle(request as HttpRequest) as HttpResponse
+        def handle(request: HttpRequest): HttpResponse
             var response = "{\"status\": \"healthy\"}"
             return HttpResponse.ok(response)
 ```
@@ -196,18 +196,18 @@ Build the actual server that listens for connections:
 # project: Project-2-HTTP-Server
 
 class HttpServer
-    var port as int
-    var router as Router
-    var is_running as bool = false
+    var port: int
+    var router: Router
+    var is_running: bool = false
     
-    def init(port as int)
+    def init(port: int)
         this.port = port
         router = Router()
     
-    def register_handler(path as str, handler as RequestHandler)
+    def register_handler(path: str, handler: RequestHandler)
         router.register(path, handler)
     
-    def start as bool throws
+    def start: bool throws
         is_running = true
         
         # Register default handlers
@@ -249,7 +249,7 @@ class HttpServer
             print response.format_response()
 
 class Main
-    shared
+    static
         def main
             var server = HttpServer(8080)
             
@@ -297,7 +297,7 @@ curl -X POST http://localhost:8080/api/users
 - Statistical analysis
 - Performance optimization with data structures
 
-![Text Analysis Pipeline](../diagrams/11-analysis-pipeline.png)
+![Text Analysis Pipeline](diagrams/11-analysis-pipeline.png)
 
 ---
 
@@ -311,21 +311,21 @@ Start with counting word frequencies:
 # project: Project-3-Data-Analysis
 
 class WordFrequency
-    var word as str
-    var count as int
+    var word: str
+    var count: int
     
-    def init(word as str, count as int)
+    def init(word: str, count: int)
         this.word = word
         this.count = count
     
-    def to_string as str
+    def to_string: str
         return "${word}: ${count}"
 
 class FrequencyAnalyzer
-    shared
-        def analyze_text(text as str) as List(WordFrequency)
+    static
+        def analyze_text(text: str): List(WordFrequency)
             var words = text.lower().split(" ")
-            var freq as HashMap(str, int) = HashMap()
+            var freq: HashMap(str, int) = HashMap()
             
             # Count occurrences
             for word in words
@@ -337,7 +337,7 @@ class FrequencyAnalyzer
                         freq.put(cleaned, 1)
             
             # Convert to list and sort by frequency
-            var results as List(WordFrequency) = List()
+            var results: List(WordFrequency) = List()
             for word, count in freq
                 var wf = WordFrequency(word, count)
                 results.add(wf)
@@ -359,9 +359,9 @@ class FrequencyAnalyzer
             
             return results
         
-        def top_words(text as str, limit as int) as List(WordFrequency)
+        def top_words(text: str, limit: int): List(WordFrequency)
             var all_freqs = analyze_text(text)
-            var results as List(WordFrequency) = List()
+            var results: List(WordFrequency) = List()
             
             var i = 0
             while i < limit and i < all_freqs.count()
@@ -383,20 +383,20 @@ Extract contiguous sequences of N words:
 # project: Project-3-Data-Analysis
 
 class NGram
-    var gram as str
-    var count as int
-    var positions as List(int)  # Track where it appears
+    var gram: str
+    var count: int
+    var positions: List(int)  # Track where it appears
     
-    def init(gram as str)
+    def init(gram: str)
         this.gram = gram
         count = 1
         positions = List()
 
 class NGramAnalyzer
-    shared
-        def extract_ngrams(text as str, n as int) as HashMap(str, NGram)
+    static
+        def extract_ngrams(text: str, n: int): HashMap(str, NGram)
             var words = text.lower().split(" ")
-            var ngrams as HashMap(str, NGram) = HashMap()
+            var ngrams: HashMap(str, NGram) = HashMap()
             
             var i = 0
             while i < words.count() - (n - 1)
@@ -422,9 +422,9 @@ class NGramAnalyzer
             
             return ngrams
         
-        def top_ngrams(text as str, n as int, limit as int) as List(NGram)
+        def top_ngrams(text: str, n: int, limit: int): List(NGram)
             var all_grams = extract_ngrams(text, n)
-            var results as List(NGram) = List()
+            var results: List(NGram) = List()
             
             # Simple sorting
             for gram, ng in all_grams
@@ -445,7 +445,7 @@ class NGramAnalyzer
                 i = i + 1
             
             # Return top N
-            var top as List(NGram) = List()
+            var top: List(NGram) = List()
             i = 0
             while i < limit and i < results.count()
                 top.add(results.at(i))
@@ -466,8 +466,8 @@ Compare texts using Jaccard and other similarity metrics:
 # project: Project-3-Data-Analysis
 
 class SimilarityMetrics
-    shared
-        def jaccard_similarity(text1 as str, text2 as str) as float
+    static
+        def jaccard_similarity(text1: str, text2: str): float
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
             
@@ -487,7 +487,7 @@ class SimilarityMetrics
             
             return intersection / union
         
-        def cosine_similarity(text1 as str, text2 as str) as float
+        def cosine_similarity(text1: str, text2: str): float
             # Simplified cosine similarity (not true cosine, but similar)
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
@@ -507,7 +507,7 @@ class SimilarityMetrics
             var denominator = len1 + len2
             return (2.0 * common) / denominator
         
-        def hamming_distance(text1 as str, text2 as str) as int
+        def hamming_distance(text1: str, text2: str): int
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
             
@@ -541,16 +541,16 @@ Tie together all analysis tools:
 # project: Project-3-Data-Analysis
 
 class TextAnalysisReport
-    var source_file as str
-    var word_count as int
-    var unique_words as int
-    var top_words as List(WordFrequency)
-    var bigrams as List(NGram)
-    var trigrams as List(NGram)
+    var source_file: str
+    var word_count: int
+    var unique_words: int
+    var top_words: List(WordFrequency)
+    var bigrams: List(NGram)
+    var trigrams: List(NGram)
 
 class AnalysisApplication
-    shared
-        def analyze_file(filename as str) as TextAnalysisReport throws
+    static
+        def analyze_file(filename: str): TextAnalysisReport throws
             var content_result = File.read(filename)
             
             if content_result.len == 0
@@ -558,7 +558,7 @@ class AnalysisApplication
             
             var content = content_result
             var words = content.split(" ")
-            var unique_words_set as HashMap(str, int) = HashMap()
+            var unique_words_set: HashMap(str, int) = HashMap()
             
             for word in words
                 var cleaned = word.lower().trim()
@@ -582,7 +582,7 @@ class AnalysisApplication
             
             return report
         
-        def print_report(report as TextAnalysisReport)
+        def print_report(report: TextAnalysisReport)
             print "==== Text Analysis Report ===="
             print "File: ${report.source_file}"
             print "Total words: ${report.word_count}"
@@ -604,7 +604,7 @@ class AnalysisApplication
                 print "  ${trigram.gram} (${trigram.count})"
 
 class Main
-    shared
+    static
         def main
             var result = AnalysisApplication.analyze_file("sample.txt")
             
@@ -658,8 +658,8 @@ After completing all three projects, combine them:
 
 ```zebra
 class IntegratedSystem
-    shared
-        def run_analysis_via_http(port as int, analysis_dir as str)
+    static
+        def run_analysis_via_http(port: int, analysis_dir: str)
             # Start HTTP server (Project 2)
             # Serve text analysis results (Project 3)
             # Process files via CLI (Project 1)

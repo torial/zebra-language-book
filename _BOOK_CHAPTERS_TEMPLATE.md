@@ -22,13 +22,13 @@ This document provides the structure and detailed outlines for the remaining cha
 ```zebra
 interface Drawable
     def draw
-    def get_bounds as Rectangle
+    def get_bounds: Rectangle
 
 class Circle
     implements Drawable
         def draw
             print "Drawing circle"
-        def get_bounds as Rectangle
+        def get_bounds: Rectangle
             return Rectangle()
 ```
 
@@ -50,7 +50,7 @@ class Circle
 **Code Examples:**
 ```zebra
 class Animal
-    var name as str
+    var name: str
 
 class Dog
     inherits Animal
@@ -80,12 +80,12 @@ class Cat
 **Code Examples:**
 ```zebra
 class Person
-    var birth_year as int = 2000
+    var birth_year: int = 2000
     
-    def age as int
+    def age: int
         return 2024 - birth_year
     
-    def set_age(new_age as int)
+    def set_age(new_age: int)
         birth_year = 2024 - new_age
 ```
 

@@ -183,7 +183,7 @@ if scores.contains("Alice")
 Use HashMap keys for unique-value tracking:
 
 ```zebra
-var seen as HashMap(str, bool) = HashMap()
+var seen: HashMap(str, bool) = HashMap()
 seen.put("red", true)
 seen.put("blue", true)
 seen.put("red", true)       # Overwrites, same effect as no-op
@@ -368,7 +368,7 @@ Zebra uses `throws`/`raise`/`catch` for error handling.
 
 **Declare a fallible function:**
 ```zebra
-def divide(a as int, b as int) as int throws
+def divide(a: int, b: int): int throws
     if b == 0
         raise "Division by zero"
     return a / b
@@ -435,7 +435,7 @@ value.toString()            # str: convert to string representation
 ### Nullable Types (T?)
 
 ```zebra
-var x as int? = 42
+var x: int? = 42
 
 if x != nil
     # Safe to use x as int here
@@ -463,7 +463,7 @@ assert items.count() == 3, "Expected 3 items"
 ### Branch Expression
 
 ```zebra
-var value as int? = 42
+var value: int? = 42
 
 branch value
     on nil
@@ -491,7 +491,7 @@ branch result
 ### Safe Null Checking
 
 ```zebra
-var x as int? = nil
+var x: int? = nil
 
 if x != nil
     print x + 1

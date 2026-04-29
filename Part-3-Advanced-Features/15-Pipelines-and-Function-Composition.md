@@ -1,4 +1,4 @@
-# 15: Pipelines and Function Composition
+﻿# 15: Pipelines and Function Composition
 
 **Audience:** Experienced programmers  
 **Time:** 90 minutes  
@@ -40,7 +40,7 @@ Pipelines make **data transformations** flow naturally, like reading prose.
 
 ## Basic Pipeline Syntax
 
-![Pipeline Data Flow](../diagrams/07-pipeline-flow.png)
+![Pipeline Data Flow](diagrams/07-pipeline-flow.png)
 
 The `->` operator passes the left-hand value to the right-hand expression:
 
@@ -50,7 +50,7 @@ The `->` operator passes the left-hand value to the right-hand expression:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class Main
-    shared
+    static
         def main
             var text = "HELLO WORLD"
             
@@ -81,15 +81,15 @@ Pipelines shine when you have many sequential transformations:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class StringProcessor
-    shared
-        def process(text as str) as str
+    static
+        def process(text: str): str
             return text
                 -> .lower()
                 -> .trim()
                 -> .replace("  ", " ")
 
 class Main
-    shared
+    static
         def main
             var input = "  HELLO   WORLD  "
             var output = StringProcessor.process(input)
@@ -110,15 +110,15 @@ Pipelines work great with lists and maps:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class DataProcessor
-    shared
-        def count_words(text as str) as int
+    static
+        def count_words(text: str): int
             return text
                 -> .lower()
                 -> .split(" ")
                 -> .count()
 
 class Main
-    shared
+    static
         def main
             var input = "The Quick Brown Fox"
             var words = input
@@ -143,18 +143,18 @@ You can pipe to **any function** that takes one argument:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class Utils
-    shared
-        def double(x as int) as int
+    static
+        def double(x: int): int
             return x * 2
         
-        def add_ten(x as int) as int
+        def add_ten(x: int): int
             return x + 10
         
-        def format_result(x as int) as str
+        def format_result(x: int): str
             return "Result: ${x}"
 
 class Main
-    shared
+    static
         def main
             var result = 5
                 -> Utils.double(.)
@@ -178,9 +178,9 @@ A practical example: process a CSV-like dataset:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class DataAnalysis
-    shared
-        def parse_numbers(line as str) as List(int)
-            var numbers as List(int) = List()
+    static
+        def parse_numbers(line: str): List(int)
+            var numbers: List(int) = List()
             var parts = line.split(",")
             for part in parts
                 # Simplified: real parsing more complex
@@ -188,19 +188,19 @@ class DataAnalysis
                 numbers.add(num)
             return numbers
         
-        def sum_list(items as List(int)) as int
+        def sum_list(items: List(int)) as int
             var total = 0
             for item in items
                 total = total + item
             return total
         
-        def average(total as int, count as int) as float
+        def average(total: int, count: int): float
             if count == 0
                 return 0.0
             return total / count
 
 class Main
-    shared
+    static
         def main
             var csv_line = "10, 20, 30, 40"
             
@@ -226,24 +226,24 @@ You can create **composed functions** that combine multiple operations:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class Transform
-    shared
-        def lowercase(text as str) as str
+    static
+        def lowercase(text: str): str
             return text.lower()
         
-        def remove_spaces(text as str) as str
+        def remove_spaces(text: str): str
             return text.replace(" ", "")
         
-        def reverse_it(text as str) as str
+        def reverse_it(text: str): str
             return text.reverse()
         
-        def compose_all(text as str) as str
+        def compose_all(text: str): str
             return text
                 -> Transform.lowercase(.)
                 -> Transform.remove_spaces(.)
                 -> Transform.reverse_it(.)
 
 class Main
-    shared
+    static
         def main
             var input = "HELLO WORLD"
             var output = Transform.compose_all(input)
@@ -264,8 +264,8 @@ Pipelines work nicely with error handling:
 # chapter: 15-Pipelines-and-Function-Composition
 
 class SafeParser
-    shared
-        def parse_int(text as str) as int throws
+    static
+        def parse_int(text: str): int throws
             if text.len == 0
                 raise "Empty string"
             # NOTE: Hardcoded for demonstration. A real implementation would parse
@@ -274,11 +274,11 @@ class SafeParser
                 return 42
             raise "Not a number"
         
-        def double_it(x as int) as int
+        def double_it(x: int): int
             return x * 2
 
 class Main
-    shared
+    static
         def main
             var input = "42"
             var result = input
@@ -374,15 +374,15 @@ Create a pipeline that takes user input and: converts to lowercase, removes lead
 
 ```zebra
 class TextStats
-    shared
-        def count_words(text as str) as int
+    static
+        def count_words(text: str): int
             if text.len == 0
                 return 0
             var words = text.split(" ")
             return words.count()
 
 class Main
-    shared
+    static
         def main
             var user_input = "  HELLO WORLD FOO  "
             
@@ -405,23 +405,23 @@ Build a pipeline that: parses an integer, doubles it, adds 10, and formats as a 
 
 ```zebra
 class NumUtils
-    shared
-        def parse_safe(text as str) as int throws
+    static
+        def parse_safe(text: str): int throws
             if text == "5"
                 return 5
             raise "Invalid number"
         
-        def double_it(x as int) as int
+        def double_it(x: int): int
             return x * 2
         
-        def add_ten(x as int) as int
+        def add_ten(x: int): int
             return x + 10
         
-        def to_message(x as int) as str
+        def to_message(x: int): str
             return "Final result: ${x}"
 
 class Main
-    shared
+    static
         def main
             var input = "5"
             
@@ -447,24 +447,24 @@ Create a pipeline that filters a list of numbers to keep only even values, sums 
 
 ```zebra
 class ListOps
-    shared
-        def filter_even(items as List(int)) as List(int)
-            var result as List(int) = List()
+    static
+        def filter_even(items: List(int)) as List(int)
+            var result: List(int) = List()
             for item in items
                 if item % 2 == 0
                     result.add(item)
             return result
         
-        def sum_all(items as List(int)) as int
+        def sum_all(items: List(int)) as int
             var total = 0
             for item in items
                 total = total + item
             return total
 
 class Main
-    shared
+    static
         def main
-            var numbers as List(int) = List()
+            var numbers: List(int) = List()
             numbers.add(1)
             numbers.add(2)
             numbers.add(3)

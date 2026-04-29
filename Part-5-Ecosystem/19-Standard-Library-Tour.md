@@ -57,7 +57,7 @@ Strings are the most commonly used type. Zebra's string API covers the essential
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var text = "Hello, World!"
 
@@ -87,7 +87,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var text = "Zebra Programming"
 
@@ -106,7 +106,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Split by delimiter
             var csv_line = "John,25,Engineer,San Francisco"
@@ -128,7 +128,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var input = "  Hello, World!  "
             var trimmed = input.trim()      # "Hello, World!"
@@ -145,7 +145,7 @@ For building strings incrementally (e.g., in loops), use `StringBuilder`:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var sb = StringBuilder()
             sb.append("Hello")
@@ -169,7 +169,7 @@ Lists are ordered, mutable collections that grow dynamically.
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var items = List(str)()
 
@@ -205,7 +205,7 @@ HashMaps store key-value pairs with `.put()` and `.fetch()` (`set` and `get` are
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var scores = HashMap(str, int)()
 
@@ -245,7 +245,7 @@ Zebra provides a `Math` module with constants and functions:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             print Math.PI       # 3.14159...
             print Math.E        # 2.71828...
@@ -262,7 +262,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Trigonometry
             print Math.sin(Math.PI / 2)   # 1.0
@@ -302,7 +302,7 @@ Zebra's type system is strict — convert between types explicitly:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # String to int
             var num_str = "42"
@@ -340,7 +340,7 @@ Use `sys.args()` for raw access or `Arg.parse()` for structured parsing:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Raw arguments
             var args = sys.args()
@@ -361,7 +361,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var result = Arg.parse()
             # Access parsed flags and positional arguments
@@ -380,7 +380,7 @@ Parse and generate JSON with the `Json` and `JsonValue` modules:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             var text = "{\"name\": \"Alice\", \"age\": 30}"
             var parsed = Json.parse(text)
@@ -399,7 +399,7 @@ Use `File`, `Dir`, and `Path` for file system operations:
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Read a file
             var content = File.read("data.txt") catch "could not read"
@@ -421,7 +421,7 @@ See **Chapter 20** for a deeper dive into file I/O.
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Simple output
             print "Hello, World!"
@@ -446,7 +446,7 @@ class Main
 # chapter: 19
 
 class Main
-    shared
+    static
         def main
             # Parse CSV and calculate statistics
             var data = "Alice,95\nBob,87\nCharlie,92"

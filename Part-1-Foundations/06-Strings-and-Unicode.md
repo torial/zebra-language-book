@@ -1,4 +1,4 @@
-# 06: Strings and Unicode
+﻿# 06: Strings and Unicode
 
 **Audience:** All  
 **Time:** 90 minutes  
@@ -27,7 +27,7 @@
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             # Simple string
             var greeting = "Hello"
@@ -58,7 +58,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var text = "Hello, World!"
             
@@ -86,7 +86,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var name = "Alice"
             var age = 30
@@ -118,7 +118,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var text = "Hello, World!"
             
@@ -147,7 +147,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             # Split
             var csv = "apple,banana,cherry"
@@ -156,7 +156,7 @@ class Main
                 print fruit
             
             # Join
-            var items as List(str) = List()
+            var items: List(str) = List()
             items.add("one")
             items.add("two")
             items.add("three")
@@ -172,7 +172,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var padded = "  hello  "
             
@@ -196,7 +196,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var text = "cat and dog and bird"
             
@@ -216,7 +216,7 @@ class Main
 
 ## Unicode and Internationalization
 
-![Unicode Representation](../diagrams/13-unicode-representation.png)
+![Unicode Representation](diagrams/13-unicode-representation.png)
 
 ### Unicode Basics
 
@@ -226,7 +226,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             # Emoji
             var emoji = "Hello 👋 🌍 🎉"
@@ -255,7 +255,7 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             var text = "Hello"
             
@@ -283,7 +283,7 @@ Regular expressions let you search and validate text patterns.
 # chapter: 06-Strings-and-Unicode
 
 class Main
-    shared
+    static
         def main
             # Simple pattern
             var email = "alice@example.com"
@@ -313,28 +313,28 @@ class Main
 # chapter: 06-Strings-and-Unicode
 
 class Parser
-    shared
-        def parse_csv_line(line as str) as List(str)
+    static
+        def parse_csv_line(line: str): List(str)
             return line.split(",")
         
-        def normalize_whitespace(text as str) as str
+        def normalize_whitespace(text: str): str
             # Replace multiple spaces with one
-            var lines as List(str) = List()
+            var lines: List(str) = List()
             for line in text.split("\n")
                 var trimmed = line.trim()
                 if trimmed.len > 0
                     lines.add(trimmed)
             return "\n".join(lines)
         
-        def extract_numbers(text as str) as List(str)
-            var results as List(str) = List()
+        def extract_numbers(text: str): List(str)
+            var results: List(str) = List()
             var pattern = Regex.compile("\\d+")
             for match in pattern.findAll(text)
                 results.add(match)
             return results
 
 class Main
-    shared
+    static
         def main
             # Parse CSV
             var csv_line = "Alice,30,alice@example.com"
@@ -356,7 +356,7 @@ class Main
 ### Email Validation
 
 ```zebra
-def is_valid_email(email as str) as bool
+def is_valid_email(email: str): bool
     if not email.contains("@")
         return false
     var parts = email.split("@")
@@ -370,8 +370,8 @@ def is_valid_email(email as str) as bool
 ### URL Parsing
 
 ```zebra
-def parse_url(url as str) as HashMap(str, str)
-    var result as HashMap(str, str) = HashMap()
+def parse_url(url: str): HashMap(str, str)
+    var result: HashMap(str, str) = HashMap()
     var parts = url.split("://")
     if parts.count() == 2
         result.put("protocol", parts.at(0))
@@ -381,7 +381,7 @@ def parse_url(url as str) as HashMap(str, str)
 ### String Templating
 
 ```zebra
-def template(text as str, values as HashMap(str, str)) as str
+def template(text: str, values: HashMap(str, str)) as str
     var result = text
     for key, value in values
         var placeholder = "${${key}}"
@@ -429,7 +429,7 @@ def template(text as str, values as HashMap(str, str)) as str
 >
 > ✅ **Better:**
 > ```zebra
-> var sb as StringBuilder = StringBuilder()
+> var sb: StringBuilder = StringBuilder()
 > for i in 1..1000
 >     sb.append("${i},")
 > var result = sb.build()  # ✅ O(n) complexity
@@ -479,8 +479,8 @@ Write a simple email validator:
 
 ```zebra
 class Validator
-    shared
-        def is_valid_email(email as str) as bool
+    static
+        def is_valid_email(email: str): bool
             if email.len < 5
                 return false
             if not email.contains("@")
@@ -495,9 +495,9 @@ class Validator
             return true
 
 class Main
-    shared
+    static
         def main
-            var emails as List(str) = List()
+            var emails: List(str) = List()
             emails.add("alice@example.com")
             emails.add("invalid")
             emails.add("bob@domain.co")
@@ -520,19 +520,19 @@ Parse a CSV line and extract fields:
 
 ```zebra
 class CSVParser
-    shared
-        def parse(line as str) as List(str)
+    static
+        def parse(line: str): List(str)
             return line.split(",")
         
-        def parse_with_trim(line as str) as List(str)
+        def parse_with_trim(line: str): List(str)
             var raw = line.split(",")
-            var trimmed as List(str) = List()
+            var trimmed: List(str) = List()
             for field in raw
                 trimmed.add(field.trim())
             return trimmed
 
 class Main
-    shared
+    static
         def main
             var csv = "Alice, 30, NYC"
             var fields = CSVParser.parse_with_trim(csv)

@@ -292,13 +292,13 @@ for item in items
 ### Safe Function that Can Fail
 
 ```zebra
-def divide(a as int, b as int) as int throws
+def divide(a: int, b: int): int throws
     if b == 0
         raise "Cannot divide by zero"
     return a / b
 
 class Main
-    shared
+    static
         def main
             var value = divide(10, 2) catch 0
             print "Result: ${value}"
@@ -313,7 +313,7 @@ class Main
 ### Propagate Errors Up
 
 ```zebra
-def process_file(filename as str) as int throws
+def process_file(filename: str): int throws
     var content = File.read(filename)
     var line_count = content.split("\n").count()
     return line_count
@@ -322,7 +322,7 @@ def process_file(filename as str) as int throws
 ### Handle Multiple Errors
 
 ```zebra
-def calculate(a_str as str, b_str as str) as int throws
+def calculate(a_str: str, b_str: str): int throws
     var a = a_str.toInt()
     if a == nil
         raise "Invalid first number"
@@ -355,7 +355,7 @@ def process_data() throws
 ### Safe Null Check
 
 ```zebra
-var x as int? = get_value()
+var x: int? = get_value()
 
 if x != nil
     print "Value: ${x}"
@@ -366,7 +366,7 @@ else
 ### Use Default Value
 
 ```zebra
-var x as int? = get_value()
+var x: int? = get_value()
 var value = x.unwrapOr(0)  # Use 0 if nil
 print value
 ```
@@ -374,7 +374,7 @@ print value
 ### Optional Chain
 
 ```zebra
-var user as User? = get_user()
+var user: User? = get_user()
 
 if user != nil
     if user.address != nil
@@ -384,7 +384,7 @@ if user != nil
 ### Nested Null Checks
 
 ```zebra
-var data as Data? = fetch_data()
+var data: Data? = fetch_data()
 
 if data != nil
     var items = data.items
@@ -445,14 +445,14 @@ if value > 0
 
 ```zebra
 class Person
-    var name as str = ""
-    var age as int = 0
+    var name: str = ""
+    var age: int = 0
     
-    def init(name as str, age as int)
+    def init(name: str, age: int)
         this.name = name
         this.age = age
     
-    def describe() as str
+    def describe(): str
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
@@ -463,12 +463,12 @@ print person.describe()
 
 ```zebra
 interface Animal
-    def speak() as str
+    def speak(): str
 
 class Dog implements Animal
-    var name as str = ""
+    var name: str = ""
     
-    def speak() as str
+    def speak(): str
         return "Woof!"
 
 var dog = Dog()
@@ -480,12 +480,12 @@ print dog.speak()
 
 ```zebra
 interface Shape
-    def area() as float
+    def area(): float
 
 class Circle implements Shape
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def area() as float
+    def area(): float
         return 3.14159 * radius * radius
 
 var circle = Circle()
@@ -497,8 +497,8 @@ print circle.area()
 
 ```zebra
 class Math
-    shared
-        def add(a as int, b as int) as int
+    static
+        def add(a: int, b: int): int
             return a + b
 
 var result = Math.add(2, 3)  # 5
@@ -557,7 +557,7 @@ var replaced = pattern.replaceAll(text, "X")
 
 ```zebra
 class Main
-    shared
+    static
         def main
             var args = sys.args()
 
@@ -573,7 +573,7 @@ class Main
 
 ```zebra
 class Main
-    shared
+    static
         def main
             var args = sys.args()
             var verbose = false
@@ -662,7 +662,7 @@ for item in items
 ### CSV Reader
 
 ```zebra
-def read_csv(filename as str) as List(List(str)) throws
+def read_csv(filename: str): List(List(str)) throws
     var content = File.read(filename)
     var lines = content.split("\n")
     var records = List(List(str))()
@@ -680,7 +680,7 @@ def read_csv(filename as str) as List(List(str)) throws
 ### Word Counter
 
 ```zebra
-def count_words(filename as str) as HashMap(str, int) throws
+def count_words(filename: str): HashMap(str, int) throws
     var content = File.read(filename)
     var text = content.lower()
     var words = text.split(" ")

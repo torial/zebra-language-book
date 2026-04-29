@@ -9,11 +9,11 @@ This appendix is a quick reference for Zebra's syntax. For detailed explanations
 ### Primitive Types
 
 ```zebra
-var x as int = 42           # 64-bit integer
-var y as float = 3.14       # 64-bit floating point
-var b as bool = true        # Boolean
-var s as str = "hello"      # Immutable string
-var c as char = 'x'         # Single character
+var x: int = 42           # 64-bit integer
+var y: float = 3.14       # 64-bit floating point
+var b: bool = true        # Boolean
+var s: str = "hello"      # Immutable string
+var c: char = 'x'         # Single character
 ```
 
 **References:** Chapter 02 (Values and Types)
@@ -21,8 +21,8 @@ var c as char = 'x'         # Single character
 ### Nullable Types
 
 ```zebra
-var x as int? = nil         # Can be int or nil
-var s as str? = "hello"     # Can be string or nil
+var x: int? = nil         # Can be int or nil
+var s: str? = "hello"     # Can be string or nil
 
 if x != nil
     print x              # Safe to use x here
@@ -33,8 +33,8 @@ if x != nil
 ### Collection Types
 
 ```zebra
-var numbers as List(int) = List()
-var mapping as HashMap(str, int) = HashMap()
+var numbers: List(int) = List()
+var mapping: HashMap(str, int) = HashMap()
 
 numbers.add(1)
 mapping.put("key", 42)
@@ -45,7 +45,7 @@ mapping.put("key", 42)
 ### Error Handling
 
 ```zebra
-def parse(text as str) as int throws
+def parse(text: str): int throws
     if text.len == 0
         raise "Empty input"
     return 42
@@ -67,7 +67,7 @@ catch |err|
 ### Basic Function Definition
 
 ```zebra
-def greet(name as str) as str
+def greet(name: str): str
     return "Hello, ${name}"
 
 var message = greet("Alice")
@@ -78,7 +78,7 @@ var message = greet("Alice")
 ### Functions with Multiple Parameters
 
 ```zebra
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     return a + b
 
 var sum = add(3, 4)
@@ -87,7 +87,7 @@ var sum = add(3, 4)
 ### Functions with Optional Parameters
 
 ```zebra
-def calculate(a as int, b as int, operation as str) as int
+def calculate(a: int, b: int, operation: str): int
     if operation == "add"
         return a + b
     else
@@ -98,10 +98,10 @@ def calculate(a as int, b as int, operation as str) as int
 
 ```zebra
 class Result
-    var value as int
-    var success as bool
+    var value: int
+    var success: bool
 
-def divide(a as int, b as int) as Result
+def divide(a: int, b: int): Result
     var result = Result()
     if b != 0
         result.value = a / b
@@ -119,14 +119,14 @@ def divide(a as int, b as int) as Result
 
 ```zebra
 class Person
-    var name as str = ""
-    var age as int = 0
+    var name: str = ""
+    var age: int = 0
     
-    def init(name as str, age as int)
+    def init(name: str, age: int)
         this.name = name
         this.age = age
     
-    def describe() as str
+    def describe(): str
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
@@ -139,8 +139,8 @@ print person.describe()
 
 ```zebra
 class Math
-    shared
-        def add(a as int, b as int) as int
+    static
+        def add(a: int, b: int): int
             return a + b
 
 var result = Math.add(2, 3)
@@ -152,9 +152,9 @@ var result = Math.add(2, 3)
 
 ```zebra
 class Circle
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def area() as float
+    def area(): float
         return 3.14159 * radius * radius
 ```
 
@@ -164,12 +164,12 @@ class Circle
 
 ```zebra
 interface Animal
-    def speak() as str
+    def speak(): str
 
 class Dog implements Animal
-    var name as str = ""
+    var name: str = ""
     
-    def speak() as str
+    def speak(): str
         return "Woof!"
 
 var dog = Dog()
@@ -187,16 +187,16 @@ print dog.speak()  # "Woof!"
 
 ```zebra
 interface Shape
-    def area() as float
-    def perimeter() as float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def area() as float
+    def area(): float
         return 3.14159 * radius * radius
     
-    def perimeter() as float
+    def perimeter(): float
         return 2.0 * 3.14159 * radius
 ```
 
@@ -263,7 +263,7 @@ while i < 10
 ### Branch (Pattern Matching)
 
 ```zebra
-var value as int? = 42
+var value: int? = 42
 
 branch value
     on nil
@@ -276,7 +276,7 @@ branch value
 ### Error Handling
 
 ```zebra
-def load(path as str) as str throws
+def load(path: str): str throws
     if path.len == 0
         raise "Empty path"
     return "data"
@@ -370,7 +370,7 @@ text -> .trim() -> .upper() -> .split(" ")
 
 ```zebra
 var x = 42                  # Local variable, inferred type
-var x as int = 42          # Local variable, explicit type
+var x: int = 42          # Local variable, explicit type
 var x = 42, y = "hello"    # Multiple declarations
 ```
 
@@ -398,7 +398,7 @@ def example()
 ### Generic Functions
 
 ```zebra
-def first(items as List(T)) as T?
+def first(items: List(T)) as T?
     if items.count() > 0
         return items.at(0)
     return nil
@@ -414,12 +414,12 @@ var first_num = first(nums)  # Type is int?
 
 ```zebra
 class Box(T)
-    var item as T?
+    var item: T?
     
-    def store(item as T)
+    def store(item: T)
         this.item = item
     
-    def fetch() as T?
+    def fetch(): T?
         return this.item
 
 var box = Box(str)()
@@ -432,7 +432,7 @@ var value = box.fetch()  # Type is str?
 ### Type Constraints
 
 ```zebra
-def compare(a as T, b as T) as int where T can be Comparable
+def compare(a: T, b: T): int where T can be Comparable
     # T must implement Comparable interface
     if a < b
         return -1
@@ -451,7 +451,7 @@ def compare(a as T, b as T) as int where T can be Comparable
 ### Fallible Functions
 
 ```zebra
-def divide(a as int, b as int) as int throws
+def divide(a: int, b: int): int throws
     if b == 0
         raise "Division by zero"
     return a / b
@@ -486,7 +486,7 @@ catch |err|
 ### Null Checking
 
 ```zebra
-var x as int? = nil
+var x: int? = nil
 
 if x != nil
     # Safe to use x as int here
@@ -499,7 +499,7 @@ if x == nil
 ### Safe Navigation
 
 ```zebra
-var x as int? = 42
+var x: int? = 42
 
 if x != nil
     var doubled = x * 2  # Safe because x is checked
@@ -579,7 +579,7 @@ for key, value in map
 ### Deduplication (via HashMap)
 
 ```zebra
-var seen as HashMap(str, bool) = HashMap()
+var seen: HashMap(str, bool) = HashMap()
 
 seen.put("apple", true)         # Track item
 seen.contains("apple")          # Check membership
@@ -620,7 +620,7 @@ var str = true.toString()       # "true"
 ### Contracts (if supported)
 
 ```zebra
-def divide(a as int, b as int) as int
+def divide(a: int, b: int): int
     require b != 0, "Divisor cannot be zero"
     return a / b
 ```
@@ -639,13 +639,13 @@ assert x > 0, "x must be positive"
 
 ```zebra
 mixin Serializable
-    def to_json() as str
+    def to_json(): str
         return "{}"
 
 class Person implements Serializable
-    var name as str = ""
+    var name: str = ""
     
-    def to_json() as str
+    def to_json(): str
         return "{\"name\": \"${name}\"}"
 ```
 
@@ -669,7 +669,7 @@ var args = sys.args()
 
 ```zebra
 namespace MyApp.Utils
-    def helper_function() as str
+    def helper_function(): str
         return "Helper"
 ```
 
@@ -736,7 +736,7 @@ namespace MyApp.Utils
 ### Safe Navigation
 
 ```zebra
-var x as int? = 42
+var x: int? = 42
 if x != nil
     print x + 1
 ```
@@ -744,7 +744,7 @@ if x != nil
 ### Null Coalescing (using unwrapOr)
 
 ```zebra
-var x as int? = nil
+var x: int? = nil
 var value = x.unwrapOr(0)  # Use 0 if x is nil
 ```
 

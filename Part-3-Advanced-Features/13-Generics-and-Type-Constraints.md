@@ -1,4 +1,4 @@
-# 13: Generics and Type Constraints
+﻿# 13: Generics and Type Constraints
 
 **Audience:** Experienced programmers  
 **Time:** 120 minutes  
@@ -15,9 +15,9 @@ Generics let you write code that's *type-safe* but *reusable* across different t
 
 ```zebra
 class Container(T)
-    var item as T
+    var item: T
     
-    def get as T
+    def get: T
         return item
 ```
 
@@ -27,7 +27,7 @@ class Container(T)
 
 ## Generic Classes
 
-![Generics Instantiation](../diagrams/06-generics-instantiation.png)
+![Generics Instantiation](diagrams/06-generics-instantiation.png)
 
 The simplest generic is a **container that holds a single value**:
 
@@ -37,16 +37,16 @@ The simplest generic is a **container that holds a single value**:
 # chapter: 13-Generics-and-Type-Constraints
 
 class Container(T)
-    var item as T
+    var item: T
     
-    def store(value as T)
+    def store(value: T)
         item = value
     
-    def retrieve as T
+    def retrieve: T
         return item
 
 class Main
-    shared
+    static
         def main
             var int_box = Container(int)()
             int_box.store(42)
@@ -70,23 +70,23 @@ You can have **multiple type parameters**:
 # chapter: 13-Generics-and-Type-Constraints
 
 class Pair(K, V)
-    var key as K
-    var value as V
+    var key: K
+    var value: V
     
-    def set_key(k as K)
+    def set_key(k: K)
         key = k
     
-    def set_value(v as V)
+    def set_value(v: V)
         value = v
     
-    def get_key as K
+    def get_key: K
         return key
     
-    def get_value as V
+    def get_value: V
         return value
 
 class Main
-    shared
+    static
         def main
             var p = Pair(str, int)()
             p.set_key("count")
@@ -106,15 +106,15 @@ You can also write **generic methods** within regular classes:
 # chapter: 13-Generics-and-Type-Constraints
 
 class Utils
-    shared
-        def identity(value as T) as T
+    static
+        def identity(value: T): T
             return value
         
-        def first_of_three(a as T, b as T, c as T) as T
+        def first_of_three(a: T, b: T, c: T): T
             return a
 
 class Main
-    shared
+    static
         def main
             var x = Utils.identity(42)
             print x  # Output: 42
@@ -140,9 +140,9 @@ You already use generics implicitly with `List` and `HashMap`:
 # chapter: 13-Generics-and-Type-Constraints
 
 class Main
-    shared
+    static
         def main
-            var numbers as List(int) = List()
+            var numbers: List(int) = List()
             numbers.add(1)
             numbers.add(2)
             numbers.add(3)
@@ -150,7 +150,7 @@ class Main
             for n in numbers
                 print n
             
-            var ages as HashMap(str, int) = HashMap()
+            var ages: HashMap(str, int) = HashMap()
             ages.put("Alice", 30)
             ages.put("Bob", 25)
             
@@ -172,25 +172,25 @@ Sometimes you want a generic that works with **any type that implements an inter
 # chapter: 13-Generics-and-Type-Constraints
 
 interface Printable
-    def display as str
+    def display: str
 
 class Dog
     implements Printable
-        def display as str
+        def display: str
             return "Woof!"
 
 class Cat
     implements Printable
-        def display as str
+        def display: str
             return "Meow!"
 
 class Printer
-    shared
-        def print_item(item as Printable)
+    static
+        def print_item(item: Printable)
             print item.display()
 
 class Main
-    shared
+    static
         def main
             var dog = Dog()
             var cat = Cat()
@@ -209,15 +209,15 @@ More advanced: constraints on generic methods:
 # chapter: 13-Generics-and-Type-Constraints
 
 interface Comparable
-    def compare_to(other as this) as int
+    def compare_to(other: this): int
 
 class ComparableList(T)
-    var items as List(T) = List()
+    var items: List(T) = List()
     
-    def add(item as T)
+    def add(item: T)
         items.add(item)
     
-    def find_max as T?
+    def find_max: T?
         if items.count() == 0
             return nil
         var max = items.at(0)
@@ -231,7 +231,7 @@ class ComparableList(T)
         return max
 
 class Main
-    shared
+    static
         def main
             var list = ComparableList()
             list.add(10)
@@ -254,20 +254,20 @@ A practical example: a **cache that works with any type**:
 # chapter: 13-Generics-and-Type-Constraints
 
 class Cache(K, V)
-    var data as HashMap(K, V) = HashMap()
-    var max_size as int
+    var data: HashMap(K, V) = HashMap()
+    var max_size: int
     
-    def init(max_size as int)
+    def init(max_size: int)
         this.max_size = max_size
     
-    def put(key as K, value as V)
+    def put(key: K, value: V)
         if data.count() >= max_size and not data.contains(key)
             # Evict first key (simplistic LRU simulation)
             # In real code, track access order
             pass
         data.put(key, value)
     
-    def lookup(key as K) as V?
+    def lookup(key: K): V?
         if data.contains(key)
             return data.fetch(key)
         return nil
@@ -276,7 +276,7 @@ class Cache(K, V)
         data = HashMap()
 
 class Main
-    shared
+    static
         def main
             var cache = Cache(str, int)()
             cache.init(3)
@@ -321,7 +321,7 @@ box.store("hello")
 
 ```zebra
 # WRONG - method doesn't actually require Comparable
-def find_max(items as List(T)) as T
+def find_max(items: List(T)) as T
     var max = items.at(0)
     var item = items.at(1)
     if item > max  # Error: > not defined for all T
@@ -329,7 +329,7 @@ def find_max(items as List(T)) as T
     return max
 
 # CORRECT - either don't use >, or require Comparable interface
-def find_max(items as List(T)) as T
+def find_max(items: List(T)) as T
     var max = items.at(0)
     for item in items
         if item.toString() > max.toString()  # Convert to string for comparison
@@ -341,7 +341,7 @@ def find_max(items as List(T)) as T
 
 ```zebra
 # DANGER - at runtime, type information is lost
-def process(items as List(T))
+def process(items: List(T))
     for item in items
         if item isa int  # This may not work as expected
             print item + 10
@@ -362,23 +362,23 @@ Implement a `Stack(T)` class with `push`, `pop`, and `is_empty` methods:
 
 ```zebra
 class Stack(T)
-    var items as List(T) = List()
+    var items: List(T) = List()
     
-    def push(value as T)
+    def push(value: T)
         items.add(value)
     
-    def pop as T?
+    def pop: T?
         if items.count() == 0
             return nil
         var value = items.at(items.count() - 1)
         # Remove last item (simplified - no remove method)
         return value
     
-    def is_empty as bool
+    def is_empty: bool
         return items.count() == 0
 
 class Main
-    shared
+    static
         def main
             var stack = Stack(int)()
             stack.push(1)
@@ -401,24 +401,24 @@ Write a function that filters a list based on a predicate (function that returns
 
 ```zebra
 class ListUtils
-    shared
-        def filter(items as List(T), predicate as T -> bool) as List(T)
-            var result as List(T) = List()
+    static
+        def filter(items: List(T), predicate as T -> bool) as List(T)
+            var result: List(T) = List()
             for item in items
                 if predicate(item)
                     result.add(item)
             return result
 
 class Main
-    shared
+    static
         def main
-            var numbers as List(int) = List()
+            var numbers: List(int) = List()
             numbers.add(1)
             numbers.add(2)
             numbers.add(3)
             numbers.add(4)
             
-            var is_even as T -> bool = { x in x % 2 == 0 }
+            var is_even: T -> bool = { x in x % 2 == 0 }
             var evens = ListUtils.filter(numbers, is_even)
             
             for e in evens
@@ -436,23 +436,23 @@ Create a `ValidatedBox(T)` that only accepts values passing a validation functio
 
 ```zebra
 class ValidatedBox(T)
-    var item as T?
-    var validator as T -> bool
+    var item: T?
+    var validator: T -> bool
     
-    def init(validator as T -> bool)
+    def init(validator: T -> bool)
         this.validator = validator
     
-    def set(value as T) as bool
+    def set(value: T): bool
         if validator(value)
             item = value
             return true
         return false
     
-    def get as T?
+    def get: T?
         return item
 
 class Main
-    shared
+    static
         def main
             var age_box = ValidatedBox(int)()
             age_box.init({ x in x >= 0 and x <= 150 })

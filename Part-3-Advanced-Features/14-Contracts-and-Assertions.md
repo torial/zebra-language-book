@@ -39,9 +39,9 @@ A **precondition** says "if you call me, the input must be valid":
 # chapter: 14-Contracts-and-Assertions
 
 class Bank
-    var balance as int = 100
+    var balance: int = 100
     
-    def withdraw(amount as int) as bool throws
+    def withdraw(amount: int): bool throws
         # Precondition: amount must be positive
         if amount <= 0
             raise "Amount must be positive"
@@ -54,7 +54,7 @@ class Bank
         return true
 
 class Main
-    shared
+    static
         def main
             var bank = Bank()
             
@@ -81,10 +81,10 @@ A **postcondition** says "when I return, the output will be valid":
 # chapter: 14-Contracts-and-Assertions
 
 class List
-    var items as List(int) = List()
-    var count as int = 0
+    var items: List(int) = List()
+    var count: int = 0
     
-    def add(item as int)
+    def add(item: int)
         items.add(item)
         count = count + 1
         
@@ -94,7 +94,7 @@ class List
             print "ERROR: List invariant broken!"
 
 class Main
-    shared
+    static
         def main
             var list = List()
             list.add(1)
@@ -117,13 +117,13 @@ An **invariant** is a property that must **always** be true:
 # chapter: 14-Contracts-and-Assertions
 
 class Account
-    var balance as int
-    var transaction_count as int = 0
+    var balance: int
+    var transaction_count: int = 0
     
     # Invariant: balance >= 0 (can't have negative money)
     # Invariant: transaction_count >= 0
     
-    def deposit(amount as int)
+    def deposit(amount: int)
         if amount < 0
             return  # Reject negative deposits
         
@@ -136,11 +136,11 @@ class Account
         if transaction_count < 0
             print "ERROR: Transaction count negative!"
     
-    def check_invariants as bool
+    def check_invariants: bool
         return balance >= 0 and transaction_count >= 0
 
 class Main
-    shared
+    static
         def main
             var acct = Account()
             acct.balance = 100
@@ -164,8 +164,8 @@ In complex classes, you might check invariants at the **start and end** of every
 # chapter: 14-Contracts-and-Assertions
 
 class Math
-    shared
-        def divide(a as int, b as int) as int
+    static
+        def divide(a: int, b: int): int
             # Assertion: b must not be zero
             if b == 0
                 raise "Assertion failed: divide by zero"
@@ -179,7 +179,7 @@ class Math
             return result
 
 class Main
-    shared
+    static
         def main
             var x = Math.divide(10, 2)
             print x  # Output: 5
@@ -201,8 +201,8 @@ Here's a practical example: verify that a sort function actually sorted the list
 # chapter: 14-Contracts-and-Assertions
 
 class Sorter
-    shared
-        def bubble_sort(items as List(int)) as List(int)
+    static
+        def bubble_sort(items: List(int)) as List(int)
             var n = items.count()
             var i = 0
             
@@ -229,9 +229,9 @@ class Sorter
             return items
 
 class Main
-    shared
+    static
         def main
-            var list as List(int) = List()
+            var list: List(int) = List()
             list.add(3)
             list.add(1)
             list.add(2)
@@ -252,8 +252,8 @@ class Main
 # chapter: 14-Contracts-and-Assertions
 
 class FileProcessor
-    shared
-        def process_file(path as str) as str throws
+    static
+        def process_file(path: str): str throws
             # Preconditions as guard clauses
             if path == nil or path.len == 0
                 raise "Path cannot be empty"
@@ -265,7 +265,7 @@ class FileProcessor
             return "Processed"
 
 class Main
-    shared
+    static
         def main
             var r = FileProcessor.process_file("")
             if r.isErr()
@@ -280,8 +280,8 @@ class Main
 # chapter: 14-Contracts-and-Assertions
 
 class Validator
-    shared
-        def validate_email(email as str) as bool
+    static
+        def validate_email(email: str): bool
             # Check preconditions first
             if email == nil
                 return false
@@ -297,7 +297,7 @@ class Validator
             return parts.count() == 2
 
 class Main
-    shared
+    static
         def main
             var valid = Validator.validate_email("user@example.com")
             print valid
@@ -311,8 +311,8 @@ class Main
 # chapter: 14-Contracts-and-Assertions
 
 class StringHandler
-    shared
-        def reverse_string(text as str) as str
+    static
+        def reverse_string(text: str): str
             # Precondition
             if text == nil
                 return ""
@@ -329,7 +329,7 @@ class StringHandler
             return result
 
 class Main
-    shared
+    static
         def main
             var s = StringHandler.reverse_string("hello")
             print s
@@ -343,14 +343,14 @@ class Main
 
 ```zebra
 # WRONG - checking output before doing work
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     var result = a + b
     if a < 0  # This is a PRECONDITION, not postcondition
         raise "Error"
     return result
 
 # CORRECT
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     if a < 0 or b < 0  # Precondition
         raise "Error: inputs must be non-negative"
     
@@ -366,14 +366,14 @@ def add(a as int, b as int) as int
 
 ```zebra
 # WRONG - silently ignores contract violation
-def process(items as List(int))
+def process(items: List(int))
     if items.count() == 0
         pass  # Just exit, no indication of problem
     for item in items
         print item
 
 # CORRECT - assert or return error
-def process(items as List(int)) as bool throws
+def process(items: List(int)) as bool throws
     if items.count() == 0
         raise "Cannot process empty list"
     
@@ -387,7 +387,7 @@ def process(items as List(int)) as bool throws
 
 ```zebra
 # PROBLEMATIC - expensive check in loop
-def hot_path(items as List(int))
+def hot_path(items: List(int))
     for item in items
         # Checking invariants on every iteration is slow
         if not validate_item(item)
@@ -395,7 +395,7 @@ def hot_path(items as List(int))
         # Do actual work
 
 # BETTER - check precondition once, trust throughout
-def hot_path(items as List(int))
+def hot_path(items: List(int))
     # Single precondition check
     for item in items
         if not validate_item(item)
@@ -436,9 +436,9 @@ Create a `BankAccount` class with `deposit` and `withdraw` methods. Use precondi
 
 ```zebra
 class BankAccount
-    var balance as int = 0
+    var balance: int = 0
     
-    def deposit(amount as int) as bool throws
+    def deposit(amount: int): bool throws
         # Precondition: positive amount
         if amount <= 0
             raise "Deposit amount must be positive"
@@ -452,7 +452,7 @@ class BankAccount
         
         return true
     
-    def withdraw(amount as int) as bool throws
+    def withdraw(amount: int): bool throws
         # Precondition: positive amount
         if amount <= 0
             raise "Withdrawal amount must be positive"
@@ -471,7 +471,7 @@ class BankAccount
         return true
 
 class Main
-    shared
+    static
         def main
             var account = BankAccount()
             account.balance = 100
@@ -494,8 +494,8 @@ Write a `StringParser` that parses input strings with clear pre and postconditio
 
 ```zebra
 class StringParser
-    shared
-        def parse_number(text as str) as int throws
+    static
+        def parse_number(text: str): int throws
             # Precondition: non-empty string
             if text == nil or text.len == 0
                 raise "Cannot parse empty string"
@@ -514,7 +514,7 @@ class StringParser
             raise "Not a valid number"
 
 class Main
-    shared
+    static
         def main
             var r = StringParser.parse_number("42")
             if r.isOk()
@@ -532,13 +532,13 @@ Create a `ValidatedList(T)` that maintains an invariant that all items are non-n
 
 ```zebra
 class ValidatedList(T)
-    var items as List(T) = List()
-    var predicate as T -> bool
+    var items: List(T) = List()
+    var predicate: T -> bool
     
-    def init(predicate as T -> bool)
+    def init(predicate: T -> bool)
         this.predicate = predicate
     
-    def add(item as T) as bool
+    def add(item: T): bool
         # Precondition: item must match predicate
         if not predicate(item)
             return false
@@ -551,14 +551,14 @@ class ValidatedList(T)
         
         return true
     
-    def check_invariants as bool
+    def check_invariants: bool
         for item in items
             if not predicate(item)
                 return false
         return true
 
 class Main
-    shared
+    static
         def main
             var list = ValidatedList()
             list.init({ x in x > 0 })

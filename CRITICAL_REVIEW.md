@@ -50,12 +50,12 @@ branch result
 **Problem:**
 ```zebra
 // Shown in book:
-var numbers as List(int) = List(int)()
-var mapping as HashMap(str, int) = HashMap(str, int)()
+var numbers: List(int) = List(int)()
+var mapping: HashMap(str, int) = HashMap(str, int)()
 
 // Actual usage in test files:
-var nums as List(int) = List()
-var scores as HashMap(str, int) = HashMap()
+var nums: List(int) = List()
+var scores: HashMap(str, int) = HashMap()
 ```
 
 The book shows `List(int)()` (with type parameter on constructor) but actual code uses `List()` with type inference from the `as` clause.

@@ -80,7 +80,7 @@ Create a file named `hello.zbr`:
 # chapter: 01-Getting-Started
 
 class Main
-    shared
+    static
         def main
             print "Hello, Zebra!"
 ```
@@ -180,9 +180,9 @@ zebra -kif hello.zbr
 # chapter: 01-Getting-Started
 
 class Main
-    shared
+    static
         def main
-            var name as str = "World"
+            var name: str = "World"
             print "Hello, ${name}!"
 ```
 
@@ -205,7 +205,7 @@ When you make a mistake, Zebra tells you clearly:
 
 ```zebra
 class Main
-    shared
+    static
         def main
             print "Hello " + 5  # ❌ Can't add string + number
 ```
@@ -258,8 +258,8 @@ When your program spans multiple files, Zebra's `use` statement imports another 
 ```zebra
 # file: math_utils.zbr
 class MathUtils
-    shared
-        def square(n as int) as int
+    static
+        def square(n: int): int
             return n * n
 ```
 
@@ -268,7 +268,7 @@ class MathUtils
 use MathUtils
 
 class Main
-    shared
+    static
         def main
             var result = MathUtils.square(5)
             print result  # 25
@@ -282,7 +282,7 @@ Use `exposing` to import specific names directly into scope:
 use MathUtils exposing square
 
 class Main
-    shared
+    static
         def main
             var result = square(5)  # No MathUtils. prefix needed
             print result
@@ -311,9 +311,9 @@ Modify `hello.zbr` to:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var my_name as str = "Alice"
+            var my_name: str = "Alice"
             print "Hello! My name is ${my_name}."
 ```
 
@@ -337,11 +337,11 @@ Create a program that:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var first_name as str = "Bob"
-            var last_name as str = "Smith"
-            var age as int = 30
+            var first_name: str = "Bob"
+            var last_name: str = "Smith"
+            var age: int = 30
             print "My name is ${first_name} ${last_name} and I'm ${age} years old."
 ```
 

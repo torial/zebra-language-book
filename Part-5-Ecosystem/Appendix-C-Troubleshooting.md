@@ -100,13 +100,13 @@ names.add("hello")
 
 **Example:**
 ```zebra
-var x as int? = nil
+var x: int? = nil
 var result = x + 1      # ERROR: can't add to potentially nil value
 ```
 
 **Solution:**
 ```zebra
-var x as int? = nil
+var x: int? = nil
 
 if x != nil
     var result = x + 1  # Safe—x is definitely int here
@@ -116,7 +116,7 @@ else
 
 **Alternative:**
 ```zebra
-var x as int? = nil
+var x: int? = nil
 var value = x.unwrapOr(0)  # Use 0 if x is nil
 var result = value + 1
 ```
@@ -129,18 +129,18 @@ var result = value + 1
 
 **Example:**
 ```zebra
-var x as int = 42
-var y as int? = x       # OK: int can become int?
+var x: int = 42
+var y: int? = x       # OK: int can become int?
 
-var z as int = y        # ERROR: int? cannot become int (might be nil!)
+var z: int = y        # ERROR: int? cannot become int (might be nil!)
 ```
 
 **Solution:**
 ```zebra
-var y as int? = 42
+var y: int? = 42
 
 if y != nil
-    var z as int = y    # Safe now—y is definitely int
+    var z: int = y    # Safe now—y is definitely int
 ```
 
 ---
@@ -156,13 +156,13 @@ if y != nil
 
 **Example:**
 ```zebra
-var x as int? = nil
+var x: int? = nil
 print x + 1          # ERROR if x is nil
 ```
 
 **Solution:**
 ```zebra
-var x as int? = get_value()
+var x: int? = get_value()
 
 if x != nil
     print x + 1
@@ -342,7 +342,7 @@ if start >= 0 and end <= text.len and start <= end
 
 **Example:**
 ```zebra
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     return a + b
 
 var sum = add(5)        # ERROR: expects 2, got 1
@@ -351,7 +351,7 @@ var sum = add(1, 2, 3)  # ERROR: expects 2, got 3
 
 **Solution:**
 ```zebra
-def add(a as int, b as int) as int
+def add(a: int, b: int): int
     return a + b
 
 var sum = add(1, 2)     # Correct: 2 parameters
@@ -365,7 +365,7 @@ var sum = add(1, 2)     # Correct: 2 parameters
 
 **Example:**
 ```zebra
-def greet(name as str) as str
+def greet(name: str): str
     return "Hello, ${name}"
 
 greet(42)               # ERROR: expects str, got int
@@ -373,7 +373,7 @@ greet(42)               # ERROR: expects str, got int
 
 **Solution:**
 ```zebra
-def greet(name as str) as str
+def greet(name: str): str
     return "Hello, ${name}"
 
 greet("Alice")          # Correct: str parameter
@@ -388,7 +388,7 @@ greet(42.toString())    # Convert int to str
 
 **Example:**
 ```zebra
-def get_value() as int
+def get_value(): int
     if true
         return 42
     # Missing return for false case
@@ -396,14 +396,14 @@ def get_value() as int
 
 **Solution:**
 ```zebra
-def get_value() as int
+def get_value(): int
     if true
         return 42
     else
         return 0    # Now all paths return
 
 # Or use branch
-def get_value() as int
+def get_value(): int
     var result = 0
     if condition
         result = 42
@@ -475,13 +475,13 @@ var value = result.unwrapOr(default_value)
 **Example:**
 ```zebra
 class Person
-    var name as str = ""
+    var name: str = ""
 
 var person = Person()
 person.name = "Alice"           # OK if var field
 
 class Circle
-    var radius as float = 0.0   # If immutable
+    var radius: float = 0.0   # If immutable
     
 var circle = Circle()
 circle.radius = 5.0             # ERROR if immutable
@@ -491,8 +491,8 @@ circle.radius = 5.0             # ERROR if immutable
 Ensure fields are declared with `var`:
 ```zebra
 class Person
-    var name as str = ""        # Mutable
-    var age as int = 0          # Mutable
+    var name: str = ""        # Mutable
+    var age: int = 0          # Mutable
 
 var person = Person()
 person.name = "Alice"           # Now OK
@@ -508,13 +508,13 @@ person.age = 30                 # Now OK
 **Example:**
 ```zebra
 interface Shape
-    def area() as float
-    def perimeter() as float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def area() as float
+    def area(): float
         return 3.14 * radius * radius
     
     # ERROR: missing perimeter() method
@@ -523,16 +523,16 @@ class Circle implements Shape
 **Solution:**
 ```zebra
 interface Shape
-    def area() as float
-    def perimeter() as float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
-    var radius as float = 0.0
+    var radius: float = 0.0
     
-    def area() as float
+    def area(): float
         return 3.14 * radius * radius
     
-    def perimeter() as float
+    def perimeter(): float
         return 2.0 * 3.14 * radius  # Now complete
 ```
 
@@ -744,14 +744,14 @@ assert result.isOk(), "Operation must succeed"
 var x = 42
 print x.toString()        # Force type check
 
-var result as int throws = operation()
+var result: int throws = operation()
 # Type annotation makes intent clear
 ```
 
 ### Null Checking
 
 ```zebra
-var x as int? = get_value()
+var x: int? = get_value()
 
 if x != nil
     print "Value: ${x}"
@@ -766,7 +766,7 @@ else
 ### Safe Navigation
 
 ```zebra
-var x as int? = get_value()
+var x: int? = get_value()
 
 if x != nil
     var result = x + 1
