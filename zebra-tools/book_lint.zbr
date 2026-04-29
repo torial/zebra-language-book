@@ -1,0 +1,186 @@
+# book_lint.zbr — lint Zebra code blocks in .md files for dead-syntax patterns.
+#
+# Usage:
+#   zebra book_lint.zbr [root-dir]
+#
+# Walks the given directory recursively, finds *.md files, extracts
+# ```zebra fenced blocks (line-anchored — skips blockquoted "Common
+# Mistakes" examples), and reports occurrences of dead syntax:
+#
+#   inherits     — class inheritance (Zebra has none; use mixins/composition)
+#   super.       — parent method call (no `super` in Zebra)
+#   prop-keyword — `prop X as T` (removed 2026-04-19)
+#   shared-group — `shared` group block (renamed to `static`)
+#   shared-inline — `shared def F` / `shared var X`
+#   var-as       — `var X as T` (use `var X: T`)
+#   def-as       — `def F(...) as T` (use `def F(...): T`)
+#   cue-init-as  — `cue init(... as T)` (use `cue init(...: T)`)
+#   mixes        — `class C mixes M` (renamed to `adds`)
+#
+# Output: `<file>:<line>: <category>: <code>` per finding, plus a count.
+#
+# DOGFOODING NOTES (workarounds for known bugs found while writing this):
+#   - BUG-090: for-loop element type is lost on a function-call result.
+#     Worked around by assigning to a typed local first.
+#   - BUG-?A: passing `List(T)` as a parameter and calling `.add()` on it
+#     emits a `*const` receiver, which Zig rejects.  Worked around by
+#     using class-field state (a Linter class with `findings` as a field)
+#     instead of out-params.
+#   - BUG-?B: `var lines: List(str) = content.split("\n")` doesn't auto-
+#     materialise the SplitIterator into a List.  Worked around by
+#     iterating directly over the split with `for line in content.split(...)`.
+
+class Finding
+    var file: str = ""
+    var line: int = 0
+    var category: str = ""
+    var text: str = ""
+
+    cue init(file: str, line: int, category: str, text: str)
+        this.file = file
+        this.line = line
+        this.category = category
+        this.text = text
+
+# Walker collects .md file paths into its own field — avoids passing
+# List(T) as an out-parameter (which currently has a const-receiver bug).
+class Walker
+    var files: List(str)
+
+    cue init()
+        files = List(str)()
+
+    def collect(root: str)
+        this.descend(root)
+
+    def descend(path: str)
+        # `: List(str)` works around BUG-090 (for-loop element type lost).
+        var entries: List(str) = File.listDir(path)
+        for name in entries
+            if name.startsWith(".")
+                continue
+            if name == "node_modules"
+                continue
+            var full = Walker.joinPath(path, name)
+            if Dir.exists(full)
+                this.descend(full)
+            else if name.endsWith(".md")
+                files.add(full)
+
+    static def joinPath(a: str, b: str): str
+        if a.endsWith("/")
+            return a + b
+        if a.endsWith("\\")
+            return a + b
+        return a + "/" + b
+
+
+# Linter holds findings as instance state.  Same out-param dodge as Walker.
+class Linter
+    var findings: List(Finding)
+
+    cue init()
+        findings = List(Finding)()
+
+    def lint(path: str)
+        var content: str = File.read(path)
+        var line_no: int = 0
+        var in_zebra: bool = false
+        # NOTE: iterating directly over split() — assigning to a typed
+        # `List(str)` local fails because split returns a SplitIterator,
+        # not an ArrayList.  Direct for-iteration drives the iterator.
+        for raw in content.split("\n")
+            line_no = line_no + 1
+            if raw.startsWith("```zebra")
+                in_zebra = true
+                continue
+            if in_zebra and raw.startsWith("```")
+                in_zebra = false
+                continue
+            if in_zebra
+                this.scanLine(path, line_no, raw)
+
+    # Strip a Zebra comment (`#` to end of line) so patterns don't match
+    # prose-like comments such as `var age = 25  # Inferred as int`.
+    # Returns the line content before the first unquoted `#`.
+    static def stripComment(line: str): str
+        var i: int = 0
+        var in_str: bool = false
+        var n = line.len
+        while i < n
+            var c = line[i]
+            if c == c'"'
+                in_str = not in_str
+            else if c == c'#' and not in_str
+                return line[0..i]
+            i = i + 1
+        return line
+
+    def scanLine(file: str, line_no: int, line: str)
+        if line.len == 0
+            return
+        var stripped: str = Linter.stripComment(line)
+        var trimmed: str = stripped.trim()
+
+        if " inherits " in stripped
+            findings.add(Finding(file, line_no, "inherits", line))
+            return
+        if "super." in stripped
+            findings.add(Finding(file, line_no, "super", line))
+            return
+        if trimmed.startsWith("prop ")
+            findings.add(Finding(file, line_no, "prop-keyword", line))
+            return
+        if trimmed == "shared"
+            findings.add(Finding(file, line_no, "shared-group", line))
+            return
+        if trimmed.startsWith("shared def ")
+            findings.add(Finding(file, line_no, "shared-inline", line))
+            return
+        if trimmed.startsWith("shared var ")
+            findings.add(Finding(file, line_no, "shared-inline", line))
+            return
+        if trimmed.startsWith("var ") and " as " in trimmed
+            findings.add(Finding(file, line_no, "var-as", line))
+            return
+        if trimmed.startsWith("def ") and " as " in trimmed
+            findings.add(Finding(file, line_no, "def-as", line))
+            return
+        if trimmed.startsWith("cue init") and " as " in trimmed
+            findings.add(Finding(file, line_no, "cue-init-as", line))
+            return
+        if " mixes " in stripped
+            findings.add(Finding(file, line_no, "mixes", line))
+            return
+
+
+class Main
+    static
+        def main
+            var args = Arg.parse()
+            var root_opt = args.positional(0)
+            var root: str = "."
+            if root_opt as r
+                root = r
+
+            print "[book_lint] scanning ${root}..."
+
+            var walker = Walker()
+            walker.collect(root)
+            print "[book_lint] ${walker.files.count()} markdown files"
+
+            var linter = Linter()
+            for f in walker.files
+                linter.lint(f)
+
+            for finding in linter.findings
+                # Assign through typed locals — interpolation of class-field
+                # str values falls back to {any} byte-array printing
+                # (BUG-089).  Locals get the right `{s}` specifier.
+                var f: str = finding.file
+                var c: str = finding.category
+                var text: str = finding.text
+                var trimmed: str = text.trim()
+                print "${f}:${finding.line}: ${c}: ${trimmed}"
+            print "---"
+            print "[book_lint] ${linter.findings.count()} findings"
