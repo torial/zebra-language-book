@@ -1,0 +1,131 @@
+# syntax_snapshot.zbr — read src/Token.zig and emit a JSON snapshot of
+# current keywords plus a curated list of dead/renamed keywords.
+#
+# Usage:
+#   zebra syntax_snapshot.zbr <path-to-src/Token.zig> [out-file]
+#
+# The output JSON has shape:
+#   {
+#     "snapshot_date":     "YYYY-MM-DD",
+#     "source":            "<path-to-Token.zig>",
+#     "current_keywords":  ["class", "def", ...],
+#     "dead_keywords":     ["shared", "inherits", "super", ...]
+#   }
+#
+# book_lint.zbr can later read this file to make its dead-pattern checks
+# data-driven instead of hardcoded — at which point a renamed keyword
+# only needs an update here, not a code change to every linter.
+
+class Snapshot
+    var current: List(str)
+    var dead: List(str)
+    var source_path: str
+
+    cue init(source_path: str)
+        this.source_path = source_path
+        current = List(str)()
+        dead = List(str)()
+        # Curated list — these aren't (or no longer are) in Token.zig but
+        # appear in older user code or documentation.  Update when a
+        # migration happens.
+        dead.add("shared")    # renamed → static (2026-04-19)
+        dead.add("inherits")  # never existed in Zebra; book legacy
+        dead.add("super")     # never existed in Zebra; book legacy
+        dead.add("prop")      # removed 2026-04-19
+        dead.add("get")       # removed 2026-04-19
+        dead.add("set")       # removed 2026-04-19
+        dead.add("body")      # removed 2026-04-19
+        dead.add("post")      # removed 2026-04-19
+        dead.add("pro")       # removed 2026-04-19
+        dead.add("mixes")     # renamed → adds
+
+    # Parse src/Token.zig: find the `keyword_map = ...initComptime(.{`
+    # block and pull every `.{ "name", .kw_x }` entry's name.
+    def parse()
+        var content: str = File.read(source_path)
+        var in_map: bool = false
+        for raw in content.split("\n")
+            if not in_map
+                if "keyword_map" in raw and "initComptime" in raw
+                    in_map = true
+                continue
+            # in_map = true
+            if raw.startsWith("});")
+                in_map = false
+                continue
+            var name: str = Snapshot.firstQuoted(raw)
+            if name != ""
+                current.add(name)
+
+    # Pull the first "..."-quoted substring from `line`, or "" if none.
+    static def firstQuoted(line: str): str
+        var i: int = 0
+        var n = line.len
+        var start: int = -1
+        while i < n
+            var c = line[i]
+            if c == c'"'
+                if start < 0
+                    start = i + 1
+                else
+                    return line[start..i]
+            i = i + 1
+        return ""
+
+    # Emit a JSON document.  Fixed-format pretty-print, no library use —
+    # keeps the tool standalone and inspectable.
+    def toJson(date: str): str
+        var out: str = "{\n"
+        out = out + "  \"snapshot_date\": \"" + date + "\",\n"
+        out = out + "  \"source\":        \"" + source_path + "\",\n"
+        out = out + "  \"current_keywords\": ["
+        var i: int = 0
+        for kw in current
+            if i > 0
+                out = out + ", "
+            out = out + "\"" + kw + "\""
+            i = i + 1
+        out = out + "],\n"
+        out = out + "  \"dead_keywords\": ["
+        var j: int = 0
+        for dk in dead
+            if j > 0
+                out = out + ", "
+            out = out + "\"" + dk + "\""
+            j = j + 1
+        out = out + "]\n"
+        out = out + "}\n"
+        return out
+
+
+class Main
+    static
+        def main
+            var args = Arg.parse()
+            var src_opt = args.positional(0)
+            var out_opt = args.positional(1)
+
+            var src_path: str = ""
+            if src_opt as s
+                src_path = s
+            else
+                print "usage: syntax_snapshot.zbr <path-to-Token.zig> [out-file]"
+                sys.exit(1)
+                return
+
+            var out_path: str = "syntax_snapshot.json"
+            if out_opt as o
+                out_path = o
+
+            print "[snapshot] reading ${src_path}..."
+            var snap = Snapshot(src_path)
+            snap.parse()
+            print "[snapshot] ${snap.current.count()} current keywords"
+            print "[snapshot] ${snap.dead.count()} dead keywords (curated)"
+
+            # ISO date — hardcoded since DateTime.now().inCalendar(...)
+            # would need date-formatting helpers we don't need to use here.
+            var date: str = "2026-04-29"
+            var json: str = snap.toJson(date)
+            File.write(out_path, json)
+            print "[snapshot] wrote ${out_path}"
