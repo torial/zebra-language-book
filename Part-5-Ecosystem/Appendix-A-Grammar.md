@@ -649,7 +649,7 @@ class Person implements Serializable
         return "{\"name\": \"${name}\"}"
 ```
 
-**References:** Chapter 09 (Inheritance and Mixins)
+**References:** Chapter 09 (Composition and Mixins)
 
 ---
 
@@ -683,7 +683,7 @@ namespace MyApp.Utils
 | `def` | Define function | Chapter 04 |
 | `class` | Define class | Chapter 07 |
 | `interface` | Define interface | Chapter 08 |
-| `is` | Inherit from class/interface | Chapter 09 |
+| `is` | Runtime type check (interface conformance / class identity) | Chapter 08 |
 | `if`, `elif`, `else` | Conditional | Chapter 05 |
 | `while`, `for` | Loops | Chapter 05 |
 | `break`, `continue` | Loop control | Chapter 05 |

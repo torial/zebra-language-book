@@ -37,10 +37,12 @@ This document tracks where each SVG diagram has been embedded in the Zebra Progr
 - **Diagram:** `12-class-structure.svg`
 - **Purpose:** Class anatomy with fields, methods, instance vs shared (static) members, memory layout
 
-### Chapter 09: Inheritance and Mixins
-- **Location:** After "## Basic Inheritance", before "### Extending a Class"
-- **Diagram:** `10-class-hierarchy.svg`
-- **Purpose:** Class hierarchy chains, inheritance relationships, method resolution with super calls
+### Chapter 09: Composition and Mixins
+- **Status:** Diagram outdated — was a class-hierarchy chart; the chapter
+  no longer teaches hierarchies (Zebra has no inheritance).  Replace with
+  a diagram showing the three reuse primitives (interface / mixin / composition)
+  side-by-side.  Tracked as Phase B follow-up.
+- **Old diagram:** `10-class-hierarchy.svg` (now stale)
 
 ---
 

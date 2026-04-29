@@ -134,7 +134,7 @@ The PDF includes all chapters in this order:
 ### Part 2: Objects & Interfaces (Chapters 07-10)
 - Classes and Instances
 - Interfaces and Protocols
-- Inheritance and Mixins
+- Composition and Mixins
 - Properties and Computed Values
 
 ### Part 3: Advanced Features (Chapters 11-15)

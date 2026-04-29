@@ -47,7 +47,7 @@ Each chapter includes:
 All four OOP chapters fully written:
 7. Classes and Instances — OOP fundamentals, methods, fields
 8. Interfaces and Protocols — Interface definitions, polymorphism
-9. Inheritance and Mixins — Class hierarchies, super calls
+9. Composition and Mixins — Mixins (`adds`), composition (fields), interface-based polymorphism (Zebra has no inheritance)
 10. Properties and Computed Values — Getters, setters, lazy init
 
 Same quality level as Part 1 with practical OOP patterns.

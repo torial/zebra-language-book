@@ -40,7 +40,7 @@ The **Zebra Programming Book** is a comprehensive, production-quality programmin
 ### Part 2: Objects and Interfaces (Chapters 07-10)
 - 07: Classes and Instances ✅
 - 08: Interfaces and Protocols ✅
-- 09: Inheritance and Mixins ✅
+- 09: Composition and Mixins ✅
 - 10: Properties and Computed Values ✅
 
 **Status:** 100% Complete (5,000 words)
@@ -124,7 +124,7 @@ zebra-book/
 ├── Part-2-Objects-and-Interfaces/  ✅ 4 chapters
 │   ├── 07-Classes-and-Instances.md
 │   ├── 08-Interfaces-and-Protocols.md
-│   ├── 09-Inheritance-and-Mixins.md
+│   ├── 09-Composition-and-Mixins.md
 │   └── 10-Properties-and-Computed-Values.md
 │
 ├── Part-3-Advanced-Features/    ✅ 5 chapters

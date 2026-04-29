@@ -34,33 +34,37 @@ class Circle
 
 ---
 
-### Chapter 09: Inheritance and Mixins
-**Time:** 120 min | **Prereq:** 07-08
+### Chapter 09: Composition and Mixins
+**Time:** 90 min | **Prereq:** 07-08
 
 **Topics:**
-- Class inheritance (extending base classes)
-- Method overriding (replacing behavior)
-- Super calls (calling parent implementation)
-- Abstract classes and methods
-- Mixins (composing behavior from multiple traits)
-- Real world: Animal hierarchy, UI components
-- Common mistakes: Deep inheritance chains, forgetting super
-- Exercises: Vehicle hierarchy, game characters
+- Why Zebra rejects inheritance (fragile-base-class, diamond, MRO surprises)
+- Three reuse primitives: interfaces (Ch 08), mixins (`adds`), composition (fields)
+- Mixins — `mixin Name` declarations, `class C adds Mixin1, Mixin2` usage
+- Composition — holding helper instances as fields
+- When to choose mixin vs. composition vs. interface
+- Real world: Document with capabilities (interface + mixin + composed Storage)
+- Common mistakes: reaching for `inherits`/`super` (don't exist), conflicting mixin methods
+- Exercises: vehicle behaviours, employees without inheritance, shapes
 
 **Code Examples:**
 ```zebra
-class Animal
-    var name: str
+mixin Loggable
+    def log(message: str)
+        print "[log] ${message}"
 
-class Dog
-    inherits Animal
-        def speak
-            print "Woof: ${name}"
+mixin Cacheable
+    var _cache: HashMap(str, str)
 
-class Cat
-    inherits Animal
-        def speak
-            print "Meow: ${name}"
+    cue init
+        _cache = HashMap(str, str)()
+
+    def cache_get(key: str): str?
+        return _cache.get(key)
+
+class UserService adds Loggable, Cacheable
+    cue init
+        _cache = HashMap(str, str)()
 ```
 
 ---

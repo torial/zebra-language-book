@@ -125,14 +125,13 @@ This compiles and tests each example to ensure correctness.
 - `08_collection_interface.zbr` — storing different implementations
 - `08_logger_system.zbr` — realistic interface use
 
-### 09-Inheritance-and-Mixins (7 examples)
-- `09_inheritance_basic.zbr` — class inheritance
-- `09_override.zbr` — overriding parent methods
-- `09_super.zbr` — calling parent implementation
-- `09_hierarchy.zbr` — inheritance hierarchies
-- `09_polymorphic_hierarchy.zbr` — treating children as parents
-- `09_mixins.zbr` — mixin composition
-- `09_document_hierarchy.zbr` — realistic inheritance use
+### 09-Composition-and-Mixins (7 examples)
+
+> **Note:** the `09-inheritance-and-mixins/` example directory and the
+> `09_inheritance_*.zbr` filenames still use the pre-rewrite naming.
+> The examples themselves teach dead syntax (`inherits`, `super`) and
+> should be rewritten to match the new chapter (mixins via `adds`,
+> composition via fields).  Tracked as Phase B follow-up work.
 
 ### 10-Properties-and-Computed-Values (8 examples)
 - `10_getter.zbr` — computed properties

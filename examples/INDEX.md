@@ -215,9 +215,10 @@ Contracts and polymorphism.
 
 ---
 
-### Inheritance and Mixins
+### Composition and Mixins
 
-Code reuse through hierarchies.
+Code reuse via mixins (`adds`) and composition (helper instances as fields).
+Zebra has no class inheritance — see Chapter 09 for the rationale.
 
 **Beginner:**
 - `09-inheritance/basic_inheritance.zbr` — Extend a class
@@ -412,9 +413,9 @@ Call code from other languages.
   - Files: `08-interfaces/`
   - Topics: interface definition, implementation, polymorphism
 
-- **Chapter 9:** Inheritance and Mixins
-  - Files: `09-inheritance/`
-  - Topics: inheritance, method override, mixins
+- **Chapter 9:** Composition and Mixins
+  - Files: `09-inheritance/` (directory still pre-rewrite — see README.md note)
+  - Topics: mixins (`adds`), composition (fields), interface-based polymorphism
 
 - **Chapter 10:** Properties and Computed Values
   - Files: `10-properties/`

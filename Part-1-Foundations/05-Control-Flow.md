@@ -117,33 +117,38 @@ class Main
 
 ### Match With Types
 
+Zebra's idiomatic way to dispatch on "what kind of thing is this" is a
+**union** plus `branch`. Each variant of the union carries its own data:
+
 ```zebra
 # file: 05_match_type.zbr
-# teaches: type-based matching
+# teaches: type-based matching with unions
 # chapter: 05-Control-Flow
 
-class Animal
-    pass
-
-class Dog
-    inherits Animal
-    def bark
-        print "Woof!"
-
-class Cat
-    inherits Animal
-    def meow
-        print "Meow!"
+union Pet
+    dog: str       # name
+    cat: str       # name
+    fish: str      # tank-size
 
 class Main
     static
         def main
-            var pet: Animal = Dog()
-            
-            if pet implements Dog
-                var d = pet to Dog
-                d.bark()
+            var pet: Pet = Pet.dog("Rex")
+
+            branch pet
+                on Pet.dog as name
+                    print "${name} says: Woof!"
+                on Pet.cat as name
+                    print "${name} says: Meow!"
+                on Pet.fish as size
+                    print "tank: ${size}"
+                else
+                    pass
 ```
+
+Zebra has no class inheritance, so dispatching on a class hierarchy isn't
+the natural pattern here. See **Chapter 09 (Composition and Mixins)** for
+why, and **Chapter 07b (Structs and Unions)** for more on tagged unions.
 
 ### If you know Python
 

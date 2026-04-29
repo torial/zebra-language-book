@@ -14,7 +14,7 @@ PART 1: FOUNDATIONS (6 chapters, ~12 hours)
 PART 2: OBJECTS & INTERFACES (4 chapters, ~8 hours)
 ├─ 07-Classes-and-Instances.md (requires: 01,02,04,05)
 ├─ 08-Interfaces-and-Protocols.md (requires: 07)
-├─ 09-Inheritance-and-Mixins.md (requires: 08)
+├─ 09-Composition-and-Mixins.md (requires: 08)
 └─ 10-Properties-and-Computed-Values.md (requires: 07)
 
 PART 3: ADVANCED FEATURES (5 chapters, ~10 hours)
