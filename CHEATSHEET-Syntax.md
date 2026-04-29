@@ -95,19 +95,35 @@ branch v
 
 ---
 
-## Inheritance
+## Composition & Mixins
+
+Zebra has **no class inheritance.**  Reuse via interfaces (Ch 08), mixins
+(`adds`), or composition (fields).
 
 ```zebra
-class Animal
-    var name: str = ""
-    def speak(): str
-        return "Sound"
+# Mixin — shared methods pulled into multiple classes:
+mixin Loggable
+    def log(message: str)
+        print "[log] ${message}"
 
-class Dog
-    var name: str = ""
-    def speak(): str
-        return "Woof!"
+class UserService adds Loggable
+    cue init
+        pass
+    # `log()` is now a method on UserService.
+
+# Composition — has-a, not is-a:
+class Storage
+    var path: str = ""
+
+class Report
+    var storage: Storage      # field-held helper
+
+    cue init(p: str)
+        storage = Storage()
+        storage.path = p
 ```
+
+See Chapter 09 for the full picture.
 
 ---
 
@@ -366,7 +382,7 @@ Math.ceil(x)                            # Round up
 
 ---
 
-## Shared/Static Methods
+## Static Methods
 
 ```zebra
 class MathUtils
@@ -376,6 +392,62 @@ class MathUtils
 
 MathUtils.add(2, 3)                     # Call without instance
 ```
+
+The keyword is `static` (the older `shared` was renamed in 2026-04-19).
+
+---
+
+## Contracts (`require` / `ensure` / `invariant`)
+
+```zebra
+class Counter
+    var count: int = 0
+
+    invariant
+        count >= 0
+
+    def increment(): int
+        ensure
+            result == old count + 1     # `result` = return value; `old expr` = pre-call snapshot
+        count = count + 1
+        return count
+
+    def decrement_by(n: int)
+        require
+            n > 0
+            n <= count
+        count = count - n
+```
+
+Pass `--turbo` to strip all contract checks for production builds.
+See Chapter 14.
+
+---
+
+## Reflection — `Reflect.*` / `@reflectable`
+
+```zebra
+# Tier 1: static field/type-name arrays:
+class User
+    var name: str = ""
+    var age: int = 0
+
+print Reflect.className(u)              # "User"
+for n in Reflect.fieldNames(u)
+    print n
+
+# Tier 3: strict JSON deserialization
+@reflectable
+class User
+    var name: str = ""
+    var age: int = 0
+
+if Json.parseStrict(User, src) as u
+    print u.name
+```
+
+Strict semantics: missing key, type mismatch, or extra key → nil.
+Scope-1 fields: int / float / bool / str.
 
 ---
 
@@ -418,10 +490,21 @@ MathUtils.add(2, 3)                     # Call without instance
 | `except` | Struct update copy |
 | `nil` | Null value |
 | `true`, `false` | Boolean literals |
-| `as` | Type annotation |
-| `shared` | Static/class member |
+| `as` | Binding clause (`if x as n`, `branch on V as r`) |
+| `static` | Type-associated (class-level) member |
+| `mixin` | Declare a reusable bag of methods |
+| `adds` | Include a mixin into a class |
+| `require` | Precondition contract |
+| `ensure` | Postcondition contract |
+| `invariant` | Class invariant contract |
+| `result` | Return-value reference inside `ensure` |
+| `old` | Pre-call snapshot inside `ensure` |
+| `assert` | Inline sanity check |
+| `arena` | Bounded-scope memory block |
+| `to` | Numeric / unwrap operator (`x to int`, `x to!`) |
 | `this` | Current object reference |
 | `use` | Import module |
+| `@reflectable` | Opt class into Tier-3 reflection (`Json.parseStrict`) |
 | `exposing` | Selective import |
 | `where` | Type constraint |
 

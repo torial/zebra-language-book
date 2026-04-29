@@ -1,6 +1,16 @@
 # Appendix B: Standard Library Reference
 
-Complete API reference for Zebra's built-in functions and standard library. For detailed usage examples, see Chapter 19 (Standard Library Tour).
+API reference for Zebra's built-in functions and standard library.  For
+detailed usage examples, see Chapter 19 (Standard Library Tour).
+
+> **Status note (2026-04-29):** This appendix predates the 0.10 batteries
+> rollout (Hash, Random, Arg, Terminal, Log, Uri, Compress, Mime, Timer)
+> and the 0.9 reflection additions (`Reflect.*`, `@reflectable`,
+> `Json.parseStrict`).  For coverage of the modules below *plus* the more
+> recent ones, see **QUICKSTART §31** in the language repo
+> (`zebra-language/QUICKSTART.md`) — it's the canonical agent-facing
+> reference and is kept current.  The sections below will be expanded
+> in a future pass.
 
 ---
 
