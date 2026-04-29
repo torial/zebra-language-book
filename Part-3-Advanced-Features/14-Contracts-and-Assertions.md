@@ -18,7 +18,7 @@
 Contracts aren't just comments—they're **executable checks** that prevent bugs early and document intent clearly.
 
 ```
-def withdraw(amount as int) as Result(bool, str)
+def withdraw(amount: int): bool throws
     # Precondition: amount > 0
     # Precondition: balance >= amount
     # Postcondition: balance decreased by amount

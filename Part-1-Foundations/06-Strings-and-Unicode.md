@@ -448,9 +448,9 @@ Write a function that reverses a string:
 
 ```zebra
 class Reverser
-    shared
-        def reverse(text as str) as str
-            var chars as List(str) = List()
+    static
+        def reverse(text: str): str
+            var chars: List(str) = List()
             for c in text.chars()
                 chars.add(c.toString())
             
@@ -462,7 +462,7 @@ class Reverser
             return result
 
 class Main
-    shared
+    static
         def main
             var reversed = Reverser.reverse("hello")
             print reversed  # olleh

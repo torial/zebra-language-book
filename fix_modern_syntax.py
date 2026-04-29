@@ -120,9 +120,14 @@ def fix_zebra_block(block_text):
 
 
 # Match a zebra fenced block: ```zebra ... ```
+# Anchored at start of line so we skip blockquoted (`> ```zebra`) examples in
+# "Common Mistakes" sections — those typically contain *intentionally wrong*
+# code that should not be migrated.  An earlier version of the regex was
+# unanchored, which caused a blockquoted opening to greedy-consume past its
+# `> ```` close into a later real block, masking valid code from migration.
 ZEBRA_BLOCK_RE = re.compile(
-    r'(```zebra\b[^\n]*\n)(.*?)(\n```)',
-    re.DOTALL,
+    r'(^```zebra\b[^\n]*\n)(.*?)(\n```)',
+    re.DOTALL | re.MULTILINE,
 )
 
 

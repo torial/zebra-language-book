@@ -61,7 +61,7 @@ class Main
 **Key points:**
 - `interface Animal` — Define what any animal must do
 - `implements Animal` — Promise to implement all methods
-- Treat objects as their interface type (`var dog as Animal`)
+- Treat objects as their interface type (`var dog: Animal`)
 
 ### Multiple Methods
 
@@ -306,24 +306,24 @@ class Bird:
 
 def get_sound(animal):
     return animal.speak()
+```
 
+```zebra
 # Zebra (using interfaces)
 interface Animal
-    def speak as str
+    def speak: str
 
-class Dog
-    implements Animal
-        def speak as str
-            return "Woof!"
+class Dog implements Animal
+    def speak: str
+        return "Woof!"
 
-class Bird
-    implements Animal
-        def speak as str
-            return "Tweet!"
+class Bird implements Animal
+    def speak: str
+        return "Tweet!"
 
 class Main
-    shared
-        def get_sound(animal as Animal) as str
+    static
+        def get_sound(animal: Animal): str
             return animal.speak()
 ```
 
@@ -408,29 +408,29 @@ Create an interface for shapes and multiple implementations:
 
 ```zebra
 interface Shape
-    def area as float
-    def perimeter as float
+    def area: float
+    def perimeter: float
 
 class Circle
-    var radius as float = 0.0
+    var radius: float = 0.0
     implements Shape
-        def area as float
+        def area: float
             return 3.14 * radius * radius
-        def perimeter as float
+        def perimeter: float
             return 2.0 * 3.14 * radius
 
 class Rectangle
-    var width as float = 0.0
-    var height as float = 0.0
+    var width: float = 0.0
+    var height: float = 0.0
     implements Shape
-        def area as float
+        def area: float
             return width * height
-        def perimeter as float
+        def perimeter: float
             return 2.0 * (width + height)
 
 class Main
-    shared
-        def print_shape_info(shape as Shape)
+    static
+        def print_shape_info(shape: Shape)
             print "Area: ${shape.area()}"
             print "Perimeter: ${shape.perimeter()}"
         

@@ -379,14 +379,14 @@ Write a function that calculates the factorial of a number:
 
 ```zebra
 class Math
-    shared
-        def factorial(n as int) as int
+    static
+        def factorial(n: int): int
             if n <= 1
                 return 1
             return n * factorial(n - 1)
 
 class Main
-    shared
+    static
         def main
             print Math.factorial(5)     # 120
 ```

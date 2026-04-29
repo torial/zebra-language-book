@@ -193,7 +193,7 @@ Hello, World!
 
 ### What's new?
 
-- **`var name as str`** — Declared a variable named `name` that holds a string (`str`)
+- **`var name: str`** — Declared a variable named `name` that holds a string (`str`)
 - **`= "World"`** — Initialized it with the value `"World"`
 - **`"Hello, ${name}!"`** — String interpolation: `${name}` gets replaced with the value of `name`
 

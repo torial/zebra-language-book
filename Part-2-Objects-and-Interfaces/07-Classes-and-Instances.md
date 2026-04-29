@@ -47,7 +47,7 @@ class Main
 
 **Breakdown:**
 - `class Person` — Define a class named Person
-- `var name as str` — Field (property) of the class
+- `var name: str` — Field (property) of the class
 - `def greet` — Method of the class
 - `Person()` — Create an instance
 
@@ -303,23 +303,23 @@ Create a BankAccount class with deposit and withdraw methods:
 
 ```zebra
 class BankAccount
-    var balance as float = 0.0
-    var account_number as str = ""
+    var balance: float = 0.0
+    var account_number: str = ""
     
-    def deposit(amount as float)
+    def deposit(amount: float)
         balance = balance + amount
     
-    def withdraw(amount as float) as bool
+    def withdraw(amount: float): bool
         if amount > balance
             return false
         balance = balance - amount
         return true
     
-    def get_balance as float
+    def get_balance: float
         return balance
 
 class Main
-    shared
+    static
         def main
             var account = BankAccount()
             account.account_number = "1234567890"

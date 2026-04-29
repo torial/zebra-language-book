@@ -475,23 +475,23 @@ Create a bank account with validated setters:
 
 ```zebra
 class BankAccount
-    var owner as str = ""
-    var balance as float = 0.0
-    var interest_rate as float = 0.02
+    var owner: str = ""
+    var balance: float = 0.0
+    var interest_rate: float = 0.02
     
-    def set_owner(name as str) as bool
+    def set_owner(name: str): bool
         if name.len < 2
             return false
         owner = name
         return true
     
-    def deposit(amount as float) as bool
+    def deposit(amount: float): bool
         if amount <= 0.0
             return false
         balance = balance + amount
         return true
     
-    def withdraw(amount as float) as bool
+    def withdraw(amount: float): bool
         if amount > balance
             return false
         balance = balance - amount
@@ -501,11 +501,11 @@ class BankAccount
         var interest = balance * interest_rate
         balance = balance + interest
     
-    def get_balance as float
+    def get_balance: float
         return balance
 
 class Main
-    shared
+    static
         def main
             var account = BankAccount()
             account.set_owner("Alice")

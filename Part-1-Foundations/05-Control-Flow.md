@@ -435,8 +435,8 @@ Write a function that converts numeric scores to letter grades:
 
 ```zebra
 class Grader
-    shared
-        def grade_to_letter(score as int) as str
+    static
+        def grade_to_letter(score: int): str
             if score >= 90
                 return "A"
             elif score >= 80
@@ -449,9 +449,9 @@ class Grader
                 return "F"
 
 class Main
-    shared
+    static
         def main
-            var scores as List(int) = List()
+            var scores: List(int) = List()
             scores.add(95)
             scores.add(75)
             scores.add(88)

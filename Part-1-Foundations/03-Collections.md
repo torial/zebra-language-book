@@ -130,7 +130,7 @@ for fruit in fruits:
     print(fruit)
 
 # Zebra
-var fruits as List(str) = List()
+var fruits: List(str) = List(str)()
 fruits.add("apple")
 fruits.add("banana")
 fruits.add("cherry")
@@ -218,7 +218,7 @@ for name, age in ages.items():
     print(name, age)
 
 # Zebra
-var ages as HashMap(str, int) = HashMap()
+var ages: HashMap(str, int) = HashMap(str, int)()
 ages.put("Alice", 30)
 ages.put("Bob", 25)
 print ages.fetch("Alice")
@@ -400,9 +400,9 @@ Create a list of numbers and find the sum:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var nums as List(int) = List()
+            var nums: List(int) = List()
             nums.add(10)
             nums.add(20)
             nums.add(30)

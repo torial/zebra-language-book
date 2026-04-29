@@ -392,10 +392,10 @@ Write a program that:
 
 ```zebra
 class Main
-    shared
+    static
         def main
-            var count as int = 42
-            var price as float = 19.99
+            var count: int = 42
+            var price: float = 19.99
             
             var count_str = count.toString()
             var price_str = price.toString()

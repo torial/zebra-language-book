@@ -305,13 +305,13 @@ Write a function that safely retrieves a user's email:
 
 ```zebra
 class User
-    var id as int
-    var name as str
-    var email as str?
+    var id: int
+    var name: str
+    var email: str?
 
 class UserDB
-    shared
-        def find_user(id as int) as User?
+    static
+        def find_user(id: int): User?
             if id == 1
                 var user = User()
                 user.id = 1
@@ -320,14 +320,14 @@ class UserDB
                 return user
             return nil
         
-        def get_email(user_id as int) as str?
+        def get_email(user_id: int): str?
             var user = find_user(user_id)
             if user == nil
                 return nil
             return user.email
 
 class Main
-    shared
+    static
         def main
             var email = UserDB.get_email(1)
             if email != nil
