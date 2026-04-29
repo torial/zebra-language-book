@@ -9,9 +9,19 @@
 
 ## The Big Picture
 
-Zebra uses **error unions** — inspired by Zig — instead of exceptions. Functions that can fail are annotated with `throws`, errors are raised with `raise`, and callers handle them with `try`/`catch`.
+Zebra's primary error model is **exceptions** — `throws`/`raise`/`try`/`catch`.
+The shape is inspired by Zig's error-set system (each `throws` function returns
+`anyerror!T` in the generated Zig), but enriched: `raise "msg"` carries a
+string message, and `raise "msg", obj` attaches a structured details object
+via a thread-local `_error_ctx` — strictly more than Zig's payload-less
+error enums.
 
-This makes error paths explicit in the type system. You can see at a glance which functions may fail and which cannot.
+`Result(T)` exists as a secondary error-as-value type for the cases where
+that fits better (parser combinators, batch validators), but the
+recommended default is `throws`.
+
+Either way, error paths are explicit in the type system: you can see at a
+glance which functions may fail and which cannot.
 
 ---
 
@@ -40,7 +50,7 @@ class Main
 ```
 
 **Breakdown:**
-- `as int throws` — This function returns `int` but may fail
+- `: int throws` — This function returns `int` but may fail
 - `raise "Empty string"` — Signal an error with a message
 - `catch 0` — If the call fails, use `0` as the fallback value
 

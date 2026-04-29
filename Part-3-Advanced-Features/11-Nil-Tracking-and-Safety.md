@@ -105,6 +105,46 @@ class Main
 
 ---
 
+## `if x as n` — Unwrap-and-Bind
+
+The most idiomatic way to unwrap an optional and use the inner value is the
+`if x as n` binding form.  When `x: T?`, it binds a non-optional `n: T` in
+the then-branch — no separate `to!` required:
+
+```zebra
+# file: 11_if_as.zbr
+# teaches: optional unwrap binding form
+# chapter: 11-Nil-Tracking-and-Safety
+
+class Main
+    static
+        def main
+            var maybe_name: str? = "Alice"
+
+            if maybe_name as name
+                # `name` is `str` here — non-optional
+                print "Hello, ${name}!"
+            else
+                print "No name"
+```
+
+This form combines the nil-check, the unwrap, and the binding into a single
+statement, and it works both for plain optionals (`T?`) and for optional
+class/union check + unwrap together:
+
+```zebra
+# Combined type check + unwrap:
+var maybe_user: User? = lookup()
+if maybe_user is User as u
+    print u.name              # u is `User` (non-optional)
+```
+
+`if x as n` is preferred over `to!` whenever the wrapped value is going to
+be used right away — it's safer (no panic possibility) and reads more
+naturally.
+
+---
+
 ## The `to!` Operator (Unwrap)
 
 **Warning:** Only use when you're absolutely certain the value isn't nil.
