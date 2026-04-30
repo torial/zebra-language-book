@@ -41,12 +41,11 @@ struct Point
     def distSq(): int
         return x * x + y * y
 
-class Main
-    static def main()
-        var a = Point(3, 4)
-        var b = a              # copies the entire Point
-        print a.distSq()      # 25
-        print b.x              # 3
+def main()
+    var a = Point(3, 4)
+    var b = a              # copies the entire Point
+    print a.distSq()       # 25
+    print b.x              # 3
 ```
 
 ### When to use struct vs class
@@ -87,14 +86,13 @@ struct Config
             owner = name
         return c
 
-class Main
-    static def main()
-        var base = Config(0, "nobody", false)
-        var inner = base.indented()
-        var owned = inner.withOwner("Alice")
-        print owned.indent      # 1
-        print owned.owner       # Alice
-        print owned.verbose     # false (unchanged)
+def main()
+    var base = Config(0, "nobody", false)
+    var inner = base.indented()
+    var owned = inner.withOwner("Alice")
+    print owned.indent      # 1
+    print owned.owner       # Alice
+    print owned.verbose     # false (unchanged)
 ```
 
 ### Critical rule: no method chaining on temporaries
@@ -129,11 +127,10 @@ enum Status(int)
     ok = 0
     err = 1
 
-class Main
-    static def main()
-        var c = Color.red
-        var s = Status.ok
-        print s     # 0
+def main()
+    var c = Color.red
+    var s = Status.ok
+    print s     # 0
 ```
 
 Use `branch` (see below) to match on enum values.
@@ -150,16 +147,15 @@ A union is a type that can hold **one of several variants**, each with its own p
 # chapter: 07b-Structs-Unions
 
 union Value
-    int_ as int
-    str_ as str
-    bool_ as bool
+    int_: int
+    str_: str
+    bool_: bool
     none_
 
-class Main
-    static def main()
-        var v1 = Value.int_(42)
-        var v2 = Value.str_("hello")
-        var v3 = Value.none_()
+def main()
+    var v1 = Value.int_(42)
+    var v2 = Value.str_("hello")
+    var v3 = Value.none_()
 ```
 
 **Naming convention:** Variants that collide with Zebra keywords get a trailing underscore: `int_`, `str_`, `bool_`, `none_`.
@@ -176,8 +172,8 @@ Use `branch` to inspect which variant a union holds:
 # chapter: 07b-Structs-Unions
 
 union Shape
-    circle as float         # radius
-    rect as Dims            # width/height struct
+    circle: float           # radius
+    rect: Dims              # width/height struct
     point                   # no payload
 
 struct Dims
@@ -199,12 +195,11 @@ def describe(s: Shape): str
             pass
     return "unknown"
 
-class Main
-    static def main()
-        var c = Shape.circle(3.14)
-        var r = Shape.rect(Dims(10.0, 5.0))
-        print describe(c)    # Circle with radius 3.14
-        print describe(r)    # Rectangle 10.0 x 5.0
+def main()
+    var c = Shape.circle(3.14)
+    var r = Shape.rect(Dims(10.0, 5.0))
+    print describe(c)    # Circle with radius 3.14
+    print describe(r)    # Rectangle 10.0 x 5.0
 ```
 
 **Rules:**
@@ -255,12 +250,11 @@ struct Node
         this.value = value
         this.next = next
 
-class Main
-    static def main()
-        var a = Node(1, nil)
-        var b = Node(2, nil)
-        a.next = b              # auto-boxes: copies b to the heap
-        print a.value           # 1
+def main()
+    var a = Node(1, nil)
+    var b = Node(2, nil)
+    a.next = b              # auto-boxes: copies b to the heap
+    print a.value           # 1
 ```
 
 **Key points:**
@@ -275,10 +269,10 @@ The Zebra compiler's own AST uses `^T` heavily:
 
 ```zebra
 union Expr
-    int_ as int
-    str_ as str
-    binary as ^ExprBinary     # recursive: contains two sub-Exprs
-    call as ^ExprCall
+    int_: int
+    str_: str
+    binary: ^ExprBinary       # recursive: contains two sub-Exprs
+    call: ^ExprCall
 
 struct ExprBinary
     var left: ^Expr
@@ -296,9 +290,9 @@ struct ExprBinary
 # chapter: 07b-Structs-Unions
 
 union Expr
-    num as int
-    add as ^BinExpr
-    neg as ^Expr
+    num: int
+    add: ^BinExpr
+    neg: ^Expr
 
 struct BinExpr
     var left: ^Expr
@@ -320,13 +314,12 @@ def eval(e: Expr): int
             pass
     return 0
 
-class Main
-    static def main()
-        # 3 + (neg 2) = 1
-        var three = Expr.num(3)
-        var two = Expr.neg(Expr.num(2))
-        var sum = Expr.add(BinExpr(three, two))
-        print eval(sum)     # 1
+def main()
+    # 3 + (neg 2) = 1
+    var three = Expr.num(3)
+    var two = Expr.neg(Expr.num(2))
+    var sum = Expr.add(BinExpr(three, two))
+    print eval(sum)     # 1
 ```
 
 ---
@@ -358,13 +351,12 @@ struct Color
             b = (b + other.b) / 2
         return c
 
-class Main
-    static def main()
-        var red = Color(255, 0, 0)
-        var blue = Color(0, 0, 255)
-        var purple = red.mix(blue)
-        print purple.r      # 127
-        print purple.b      # 127
+def main()
+    var red = Color(255, 0, 0)
+    var blue = Color(0, 0, 255)
+    var purple = red.mix(blue)
+    print purple.r      # 127
+    print purple.b      # 127
 ```
 
 </details>

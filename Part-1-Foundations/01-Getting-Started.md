@@ -79,10 +79,8 @@ Create a file named `hello.zbr`:
 # teaches: hello world, print statement
 # chapter: 01-Getting-Started
 
-class Main
-    static
-        def main
-            print "Hello, Zebra!"
+def main()
+    print "Hello, Zebra!"
 ```
 
 Run it:
@@ -98,19 +96,19 @@ Hello, Zebra!
 
 ### What just happened?
 
-1. **`class Main`** — Defined a class (we'll explore classes fully in Chapter 07)
-2. **`shared`** — Marked a method as belonging to the class itself, not instances
-3. **`def main`** — Defined the entry point function (where the program starts)
-4. **`print "..."`** — Printed text to the console
-5. **`zebra hello.zbr`** — Compiled and ran the program
+1. **`def main()`** — Defined the entry point function. Zebra runs `main` automatically when the program starts.
+2. **`print "..."`** — Printed text to the console.
+3. **`zebra hello.zbr`** — Compiled and ran the program.
+
+That's the whole program. No class wrapper, no boilerplate.
 
 ### If you're new to programming
 
-> A **class** is a blueprint for creating objects. The `Main` class holds our program code.
->
-> A **function** (or **method**) is a reusable block of code. `main` is special—it runs automatically when you start the program.
+> A **function** is a reusable block of code. `main` is special — it runs automatically when you start the program.
 >
 > A **statement** is an instruction. `print "Hello, Zebra!"` is a statement that outputs text.
+>
+> Larger programs often group related code into **classes** (Chapter 07). Small scripts don't need them.
 
 ### If you know Python
 
@@ -122,7 +120,42 @@ print("Hello, World!")
 print "Hello, Zebra!"
 ```
 
-Python's implicit entry point becomes explicit in Zebra: you must define `Main.main`. This clarity helps with larger programs.
+Where Python's entry point is implicit (top-level statements run at import), Zebra's is explicit (you define `main`). The clarity scales: as programs grow you can group code into classes and modules without reshaping the entry point.
+
+### Verbosity dial — annotations are optional when the type is obvious
+
+Zebra has full type inference. You can write either:
+
+```zebra
+def main()
+    var name: str = "World"        # explicit — annotation aids the reader
+    var age: int = 30
+    var pi: float = 3.14159
+    print "${name} is ${age}"
+```
+
+or, equivalently:
+
+```zebra
+def main()
+    var name = "World"             # inferred from the literal
+    var age = 30
+    var pi = 3.14159
+    print "${name} is ${age}"
+```
+
+Both compile to the same Zig. **Use annotations when they aid the reader** (function signatures, public class fields, hairy generic returns) and **drop them when the right-hand side already makes the type obvious** (literals, named-constructor calls, expressions whose return type is plain). The book mostly uses the inferred form going forward; you'll see explicit annotations where they earn their keep.
+
+You can also still use the class-based entry point if you prefer it (older code does):
+
+```zebra
+class Main
+    static
+        def main
+            print "Hello, Zebra!"
+```
+
+Both forms work. Bare `def main()` is the recommended default for scripts and small programs.
 
 ---
 
@@ -179,11 +212,9 @@ zebra -kif hello.zbr
 # teaches: variables, string interpolation
 # chapter: 01-Getting-Started
 
-class Main
-    static
-        def main
-            var name: str = "World"
-            print "Hello, ${name}!"
+def main()
+    var name = "World"
+    print "Hello, ${name}!"
 ```
 
 **Output:**
@@ -193,9 +224,8 @@ Hello, World!
 
 ### What's new?
 
-- **`var name: str`** — Declared a variable named `name` that holds a string (`str`)
-- **`= "World"`** — Initialized it with the value `"World"`
-- **`"Hello, ${name}!"`** — String interpolation: `${name}` gets replaced with the value of `name`
+- **`var name = "World"`** — Declared a variable named `name` and initialized it with `"World"`. The type `str` is inferred from the literal; you could also write `var name: str = "World"` if you wanted to make the type explicit.
+- **`"Hello, ${name}!"`** — String interpolation: `${name}` is replaced with the value of `name`.
 
 ---
 
@@ -204,10 +234,8 @@ Hello, World!
 When you make a mistake, Zebra tells you clearly:
 
 ```zebra
-class Main
-    static
-        def main
-            print "Hello " + 5  # ❌ Can't add string + number
+def main()
+    print "Hello " + 5  # ❌ Can't add string + number
 ```
 
 **Error:**
@@ -257,38 +285,24 @@ When your program spans multiple files, Zebra's `use` statement imports another 
 
 ```zebra
 # file: math_utils.zbr
-class MathUtils
-    static
-        def square(n: int): int
-            return n * n
+def square(n: int): int
+    return n * n
 ```
 
 ```zebra
 # file: main.zbr
-use MathUtils
+use math_utils exposing square
 
-class Main
-    static
-        def main
-            var result = MathUtils.square(5)
-            print result  # 25
+def main()
+    var answer = square(5)
+    print answer  # 25
 ```
+
+> **Naming note:** `result` is a reserved keyword in Zebra (it binds the return value inside an `ensure` block — see Chapter 14). Pick another name like `answer` or `total` for ordinary locals.
 
 ### Selective Imports with `exposing`
 
-Use `exposing` to import specific names directly into scope:
-
-```zebra
-use MathUtils exposing square
-
-class Main
-    static
-        def main
-            var result = square(5)  # No MathUtils. prefix needed
-            print result
-```
-
-You can expose multiple names:
+`use math_utils` brings the module into scope as `math_utils.square(5)`. Adding `exposing square` lifts the name in directly so you can call `square(5)` without the prefix. You can expose multiple names at once:
 
 ```zebra
 use ast exposing Stmt, Expr, TypeRef, DeclVar
@@ -310,11 +324,9 @@ Modify `hello.zbr` to:
 <summary>Solution</summary>
 
 ```zebra
-class Main
-    static
-        def main
-            var my_name: str = "Alice"
-            print "Hello! My name is ${my_name}."
+def main()
+    var my_name = "Alice"
+    print "Hello! My name is ${my_name}."
 ```
 
 **Output:**
@@ -322,7 +334,7 @@ class Main
 Hello! My name is Alice.
 ```
 
-**Why this works:** We declared `my_name` as a string, then used it in interpolation.
+**Why this works:** We declared `my_name` (inferred as `str`), then used it in interpolation.
 
 </details>
 
@@ -336,13 +348,11 @@ Create a program that:
 <summary>Solution</summary>
 
 ```zebra
-class Main
-    static
-        def main
-            var first_name: str = "Bob"
-            var last_name: str = "Smith"
-            var age: int = 30
-            print "My name is ${first_name} ${last_name} and I'm ${age} years old."
+def main()
+    var first_name = "Bob"
+    var last_name = "Smith"
+    var age = 30
+    print "My name is ${first_name} ${last_name} and I'm ${age} years old."
 ```
 
 **Output:**
@@ -350,7 +360,7 @@ class Main
 My name is Bob Smith and I'm 30 years old.
 ```
 
-**Why this works:** We declared three variables (two strings, one integer) and used all three in a single string interpolation.
+**Why this works:** We declared three variables — two strings and one integer, all inferred from their literals — and used all three in a single string interpolation.
 
 </details>
 
@@ -367,7 +377,8 @@ My name is Bob Smith and I'm 30 years old.
 ## Key Takeaways
 
 - **Zebra is compiled** — Code becomes fast executables
-- **Entry point is explicit** — Every program defines `Main.main`
+- **Entry point is explicit** — Every program defines `main` (top-level `def main()`, or `Main.main` inside a class for larger programs)
+- **Type annotations are optional** — Use them where they aid the reader; lean on inference when the right-hand side is obvious
 - **Strings use interpolation** — `"${variable}"` is easier to read than concatenation
 - **Errors are clear** — The compiler helps you fix problems
 - **Simple programs are simple** — Print and variables are enough for Hello World

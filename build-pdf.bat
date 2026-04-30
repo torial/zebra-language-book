@@ -11,9 +11,9 @@ echo.
 
 REM Set global Zebra project variable if not already set
 if not defined ZEBRA_PROJECT (
-    set "ZEBRA_PROJECT=C:\Projects\cobra-language"
+    set "ZEBRA_PROJECT=C:\Projects\zebra-language-book"
 )
-set "ZEBRA_DIAGRAMS=%ZEBRA_PROJECT%\zebra-book\diagrams"
+set "ZEBRA_DIAGRAMS=%ZEBRA_PROJECT%\diagrams"
 echo 📂 ZEBRA_PROJECT=%ZEBRA_PROJECT%
 echo 🖼️  ZEBRA_DIAGRAMS=%ZEBRA_DIAGRAMS%
 

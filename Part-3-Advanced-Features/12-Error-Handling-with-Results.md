@@ -42,11 +42,9 @@ class Validator
             # Parse and return
             return 42
 
-class Main
-    static
-        def main
-            var result = Validator.parse_int("123") catch 0
-            print result
+def main()
+    var result = Validator.parse_int("123") catch 0
+    print result
 ```
 
 **Breakdown:**
@@ -90,14 +88,12 @@ Use `try`/`catch` blocks for structured error handling:
 # teaches: try/catch blocks
 # chapter: 12-Error-Handling
 
-class Main
-    static
-        def main
-            try
-                var value = Validator.parse_int("")
-                print "Got: ${value}"
-            catch
-                print "Failed to parse"
+def main()
+    try
+        var value = Validator.parse_int("")
+        print "Got: ${value}"
+    catch
+        print "Failed to parse"
 ```
 
 ### Catch with Binding
@@ -109,14 +105,12 @@ Bind the error value to inspect it:
 # teaches: catch with error binding
 # chapter: 12-Error-Handling
 
-class Main
-    static
-        def main
-            try
-                var value = Validator.parse_int("")
-                print "Got: ${value}"
-            catch |err|
-                print "Error: ${err}"
+def main()
+    try
+        var value = Validator.parse_int("")
+        print "Got: ${value}"
+    catch |err|
+        print "Error: ${err}"
 ```
 
 ### Catch with Type
@@ -128,14 +122,12 @@ Specify a type for the error binding:
 # teaches: catch with typed error binding
 # chapter: 12-Error-Handling
 
-class Main
-    static
-        def main
-            try
-                var value = Validator.parse_int("")
-                print value
-            catch |err as str|
-                print "String error: ${err}"
+def main()
+    try
+        var value = Validator.parse_int("")
+        print value
+    catch |err as str|
+        print "String error: ${err}"
 ```
 
 ---
@@ -149,16 +141,14 @@ For simple cases, use `catch` as an expression to provide a default:
 # teaches: catch expression for defaults
 # chapter: 12-Error-Handling
 
-class Main
-    static
-        def main
-            # Provide a default value if the call fails
-            var value = Validator.parse_int("abc") catch 0
-            print value  # 0
+def main()
+    # Provide a default value if the call fails
+    var value = Validator.parse_int("abc") catch 0
+    print value  # 0
 
-            # Catch with binding
-            var msg = Validator.parse_int("") catch |e| "failed: ${e}"
-            print msg
+    # Catch with binding
+    var msg = Validator.parse_int("") catch |e| "failed: ${e}"
+    print msg
 ```
 
 This is the most common pattern for simple error recovery.
@@ -190,11 +180,9 @@ class System
             var parsed = Parser.parse_config(config_text)
             return "System loaded with: ${parsed}"
 
-class Main
-    static
-        def main
-            var result = System.load_system("data") catch "load failed"
-            print result
+def main()
+    var result = System.load_system("data") catch "load failed"
+    print result
 ```
 
 ---
@@ -219,19 +207,17 @@ class APIClient
             var user = fetch_user(user_id)
             return "Hello, ${user}!"
 
-class Main
-    static
-        def main
-            # Using catch expression
-            var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
-            print greeting  # Hello, Alice!
+def main()
+    # Using catch expression
+    var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
+    print greeting  # Hello, Alice!
 
-            # Using try/catch block
-            try
-                var g2 = APIClient.fetch_and_greet(999)
-                print g2
-            catch |err|
-                print "Error: ${err}"
+    # Using try/catch block
+    try
+        var g2 = APIClient.fetch_and_greet(999)
+        print g2
+    catch |err|
+        print "Error: ${err}"
 ```
 
 ---
@@ -240,7 +226,7 @@ class Main
 
 ### Exercise 1: Safe Division
 
-Write a function `safe_divide(a as int, b as int) as int throws` that raises on division by zero.
+Write a function `safe_divide(a: int, b: int): int throws` that raises on division by zero.
 
 <details>
 <summary>Solution</summary>
@@ -253,20 +239,18 @@ class MathUtils
                 raise "Division by zero"
             return a / b
 
-class Main
-    static
-        def main
-            var r1 = MathUtils.safe_divide(10, 2) catch 0
-            var r2 = MathUtils.safe_divide(10, 0) catch 0
-            print r1  # 5
-            print r2  # 0
+def main()
+    var r1 = MathUtils.safe_divide(10, 2) catch 0
+    var r2 = MathUtils.safe_divide(10, 0) catch 0
+    print r1  # 5
+    print r2  # 0
 ```
 
 </details>
 
 ### Exercise 2: Chained Error Handling
 
-Write two functions that chain: `parse_age(text as str) as int throws` and `validate_age(text as str) as str throws` (returns "valid" if age is 0-150).
+Write two functions that chain: `parse_age(text: str): int throws` and `validate_age(text: str): str throws` (returns "valid" if age is 0-150).
 
 <details>
 <summary>Solution</summary>
@@ -290,17 +274,15 @@ class AgeValidator
                 raise "Age too large"
             return "valid"
 
-class Main
-    static
-        def main
-            try
-                var result = AgeValidator.validate_age("25")
-                print result  # valid
-            catch |err|
-                print "Error: ${err}"
+def main()
+    try
+        var result = AgeValidator.validate_age("25")
+        print result  # valid
+    catch |err|
+        print "Error: ${err}"
 
-            var r2 = AgeValidator.validate_age("200") catch "invalid"
-            print r2  # invalid
+    var r2 = AgeValidator.validate_age("200") catch "invalid"
+    print r2  # invalid
 ```
 
 </details>

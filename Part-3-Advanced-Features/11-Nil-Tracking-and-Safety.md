@@ -31,16 +31,14 @@ class User
     var nickname: str? # Can be nil
     var bio: str?      # Can be nil
 
-class Main
-    static
-        def main
-            var user = User()
-            user.name = "Alice"    # ✅ Fine
-            user.nickname = nil    # ✅ Allowed (it's str?)
-            user.bio = "Developer" # ✅ Can assign string to str?
-            
-            # This won't compile:
-            # var empty: str = nil  # ❌ str can't be nil
+def main()
+    var user = User()
+    user.name = "Alice"    # ✅ Fine
+    user.nickname = nil    # ✅ Allowed (it's str?)
+    user.bio = "Developer" # ✅ Can assign string to str?
+    
+    # This won't compile:
+    # var empty: str = nil  # ❌ str can't be nil
 ```
 
 **Key point:** The `?` mark means "this can be nil or the type."
@@ -56,29 +54,27 @@ class Main
 # teaches: nil checking
 # chapter: 11-Nil-Tracking-and-Safety
 
-class Main
-    static
-        def main
-            var nickname: str? = "Bobby"
-            var empty: str? = nil
-            
-            # Check before using
-            if nickname != nil
-                print nickname     # Safe: known to not be nil
-            
-            if empty == nil
-                print "No nickname set"
-            else
-                print empty
-            
-            # Two ways to check:
-            if nickname != nil
-                print "Has nickname"
-            
-            if nickname == nil
-                print "No nickname"
-            else
-                print "Has: ${nickname}"
+def main()
+    var nickname: str? = "Bobby"
+    var empty: str? = nil
+    
+    # Check before using
+    if nickname != nil
+        print nickname     # Safe: known to not be nil
+    
+    if empty == nil
+        print "No nickname set"
+    else
+        print empty
+    
+    # Two ways to check:
+    if nickname != nil
+        print "Has nickname"
+    
+    if nickname == nil
+        print "No nickname"
+    else
+        print "Has: ${nickname}"
 ```
 
 ### Type Narrowing
@@ -92,15 +88,13 @@ After checking, the type is narrowed:
 # teaches: type narrowing
 # chapter: 11-Nil-Tracking-and-Safety
 
-class Main
-    static
-        def process_name(input: str?)
-            if input == nil
-                return  # Exit early if nil
-            
-            # From here, input is narrowed to str
-            print input.len        # ✅ Safe: know it's str
-            print input.upper()    # ✅ Safe
+def process_name(input: str?)
+    if input == nil
+        return  # Exit early if nil
+
+    # From here, input is narrowed to str
+    print input.len        # ✅ Safe: know it's str
+    print input.upper()    # ✅ Safe
 ```
 
 ---
@@ -116,16 +110,14 @@ the then-branch — no separate `to!` required:
 # teaches: optional unwrap binding form
 # chapter: 11-Nil-Tracking-and-Safety
 
-class Main
-    static
-        def main
-            var maybe_name: str? = "Alice"
+def main()
+    var maybe_name: str? = "Alice"
 
-            if maybe_name as name
-                # `name` is `str` here — non-optional
-                print "Hello, ${name}!"
-            else
-                print "No name"
+    if maybe_name as name
+        # `name` is `str` here — non-optional
+        print "Hello, ${name}!"
+    else
+        print "No name"
 ```
 
 This form combines the nil-check, the unwrap, and the binding into a single
@@ -154,18 +146,16 @@ naturally.
 # teaches: unwrap operator
 # chapter: 11-Nil-Tracking-and-Safety
 
-class Main
-    static
-        def main
-            var name: str? = "Alice"
-            
-            # Unwrap: assert it's not nil
-            var safe_name = name to!
-            print safe_name        # Now just str
-            
-            # If it WAS nil, this would crash
-            var empty: str? = nil
-            # var crash = empty to!  # ❌ Would panic at runtime
+def main()
+    var name: str? = "Alice"
+    
+    # Unwrap: assert it's not nil
+    var safe_name = name to!
+    print safe_name        # Now just str
+    
+    # If it WAS nil, this would crash
+    var empty: str? = nil
+    # var crash = empty to!  # ❌ Would panic at runtime
 ```
 
 ---
@@ -177,25 +167,23 @@ class Main
 # teaches: safe unwrapping
 # chapter: 11-Nil-Tracking-and-Safety
 
-class Main
-    static
-        def get_user_name(user_id: int): str?
-            if user_id == 1
-                return "Alice"
-            return nil
-        
-        def main
-            var name = get_user_name(1)
-            
-            # Option 1: Check and use default
-            if name != nil
-                print name
-            else
-                print "Unknown user"
-            
-            # Option 2: if method exists, unwrapOr
-            # var safe_name = name.unwrapOr("Guest")
-            # print safe_name
+def get_user_name(user_id: int): str?
+    if user_id == 1
+        return "Alice"
+    return nil
+
+def main()
+    var maybe_name = get_user_name(1)
+
+    # Option 1: Check and use default
+    if maybe_name as name
+        print name
+    else
+        print "Unknown user"
+
+    # Option 2: if method exists, unwrapOr
+    # var safe_name = maybe_name.unwrapOr("Guest")
+    # print safe_name
 ```
 
 ---
@@ -229,25 +217,23 @@ class UserDatabase
                 return nil
             return user.email
 
-class Main
-    static
-        def main
-            var user = UserDatabase.find_user(1)
-            if user != nil
-                print user.name
-                if user.email != nil
-                    print user.email
-                else
-                    print "No email on file"
-            else
-                print "User not found"
-            
-            # Chaining nil checks
-            var email = UserDatabase.find_user_email(999)
-            if email != nil
-                print "Email: ${email}"
-            else
-                print "User not found"
+def main()
+    var user = UserDatabase.find_user(1)
+    if user != nil
+        print user.name
+        if user.email != nil
+            print user.email
+        else
+            print "No email on file"
+    else
+        print "User not found"
+    
+    # Chaining nil checks
+    var email = UserDatabase.find_user_email(999)
+    if email != nil
+        print "Email: ${email}"
+    else
+        print "User not found"
 ```
 
 ---
@@ -366,14 +352,12 @@ class UserDB
                 return nil
             return user.email
 
-class Main
-    static
-        def main
-            var email = UserDB.get_email(1)
-            if email != nil
-                print "Email: ${email}"
-            else
-                print "User not found or no email"
+def main()
+    var email = UserDB.get_email(1)
+    if email != nil
+        print "Email: ${email}"
+    else
+        print "User not found or no email"
 ```
 
 </details>
@@ -393,18 +377,16 @@ class Calculator
                 return nil
             return a / b
 
-class Main
-    static
-        def main
-            var result = Calculator.safe_divide(10.0, 2.0)
-            if result != nil
-                print "Result: ${result}"
-            
-            var bad = Calculator.safe_divide(10.0, 0.0)
-            if bad != nil
-                print bad
-            else
-                print "Cannot divide by zero"
+def main()
+    var result = Calculator.safe_divide(10.0, 2.0)
+    if result != nil
+        print "Result: ${result}"
+    
+    var bad = Calculator.safe_divide(10.0, 0.0)
+    if bad != nil
+        print bad
+    else
+        print "Cannot divide by zero"
 ```
 
 </details>
@@ -447,14 +429,12 @@ class UserService
                 return user
             return nil
 
-class Main
-    static
-        def main
-            var bio = UserService.get_user_bio(1)
-            if bio != nil
-                print "Bio: ${bio}"
-            else
-                print "No bio found"
+def main()
+    var bio = UserService.get_user_bio(1)
+    if bio != nil
+        print "Bio: ${bio}"
+    else
+        print "No bio found"
 ```
 
 </details>

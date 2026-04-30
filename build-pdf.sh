@@ -119,18 +119,19 @@ echo ""
 
 # Build PDF with pandoc
 pandoc "$TEMP_FILE" \
+  --resource-path=".:Part-1-Foundations:Part-2-Objects-and-Interfaces:Part-3-Advanced-Features:Part-4-Practical-Projects:Part-5-Ecosystem" \
   -o "$OUTPUT_FILE" \
   --pdf-engine=xelatex \
   --toc \
   --toc-depth=2 \
   --number-sections \
-  --highlight-style=zenburn \
+  --syntax-highlighting=zenburn \
   -V geometry:margin=1in \
   -V geometry:top=1in \
   -V geometry:bottom=1in \
-  -V fontsize=11pt \
-  -V mainfont="Calibri" \
-  -V monofont="Monaco" \
+  -V fontsize=12pt \
+  -V mainfont="Georgia" \
+  -V monofont="Consolas" \
   -V linestretch=1.5 \
   -V colorlinks=true \
   -V linkcolor=blue \

@@ -398,7 +398,7 @@ def example()
 ### Generic Functions
 
 ```zebra
-def first(items: List(T)) as T?
+def first(items: List(T)): T?
     if items.count() > 0
         return items.at(0)
     return nil

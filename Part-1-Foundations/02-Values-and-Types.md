@@ -30,18 +30,16 @@ Zebra's type system is **your best friend**—it catches mistakes at compile tim
 # teaches: integer types, arithmetic
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var age: int = 25
-            var population: int = 8_000_000_000  # Underscores for readability
-            var tiny: int8 = 100
-            var huge: int64 = 9_223_372_036_854_775_807
-            
-            print age
-            print population
-            print tiny
-            print huge
+def main()
+    var age = 25
+    var population = 8_000_000_000     # Underscores for readability
+    var tiny: int8 = 100               # explicit narrow type
+    var huge: int64 = 9_223_372_036_854_775_807
+
+    print age
+    print population
+    print tiny
+    print huge
 ```
 
 **Integer types:**
@@ -51,8 +49,8 @@ class Main
 
 **Arithmetic:**
 ```zebra
-var x: int = 10
-var y: int = 3
+var x = 10
+var y = 3
 print x + y    # 13
 print x - y    # 7
 print x * y    # 30
@@ -67,18 +65,16 @@ print x % y    # 1 (remainder)
 # teaches: float types, precision
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var pi: float = 3.14159
-            var precise: float64 = 3.141592653589793
-            
-            print pi
-            print precise
-            
-            # Arithmetic
-            var result = pi * 2.0
-            print result
+def main()
+    var pi = 3.14159
+    var precise: float64 = 3.141592653589793
+
+    print pi
+    print precise
+
+    # Arithmetic
+    var result = pi * 2.0
+    print result
 ```
 
 **Float types:**
@@ -92,19 +88,17 @@ class Main
 # teaches: boolean values, logic
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var is_ready: bool = true
-            var is_finished: bool = false
-            
-            print is_ready
-            print is_finished
-            
-            # Logic
-            print true and false   # false
-            print true or false    # true
-            print not true         # false
+def main()
+    var is_ready = true
+    var is_finished = false
+
+    print is_ready
+    print is_finished
+
+    # Logic
+    print true and false   # false
+    print true or false    # true
+    print not true         # false
 ```
 
 ### Strings
@@ -114,20 +108,18 @@ class Main
 # teaches: string type, string operations
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var greeting: str = "Hello"
-            var name: str = "World"
-            
-            print greeting
-            print greeting.len      # 5
-            print greeting.upper()  # HELLO
-            print name.lower()      # world
-            
-            # Concatenation
-            var message = greeting.concat(" ").concat(name)
-            print message           # Hello World
+def main()
+    var greeting = "Hello"
+    var name = "World"
+
+    print greeting
+    print greeting.len      # 5
+    print greeting.upper()  # HELLO
+    print name.lower()      # world
+
+    # Concatenation
+    var message = greeting.concat(" ").concat(name)
+    print message           # Hello World
 ```
 
 **String methods** (we'll cover these fully in Chapter 06):
@@ -142,17 +134,9 @@ class Main
 
 ## Declaring Variables
 
-### Explicit Types
+### Type Inference (the default)
 
-```zebra
-var age: int = 25          # age must be int
-var name: str = "Alice"    # name must be str
-var active: bool = true    # active must be bool
-```
-
-### Type Inference
-
-Zebra can figure out the type from the value:
+Zebra infers the type from the right-hand side. Most variables don't need an annotation:
 
 ```zebra
 var age = 25          # Inferred as int
@@ -161,27 +145,31 @@ var active = true     # Inferred as bool
 var pi = 3.14         # Inferred as float
 ```
 
-**When to use which:**
-- **Use inference** — When the type is obvious (`var count = 5`)
-- **Use explicit types** — When clarity matters or to prevent mistakes
+### Explicit Types (when they aid the reader)
+
+You can always pin the type explicitly. Reach for this when:
+- the right-hand side is a function call whose return type isn't obvious to a reader
+- you want a different concrete width (`int8`, `float32`) than inference would pick
+- the variable starts as `nil` or `undefined` and inference can't narrow it
 
 ```zebra
-# This is confusing:
-var x = compute_something()  # What type is x?
-
-# This is clear:
-var payment_amount: float = compute_something()
+var age: int = 25                          # redundant; inference would do
+var payment_amount: float = compute_total()  # earns its keep — return type isn't visible
+var counter: int8 = 0                      # narrower than the default int
+var maybeUser: User? = nil                 # required: nil alone has no type
 ```
+
+The book uses inference by default and adds annotations only where they earn their keep.
 
 ### Naming Conventions
 
 Use `snake_case` for variables:
 
 ```zebra
-var user_id: int = 42           # ✅ Good
-var UserID: int = 42            # ❌ Avoid (that's for classes)
-var user_id_number: int = 42    # ✅ Clear but verbose
-var uid: int = 42               # ❌ Too abbreviated
+var user_id = 42           # ✅ Good
+var UserID = 42            # ❌ Avoid (that's for classes)
+var user_id_number = 42    # ✅ Clear but verbose
+var uid = 42               # ❌ Too abbreviated
 ```
 
 ---
@@ -193,22 +181,20 @@ var uid: int = 42               # ❌ Too abbreviated
 # teaches: comparison operators
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var x: int = 10
-            var y: int = 20
-            
-            print x == y    # false (equal)
-            print x != y    # true (not equal)
-            print x < y     # true (less than)
-            print x > y     # false (greater than)
-            print x <= y    # true (less or equal)
-            print x >= y    # false (greater or equal)
-            
-            var name = "Alice"
-            print name == "Alice"   # true
-            print name == "Bob"     # false
+def main()
+    var x = 10
+    var y = 20
+
+    print x == y    # false (equal)
+    print x != y    # true (not equal)
+    print x < y     # true (less than)
+    print x > y     # false (greater than)
+    print x <= y    # true (less or equal)
+    print x >= y    # false (greater or equal)
+
+    var name = "Alice"
+    print name == "Alice"   # true
+    print name == "Bob"     # false
 ```
 
 ---
@@ -229,20 +215,18 @@ var big: int = small  # ✅ Fine: int8 → int is always safe
 # teaches: type conversion
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var x: int = 42
-            var s = x.toString()      # int → str
-            print s
-            
-            var pi: float = 3.14
-            var i = pi.toInt()        # float → int (loses decimal)
-            print i                   # 3
-            
-            var flag = true
-            var b = flag.toString()   # bool → str
-            print b                   # true
+def main()
+    var x = 42
+    var s = x.toString()      # int → str
+    print s
+
+    var pi = 3.14
+    var i = pi.toInt()        # float → int (loses decimal)
+    print i                   # 3
+
+    var flag = true
+    var b = flag.toString()   # bool → str
+    print b                   # true
 ```
 
 ---
@@ -256,20 +240,18 @@ Sometimes a value might not exist. Zebra uses `?` to mark this:
 # teaches: nullable types introduction
 # chapter: 02-Values-and-Types
 
-class Main
-    static
-        def main
-            var name: str? = "Alice"    # Can hold str or nil
-            var empty: str? = nil       # Explicitly nil
-            
-            # You must check before using
-            if name != nil
-                print name                # Safe to use
-            
-            if empty != nil
-                print empty
-            else
-                print "Name is empty"
+def main()
+    var name: str? = "Alice"    # Can hold str or nil
+    var empty: str? = nil       # Explicitly nil
+
+    # You must check before using
+    if name != nil
+        print name              # Safe to use
+
+    if empty != nil
+        print empty
+    else
+        print "Name is empty"
 ```
 
 **Key point:** `str?` means "string or nil". We'll explore nil tracking fully in Chapter 11.
@@ -309,35 +291,33 @@ class User
     var age: int
     var is_active: bool
 
-class Main
-    static
-        def main
-            # Create a user
-            var user = User()
-            user.id = 1
-            user.name = "Alice"
-            user.email = "alice@example.com"
-            user.age = 30
-            user.is_active = true
-            
-            # Display
-            print "User: ${user.name}"
-            print "Email: ${user.email}"
-            print "Age: ${user.age}"
-            print "Active: ${user.is_active}"
+def main()
+    # Create a user
+    var user = User()
+    user.id = 1
+    user.name = "Alice"
+    user.email = "alice@example.com"
+    user.age = 30
+    user.is_active = true
+
+    # Display
+    print "User: ${user.name}"
+    print "Email: ${user.email}"
+    print "Age: ${user.age}"
+    print "Active: ${user.is_active}"
 ```
 
 ---
 
 ## Common Mistakes
 
-> ❌ **Mistake:** Forgetting `as type` when the type isn't obvious
+> ❌ **Mistake:** Skipping a type annotation when the right-hand side is opaque
 >
 > ```zebra
 > var result = compute()  # What's the type?
 > ```
 >
-> 💡 **Why it's wrong:** Readers (including future you) don't know what type `result` is.
+> 💡 **Why it matters:** Inference is fine when the literal makes the type obvious (`var x = 25`). When the RHS is a function call whose return type isn't visible at the call site, an annotation pays for itself in readability.
 >
 > ✅ **Better:**
 > ```zebra
@@ -347,8 +327,8 @@ class Main
 > ❌ **Mistake:** Mixing types in arithmetic
 >
 > ```zebra
-> var x: int = 10
-> var y: float = 3.14
+> var x = 10
+> var y = 3.14
 > print x + y  # ❌ Can't add int + float
 > ```
 >
@@ -356,8 +336,8 @@ class Main
 >
 > ✅ **Better:**
 > ```zebra
-> var x: float = 10.0
-> var y: float = 3.14
+> var x = 10.0
+> var y = 3.14
 > print x + y  # ✅ Both float
 > ```
 
@@ -391,17 +371,15 @@ Write a program that:
 <summary>Solution</summary>
 
 ```zebra
-class Main
-    static
-        def main
-            var count: int = 42
-            var price: float = 19.99
-            
-            var count_str = count.toString()
-            var price_str = price.toString()
-            
-            print "Count: ${count_str}"
-            print "Price: ${price_str}"
+def main()
+    var count = 42
+    var price = 19.99
+
+    var count_str = count.toString()
+    var price_str = price.toString()
+
+    print "Count: ${count_str}"
+    print "Price: ${price_str}"
 ```
 
 **Output:**
@@ -420,16 +398,14 @@ Write a program that compares two numbers and prints which is larger:
 <summary>Solution</summary>
 
 ```zebra
-class Main
-    static
-        def main
-            var x: int = 100
-            var y: int = 75
-            
-            if x > y
-                print "${x} is larger than ${y}"
-            else
-                print "${y} is larger than ${x}"
+def main()
+    var x = 100
+    var y = 75
+
+    if x > y
+        print "${x} is larger than ${y}"
+    else
+        print "${y} is larger than ${x}"
 ```
 
 **Output:**
@@ -452,17 +428,15 @@ class Person
     var age: int
     var email: str
 
-class Main
-    static
-        def main
-            var person = Person()
-            person.name = "Carol"
-            person.age = 28
-            person.email = "carol@example.com"
-            
-            print "Name: ${person.name}"
-            print "Age: ${person.age}"
-            print "Email: ${person.email}"
+def main()
+    var person = Person()
+    person.name = "Carol"
+    person.age = 28
+    person.email = "carol@example.com"
+
+    print "Name: ${person.name}"
+    print "Age: ${person.age}"
+    print "Email: ${person.email}"
 ```
 
 </details>

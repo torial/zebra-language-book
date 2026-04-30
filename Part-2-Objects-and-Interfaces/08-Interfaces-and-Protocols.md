@@ -27,35 +27,33 @@
 # chapter: 08-Interfaces-and-Protocols
 
 interface Animal
-    def speak: str
-    def move
+    def speak(): str
+    def move()
 
 class Dog
     implements Animal
-        def speak: str
+        def speak(): str
             return "Woof!"
-        
-        def move
+
+        def move()
             print "Running on four legs"
 
 class Bird
     implements Animal
-        def speak: str
+        def speak(): str
             return "Tweet!"
-        
-        def move
+
+        def move()
             print "Flying through the air"
 
-class Main
-    static
-        def main
-            var dog: Animal = Dog()
-            print dog.speak()      # Woof!
-            dog.move()             # Running on four legs
-            
-            var bird: Animal = Bird()
-            print bird.speak()     # Tweet!
-            bird.move()            # Flying through the air
+def main()
+    var dog: Animal = Dog()
+    print dog.speak()      # Woof!
+    dog.move()             # Running on four legs
+
+    var bird: Animal = Bird()
+    print bird.speak()     # Tweet!
+    bird.move()            # Flying through the air
 ```
 
 **Key points:**
@@ -113,23 +111,19 @@ class PayPalProcessor
 # teaches: polymorphic behavior
 # chapter: 08-Interfaces-and-Protocols
 
-class Store
-    static
-        def process_payment(processor: PaymentProcessor, amount: float)
-            if processor.process(amount)
-                print "Payment successful"
-            else
-                print "Payment failed"
+def process_payment(processor: PaymentProcessor, amount: float)
+    if processor.process(amount)
+        print "Payment successful"
+    else
+        print "Payment failed"
 
-class Main
-    static
-        def main
-            var cc_processor = CreditCardProcessor()
-            var paypal_processor = PayPalProcessor()
-            
-            # Same code, different behavior
-            Store.process_payment(cc_processor, 99.99)
-            Store.process_payment(paypal_processor, 49.99)
+def main()
+    var cc_processor = CreditCardProcessor()
+    var paypal_processor = PayPalProcessor()
+
+    # Same code, different behavior
+    process_payment(cc_processor, 99.99)
+    process_payment(paypal_processor, 49.99)
 ```
 
 ### Collections of Interface Types
@@ -140,29 +134,27 @@ class Main
 # chapter: 08-Interfaces-and-Protocols
 
 class Zoo
-    var animals: List(Animal) = List()
-    
+    var animals: List(Animal) = List(Animal)()
+
     def add_animal(animal: Animal)
-        animals.add(animal)
-    
-    def make_them_speak
-        for animal in animals
+        this.animals.add(animal)
+
+    def make_them_speak()
+        for animal in this.animals
             print animal.speak()
-    
-    def exercise_all
-        for animal in animals
+
+    def exercise_all()
+        for animal in this.animals
             animal.move()
 
-class Main
-    static
-        def main
-            var zoo = Zoo()
-            zoo.add_animal(Dog())
-            zoo.add_animal(Bird())
-            zoo.add_animal(Dog())
-            
-            zoo.make_them_speak()
-            zoo.exercise_all()
+def main()
+    var zoo = Zoo()
+    zoo.add_animal(Dog())
+    zoo.add_animal(Bird())
+    zoo.add_animal(Dog())
+
+    zoo.make_them_speak()
+    zoo.exercise_all()
 ```
 
 ---
@@ -210,27 +202,25 @@ class FileLogger
 
 class Application
     var logger: Logger
-    
-    def set_logger(l: Logger)
-        logger = l
-    
-    def do_work
-        logger.info("Starting work")
-        # Do work
-        logger.info("Work complete")
 
-class Main
-    static
-        def main
-            var app = Application()
-            
-            # Use console logger
-            app.set_logger(ConsoleLogger())
-            app.do_work()
-            
-            # Switch to file logger (same code, different output)
-            app.set_logger(FileLogger())
-            app.do_work()
+    def set_logger(l: Logger)
+        this.logger = l
+
+    def do_work()
+        this.logger.info("Starting work")
+        # Do work
+        this.logger.info("Work complete")
+
+def main()
+    var app = Application()
+
+    # Use console logger
+    app.set_logger(ConsoleLogger())
+    app.do_work()
+
+    # Switch to file logger (same code, different output)
+    app.set_logger(FileLogger())
+    app.do_work()
 ```
 
 ---
@@ -255,12 +245,12 @@ class DescendingSort
 
 class Sorter
     var strategy: SortStrategy
-    
+
     def set_strategy(s: SortStrategy)
-        strategy = s
-    
+        this.strategy = s
+
     def sort(items: List(int))
-        strategy.sort(items)
+        this.strategy.sort(items)
 ```
 
 ### Adapter Pattern
@@ -272,14 +262,15 @@ interface NewSystem
 class OldSystem
     def old_process(input: str)
         # Old implementation
+        pass
 
 class OldSystemAdapter
     implements NewSystem
         var old_system: OldSystem = OldSystem()
-        
+
         def process(data: str)
             # Adapt new interface to old system
-            old_system.old_process(data)
+            this.old_system.old_process(data)
 ```
 
 ---
@@ -311,20 +302,18 @@ def get_sound(animal):
 ```zebra
 # Zebra (using interfaces)
 interface Animal
-    def speak: str
+    def speak(): str
 
 class Dog implements Animal
-    def speak: str
+    def speak(): str
         return "Woof!"
 
 class Bird implements Animal
-    def speak: str
+    def speak(): str
         return "Tweet!"
 
-class Main
-    static
-        def get_sound(animal: Animal): str
-            return animal.speak()
+def get_sound(animal: Animal): str
+    return animal.speak()
 ```
 
 Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contract explicit with interfaces.
@@ -337,12 +326,12 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ```zebra
 > interface Animal
->     def speak: str
->     def move
+>     def speak(): str
+>     def move()
 >
 > class Dog
 >     implements Animal
->         def speak: str
+>         def speak(): str
 >             return "Woof!"
 >         # ❌ Missing: def move
 > ```
@@ -353,9 +342,9 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > ```zebra
 > class Dog
 >     implements Animal
->         def speak: str
+>         def speak(): str
 >             return "Woof!"
->         def move
+>         def move()
 >             print "Running"
 > ```
 
@@ -383,7 +372,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ```zebra
 > class Dog  # ❌ Doesn't say implements Animal
->     def speak: str
+>     def speak(): str
 >         return "Woof!"
 > ```
 >
@@ -391,7 +380,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > ```zebra
 > class Dog
 >     implements Animal  # ✅ Explicit contract
->         def speak: str
+>         def speak(): str
 >             return "Woof!"
 > ```
 
@@ -408,41 +397,39 @@ Create an interface for shapes and multiple implementations:
 
 ```zebra
 interface Shape
-    def area: float
-    def perimeter: float
+    def area(): float
+    def perimeter(): float
 
 class Circle
     var radius: float = 0.0
     implements Shape
-        def area: float
-            return 3.14 * radius * radius
-        def perimeter: float
-            return 2.0 * 3.14 * radius
+        def area(): float
+            return 3.14 * this.radius * this.radius
+        def perimeter(): float
+            return 2.0 * 3.14 * this.radius
 
 class Rectangle
     var width: float = 0.0
     var height: float = 0.0
     implements Shape
-        def area: float
-            return width * height
-        def perimeter: float
-            return 2.0 * (width + height)
+        def area(): float
+            return this.width * this.height
+        def perimeter(): float
+            return 2.0 * (this.width + this.height)
 
-class Main
-    static
-        def print_shape_info(shape: Shape)
-            print "Area: ${shape.area()}"
-            print "Perimeter: ${shape.perimeter()}"
-        
-        def main
-            var circle = Circle()
-            circle.radius = 5.0
-            print_shape_info(circle)
-            
-            var rect = Rectangle()
-            rect.width = 10.0
-            rect.height = 5.0
-            print_shape_info(rect)
+def print_shape_info(shape: Shape)
+    print "Area: ${shape.area()}"
+    print "Perimeter: ${shape.perimeter()}"
+
+def main()
+    var circle = Circle()
+    circle.radius = 5.0
+    print_shape_info(circle)
+
+    var rect = Rectangle()
+    rect.width = 10.0
+    rect.height = 5.0
+    print_shape_info(rect)
 ```
 
 </details>
@@ -461,31 +448,26 @@ interface Database
     def delete(key: str): bool
 
 class MemoryDatabase
-    var data: HashMap(str, str) = HashMap()
+    var data: HashMap(str, str) = HashMap(str, str)()
     implements Database
         def save(key: str, value: str): bool
-            data.put(key, value)
+            this.data.put(key, value)
             return true
         def load(key: str): str?
-            if data.contains(key)
-                return data.fetch(key)
-            return nil
+            return this.data.get(key)
         def delete(key: str): bool
-            data.remove(key)
+            this.data.remove(key)
             return true
 
-class Main
-    static
-        def main
-            var db: Database = MemoryDatabase()
-            db.save("user1", "Alice")
-            db.save("user2", "Bob")
-            
-            var user = db.load("user1")
-            if user != nil
-                print "Found: ${user}"
-            
-            db.delete("user1")
+def main()
+    var db: Database = MemoryDatabase()
+    db.save("user1", "Alice")
+    db.save("user2", "Bob")
+
+    if db.load("user1") as user
+        print "Found: ${user}"
+
+    db.delete("user1")
 ```
 
 </details>
@@ -517,21 +499,19 @@ class JSONValidator
         def validate(content: str): bool
             return content.contains("{") and content.contains("}")
 
-class Main
-    static
-        def process_document(processor: DocumentProcessor, doc: str)
-            if processor.validate(doc)
-                var result = processor.process(doc)
-                print "Processed: ${result}"
-            else
-                print "Invalid document"
-        
-        def main
-            var md = MarkdownProcessor()
-            process_document(md, "# Hello")
-            
-            var json = JSONValidator()
-            process_document(json, "{}")
+def process_document(processor: DocumentProcessor, doc: str)
+    if processor.validate(doc)
+        var processed = processor.process(doc)
+        print "Processed: ${processed}"
+    else
+        print "Invalid document"
+
+def main()
+    var md = MarkdownProcessor()
+    process_document(md, "# Hello")
+
+    var json = JSONValidator()
+    process_document(json, "{}")
 ```
 
 </details>
@@ -540,7 +520,7 @@ class Main
 
 ## Next Steps
 
-- → **09-Inheritance** — Extending classes
+- → **09-Composition-and-Mixins** — Sharing behaviour without inheritance
 - → **14-Contracts** — More complex interfaces
 - 🏋️ **Project-2-HTTP-Server** — Interfaces for handlers and middleware
 
@@ -557,4 +537,4 @@ class Main
 
 ---
 
-**Next:** Head to **09-Inheritance** to extend classes and share code across hierarchies.
+**Next:** Head to **09-Composition-and-Mixins** for code reuse without classical inheritance.

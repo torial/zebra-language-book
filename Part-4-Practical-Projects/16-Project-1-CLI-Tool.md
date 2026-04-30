@@ -52,7 +52,7 @@ class CliArgs
 
 class CommandParser
     static
-        def parse(args: List(str)) as CliArgs throws
+        def parse(args: List(str)): CliArgs throws
             # Precondition: at least 2 arguments (program name + command + filename)
             if args.count() < 3
                 raise "Usage: textool [command] [file]"
@@ -331,24 +331,22 @@ class Application
         
         return true
 
-class Main
-    static
-        def main
-            var args = CommandLine.args()
-            
-            var parsed = CommandParser.parse(args)
-            
-            if parsed.isErr()
-                print "Error: ${parsed.errValue()}"
-                return
-            
-            var cli_args = parsed.okValue()
-            var app = Application(cli_args)
-            
-            var result = app.run()
-            
-            if result.isErr()
-                print "Error: ${result.errValue()}"
+def main()
+    var args = CommandLine.args()
+    
+    var parsed = CommandParser.parse(args)
+    
+    if parsed.isErr()
+        print "Error: ${parsed.errValue()}"
+        return
+    
+    var cli_args = parsed.okValue()
+    var app = Application(cli_args)
+    
+    var result = app.run()
+    
+    if result.isErr()
+        print "Error: ${result.errValue()}"
 ```
 
 ---
@@ -372,12 +370,10 @@ class FileAnalyzer
             var report = "Lines: ${lines}, Words: ${words}"
             return report
 
-class Main
-    static
-        def main
-            var result = FileAnalyzer.analyze("test.txt")
-            if result.isOk()
-                print result.okValue()
+def main()
+    var result = FileAnalyzer.analyze("test.txt")
+    if result.isOk()
+        print result.okValue()
 ```
 
 ---
@@ -519,7 +515,7 @@ Modify the application to process multiple files at once:
 class Application
     var files: List(str)
     
-    def aggregate_stats(filenames: List(str)) as str throws
+    def aggregate_stats(filenames: List(str)): str throws
         var total_lines = 0
         var total_words = 0
         var total_chars = 0

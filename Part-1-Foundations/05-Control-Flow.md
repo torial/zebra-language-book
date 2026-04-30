@@ -25,13 +25,11 @@
 # teaches: conditional execution
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var age: int = 18
-            
-            if age >= 18
-                print "You can vote"
+def main()
+    var age = 18
+
+    if age >= 18
+        print "You can vote"
 ```
 
 ### If / Else
@@ -41,24 +39,22 @@ class Main
 # teaches: if-else branching
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var score: int = 75
-            
-            if score >= 90
-                print "A"
-            elif score >= 80
-                print "B"
-            elif score >= 70
-                print "C"
-            else
-                print "F"
+def main()
+    var score = 75
+
+    if score >= 90
+        print "A"
+    else if score >= 80
+        print "B"
+    else if score >= 70
+        print "C"
+    else
+        print "F"
 ```
 
 **Breakdown:**
 - `if condition` — Execute if true
-- `elif condition` — Else-if (try next condition)
+- `else if condition` — Try the next condition (Zebra spells the chain `else if`, two words)
 - `else` — Default case (if all above are false)
 
 ### Multiple Conditions
@@ -68,17 +64,15 @@ class Main
 # teaches: boolean logic
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var age: int = 25
-            var has_license: bool = true
-            
-            if age >= 18 and has_license
-                print "Can drive"
-            
-            if age < 16 or not has_license
-                print "Cannot drive"
+def main()
+    var age = 25
+    var has_license = true
+
+    if age >= 18 and has_license
+        print "Can drive"
+
+    if age < 16 or not has_license
+        print "Cannot drive"
 ```
 
 **Operators:**
@@ -99,20 +93,18 @@ class Main
 # teaches: pattern matching
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var color: str = "red"
-            
-            branch color
-                on "red"
-                    print "Stop"
-                on "yellow"
-                    print "Caution"
-                on "green"
-                    print "Go"
-                else
-                    print "Unknown"
+def main()
+    var color = "red"
+
+    branch color
+        on "red"
+            print "Stop"
+        on "yellow"
+            print "Caution"
+        on "green"
+            print "Go"
+        else
+            print "Unknown"
 ```
 
 ### Match With Types
@@ -130,20 +122,18 @@ union Pet
     cat: str       # name
     fish: str      # tank-size
 
-class Main
-    static
-        def main
-            var pet: Pet = Pet.dog("Rex")
+def main()
+    var pet: Pet = Pet.dog("Rex")
 
-            branch pet
-                on Pet.dog as name
-                    print "${name} says: Woof!"
-                on Pet.cat as name
-                    print "${name} says: Meow!"
-                on Pet.fish as size
-                    print "tank: ${size}"
-                else
-                    pass
+    branch pet
+        on Pet.dog as name
+            print "${name} says: Woof!"
+        on Pet.cat as name
+            print "${name} says: Meow!"
+        on Pet.fish as size
+            print "tank: ${size}"
+        else
+            pass
 ```
 
 Zebra has no class inheritance, so dispatching on a class hierarchy isn't
@@ -179,22 +169,21 @@ branch color
 # teaches: for loop iteration
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var fruits: List(str) = List()
-            fruits.add("apple")
-            fruits.add("banana")
-            fruits.add("cherry")
-            
-            for fruit in fruits
-                print fruit
-            
-            # With index (if supported)
-            var i = 0
-            while i < fruits.count()
-                print "Item ${i}: ${fruits.at(i)}"
-                i = i + 1
+def main()
+    var fruits = List(str)()
+    fruits.add("apple")
+    fruits.add("banana")
+    fruits.add("cherry")
+
+    for fruit in fruits
+        var f: str = fruit       # typed local for {s} formatting
+        print f
+
+    # Numeric range — n.to(end) is exclusive on `end`.
+    var i = 0
+    while i < fruits.count()
+        print "Item ${i}: ${fruits.at(i)}"
+        i = i + 1
 ```
 
 ### While Loop (Condition-Based)
@@ -204,16 +193,14 @@ class Main
 # teaches: while loop
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            var count: int = 0
-            
-            while count < 5
-                print "Count: ${count}"
-                count = count + 1
-            
-            print "Done!"
+def main()
+    var count = 0
+
+    while count < 5
+        print "Count: ${count}"
+        count = count + 1
+
+    print "Done!"
 ```
 
 ### Break and Continue
@@ -223,22 +210,22 @@ class Main
 # teaches: loop control
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def main
-            # Break: exit loop early
-            var i = 0
-            while true
-                if i == 5
-                    break
-                print i
-                i = i + 1
-            
-            # Continue: skip to next iteration
-            for num in 1..10
-                if num % 2 == 0
-                    continue
-                print num  # Prints odd numbers only
+def main()
+    # Break: exit loop early
+    var i = 0
+    while true
+        if i == 5
+            break
+        print i
+        i = i + 1
+
+    # Continue: skip to next iteration. Numeric ranges use either `start:end`
+    # or the equivalent method form `start.to(end)` — both are exclusive on
+    # `end` (so `1.to(11)` yields 1,2,...,10).
+    for num in 1.to(11)
+        if num % 2 == 0
+            continue
+        print num  # Prints odd numbers only
 ```
 
 ---
@@ -252,23 +239,21 @@ class Main
 # teaches: guard conditions
 # chapter: 05-Control-Flow
 
-class Main
-    static
-        def process(name: str)
-            # Early return if invalid
-            if name.len == 0
-                return
-            if name.len > 100
-                return
-            
-            # Process only if valid
-            print "Processing: ${name}"
+def process(name: str)
+    # Zebra has a `guard` form for early returns:
+    guard name.len > 0, return
+    guard name.len <= 100, return
 
-        def main
-            process("")            # Returns early
-            process("Alice")       # Processes
-            process("x" * 200)     # Returns early
+    # Process only if all guards passed
+    print "Processing: ${name}"
+
+def main()
+    process("")            # Guard fails — returns early
+    process("Alice")       # Guards pass — processes
+    process("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  # too long — returns early
 ```
+
+The `guard cond, return` form reads as "the call must satisfy `cond`; otherwise return now". It's equivalent to `if not cond: return` but states the precondition positively. Block form (`guard cond ... else`) is also available — see QUICKSTART §13.
 
 ---
 
@@ -279,44 +264,38 @@ class Main
 # teaches: practical control flow
 # chapter: 05-Control-Flow
 
-class Email
-    var address: str
+def validate_email(email: str): bool
+    # Check not empty
+    if email.len == 0
+        return false
 
-class Validator
-    static
-        def validate_email(email: str): bool
-            # Check not empty
-            if email.len == 0
-                return false
-            
-            # Check has @
-            if not email.contains("@")
-                return false
-            
-            # Check has domain
-            var parts = email.split("@")
-            if parts.count() != 2
-                return false
-            
-            var domain = parts.at(1)
-            if not domain.contains(".")
-                return false
-            
-            return true
+    # Check has @
+    if not email.contains("@")
+        return false
 
-class Main
-    static
-        def main
-            var emails: List(str) = List()
-            emails.add("alice@example.com")
-            emails.add("invalid.email")
-            emails.add("bob@domain.co")
-            
-            for email in emails
-                if Validator.validate_email(email)
-                    print "Valid: ${email}"
-                else
-                    print "Invalid: ${email}"
+    # Check has domain
+    var parts: List(str) = email.split("@")
+    if parts.count() != 2
+        return false
+
+    var domain: str = parts.at(1)
+    if not domain.contains(".")
+        return false
+
+    return true
+
+def main()
+    var emails = List(str)()
+    emails.add("alice@example.com")
+    emails.add("invalid.email")
+    emails.add("bob@domain.co")
+
+    for email in emails
+        var e: str = email
+        if validate_email(e)
+            print "Valid: ${e}"
+        else
+            print "Invalid: ${e}"
 ```
 
 ---
@@ -359,9 +338,9 @@ for user in users
 ```zebra
 if age < 13
     category = "child"
-elif age < 18
+else if age < 18
     category = "teen"
-elif age < 65
+else if age < 65
     category = "adult"
 else
     category = "senior"
@@ -409,17 +388,22 @@ else
 > ```zebra
 > for fruit in fruits
 >     if fruit == "apple"
->         fruits.remove(fruit)  # ❌ Unsafe
+>         fruits.remove(0)  # ❌ Unsafe — modifying during iteration
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var to_remove: List(str) = List()
+> var to_remove = List(int)()           # collect indices
+> var idx = 0
 > for fruit in fruits
 >     if fruit == "apple"
->         to_remove.add(fruit)
-> for fruit in to_remove
->     fruits.remove(fruit)
+>         to_remove.add(idx)
+>     idx = idx + 1
+> # Remove in reverse so earlier indices stay valid.
+> var k = to_remove.count() - 1
+> while k >= 0
+>     fruits.remove(to_remove.at(k))
+>     k = k - 1
 > ```
 
 ---
@@ -434,32 +418,28 @@ Write a function that converts numeric scores to letter grades:
 <summary>Solution</summary>
 
 ```zebra
-class Grader
-    static
-        def grade_to_letter(score: int): str
-            if score >= 90
-                return "A"
-            elif score >= 80
-                return "B"
-            elif score >= 70
-                return "C"
-            elif score >= 60
-                return "D"
-            else
-                return "F"
+def grade_to_letter(score: int): str
+    if score >= 90
+        return "A"
+    else if score >= 80
+        return "B"
+    else if score >= 70
+        return "C"
+    else if score >= 60
+        return "D"
+    else
+        return "F"
 
-class Main
-    static
-        def main
-            var scores: List(int) = List()
-            scores.add(95)
-            scores.add(75)
-            scores.add(88)
-            scores.add(62)
-            
-            for score in scores
-                var grade = Grader.grade_to_letter(score)
-                print "${score} = ${grade}"
+def main()
+    var scores = List(int)()
+    scores.add(95)
+    scores.add(75)
+    scores.add(88)
+    scores.add(62)
+
+    for score in scores
+        var grade = grade_to_letter(score)
+        print "${score} = ${grade}"
 ```
 
 </details>
@@ -472,30 +452,26 @@ Iterate through a list and find the maximum value:
 <summary>Solution</summary>
 
 ```zebra
-class Finder
-    static
-        def find_max(nums: List(int)) as int
-            if nums.count() == 0
-                return 0
-            
-            var max_val = nums.at(0)
-            for num in nums
-                if num > max_val
-                    max_val = num
-            return max_val
+def find_max(nums: List(int)): int
+    if nums.count() == 0
+        return 0
 
-class Main
-    static
-        def main
-            var nums: List(int) = List()
-            nums.add(10)
-            nums.add(45)
-            nums.add(23)
-            nums.add(89)
-            nums.add(34)
-            
-            var max = Finder.find_max(nums)
-            print "Max: ${max}"  # 89
+    var max_val = nums.at(0)
+    for num in nums
+        if num > max_val
+            max_val = num
+    return max_val
+
+def main()
+    var nums = List(int)()
+    nums.add(10)
+    nums.add(45)
+    nums.add(23)
+    nums.add(89)
+    nums.add(34)
+
+    var max = find_max(nums)
+    print "Max: ${max}"  # 89
 ```
 
 </details>
@@ -508,28 +484,24 @@ Count elements matching a condition:
 <summary>Solution</summary>
 
 ```zebra
-class Counter
-    static
-        def count_evens(nums: List(int)) as int
-            var count = 0
-            for num in nums
-                if num % 2 == 0
-                    count = count + 1
-            return count
+def count_evens(nums: List(int)): int
+    var count = 0
+    for num in nums
+        if num % 2 == 0
+            count = count + 1
+    return count
 
-class Main
-    static
-        def main
-            var nums: List(int) = List()
-            nums.add(1)
-            nums.add(2)
-            nums.add(3)
-            nums.add(4)
-            nums.add(5)
-            nums.add(6)
-            
-            var even_count = Counter.count_evens(nums)
-            print "Even numbers: ${even_count}"  # 3
+def main()
+    var nums = List(int)()
+    nums.add(1)
+    nums.add(2)
+    nums.add(3)
+    nums.add(4)
+    nums.add(5)
+    nums.add(6)
+
+    var even_count = count_evens(nums)
+    print "Even numbers: ${even_count}"  # 3
 ```
 
 </details>

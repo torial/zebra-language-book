@@ -248,17 +248,15 @@ class HttpServer
             var response = result.okValue()
             print response.format_response()
 
-class Main
-    static
-        def main
-            var server = HttpServer(8080)
-            
-            var result = server.start()
-            
-            if result.isErr()
-                print "Error: ${result.errValue()}"
-            else
-                print "Server running. (Ctrl+C to stop)"
+def main()
+    var server = HttpServer(8080)
+    
+    var result = server.start()
+    
+    if result.isErr()
+        print "Error: ${result.errValue()}"
+    else
+        print "Server running. (Ctrl+C to stop)"
 ```
 
 ---
@@ -603,16 +601,14 @@ class AnalysisApplication
             for trigram in report.trigrams
                 print "  ${trigram.gram} (${trigram.count})"
 
-class Main
-    static
-        def main
-            var result = AnalysisApplication.analyze_file("sample.txt")
-            
-            if result.isOk()
-                var report = result.okValue()
-                AnalysisApplication.print_report(report)
-            else
-                print "Error: ${result.errValue()}"
+def main()
+    var result = AnalysisApplication.analyze_file("sample.txt")
+    
+    if result.isOk()
+        var report = result.okValue()
+        AnalysisApplication.print_report(report)
+    else
+        print "Error: ${result.errValue()}"
 ```
 
 ---

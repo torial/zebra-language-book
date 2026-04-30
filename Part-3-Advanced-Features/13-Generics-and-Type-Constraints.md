@@ -45,16 +45,14 @@ class Container(T)
     def retrieve: T
         return item
 
-class Main
-    static
-        def main
-            var int_box = Container(int)()
-            int_box.store(42)
-            print int_box.retrieve()  # Output: 42
-            
-            var str_box = Container(str)()
-            str_box.store("hello")
-            print str_box.retrieve()  # Output: hello
+def main()
+    var int_box = Container(int)()
+    int_box.store(42)
+    print int_box.retrieve()  # Output: 42
+    
+    var str_box = Container(str)()
+    str_box.store("hello")
+    print str_box.retrieve()  # Output: hello
 ```
 
 Notice the syntax:
@@ -85,13 +83,11 @@ class Pair(K, V)
     def get_value: V
         return value
 
-class Main
-    static
-        def main
-            var p = Pair(str, int)()
-            p.set_key("count")
-            p.set_value(42)
-            print "Key: ${p.get_key()}, Value: ${p.get_value()}"
+def main()
+    var p = Pair(str, int)()
+    p.set_key("count")
+    p.set_value(42)
+    print "Key: ${p.get_key()}, Value: ${p.get_value()}"
 ```
 
 ---
@@ -113,17 +109,15 @@ class Utils
         def first_of_three(a: T, b: T, c: T): T
             return a
 
-class Main
-    static
-        def main
-            var x = Utils.identity(42)
-            print x  # Output: 42
-            
-            var y = Utils.identity("hello")
-            print y  # Output: hello
-            
-            var z = Utils.first_of_three(1, 2, 3)
-            print z  # Output: 1
+def main()
+    var x = Utils.identity(42)
+    print x  # Output: 42
+    
+    var y = Utils.identity("hello")
+    print y  # Output: hello
+    
+    var z = Utils.first_of_three(1, 2, 3)
+    print z  # Output: 1
 ```
 
 The type parameter `T` is inferred from the arguments you pass.
@@ -139,23 +133,21 @@ You already use generics implicitly with `List` and `HashMap`:
 # teaches: using generic stdlib types
 # chapter: 13-Generics-and-Type-Constraints
 
-class Main
-    static
-        def main
-            var numbers: List(int) = List()
-            numbers.add(1)
-            numbers.add(2)
-            numbers.add(3)
-            
-            for n in numbers
-                print n
-            
-            var ages: HashMap(str, int) = HashMap()
-            ages.put("Alice", 30)
-            ages.put("Bob", 25)
-            
-            for name, age in ages
-                print "${name}: ${age}"
+def main()
+    var numbers: List(int) = List()
+    numbers.add(1)
+    numbers.add(2)
+    numbers.add(3)
+    
+    for n in numbers
+        print n
+    
+    var ages: HashMap(str, int) = HashMap()
+    ages.put("Alice", 30)
+    ages.put("Bob", 25)
+    
+    for name, age in ages
+        print "${name}: ${age}"
 ```
 
 These are all generic types. The standard library provides them pre-built.
@@ -189,14 +181,12 @@ class Printer
         def print_item(item: Printable)
             print item.display()
 
-class Main
-    static
-        def main
-            var dog = Dog()
-            var cat = Cat()
-            
-            Printer.print_item(dog)  # Output: Woof!
-            Printer.print_item(cat)  # Output: Meow!
+def main()
+    var dog = Dog()
+    var cat = Cat()
+    
+    Printer.print_item(dog)  # Output: Woof!
+    Printer.print_item(cat)  # Output: Meow!
 ```
 
 Here, `Printer.print_item` accepts **any type** that implements `Printable`. This is a **constraint**: "T must implement interface Printable".
@@ -230,16 +220,14 @@ class ComparableList(T)
             i = i + 1
         return max
 
-class Main
-    static
-        def main
-            var list = ComparableList()
-            list.add(10)
-            list.add(5)
-            list.add(20)
-            var max = list.find_max()
-            if max != nil
-                print "Max: ${max}"
+def main()
+    var list = ComparableList()
+    list.add(10)
+    list.add(5)
+    list.add(20)
+    var max = list.find_max()
+    if max != nil
+        print "Max: ${max}"
 ```
 
 ---
@@ -275,18 +263,16 @@ class Cache(K, V)
     def clear
         data = HashMap()
 
-class Main
-    static
-        def main
-            var cache = Cache(str, int)()
-            cache.init(3)
-            cache.put("a", 1)
-            cache.put("b", 2)
-            cache.put("c", 3)
-            
-            var val = cache.lookup("b")
-            if val != nil
-                print "Got: ${val}"
+def main()
+    var cache = Cache(str, int)()
+    cache.init(3)
+    cache.put("a", 1)
+    cache.put("b", 2)
+    cache.put("c", 3)
+    
+    var val = cache.lookup("b")
+    if val != nil
+        print "Got: ${val}"
 ```
 
 ---
@@ -321,7 +307,7 @@ box.store("hello")
 
 ```zebra
 # WRONG - method doesn't actually require Comparable
-def find_max(items: List(T)) as T
+def find_max(items: List(T)): T
     var max = items.at(0)
     var item = items.at(1)
     if item > max  # Error: > not defined for all T
@@ -329,7 +315,7 @@ def find_max(items: List(T)) as T
     return max
 
 # CORRECT - either don't use >, or require Comparable interface
-def find_max(items: List(T)) as T
+def find_max(items: List(T)): T
     var max = items.at(0)
     for item in items
         if item.toString() > max.toString()  # Convert to string for comparison
@@ -377,17 +363,15 @@ class Stack(T)
     def is_empty: bool
         return items.count() == 0
 
-class Main
-    static
-        def main
-            var stack = Stack(int)()
-            stack.push(1)
-            stack.push(2)
-            stack.push(3)
-            
-            var val = stack.pop()
-            if val != nil
-                print "Popped: ${val}"
+def main()
+    var stack = Stack(int)()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    
+    var val = stack.pop()
+    if val != nil
+        print "Popped: ${val}"
 ```
 
 </details>
@@ -402,27 +386,25 @@ Write a function that filters a list based on a predicate (function that returns
 ```zebra
 class ListUtils
     static
-        def filter(items: List(T), predicate as T -> bool) as List(T)
+        def filter(items: List(T), predicate as T -> bool): List(T)
             var result: List(T) = List()
             for item in items
                 if predicate(item)
                     result.add(item)
             return result
 
-class Main
-    static
-        def main
-            var numbers: List(int) = List()
-            numbers.add(1)
-            numbers.add(2)
-            numbers.add(3)
-            numbers.add(4)
-            
-            var is_even: T -> bool = { x in x % 2 == 0 }
-            var evens = ListUtils.filter(numbers, is_even)
-            
-            for e in evens
-                print e
+def main()
+    var numbers: List(int) = List()
+    numbers.add(1)
+    numbers.add(2)
+    numbers.add(3)
+    numbers.add(4)
+    
+    var is_even: T -> bool = { x in x % 2 == 0 }
+    var evens = ListUtils.filter(numbers, is_even)
+    
+    for e in evens
+        print e
 ```
 
 </details>
@@ -451,17 +433,15 @@ class ValidatedBox(T)
     def get: T?
         return item
 
-class Main
-    static
-        def main
-            var age_box = ValidatedBox(int)()
-            age_box.init({ x in x >= 0 and x <= 150 })
-            
-            if age_box.store(25)
-                print "Valid age: ${age_box.retrieve()}"
-            
-            if not age_box.store(200)
-                print "Invalid age"
+def main()
+    var age_box = ValidatedBox(int)()
+    age_box.init({ x in x >= 0 and x <= 150 })
+    
+    if age_box.store(25)
+        print "Valid age: ${age_box.retrieve()}"
+    
+    if not age_box.store(200)
+        print "Invalid age"
 ```
 
 </details>

@@ -26,28 +26,26 @@
 # teaches: string creation
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            # Simple string
-            var greeting = "Hello"
-            print greeting
-            
-            # With quotes inside
-            var quoted = "She said \"Hello\""
-            print quoted
-            
-            # Multi-line (if supported)
-            var poem = """
-            Roses are red
-            Violets are blue
-            """
-            print poem
-            
-            # Escape sequences
-            var path = "C:\\Users\\Name\\Documents"
-            var tab = "Name\tAge\tCity"
-            var newline = "Line1\nLine2"
+def main()
+    # Simple string
+    var greeting = "Hello"
+    print greeting
+
+    # With quotes inside
+    var quoted = "She said \"Hello\""
+    print quoted
+
+    # Multi-line (triple-quoted)
+    var poem = """
+    Roses are red
+    Violets are blue
+    """
+    print poem
+
+    # Escape sequences
+    var path = "C:\\Users\\Name\\Documents"
+    var tab = "Name\tAge\tCity"
+    var newline = "Line1\nLine2"
 ```
 
 ### String Properties
@@ -57,25 +55,23 @@ class Main
 # teaches: string properties and methods
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var text = "Hello, World!"
-            
-            # Length
-            print text.len                      # 13
-            
-            # Character at index
-            var first_char = text[0]
-            print first_char                    # H
-            
-            # Substring/slice
-            var part = text[0..4]
-            print part                          # Hello
-            
-            # Case conversion
-            print text.upper()                  # HELLO, WORLD!
-            print text.lower()                  # hello, world!
+def main()
+    var text = "Hello, World!"
+
+    # Byte length (Unicode-aware count is below — see codePointCount)
+    print text.len                      # 13
+
+    # Character at index — text[i] returns a char, .toString() lifts it back to str
+    var first_char = text[0]
+    print first_char.toString()         # H
+
+    # Substring/slice
+    var part: str = text[0..5]
+    print part                          # Hello
+
+    # Case conversion
+    print text.upper()                  # HELLO, WORLD!
+    print text.lower()                  # hello, world!
 ```
 
 ### String Interpolation
@@ -85,25 +81,23 @@ class Main
 # teaches: string interpolation
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var name = "Alice"
-            var age = 30
-            
-            # Simple interpolation
-            print "Name: ${name}"               # Name: Alice
-            
-            # Expressions in interpolation
-            print "Age next year: ${age + 1}"   # Age next year: 31
-            
-            # Method calls
-            var lower_name = name.lower()
-            print "Lowercase: ${lower_name}"    # Lowercase: alice
-            
-            # Format specifiers (if supported)
-            var price = 19.99
-            print "Price: ${price:.2f}"         # Price: 19.99
+def main()
+    var name = "Alice"
+    var age = 30
+
+    # Simple interpolation
+    print "Name: ${name}"               # Name: Alice
+
+    # Expressions in interpolation
+    print "Age next year: ${age + 1}"   # Age next year: 31
+
+    # Method calls
+    var lower_name = name.lower()
+    print "Lowercase: ${lower_name}"    # Lowercase: alice
+
+    # Format specifiers
+    var price = 19.99
+    print "Price: ${price:.2f}"         # Price: 19.99
 ```
 
 ---
@@ -117,26 +111,20 @@ class Main
 # teaches: searching in strings
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var text = "Hello, World!"
-            
-            # Contains
-            print text.contains("World")        # true
-            print text.contains("xyz")          # false
-            
-            # Index
-            var idx = text.indexOf("World")
-            print idx                           # 7
-            
-            # Not found returns -1 or special value
-            var not_found = text.indexOf("xyz")
-            print not_found
-            
-            # Starts/ends with
-            print text.startsWith("Hello")      # true
-            print text.endsWith("!")            # true
+def main()
+    var text = "Hello, World!"
+
+    # Contains
+    print text.contains("World")        # true
+    print text.contains("xyz")          # false
+
+    # Index — returns -1 when not found
+    print text.indexOf("World")         # 7
+    print text.indexOf("xyz")           # -1
+
+    # Starts/ends with
+    print text.startsWith("Hello")      # true
+    print text.endsWith("!")            # true
 ```
 
 ### Splitting and Joining
@@ -146,22 +134,22 @@ class Main
 # teaches: splitting and joining strings
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            # Split
-            var csv = "apple,banana,cherry"
-            var fruits = csv.split(",")
-            for fruit in fruits
-                print fruit
-            
-            # Join
-            var items: List(str) = List()
-            items.add("one")
-            items.add("two")
-            items.add("three")
-            var result = ", ".join(items)
-            print result                        # one, two, three
+def main()
+    # Split — annotate the local with `: List(str)` to materialise the iterator
+    # into an actual list (otherwise it stays as a forward iterator only).
+    var csv = "apple,banana,cherry"
+    var fruits: List(str) = csv.split(",")
+    for fruit in fruits
+        var f: str = fruit
+        print f
+
+    # Join
+    var items = List(str)()
+    items.add("one")
+    items.add("two")
+    items.add("three")
+    var result = ", ".join(items)
+    print result                        # one, two, three
 ```
 
 ### Trimming and Padding
@@ -171,21 +159,19 @@ class Main
 # teaches: trimming and padding
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var padded = "  hello  "
-            
-            # Trim whitespace
-            print "|${padded.trim()}|"          # |hello|
-            print "|${padded.trimLeft()}|"      # |hello  |
-            print "|${padded.trimRight()}|"     # |  hello|
-            
-            # Padding
-            var short = "hi"
-            print short.padLeft(10, "*")        # ********hi
-            print short.padRight(10, "-")       # hi--------
-            print short.center(10, "*")         # ****hi****
+def main()
+    var padded = "  hello  "
+
+    # Trim whitespace
+    print "|${padded.trim()}|"          # |hello|
+    print "|${padded.trimLeft()}|"      # |hello  |
+    print "|${padded.trimRight()}|"     # |  hello|
+
+    # Padding
+    var short = "hi"
+    print short.padLeft(10, "*")        # ********hi
+    print short.padRight(10, "-")       # hi--------
+    print short.center(10, "*")         # ****hi****
 ```
 
 ### Replacing
@@ -195,21 +181,19 @@ class Main
 # teaches: string replacement
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var text = "cat and dog and bird"
-            
-            # Replace (first occurrence, or all)
-            var once = text.replace("and", "or")      # Replaces once
-            print once
-            
-            var all = text.replaceAll("and", "or")    # Replaces all
-            print all
-            
-            # Case conversion replacement
-            var lower = "Hello World".lower()
-            print lower                         # hello world
+def main()
+    var text = "cat and dog and bird"
+
+    # Replace (first occurrence, or all)
+    var once = text.replace("and", "or")      # Replaces once
+    print once
+
+    var all = text.replaceAll("and", "or")    # Replaces all
+    print all
+
+    # Case conversion
+    var lower = "Hello World".lower()
+    print lower                         # hello world
 ```
 
 ---
@@ -225,26 +209,24 @@ class Main
 # teaches: unicode support
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            # Emoji
-            var emoji = "Hello 👋 🌍 🎉"
-            print emoji
-            print emoji.len                     # Byte length
-            print emoji.codePointCount()        # Character count
-            
-            # Chinese
-            var chinese = "你好世界"  # Hello World in Chinese
-            print chinese
-            
-            # Arabic (right-to-left)
-            var arabic = "مرحبا بالعالم"  # Hello World
-            print arabic
-            
-            # Mixed scripts
-            var mixed = "Hello 世界 مرحبا"
-            print mixed
+def main()
+    # Emoji
+    var emoji = "Hello 👋 🌍 🎉"
+    print emoji
+    print emoji.len                     # Byte length
+    print emoji.codePointCount()        # Character count
+
+    # Chinese
+    var chinese = "你好世界"             # Hello World in Chinese
+    print chinese
+
+    # Arabic (right-to-left)
+    var arabic = "مرحبا بالعالم"         # Hello World
+    print arabic
+
+    # Mixed scripts
+    var mixed = "Hello 世界 مرحبا"
+    print mixed
 ```
 
 ### Character Iteration
@@ -254,20 +236,20 @@ class Main
 # teaches: iterating over characters
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            var text = "Hello"
-            
-            # Iterate characters
-            for char in text.chars()
-                print char
-            
-            # Byte iteration
-            var data = "AB"
-            for byte in data.bytes()
-                print byte                      # 65, 66 (ASCII values)
+def main()
+    var text = "Hello"
+
+    # Iterate characters (yields `char`; .toString() lifts back to str for printing)
+    for c in text.chars()
+        print c.toString()
+
+    # Byte iteration — yields each byte as a u8
+    var data = "AB"
+    for byte in data.bytes()
+        print byte                  # 65, 66 (ASCII values)
 ```
+
+> `.chars()` and `.bytes()` are different lenses on the same string. `.chars()` walks Unicode codepoints (so `"👋"` yields one element); `.bytes()` walks the raw UTF-8 bytes (so `"👋"` yields four). Use whichever matches what you're counting.
 
 ---
 
@@ -282,25 +264,22 @@ Regular expressions let you search and validate text patterns.
 # teaches: regular expressions introduction
 # chapter: 06-Strings-and-Unicode
 
-class Main
-    static
-        def main
-            # Simple pattern
-            var email = "alice@example.com"
-            var pattern = Regex.compile("[a-z]+@[a-z]+\\.[a-z]+")
-            
-            var is_valid = pattern.match(email)
-            print is_valid                      # true
-            
-            # Find matches
-            var text = "I have 2 apples and 3 oranges"
-            var digit_pattern = Regex.compile("\\d+")
-            var found = digit_pattern.find(text)
-            print found                         # 2
-            
-            # Replace
-            var clean = digit_pattern.replace(text, "X")
-            print clean                         # I have X apples and X oranges
+def main()
+    # Simple pattern
+    var email = "alice@example.com"
+    var pattern = Regex.compile("[a-z]+@[a-z]+\\.[a-z]+")
+
+    print pattern.match(email)          # true
+
+    # Find matches
+    var text = "I have 2 apples and 3 oranges"
+    var digit_pattern = Regex.compile("\\d+")
+    if digit_pattern.find(text) as found
+        print found                     # 2
+
+    # Replace
+    var clean = digit_pattern.replace(text, "X")
+    print clean                         # I have X apples and X oranges
 ```
 
 ---
@@ -312,41 +291,40 @@ class Main
 # teaches: practical text operations
 # chapter: 06-Strings-and-Unicode
 
-class Parser
-    static
-        def parse_csv_line(line: str): List(str)
-            return line.split(",")
-        
-        def normalize_whitespace(text: str): str
-            # Replace multiple spaces with one
-            var lines: List(str) = List()
-            for line in text.split("\n")
-                var trimmed = line.trim()
-                if trimmed.len > 0
-                    lines.add(trimmed)
-            return "\n".join(lines)
-        
-        def extract_numbers(text: str): List(str)
-            var results: List(str) = List()
-            var pattern = Regex.compile("\\d+")
-            for match in pattern.findAll(text)
-                results.add(match)
-            return results
+def parse_csv_line(line: str): List(str)
+    var out: List(str) = line.split(",")
+    return out
 
-class Main
-    static
-        def main
-            # Parse CSV
-            var csv_line = "Alice,30,alice@example.com"
-            var fields = Parser.parse_csv_line(csv_line)
-            print "Name: ${fields.at(0)}"
-            print "Age: ${fields.at(1)}"
-            
-            # Extract numbers
-            var text = "I was born in 1990 and moved in 2005"
-            var years = Parser.extract_numbers(text)
-            for year in years
-                print year
+def normalize_whitespace(text: str): str
+    var lines = List(str)()
+    for line in text.split("\n")
+        var trimmed = line.trim()
+        if trimmed.len > 0
+            lines.add(trimmed)
+    return "\n".join(lines)
+
+def extract_numbers(text: str): List(str)
+    var results = List(str)()
+    var pattern = Regex.compile("\\d+")
+    for match in pattern.findAll(text)
+        results.add(match)
+    return results
+
+def main()
+    # Parse CSV
+    var csv_line = "Alice,30,alice@example.com"
+    var fields = parse_csv_line(csv_line)
+    var name: str = fields.at(0)
+    var age:  str = fields.at(1)
+    print "Name: ${name}"
+    print "Age: ${age}"
+
+    # Extract numbers
+    var text = "I was born in 1990 and moved in 2005"
+    var years = extract_numbers(text)
+    for year in years
+        var y: str = year
+        print y
 ```
 
 ---
@@ -359,10 +337,11 @@ class Main
 def is_valid_email(email: str): bool
     if not email.contains("@")
         return false
-    var parts = email.split("@")
+    var parts: List(str) = email.split("@")
     if parts.count() != 2
         return false
-    if not parts.at(1).contains(".")
+    var domain: str = parts.at(1)
+    if not domain.contains(".")
         return false
     return true
 ```
@@ -371,17 +350,18 @@ def is_valid_email(email: str): bool
 
 ```zebra
 def parse_url(url: str): HashMap(str, str)
-    var result: HashMap(str, str) = HashMap()
-    var parts = url.split("://")
+    var result = HashMap(str, str)()
+    var parts: List(str) = url.split("://")
     if parts.count() == 2
-        result.put("protocol", parts.at(0))
+        var proto: str = parts.at(0)
+        result.put("protocol", proto)
     return result
 ```
 
 ### String Templating
 
 ```zebra
-def template(text: str, values: HashMap(str, str)) as str
+def template(text: str, values: HashMap(str, str)): str
     var result = text
     for key, value in values
         var placeholder = "${${key}}"
@@ -423,14 +403,14 @@ def template(text: str, values: HashMap(str, str)) as str
 >
 > ```zebra
 > var result = ""
-> for i in 1..1000
+> for i in 1.to(1000)
 >     result = result + "${i},"  # ❌ O(n²) complexity
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> var sb: StringBuilder = StringBuilder()
-> for i in 1..1000
+> var sb = StringBuilder()
+> for i in 1.to(1000)
 >     sb.append("${i},")
 > var result = sb.build()  # ✅ O(n) complexity
 > ```
@@ -447,26 +427,24 @@ Write a function that reverses a string:
 <summary>Solution</summary>
 
 ```zebra
-class Reverser
-    static
-        def reverse(text: str): str
-            var chars: List(str) = List()
-            for c in text.chars()
-                chars.add(c.toString())
-            
-            var result = ""
-            var i = chars.count() - 1
-            while i >= 0
-                result = result.concat(chars.at(i))
-                i = i - 1
-            return result
+def reverse_str(text: str): str
+    var chars = List(str)()
+    for c in text.chars()
+        chars.add(c.toString())
 
-class Main
-    static
-        def main
-            var reversed = Reverser.reverse("hello")
-            print reversed  # olleh
+    var result = ""
+    var i = chars.count() - 1
+    while i >= 0
+        result = result.concat(chars.at(i))
+        i = i - 1
+    return result
+
+def main()
+    var reversed = reverse_str("hello")
+    print reversed  # olleh
 ```
+
+> Zebra also has a built-in `text.reverse()` for the common case; the loop above is just to show character iteration.
 
 </details>
 
@@ -478,35 +456,33 @@ Write a simple email validator:
 <summary>Solution</summary>
 
 ```zebra
-class Validator
-    static
-        def is_valid_email(email: str): bool
-            if email.len < 5
-                return false
-            if not email.contains("@")
-                return false
-            if not email.contains(".")
-                return false
-            var parts = email.split("@")
-            if parts.count() != 2
-                return false
-            if parts.at(1).len < 3
-                return false
-            return true
+def is_valid_email(email: str): bool
+    if email.len < 5
+        return false
+    if not email.contains("@")
+        return false
+    if not email.contains(".")
+        return false
+    var parts: List(str) = email.split("@")
+    if parts.count() != 2
+        return false
+    var domain: str = parts.at(1)
+    if domain.len < 3
+        return false
+    return true
 
-class Main
-    static
-        def main
-            var emails: List(str) = List()
-            emails.add("alice@example.com")
-            emails.add("invalid")
-            emails.add("bob@domain.co")
-            
-            for email in emails
-                if Validator.is_valid_email(email)
-                    print "Valid: ${email}"
-                else
-                    print "Invalid: ${email}"
+def main()
+    var emails = List(str)()
+    emails.add("alice@example.com")
+    emails.add("invalid")
+    emails.add("bob@domain.co")
+
+    for email in emails
+        var e: str = email
+        if is_valid_email(e)
+            print "Valid: ${e}"
+        else
+            print "Invalid: ${e}"
 ```
 
 </details>
@@ -519,25 +495,22 @@ Parse a CSV line and extract fields:
 <summary>Solution</summary>
 
 ```zebra
-class CSVParser
-    static
-        def parse(line: str): List(str)
-            return line.split(",")
-        
-        def parse_with_trim(line: str): List(str)
-            var raw = line.split(",")
-            var trimmed: List(str) = List()
-            for field in raw
-                trimmed.add(field.trim())
-            return trimmed
+def parse_csv(line: str): List(str)
+    var out: List(str) = line.split(",")
+    return out
 
-class Main
-    static
-        def main
-            var csv = "Alice, 30, NYC"
-            var fields = CSVParser.parse_with_trim(csv)
-            for field in fields
-                print "|${field}|"
+def parse_with_trim(line: str): List(str)
+    var trimmed = List(str)()
+    for field in line.split(",")
+        trimmed.add(field.trim())
+    return trimmed
+
+def main()
+    var csv = "Alice, 30, NYC"
+    var fields = parse_with_trim(csv)
+    for field in fields
+        var f: str = field
+        print "|${f}|"
 ```
 
 </details>

@@ -67,13 +67,11 @@ class Bank
         balance = balance - amount
         return balance
 
-class Main
-    static
-        def main
-            var bank = Bank()
-            print bank.withdraw(50)         # 50
-            # bank.withdraw(-10)            # → panic: require failed in 'withdraw'
-            # bank.withdraw(1000)           # → panic: require failed in 'withdraw'
+def main()
+    var bank = Bank()
+    print bank.withdraw(50)         # 50
+    # bank.withdraw(-10)            # → panic: require failed in 'withdraw'
+    # bank.withdraw(1000)           # → panic: require failed in 'withdraw'
 ```
 
 If any clause is false, Zebra panics with a message naming the method and
@@ -110,12 +108,10 @@ class Counter
         count = count + 1
         return count
 
-class Main
-    static
-        def main
-            var c = Counter()
-            print c.increment()          # 1
-            print c.increment()          # 2
+def main()
+    var c = Counter()
+    print c.increment()          # 1
+    print c.increment()          # 2
 ```
 
 `ensure` clauses fire **only on the success path**, not when the method
@@ -206,13 +202,11 @@ class Account
         balance = balance - amount
         transactions = transactions + 1
 
-class Main
-    static
-        def main
-            var acct = Account()
-            acct.deposit(50)
-            acct.withdraw(30)
-            # Both invariants checked after each method returns.
+def main()
+    var acct = Account()
+    acct.deposit(50)
+    acct.withdraw(30)
+    # Both invariants checked after each method returns.
 ```
 
 **Why invariants are a force multiplier:** instead of repeating the same
@@ -301,15 +295,13 @@ class SortedList
             items.count() > 0
         return items.at(0)
 
-class Main
-    static
-        def main
-            var sl = SortedList()
-            sl.insert(3)
-            sl.insert(1)
-            sl.insert(2)
-            print sl.smallest()        # 1
-            # Invariant verified after every public method.
+def main()
+    var sl = SortedList()
+    sl.insert(3)
+    sl.insert(1)
+    sl.insert(2)
+    print sl.smallest()        # 1
+    # Invariant verified after every public method.
 ```
 
 The invariant catches any bug in `insert` automatically — there's no need
@@ -452,14 +444,12 @@ class BankAccount
         balance = balance - amount
         transactions = transactions + 1
 
-class Main
-    static
-        def main
-            var acct = BankAccount()
-            acct.deposit(100)
-            acct.withdraw(30)
-            print "Balance: ${acct.balance}"
-            print "Transactions: ${acct.transactions}"
+def main()
+    var acct = BankAccount()
+    acct.deposit(100)
+    acct.withdraw(30)
+    print "Balance: ${acct.balance}"
+    print "Transactions: ${acct.transactions}"
 ```
 
 The invariant catches any future bug that would leave `balance` negative
@@ -498,15 +488,13 @@ class SafeArray
             items.count() > 0
         return items.at(0)
 
-class Main
-    static
-        def main
-            var sa = SafeArray()
-            sa.push(10)
-            sa.push(20)
-            print sa.at(0)            # 10
-            print sa.first()          # 10
-            # sa.at(99)                # → panic: require failed in 'at'
+def main()
+    var sa = SafeArray()
+    sa.push(10)
+    sa.push(20)
+    print sa.at(0)            # 10
+    print sa.first()          # 10
+    # sa.at(99)                # → panic: require failed in 'at'
 ```
 
 </details>
@@ -553,16 +541,14 @@ class Stack
             size > 0
         return items.at(size - 1)
 
-class Main
-    static
-        def main
-            var s = Stack()
-            s.push(1)
-            s.push(2)
-            s.push(3)
-            print s.top()             # 3
-            print s.pop()             # 3
-            print s.top()             # 2
+def main()
+    var s = Stack()
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    print s.top()             # 3
+    print s.pop()             # 3
+    print s.top()             # 2
 ```
 
 The invariant `size == items.count()` would catch any future bug that

@@ -49,22 +49,20 @@ The `->` operator passes the left-hand value to the right-hand expression:
 # teaches: pipeline operator
 # chapter: 15-Pipelines-and-Function-Composition
 
-class Main
-    static
-        def main
-            var text = "HELLO WORLD"
-            
-            # Without pipeline (nested calls)
-            var result1 = text.lower().split(" ")
-            
-            # With pipeline (left-to-right)
-            var result2 = text
-                -> .lower()
-                -> .split(" ")
-            
-            # Both are equivalent
-            for word in result2
-                print word
+def main()
+    var text = "HELLO WORLD"
+    
+    # Without pipeline (nested calls)
+    var result1 = text.lower().split(" ")
+    
+    # With pipeline (left-to-right)
+    var result2 = text
+        -> .lower()
+        -> .split(" ")
+    
+    # Both are equivalent
+    for word in result2
+        print word
 ```
 
 Notice how pipeline reads more naturally: "take text, lowercase it, split it". Each `->` says "pass the result of the previous expression to this one".
@@ -88,12 +86,10 @@ class StringProcessor
                 -> .trim()
                 -> .replace("  ", " ")
 
-class Main
-    static
-        def main
-            var input = "  HELLO   WORLD  "
-            var output = StringProcessor.process(input)
-            print output  # Output: hello world
+def main()
+    var input = "  HELLO   WORLD  "
+    var output = StringProcessor.process(input)
+    print output  # Output: hello world
 ```
 
 Each line applies one transformation. This is **much clearer** than deeply nested method calls.
@@ -117,16 +113,14 @@ class DataProcessor
                 -> .split(" ")
                 -> .count()
 
-class Main
-    static
-        def main
-            var input = "The Quick Brown Fox"
-            var words = input
-                -> .lower()
-                -> .split(" ")
-            
-            var count = words.count()
-            print "Word count: ${count}"
+def main()
+    var input = "The Quick Brown Fox"
+    var words = input
+        -> .lower()
+        -> .split(" ")
+    
+    var count = words.count()
+    print "Word count: ${count}"
 ```
 
 Here, the pipeline takes a string, lowercases it, splits into a list, and we can call `.count()` on the result.
@@ -153,15 +147,13 @@ class Utils
         def format_result(x: int): str
             return "Result: ${x}"
 
-class Main
-    static
-        def main
-            var result = 5
-                -> Utils.double(.)
-                -> Utils.add_ten(.)
-                -> Utils.format_result(.)
-            
-            print result  # Output: Result: 20
+def main()
+    var result = 5
+        -> Utils.double(.)
+        -> Utils.add_ten(.)
+        -> Utils.format_result(.)
+    
+    print result  # Output: Result: 20
 ```
 
 The `.` placeholder represents the piped value. `5 -> Utils.double(.)` means "call `Utils.double(5)`".
@@ -188,7 +180,7 @@ class DataAnalysis
                 numbers.add(num)
             return numbers
         
-        def sum_list(items: List(int)) as int
+        def sum_list(items: List(int)): int
             var total = 0
             for item in items
                 total = total + item
@@ -199,17 +191,15 @@ class DataAnalysis
                 return 0.0
             return total / count
 
-class Main
-    static
-        def main
-            var csv_line = "10, 20, 30, 40"
-            
-            var avg = csv_line
-                -> DataAnalysis.parse_numbers(.)
-                -> DataAnalysis.sum_list(.)
-                -> DataAnalysis.average(., 4)
-            
-            print "Average: ${avg}"
+def main()
+    var csv_line = "10, 20, 30, 40"
+    
+    var avg = csv_line
+        -> DataAnalysis.parse_numbers(.)
+        -> DataAnalysis.sum_list(.)
+        -> DataAnalysis.average(., 4)
+    
+    print "Average: ${avg}"
 ```
 
 This reads as: "Parse CSV, sum values, calculate average." Much clearer than nested calls!
@@ -242,12 +232,10 @@ class Transform
                 -> Transform.remove_spaces(.)
                 -> Transform.reverse_it(.)
 
-class Main
-    static
-        def main
-            var input = "HELLO WORLD"
-            var output = Transform.compose_all(input)
-            print output  # Output: dlrowolleh
+def main()
+    var input = "HELLO WORLD"
+    var output = Transform.compose_all(input)
+    print output  # Output: dlrowolleh
 ```
 
 Each step is a self-contained function. Composition lets you **reuse them in different orders**.
@@ -277,17 +265,15 @@ class SafeParser
         def double_it(x: int): int
             return x * 2
 
-class Main
-    static
-        def main
-            var input = "42"
-            var result = input
-                -> SafeParser.parse_int(.)
-            
-            if result.isOk()
-                var doubled = result.okValue()
-                    -> SafeParser.double_it(.)
-                print doubled
+def main()
+    var input = "42"
+    var result = input
+        -> SafeParser.parse_int(.)
+    
+    if result.isOk()
+        var doubled = result.okValue()
+            -> SafeParser.double_it(.)
+        print doubled
 ```
 
 When an error occurs, stop the pipeline and handle the error.
@@ -381,17 +367,15 @@ class TextStats
             var words = text.split(" ")
             return words.count()
 
-class Main
-    static
-        def main
-            var user_input = "  HELLO WORLD FOO  "
-            
-            var word_count = user_input
-                -> .lower()
-                -> .trim()
-                -> TextStats.count_words(.)
-            
-            print "Words: ${word_count}"
+def main()
+    var user_input = "  HELLO WORLD FOO  "
+    
+    var word_count = user_input
+        -> .lower()
+        -> .trim()
+        -> TextStats.count_words(.)
+    
+    print "Words: ${word_count}"
 ```
 
 </details>
@@ -420,20 +404,18 @@ class NumUtils
         def to_message(x: int): str
             return "Final result: ${x}"
 
-class Main
-    static
-        def main
-            var input = "5"
-            
-            var result = input
-                -> NumUtils.parse_safe(.)
-            
-            if result.isOk()
-                var final = result.okValue()
-                    -> NumUtils.double_it(.)
-                    -> NumUtils.add_ten(.)
-                    -> NumUtils.to_message(.)
-                print final
+def main()
+    var input = "5"
+    
+    var result = input
+        -> NumUtils.parse_safe(.)
+    
+    if result.isOk()
+        var final = result.okValue()
+            -> NumUtils.double_it(.)
+            -> NumUtils.add_ten(.)
+            -> NumUtils.to_message(.)
+        print final
 ```
 
 </details>
@@ -448,35 +430,33 @@ Create a pipeline that filters a list of numbers to keep only even values, sums 
 ```zebra
 class ListOps
     static
-        def filter_even(items: List(int)) as List(int)
+        def filter_even(items: List(int)): List(int)
             var result: List(int) = List()
             for item in items
                 if item % 2 == 0
                     result.add(item)
             return result
         
-        def sum_all(items: List(int)) as int
+        def sum_all(items: List(int)): int
             var total = 0
             for item in items
                 total = total + item
             return total
 
-class Main
-    static
-        def main
-            var numbers: List(int) = List()
-            numbers.add(1)
-            numbers.add(2)
-            numbers.add(3)
-            numbers.add(4)
-            numbers.add(5)
-            numbers.add(6)
-            
-            var sum = numbers
-                -> ListOps.filter_even(.)
-                -> ListOps.sum_all(.)
-            
-            print "Sum of evens: ${sum}"
+def main()
+    var numbers: List(int) = List()
+    numbers.add(1)
+    numbers.add(2)
+    numbers.add(3)
+    numbers.add(4)
+    numbers.add(5)
+    numbers.add(6)
+    
+    var sum = numbers
+        -> ListOps.filter_even(.)
+        -> ListOps.sum_all(.)
+    
+    print "Sum of evens: ${sum}"
 ```
 
 </details>

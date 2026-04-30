@@ -111,7 +111,7 @@ shared class CArray
         # This is complex to use in Zebra—better to sort in Zebra
         
         # Example: sum array (simplified C function)
-        def sum_array(numbers: List(int)) as int
+        def sum_array(numbers: List(int)): int
             # In real C: int sum_array(int* arr, int len)
             var total = 0
             for num in numbers
@@ -119,7 +119,7 @@ shared class CArray
             return total
         
         # Example: find maximum
-        def max_array(numbers: List(int)) as int
+        def max_array(numbers: List(int)): int
             var max_val = numbers.at(0)
             for num in numbers
                 if num > max_val
@@ -519,7 +519,7 @@ shared class TypeSafety
             pass
         
         # C expects: int sum(float* values, int count)
-        def sum(values: List(float)) as int
+        def sum(values: List(float)): int
             # Values must be floats, not ints
             return 0
 
@@ -565,7 +565,7 @@ def safe_return(n: int): int
     return result
 
 # SAFE: Use parameters
-def safe_parameter(numbers: List(int)) as int
+def safe_parameter(numbers: List(int)): int
     # List is passed by reference, lives in caller's scope
     # Safe to use while caller owns it
     return numbers.at(0)
@@ -648,7 +648,7 @@ def main()
 def expensive_c_function(n: int): int
     return n * 2
 
-def sum_all(nums: List(int)) as int
+def sum_all(nums: List(int)): int
     var total = 0
     for num in nums
         total = total + num
@@ -669,7 +669,7 @@ shared class Batch
             return item.upper()
         
         # Process many items (fast)
-        def process_batch(items: List(str)) as List(str)
+        def process_batch(items: List(str)): List(str)
             # Single FFI call for all items
             return items
 

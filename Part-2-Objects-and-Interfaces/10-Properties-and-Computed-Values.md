@@ -36,13 +36,11 @@ class Person
         var name = "Alice"
         return name.len
 
-class Main
-    static
-        def main
-            var person = Person()
-            person.birth_year = 1990
-            print person.age()         # 34
-            print person.name_length() # 5
+def main()
+    var person = Person()
+    person.birth_year = 1990
+    print person.age()         # 34
+    print person.name_length() # 5
 ```
 
 ### Derived Properties
@@ -65,16 +63,14 @@ class Rectangle
     def is_square: bool
         return width == height
 
-class Main
-    static
-        def main
-            var rect = Rectangle()
-            rect.width = 10
-            rect.height = 10
-            
-            print "Area: ${rect.area()}"         # 100
-            print "Perimeter: ${rect.perimeter()}" # 40
-            print "Square: ${rect.is_square()}"    # true
+def main()
+    var rect = Rectangle()
+    rect.width = 10
+    rect.height = 10
+
+    print "Area: ${rect.area()}"           # 100
+    print "Perimeter: ${rect.perimeter()}" # 40
+    print "Square: ${rect.is_square()}"    # true
 ```
 
 ---
@@ -108,18 +104,16 @@ class Account
     def get_balance: float
         return balance
 
-class Main
-    static
-        def main
-            var account = Account()
-            account.deposit(100.0)
-            print account.get_balance()    # 100
-            
-            account.withdraw(25.0)
-            print account.get_balance()    # 75
-            
-            account.withdraw(100.0)  # Fails (not enough balance)
-            print account.get_balance()    # 75 (unchanged)
+def main()
+    var account = Account()
+    account.deposit(100.0)
+    print account.get_balance()    # 100
+
+    account.withdraw(25.0)
+    print account.get_balance()    # 75
+
+    account.withdraw(100.0)  # Fails (not enough balance)
+    print account.get_balance()    # 75 (unchanged)
 ```
 
 ### Setter with Side Effects
@@ -148,16 +142,14 @@ class User
         last_modified = "2024-01-01"  # Update timestamp
         return true
 
-class Main
-    static
-        def main
-            var user = User()
-            if user.set_username("alice")
-                print "Username set"
-            
-            if user.set_email("alice@example.com")
-                print "Email set"
-                print "Last modified: ${user.last_modified}"
+def main()
+    var user = User()
+    if user.set_username("alice")
+        print "Username set"
+
+    if user.set_email("alice@example.com")
+        print "Email set"
+        print "Last modified: ${user.last_modified}"
 ```
 
 ---
@@ -197,19 +189,17 @@ class DataSet
                 max = num
         return max
 
-class Main
-    static
-        def main
-            var data = DataSet()
-            data.numbers.add(10)
-            data.numbers.add(20)
-            data.numbers.add(30)
-            data.numbers.add(40)
-            
-            print "Sum: ${data.sum()}"           # 100
-            print "Average: ${data.average()}"   # 25
-            print "Min: ${data.min_value()}"     # 10
-            print "Max: ${data.max_value()}"     # 40
+def main()
+    var data = DataSet()
+    data.numbers.add(10)
+    data.numbers.add(20)
+    data.numbers.add(30)
+    data.numbers.add(40)
+
+    print "Sum: ${data.sum()}"           # 100
+    print "Average: ${data.average()}"   # 25
+    print "Min: ${data.min_value()}"     # 10
+    print "Max: ${data.max_value()}"     # 40
 ```
 
 ---
@@ -232,21 +222,19 @@ class Database
             is_connected = true
         return connection
 
-class Main
-    static
-        def main
-            var db = Database()
-            
-            # Connection not created yet
-            print "Is connected: ${db.is_connected()}"  # false
-            
-            # Access connection (now it's created)
-            var conn = db.get_connection()
-            print conn                                  # Connected to DB
-            
-            # Already exists
-            var conn2 = db.get_connection()
-            print conn2                                 # Connected to DB
+def main()
+    var db = Database()
+
+    # Connection not created yet
+    print "Is connected: ${db.is_connected}"  # false
+
+    # Access connection (now it's created)
+    if db.get_connection() as conn
+        print conn                            # Connected to DB
+
+    # Already exists
+    if db.get_connection() as conn2
+        print conn2                           # Connected to DB
 ```
 
 ---
@@ -279,20 +267,18 @@ class Temperature
     def is_boiling: bool
         return celsius >= 100.0
 
-class Main
-    static
-        def main
-            var temp = Temperature()
-            temp.celsius = 25.0
-            
-            print "Celsius: ${temp.celsius}"
-            print "Fahrenheit: ${temp.fahrenheit()}"
-            print "Kelvin: ${temp.kelvin()}"
-            print "Freezing: ${temp.is_freezing()}"
-            print "Boiling: ${temp.is_boiling()}"
-            
-            temp.set_from_fahrenheit(98.6)
-            print "Body temp in Celsius: ${temp.celsius}"
+def main()
+    var temp = Temperature()
+    temp.celsius = 25.0
+
+    print "Celsius: ${temp.celsius}"
+    print "Fahrenheit: ${temp.fahrenheit()}"
+    print "Kelvin: ${temp.kelvin()}"
+    print "Freezing: ${temp.is_freezing()}"
+    print "Boiling: ${temp.is_boiling()}"
+
+    temp.set_from_fahrenheit(98.6)
+    print "Body temp in Celsius: ${temp.celsius}"
 ```
 
 ---
@@ -327,16 +313,14 @@ class Config
     def set_debug(d: bool)
         debug = d
 
-class Main
-    static
-        def main
-            var config = Config()
-            config.set_host("example.com")
-            config.set_port(443)
-            config.set_debug(true)
-            
-            print config.get_url()     // http://example.com:443
-            print "Debug: ${config.debug}"  # true
+def main()
+    var config = Config()
+    config.set_host("example.com")
+    config.set_port(443)
+    config.set_debug(true)
+
+    print config.get_url()           # http://example.com:443
+    print "Debug: ${config.debug}"   # true
 ```
 
 ---
@@ -504,14 +488,12 @@ class BankAccount
     def get_balance: float
         return balance
 
-class Main
-    static
-        def main
-            var account = BankAccount()
-            account.set_owner("Alice")
-            account.deposit(1000.0)
-            account.apply_interest()
-            print "Balance: ${account.get_balance()}"
+def main()
+    var account = BankAccount()
+    account.set_owner("Alice")
+    account.deposit(1000.0)
+    account.apply_interest()
+    print "Balance: ${account.get_balance()}"
 ```
 
 </details>
@@ -548,19 +530,17 @@ class Circle
     def circumference: float
         return 2.0 * 3.14159 * radius
 
-class Main
-    static
-        def main
-            var circle = Circle()
-            circle.set_radius(5.0)
-            
-            print "Radius: ${circle.radius}"
-            print "Diameter: ${circle.diameter()}"
-            print "Area: ${circle.area()}"
-            print "Circumference: ${circle.circumference()}"
-            
-            circle.set_diameter(20.0)
-            print "New radius: ${circle.radius}"
+def main()
+    var circle = Circle()
+    circle.set_radius(5.0)
+
+    print "Radius: ${circle.radius}"
+    print "Diameter: ${circle.diameter()}"
+    print "Area: ${circle.area()}"
+    print "Circumference: ${circle.circumference()}"
+
+    circle.set_diameter(20.0)
+    print "New radius: ${circle.radius}"
 ```
 
 </details>
@@ -602,19 +582,17 @@ class UserProfile
     def is_valid: bool
         return username.len > 0 and email.contains("@") and age > 0
 
-class Main
-    static
-        def main
-            var user = UserProfile()
-            if user.set_username("alice_wonder")
-                print "Username set"
-            if user.set_email("alice@example.com")
-                print "Email set"
-            if user.set_age(25)
-                print "Age set"
-            
-            print "Is adult: ${user.is_adult()}"
-            print "Is valid: ${user.is_valid()}"
+def main()
+    var user = UserProfile()
+    if user.set_username("alice_wonder")
+        print "Username set"
+    if user.set_email("alice@example.com")
+        print "Email set"
+    if user.set_age(25)
+        print "Age set"
+
+    print "Is adult: ${user.is_adult()}"
+    print "Is valid: ${user.is_valid()}"
 ```
 
 </details>

@@ -74,12 +74,10 @@ class UserService adds Loggable, Cacheable
         cache_set(id, fetched)
         return fetched
 
-class Main
-    static
-        def main
-            var svc = UserService()
-            print svc.lookup("42")    # logs "cache miss for 42", returns "user-42"
-            print svc.lookup("42")    # silent cache hit, returns "user-42"
+def main()
+    var svc = UserService()
+    print svc.lookup("42")    # logs "cache miss for 42", returns "user-42"
+    print svc.lookup("42")    # silent cache hit, returns "user-42"
 ```
 
 **Key points:**
@@ -119,23 +117,21 @@ class AuditedReport
     var entries: List(str)
 
     cue init(p: str)
-        writer = FileWriter(p)
-        entries = List(str)()
+        this.writer = FileWriter(p)
+        this.entries = List(str)()
 
     def add_entry(line: str)
-        entries.add(line)
+        this.entries.add(line)
 
-    def publish
-        var content = entries.join("\n")
-        writer.write(content)
+    def publish()
+        var content = this.entries.join("\n")
+        this.writer.write(content)
 
-class Main
-    static
-        def main
-            var r = AuditedReport("/tmp/audit.log")
-            r.add_entry("user logged in")
-            r.add_entry("user updated profile")
-            r.publish()
+def main()
+    var r = AuditedReport("/tmp/audit.log")
+    r.add_entry("user logged in")
+    r.add_entry("user updated profile")
+    r.publish()
 ```
 
 `AuditedReport` *uses* `FileWriter`; it isn't a `FileWriter`. The same idea
@@ -170,35 +166,33 @@ A class can combine several mixins:
 mixin Timestamped
     var created_at_ms: int = 0
 
-    def stamp_now
-        created_at_ms = DateTime.now().epochMs
+    def stamp_now()
+        this.created_at_ms = DateTime.now().epochMs
 
 mixin Tagged
     var tags: List(str)
 
-    cue init
-        tags = List(str)()
+    cue init()
+        this.tags = List(str)()
 
     def tag(t: str)
-        tags.add(t)
+        this.tags.add(t)
 
 class BlogPost adds Timestamped, Tagged
     var title: str = ""
     var body: str = ""
 
     cue init(t: str, b: str)
-        title = t
-        body = b
-        tags = List(str)()
-        stamp_now()
+        this.title = t
+        this.body = b
+        this.tags = List(str)()
+        this.stamp_now()
 
-class Main
-    static
-        def main
-            var p = BlogPost("Hello", "First post body")
-            p.tag("intro")
-            p.tag("zebra")
-            print "${p.title} — ${p.tags.count()} tags @ ${p.created_at_ms} ms"
+def main()
+    var p = BlogPost("Hello", "First post body")
+    p.tag("intro")
+    p.tag("zebra")
+    print "${p.title} — ${p.tags.count()} tags @ ${p.created_at_ms} ms"
 ```
 
 The class picks up `created_at_ms`, `tags`, `stamp_now()`, and `tag(...)`
@@ -217,35 +211,33 @@ interface — not a hierarchy:
 # chapter: 09-Composition-and-Mixins
 
 interface Sounding
-    def sound: str
+    def sound(): str
 
 class Dog implements Sounding
     var name: str = ""
 
     cue init(n: str)
-        name = n
+        this.name = n
 
-    def sound: str
-        return "${name}: Woof!"
+    def sound(): str
+        return "${this.name}: Woof!"
 
 class Cat implements Sounding
     var name: str = ""
 
     cue init(n: str)
-        name = n
+        this.name = n
 
-    def sound: str
-        return "${name}: Meow!"
+    def sound(): str
+        return "${this.name}: Meow!"
 
-class Main
-    static
-        def main
-            var animals: List(Sounding) = List(Sounding)()
-            animals.add(Dog("Rex"))
-            animals.add(Cat("Whiskers"))
+def main()
+    var animals: List(Sounding) = List(Sounding)()
+    animals.add(Dog("Rex"))
+    animals.add(Cat("Whiskers"))
 
-            for a in animals
-                print a.sound()
+    for a in animals
+        print a.sound()
 ```
 
 Both `Dog` and `Cat` `implements Sounding`. Code that wants any sounding thing
@@ -265,13 +257,13 @@ A realistic example combining interface + mixin + field composition:
 # chapter: 09-Composition-and-Mixins
 
 interface Publishable
-    def publish
+    def publish()
 
 mixin Versioned
     var version: int = 0
 
-    def bump
-        version = version + 1
+    def bump()
+        this.version = this.version + 1
 
 class Storage
     var path: str = ""
@@ -291,19 +283,17 @@ class BlogPost implements Publishable adds Versioned
         title = t
         storage = Storage(store_path)
 
-    def publish
-        bump()                                  # mixin method
-        var content = "${title} v${version}\n\n${body}"
-        storage.write(content)                  # composition
+    def publish()
+        this.bump()                              # mixin method
+        var content = "${this.title} v${this.version}\n\n${this.body}"
+        this.storage.write(content)              # composition
 
-class Main
-    static
-        def main
-            var post = BlogPost("Hello", "/tmp/hello.txt")
-            post.body = "First post"
-            post.publish()                       # writes v1
-            post.body = "First post (revised)"
-            post.publish()                       # writes v2
+def main()
+    var post = BlogPost("Hello", "/tmp/hello.txt")
+    post.body = "First post"
+    post.publish()                       # writes v1
+    post.body = "First post (revised)"
+    post.publish()                       # writes v2
 ```
 
 `BlogPost` plays the role of a `Publishable` (interface), gains version-tracking
@@ -459,13 +449,11 @@ class Truck adds Engine
     def describe: str
         return "${brand} truck (${payload_kg}kg payload)"
 
-class Main
-    static
-        def main
-            var car = Car("Toyota")
-            car.start()
-            print car.describe()
-            car.stop()
+def main()
+    var car = Car("Toyota")
+    car.start()
+    print car.describe()
+    car.stop()
 ```
 
 </details>
@@ -581,16 +569,14 @@ class Triangle implements Shape
     def perimeter: float
         return base + height + hypotenuse
 
-class Main
-    static
-        def main
-            var shapes: List(Shape) = List(Shape)()
-            shapes.add(Circle(5.0))
-            shapes.add(Rectangle(4.0, 6.0))
-            shapes.add(Triangle(3.0, 4.0, 5.0))
+def main()
+    var shapes: List(Shape) = List(Shape)()
+    shapes.add(Circle(5.0))
+    shapes.add(Rectangle(4.0, 6.0))
+    shapes.add(Triangle(3.0, 4.0, 5.0))
 
-            for s in shapes
-                print "area=${s.area()} perim=${s.perimeter()}"
+    for s in shapes
+        print "area=${s.area()} perim=${s.perimeter()}"
 ```
 
 </details>

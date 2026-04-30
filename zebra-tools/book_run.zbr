@@ -1,0 +1,437 @@
+# book_run.zbr — extract every ```zebra fenced block in the book and try
+# to compile each one through the bootstrap compiler.  Reports a per-block
+# pass/fail/skip matrix and a summary at the end.
+#
+# Usage:
+#   zebra book_run.zbr [root-dir] [zebra-bin]
+#     root-dir   defaults to "."
+#     zebra-bin  defaults to ../zebra-language/zig-out/bin/zebra-bootstrap.exe
+#
+# Skip annotation
+# ---------------
+# Place an HTML comment on the line(s) immediately before a code fence
+# to skip that block:
+#
+#   <!-- book_run: skip aspirational pipeline syntax -->
+#   ```zebra
+#   var x = 5 -> Foo(.) -> Bar(.)
+#   ```
+#
+# The reason text after `skip` is shown in the report.  The annotation
+# only applies to the very next fenced block.
+#
+# How "pass" is decided
+# ---------------------
+# The block is written to a temp .zbr file and compiled with
+# `<zebra-bin> --emit-zig <file>`.  Success = the compiler's combined
+# stdout+stderr contains "wrote " and does NOT contain "error:".
+# We do NOT also build/run the emitted Zig — many examples are partial
+# snippets that can't link as a standalone binary.  Compile-clean is
+# what we're certifying.
+#
+# DOGFOODING NOTES
+# ----------------
+# Same workarounds as book_lint / book_extract:
+#   - Walker holds a List(str) field rather than passing one as an out-param
+#   - typed locals before printing class-field strings (BUG-089)
+#   - typed `: List(str) = s.split(...)` annotation to materialise the iterator
+
+class Walker
+    var files: List(str)
+
+    cue init()
+        files = List(str)()
+
+    def collect(root: str)
+        this.descend(root)
+
+    def descend(path: str)
+        var entries: List(str) = File.listDir(path)
+        for name in entries
+            if name.startsWith(".")
+                continue
+            if name == "node_modules"
+                continue
+            if name == "zebra-tools"           # don't recurse into ourselves
+                continue
+            # Skip top-level non-chapter docs: PATTERNS, QUICKSTART, README,
+            # PROJECT_STATUS, _BOOK_*, COMPLETION_*, CRITICAL_*.  These are
+            # meta files whose code blocks are by-design illustrative.
+            if name == "PATTERNS-Common-Tasks.md"
+                continue
+            if name == "PROJECT_STATUS.md"
+                continue
+            if name == "QUICKSTART-30-Minutes.md"
+                continue
+            if name == "README.md"
+                continue
+            if name.startsWith("_BOOK_")
+                continue
+            if name.startsWith("COMPLETION_")
+                continue
+            if name.startsWith("CRITICAL_")
+                continue
+            if name == "BOOK_COMPLETION_STATUS.md"
+                continue
+            if name == "BUILD_PDF_README.md"
+                continue
+            if name == "BUILD_SYSTEM_STATUS.md"
+                continue
+            if name == "BUILD_WITH_PNG_DIAGRAMS.md"
+                continue
+            if name == "CHEATSHEET-Syntax.md"
+                continue
+            if name == "CONTRIBUTING.md"
+                continue
+            if name == "_outline.md" or name == "_WRITING_STATUS.md" or name == "_CHAPTER_COUNT.txt"
+                continue
+            var full = Walker.joinPath(path, name)
+            if Dir.exists(full)
+                this.descend(full)
+            else if name.endsWith(".md")
+                files.add(full)
+
+    static def joinPath(a: str, b: str): str
+        if a.endsWith("/")
+            return a + b
+        if a.endsWith("\\")
+            return a + b
+        return a + "/" + b
+
+
+struct Result
+    var file: str
+    var block_no: int
+    var start_line: int
+    var status: str                  # "pass" | "fail" | "skip"
+    var note: str                    # error first line, or skip reason
+
+    cue init(file: str, block_no: int, start_line: int, status: str, note: str)
+        this.file = file
+        this.block_no = block_no
+        this.start_line = start_line
+        this.status = status
+        this.note = note
+
+
+# Runner extracts blocks from each file and compiles them.
+# Holds results as instance state — same out-param dodge as book_lint.
+class Runner
+    var zebra_bin: str
+    var tmp_dir: str
+    var results: List(Result)
+    var n_pass: int = 0
+    var n_fail: int = 0
+    var n_skip: int = 0
+    var n_snippet: int = 0           # blocks that are illustrative fragments
+
+    cue init(zebra_bin: str, tmp_dir: str)
+        this.zebra_bin = zebra_bin
+        this.tmp_dir = tmp_dir
+        this.results = List(Result)()
+        # Explicitly zero the counters: cue init seems to skip default-value
+        # initialisation for primitive int fields.
+        this.n_pass = 0
+        this.n_fail = 0
+        this.n_skip = 0
+        this.n_snippet = 0
+
+    def run(path: str)
+        var content: str = File.read(path)
+        var line_no: int = 0
+        var in_zebra: bool = false
+        var block_no: int = 0
+        var block_start_line: int = 0
+        var block_buf: str = ""
+        var pending_skip: str = ""    # captured from <!-- book_run: skip ... --> on prev line
+        for raw in content.split("\n")
+            line_no = line_no + 1
+            if not in_zebra
+                # Watch for the skip annotation just before a fence.
+                var trim = raw.trim()
+                if trim.startsWith("<!-- book_run: skip")
+                    pending_skip = Runner.parseSkipReason(trim)
+                    continue
+                if raw.startsWith("```zebra")
+                    in_zebra = true
+                    block_no = block_no + 1
+                    block_start_line = line_no + 1
+                    block_buf = ""
+                    continue
+                # Any non-blank, non-skip line clears a stale pending_skip.
+                if trim.len > 0 and not trim.startsWith("<!--")
+                    pending_skip = ""
+                continue
+            if raw.startsWith("```")
+                in_zebra = false
+                if pending_skip != ""
+                    results.add(Result(path, block_no, block_start_line, "skip", pending_skip))
+                    n_skip = n_skip + 1
+                    pending_skip = ""
+                else if not Runner.isCompleteProgram(block_buf)
+                    # Illustrative fragment (e.g. `var x = ...` at top-level
+                    # outside any function).  Don't treat that as a compile
+                    # failure -- it's a snippet by design.
+                    results.add(Result(path, block_no, block_start_line, "snippet", "illustrative fragment"))
+                    n_snippet = n_snippet + 1
+                else
+                    var status_pair = this.compileBlock(path, block_no, block_start_line, block_buf)
+                    var st: str = status_pair.at(0)
+                    var note: str = status_pair.at(1)
+                    results.add(Result(path, block_no, block_start_line, st, note))
+                    if st == "pass"
+                        n_pass = n_pass + 1
+                    else
+                        n_fail = n_fail + 1
+                continue
+            block_buf = block_buf + raw + "\n"
+
+    # Heuristic: a block is "complete" (worth compiling) if its first
+    # significant line begins with one of the top-level forms.  Bare `var`,
+    # `if`, `for`, `print`, etc. at column 0 outside a `def` are syntactically
+    # invalid in Zebra anyway -- those blocks are illustrative fragments and
+    # should be marked snippet, not fail.
+    static def isCompleteProgram(body: str): bool
+        for raw in body.split("\n")
+            var line: str = raw.trim()
+            if line.len == 0
+                continue
+            if line.startsWith("#")
+                continue
+            # Top-level decl forms — the line might start with modifiers
+            # (public, static, abstract, ...) so we test the first WORD.
+            var first_word = Runner.firstWord(line)
+            if first_word == "def" or first_word == "class" or first_word == "struct"
+                return true
+            if first_word == "union" or first_word == "enum" or first_word == "interface"
+                return true
+            if first_word == "mixin" or first_word == "extend" or first_word == "use"
+                return true
+            if first_word == "namespace" or first_word == "sig" or first_word == "aspect"
+                return true
+            # Modifier prefixes that lead to a decl: `public def`, `static def`, etc.
+            if first_word == "public" or first_word == "private" or first_word == "protected"
+                return true
+            if first_word == "internal" or first_word == "abstract" or first_word == "static"
+                return true
+            if first_word == "readonly" or first_word == "extern"
+                return true
+            # @reflectable, @ffi, etc. -- attribute-decorated decls.
+            if line.startsWith("@")
+                return true
+            # First significant line is something else (var, if, for, print, ...) ->
+            # this is a fragment, not a complete program.
+            return false
+        return false
+
+    static def firstWord(line: str): str
+        var i = 0
+        var n = line.len
+        while i < n
+            var c = line[i]
+            if c == c' ' or c == c'\t' or c == c'('
+                return line[0..i]
+            i = i + 1
+        return line
+
+    # Pull "reason text" out of `<!-- book_run: skip reason text -->`.
+    # Done char-by-char to avoid str.indexOf optional-arithmetic gotchas.
+    static def parseSkipReason(line: str): str
+        var prefix = "<!-- book_run: skip"
+        var suffix = "-->"
+        if not line.startsWith(prefix)
+            return "(no reason)"
+        # Slice off the prefix using prefix.len (a usize, but `..` accepts
+        # either when the literal is comptime-known).
+        var rest: str = line[prefix.len .. line.len]
+        # Strip trailing -->
+        if rest.endsWith(suffix)
+            rest = rest[0 .. rest.len - suffix.len]
+        var trimmed: str = rest.trim()
+        if trimmed.len == 0
+            return "(no reason)"
+        return trimmed
+
+    # Returns a List(str) of [status, note].
+    def compileBlock(src: str, block_no: int, start_line: int, body: str): List(str)
+        var bn: str = block_no.toString()
+        var ln: str = start_line.toString()
+        var stem: str = Runner.flatStem(src)
+        var name: str = stem + "__b" + bn + "__line" + ln + ".zbr"
+        var tmp_path: str = Runner.joinPath(tmp_dir, name)
+        var header: str = "# extracted from " + src + ":" + ln + " (block " + bn + ")\n"
+        File.write(tmp_path, header + body)
+
+        # No quote-wrapping around the path: Shell.run uses `cmd /c` (Windows)
+        # or `sh -c` (Unix), and on Windows the literal `"` survives into the
+        # path argument and zebra-bootstrap rejects it with BadPathName.
+        var cmd: str = zebra_bin + " --emit-zig " + tmp_path
+        var output: str = Shell.run(cmd)
+
+        var out: List(str) = List(str)()
+        if "error:" in output
+            out.add("fail")
+            out.add(Runner.firstErrorLine(output))
+            return out
+        # Success markers depend on which compiler we invoked:
+        #   * `zebra-bootstrap` writes the emitted Zig to stdout, prefixed
+        #     by `// Generated by the Zebra compiler.`
+        #   * `zebra` (selfhost) writes a file and prints `wrote <path>`.
+        if output.startsWith("// Generated")
+            out.add("pass")
+            out.add("")
+            return out
+        if " wrote " in output or output.startsWith("wrote ")
+            out.add("pass")
+            out.add("")
+            return out
+        # No clear marker — treat as fail with the first non-empty line.
+        out.add("fail")
+        out.add(Runner.firstNonEmpty(output))
+        return out
+
+    static def firstErrorLine(s: str): str
+        for line in s.split("\n")
+            var t: str = line.trim()
+            if "error:" in t
+                # Truncate to a single line for the report.
+                if t.len > 120
+                    return t[0..120] + "..."
+                return t
+        return "(error not parsed)"
+
+    static def firstNonEmpty(s: str): str
+        for line in s.split("\n")
+            var t: str = line.trim()
+            if t.len > 0
+                if t.len > 120
+                    return t[0..120] + "..."
+                return t
+        return "(no output)"
+
+    # "C:/.../Part-1-Foundations/02-Values-and-Types.md"
+    #   → "Part-1-Foundations__02-Values-and-Types.md"
+    static def flatStem(path: str): str
+        # Walk back to the previous separator.  Same logic as book_extract.
+        var n = path.len
+        var sep_idx: int = -1
+        var i: int = 0
+        while i < n
+            var c = path[i]
+            if c == c'/' or c == c'\\'
+                sep_idx = i
+            i = i + 1
+        var rel: str = path
+        if sep_idx >= 0
+            var prev_sep: int = -1
+            var j: int = 0
+            while j < sep_idx
+                var c2 = path[j]
+                if c2 == c'/' or c2 == c'\\'
+                    prev_sep = j
+                j = j + 1
+            if prev_sep >= 0
+                rel = path[prev_sep + 1 .. n]
+            else
+                rel = path[sep_idx + 1 .. n]
+        return Runner.flatten(rel)
+
+    static def flatten(s: str): str
+        var out: str = ""
+        var i: int = 0
+        var n = s.len
+        while i < n
+            var c = s[i]
+            if c == c'/' or c == c'\\'
+                out = out + "__"
+            else
+                out = out + c.toString()
+            i = i + 1
+        return out
+
+    static def joinPath(a: str, b: str): str
+        if a.endsWith("/")
+            return a + b
+        if a.endsWith("\\")
+            return a + b
+        return a + "/" + b
+
+
+class Main
+    static
+        def main()
+            var args = Arg.parse()
+            var root_opt = args.positional(0)
+            var bin_opt  = args.positional(1)
+
+            var root: str = "."
+            if root_opt as r
+                root = r
+
+            var zebra_bin: str = "../zebra-language/zig-out/bin/zebra-bootstrap.exe"
+            if bin_opt as b
+                zebra_bin = b
+
+            var tmp_dir: str = "/tmp/book-run"
+            Dir.createAll(tmp_dir)
+
+            print "[book_run] root=${root}"
+            print "[book_run] zebra=${zebra_bin}"
+            print "[book_run] tmp =${tmp_dir}"
+            print "---"
+
+            var walker = Walker()
+            walker.collect(root)
+            print "[book_run] ${walker.files.count()} markdown files"
+
+            var runner = Runner(zebra_bin, tmp_dir)
+            for f in walker.files
+                var fname: str = f
+                runner.run(fname)
+
+            # Report.  Group by file; show only fails + skips by default
+            # (plus a single "all-green" line per file when everything passes).
+            print "---"
+            var current_file: str = ""
+            var all_green_in_file: bool = true
+            var per_file_fail: int = 0
+            var per_file_skip: int = 0
+            var per_file_total: int = 0
+            for r in runner.results
+                var rfile: str = r.file
+                if rfile != current_file
+                    if current_file != ""
+                        if all_green_in_file
+                            print "  (${per_file_total} blocks ok — pass + snippet + skip)"
+                    print "${rfile}"
+                    current_file = rfile
+                    all_green_in_file = true
+                    per_file_fail = 0
+                    per_file_skip = 0
+                    per_file_total = 0
+                per_file_total = per_file_total + 1
+                var rstatus: str = r.status
+                var rnote: str = r.note
+                if rstatus == "fail"
+                    all_green_in_file = false
+                    per_file_fail = per_file_fail + 1
+                    print "  FAIL block ${r.block_no} @ line ${r.start_line}: ${rnote}"
+                else if rstatus == "skip"
+                    per_file_skip = per_file_skip + 1
+                    print "  skip block ${r.block_no} @ line ${r.start_line}: ${rnote}"
+                # snippets and passes are silent in the per-file output;
+                # the trailing "(N blocks ...)" line gives the totals.
+            # Tail of the last file
+            if current_file != "" and all_green_in_file
+                print "  (${per_file_total} blocks ok — pass + snippet + skip)"
+
+            print "---"
+            print "[book_run] summary"
+            print "  pass:    ${runner.n_pass}"
+            print "  fail:    ${runner.n_fail}"
+            print "  skip:    ${runner.n_skip}"
+            print "  snippet: ${runner.n_snippet}"
+            var grand_total: int = runner.n_pass + runner.n_fail + runner.n_skip + runner.n_snippet
+            print "  total:   ${grand_total}"
+            if runner.n_fail > 0
+                sys.exit(1)
