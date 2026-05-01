@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 REM Zebra Programming Book - PDF Builder (Windows)
 REM Usage: build-pdf.bat
 REM Prerequisites: pandoc (choco install pandoc, or download from https://pandoc.org/installing.html)
@@ -132,10 +132,10 @@ if exist "Part-2-Objects-and-Interfaces\08-Interfaces-and-Protocols.md" (
 )
 echo. >> "%TEMP_FILE%"
 
-if exist "Part-2-Objects-and-Interfaces\09-Inheritance-and-Mixins.md" (
-    type "Part-2-Objects-and-Interfaces\09-Inheritance-and-Mixins.md" >> "%TEMP_FILE%"
+if exist "Part-2-Objects-and-Interfaces\09-Composition-and-Mixins.md" (
+    type "Part-2-Objects-and-Interfaces\09-Composition-and-Mixins.md" >> "%TEMP_FILE%"
 ) else (
-    echo ⚠️  Skipping 09-Inheritance-and-Mixins.md
+    echo ⚠️  Skipping 09-Composition-and-Mixins.md
 )
 echo. >> "%TEMP_FILE%"
 

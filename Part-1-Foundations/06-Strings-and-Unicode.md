@@ -1,4 +1,4 @@
-﻿# 06: Strings and Unicode
+# 06: Strings and Unicode
 
 **Audience:** All  
 **Time:** 90 minutes  
@@ -521,7 +521,7 @@ def main()
 
 - → **07-Classes** — Object-oriented programming
 - → **18-Regular-Expressions** — Deep dive into regex
-- 🏋️ **Project-1-CLI-Tool** — Text processing practical application
+- 🏋 **Project-1-CLI-Tool** — Text processing practical application
 
 ---
 

@@ -1,4 +1,4 @@
-﻿# 08: Interfaces and Protocols
+# 08: Interfaces and Protocols
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -522,7 +522,7 @@ def main()
 
 - → **09-Composition-and-Mixins** — Sharing behaviour without inheritance
 - → **14-Contracts** — More complex interfaces
-- 🏋️ **Project-2-HTTP-Server** — Interfaces for handlers and middleware
+- 🏋 **Project-2-HTTP-Server** — Interfaces for handlers and middleware
 
 ---
 

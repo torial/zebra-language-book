@@ -1,4 +1,4 @@
-﻿# 02: Values and Types
+# 02: Values and Types
 
 **Audience:** All  
 **Time:** 90 minutes  

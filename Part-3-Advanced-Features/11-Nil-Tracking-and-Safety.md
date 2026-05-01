@@ -1,4 +1,4 @@
-﻿# 11: Nil Tracking and Safety
+# 11: Nil Tracking and Safety
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -445,7 +445,7 @@ def main()
 
 - → **12-Error-Handling** — Results for error cases
 - → **14-Contracts** — Enforce non-nil invariants
-- 🏋️ **Project-2-HTTP-Server** — Handle nil API responses
+- 🏋 **Project-2-HTTP-Server** — Handle nil API responses
 
 ---
 

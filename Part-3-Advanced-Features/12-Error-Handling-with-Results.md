@@ -1,4 +1,4 @@
-﻿# 12: Error Handling
+# 12: Error Handling
 
 **Audience:** All  
 **Time:** 120 minutes  

@@ -1,4 +1,4 @@
-﻿# 04: Functions and Scope
+# 04: Functions and Scope
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -424,7 +424,7 @@ def main()
 
 - → **05-Control-Flow** — if/else, loops, pattern matching
 - → **15-Pipelines** — Function composition
-- 🏋️ **Project-1-CLI-Tool** — Use functions extensively
+- 🏋 **Project-1-CLI-Tool** — Use functions extensively
 
 ---
 

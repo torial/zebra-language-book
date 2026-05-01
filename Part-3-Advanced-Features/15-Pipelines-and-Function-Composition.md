@@ -1,4 +1,4 @@
-﻿# 15: Pipelines and Function Composition
+# 15: Pipelines and Function Composition
 
 **Audience:** Experienced programmers  
 **Time:** 90 minutes  

@@ -577,7 +577,7 @@ broke the relationship between the count field and the underlying list.
 ## Next Steps
 
 - → **15-Pipelines** — Composing functions whose contracts compose, too
-- 🏋️ **Project 1 (CLI Tool)** — Use contracts for argument validation
+- 🏋 **Project 1 (CLI Tool)** — Use contracts for argument validation
 
 ---
 

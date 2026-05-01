@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 # Zebra Programming Book - PDF Builder (Unix/Mac/Linux)
 # Usage: ./build-pdf.sh
 # Prerequisites: pandoc (brew install pandoc on Mac, apt-get install pandoc on Linux)
@@ -72,7 +72,7 @@ cat Part-2-Objects-and-Interfaces/07-Classes-and-Instances.md >> "$TEMP_FILE" 2>
 echo "" >> "$TEMP_FILE"
 cat Part-2-Objects-and-Interfaces/08-Interfaces-and-Protocols.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 08-Interfaces-and-Protocols.md"
 echo "" >> "$TEMP_FILE"
-cat Part-2-Objects-and-Interfaces/09-Inheritance-and-Mixins.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 09-Inheritance-and-Mixins.md"
+cat Part-2-Objects-and-Interfaces/09-Composition-and-Mixins.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 09-Composition-and-Mixins.md"
 echo "" >> "$TEMP_FILE"
 cat Part-2-Objects-and-Interfaces/10-Properties-and-Computed-Values.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 10-Properties-and-Computed-Values.md"
 
@@ -122,6 +122,7 @@ pandoc "$TEMP_FILE" \
   --resource-path=".:Part-1-Foundations:Part-2-Objects-and-Interfaces:Part-3-Advanced-Features:Part-4-Practical-Projects:Part-5-Ecosystem" \
   -o "$OUTPUT_FILE" \
   --pdf-engine=xelatex \
+  --include-in-header=header.tex \
   --toc \
   --toc-depth=2 \
   --number-sections \
@@ -130,8 +131,9 @@ pandoc "$TEMP_FILE" \
   -V geometry:top=1in \
   -V geometry:bottom=1in \
   -V fontsize=12pt \
-  -V mainfont="Georgia" \
-  -V monofont="Consolas" \
+  -V mainfont="Noto Serif" \
+  -V sansfont="Noto Sans" \
+  -V monofont="DejaVu Sans Mono" \
   -V linestretch=1.5 \
   -V colorlinks=true \
   -V linkcolor=blue \

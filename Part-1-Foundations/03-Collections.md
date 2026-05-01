@@ -1,4 +1,4 @@
-﻿# 03: Collections
+# 03: Collections
 
 **Audience:** All  
 **Time:** 120 minutes  
@@ -445,7 +445,7 @@ def main()
 
 - → **04-Functions** — Reuse collection-processing code
 - → **05-Control-Flow** — Pattern matching on collections
-- 🏋️ **Project-3-Data-Analysis** — Real collection processing
+- 🏋 **Project-3-Data-Analysis** — Real collection processing
 
 ---
 

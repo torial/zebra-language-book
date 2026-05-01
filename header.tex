@@ -1,0 +1,57 @@
+% header.tex — xelatex unicode fallbacks for the Zebra book
+%
+% Purpose: substitute glyphs that the active fonts (Noto Serif / Noto Sans /
+% DejaVu Sans Mono) do not provide, so xelatex stops emitting
+% "Missing character" warnings and the PDF prints all source characters
+% as readable Latin-script substitutes.
+%
+% Add a new \newunicodechar mapping if a future build complains about
+% an additional codepoint.
+
+\usepackage{newunicodechar}
+\usepackage{pifont}      % \ding{51} (heavy check), \ding{55} (heavy ballot X)
+
+% --- emoji used as inline markers --------------------------------------------
+
+% ✅ U+2705  WHITE HEAVY CHECK MARK
+\newunicodechar{✅}{{\ding{51}}}
+
+% ❌ U+274C  CROSS MARK
+\newunicodechar{❌}{{\ding{55}}}
+
+% 🏋 U+1F3CB  PERSON LIFTING WEIGHTS — used as exercise-section marker
+\newunicodechar{🏋}{\textbf{[Exercise]}}
+
+% 💡 U+1F4A1  ELECTRIC LIGHT BULB — used as "Why" / "Tip" note marker
+\newunicodechar{💡}{\textbf{Tip:}}
+
+% --- emoji that appear inside source-code examples ---------------------------
+% (DejaVu Sans Mono lacks emoji glyphs entirely; ascii substitutes keep the
+% example readable without changing the source markdown.)
+
+% 👋 U+1F44B  WAVING HAND
+\newunicodechar{👋}{[wave]}
+
+% 🌍 U+1F30D  EARTH GLOBE EUROPE-AFRICA
+\newunicodechar{🌍}{[earth]}
+
+% 🎉 U+1F389  PARTY POPPER
+\newunicodechar{🎉}{[party]}
+
+% --- arrows ------------------------------------------------------------------
+
+% → U+2192  RIGHTWARDS ARROW
+% Math-mode \rightarrow is font-independent; \textrightarrow re-emits U+2192
+% in the active text font, which loops back into a missing-glyph warning.
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+
+% --- CJK in the Strings-and-Unicode chapter ----------------------------------
+% The book's Unicode chapter uses literal CJK ("你好世界" — "Hello World" in
+% Chinese) inside a code example. The active monospace font has no CJK
+% coverage, so each codepoint is mapped to its Hanyu-pinyin romanization.
+% Markdown source is unchanged; only the PDF render substitutes.
+
+\newunicodechar{你}{[ni]}
+\newunicodechar{好}{[hao]}
+\newunicodechar{世}{[shi]}
+\newunicodechar{界}{[jie]}

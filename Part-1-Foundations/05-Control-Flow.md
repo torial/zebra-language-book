@@ -1,4 +1,4 @@
-﻿# 05: Control Flow
+# 05: Control Flow
 
 **Audience:** All  
 **Time:** 90 minutes  
@@ -512,7 +512,7 @@ def main()
 
 - → **06-Strings-and-Unicode** — Text manipulation
 - → **05-Control-Flow** — Combine control flow with strings
-- 🏋️ **Project-1-CLI-Tool** — Use loops and conditions extensively
+- 🏋 **Project-1-CLI-Tool** — Use loops and conditions extensively
 
 ---
 

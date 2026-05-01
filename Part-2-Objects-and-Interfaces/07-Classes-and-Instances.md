@@ -1,4 +1,4 @@
-﻿# 07: Classes and Instances
+# 07: Classes and Instances
 
 **Audience:** All (with beginner sidebar)  
 **Time:** 120 minutes  
@@ -383,7 +383,7 @@ def main()
 
 - → **08-Interfaces** — Contracts for classes
 - → **09-Inheritance** — Class hierarchies
-- 🏋️ **Project-2-HTTP-Server** — Use classes extensively
+- 🏋 **Project-2-HTTP-Server** — Use classes extensively
 
 ---
 

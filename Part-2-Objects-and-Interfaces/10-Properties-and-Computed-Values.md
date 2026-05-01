@@ -603,7 +603,7 @@ def main()
 
 - → **11-Nil-Tracking** — Advanced safety with properties
 - → **14-Contracts** — Enforce property invariants
-- 🏋️ **Project-1-CLI-Tool** — Use configuration properties
+- 🏋 **Project-1-CLI-Tool** — Use configuration properties
 
 ---
 

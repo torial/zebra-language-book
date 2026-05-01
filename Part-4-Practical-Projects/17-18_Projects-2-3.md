@@ -1,4 +1,4 @@
-﻿# Projects 2 & 3: HTTP Server and Data Analysis
+# Projects 2 & 3: HTTP Server and Data Analysis
 
 ## Project 2: HTTP Server (16-18 hours)
 

@@ -370,7 +370,7 @@ My name is Bob Smith and I'm 30 years old.
 
 - → **02-Values-and-Types** — Dive into Zebra's type system
 - → **03-Collections** — Work with Lists and HashMaps
-- 🏋️ **Project-1-CLI-Tool** — Build something real
+- 🏋 **Project-1-CLI-Tool** — Build something real
 
 ---
 

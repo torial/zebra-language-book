@@ -708,7 +708,7 @@ def main()
 Different tools support different features. Zebra uses Thompson NFA, which:
 - ✅ Supports basic patterns well
 - ✅ Has predictable performance (no catastrophic backtracking)
-- ⚠️ May not support all advanced features like lookahead
+- ⚠ May not support all advanced features like lookahead
 
 Check documentation for your version.
 

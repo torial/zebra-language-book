@@ -1,4 +1,4 @@
-﻿# 13: Generics and Type Constraints
+# 13: Generics and Type Constraints
 
 **Audience:** Experienced programmers  
 **Time:** 120 minutes  

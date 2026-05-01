@@ -587,7 +587,7 @@ def main()
 
 - → **10-Properties** — Field access patterns and getter idioms
 - → **14-Contracts** — Enforce invariants across composed types
-- 🏋️ **Project-1-CLI-Tool** — Use mixins for cross-cutting concerns
+- 🏋 **Project-1-CLI-Tool** — Use mixins for cross-cutting concerns
   (logging, configuration)
 
 ---

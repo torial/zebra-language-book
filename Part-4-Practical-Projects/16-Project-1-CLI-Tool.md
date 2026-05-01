@@ -1,4 +1,4 @@
-﻿# Project 1: Command-Line Text Processing Tool
+# Project 1: Command-Line Text Processing Tool
 
 **Time:** 3-4 hours  
 **Prereq:** 01-12  
