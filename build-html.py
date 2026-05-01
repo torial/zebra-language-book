@@ -32,6 +32,9 @@ from datetime import datetime
 class HtmlBuilder:
     def __init__(self, book_root: str = "."):
         self.book_root = Path(book_root)
+        # Markdown chapters and diagrams live under book/ to keep the repo
+        # root buildable as a GitHub Pages site.
+        self.content_root = self.book_root / "book"
         self.docs_dir = self.book_root / "docs"
         self.chapters = []
         self.toc = []
@@ -49,7 +52,7 @@ class HtmlBuilder:
         chapters = []
         part_order = []
 
-        for part_dir in sorted(self.book_root.glob("Part-*")):
+        for part_dir in sorted(self.content_root.glob("Part-*")):
             if not part_dir.is_dir():
                 continue
 
@@ -64,7 +67,7 @@ class HtmlBuilder:
 
     def copy_diagrams(self):
         """Copy diagram files to output."""
-        diagrams_src = self.book_root / "diagrams"
+        diagrams_src = self.content_root / "diagrams"
         diagrams_dst = self.docs_dir / "diagrams"
 
         if not diagrams_src.exists():

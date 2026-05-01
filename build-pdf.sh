@@ -22,6 +22,14 @@ fi
 # Create temporary file with all chapters
 TEMP_FILE="/tmp/zebra-book-combined.md"
 OUTPUT_FILE="zebra-programming-book.pdf"
+BOOK_DIR="book"
+
+# Pandoc's --resource-path uses ':' on Unix-y pandoc and ';' on Windows pandoc
+# (even when the script runs in Git Bash). Detect once.
+case "$(uname -s 2>/dev/null)" in
+    MINGW*|MSYS*|CYGWIN*) PATHSEP=';' ;;
+    *)                    PATHSEP=':' ;;
+esac
 
 echo "📚 Combining chapters..."
 
@@ -49,17 +57,17 @@ cat >> "$TEMP_FILE" << 'EOF'
 # Part 1: Foundations
 
 EOF
-cat Part-1-Foundations/01-Getting-Started.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 01-Getting-Started.md"
+cat $BOOK_DIR/Part-1-Foundations/01-Getting-Started.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 01-Getting-Started.md"
 echo "" >> "$TEMP_FILE"
-cat Part-1-Foundations/02-Values-and-Types.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 02-Values-and-Types.md"
+cat $BOOK_DIR/Part-1-Foundations/02-Values-and-Types.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 02-Values-and-Types.md"
 echo "" >> "$TEMP_FILE"
-cat Part-1-Foundations/03-Collections.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 03-Collections.md"
+cat $BOOK_DIR/Part-1-Foundations/03-Collections.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 03-Collections.md"
 echo "" >> "$TEMP_FILE"
-cat Part-1-Foundations/04-Functions-and-Scope.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 04-Functions-and-Scope.md"
+cat $BOOK_DIR/Part-1-Foundations/04-Functions-and-Scope.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 04-Functions-and-Scope.md"
 echo "" >> "$TEMP_FILE"
-cat Part-1-Foundations/05-Control-Flow.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 05-Control-Flow.md"
+cat $BOOK_DIR/Part-1-Foundations/05-Control-Flow.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 05-Control-Flow.md"
 echo "" >> "$TEMP_FILE"
-cat Part-1-Foundations/06-Strings-and-Unicode.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 06-Strings-and-Unicode.md"
+cat $BOOK_DIR/Part-1-Foundations/06-Strings-and-Unicode.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 06-Strings-and-Unicode.md"
 
 # Part 2: Objects & Interfaces
 echo "  Part 2: Objects & Interfaces..."
@@ -68,13 +76,13 @@ cat >> "$TEMP_FILE" << 'EOF'
 # Part 2: Objects and Interfaces
 
 EOF
-cat Part-2-Objects-and-Interfaces/07-Classes-and-Instances.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 07-Classes-and-Instances.md"
+cat $BOOK_DIR/Part-2-Objects-and-Interfaces/07-Classes-and-Instances.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 07-Classes-and-Instances.md"
 echo "" >> "$TEMP_FILE"
-cat Part-2-Objects-and-Interfaces/08-Interfaces-and-Protocols.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 08-Interfaces-and-Protocols.md"
+cat $BOOK_DIR/Part-2-Objects-and-Interfaces/08-Interfaces-and-Protocols.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 08-Interfaces-and-Protocols.md"
 echo "" >> "$TEMP_FILE"
-cat Part-2-Objects-and-Interfaces/09-Composition-and-Mixins.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 09-Composition-and-Mixins.md"
+cat $BOOK_DIR/Part-2-Objects-and-Interfaces/09-Composition-and-Mixins.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 09-Composition-and-Mixins.md"
 echo "" >> "$TEMP_FILE"
-cat Part-2-Objects-and-Interfaces/10-Properties-and-Computed-Values.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 10-Properties-and-Computed-Values.md"
+cat $BOOK_DIR/Part-2-Objects-and-Interfaces/10-Properties-and-Computed-Values.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 10-Properties-and-Computed-Values.md"
 
 # Part 3: Advanced Features
 echo "  Part 3: Advanced Features..."
@@ -83,15 +91,15 @@ cat >> "$TEMP_FILE" << 'EOF'
 # Part 3: Advanced Features
 
 EOF
-cat Part-3-Advanced-Features/11-Nil-Tracking-and-Safety.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 11-Nil-Tracking-and-Safety.md"
+cat $BOOK_DIR/Part-3-Advanced-Features/11-Nil-Tracking-and-Safety.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 11-Nil-Tracking-and-Safety.md"
 echo "" >> "$TEMP_FILE"
-cat Part-3-Advanced-Features/12-Error-Handling-with-Results.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 12-Error-Handling-with-Results.md"
+cat $BOOK_DIR/Part-3-Advanced-Features/12-Error-Handling-with-Results.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 12-Error-Handling-with-Results.md"
 echo "" >> "$TEMP_FILE"
-cat Part-3-Advanced-Features/13-Generics-and-Type-Constraints.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 13-Generics-and-Type-Constraints.md"
+cat $BOOK_DIR/Part-3-Advanced-Features/13-Generics-and-Type-Constraints.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 13-Generics-and-Type-Constraints.md"
 echo "" >> "$TEMP_FILE"
-cat Part-3-Advanced-Features/14-Contracts-and-Assertions.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 14-Contracts-and-Assertions.md"
+cat $BOOK_DIR/Part-3-Advanced-Features/14-Contracts-and-Assertions.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 14-Contracts-and-Assertions.md"
 echo "" >> "$TEMP_FILE"
-cat Part-3-Advanced-Features/15-Pipelines-and-Function-Composition.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 15-Pipelines-and-Function-Composition.md"
+cat $BOOK_DIR/Part-3-Advanced-Features/15-Pipelines-and-Function-Composition.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 15-Pipelines-and-Function-Composition.md"
 
 # Part 4: Practical Projects
 echo "  Part 4: Practical Projects..."
@@ -100,9 +108,9 @@ cat >> "$TEMP_FILE" << 'EOF'
 # Part 4: Practical Projects
 
 EOF
-cat Part-4-Practical-Projects/16-Project-1-CLI-Tool.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 16-Project-1-CLI-Tool.md"
+cat $BOOK_DIR/Part-4-Practical-Projects/16-Project-1-CLI-Tool.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 16-Project-1-CLI-Tool.md"
 echo "" >> "$TEMP_FILE"
-cat Part-4-Practical-Projects/17-18_Projects-2-3.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 17-18_Projects-2-3.md"
+cat $BOOK_DIR/Part-4-Practical-Projects/17-18_Projects-2-3.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 17-18_Projects-2-3.md"
 
 # Part 5: Ecosystem
 echo "  Part 5: Ecosystem..."
@@ -111,7 +119,7 @@ cat >> "$TEMP_FILE" << 'EOF'
 # Part 5: Ecosystem and Reference
 
 EOF
-cat Part-5-Ecosystem/19-22_Final-Chapters.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 19-22_Final-Chapters.md"
+cat $BOOK_DIR/Part-5-Ecosystem/19-22_Final-Chapters.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping 19-22_Final-Chapters.md"
 
 echo "📖 Converting to PDF..."
 echo "   (This may take a minute...)"
@@ -119,7 +127,7 @@ echo ""
 
 # Build PDF with pandoc
 pandoc "$TEMP_FILE" \
-  --resource-path=".:Part-1-Foundations:Part-2-Objects-and-Interfaces:Part-3-Advanced-Features:Part-4-Practical-Projects:Part-5-Ecosystem" \
+  --resource-path=".${PATHSEP}$BOOK_DIR${PATHSEP}$BOOK_DIR/Part-1-Foundations${PATHSEP}$BOOK_DIR/Part-2-Objects-and-Interfaces${PATHSEP}$BOOK_DIR/Part-3-Advanced-Features${PATHSEP}$BOOK_DIR/Part-4-Practical-Projects${PATHSEP}$BOOK_DIR/Part-5-Ecosystem" \
   -o "$OUTPUT_FILE" \
   --pdf-engine=xelatex \
   --include-in-header=header.tex \

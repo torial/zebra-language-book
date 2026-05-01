@@ -26,6 +26,8 @@ from collections import defaultdict
 class ChapterLinter:
     def __init__(self, book_root: str = "."):
         self.book_root = Path(book_root)
+        # Markdown chapters and diagrams live under book/.
+        self.content_root = self.book_root / "book"
         self.issues = defaultdict(list)
         self.stats = {
             'files': 0,
@@ -40,7 +42,7 @@ class ChapterLinter:
     def find_chapters(self) -> List[Path]:
         """Find all markdown chapter files."""
         chapters = []
-        for part_dir in sorted(self.book_root.glob("Part-*")):
+        for part_dir in sorted(self.content_root.glob("Part-*")):
             if not part_dir.is_dir():
                 continue
             chapters.extend(sorted(part_dir.glob("*.md")))
@@ -148,7 +150,7 @@ class ChapterLinter:
         references = re.findall(pattern, content)
         self.stats['diagrams'] += len(references)
 
-        diagrams_dir = self.book_root / "diagrams"
+        diagrams_dir = self.content_root / "diagrams"
 
         for ref in references:
             # Normalize path
