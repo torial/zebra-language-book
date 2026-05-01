@@ -2,6 +2,8 @@
 
 A comprehensive guide to Zebra from fundamentals through advanced patterns. Written for experienced programmers learning a new language.
 
+[The book](docs/index.html)
+
 ## Quick Start
 
 ```bash
