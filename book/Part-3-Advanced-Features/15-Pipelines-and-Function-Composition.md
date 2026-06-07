@@ -27,14 +27,18 @@ With the **pipeline operator** `->`, this reads left-to-right:
 
 ```zebra
 var text = "HELLO WORLD"
-var length = text
+var first_word = (text
     -> .lower()
     -> .split(" ")
-    -> .at(0)
-    -> .len
+    -> .at(0))
+var length = first_word.len   # .len is a field, not a call — pipelines need calls
 ```
 
 Pipelines make **data transformations** flow naturally, like reading prose.
+
+> **Note on multi-line pipelines:** Zebra's tokenizer ends an expression at a
+> bare end-of-line, so a multi-line pipeline must be **wrapped in parentheses**.
+> Single-line pipelines (`var r = 5 -> add(10) -> double()`) don't need parens.
 
 ---
 
@@ -51,15 +55,15 @@ The `->` operator passes the left-hand value to the right-hand expression:
 
 def main()
     var text = "HELLO WORLD"
-    
+
     # Without pipeline (nested calls)
     var result1 = text.lower().split(" ")
-    
-    # With pipeline (left-to-right)
-    var result2 = text
+
+    # With pipeline (left-to-right) — multi-line needs parens
+    var result2 = (text
         -> .lower()
-        -> .split(" ")
-    
+        -> .split(" "))
+
     # Both are equivalent
     for word in result2
         print word
@@ -81,10 +85,10 @@ Pipelines shine when you have many sequential transformations:
 class StringProcessor
     static
         def process(text: str): str
-            return text
+            return (text
                 -> .lower()
                 -> .trim()
-                -> .replace("  ", " ")
+                -> .replace("  ", " "))
 
 def main()
     var input = "  HELLO   WORLD  "
@@ -108,17 +112,17 @@ Pipelines work great with lists and maps:
 class DataProcessor
     static
         def count_words(text: str): int
-            return text
+            return (text
                 -> .lower()
                 -> .split(" ")
-                -> .count()
+                -> .count())
 
 def main()
     var input = "The Quick Brown Fox"
-    var words = input
+    var words = (input
         -> .lower()
-        -> .split(" ")
-    
+        -> .split(" "))
+
     var count = words.count()
     print "Word count: ${count}"
 ```
@@ -140,23 +144,26 @@ class Utils
     static
         def double(x: int): int
             return x * 2
-        
+
         def add_ten(x: int): int
             return x + 10
-        
+
         def format_result(x: int): str
             return "Result: ${x}"
 
 def main()
-    var result = 5
-        -> Utils.double(.)
-        -> Utils.add_ten(.)
-        -> Utils.format_result(.)
-    
+    var result = (5
+        -> Utils.double()
+        -> Utils.add_ten()
+        -> Utils.format_result())
+
     print result  # Output: Result: 20
 ```
 
-The `.` placeholder represents the piped value. `5 -> Utils.double(.)` means "call `Utils.double(5)`".
+The pipeline auto-prepends the left-hand value as the **first argument** to the
+right-hand call. `5 -> Utils.double()` becomes `Utils.double(5)`. If the
+function takes more arguments, supply them in the parens: `5 -> Utils.add(10)`
+becomes `Utils.add(5, 10)`.
 
 ---
 
@@ -179,13 +186,13 @@ class DataAnalysis
                 var num = part.trim().toInt()
                 numbers.add(num)
             return numbers
-        
+
         def sum_list(items: List(int)): int
             var total = 0
             for item in items
                 total = total + item
             return total
-        
+
         def average(total: int, count: int): float
             if count == 0
                 return 0.0
@@ -193,12 +200,12 @@ class DataAnalysis
 
 def main()
     var csv_line = "10, 20, 30, 40"
-    
-    var avg = csv_line
-        -> DataAnalysis.parse_numbers(.)
-        -> DataAnalysis.sum_list(.)
-        -> DataAnalysis.average(., 4)
-    
+
+    var avg = (csv_line
+        -> DataAnalysis.parse_numbers()
+        -> DataAnalysis.sum_list()
+        -> DataAnalysis.average(4))         # auto-prepends sum as first arg
+
     print "Average: ${avg}"
 ```
 
@@ -219,18 +226,18 @@ class Transform
     static
         def lowercase(text: str): str
             return text.lower()
-        
+
         def remove_spaces(text: str): str
             return text.replace(" ", "")
-        
+
         def reverse_it(text: str): str
             return text.reverse()
-        
+
         def compose_all(text: str): str
-            return text
-                -> Transform.lowercase(.)
-                -> Transform.remove_spaces(.)
-                -> Transform.reverse_it(.)
+            return (text
+                -> Transform.lowercase()
+                -> Transform.remove_spaces()
+                -> Transform.reverse_it())
 
 def main()
     var input = "HELLO WORLD"
@@ -242,9 +249,11 @@ Each step is a self-contained function. Composition lets you **reuse them in dif
 
 ---
 
-## Pipelines with Result Types
+## Pipelines with Error Handling
 
-Pipelines work nicely with error handling:
+Pipelines propagate errors naturally — if any step's `throws` function raises,
+the whole pipeline aborts and the error surfaces at the function boundary.
+Use a method-level `catch` clause to handle it:
 
 ```zebra
 # file: 15_pipeline_results.zbr
@@ -261,90 +270,94 @@ class SafeParser
             if text == "42"
                 return 42
             raise "Not a number"
-        
+
         def double_it(x: int): int
             return x * 2
 
+def run(input: str)
+    var doubled = (input
+        -> SafeParser.parse_int()
+        -> SafeParser.double_it())
+    print doubled
+catch |e|
+    print "error: ${e}"
+
 def main()
-    var input = "42"
-    var result = input
-        -> SafeParser.parse_int(.)
-    
-    if result.isOk()
-        var doubled = result.okValue()
-            -> SafeParser.double_it(.)
-        print doubled
+    run("42")               # prints 84
+    run("not a number")     # prints "error: Not a number"
 ```
 
-When an error occurs, stop the pipeline and handle the error.
+When an error occurs, the pipeline aborts and the method-level `catch` clause
+runs. The `catch |e|` block sits at the same indent level as `def` — that's
+the Zebra error-handling idiom (see Chapter 12).
 
 ---
 
 ## Common Mistakes
 
-### Mistake 1: Forgetting the Dot Placeholder
+### Mistake 1: Piping to a Field, Not a Call
 
 ```zebra
-# WRONG
-var result = 5
-    -> Utils.double()  # Error: double() takes 1 argument, 0 given
+# WRONG — pipeline RHS must be a call expression
+var result = (text
+    -> .lower()
+    -> .len)        # Error: .len is a field access, not a call
 
-# CORRECT
-var result = 5
-    -> Utils.double(.)
+# CORRECT — finish the pipeline, then read the field
+var lowered = text -> .lower()
+var result = lowered.len
 ```
 
-### Mistake 2: Breaking the Chain at the Wrong Place
+### Mistake 2: Forgetting the Parens on a Multi-Line Pipeline
 
 ```zebra
-# WRONG - trying to pipe to an intermediate value
-var result = "HELLO"
-    -> .lower()
+# WRONG — the expression ends at the first newline
+var result = text
+    -> .lower()             # parse error: unexpected token
     -> .split(" ")
-    first_word = .at(0)  # Error: can't pipe to assignment
 
-# CORRECT
-var result = "HELLO"
+# CORRECT — wrap the whole pipeline in parens
+var result = (text
     -> .lower()
-    -> .split(" ")
-var first_word = result.at(0)
+    -> .split(" "))
+
+# Or write it on a single line (no parens needed):
+var result = text -> .lower() -> .split(" ")
 ```
 
-### Mistake 3: Piping to Functions with Multiple Parameters
+### Mistake 3: Forgetting That the Pipe Becomes the *First* Argument
 
 ```zebra
-# WRONG - only pipes the first argument
-var result = 10
-    -> Utils.add(., 5)  # Accidentally clear, but could be confusing
+# Pipeline auto-prepends the left-hand value as the FIRST argument.
+# So `10 -> Utils.add(5)` calls `Utils.add(10, 5)`, not `Utils.add(5, 10)`.
 
-# This is actually fine, but consider:
-var result = 10
-    -> Utils.add(.)  # Error: add() requires 2 arguments
+# Want 10 as the SECOND argument? Don't use a pipeline:
+var result = Utils.add(5, 10)
 ```
 
 ### Mistake 4: Over-Piping (Readability)
 
 ```zebra
-# TOO MUCH - hard to follow after many steps
-var result = "data"
+# TOO MUCH — hard to follow after many steps
+var result = ("data"
     -> .lower()
     -> .trim()
     -> .replace("a", "b")
     -> .reverse()
     -> .split("")
-    -> Filter.remove_blanks(.)
-    -> Sorter.sort(.)
-    -> Formatter.join_with_commas(.)
+    -> Filter.remove_blanks()
+    -> Sorter.sort()
+    -> Formatter.join_with_commas())
 
-# BETTER - break into logical chunks
-var cleaned = "data"
+# BETTER — break into logical chunks with intermediate variables
+var cleaned = ("data"
     -> .lower()
     -> .trim()
-    -> .replace("a", "b")
+    -> .replace("a", "b"))
 
-var processed = cleaned
+var processed = (cleaned
     -> .reverse()
-    -> .split("")
+    -> .split(""))
 ```
 
 ---
@@ -369,12 +382,12 @@ class TextStats
 
 def main()
     var user_input = "  HELLO WORLD FOO  "
-    
-    var word_count = user_input
+
+    var word_count = (user_input
         -> .lower()
         -> .trim()
-        -> TextStats.count_words(.)
-    
+        -> TextStats.count_words())
+
     print "Words: ${word_count}"
 ```
 
@@ -394,35 +407,36 @@ class NumUtils
             if text == "5"
                 return 5
             raise "Invalid number"
-        
+
         def double_it(x: int): int
             return x * 2
-        
+
         def add_ten(x: int): int
             return x + 10
-        
+
         def to_message(x: int): str
             return "Final result: ${x}"
 
+def run(input: str)
+    var final = (input
+        -> NumUtils.parse_safe()
+        -> NumUtils.double_it()
+        -> NumUtils.add_ten()
+        -> NumUtils.to_message())
+    print final
+catch |e|
+    print "error: ${e}"
+
 def main()
-    var input = "5"
-    
-    var result = input
-        -> NumUtils.parse_safe(.)
-    
-    if result.isOk()
-        var final = result.okValue()
-            -> NumUtils.double_it(.)
-            -> NumUtils.add_ten(.)
-            -> NumUtils.to_message(.)
-        print final
+    run("5")               # prints "Final result: 20"
+    run("not a number")    # prints "error: Invalid number"
 ```
 
 </details>
 
 ### Exercise 3: List Filtering Pipeline
 
-Create a pipeline that filters a list of numbers to keep only even values, sums them, and returns the average:
+Create a pipeline that filters a list of numbers to keep only even values and sums them:
 
 <details>
 <summary>Solution</summary>
@@ -436,7 +450,7 @@ class ListOps
                 if item % 2 == 0
                     result.add(item)
             return result
-        
+
         def sum_all(items: List(int)): int
             var total = 0
             for item in items
@@ -451,11 +465,11 @@ def main()
     numbers.add(4)
     numbers.add(5)
     numbers.add(6)
-    
-    var sum = numbers
-        -> ListOps.filter_even(.)
-        -> ListOps.sum_all(.)
-    
+
+    var sum = (numbers
+        -> ListOps.filter_even()
+        -> ListOps.sum_all())
+
     print "Sum of evens: ${sum}"
 ```
 
@@ -466,10 +480,11 @@ def main()
 ## Key Takeaways
 
 - **Pipelines make data transformations read naturally** — Left-to-right flow matches human thinking
-- **The `->` operator passes results forward** — Each step receives the previous step's output
-- **Pipelines work with methods and functions** — Mix `.method()` calls with `Function(.)` calls
+- **The `->` operator passes results forward** — The left value auto-prepends as the **first argument** of the right-hand call
+- **Pipelines work with methods and functions** — Mix `.method()` calls with `Function()` calls
+- **Multi-line pipelines must be wrapped in `(...)`** — Zebra ends an expression at a bare EOL; parens keep the chain together
 - **Break long pipelines into logical chunks** — Maintain readability for complex transformations
-- **Pipelines + Results = clean error handling** — Stop processing when an error occurs
+- **Pipelines + `throws` = clean error handling** — A method-level `catch` clause handles errors anywhere in the chain
 
 ---
 

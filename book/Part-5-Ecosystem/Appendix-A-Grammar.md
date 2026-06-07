@@ -52,8 +52,10 @@ def parse(text: str): int throws
 
 var value = parse("hello") catch 0
 
-try
+# Multi-statement handling uses a method-level catch clause
+def attempt()
     var v = parse("")
+    print v
 catch |err|
     print "Error: ${err}"
 ```
@@ -281,12 +283,13 @@ def load(path: str): str throws
         raise "Empty path"
     return "data"
 
-# Catch expression
+# Inline postfix catch expression
 var data = load("") catch "default"
 
-# Try/catch block
-try
+# Method-level catch clause (attaches to a def)
+def attempt()
     var d = load("")
+    print d
 catch |err|
     print "Error: ${err}"
 ```
@@ -467,14 +470,17 @@ var value = divide(10, 0) catch 0
 var result = divide(10, 0) catch |e| -1
 ```
 
-### Try/Catch Block
+### Method-Level Catch Clause
 
 ```zebra
-try
+def attempt()
     var value = divide(10, 0)
     print value
 catch |err|
     print "Error: ${err}"
+
+# The `try expr` prefix form and `try ... catch ...` block form were removed
+# in 0.15. Use `expr?` for inline propagation, or attach `catch` to a `def`.
 ```
 
 **References:** Chapter 12 (Error Handling)

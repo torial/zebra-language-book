@@ -3,25 +3,26 @@
 **Audience:** All  
 **Time:** 120 minutes  
 **Prerequisites:** 02-Values, 04-Functions, 07-Classes, 11-Nil-Tracking  
-**You'll learn:** `throws` annotation, `raise` statement, `try`/`catch` blocks, error propagation, `catch` expressions
+**You'll learn:** `throws` annotation, `raise` statement, method-level `catch` clauses, error propagation, inline `catch` expressions
 
 ---
 
 ## The Big Picture
 
-Zebra's primary error model is **exceptions** — `throws`/`raise`/`try`/`catch`.
+Zebra's error model is **exceptions** — `throws`/`raise`/`try`/`catch`.
 The shape is inspired by Zig's error-set system (each `throws` function returns
 `anyerror!T` in the generated Zig), but enriched: `raise "msg"` carries a
 string message, and `raise "msg", obj` attaches a structured details object
 via a thread-local `_error_ctx` — strictly more than Zig's payload-less
 error enums.
 
-`Result(T)` exists as a secondary error-as-value type for the cases where
-that fits better (parser combinators, batch validators), but the
-recommended default is `throws`.
+Error paths are explicit in the type system: `throws` on a signature is the
+only way a function can fail, so you can see at a glance which functions may
+fail and which cannot.
 
-Either way, error paths are explicit in the type system: you can see at a
-glance which functions may fail and which cannot.
+> **Note:** Earlier versions of Zebra exposed a `Result(T)` type as an
+> error-as-value alternative. That type and its `.isOk()`/`.okValue()`
+> methods were removed. Use `throws` for all error handling.
 
 ---
 
@@ -77,23 +78,27 @@ class FileLoader
 
 ---
 
-## `try` / `catch` — Handling Errors
+## Method-Level `catch` — Handling Errors
 
 ### Block Form
 
-Use `try`/`catch` blocks for structured error handling:
+For structured error handling, attach a `catch` clause to a method (or `def`)
+at the same indent level as the `def` keyword. The clause runs when any
+`throws` call inside the method body raises:
 
 ```zebra
-# file: 12_try_catch.zbr
-# teaches: try/catch blocks
+# file: 12_method_catch.zbr
+# teaches: method-level catch clause
 # chapter: 12-Error-Handling
 
+def attempt()
+    var value = Validator.parse_int("")
+    print "Got: ${value}"
+catch
+    print "Failed to parse"
+
 def main()
-    try
-        var value = Validator.parse_int("")
-        print "Got: ${value}"
-    catch
-        print "Failed to parse"
+    attempt()
 ```
 
 ### Catch with Binding
@@ -105,12 +110,14 @@ Bind the error value to inspect it:
 # teaches: catch with error binding
 # chapter: 12-Error-Handling
 
+def attempt()
+    var value = Validator.parse_int("")
+    print "Got: ${value}"
+catch |err|
+    print "Error: ${err}"
+
 def main()
-    try
-        var value = Validator.parse_int("")
-        print "Got: ${value}"
-    catch |err|
-        print "Error: ${err}"
+    attempt()
 ```
 
 ### Catch with Type
@@ -122,13 +129,20 @@ Specify a type for the error binding:
 # teaches: catch with typed error binding
 # chapter: 12-Error-Handling
 
+def attempt()
+    var value = Validator.parse_int("")
+    print value
+catch |err as str|
+    print "String error: ${err}"
+
 def main()
-    try
-        var value = Validator.parse_int("")
-        print value
-    catch |err as str|
-        print "String error: ${err}"
+    attempt()
 ```
+
+> **Note:** Earlier Zebra versions allowed a `try ... catch ...` block at any
+> point inside a method body. That form was removed; today every `catch`
+> clause attaches to either a `def` (method-level) or a single expression
+> (inline postfix `expr catch fallback`).
 
 ---
 
@@ -207,17 +221,19 @@ class APIClient
             var user = fetch_user(user_id)
             return "Hello, ${user}!"
 
-def main()
-    # Using catch expression
-    var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
-    print greeting  # Hello, Alice!
+def attempt_greet(user_id: int)
+    var g = APIClient.fetch_and_greet(user_id)
+    print g
+catch |err|
+    print "Error: ${err}"
 
-    # Using try/catch block
-    try
-        var g2 = APIClient.fetch_and_greet(999)
-        print g2
-    catch |err|
-        print "Error: ${err}"
+def main()
+    # Using inline catch expression
+    var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
+    print greeting              # Hello, Alice!
+
+    # Using method-level catch (wraps a multi-line block)
+    attempt_greet(999)          # prints "Error: User not found"
 ```
 
 ---
@@ -274,15 +290,16 @@ class AgeValidator
                 raise "Age too large"
             return "valid"
 
-def main()
-    try
-        var result = AgeValidator.validate_age("25")
-        print result  # valid
-    catch |err|
-        print "Error: ${err}"
+def attempt_validate(text: str)
+    var result = AgeValidator.validate_age(text)
+    print result                  # "valid"
+catch |err|
+    print "Error: ${err}"
 
+def main()
+    attempt_validate("25")        # prints "valid"
     var r2 = AgeValidator.validate_age("200") catch "invalid"
-    print r2  # invalid
+    print r2                      # invalid
 ```
 
 </details>
@@ -300,7 +317,7 @@ def main()
 
 - **`throws`** — Annotates functions that may fail
 - **`raise`** — Signals an error, exits the function immediately
-- **`try`/`catch`** — Block-form error handling with optional binding
+- **Method-level `catch`** — Attach a `catch` clause to a `def` at the same indent level; it runs when any `throws` call in the body raises
 - **`catch` expression** — Inline fallback: `expr catch default`
 - **Errors propagate** — A `throws` function can let callee errors bubble up
 - **Errors are explicit** — You always know which functions can fail

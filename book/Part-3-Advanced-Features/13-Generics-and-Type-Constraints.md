@@ -376,22 +376,29 @@ def main()
 
 </details>
 
-### Exercise 2: Generic Filter Function
+### Exercise 2: Filter Function with a `sig` Predicate
 
-Write a function that filters a list based on a predicate (function that returns bool):
+Write a function that filters a list of `int` based on a predicate. Function
+parameters that accept lambdas must use a named `sig` type — inline
+`def(T): R` types are not valid in parameter position (see Chapter 04).
 
 <details>
 <summary>Solution</summary>
 
 ```zebra
+sig IntPredicate(x: int): bool      # name the function type
+
 class ListUtils
     static
-        def filter(items: List(T), predicate as T -> bool): List(T)
-            var result: List(T) = List()
+        def filter(items: List(int), pred: IntPredicate): List(int)
+            var result: List(int) = List()
             for item in items
-                if predicate(item)
+                if pred(item)
                     result.add(item)
             return result
+
+def is_even(x: int): bool
+    return x % 2 == 0
 
 def main()
     var numbers: List(int) = List()
@@ -399,13 +406,18 @@ def main()
     numbers.add(2)
     numbers.add(3)
     numbers.add(4)
-    
-    var is_even: T -> bool = { x in x % 2 == 0 }
+
     var evens = ListUtils.filter(numbers, is_even)
-    
+
     for e in evens
         print e
 ```
+
+A truly *generic* filter — `filter(T)(items: List(T), pred: ???)` — would need
+a generic `sig` type. Generic sigs aren't part of the language yet, so the
+idiomatic move is to write one concrete filter per element type, or to write a
+generic function whose predicate is a comptime callable (see the generic
+functions section of QUICKSTART for advanced patterns).
 
 </details>
 
