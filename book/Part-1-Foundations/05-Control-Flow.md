@@ -82,6 +82,72 @@ def main()
 
 ---
 
+## Inline Conditions
+
+Zebra lets you write short conditions on one line, and use `if` as an
+**expression** that produces a value.
+
+### One-Line If Statement
+
+```zebra
+# file: 05_inline_if.zbr
+# teaches: one-line if statement
+# chapter: 05-Control-Flow
+
+def main()
+    var x = 10
+    if x > 0: print "positive"       # colon required before body
+
+    # One-line with else:
+    var label = ""
+    if x > 0: label = "pos" else: label = "non-pos"
+
+    # Chained else-if on one line:
+    var grade = 78
+    var letter = ""
+    if grade >= 90: letter = "A" else if grade >= 80: letter = "B" else: letter = "C"
+    print letter                     # C
+```
+
+The `:` is required before the body. No block — the condition and body sit
+on the same line.
+
+### If as an Expression
+
+`if` can also **produce a value** when used in expression position:
+
+```zebra
+# file: 05_if_expr.zbr
+# teaches: if-expression
+# chapter: 05-Control-Flow
+
+def main()
+    var score = 85
+
+    # Assign the result of an if-expression:
+    var result = if score >= 60: "pass" else: "fail"
+    print result                     # pass
+
+    # Use directly in a function call:
+    print(if score > 50: "pass" else: "fail")
+
+    # Compute absolute value:
+    var n: int = -5
+    var abs_n: int = if n >= 0: n else: -n
+    print abs_n                      # 5
+```
+
+**Rules for the expression form:**
+- An `else:` branch is **required** — both branches must produce a value.
+- Both branches must be the **same type** (compiler infers it).
+- The `else:` must appear on the **same line** as the `if`.
+- Chained `else if` is **not supported** in expression position — for multi-branch logic, use a block-form `if` with a temporary variable.
+
+> **Coming from Python?** This is like Python's `value_if_true if cond else value_if_false`,
+> but the condition comes *first* — same reading order as a regular `if`.
+
+---
+
 ## Match (Pattern Matching)
 
 **Match** is more powerful than if/else. It handles many cases elegantly.
@@ -519,6 +585,8 @@ def main()
 ## Key Takeaways
 
 - **if/else** handles simple binary choices
+- **Inline if** (`if cond: stmt`) compresses a simple branch to one line
+- **If-expression** (`var x = if cond: a else: b`) produces a value — `else:` required; chained `else if` not supported in expression position
 - **match** (branch) is better for many cases
 - **for** loops iterate over collections
 - **while** loops repeat based on conditions

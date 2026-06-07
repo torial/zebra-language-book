@@ -290,6 +290,133 @@ def main()
         print d                 # 2, 4, 6
 ```
 
+### `sig` — Named Function Types
+
+When you pass functions around frequently, name the function type with
+`sig` for cleaner code and reusable signatures:
+
+```zebra
+# file: 04_sig.zbr
+# teaches: named function types with sig
+# chapter: 04-Functions-and-Scope
+
+sig Transformer(x: int): int      # "a function int → int"
+sig Predicate(s: str): bool       # "a function str → bool"
+
+def apply_all(nums: List(int), fn: Transformer): List(int)
+    var result = List(int)()
+    for n in nums
+        result.add(fn(n))
+    return result
+
+static def double(x: int): int
+    return x * 2
+
+static def square(x: int): int
+    return x * x
+
+def main()
+    var nums = List(int)()
+    nums.add(1)
+    nums.add(2)
+    nums.add(3)
+
+    var doubled = apply_all(nums, double)
+    var squared = apply_all(nums, square)
+
+    for d in doubled
+        print d          # 2, 4, 6
+    for s in squared
+        print s          # 1, 4, 9
+```
+
+`sig Transformer(x: int): int` is a type alias — "a function that takes
+one `int` and returns an `int`". Any function or lambda with that shape is
+compatible (structural typing — no `implements` required).
+
+**`sig` as a class field** — the idiomatic event-callback pattern:
+
+```zebra
+sig OnClick()
+
+class Button
+    var onClick: OnClick? = nil
+
+    def click()
+        if .onClick as cb
+            cb()
+```
+
+**Cross-module:** `sig` types are exported and importable across modules:
+
+```zebra
+# callbacks.zbr
+sig OnReady()
+sig OnError(msg: str)
+
+# main.zbr
+use callbacks exposing OnReady, OnError
+
+def run(cb: OnReady)
+    cb()
+```
+
+### Lambda Passed Directly as an Argument
+
+Instead of assigning a lambda to a variable first, pass it directly:
+
+```zebra
+# file: 04_lambda_arg.zbr
+# teaches: lambda as call argument (statement-body form)
+# chapter: 04-Functions-and-Scope
+
+sig IntFn(x: int): int      # name the function type first
+
+def apply(n: int, transform: IntFn): int
+    return transform(n)
+
+def main()
+    # Statement-body lambda as a call argument:
+    var result = apply(5, def(x: int): int
+        var doubled = x * 2
+        return doubled
+    )
+    print result             # 10
+```
+
+**Indentation rule:** the lambda body indents under `def(...)`. The closing
+`)` of the enclosing call returns to the **call-site indent level** — one
+level out from the lambda body. Nesting works too:
+
+```zebra
+# file: 04_nested_lambda.zbr
+# teaches: nested lambda as argument
+# chapter: 04-Functions-and-Scope
+
+sig VoidFn()        # function type: no params, no return
+
+def run_twice(action: VoidFn)
+    action()
+    action()
+
+def with_logging(label: str, action: VoidFn)
+    print "start: ${label}"
+    action()
+    print "end: ${label}"
+
+def main()
+    with_logging("outer", def()
+        run_twice(def()
+            print "  inner"
+        )
+    )
+    # Prints:
+    # start: outer
+    #   inner
+    #   inner
+    # end: outer
+```
+
 ---
 
 ## Common Mistakes
@@ -435,6 +562,8 @@ def main()
 - **Closures** capture outer variables for use in inner functions
 - **Early return** makes logic clearer
 - **Functions as arguments** enable powerful abstractions
+- **`sig`** names a function type — **required** for parameters that accept lambdas (inline `def(T): R` is not a valid parameter type); `sig` is also importable across modules
+- **Lambda-in-call** — pass a statement-body `def(...)` directly as an argument; closing `)` returns to the call-site indent level
 - **Name functions well** — `process_payment()` is better than `do_thing()`
 
 ---
