@@ -142,6 +142,8 @@ echo "" >> "$TEMP_FILE"
 cat $BOOK_DIR/Part-5-Ecosystem/Appendix-B-Stdlib.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping Appendix-B-Stdlib.md"
 echo "" >> "$TEMP_FILE"
 cat $BOOK_DIR/Part-5-Ecosystem/Appendix-C-Troubleshooting.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping Appendix-C-Troubleshooting.md"
+echo "" >> "$TEMP_FILE"
+cat $BOOK_DIR/Part-5-Ecosystem/Appendix-D-Attributes.md >> "$TEMP_FILE" 2>/dev/null || echo "⚠️  Skipping Appendix-D-Attributes.md"
 
 echo "📖 Converting to PDF..."
 echo "   (This may take a minute...)"

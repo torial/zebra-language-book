@@ -688,6 +688,158 @@ def main()
 
 ---
 
+## DynLib — Dynamic Library Plugins
+
+The other direction of FFI: instead of *calling* an existing C library
+from Zebra, **producing a shared library** (`.dll` / `.so` / `.dylib`)
+that other programs load at runtime. This is Zebra's plugin/extension
+point — the pattern an IDE uses to load user-supplied add-ons, or a
+server uses to load behaviour modules without restarting.
+
+Two halves: the **producer** (who declares the plugin) and the
+**consumer** (who loads it).
+
+### Producer: `@export class`
+
+The producer declares an interface and a class that implements it,
+attributed with `@export("symbol")`:
+
+```zebra
+# file: greeter.zbr
+# compile with:  zebra --shared greeter.zbr
+# teaches: @export class for DynLib plugins
+# chapter: 22-FFI-and-Interop
+
+interface IGreeter
+    def greet(name: str): str
+    def version(): int
+
+@export("greeter")
+class HelloGreeter implements IGreeter
+    def greet(name: str): str
+        return "Hello, " + name
+
+    def version(): int
+        return 1
+```
+
+Compile with `zebra --shared greeter.zbr` to produce `greeter.dll`
+(Windows), `libgreeter.so` (Linux), or `libgreeter.dylib` (macOS). The
+compiler emits a factory function `pub export fn greeter() *IGreeter`
+that wraps a module-static `HelloGreeter` instance in the interface
+fat-pointer.
+
+**Producer requirements:**
+
+- The class must implement **at least one interface** — the factory wraps the first listed interface.
+- The class `init` must take **no arguments** — the factory calls `ClassName.init()` internally.
+- The exported symbol name (`"greeter"` above) is what the consumer passes to `lib.lookup`.
+
+### Producer: `export def` for simple C-callable functions
+
+For individual functions with C-compatible signatures, use `export def`:
+
+```zebra
+export def addOne(x: int): int
+    return x + 1
+```
+
+Emits `pub export fn addOne(x: i64) i64` — callable from C or any
+language with FFI support. **C-compatible types only**: primitives are
+fine; `str` is a Zig slice (not a C pointer), so `str` parameters and
+return types are not directly C-callable. Use `@export class` when you
+need richer types.
+
+### Consumer: loading and calling the plugin
+
+The consumer declares the same interface and loads the library:
+
+```zebra
+# file: greeter_host.zbr
+# teaches: DynLib.open + lookup
+# chapter: 22-FFI-and-Interop
+
+interface IGreeter
+    def greet(name: str): str
+    def version(): int
+
+def main()
+    var lib = DynLib.open("greeter.dll")           # path follows OS convention
+    var g = lib.lookup(IGreeter, "greeter")        # factory symbol name
+
+    print g.greet("World")                          # "Hello, World"
+    print g.version()                               # 1
+
+    lib.close()
+```
+
+`lib.lookup(IFace, "sym")` looks up `sym` as a factory function `fn() *IFace`,
+calls it, and returns the resulting fat-pointer. From the consumer's
+perspective the returned value is just an `IGreeter` — call its methods
+with normal `.method()` syntax. The dispatch happens through the
+fat-pointer vtable; the consumer doesn't need to know which class is
+behind the interface.
+
+### Real World: Extensible IDE
+
+A natural use: an IDE that loads syntax-highlighting extensions or
+custom panels at runtime. Each plugin is a separate `.zbr` file compiled
+with `--shared`; the IDE keeps a `List(*_DynLib)` of loaded plugins and
+calls their methods through a shared interface:
+
+```zebra
+# Plugin interface — shared between IDE and plugins
+interface IPlugin
+    def name(): str
+    def on_load(ctx: PluginContext)
+    def on_file_open(path: str)
+
+# A plugin (compiled to plugins/highlighter.dll)
+@export("highlighter")
+class Highlighter implements IPlugin
+    def name(): str
+        return "Syntax Highlighter"
+
+    def on_load(ctx: PluginContext)
+        ctx.register_highlighter("zbr", .colorize_zbr)
+
+    def on_file_open(path: str)
+        # ...
+
+# IDE startup
+def load_plugins(dir: str): List(IPlugin)
+    var loaded: List(IPlugin) = List()
+    var files = Dir.list(dir)
+    for f in files
+        if f.endsWith(".dll")
+            var lib = DynLib.open(Path.join(dir, f))
+            # convention: symbol name = filename without extension
+            var sym = Path.stem(f)
+            var p = lib.lookup(IPlugin, sym)
+            loaded.add(p)
+    return loaded
+```
+
+The IDE doesn't recompile to add a plugin — drop a new `.dll` into
+`plugins/`, restart, and the new behaviour appears.
+
+### Notes and gotchas
+
+- **`DynLib.open` panics on failure.** Wrap in a `throws` helper if you
+  need graceful "plugin not found" handling.
+- **Path conventions vary by OS.** Windows expects `name.dll`; Linux
+  expects `libname.so`; macOS expects `libname.dylib`. Pick one
+  convention for your application and document it.
+- **Plugin and host must agree on the interface.** A version skew (host
+  expects `def render(text: str)`, plugin defines `def render(text:
+  str, opts: Options)`) is a runtime crash, not a compile error — the
+  fat-pointer doesn't carry type information.
+- **The exported symbol name is global.** Two plugins with the same
+  `@export("name")` cannot coexist in the same host process. Prefix
+  with your project's namespace if you ship plugins as a library.
+
+---
+
 ## Key Takeaways
 
 1. **Safety First** — Memory management is dangerous. Prefer Zebra ownership.
