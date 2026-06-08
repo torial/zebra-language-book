@@ -408,6 +408,161 @@ def main()
 
 ---
 
+## Structured Logging
+
+`Log` writes timestamped lines to stderr (or a file you pick) at four
+severity levels:
+
+```zebra
+def main()
+    Log.info("server starting on :8080")
+    Log.warn("config key missing — using default")
+    Log.error("database connection failed")
+
+    # JSON-lines output for ingestion by log aggregators:
+    Log.json("info", "request handled",
+             HashMap(str, str)()
+                .set("method", "GET")
+                .set("path", "/api"))
+
+    # Redirect to a file (subsequent calls write there):
+    Log.setFile("./out.log")
+    Log.info("now writing to a file")
+```
+
+| Call | Notes |
+|---|---|
+| `Log.info(msg)` / `Log.warn(msg)` / `Log.error(msg)` | Timestamped line; uppercase level prefix |
+| `Log.json(level, msg, data)` | One JSON object per line; `data` is `HashMap(str, str)` |
+| `Log.setFile(path)` | Redirect all subsequent log output to a file |
+
+For interactive output use `print`; for diagnostic output meant for
+operators or log files, use `Log`.
+
+---
+
+## SQL via `Sqlite`
+
+`Sqlite` opens a SQLite database file (or an in-memory database) and
+runs queries. The whole module is built on the SQLite C amalgamation
+linked into the binary — no separate DB server.
+
+```zebra
+def main()
+    var db = Sqlite.open("./data.db")        # or ":memory:" for in-memory
+    db.exec("CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT)")
+    db.exec("INSERT INTO users VALUES (1, 'Alice')")
+    db.exec("INSERT INTO users VALUES (2, 'Bob')")
+
+    for row in db.query("SELECT id, name FROM users")
+        print "${row.asInt(0)}: ${row.asStr(1)}"
+
+    db.close()
+```
+
+| Call | Returns | Notes |
+|---|---|---|
+| `Sqlite.open(path)` | `Sqlite` | Opens the file (creates if missing); `:memory:` for in-memory |
+| `db.exec(sql)` | `void` | Run a statement without expecting rows |
+| `db.query(sql)` | iterator | Yields one `row` at a time |
+| `row.asInt(col)` / `asStr(col)` / `asFloat(col)` / `asBool(col)` | typed | Column value at `col` (zero-based) |
+| `db.begin()` / `db.commit()` / `db.rollback()` | `void` | Transaction control |
+| `db.close()` | `void` | Release the database handle |
+
+For parameterised queries, build the SQL string explicitly — the API
+doesn't yet have prepared statements. Use `Crypto` (below) for any
+sensitive values.
+
+---
+
+## Compression: `Compress`
+
+`Compress.gzip` and `gunzip` round-trip gzip:
+
+```zebra
+def main()
+    var src = "the quick brown fox jumps over the lazy dog"
+    var compressed = Compress.gzip(src)
+    print compressed.count()             # smaller than src.len for typical input
+
+    var decompressed = Compress.gunzip(compressed)
+    print decompressed                   # same as src
+```
+
+| Call | Returns | Notes |
+|---|---|---|
+| `Compress.gzip(data)` | `List(byte)` | gzip-compress a string |
+| `Compress.gunzip(data)` | `List(byte)` | gzip-decompress a `List(byte)` |
+
+Useful when reading or writing `.gz` files, or when sending compressed
+payloads over the network without depending on the transport's
+compression.
+
+---
+
+## Cryptography: `Crypto`
+
+`Crypto` provides authenticated symmetric encryption (AES-256-GCM) and a
+key-derivation helper (HKDF-SHA256). It's the right tool for "encrypt
+this value so an operator can't read it" — not for password hashing
+(use bcrypt/argon2 via FFI) and not for TLS (use the `Ws` / `Http`
+modules, which handle TLS themselves).
+
+```zebra
+def main()
+    var key = Crypto.deriveKey("user-password", "fixed-salt-bytes")
+    var ciphertext = Crypto.encrypt("secret message", key)
+    print ciphertext                  # base64-encoded blob
+
+    var plaintext = Crypto.decrypt(ciphertext, key)
+    if plaintext as msg
+        print msg                     # "secret message"
+    else
+        print "decrypt failed — wrong key or tampered ciphertext"
+```
+
+| Call | Returns | Notes |
+|---|---|---|
+| `Crypto.encrypt(plaintext, key)` | `str` | AES-256-GCM; output is base64-encoded |
+| `Crypto.decrypt(ciphertext, key)` | `str?` | `nil` on authentication failure (wrong key or tampered ciphertext) |
+| `Crypto.deriveKey(password, salt)` | `str` | HKDF-SHA256; 32-byte hex output suitable as a key |
+
+The `str?` return on `decrypt` is the API's safety mechanism — checking
+for `nil` is **mandatory** because that's how you detect a tampered or
+forged ciphertext. Don't `to!` the result without thinking about it.
+
+---
+
+## Dates with Time Zones: `DateTime.inZone`
+
+The `DateTime` module ships with an embedded IANA timezone table covering
+~75 zones. `DateTime.inZone("Region/City")` returns a calendar view of
+the current instant in that zone:
+
+```zebra
+def main()
+    var now_utc   = DateTime.now()
+    var now_ny    = DateTime.inZone("America/New_York")
+    var now_tokyo = DateTime.inZone("Asia/Tokyo")
+    var now_syd   = DateTime.inZone("Australia/Sydney")
+
+    print "UTC:    ${now_utc.toString()}"
+    print "NY:     ${now_ny.toString()}"
+    print "Tokyo:  ${now_tokyo.toString()}"
+    print "Sydney: ${now_syd.toString()}"
+```
+
+The table includes the major US, EU, AU, and NZ zones plus the typical
+international set. DST is handled correctly for the included rule families
+(US, EU, AU, NZ). For an exhaustive zone list, run
+`DateTime.listZones()`.
+
+> **Binary size note.** The IANA table is included in the binary only
+> if your program references `DateTime.inZone` or `listZones`. Programs
+> that use `DateTime.now()` alone don't pay the ~50 KB cost.
+
+---
+
 ## Practical Patterns: Data Processing
 
 ```zebra

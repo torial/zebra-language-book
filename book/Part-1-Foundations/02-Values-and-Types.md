@@ -130,6 +130,52 @@ def main()
 - `.contains()` — Check for substring
 - `.split()` — Split by delimiter
 
+### Tuples — Multi-Value Bundles
+
+A **tuple** holds two or more values of possibly different types, packed
+together. Useful for returning multiple results from a function or
+pairing values without writing a struct.
+
+```zebra
+# file: 02_tuples.zbr
+# teaches: tuple types, literals, destructuring, and indexing
+# chapter: 02-Values-and-Types
+
+def minmax(a: int, b: int): (int, int)
+    if a < b
+        return (a, b)
+    return (b, a)
+
+def main()
+    # Positional destructure into named locals
+    var (lo, hi) = minmax(7, 3)
+    print lo         # 3
+    print hi         # 7
+
+    # Hold as a tuple value, index into it
+    var t = minmax(1, 9)
+    print t.0        # 1
+    print t.1        # 9
+
+    # Mixed types work — (str, int), (float, bool), etc.
+    var pair: (str, int) = ("alice", 42)
+    print pair.0     # alice
+    print pair.1     # 42
+```
+
+**Rules:**
+
+- A tuple **type** uses parens with commas: `(int, int)`, `(str, int)`, `(float, bool, bool)`.
+- A tuple **literal** uses the same syntax: `(7, 3)`, `("alice", 42)`.
+- **Destructure** with `var (x, y) = expr` — binds names positionally.
+- **Index** with `.0`, `.1`, `.2` (integer literal after `.`, zero-based).
+- For lists of tuples (`List((str, int))`), the for-loop `for k, v in list` destructures automatically — see Chapter 03.
+
+Tuples are the right tool when the pair is **transient** (returning
+two values from one function) or **structural** (a coordinate pair).
+For values you'll pass through many functions or attach methods to,
+a `struct` (Chapter 07b) reads better.
+
 ---
 
 ## Declaring Variables

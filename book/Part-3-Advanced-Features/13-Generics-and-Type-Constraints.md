@@ -124,6 +124,49 @@ The type parameter `T` is inferred from the arguments you pass.
 
 ---
 
+## Generic Functions
+
+Top-level functions can be generic too. The type parameters come in their
+own parens **before** the value parens — `def fname(T)(value: T): T`:
+
+```zebra
+# file: 13_generic_function.zbr
+# teaches: top-level generic function declaration
+# chapter: 13-Generics-and-Type-Constraints
+
+def identity(T)(value: T): T
+    return value
+
+def first(T)(items: List(T)): T?
+    if items.count() == 0
+        return nil
+    return items.at(0)
+
+def main()
+    var n: int = identity(int)(42)         # explicit type
+    var s: str = identity("hello")          # inferred from arg
+    var first_num = first([1, 2, 3])        # inferred — List(int)
+    if first_num as n
+        print n                              # 1
+```
+
+**Rules:**
+
+- The type parameter list `(T)` (or `(T, U)` etc.) comes immediately after the function name.
+- Inside the body, `T` is a regular type — usable in annotations, casts, and return types.
+- At the call site you can write `identity(int)(42)` to be explicit, or `identity(42)` to let the compiler infer from the argument types.
+- Under the hood the compiler emits a `comptime T: type` parameter to Zig.
+
+When to use:
+
+- **Generic function** — utility code that works for any type (`identity`, `first`, `swap`).
+- **Generic method** — operation that belongs to a generic class (covered above).
+- **Generic class** — container or wrapper around values of any type (`Stack(T)`, `Cache(K, V)`).
+
+The three forms cover almost every generic pattern you'll need.
+
+---
+
 ## Generic Collections
 
 You already use generics implicitly with `List` and `HashMap`:
@@ -229,6 +272,100 @@ def main()
     if max != nil
         print "Max: ${max}"
 ```
+
+---
+
+## Type Aliases and Refinement Types
+
+A different flavour of "generic" — instead of parameterising over **types**,
+you can parameterise over **values** that constrain a base type at runtime.
+
+### Plain type aliases
+
+A `type` declaration creates a named alias for an existing type, optionally
+with a `where` constraint:
+
+```zebra
+# file: 13_type_aliases.zbr
+# teaches: type aliases with constraints
+# chapter: 13-Generics-and-Type-Constraints
+
+type PositiveInt = int where value > 0
+type NonEmptyStr = str where value.len > 0
+type Ratio       = float where value >= 0.0 and value <= 1.0
+type UncheckedInt = int                       # no constraint — plain alias
+
+def main()
+    var count: PositiveInt = 42               # OK — 42 > 0
+    var doubled: int = count * 2              # transparent — works as int
+    print doubled                             # 84
+
+    # var bad: PositiveInt = -1               # runtime panic: "type constraint 'PositiveInt' failed"
+```
+
+**Key properties:**
+
+- **Transparent.** `PositiveInt` is just `int` in the generated Zig — no
+  wrapper struct, no runtime overhead beyond the constraint check.
+- **`value` is the implicit binding** in the `where` clause — refers to
+  the variable being declared.
+- **Check at initialization.** The compiler emits a runtime check after
+  every `var x: AliasType = expr` declaration. If the constraint fails,
+  the program panics with the alias name in the message.
+- **`--turbo` strips checks** — the same flag that strips contract
+  assertions (Chapter 14) also strips type-alias checks for production builds.
+
+### Refinement types — aliases with value parameters
+
+A type alias can carry **value parameters** that are bound into the constraint.
+Same family of alias, many different bounds:
+
+```zebra
+# file: 13_refinement_types.zbr
+# teaches: parametric refinement types
+# chapter: 13-Generics-and-Type-Constraints
+
+type Bounded(lo: int, hi: int) = int where value >= lo and value <= hi
+
+def main()
+    var score: Bounded(0, 100) = 85           # OK
+    var neg:   Bounded(-50, 50) = -20         # OK
+    # var bad: Bounded(0, 100) = 150          # runtime panic
+
+    var temp: Bounded(-273, 1000) = 37        # body temperature — OK
+    print temp                                # 37
+```
+
+The parameters (here `lo` and `hi`) sit alongside `value` in the `where`
+expression. Each `var x: Bounded(...)` declaration substitutes the
+parameter values and emits the check.
+
+### Struct base types
+
+The base type can be a struct, and the constraint can inspect fields:
+
+```zebra
+struct Range
+    var lo: int
+    var hi: int
+
+type ValidRange = Range where value.lo < value.hi
+
+def main()
+    var r: ValidRange = Range(lo: 0, hi: 10)  # OK
+    # var bad: ValidRange = Range(lo: 5, hi: 3)  # runtime panic
+```
+
+Struct aliases don't carry value parameters in v1.0 — the parametric form is for primitive base types only.
+
+### When to reach for refinement types
+
+- **Domain invariants** that should hold at every assignment — port numbers in `1..65535`, percentages in `0..100`, ages in `0..150`.
+- **Self-documenting parameter types** — `Bounded(0, 100)` reads better than `int` plus a comment.
+- **Bug-catching in tests** — paired with `--turbo`-stripped release builds, you pay the check cost only during development.
+
+For invariants on **whole functions** (not just variable assignments),
+prefer `require` / `ensure` contracts — see Chapter 14.
 
 ---
 

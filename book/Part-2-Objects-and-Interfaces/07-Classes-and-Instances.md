@@ -149,6 +149,107 @@ def main()
 
 ---
 
+## Method Modifiers and Attributes
+
+Three method-level attributes alter the generated code without changing
+the method's signature:
+
+```zebra
+class Config
+    @once
+    def load(): str                  # body runs once; result cached on the instance
+        return File.read("config.json")
+
+    @profile
+    def heavy_work()                 # body wrapped with Profile.start/end automatically
+        # ...
+
+    @tag("unit", "fast")
+    static def test_defaults()       # tagged for filtered test runs
+        assert_eq Config().load(), "{}"
+```
+
+| Attribute | Effect |
+|---|---|
+| `@once` | First call runs the body and stores the result on the instance; subsequent calls return the cached value without re-running |
+| `@profile` | Wraps the body with `Profile.start("Class.method")` / `defer Profile.end(...)`; requires the `Profile` stdlib module |
+| `@tag("label", ...)` | Attaches one or more string tags to a `test_*` method for use with `zebra test --tag <label>` — see Chapter 22c |
+
+`@once` is the most common — handy for expensive lazy initialisation
+(loading a config file, building a lookup table) where you want the
+caching to be invisible at the call site.
+
+---
+
+## `with` — Contextual Self
+
+`with obj` makes `obj` the implicit receiver for **bare-name method
+calls and field assignments** inside the block. It's a compile-time
+textual rewrite — no runtime cost:
+
+```zebra
+with g
+    text("Status: ready")        # → g.text("Status: ready")
+    button("OK", .ok)            # → g.button("OK", .ok)
+    x = 5                        # → g.x = 5
+```
+
+What's rewritten:
+
+| Source | After rewrite |
+|---|---|
+| `method(args)` (statement position) | `obj.method(args)` |
+| `field = value` | `obj.field = value` |
+
+What's **not** rewritten:
+
+- Statements nested inside `if`, `for`, `while`, `branch` inside the block — those still need the full `obj.method(...)` form.
+- Expression positions — only top-level statements in the block are rewritten.
+
+`with` is most useful for **GUI-style code** where you'd otherwise type
+the same `g.` prefix on every line. It pairs naturally with `using` for
+layout containers (Chapter 14b).
+
+---
+
+## `@derive` — Auto-Generated Methods
+
+For `struct` declarations, `@derive(Debug, Eq, Hash)` instructs the
+compiler to auto-generate `toString`, `eql`, and `hash` based on the
+struct's fields:
+
+```zebra
+@derive(Debug, Eq, Hash)
+struct Point
+    var x: float
+    var y: float
+
+def main()
+    var p = Point(x: 1.0, y: 2.0)
+    var q = Point(x: 1.0, y: 2.0)
+    print p.toString()         # "Point(x=1.0, y=2.0)"
+    print p.eql(q)             # true
+    print p.hash() == q.hash() # true
+```
+
+What each trait generates:
+
+| Trait | Method | Behaviour |
+|---|---|---|
+| `Debug` | `def toString(): str` | `"TypeName(field=value, field=value, ...)"` |
+| `Eq` | `def eql(other: TypeName): bool` | Field-wise equality |
+| `Hash` | `def hash(): int` | Combines per-field hashes; consistent with `eql` |
+
+The traits are independent — derive any subset. Without `@derive`, you'd
+write the methods by hand; with it, the compiler keeps them in sync as
+you add or remove fields.
+
+`@derive` is **struct-only**. For classes, write the methods explicitly
+— class identity is reference-based and rarely matches the field-wise
+default.
+
+---
+
 ## Real World: User Management
 
 ```zebra

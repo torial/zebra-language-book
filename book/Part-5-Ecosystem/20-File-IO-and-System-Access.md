@@ -408,6 +408,117 @@ def main()
 
 ---
 
+## Network I/O
+
+Network sockets are a natural extension of file I/O — same idea
+("read/write a byte stream"), different transport. Zebra's stdlib covers
+four protocols: TCP, UDP, WebSocket, and HTTP.
+
+### TCP
+
+```zebra
+# Client:
+def main()
+    var conn = Tcp.connect("example.com", 80)
+    conn.send("GET / HTTP/1.0\r\nHost: example.com\r\n\r\n")
+    var response = conn.recv(4096)
+    print response
+    conn.close()
+
+# Server:
+def main()
+    Tcp.serve(8080, def(conn)
+        var msg = conn.recv(1024)
+        conn.send("echo: ${msg}")
+        conn.close()
+    )
+```
+
+| Call | Notes |
+|---|---|
+| `Tcp.connect(host, port)` | Client: open a connection; returns a `TcpConn` |
+| `Tcp.serve(port, handler)` | Server: accept connections; calls `handler(conn)` for each |
+| `conn.send(data)` / `conn.recv(n)` / `conn.close()` | I/O primitives on a connection |
+
+### UDP
+
+```zebra
+def main()
+    var sock = Udp.bind(9000)                  # listen
+    var (msg, from) = sock.recv(1024)          # blocks; returns bytes + sender addr
+    print "from ${from}: ${msg}"
+    sock.send("alice.example.com", 9001, "ack")
+    sock.close()
+```
+
+| Call | Notes |
+|---|---|
+| `Udp.bind(port)` | Server: bind a local port |
+| `Udp.socket()` | Client: ephemeral socket for outbound sends |
+| `sock.send(host, port, data)` | Send a datagram |
+| `sock.recv(n)` | Receive a datagram; returns `(data, sender_addr)` |
+
+UDP is fire-and-forget; there's no connection state, no ordering, and
+no retransmission. Use it for telemetry, game state updates, DNS — and
+not for anything that needs delivery guarantees.
+
+### WebSocket
+
+```zebra
+# Client:
+def main()
+    var ws = Ws.connect("wss://echo.example.com/")
+    ws.send("hello")
+    var reply = ws.recv()
+    if reply as msg
+        print msg
+    ws.close()
+
+# Server:
+def main()
+    Ws.serve(8081, def(conn)
+        var msg: str? = conn.recv()
+        if msg as m
+            conn.send("echo: ${m}")
+        conn.close()
+    )
+```
+
+| Call | Notes |
+|---|---|
+| `Ws.connect(url)` | Client: `ws://` or `wss://` (TLS); returns a `WsConn` |
+| `Ws.serve(port, handler)` | Server: accept WebSocket connections |
+| `conn.send(text)` | Send a text frame |
+| `conn.recv()` | Receive a text frame; returns `str?` (nil if closed) |
+| `conn.close()` | Send a close frame and shut down |
+
+TLS is automatic when the URL scheme is `wss://`; the runtime negotiates
+with the system's certificate store.
+
+### HTTP
+
+For HTTP-specific code there's a dedicated `Http` module covering both
+client and server with the right request/response abstractions:
+
+```zebra
+# Server with route handler:
+def main()
+    Http.serve(8080, def(req: HttpRequest, res: HttpResponse)
+        if req.path == "/health"
+            res.status = 200
+            res.body = "ok"
+        else
+            res.status = 404
+            res.body = "not found"
+    )
+```
+
+For a typical small server (under 1000 RPS) the server primitives are
+sufficient. For high-traffic services or HTTP/2 / HTTP/3, drop into the
+underlying Zig modules via `zig"..."` — see Chapter 22.
+
+---
+
 ## Practical Patterns: Config File Management
 
 ```zebra
