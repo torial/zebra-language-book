@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-07-28T01:22:34.042461",
+  "timestamp": "2026-07-28T02:28:57.434761",
   "compiler": "C:\\Projects\\zebra-language\\zig-out\\bin\\zebra.exe",
   "total": 695,
   "passed": 124,
   "failed": 571,
   "failures": {
-    "01-getting-started/01-getting-started_005.zbr": "C:/Projects/zebra-language-book/examples/01-getting-started/01-getting-started_005.zbr:2: error: expected type 'str', found 'comptime_int'",
+    "01-getting-started/01-getting-started_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_005.zbr:3:22: error: cannot concatenate 'str' and 'int' \u2014 call .toString() on it, or use string interpolation",
     "01-getting-started/01-getting-started_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_006.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
     "01-getting-started/01-getting-started_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_007.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
     "01-getting-started/01-getting-started_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '01-getting-started_010' has no member named 'main'",

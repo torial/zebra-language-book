@@ -235,13 +235,15 @@ When you make a mistake, Zebra tells you clearly:
 
 ```zebra
 def main()
-    var greeting: str = "Hello " + 5   # ❌ Can't add string + number
-    print(greeting)
+    var count = 5
+    print("Hello " + count)  # ❌ Can't add string + number
 ```
 
 **Error:**
 ```
-greet.zbr:2: error: expected type 'str', found 'comptime_int'
+greet.zbr:3:22: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
+    print("Hello " + count)
+                     ^
 ```
 
 **What it means:**

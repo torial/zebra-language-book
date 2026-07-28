@@ -1,7 +1,7 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-07-28T01:22:34.042461
+Generated: 2026-07-28T02:28:57.434761
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
 Total:  695
@@ -11,7 +11,7 @@ Failed: 571
 FAILURES
 ----------------------------------------------------------------------
   01-getting-started/01-getting-started_005.zbr
-      C:/Projects/zebra-language-book/examples/01-getting-started/01-getting-started_005.zbr:2: error: expected type 'str', found 'comptime_int'
+      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_005.zbr:3:22: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
   01-getting-started/01-getting-started_006.zbr
       C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_006.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
   01-getting-started/01-getting-started_007.zbr

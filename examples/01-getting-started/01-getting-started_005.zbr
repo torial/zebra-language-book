@@ -1,3 +1,3 @@
 def main()
-    var greeting: str = "Hello " + 5   # ❌ Can't add string + number
-    print(greeting)
+    var count = 5
+    print("Hello " + count)  # ❌ Can't add string + number
