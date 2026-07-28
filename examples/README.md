@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 686 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 702 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,9 +42,9 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 686
-- **Chapters Covered:** 32
-- **Topics:** 210
+- **Total Examples:** 702
+- **Chapters Covered:** 33
+- **Topics:** 215
 
 ## Quick Reference
 
@@ -323,7 +323,7 @@ This compiles and tests each example to ensure correctness.
 - `11_narrowing.zbr` — type narrowing
 - `11_if_as.zbr` — optional unwrap binding form
 - `11-nil-tracking-and-safety_004.zbr` — basic example
-- `11_unwrap.zbr` — unwrap operator
+- `11_unwrap.zbr` — force-unwrap operator
 - `11_unwrap_or.zbr` — safe unwrapping
 - `11_database.zbr` — nil in realistic scenarios
 - `11-nil-tracking-and-safety_008.zbr` — basic example
@@ -483,6 +483,24 @@ This compiles and tests each example to ensure correctness.
 - `similarity_analysis.zbr` — similarity metrics and comparison
 - `analysis_main.zbr` — combining analysis modules
 - `17-18_projects-2-3_007.zbr` — basic example
+
+### 18b-GUI-Applications (16 examples)
+- `counter.zbr` — MVU, Gui.run, g.send, hbox layout
+- `greeter.zbr` — payload messages, g.input, mixed unions
+- `18b-gui-applications_002.zbr` — basic example
+- `widgets.zbr` — checkbox, slider, input; the read-compare-send pattern
+- `layout.zbr` — using g.vbox / g.hbox, nesting, stretch
+- `18b-gui-applications_005.zbr` — basic example
+- `editor.zbr` — CodeEditor, class Model, widget handles
+- `18b-gui-applications_007.zbr` — basic example
+- `18b-gui-applications_008.zbr` — basic example
+- `18b-gui-applications_009.zbr` — basic example
+- `18b-gui-applications_010.zbr` — basic example
+- `18b-gui-applications_011.zbr` — basic example
+- `18b-gui-applications_012.zbr` — basic example
+- `18b-gui-applications_013.zbr` — basic example
+- `18b-gui-applications_014.zbr` — basic example
+- `18b-gui-applications_015.zbr` — basic example
 
 ### 19-22_Final-Chapters (12 examples)
 - `19-22_final-chapters_000.zbr` — basic example

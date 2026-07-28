@@ -1,0 +1,4 @@
+> def view(g: Gui, m: Model)
+>     if g.button("Add")
+>         m.count = m.count + 1     # ❌ view must not change state
+>

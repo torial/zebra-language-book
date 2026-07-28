@@ -1,0 +1,5 @@
+> def view(g: Gui, m: Model)
+>     using g.vbox("##sidebar", true)    # ✅ always created
+>         if m.show_sidebar
+>             g.text("Sidebar")
+>

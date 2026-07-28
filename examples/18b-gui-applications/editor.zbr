@@ -1,0 +1,40 @@
+# file: editor.zbr
+# teaches: CodeEditor, class Model, widget handles
+# chapter: 18b-GUI-Applications
+
+class Model
+    var editor: CodeEditor? = nil
+    var status: str = "ready"
+
+union Msg
+    save
+    clear
+
+def init(): Model
+    var m = Model()
+    m.editor = CodeEditor.forZebra()
+    m.editor!.setText("def main()\n    print(\"hi\")\n")
+    return m
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.save
+            var text = m.editor!.getText()
+            m.status = "saved " + text.len.toString() + " bytes"
+        on Msg.clear
+            m.editor!.setText("")
+            m.status = "cleared"
+    return m
+
+def view(g: Gui, m: Model)
+    using g.vbox("##root", true)
+        using g.hbox("##bar", false)
+            if g.button("Save")
+                g.send(Msg.save)
+            if g.button("Clear")
+                g.send(Msg.clear)
+            g.text(m.status)
+        m.editor!.render(g, "##editor", 0, 0)
+
+def main()
+    Gui.run("Editor", 520, 360, init, update, view)

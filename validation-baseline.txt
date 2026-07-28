@@ -87,6 +87,7 @@
 11-nil-tracking-and-safety/11-nil-tracking-and-safety_017.zbr
 11-nil-tracking-and-safety/11_if_as.zbr
 11-nil-tracking-and-safety/11_nullable.zbr
+11-nil-tracking-and-safety/11_unwrap.zbr
 11-nil-tracking-and-safety/11_unwrap_or.zbr
 12-error-handling-with-results/12-error-handling-with-results_008.zbr
 12-error-handling-with-results/12_throws_basic.zbr
@@ -104,6 +105,11 @@
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_015.zbr
 15-pipelines-and-function-composition/15_function_composition.zbr
 15-pipelines-and-function-composition/15_pipeline_custom.zbr
+18b-gui-applications/counter.zbr
+18b-gui-applications/editor.zbr
+18b-gui-applications/greeter.zbr
+18b-gui-applications/layout.zbr
+18b-gui-applications/widgets.zbr
 19-standard-library-tour/stdlib-arg-parse.zbr
 19-standard-library-tour/stdlib-console-io.zbr
 19-standard-library-tour/stdlib-json.zbr

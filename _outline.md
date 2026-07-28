@@ -133,6 +133,7 @@ APPENDICES (3 chapters, reference)
 | **1** | Build a file processor CLI (wc, grep-lite, csv tool) | Args, files, collections, control flow |
 | **2** | Build an HTTP server (JSON API, routing, error handling) | Networking, error handling, structs, interfaces |
 | **3** | Analyze data (n-grams, frequency, sorting, output) | Collections, regex, algorithms, results |
+| **4** | Build a GUI application (MVU, widgets, embedded code editor) | MVU architecture, unions as event vocabularies, layout, testing without a display |
 
 ### Part 5: Ecosystem
 

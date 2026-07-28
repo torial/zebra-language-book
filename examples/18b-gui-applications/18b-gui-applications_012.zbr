@@ -1,0 +1,3 @@
+> var typed = g.input("##name", m.name)
+> g.send(Msg.name_changed(typed))    # ❌ fires every frame, forever
+>

@@ -1,0 +1,4 @@
+> def view(g: Gui, m: Model)
+>     if g.button("Add")
+>         g.send(Msg.inc)           # ✅
+>

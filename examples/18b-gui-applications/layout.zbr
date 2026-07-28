@@ -1,0 +1,32 @@
+# file: layout.zbr
+# teaches: using g.vbox / g.hbox, nesting, stretch
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var status: str
+
+union Msg
+    refresh
+
+def init(): Model
+    return Model(status: "ready")
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.refresh  return Model(status: "refreshed")
+
+def view(g: Gui, m: Model)
+    using g.vbox("##root", true)
+        using g.hbox("##toolbar", false)
+            if g.button("Refresh")
+                g.send(Msg.refresh)
+            g.text("Status: " + m.status)
+        g.separator()
+        using g.hbox("##body", true)
+            using g.vbox("##left", true)
+                g.text("Left panel")
+            using g.vbox("##right", true)
+                g.text("Right panel")
+
+def main()
+    Gui.run("Layout", 480, 300, init, update, view)

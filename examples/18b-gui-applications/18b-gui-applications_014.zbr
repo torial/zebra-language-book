@@ -1,0 +1,3 @@
+> g.input("Name", m.first)      # ❌ both inputs share the id "Name"
+> g.input("Name", m.last)
+>

@@ -1,0 +1,4 @@
+> var typed = g.input("##name", m.name)
+> if typed != m.name
+>     g.send(Msg.name_changed(typed))
+>

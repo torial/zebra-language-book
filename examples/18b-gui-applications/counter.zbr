@@ -1,0 +1,34 @@
+# file: counter.zbr
+# teaches: MVU, Gui.run, g.send, hbox layout
+# chapter: 18b-GUI-Applications
+
+struct Counter
+    var count: int
+
+union Msg
+    inc
+    dec
+    reset
+
+def init(): Counter
+    return Counter(count: 0)
+
+def update(m: Counter, msg: Msg): Counter
+    branch msg
+        on Msg.inc    return Counter(count: m.count + 1)
+        on Msg.dec    return Counter(count: m.count - 1)
+        on Msg.reset  return Counter(count: 0)
+
+def view(g: Gui, m: Counter)
+    g.text("Count: " + m.count.toString())
+    g.separator()
+    using g.hbox("##buttons", false)
+        if g.button("+")
+            g.send(Msg.inc)
+        if g.button("-")
+            g.send(Msg.dec)
+        if g.button("Reset")
+            g.send(Msg.reset)
+
+def main()
+    Gui.run("Counter", 300, 160, init, update, view)

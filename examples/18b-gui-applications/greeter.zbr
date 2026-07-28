@@ -1,0 +1,42 @@
+# file: greeter.zbr
+# teaches: payload messages, g.input, mixed unions
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var name: str
+    var greeting: str
+
+union Msg
+    name_changed: str
+    greet
+    clear
+
+def init(): Model
+    return Model(name: "", greeting: "")
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.name_changed as newName
+            return Model(name: newName, greeting: m.greeting)
+        on Msg.greet
+            if m.name.len == 0
+                return Model(name: m.name, greeting: "Please type a name first.")
+            return Model(name: m.name, greeting: "Hello, " + m.name + "!")
+        on Msg.clear
+            return Model(name: "", greeting: "")
+
+def view(g: Gui, m: Model)
+    g.text("What is your name?")
+    var typed = g.input("##name", m.name)
+    if typed != m.name
+        g.send(Msg.name_changed(typed))
+    using g.hbox("##row", false)
+        if g.button("Greet")
+            g.send(Msg.greet)
+        if g.button("Clear")
+            g.send(Msg.clear)
+    g.separator()
+    g.text(m.greeting)
+
+def main()
+    Gui.run("Greeter", 360, 200, init, update, view)

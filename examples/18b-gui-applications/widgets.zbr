@@ -1,0 +1,38 @@
+# file: widgets.zbr
+# teaches: checkbox, slider, input; the read-compare-send pattern
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var loud: bool
+    var volume: float
+    var label: str
+
+union Msg
+    set_loud: bool
+    set_volume: float
+    set_label: str
+
+def init(): Model
+    return Model(loud: false, volume: 50.0, label: "untitled")
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.set_loud as v    return Model(loud: v, volume: m.volume, label: m.label)
+        on Msg.set_volume as v  return Model(loud: m.loud, volume: v, label: m.label)
+        on Msg.set_label as v   return Model(loud: m.loud, volume: m.volume, label: v)
+
+def view(g: Gui, m: Model)
+    var loud = g.checkbox("Loud mode", m.loud)
+    if loud != m.loud
+        g.send(Msg.set_loud(loud))
+    var vol = g.slider("Volume", m.volume, 0.0, 100.0)
+    if vol != m.volume
+        g.send(Msg.set_volume(vol))
+    var lbl = g.input("Label", m.label)
+    if lbl != m.label
+        g.send(Msg.set_label(lbl))
+    g.separator()
+    g.text("volume=" + m.volume.toString() + " loud=" + m.loud.toString())
+
+def main()
+    Gui.run("Widgets", 380, 260, init, update, view)

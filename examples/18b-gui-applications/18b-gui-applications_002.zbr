@@ -1,0 +1,3 @@
+var typed = g.input("##name", m.name)   # 1. read what the widget holds now
+if typed != m.name                      # 2. compare against the model
+    g.send(Msg.name_changed(typed))     # 3. if they differ, report it

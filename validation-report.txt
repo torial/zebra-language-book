@@ -1,17 +1,15 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-07-27T22:46:01.087211
+Generated: 2026-07-28T01:22:34.042461
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  679
-Passed: 117
-Failed: 562
+Total:  695
+Passed: 124
+Failed: 571
 
 FAILURES
 ----------------------------------------------------------------------
-  01-getting-started/01-getting-started_001.zbr
-      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_001.zbr:2:11: error: expected '(', got '"broken"'
   01-getting-started/01-getting-started_005.zbr
       C:/Projects/zebra-language-book/examples/01-getting-started/01-getting-started_005.zbr:2: error: expected type 'str', found 'comptime_int'
   01-getting-started/01-getting-started_006.zbr
@@ -348,8 +346,6 @@ FAILURES
       C:\Users\Sean\.zvm\0.16.0\lib\std\start.zig:697:43: error: root source file struct '11_narrowing' has no member named 'main'
   11-nil-tracking-and-safety/11_nil_check.zbr
       C:\Users\Sean\.zvm\0.16.0\lib\std\Io\Writer.zig:1803:5: error: invalid format string 's' for type '?[]const u8'
-  11-nil-tracking-and-safety/11_unwrap.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11_unwrap.zbr:9:26: error: unexpected expression token: 'to'
   12-error-handling-with-results/12-error-handling-with-results_009.zbr
       compiling: C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12-error-handling-with-results_009.zbr
   12-error-handling-with-results/12_api_client.zbr
@@ -578,6 +574,28 @@ FAILURES
       C:\Projects\zebra-language-book\examples\17-18_projects-2-3\router.zbr:23:20: error: unexpected member: ':'
   17-18_projects-2-3/similarity_analysis.zbr
       C:\Projects\zebra-language-book\examples\17-18_projects-2-3\similarity_analysis.zbr:20:17: error: expected identifier, got 'union'
+  18b-gui-applications/18b-gui-applications_002.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_002.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, en
+  18b-gui-applications/18b-gui-applications_005.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_005.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_007.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_007.zbr:2:13: error: undefined name: 'init'
+  18b-gui-applications/18b-gui-applications_008.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_009.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_010.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_011.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_012.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_013.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_014.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_015.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   19-22_final-chapters/19-22_final-chapters_000.zbr
       C:\Users\Sean\.zvm\0.16.0\lib\std\start.zig:697:43: error: root source file struct '19-22_final-chapters_000' has no member named 'main'
   19-22_final-chapters/19-22_final-chapters_001.zbr

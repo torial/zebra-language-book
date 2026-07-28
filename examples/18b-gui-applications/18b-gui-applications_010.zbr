@@ -1,0 +1,5 @@
+> def view(g: Gui, m: Model)
+>     if m.show_sidebar                  # ❌ layout differs between frames
+>         using g.vbox("##sidebar", true)
+>             g.text("Sidebar")
+>

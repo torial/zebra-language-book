@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 686,
+  "total_examples": 702,
   "generated": "1785214308.777066",
   "examples": [
     {
@@ -1735,7 +1735,7 @@
     {
       "chapter": "11-Nil-Tracking-and-Safety",
       "file": "11_unwrap.zbr",
-      "teaches": "unwrap operator",
+      "teaches": "force-unwrap operator",
       "project": null,
       "path": "examples/11-nil-tracking-and-safety/11_unwrap.zbr"
     },
@@ -2739,6 +2739,118 @@
       "teaches": null,
       "project": null,
       "path": "examples/17-18_projects-2-3/17-18_projects-2-3_007.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "counter.zbr",
+      "teaches": "MVU, Gui.run, g.send, hbox layout",
+      "project": null,
+      "path": "examples/18b-gui-applications/counter.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "greeter.zbr",
+      "teaches": "payload messages, g.input, mixed unions",
+      "project": null,
+      "path": "examples/18b-gui-applications/greeter.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_002.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "widgets.zbr",
+      "teaches": "checkbox, slider, input; the read-compare-send pattern",
+      "project": null,
+      "path": "examples/18b-gui-applications/widgets.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "layout.zbr",
+      "teaches": "using g.vbox / g.hbox, nesting, stretch",
+      "project": null,
+      "path": "examples/18b-gui-applications/layout.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_005.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "editor.zbr",
+      "teaches": "CodeEditor, class Model, widget handles",
+      "project": null,
+      "path": "examples/18b-gui-applications/editor.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_007.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_008.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_009.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_010.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_011.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_012.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_013.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_014.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_015.zbr"
     },
     {
       "chapter": "19-22_Final-Chapters",
