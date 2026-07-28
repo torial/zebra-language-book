@@ -1,0 +1,15 @@
+# WRONG - method doesn't actually require Comparable
+def find_max(items: List(T)): T
+    var max = items.at(0)
+    var item = items.at(1)
+    if item > max  # Error: > not defined for all T
+        max = item
+    return max
+
+# CORRECT - either don't use >, or require Comparable interface
+def find_max(items: List(T)): T
+    var max = items.at(0)
+    for item in items
+        if item.toString() > max.toString()  # Convert to string for comparison
+            max = item
+    return max

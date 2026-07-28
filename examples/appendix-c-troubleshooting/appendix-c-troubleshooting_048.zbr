@@ -1,0 +1,3 @@
+var pattern = Regex.compile("hello")   # Matches substring
+var pattern = Regex.compile("^hello")  # Matches start
+var pattern = Regex.compile("hello.*") # Matches hello + anything

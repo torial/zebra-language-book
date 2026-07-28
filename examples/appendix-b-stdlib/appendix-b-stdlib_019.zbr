@@ -1,0 +1,5 @@
+var seen: HashMap(str, bool) = HashMap()
+seen.put("red", true)
+seen.put("blue", true)
+seen.put("red", true)       # Overwrites, same effect as no-op
+print(seen.count())  # 2

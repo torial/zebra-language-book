@@ -1,0 +1,46 @@
+mixin Engine
+    var running: bool = false
+
+    def start
+        running = true
+        print("Engine started")
+
+    def stop
+        running = false
+        print("Engine stopped")
+
+class Car adds Engine
+    var brand: str = ""
+    var doors: int = 4
+
+    cue init(b: str)
+        brand = b
+
+    def describe: str
+        return "${brand} car with ${doors} doors"
+
+class Motorcycle adds Engine
+    var brand: str = ""
+
+    cue init(b: str)
+        brand = b
+
+    def describe: str
+        return "${brand} motorcycle"
+
+class Truck adds Engine
+    var brand: str = ""
+    var payload_kg: int = 0
+
+    cue init(b: str, p: int)
+        brand = b
+        payload_kg = p
+
+    def describe: str
+        return "${brand} truck (${payload_kg}kg payload)"
+
+def main()
+    var car = Car("Toyota")
+    car.start()
+    print(car.describe())
+    car.stop()

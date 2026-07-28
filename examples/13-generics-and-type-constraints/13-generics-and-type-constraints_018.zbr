@@ -1,0 +1,25 @@
+class ValidatedBox(T)
+    var item: T?
+    var validator: T -> bool
+    
+    def init(validator: T -> bool)
+        this.validator = validator
+    
+    def set(value: T): bool
+        if validator(value)
+            item = value
+            return true
+        return false
+    
+    def get: T?
+        return item
+
+def main()
+    var age_box = ValidatedBox(int)()
+    age_box.init({ x in x >= 0 and x <= 150 })
+    
+    if age_box.store(25)
+        print("Valid age: ${age_box.retrieve()}")
+    
+    if not age_box.store(200)
+        print("Invalid age")

@@ -1,9 +1,7 @@
-// file: greet.zbr
-// teaches: variables, string interpolation
-// chapter: 01-Getting-Started
+# file: greet.zbr
+# teaches: variables, string interpolation
+# chapter: 01-Getting-Started
 
-class Main
-    shared
-        def main
-            var name as str = "World"
-            print "Hello, ${name}!"
+def main()
+    var name = "World"
+    print("Hello, ${name}!")

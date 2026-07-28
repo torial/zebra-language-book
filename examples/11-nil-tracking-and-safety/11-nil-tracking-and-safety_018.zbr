@@ -1,0 +1,36 @@
+class Profile
+    var name: str
+    var bio: str?
+
+class User
+    var id: int
+    var profile: Profile?
+
+class UserService
+    static
+        def get_user_bio(user_id: int): str?
+            var user = find_user(user_id)
+            if user == nil
+                return nil
+            var profile = user.profile
+            if profile == nil
+                return nil
+            return profile.bio
+        
+        def find_user(id: int): User?
+            if id == 1
+                var user = User()
+                user.id = 1
+                var profile = Profile()
+                profile.name = "Alice"
+                profile.bio = "Developer"
+                user.profile = profile
+                return user
+            return nil
+
+def main()
+    var bio = UserService.get_user_bio(1)
+    if bio != nil
+        print("Bio: ${bio}")
+    else
+        print("No bio found")

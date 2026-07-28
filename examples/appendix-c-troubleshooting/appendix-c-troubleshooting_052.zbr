@@ -1,0 +1,7 @@
+# SLOW: O(n²) nested loops
+for i in 0.to(items.count())
+    for j in 0.to(items.count())
+        process(items.at(i), items.at(j))
+
+# FAST: O(n log n) or O(n)
+# Use appropriate algorithm

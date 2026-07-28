@@ -1,0 +1,5 @@
+def calculate(a: int, b: int, operation: str): int
+    if operation == "add"
+        return a + b
+    else
+        return a - b

@@ -1,0 +1,14 @@
+def load(path: str): str throws
+    if path.len == 0
+        raise "Empty path"
+    return "data"
+
+# Inline postfix catch expression
+var data = load("") catch "default"
+
+# Method-level catch clause (attaches to a def)
+def attempt()
+    var d = load("")
+    print(d)
+catch |err|
+    print("Error: ${err}")

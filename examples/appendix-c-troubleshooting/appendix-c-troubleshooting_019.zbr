@@ -1,0 +1,6 @@
+var map = HashMap(str, int)()
+var value = map.fetch("key")  # Returns nil, not an error
+
+# But if you don't check nil:
+var num = map.fetch("key")
+var result = num + 1           # ERROR: num is nil!

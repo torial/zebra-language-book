@@ -1,0 +1,6 @@
+var x: int? = nil
+
+if x != nil
+    var result = x + 1  # Safe—x is definitely int here
+else
+    print("x is nil")

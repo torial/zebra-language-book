@@ -1,0 +1,18 @@
+# file: 05_if_expr.zbr
+# teaches: if-expression
+# chapter: 05-Control-Flow
+
+def main()
+    var score = 85
+
+    # Assign the result of an if-expression:
+    var result = if score >= 60: "pass" else: "fail"
+    print(result)  # pass
+
+    # Use directly in a function call:
+    print(if score > 50: "pass" else: "fail")
+
+    # Compute absolute value:
+    var n: int = -5
+    var abs_n: int = if n >= 0: n else: -n
+    print(abs_n)  # 5

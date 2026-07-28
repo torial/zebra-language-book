@@ -36,10 +36,10 @@ def main()
     var tiny: int8 = 100               # explicit narrow type
     var huge: int64 = 9_223_372_036_854_775_807
 
-    print age
-    print population
-    print tiny
-    print huge
+    print(age)
+    print(population)
+    print(tiny)
+    print(huge)
 ```
 
 **Integer types:**
@@ -51,11 +51,11 @@ def main()
 ```zebra
 var x = 10
 var y = 3
-print x + y    # 13
-print x - y    # 7
-print x * y    # 30
-print x / y    # 3 (integer division)
-print x % y    # 1 (remainder)
+print(x + y)  # 13
+print(x - y)  # 7
+print(x * y)  # 30
+print(x / y)  # 3 (integer division)
+print(x % y)  # 1 (remainder)
 ```
 
 ### Floating Point
@@ -69,12 +69,12 @@ def main()
     var pi = 3.14159
     var precise: float64 = 3.141592653589793
 
-    print pi
-    print precise
+    print(pi)
+    print(precise)
 
     # Arithmetic
     var result = pi * 2.0
-    print result
+    print(result)
 ```
 
 **Float types:**
@@ -92,13 +92,13 @@ def main()
     var is_ready = true
     var is_finished = false
 
-    print is_ready
-    print is_finished
+    print(is_ready)
+    print(is_finished)
 
     # Logic
-    print true and false   # false
-    print true or false    # true
-    print not true         # false
+    print(true and false)  # false
+    print(true or false)  # true
+    print(not true)  # false
 ```
 
 ### Strings
@@ -112,14 +112,14 @@ def main()
     var greeting = "Hello"
     var name = "World"
 
-    print greeting
-    print greeting.len      # 5
-    print greeting.upper()  # HELLO
-    print name.lower()      # world
+    print(greeting)
+    print(greeting.len)  # 5
+    print(greeting.upper())  # HELLO
+    print(name.lower())  # world
 
     # Concatenation
     var message = greeting.concat(" ").concat(name)
-    print message           # Hello World
+    print(message)  # Hello World
 ```
 
 **String methods** (we'll cover these fully in Chapter 06):
@@ -149,18 +149,18 @@ def minmax(a: int, b: int): (int, int)
 def main()
     # Positional destructure into named locals
     var (lo, hi) = minmax(7, 3)
-    print lo         # 3
-    print hi         # 7
+    print(lo)  # 3
+    print(hi)  # 7
 
     # Hold as a tuple value, index into it
     var t = minmax(1, 9)
-    print t.0        # 1
-    print t.1        # 9
+    print(t.0)  # 1
+    print(t.1)  # 9
 
     # Mixed types work — (str, int), (float, bool), etc.
     var pair: (str, int) = ("alice", 42)
-    print pair.0     # alice
-    print pair.1     # 42
+    print(pair.0)  # alice
+    print(pair.1)  # 42
 ```
 
 **Rules:**
@@ -231,16 +231,16 @@ def main()
     var x = 10
     var y = 20
 
-    print x == y    # false (equal)
-    print x != y    # true (not equal)
-    print x < y     # true (less than)
-    print x > y     # false (greater than)
-    print x <= y    # true (less or equal)
-    print x >= y    # false (greater or equal)
+    print(x == y)  # false (equal)
+    print(x != y)  # true (not equal)
+    print(x < y)  # true (less than)
+    print(x > y)  # false (greater than)
+    print(x <= y)  # true (less or equal)
+    print(x >= y)  # false (greater or equal)
 
     var name = "Alice"
-    print name == "Alice"   # true
-    print name == "Bob"     # false
+    print(name == "Alice")  # true
+    print(name == "Bob")  # false
 ```
 
 ---
@@ -264,15 +264,15 @@ var big: int = small  # ✅ Fine: int8 → int is always safe
 def main()
     var x = 42
     var s = x.toString()      # int → str
-    print s
+    print(s)
 
     var pi = 3.14
     var i = pi.toInt()        # float → int (loses decimal)
-    print i                   # 3
+    print(i)  # 3
 
     var flag = true
     var b = flag.toString()   # bool → str
-    print b                   # true
+    print(b)  # true
 ```
 
 ---
@@ -292,12 +292,12 @@ def main()
 
     # You must check before using
     if name != nil
-        print name              # Safe to use
+        print(name)  # Safe to use
 
     if empty != nil
-        print empty
+        print(empty)
     else
-        print "Name is empty"
+        print("Name is empty")
 ```
 
 **Key point:** `str?` means "string or nil". We'll explore nil tracking fully in Chapter 11.
@@ -347,10 +347,10 @@ def main()
     user.is_active = true
 
     # Display
-    print "User: ${user.name}"
-    print "Email: ${user.email}"
-    print "Age: ${user.age}"
-    print "Active: ${user.is_active}"
+    print("User: ${user.name}")
+    print("Email: ${user.email}")
+    print("Age: ${user.age}")
+    print("Active: ${user.is_active}")
 ```
 
 ---
@@ -375,7 +375,7 @@ def main()
 > ```zebra
 > var x = 10
 > var y = 3.14
-> print x + y  # ❌ Can't add int + float
+> print(x + y)  # ❌ Can't add int + float
 > ```
 >
 > 💡 **Why:** Different types might need different handling.
@@ -384,21 +384,21 @@ def main()
 > ```zebra
 > var x = 10.0
 > var y = 3.14
-> print x + y  # ✅ Both float
+> print(x + y)  # ✅ Both float
 > ```
 
 > ❌ **Mistake:** Using a nullable type without checking
 >
 > ```zebra
 > var name: str? = nil
-> print name.upper()  # ❌ Error: nil doesn't have .upper()
+> print(name.upper())  # ❌ Error: nil doesn't have .upper()
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var name: str? = nil
 > if name != nil
->     print name.upper()  # Safe
+>     print(name.upper())  # Safe
 > ```
 
 ---
@@ -424,8 +424,8 @@ def main()
     var count_str = count.toString()
     var price_str = price.toString()
 
-    print "Count: ${count_str}"
-    print "Price: ${price_str}"
+    print("Count: ${count_str}")
+    print("Price: ${price_str}")
 ```
 
 **Output:**
@@ -449,9 +449,9 @@ def main()
     var y = 75
 
     if x > y
-        print "${x} is larger than ${y}"
+        print("${x} is larger than ${y}")
     else
-        print "${y} is larger than ${x}"
+        print("${y} is larger than ${x}")
 ```
 
 **Output:**
@@ -480,9 +480,9 @@ def main()
     person.age = 28
     person.email = "carol@example.com"
 
-    print "Name: ${person.name}"
-    print "Age: ${person.age}"
-    print "Email: ${person.email}"
+    print("Name: ${person.name}")
+    print("Age: ${person.age}")
+    print("Email: ${person.email}")
 ```
 
 </details>

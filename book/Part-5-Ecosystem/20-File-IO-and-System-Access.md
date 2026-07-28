@@ -46,10 +46,10 @@ def main()
     
     branch result
         on ok(content)
-            print "File contents:"
-            print content
+            print("File contents:")
+            print(content)
         on err(error)
-            print "Error reading file: ${error}"
+            print("Error reading file: ${error}")
 ```
 
 ### Safe Extraction with the Result Pattern
@@ -69,17 +69,17 @@ def main()
     # Option 1: Check then access
     if result.isOk()
         var content = result.value()  # Safe to access
-        print "Read ${content.len} characters"
+        print("Read ${content.len} characters")
     else
         var error = result.error()
-        print "Cannot read config: ${error}"
+        print("Cannot read config: ${error}")
     
     # Option 2: Using unwrapOr with fallback
     var content = File.read(filename).unwrapOr("")
     if content.len == 0
-        print "Using default configuration"
+        print("Using default configuration")
     else
-        print "Configuration loaded: ${content.len} bytes"
+        print("Configuration loaded: ${content.len} bytes")
 ```
 
 ### Processing Large Files: Line by Line
@@ -98,7 +98,7 @@ def main()
     var result = File.read(filename)
     
     if result.isErr()
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
         return
     
     var content = result.value()
@@ -118,10 +118,10 @@ def main()
         # Check for errors (assuming "ERROR" in log means error line)
         if line.contains("ERROR")
             error_count = error_count + 1
-            print "Line ${line_count}: ${line}"
+            print("Line ${line_count}: ${line}")
     
-    print "Total lines: ${line_count}"
-    print "Errors found: ${error_count}"
+    print("Total lines: ${line_count}")
+    print("Errors found: ${error_count}")
 ```
 
 ### Counting and Analyzing Files
@@ -137,24 +137,24 @@ def main()
     var result = File.read(filename)
     
     if result.isErr()
-        print "Cannot read file"
+        print("Cannot read file")
         return
     
     var content = result.value()
     
     # Line count
     var lines = content.split("\n")
-    print "Lines: ${lines.count(}")
+    print("Lines: ${lines.count(}"))
     
     # Word count
     var word_count = 0
     for line in lines
         var words = line.split(" ")
         word_count = word_count + words.count()
-    print "Words: ${word_count}"
+    print("Words: ${word_count}")
     
     # Character count
-    print "Characters: ${content.len}"
+    print("Characters: ${content.len}")
     
     # Find longest line
     var longest_line = ""
@@ -162,7 +162,7 @@ def main()
         if line.len > longest_line.len
             longest_line = line
     
-    print "Longest line (${longest_line.len} chars: ${longest_line.substring(0, 50)}")
+    print("Longest line (${longest_line.len} chars: ${longest_line.substring(0, 50)}"))
 ```
 
 ---
@@ -185,9 +185,9 @@ def main()
     var result = File.write(filename, content)
     
     if result.isOk()
-        print "File written successfully"
+        print("File written successfully")
     else
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
 ```
 
 ### Building Content Then Writing
@@ -226,7 +226,7 @@ def main()
     var result = File.write("report.txt", content)
     
     if result.isOk()
-        print "Report written to report.txt"
+        print("Report written to report.txt")
 ```
 
 ### Appending to Files
@@ -251,7 +251,7 @@ def main()
     var result = File.write(filename, new_content)
     
     if result.isOk()
-        print "Log entry added"
+        print("Log entry added")
 ```
 
 ---
@@ -275,11 +275,11 @@ def main()
     var results = HashMap()
     
     for filename in files
-        print "Processing ${filename}... "
+        print("Processing ${filename}... ")
         var content_result = File.read(filename)
         
         if content_result.isErr()
-            print "FAILED: ${content_result.error(}")
+            print("FAILED: ${content_result.error(}"))
             results.put(filename, 0)
             continue
         
@@ -287,16 +287,16 @@ def main()
         var line_count = content.split("\n").count()
         
         results.put(filename, line_count)
-        print "OK (${line_count} lines")
+        print("OK (${line_count} lines"))
     
     # Summary
-    print "\nSummary:"
+    print("\nSummary:")
     var total = 0
     for filename, count in results
         total = total + count
-        print "${filename}: ${count} lines"
+        print("${filename}: ${count} lines")
     
-    print "Total: ${total} lines"
+    print("Total: ${total} lines")
 ```
 
 ### Converting and Reformatting Files
@@ -311,7 +311,7 @@ def main()
     var csv_result = File.read("data.csv")
     
     if csv_result.isErr()
-        print "Error reading CSV"
+        print("Error reading CSV")
         return
     
     var csv_content = csv_result.value()
@@ -331,7 +331,7 @@ def main()
     var write_result = File.write("data.tsv", output)
     
     if write_result.isOk()
-        print "Conversion complete: data.tsv"
+        print("Conversion complete: data.tsv")
 ```
 
 ---
@@ -349,11 +349,11 @@ def main()
     var config_file = "config.ini"
     
     if File.exists(config_file)
-        print "Configuration file found"
+        print("Configuration file found")
         var content = File.read(config_file)
         # Process config
     else
-        print "No configuration file. Using defaults."
+        print("No configuration file. Using defaults.")
         # Use defaults
 ```
 
@@ -371,11 +371,11 @@ def main()
         var result = File.delete(temp_file)
         
         if result.isOk()
-            print "Temporary file deleted"
+            print("Temporary file deleted")
         else
-            print "Error deleting file: ${result.error(}")
+            print("Error deleting file: ${result.error(}"))
     else
-        print "File doesn't exist"
+        print("File doesn't exist")
 ```
 
 ### Working with Paths
@@ -387,23 +387,23 @@ def main()
 
 def main()
     var cwd = sys.cwd()
-    print "Current directory: ${cwd}"
+    print("Current directory: ${cwd}")
     
     # Build path (simple string concatenation)
     var data_dir = cwd + "/data"
     var file_path = data_dir + "/input.txt"
-    print "Full path: ${file_path}"
+    print("Full path: ${file_path}")
     
     # Extract filename from path
     var path = "/home/user/documents/report.txt"
     var filename = path.substring(path.lastIndexOf("/") + 1, path.len)
-    print "Filename: ${filename}"
+    print("Filename: ${filename}")
     
     # Extract directory from path
     var last_slash = path.lastIndexOf("/")
     if last_slash > 0
         var directory = path.substring(0, last_slash)
-        print "Directory: ${directory}"
+        print("Directory: ${directory}")
 ```
 
 ---
@@ -422,7 +422,7 @@ def main()
     var conn = Tcp.connect("example.com", 80)
     conn.send("GET / HTTP/1.0\r\nHost: example.com\r\n\r\n")
     var response = conn.recv(4096)
-    print response
+    print(response)
     conn.close()
 
 # Server:
@@ -446,7 +446,7 @@ def main()
 def main()
     var sock = Udp.bind(9000)                  # listen
     var (msg, from) = sock.recv(1024)          # blocks; returns bytes + sender addr
-    print "from ${from}: ${msg}"
+    print("from ${from}: ${msg}")
     sock.send("alice.example.com", 9001, "ack")
     sock.close()
 ```
@@ -471,7 +471,7 @@ def main()
     ws.send("hello")
     var reply = ws.recv()
     if reply as msg
-        print msg
+        print(msg)
     ws.close()
 
 # Server:
@@ -576,12 +576,12 @@ def main()
     var result = Config.from_file("app.conf")
     
     if result.isErr()
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
         return
     
     var config = result.value()
-    print "Server: ${config.host}:${config.port}"
-    print "Debug: ${config.debug}"
+    print("Server: ${config.host}:${config.port}")
+    print("Debug: ${config.debug}")
 ```
 
 ---
@@ -605,13 +605,13 @@ class Logger
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
         this.entries.add(entry)
-        print entry
+        print(entry)
     
     def error(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
         this.entries.add(entry)
-        print entry
+        print(entry)
     
     def save(): bool
         var content = entries.join("\n")
@@ -632,9 +632,9 @@ def main()
     logger.log("Connection successful")
     
     if logger.save()
-        print "Log saved to ${logger.filename}"
+        print("Log saved to ${logger.filename}")
     else
-        print "Failed to save log"
+        print("Failed to save log")
 ```
 
 ---
@@ -695,11 +695,11 @@ def main()
     var result = Person.load_from_csv("people.csv")
     
     if result.isErr()
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
         return
     
     var people = result.value()
-    print "Loaded ${people.count(} people")
+    print("Loaded ${people.count(} people"))
     
     # Filter and export
     var adults = List()
@@ -716,7 +716,7 @@ def main()
     var write_result = File.write("adults.csv", csv_output)
     
     if write_result.isOk()
-        print "Exported ${adults.count(} adults to adults.csv")
+        print("Exported ${adults.count(} adults to adults.csv"))
 ```
 
 ---

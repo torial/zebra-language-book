@@ -1,0 +1,8 @@
+def first(items: List(T)): T?
+    if items.count() > 0
+        return items.at(0)
+    return nil
+
+var nums = List()
+nums.add(42)
+var first_num = first(nums)  # Type is int?

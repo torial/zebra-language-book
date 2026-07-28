@@ -1,0 +1,8 @@
+var items = List()
+items.add(42)
+
+if items.count() > 0
+    var first = items.at(0)  # Safe
+
+for i in 0.to(items.count())
+    var item = items.at(i)   # Safe—i is valid

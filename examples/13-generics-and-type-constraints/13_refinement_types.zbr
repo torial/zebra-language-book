@@ -1,0 +1,13 @@
+# file: 13_refinement_types.zbr
+# teaches: parametric refinement types
+# chapter: 13-Generics-and-Type-Constraints
+
+type Bounded(lo: int, hi: int) = int where value >= lo and value <= hi
+
+def main()
+    var score: Bounded(0, 100) = 85           # OK
+    var neg:   Bounded(-50, 50) = -20         # OK
+    # var bad: Bounded(0, 100) = 150          # runtime panic
+
+    var temp: Bounded(-273, 1000) = 37        # body temperature — OK
+    print(temp)  # 37

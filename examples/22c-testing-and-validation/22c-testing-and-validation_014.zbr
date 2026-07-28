@@ -1,0 +1,10 @@
+def test_concat()
+    assert_eq "foo" + "bar", "foobar"
+
+def test_length()
+    assert_eq "hello".len, 5
+    assert_eq "".len, 0
+
+def test_contains()
+    assert_true  "hello world".contains("world")
+    assert_false "hello world".contains("zebra")

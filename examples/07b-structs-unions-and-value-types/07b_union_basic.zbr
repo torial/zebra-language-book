@@ -1,0 +1,14 @@
+# file: 07b_union_basic.zbr
+# teaches: union definition and construction
+# chapter: 07b-Structs-Unions
+
+union Value
+    int_: int
+    str_: str
+    bool_: bool
+    none_
+
+def main()
+    var v1 = Value.int_(42)
+    var v2 = Value.str_("hello")
+    var v3 = Value.none_()

@@ -1,0 +1,11 @@
+extend str
+    def shout(): str
+        return this.to_upper() + "!"
+
+    def word_count(): int
+        return this.split(" ").len
+
+# Anywhere in the same file:
+var s = "hello world"
+print(s.shout())  # HELLO WORLD!
+print(s.word_count())  # 2

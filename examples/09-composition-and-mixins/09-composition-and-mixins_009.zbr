@@ -1,0 +1,11 @@
+> mixin Acceleratable
+>     var speed: int = 0
+>
+>     def base_accelerate
+>         speed = speed + 10
+>
+> class Car adds Acceleratable
+>     def accelerate
+>         base_accelerate()
+>         print("Car cruising at ${speed} mph")
+>

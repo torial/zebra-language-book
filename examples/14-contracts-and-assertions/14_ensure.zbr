@@ -1,0 +1,17 @@
+# file: 14_ensure.zbr
+# teaches: postcondition checking with ensure
+# chapter: 14-Contracts-and-Assertions
+
+class Counter
+    var count: int = 0
+
+    def increment(): int
+        ensure
+            count > 0
+        count = count + 1
+        return count
+
+def main()
+    var c = Counter()
+    print(c.increment())  # 1
+    print(c.increment())  # 2

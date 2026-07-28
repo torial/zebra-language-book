@@ -1,0 +1,8 @@
+class Password
+    var encrypted_password: str = ""
+    
+    def set_password(plain: str)
+        # Encrypt and store
+        encrypted_password = "encrypted:" + plain
+    
+    # No getter: can't read it back

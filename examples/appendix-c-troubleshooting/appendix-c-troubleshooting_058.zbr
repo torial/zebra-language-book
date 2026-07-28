@@ -1,0 +1,4 @@
+var items = List()
+
+for i in 0.to(items.count())
+    var item = items.at(i)  # Always safe with this pattern

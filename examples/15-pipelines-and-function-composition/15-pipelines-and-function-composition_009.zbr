@@ -1,0 +1,8 @@
+# WRONG — pipeline RHS must be a call expression
+var result = (text
+    -> .lower()
+    -> .len)        # Error: .len is a field access, not a call
+
+# CORRECT — finish the pipeline, then read the field
+var lowered = text -> .lower()
+var result = lowered.len

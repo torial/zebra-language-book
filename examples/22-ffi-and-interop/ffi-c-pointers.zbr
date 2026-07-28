@@ -1,18 +1,18 @@
-// file: ffi-c-pointers.zbr
-// teaches: handling pointers in FFI
-// chapter: 22
+# file: ffi-c-pointers.zbr
+# teaches: handling pointers in FFI
+# chapter: 22
 
 shared class CMemory
-    shared
+    static
         # C malloc: void* malloc(size_t size)
         # C free: void free(void* ptr)
         # These are low-level and error-prone
         
         # Better: allocate in Zebra, pass to C
-        def process_buffer(data as str) as Result(int, str)
+        def process_buffer(data: str): int throws
             # Zebra owns the memory, C just reads it
             # Safe! C cannot deallocate
-            return Result.ok(data.len)
+            return data.len
 
 def main()
     var my_data = "Important data"
@@ -21,8 +21,8 @@ def main()
     var result = CMemory.process_buffer(my_data)
     
     if result.isOk()
-        println("Processed: ${result.value()} bytes")
+        print("Processed: ${result.value(} bytes"))
     else
-        println("Error: ${result.error()}")
+        print("Error: ${result.error(}"))
     
     # Zebra's scoping ensures my_data is cleaned up automatically

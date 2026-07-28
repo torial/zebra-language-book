@@ -1,17 +1,15 @@
-// file: 06_char_iter.zbr
-// teaches: iterating over characters
-// chapter: 06-Strings-and-Unicode
+# file: 06_char_iter.zbr
+# teaches: iterating over characters
+# chapter: 06-Strings-and-Unicode
 
-class Main
-    shared
-        def main
-            var text = "Hello"
-            
-            // Iterate characters
-            for char in text.chars()
-                print char
-            
-            // Byte iteration
-            var data = "AB"
-            for byte in data.bytes()
-                print byte                      // 65, 66 (ASCII values)
+def main()
+    var text = "Hello"
+
+    # Iterate characters (yields `char`; .toString() lifts back to str for printing)
+    for c in text.chars()
+        print(c.toString())
+
+    # Byte iteration — yields each byte as a u8
+    var data = "AB"
+    for byte in data.bytes()
+        print(byte)  # 65, 66 (ASCII values)

@@ -1,0 +1,7 @@
+# WRONG
+var box = Container()  # Error: T not specified
+box.store(42)
+
+# CORRECT
+var box = Container(int)()
+box.store(42)

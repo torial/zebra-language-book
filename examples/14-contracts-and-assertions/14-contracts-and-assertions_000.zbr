@@ -1,0 +1,8 @@
+def withdraw(amount: int): int throws
+    require
+        amount > 0
+        amount <= balance
+    ensure
+        result == old balance - amount
+    balance = balance - amount
+    return balance

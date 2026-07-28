@@ -1,0 +1,8 @@
+def hex_to_rgb(hex: int): (int, int, int)
+    return ((hex >> 16) & 0xFF, (hex >> 8) & 0xFF, hex & 0xFF)
+
+def darken(rgb: (int, int, int), pct: int): (int, int, int)
+    var (r, g, b) = rgb
+    return (r * (100 - pct) / 100,
+            g * (100 - pct) / 100,
+            b * (100 - pct) / 100)

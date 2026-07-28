@@ -1,0 +1,29 @@
+# file: stdlib-math-functions.zbr
+# teaches: Math module functions
+# chapter: 19
+
+def main()
+    # Trigonometry
+    print(Math.sin(Math.PI / 2))  # 1.0
+    print(Math.cos(0.0))  # 1.0
+    print(Math.atan2(1.0, 1.0))  # ~0.785
+
+    # Powers and roots
+    print(Math.sqrt(16.0))  # 4.0
+    print(Math.pow(2.0, 10.0))  # 1024.0
+    print(Math.exp(1.0))  # ~2.718
+
+    # Rounding
+    print(Math.floor(3.7))  # 3.0
+    print(Math.ceil(3.2))  # 4.0
+    print(Math.round(3.5))  # 4.0
+
+    # Logarithms
+    print(Math.log(Math.E))  # 1.0
+    print(Math.log2(8.0))  # 3.0
+    print(Math.log10(100.0))  # 2.0
+
+    # Utilities
+    print(Math.abs(-42))  # 42
+    print(Math.min(3, 7))  # 3
+    print(Math.max(3, 7))  # 7

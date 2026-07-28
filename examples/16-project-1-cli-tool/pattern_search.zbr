@@ -1,19 +1,19 @@
-// file: pattern_search.zbr
-// teaches: pattern matching and filtering
-// project: Project-1-CLI-Tool
+# file: pattern_search.zbr
+# teaches: pattern matching and filtering
+# project: Project-1-CLI-Tool
 
 class PatternMatcher
-    shared
-        def search_lines(filename as str, pattern as str) as Result(List(str), str)
+    static
+        def search_lines(filename: str, pattern: str): List(str) throws
             var content_result = FileProcessor.read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var lines = content.split("\n")
             
-            var matches as List(str) = List()
+            var matches: List(str) = List()
             var line_num = 0
             
             for line in lines
@@ -24,20 +24,20 @@ class PatternMatcher
                     matches.add(formatted)
             
             if matches.count() == 0
-                return Result.err("No matches found for pattern: ${pattern}")
+                raise "No matches found for pattern: ${pattern}"
             
-            return Result.ok(matches)
+            return matches
         
-        def search_with_context(filename as str, pattern as str, context_lines as int) as Result(List(str), str)
+        def search_with_context(filename: str, pattern: str, context_lines: int): List(str) throws
             var content_result = FileProcessor.read_file(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.errValue())
+                raise content_result.errValue()
             
             var content = content_result.okValue()
             var lines = content.split("\n")
             
-            var results as List(str) = List()
+            var results: List(str) = List()
             var line_num = 0
             
             for line in lines
@@ -66,4 +66,4 @@ class PatternMatcher
                         results.add(lines.at(i))
                         i = i + 1
             
-            return Result.ok(results)
+            return results

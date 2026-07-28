@@ -1,61 +1,59 @@
-// file: 08_logger_system.zbr
-// teaches: realistic interface use
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_logger_system.zbr
+# teaches: realistic interface use
+# chapter: 08-Interfaces-and-Protocols
 
 interface Logger
-    def debug(message as str)
-    def info(message as str)
-    def warn(message as str)
-    def error(message as str)
+    def debug(message: str)
+    def info(message: str)
+    def warn(message: str)
+    def error(message: str)
 
 class ConsoleLogger
     implements Logger
-        def debug(message as str)
-            print "[DEBUG] ${message}"
+        def debug(message: str)
+            print("[DEBUG] ${message}")
         
-        def info(message as str)
-            print "[INFO] ${message}"
+        def info(message: str)
+            print("[INFO] ${message}")
         
-        def warn(message as str)
-            print "[WARN] ${message}"
+        def warn(message: str)
+            print("[WARN] ${message}")
         
-        def error(message as str)
-            print "[ERROR] ${message}"
+        def error(message: str)
+            print("[ERROR] ${message}")
 
 class FileLogger
     implements Logger
-        def debug(message as str)
+        def debug(message: str)
             # Write to file: [DEBUG] message
         
-        def info(message as str)
+        def info(message: str)
             # Write to file: [INFO] message
         
-        def warn(message as str)
+        def warn(message: str)
             # Write to file: [WARN] message
         
-        def error(message as str)
+        def error(message: str)
             # Write to file: [ERROR] message
 
 class Application
-    var logger as Logger
-    
-    def set_logger(l as Logger)
-        logger = l
-    
-    def do_work
-        logger.info("Starting work")
-        # Do work
-        logger.info("Work complete")
+    var logger: Logger
 
-class Main
-    shared
-        def main
-            var app = Application()
-            
-            # Use console logger
-            app.set_logger(ConsoleLogger())
-            app.do_work()
-            
-            # Switch to file logger (same code, different output)
-            app.set_logger(FileLogger())
-            app.do_work()
+    def set_logger(l: Logger)
+        this.logger = l
+
+    def do_work()
+        this.logger.info("Starting work")
+        # Do work
+        this.logger.info("Work complete")
+
+def main()
+    var app = Application()
+
+    # Use console logger
+    app.set_logger(ConsoleLogger())
+    app.do_work()
+
+    # Switch to file logger (same code, different output)
+    app.set_logger(FileLogger())
+    app.do_work()

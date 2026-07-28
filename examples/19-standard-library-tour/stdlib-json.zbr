@@ -1,0 +1,8 @@
+# file: stdlib-json.zbr
+# teaches: JSON parsing and generation
+# chapter: 19
+
+def main()
+    var text = "{\"name\": \"Alice\", \"age\": 30}"
+    var parsed = Json.parse(text)
+    print(parsed)

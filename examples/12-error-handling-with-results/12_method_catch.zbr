@@ -1,0 +1,12 @@
+# file: 12_method_catch.zbr
+# teaches: method-level catch clause
+# chapter: 12-Error-Handling
+
+def attempt()
+    var value = Validator.parse_int("")
+    print("Got: ${value}")
+catch
+    print("Failed to parse")
+
+def main()
+    attempt()

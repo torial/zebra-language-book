@@ -1,22 +1,22 @@
-// file: ngram_analysis.zbr
-// teaches: n-gram extraction and pattern detection
-// project: Project-3-Data-Analysis
+# file: ngram_analysis.zbr
+# teaches: n-gram extraction and pattern detection
+# project: Project-3-Data-Analysis
 
 class NGram
-    var gram as str
-    var count as int
-    var positions as List(int)  # Track where it appears
+    var gram: str
+    var count: int
+    var positions: List(int)  # Track where it appears
     
-    def init(gram as str)
+    def init(gram: str)
         this.gram = gram
         count = 1
         positions = List()
 
 class NGramAnalyzer
-    shared
-        def extract_ngrams(text as str, n as int) as HashMap(str, NGram)
+    static
+        def extract_ngrams(text: str, n: int): HashMap(str, NGram)
             var words = text.lower().split(" ")
-            var ngrams as HashMap(str, NGram) = HashMap()
+            var ngrams: HashMap(str, NGram) = HashMap()
             
             var i = 0
             while i < words.count() - (n - 1)
@@ -42,9 +42,9 @@ class NGramAnalyzer
             
             return ngrams
         
-        def top_ngrams(text as str, n as int, limit as int) as List(NGram)
+        def top_ngrams(text: str, n: int, limit: int): List(NGram)
             var all_grams = extract_ngrams(text, n)
-            var results as List(NGram) = List()
+            var results: List(NGram) = List()
             
             # Simple sorting
             for gram, ng in all_grams
@@ -65,7 +65,7 @@ class NGramAnalyzer
                 i = i + 1
             
             # Return top N
-            var top as List(NGram) = List()
+            var top: List(NGram) = List()
             i = 0
             while i < limit and i < results.count()
                 top.add(results.at(i))

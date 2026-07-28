@@ -41,15 +41,15 @@ def main()
     var pattern = "cat"
     
     if text.matches(pattern)
-        print "Pattern found!"
+        print("Pattern found!")
     
     # Case-sensitive
     if not text.matches("CAT")
-        print "'CAT' doesn't match 'cat'"
+        print("'CAT' doesn't match 'cat'")
     
     # Substring matching
     if text.contains("sat")
-        print "'sat' is in the text"
+        print("'sat' is in the text")
     
     # Note: for simple substring matching, use .contains()
     # Don't overcomplicate with regex
@@ -57,7 +57,7 @@ def main()
     # Finding position
     var pos = text.indexOf("mat")  # 19
     if pos >= 0
-        print "Found at position ${pos}"
+        print("Found at position ${pos}")
 ```
 
 ### The Dot (.) Wildcard
@@ -74,23 +74,23 @@ def main()
     
     # Matches: cat, cot, cut, c9t, c t
     if re.matches("cat")
-        print "Matches 'cat'"
+        print("Matches 'cat'")
     
     if re.matches("cot")
-        print "Matches 'cot'"
+        print("Matches 'cot'")
     
     if re.matches("cut")
-        print "Matches 'cut'"
+        print("Matches 'cut'")
     
     if not re.matches("coat")  # 'oa' is two chars, not one
-        print "Doesn't match 'coat'"
+        print("Doesn't match 'coat'")
     
     # Practical: match email-ish pattern (simplified)
     var email_pattern = ".+@.+"
     var email_re = Regex.compile(email_pattern)
     
     if email_re.matches("user@example.com")
-        print "Valid email pattern"
+        print("Valid email pattern")
 ```
 
 ---
@@ -109,36 +109,36 @@ def main()
     var re1 = Regex.compile("[aeiou]")  # Match any vowel
     
     if re1.matches("a")
-        print "'a' is a vowel"
+        print("'a' is a vowel")
     
     if re1.matches("e")
-        print "'e' is a vowel"
+        print("'e' is a vowel")
     
     if not re1.matches("x")
-        print "'x' is not a vowel"
+        print("'x' is not a vowel")
     
     # Character ranges
     var digit_re = Regex.compile("[0-9]")  # Any digit
     
     if digit_re.matches("5")
-        print "'5' is a digit"
+        print("'5' is a digit")
     
     if not digit_re.matches("a")
-        print "'a' is not a digit"
+        print("'a' is not a digit")
     
     var letter_re = Regex.compile("[a-zA-Z]")  # Any letter
     
     if letter_re.matches("X")
-        print "'X' is a letter"
+        print("'X' is a letter")
     
     # Negation: NOT in set
     var non_vowel_re = Regex.compile("[^aeiou]")
     
     if non_vowel_re.matches("b")
-        print "'b' is not a vowel"
+        print("'b' is not a vowel")
     
     if not non_vowel_re.matches("a")
-        print "'a' is a vowel (excluded by ^")
+        print("'a' is a vowel (excluded by ^"))
 ```
 
 ### Common Character Classes (Shortcuts)
@@ -155,28 +155,28 @@ def main()
     var digit_re = Regex.compile("\\d")
     
     if digit_re.matches("7")
-        print "Found digit"
+        print("Found digit")
     
     # \w = [a-zA-Z0-9_] = word character
     var word_re = Regex.compile("\\w")
     
     if word_re.matches("a")
-        print "'a' is a word character"
+        print("'a' is a word character")
     
     if word_re.matches("_")
-        print "'_' is a word character"
+        print("'_' is a word character")
     
     if not word_re.matches("-")
-        print "'-' is not a word character"
+        print("'-' is not a word character")
     
     # \s = whitespace (space, tab, newline)
     var space_re = Regex.compile("\\s")
     
     if space_re.matches(" ")
-        print "Space matches whitespace"
+        print("Space matches whitespace")
     
     if space_re.matches("\t")
-        print "Tab matches whitespace"
+        print("Tab matches whitespace")
     
     # Inverse (uppercase)
     # \D = not digit
@@ -186,10 +186,10 @@ def main()
     var not_digit = Regex.compile("\\D")
     
     if not_digit.matches("x")
-        print "'x' is not a digit"
+        print("'x' is not a digit")
     
     if not not_digit.matches("5")
-        print "'5' is a digit (excluded by \\D")
+        print("'5' is a digit (excluded by \\D"))
 ```
 
 ---
@@ -208,64 +208,64 @@ def main()
     var re_star = Regex.compile("ab*c")  # ac, abc, abbc, abbbc, etc.
     
     if re_star.matches("ac")
-        print "Matches 'ac' (zero b's")
+        print("Matches 'ac' (zero b's"))
     
     if re_star.matches("abc")
-        print "Matches 'abc' (one b")
+        print("Matches 'abc' (one b"))
     
     if re_star.matches("abbbc")
-        print "Matches 'abbbc' (three b's")
+        print("Matches 'abbbc' (three b's"))
     
     if not re_star.matches("aXc")
-        print "Doesn't match 'aXc' (X is not b")
+        print("Doesn't match 'aXc' (X is not b"))
     
     # + = one or more
     var re_plus = Regex.compile("ab+c")  # abc, abbc, abbbc, etc. (NOT ac)
     
     if not re_plus.matches("ac")
-        print "Doesn't match 'ac' (need at least one b")
+        print("Doesn't match 'ac' (need at least one b"))
     
     if re_plus.matches("abc")
-        print "Matches 'abc'"
+        print("Matches 'abc'")
     
     if re_plus.matches("abbc")
-        print "Matches 'abbc'"
+        print("Matches 'abbc'")
     
     # ? = zero or one
     var re_optional = Regex.compile("colou?r")  # color or colour
     
     if re_optional.matches("color")
-        print "Matches 'color' (American spelling")
+        print("Matches 'color' (American spelling"))
     
     if re_optional.matches("colour")
-        print "Matches 'colour' (British spelling")
+        print("Matches 'colour' (British spelling"))
     
     if not re_optional.matches("coloor")
-        print "Doesn't match 'coloor' (too many o's")
+        print("Doesn't match 'coloor' (too many o's"))
     
     # Exact count: {n}
     var re_exact = Regex.compile("a{3}")  # exactly three a's
     
     if re_exact.matches("aaa")
-        print "Matches 'aaa'"
+        print("Matches 'aaa'")
     
     if not re_exact.matches("aa")
-        print "Doesn't match 'aa'"
+        print("Doesn't match 'aa'")
     
     # Range: {n,m}
     var re_range = Regex.compile("a{2,4}")  # 2 to 4 a's
     
     if re_range.matches("aa")
-        print "Matches 'aa'"
+        print("Matches 'aa'")
     
     if re_range.matches("aaa")
-        print "Matches 'aaa'"
+        print("Matches 'aaa'")
     
     if re_range.matches("aaaa")
-        print "Matches 'aaaa'"
+        print("Matches 'aaaa'")
     
     if not re_range.matches("aaaaa")
-        print "Doesn't match 'aaaaa' (too many")
+        print("Doesn't match 'aaaaa' (too many"))
 ```
 
 ---
@@ -284,40 +284,40 @@ def main()
     var starts_with_hello = Regex.compile("^hello")
     
     if starts_with_hello.matches("hello world")
-        print "Matches: string starts with 'hello'"
+        print("Matches: string starts with 'hello'")
     
     if not starts_with_hello.matches("say hello")
-        print "Doesn't match: 'hello' is not at start"
+        print("Doesn't match: 'hello' is not at start")
     
     # $ = end of string
     var ends_with_txt = Regex.compile("\\.txt$")
     
     if ends_with_txt.matches("document.txt")
-        print "Matches: filename ends with .txt"
+        print("Matches: filename ends with .txt")
     
     if not ends_with_txt.matches("document.txt.bak")
-        print "Doesn't match: .txt is not at end"
+        print("Doesn't match: .txt is not at end")
     
     # Combining ^ and $
     var exact_pattern = Regex.compile("^[a-z]+$")  # Only lowercase letters
     
     if exact_pattern.matches("hello")
-        print "Matches: all lowercase"
+        print("Matches: all lowercase")
     
     if not exact_pattern.matches("Hello")
-        print "Doesn't match: has uppercase"
+        print("Doesn't match: has uppercase")
     
     if not exact_pattern.matches("hello123")
-        print "Doesn't match: has numbers"
+        print("Doesn't match: has numbers")
     
     # Word boundary: \b
     var word_boundary = Regex.compile("\\bhello\\b")
     
     if word_boundary.matches("hello world")
-        print "Matches: 'hello' is a word"
+        print("Matches: 'hello' is a word")
     
     if not word_boundary.matches("helloworld")
-        print "Doesn't match: 'hello' is part of 'helloworld'"
+        print("Doesn't match: 'hello' is part of 'helloworld'")
 ```
 
 ---
@@ -336,41 +336,41 @@ def main()
     var greeting_re = Regex.compile("hello|hi|hey")
     
     if greeting_re.matches("hello")
-        print "Matches 'hello'"
+        print("Matches 'hello'")
     
     if greeting_re.matches("hi")
-        print "Matches 'hi'"
+        print("Matches 'hi'")
     
     if greeting_re.matches("hey")
-        print "Matches 'hey'"
+        print("Matches 'hey'")
     
     if not greeting_re.matches("goodbye")
-        print "Doesn't match 'goodbye'"
+        print("Doesn't match 'goodbye'")
     
     # Groups with quantifiers
     var repeating_group = Regex.compile("(ab)+")  # ab, abab, ababab, etc.
     
     if repeating_group.matches("ab")
-        print "Matches 'ab'"
+        print("Matches 'ab'")
     
     if repeating_group.matches("abab")
-        print "Matches 'abab'"
+        print("Matches 'abab'")
     
     if repeating_group.matches("ababab")
-        print "Matches 'ababab'"
+        print("Matches 'ababab'")
     
     if not repeating_group.matches("aba")
-        print "Doesn't match 'aba'"
+        print("Doesn't match 'aba'")
     
     # Optional group
     var optional_group = Regex.compile("colou?r|color")
     # Actually redundant—simpler: colou?r
     
     if optional_group.matches("color")
-        print "Matches 'color'"
+        print("Matches 'color'")
     
     if optional_group.matches("colour")
-        print "Matches 'colour'"
+        print("Matches 'colour'")
 ```
 
 ---
@@ -392,13 +392,13 @@ def main()
     var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
     
     if email_pattern.matches("user@example.com")
-        print "Valid format"
+        print("Valid format")
     
     if not email_pattern.matches("invalid.email@")
-        print "Invalid: missing domain"
+        print("Invalid: missing domain")
     
     if not email_pattern.matches("no-at-sign.com")
-        print "Invalid: no @ sign"
+        print("Invalid: no @ sign")
     
     # Better validation: check length, etc.
     def is_valid_email(email: str): bool
@@ -422,7 +422,7 @@ def main()
         return true
     
     if is_valid_email("alice@example.com")
-        print "Email looks valid"
+        print("Email looks valid")
 ```
 
 ### Phone Number Validation
@@ -437,16 +437,16 @@ def main()
     var us_phone = Regex.compile("\\d{3}-\\d{3}-\\d{4}")
     
     if us_phone.matches("555-123-4567")
-        print "Valid US phone"
+        print("Valid US phone")
     
     if not us_phone.matches("5551234567")  # Missing dashes
-        print "Invalid: wrong format"
+        print("Invalid: wrong format")
     
     # International: +1-234-567-8900
     var intl_phone = Regex.compile("\\+\\d{1,3}-\\d{3}-\\d{3}-\\d{4}")
     
     if intl_phone.matches("+1-555-123-4567")
-        print "Valid international"
+        print("Valid international")
     
     # Flexible: accept various formats
     def is_valid_phone_flexible(phone: str): bool
@@ -473,13 +473,13 @@ def main()
     var url_pattern = Regex.compile("https?://[a-z0-9]+\\.[a-z0-9]+")
     
     if url_pattern.matches("https://example.com")
-        print "Valid HTTPS URL"
+        print("Valid HTTPS URL")
     
     if url_pattern.matches("http://example.co.uk")
-        print "Valid HTTP URL"
+        print("Valid HTTP URL")
     
     if not url_pattern.matches("ftp://example.com")
-        print "Doesn't match: FTP not in pattern"
+        print("Doesn't match: FTP not in pattern")
     
     # More complete
     def is_valid_url(url: str): bool
@@ -520,7 +520,7 @@ def main()
     
     # Find first match
     if price_pattern.matches(text)
-        print "Contains price pattern"
+        print("Contains price pattern")
     
     # Extract all prices
     var prices = List()
@@ -546,9 +546,9 @@ def main()
         prices.add(price)
         search_start = num_end
     
-    print "Found prices:"
+    print("Found prices:")
     for price in prices
-        print "  ${price}"
+        print("  ${price}")
 ```
 
 ### Extracting from Structured Text
@@ -580,9 +580,9 @@ def main()
     var extracted = extract_person_data(record)
     
     if extracted != nil
-        print "Name: ${extracted.fetch("name"}")
-        print "Age: ${extracted.fetch("age"}")
-        print "Email: ${extracted.fetch("email"}")
+        print("Name: ${extracted.fetch("name"}"))
+        print("Age: ${extracted.fetch("age"}"))
+        print("Email: ${extracted.fetch("email"}"))
 ```
 
 ---
@@ -602,11 +602,11 @@ def main()
     # Replace first occurrence of pattern
     var pattern = Regex.compile("at")
     var replaced = pattern.replace(text, "AT")
-    print replaced  # "The cAT sat on the mat"
+    print(replaced)  # "The cAT sat on the mat"
     
     # Replace all occurrences
     var all_replaced = pattern.replaceAll(text, "AT")
-    print all_replaced  # "The cAT sAT on the mAT"
+    print(all_replaced)  # "The cAT sAT on the mAT"
     
     # Case-insensitive replacement (if supported)
     var case_insensitive = text.lower().replace("cat", "dog")
@@ -631,7 +631,7 @@ def main()
         var year = parts.at(2)
         
         var iso_date = "${year}-${month}-${day}"
-        print iso_date  # 2025-03-15
+        print(iso_date)  # 2025-03-15
     
     # Escape special characters
     def escape_html(text: str): str
@@ -643,7 +643,7 @@ def main()
         return escaped
     
     var html_unsafe = "<script>alert('XSS')</script>"
-    print escape_html(html_unsafe)
+    print(escape_html(html_unsafe))
 ```
 
 ---
@@ -688,19 +688,19 @@ def main()
     var file_extension = Regex.compile("\\.txt$")
     
     if file_extension.matches("document.txt")
-        print "Matches text file"
+        print("Matches text file")
     
     # To match a literal dollar sign
     var price_pattern = Regex.compile("\\$[0-9]+")
     
     if price_pattern.matches("$50")
-        print "Matches price"
+        print("Matches price")
     
     # To match a literal backslash
     var path_pattern = Regex.compile("C:\\\\Users")  # Note: double backslash
     
     if path_pattern.matches("C:\\Users")
-        print "Matches Windows path"
+        print("Matches Windows path")
 ```
 
 ### Know Your Regex Dialect
@@ -724,7 +724,7 @@ Check documentation for your version.
 def analyze_logs(filename: str)
     var result = File.read(filename)
     if result.isErr()
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
         return
     
     var content = result.value()
@@ -741,14 +741,14 @@ def analyze_logs(filename: str)
         elif line.contains("[WARN]")
             warning_count = warning_count + 1
     
-    print "Log Analysis:"
-    print "  Errors: ${error_count}"
-    print "  Warnings: ${warning_count}"
+    print("Log Analysis:")
+    print("  Errors: ${error_count}")
+    print("  Warnings: ${warning_count}")
     
     if error_count > 0
-        print "\nErrors:"
+        print("\nErrors:")
         for error_line in error_lines
-            print "  ${error_line}"
+            print("  ${error_line}")
 
 def main()
     analyze_logs("app.log")

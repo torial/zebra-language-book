@@ -1,0 +1,19 @@
+# file: 07_static.zbr
+# teaches: static (class-level) methods
+# chapter: 07-Classes-and-Instances
+
+class MathUtil
+    static
+        def abs(x: int): int
+            if x < 0
+                return 0 - x
+            return x
+
+        def max_of(a: int, b: int): int
+            if a > b
+                return a
+            return b
+
+def main()
+    print(MathUtil.abs(-5))  # 5
+    print(MathUtil.max_of(10, 20))  # 20

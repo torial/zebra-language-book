@@ -1,0 +1,8 @@
+def main()
+    var total: Atomic(int) = Atomic(int)(0)
+
+    sys.go(lambda  var _ = total.add(1)  )
+    sys.go(lambda  var _ = total.add(1)  )
+    sys.sleep(50)              # give threads time to finish
+
+    print(total.load())  # 2

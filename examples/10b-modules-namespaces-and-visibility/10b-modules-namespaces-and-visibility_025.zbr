@@ -1,0 +1,10 @@
+> # helpers.zbr
+> extend int
+>     def is_prime(): bool
+>         # ...
+>
+> # main.zbr
+> use helpers
+> def main()
+>     print(7.is_prime())         # ERROR: extension not visible here
+>

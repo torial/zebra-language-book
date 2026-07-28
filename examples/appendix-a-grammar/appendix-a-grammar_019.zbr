@@ -1,0 +1,5 @@
+10 + 5          # Addition
+10 - 5          # Subtraction
+10 * 5          # Multiplication
+10 / 5          # Integer division (or float division with floats)
+10 % 3          # Modulo (remainder)

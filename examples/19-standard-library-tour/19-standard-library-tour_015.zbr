@@ -1,0 +1,14 @@
+def main()
+    Log.info("server starting on :8080")
+    Log.warn("config key missing — using default")
+    Log.error("database connection failed")
+
+    # JSON-lines output for ingestion by log aggregators:
+    Log.json("info", "request handled",
+             HashMap(str, str)()
+                .set("method", "GET")
+                .set("path", "/api"))
+
+    # Redirect to a file (subsequent calls write there):
+    Log.setFile("./out.log")
+    Log.info("now writing to a file")

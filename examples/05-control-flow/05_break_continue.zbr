@@ -1,20 +1,20 @@
-// file: 05_break_continue.zbr
-// teaches: loop control
-// chapter: 05-Control-Flow
+# file: 05_break_continue.zbr
+# teaches: loop control
+# chapter: 05-Control-Flow
 
-class Main
-    shared
-        def main
-            // Break: exit loop early
-            var i = 0
-            while true
-                if i == 5
-                    break
-                print i
-                i = i + 1
-            
-            // Continue: skip to next iteration
-            for num in 1..10
-                if num % 2 == 0
-                    continue
-                print num  // Prints odd numbers only
+def main()
+    # Break: exit loop early
+    var i = 0
+    while true
+        if i == 5
+            break
+        print(i)
+        i = i + 1
+
+    # Continue: skip to next iteration. Numeric ranges use either `start:end`
+    # or the equivalent method form `start.to(end)` — both are exclusive on
+    # `end` (so `1.to(11)` yields 1,2,...,10).
+    for num in 1.to(11)
+        if num % 2 == 0
+            continue
+        print(num)  # Prints odd numbers only

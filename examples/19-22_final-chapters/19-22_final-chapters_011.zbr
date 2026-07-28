@@ -1,0 +1,27 @@
+# Read file
+var content = File.read("file.txt")
+
+# Parse lines
+var lines = content.split("\n")
+
+# Count items
+for item in items
+    count = count + 1
+
+# Search list
+for item in items
+    if item.contains("search")
+        print(item)
+
+# Convert types
+var num = "42".toInt()
+
+# Handle nil
+var value: str? = get_value()
+if value != nil
+    print(value)
+
+# Handle errors
+var result = operation()
+if result.isErr()
+    print(result.errValue())

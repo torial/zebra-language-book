@@ -1,21 +1,20 @@
-// file: 03_iteration.zbr
-// teaches: different iteration styles
-// chapter: 03-Collections
+# file: 03_iteration.zbr
+# teaches: different iteration styles
+# chapter: 03-Collections
 
-class Main
-    shared
-        def main
-            var items as List(str) = List()
-            items.add("first")
-            items.add("second")
-            items.add("third")
-            
-            // Simple iteration
-            for item in items
-                print item
-            
-            // Iteration with index (if supported)
-            var i = 0
-            while i < items.count()
-                print "${i}: ${items.at(i)}"
-                i = i + 1
+def main()
+    var items = List(str)()
+    items.add("first")
+    items.add("second")
+    items.add("third")
+
+    # Simple iteration (typed local works around print's {s} fallback)
+    for item in items
+        var s: str = item
+        print(s)
+
+    # Iteration with index — interpolation into a string handles the type fine
+    var i = 0
+    while i < items.count()
+        print("${i}: ${items.at(i)}")
+        i = i + 1

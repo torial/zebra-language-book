@@ -1,0 +1,2 @@
+var pattern = Regex.compile("[a-z]")   # Correct
+var pattern = Regex.compile("(abc)")   # Correct

@@ -1,0 +1,12 @@
+struct TreeNode
+    var value: int
+    var left:  ^TreeNode?
+    var right: ^TreeNode?
+
+def main()
+    var root  = TreeNode(value: 5, left: nil, right: nil)
+    var child = TreeNode(value: 3, left: nil, right: nil)
+    root.left = child              # auto-boxes child into *TreeNode
+
+    if root.left as n              # n: TreeNode — pointer is transparent
+        print(n.value)

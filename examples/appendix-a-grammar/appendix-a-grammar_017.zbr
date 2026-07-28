@@ -1,0 +1,7 @@
+var value: int? = 42
+
+branch value
+    on nil
+        print("Value is nil")
+    on _
+        print("Value is ${value}")

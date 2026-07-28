@@ -1,0 +1,5 @@
+# Inline fallback
+var value = divide(10, 0) catch 0
+
+# Catch with binding
+var result = divide(10, 0) catch |e| -1

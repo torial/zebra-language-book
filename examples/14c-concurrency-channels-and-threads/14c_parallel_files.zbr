@@ -1,0 +1,43 @@
+# file: 14c_parallel_files.zbr
+# teaches: ThreadPool + Chan for parallel I/O
+# chapter: 14c-Concurrency-Channels-and-Threads
+
+class FileResult
+    public var path: str = ""
+    public var line_count: int = 0
+
+def process_file(path: str): FileResult
+    var src = File.read(path)
+    var lines = src.split("\n")
+    var r = FileResult()
+    r.path = path
+    r.line_count = lines.count()
+    return r
+
+def main()
+    var paths = File.list_dir("./docs")
+    var ch: Chan(FileResult) = Chan(FileResult)(paths.count())
+    var pool: ThreadPool = ThreadPool(4)
+
+    for p in paths
+        pool.submit(def()
+            capture
+                var p: str = p
+                var ch: Chan(FileResult) = ch
+            ch.send(process_file(p))
+        )
+
+    pool.wait()
+    ch.close()
+
+    var results: List(FileResult) = List()
+    var done = false
+    while not done
+        var r: FileResult? = ch.recv()
+        if r as got
+            results.add(got)
+        else
+            done = true
+
+    for r in results
+        print("${r.path}: ${r.line_count} lines")

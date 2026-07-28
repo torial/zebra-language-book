@@ -1,11 +1,11 @@
-// file: regex-log-analysis.zbr
-// teaches: using regex for real log analysis
-// chapter: 21
+# file: regex-log-analysis.zbr
+# teaches: using regex for real log analysis
+# chapter: 21
 
-def analyze_logs(filename as str)
+def analyze_logs(filename: str)
     var result = File.read(filename)
     if result.isErr()
-        println("Error: ${result.error()}")
+        print("Error: ${result.error(}"))
         return
     
     var content = result.value()
@@ -13,7 +13,7 @@ def analyze_logs(filename as str)
     
     var error_count = 0
     var warning_count = 0
-    var error_lines = List(str)()
+    var error_lines = List()
     
     for line in lines
         if line.contains("[ERROR]")
@@ -22,14 +22,14 @@ def analyze_logs(filename as str)
         elif line.contains("[WARN]")
             warning_count = warning_count + 1
     
-    println("Log Analysis:")
-    println("  Errors: ${error_count}")
-    println("  Warnings: ${warning_count}")
+    print("Log Analysis:")
+    print("  Errors: ${error_count}")
+    print("  Warnings: ${warning_count}")
     
     if error_count > 0
-        println("\nErrors:")
+        print("\nErrors:")
         for error_line in error_lines
-            println("  ${error_line}")
+            print("  ${error_line}")
 
 def main()
     analyze_logs("app.log")

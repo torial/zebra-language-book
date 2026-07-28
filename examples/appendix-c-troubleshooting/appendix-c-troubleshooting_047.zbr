@@ -1,0 +1,3 @@
+var pattern = Regex.compile("^hello$")
+if not pattern.matches("hello world")
+    print("No match")

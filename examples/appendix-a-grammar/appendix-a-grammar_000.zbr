@@ -1,0 +1,5 @@
+var x: int = 42           # 64-bit integer
+var y: float = 3.14       # 64-bit floating point
+var b: bool = true        # Boolean
+var s: str = "hello"      # Immutable string
+var c: char = 'x'         # Single character

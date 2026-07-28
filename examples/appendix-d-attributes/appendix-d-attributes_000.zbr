@@ -1,0 +1,10 @@
+class Config
+    @once
+    def load(): str
+        # body runs the first time .load() is called on this instance
+        return File.read("config.json")
+
+def main()
+    var c = Config()
+    var a = c.load()          # reads the file
+    var b = c.load()          # returns cached value, no file read

@@ -1,0 +1,8 @@
+> def fresh_counter(): int
+>     return 0
+>
+> def test_increment_once()
+>     var c = fresh_counter()
+>     c = c + 1
+>     assert_eq c, 1
+>

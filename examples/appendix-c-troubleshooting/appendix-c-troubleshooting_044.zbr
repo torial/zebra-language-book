@@ -1,0 +1,6 @@
+var result = File.write("output.txt", content)
+
+if result.isErr()
+    print("Cannot write: ${result.error(}"))
+    # Try writing to temp directory instead
+    var temp_result = File.write("/tmp/output.txt", content)

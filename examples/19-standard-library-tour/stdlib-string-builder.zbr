@@ -1,0 +1,11 @@
+# file: stdlib-string-builder.zbr
+# teaches: efficient string building
+# chapter: 19
+
+def main()
+    var sb = StringBuilder()
+    sb.append("Hello")
+    sb.append(", ")
+    sb.append("World!")
+    var result = sb.toString()
+    print(result)  # "Hello, World!"

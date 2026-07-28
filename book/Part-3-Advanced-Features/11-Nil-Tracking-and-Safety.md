@@ -3,7 +3,7 @@
 **Audience:** All  
 **Time:** 120 minutes  
 **Prerequisites:** 02-Values, 05-Control-Flow, 07-Classes  
-**You'll learn:** Nullable types, nil checking, type narrowing, the `to!` operator, optionals
+**You'll learn:** Nullable types, nil checking, type narrowing, the `!` force-unwrap operator, optionals
 
 ---
 
@@ -60,21 +60,21 @@ def main()
     
     # Check before using
     if nickname != nil
-        print nickname     # Safe: known to not be nil
+        print(nickname)  # Safe: known to not be nil
     
     if empty == nil
-        print "No nickname set"
+        print("No nickname set")
     else
-        print empty
+        print(empty)
     
     # Two ways to check:
     if nickname != nil
-        print "Has nickname"
+        print("Has nickname")
     
     if nickname == nil
-        print "No nickname"
+        print("No nickname")
     else
-        print "Has: ${nickname}"
+        print("Has: ${nickname}")
 ```
 
 ### Type Narrowing
@@ -93,8 +93,8 @@ def process_name(input: str?)
         return  # Exit early if nil
 
     # From here, input is narrowed to str
-    print input.len        # ✅ Safe: know it's str
-    print input.upper()    # ✅ Safe
+    print(input.len)  # ✅ Safe: know it's str
+    print(input.upper())  # ✅ Safe
 ```
 
 ---
@@ -103,7 +103,7 @@ def process_name(input: str?)
 
 The most idiomatic way to unwrap an optional and use the inner value is the
 `if x as n` binding form.  When `x: T?`, it binds a non-optional `n: T` in
-the then-branch — no separate `to!` required:
+the then-branch — no separate unwrap required:
 
 ```zebra
 # file: 11_if_as.zbr
@@ -115,9 +115,9 @@ def main()
 
     if maybe_name as name
         # `name` is `str` here — non-optional
-        print "Hello, ${name}!"
+        print("Hello, ${name}!")
     else
-        print "No name"
+        print("No name")
 ```
 
 This form combines the nil-check, the unwrap, and the binding into a single
@@ -128,34 +128,34 @@ class/union check + unwrap together:
 # Combined type check + unwrap:
 var maybe_user: User? = lookup()
 if maybe_user is User as u
-    print u.name              # u is `User` (non-optional)
+    print(u.name)  # u is `User` (non-optional)
 ```
 
-`if x as n` is preferred over `to!` whenever the wrapped value is going to
+`if x as n` is preferred over `!` whenever the wrapped value is going to
 be used right away — it's safer (no panic possibility) and reads more
 naturally.
 
 ---
 
-## The `to!` Operator (Unwrap)
+## The `!` Operator (Force-Unwrap)
 
 **Warning:** Only use when you're absolutely certain the value isn't nil.
 
 ```zebra
 # file: 11_unwrap.zbr
-# teaches: unwrap operator
+# teaches: force-unwrap operator
 # chapter: 11-Nil-Tracking-and-Safety
 
 def main()
     var name: str? = "Alice"
     
     # Unwrap: assert it's not nil
-    var safe_name = name to!
-    print safe_name        # Now just str
+    var safe_name = name!
+    print(safe_name)  # Now just str
     
     # If it WAS nil, this would crash
     var empty: str? = nil
-    # var crash = empty to!  # ❌ Would panic at runtime
+    # var crash = empty!  # ❌ Would panic at runtime
 ```
 
 ---
@@ -177,9 +177,9 @@ def main()
 
     # Option 1: Check and use default
     if maybe_name as name
-        print name
+        print(name)
     else
-        print "Unknown user"
+        print("Unknown user")
 
     # Option 2: if method exists, unwrapOr
     # var safe_name = maybe_name.unwrapOr("Guest")
@@ -220,20 +220,20 @@ class UserDatabase
 def main()
     var user = UserDatabase.find_user(1)
     if user != nil
-        print user.name
+        print(user.name)
         if user.email != nil
-            print user.email
+            print(user.email)
         else
-            print "No email on file"
+            print("No email on file")
     else
-        print "User not found"
+        print("User not found")
     
     # Chaining nil checks
     var email = UserDatabase.find_user_email(999)
     if email != nil
-        print "Email: ${email}"
+        print("Email: ${email}")
     else
-        print "User not found"
+        print("User not found")
 ```
 
 ---
@@ -283,28 +283,28 @@ def process(data: str?)
 >
 > ```zebra
 > var email: str? = get_email()
-> print email.len  # ❌ Crash if email is nil!
+> print(email.len)  # ❌ Crash if email is nil!
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var email: str? = get_email()
 > if email != nil
->     print email.len  # ✅ Safe
+>     print(email.len)  # ✅ Safe
 > ```
 
-> ❌ **Mistake:** Using `to!` without certainty
+> ❌ **Mistake:** Using `!` without certainty
 >
 > ```zebra
 > var value: str? = get_value()
-> print value to!  # ❌ Crashes if value is nil
+> print(value!)  # ❌ Crashes if value is nil
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var value: str? = get_value()
 > if value != nil
->     print value  # ✅ Safe, or use unwrapOr
+>     print(value)  # ✅ Safe, or use unwrapOr
 > ```
 
 > ❌ **Mistake:** Assigning nil to non-nullable
@@ -355,9 +355,9 @@ class UserDB
 def main()
     var email = UserDB.get_email(1)
     if email != nil
-        print "Email: ${email}"
+        print("Email: ${email}")
     else
-        print "User not found or no email"
+        print("User not found or no email")
 ```
 
 </details>
@@ -380,13 +380,13 @@ class Calculator
 def main()
     var result = Calculator.safe_divide(10.0, 2.0)
     if result != nil
-        print "Result: ${result}"
+        print("Result: ${result}")
     
     var bad = Calculator.safe_divide(10.0, 0.0)
     if bad != nil
-        print bad
+        print(bad)
     else
-        print "Cannot divide by zero"
+        print("Cannot divide by zero")
 ```
 
 </details>
@@ -432,9 +432,9 @@ class UserService
 def main()
     var bio = UserService.get_user_bio(1)
     if bio != nil
-        print "Bio: ${bio}"
+        print("Bio: ${bio}")
     else
-        print "No bio found"
+        print("No bio found")
 ```
 
 </details>
@@ -454,7 +454,7 @@ def main()
 - **`?` marks nullable types** — `str?` can be string or nil
 - **Check before using** — `if value != nil { ... }`
 - **Type narrowing** — Compiler recognizes after checks
-- **`to!` unwraps** — Only when certain it's not nil
+- **`!` unwraps** — Only when certain it's not nil
 - **Guard clauses** — Exit early if nil
 - **Nil safety prevents crashes** — It's a feature, not a limitation
 

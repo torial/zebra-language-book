@@ -1,0 +1,4 @@
+class Main
+    static
+        def main
+            print("Hello, Zebra!")

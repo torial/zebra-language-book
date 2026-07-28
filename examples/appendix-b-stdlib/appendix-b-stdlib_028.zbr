@@ -1,0 +1,5 @@
+sys.args()               # List(str): command-line arguments
+sys.env(name)            # str?: get environment variable (nil if not set)
+sys.cwd()                # str: current working directory
+sys.exit(code)           # Exit program with code
+sys.errln(message)       # Print to standard error

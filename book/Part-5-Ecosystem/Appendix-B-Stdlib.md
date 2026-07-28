@@ -20,16 +20,16 @@ detailed usage examples, see Chapter 19 (Standard Library Tour).
 
 ```zebra
 print(value)                # Output without newline
-print value              # Output with newline
+print(value)  # Output with newline
 sys.errln(message)       # Error output to stderr
 ```
 
 **Example:**
 ```zebra
-print "Hello, World!"
-print "Loading"
-print "."
-print " done"
+print("Hello, World!")
+print("Loading")
+print(".")
+print(" done")
 ```
 
 ---
@@ -69,7 +69,7 @@ text.lastIndexOf(substring) # int: position of last occurrence
 ```zebra
 if text.contains("World")
     var pos = text.indexOf("World")
-    print "Found at ${pos}"
+    print("Found at ${pos}")
 ```
 
 ### Manipulation
@@ -105,7 +105,7 @@ text.toFloat()              # float?: convert to float (nil if invalid)
 ```zebra
 var num = "42".toInt()
 if num != nil
-    print num + 1
+    print(num + 1)
 ```
 
 ---
@@ -135,15 +135,15 @@ var numbers = List()
 numbers.add(1)
 numbers.add(2)
 numbers.add(3)
-print numbers.count()    # 3
-print numbers.at(0)      # 1
+print(numbers.count())  # 3
+print(numbers.at(0))  # 1
 ```
 
 ### Iteration
 
 ```zebra
 for item in items
-    print item
+    print(item)
 ```
 
 ---
@@ -171,7 +171,7 @@ Note: `set` and `get` are reserved keywords in Zebra, so HashMap uses `put` and 
 
 ```zebra
 for key, value in map       # Iterate over key-value pairs
-    print "${key}: ${value}"
+    print("${key}: ${value}")
 ```
 
 **Example:**
@@ -183,7 +183,7 @@ scores.put("Bob", 87)
 if scores.contains("Alice")
     var score = scores.fetch("Alice")  # 95
     if score != nil
-        print "Alice: ${score}"
+        print("Alice: ${score}")
 ```
 
 ---
@@ -197,7 +197,7 @@ var seen: HashMap(str, bool) = HashMap()
 seen.put("red", true)
 seen.put("blue", true)
 seen.put("red", true)       # Overwrites, same effect as no-op
-print seen.count()           # 2
+print(seen.count())  # 2
 ```
 
 ---
@@ -220,7 +220,7 @@ n.to(end)                   # List(int): numbers from n to end-1
 **Example:**
 ```zebra
 for i in 0.to(10)
-    print i
+    print(i)
 
 var str = 42.toString()     # "42"
 ```
@@ -251,7 +251,7 @@ str_to_float(s)             # float?: string to float
 ```zebra
 var n = str_to_int("42")
 if n != nil
-    print n
+    print(n)
 ```
 
 ---
@@ -304,13 +304,13 @@ sys.errln(message)       # Print to standard error
 ```zebra
 var args = sys.args()
 for arg in args
-    print "Argument: ${arg}"
+    print("Argument: ${arg}")
 
 var home = sys.env("HOME")
 if home != nil
-    print "Home: ${home}"
+    print("Home: ${home}")
 
-print "Current directory"
+print("Current directory")
 ```
 
 ---
@@ -330,9 +330,9 @@ var result = File.read("data.txt")
 
 if result.isOk()
     var content = result.value()
-    print content
+    print(content)
 else
-    print "Error: ${result.error(}")
+    print("Error: ${result.error(}"))
 
 var write_result = File.write("output.txt", "Hello")
 ```
@@ -363,7 +363,7 @@ pattern.split(text)         # List(str): split by matches
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
 if email_pattern.matches("user@example.com")
-    print "Valid email"
+    print("Valid email")
 
 var numbers = Regex.compile("\\d+")
 var matches = numbers.findAll("abc 123 def 456")
@@ -395,9 +395,9 @@ var result = divide(10, 0) catch |e| -1
 # Try/catch block
 try
     var v = divide(10, 0)
-    print v
+    print(v)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 ```
 
 ---
@@ -409,9 +409,9 @@ Embed expressions in strings using `${}`:
 ```zebra
 var name = "Alice"
 var age = 30
-print "${name} is ${age} years old"
-print "Sum: ${10 + 5}"
-print "Upper: ${"hello".upper(}")
+print("${name} is ${age} years old")
+print("Sum: ${10 + 5}")
+print("Upper: ${"hello".upper(}"))
 ```
 
 ---
@@ -449,7 +449,7 @@ var x: int? = 42
 
 if x != nil
     # Safe to use x as int here
-    print x
+    print(x)
 ```
 
 ---
@@ -477,9 +477,9 @@ var value: int? = 42
 
 branch value
     on nil
-        print "Value is nil"
+        print("Value is nil")
     on _
-        print "Value is ${value}"
+        print("Value is ${value}")
 ```
 
 ### Result Pattern Matching
@@ -489,9 +489,9 @@ var result = operation()
 
 branch result
     on ok(value)
-        print "Success: ${value}"
+        print("Success: ${value}")
     on err(error)
-        print "Error: ${error}"
+        print("Error: ${error}")
 ```
 
 ---
@@ -504,9 +504,9 @@ branch result
 var x: int? = nil
 
 if x != nil
-    print x + 1
+    print(x + 1)
 else
-    print "x is nil"
+    print("x is nil")
 ```
 
 ### Error Handling
@@ -515,7 +515,7 @@ else
 var result = File.read("file.txt")
 
 if result.isErr()
-    print "Error: ${result.error(}")
+    print("Error: ${result.error(}"))
     return
     
 var content = result.value()
@@ -529,7 +529,7 @@ items.add(1)
 items.add(2)
 
 for item in items
-    print item
+    print(item)
 ```
 
 ### Type Conversion
@@ -539,7 +539,7 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    print num + 1
+    print(num + 1)
 ```
 
 ---

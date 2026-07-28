@@ -1,0 +1,5 @@
+var x = 42
+print(x.toString())  # Force type check
+
+var result: int throws = operation()
+# Type annotation makes intent clear

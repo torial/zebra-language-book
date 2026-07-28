@@ -1,0 +1,10 @@
+# SLOW
+var result = ""
+for item in items
+    result = result + item + ", "
+
+# FAST
+var parts = List()
+for item in items
+    parts.add(item)
+var result = parts.join(", ")

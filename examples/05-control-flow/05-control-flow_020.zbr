@@ -1,0 +1,12 @@
+> var to_remove = List(int)()           # collect indices
+> var idx = 0
+> for fruit in fruits
+>     if fruit == "apple"
+>         to_remove.add(idx)
+>     idx = idx + 1
+> # Remove in reverse so earlier indices stay valid.
+> var k = to_remove.count() - 1
+> while k >= 0
+>     fruits.remove(to_remove.at(k))
+>     k = k - 1
+>

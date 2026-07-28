@@ -1,0 +1,5 @@
+var result = operation()
+if result.isErr()
+    print("Error: ${result.error(}"))
+else
+    print("Success: ${result.value(}"))

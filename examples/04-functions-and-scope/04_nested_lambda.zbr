@@ -1,0 +1,26 @@
+# file: 04_nested_lambda.zbr
+# teaches: nested lambda as argument
+# chapter: 04-Functions-and-Scope
+
+sig VoidFn()        # function type: no params, no return
+
+def run_twice(action: VoidFn)
+    action()
+    action()
+
+def with_logging(label: str, action: VoidFn)
+    print("start: ${label}")
+    action()
+    print("end: ${label}")
+
+def main()
+    with_logging("outer", def()
+        run_twice(def()
+            print("  inner")
+        )
+    )
+    # Prints:
+    # start: outer
+    #   inner
+    #   inner
+    # end: outer

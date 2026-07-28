@@ -1,0 +1,10 @@
+var x = 42
+
+# Convert to string
+var message = "Value: " + x.toString()
+
+# Or use interpolation (better)
+var message = "Value: ${x}"
+
+# Or use concat method
+var message = "Value: ".concat(x.toString())

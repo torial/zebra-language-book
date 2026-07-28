@@ -43,7 +43,7 @@ with `mixin`:
 
 mixin Loggable
     def log(message: str)
-        print "[log] ${message}"
+        print("[log] ${message}")
 
 mixin Cacheable
     var _cache: HashMap(str, str)
@@ -76,8 +76,8 @@ class UserService adds Loggable, Cacheable
 
 def main()
     var svc = UserService()
-    print svc.lookup("42")    # logs "cache miss for 42", returns "user-42"
-    print svc.lookup("42")    # silent cache hit, returns "user-42"
+    print(svc.lookup("42"))  # logs "cache miss for 42", returns "user-42"
+    print(svc.lookup("42"))  # silent cache hit, returns "user-42"
 ```
 
 **Key points:**
@@ -192,7 +192,7 @@ def main()
     var p = BlogPost("Hello", "First post body")
     p.tag("intro")
     p.tag("zebra")
-    print "${p.title} — ${p.tags.count()} tags @ ${p.created_at_ms} ms"
+    print("${p.title} — ${p.tags.count()} tags @ ${p.created_at_ms} ms")
 ```
 
 The class picks up `created_at_ms`, `tags`, `stamp_now()`, and `tag(...)`
@@ -237,7 +237,7 @@ def main()
     animals.add(Cat("Whiskers"))
 
     for a in animals
-        print a.sound()
+        print(a.sound())
 ```
 
 Both `Dog` and `Cat` `implements Sounding`. Code that wants any sounding thing
@@ -323,7 +323,7 @@ none of them coupled into a fragile inheritance chain.
 > ```zebra
 > class Dog inherits Animal       # ❌ `inherits` doesn't exist in Zebra
 >     def bark
->         print "${name} says: Woof!"
+>         print("${name} says: Woof!")
 > ```
 >
 > ✅ Use a mixin or an interface:
@@ -334,7 +334,7 @@ none of them coupled into a fragile inheritance chain.
 >
 > class Dog adds Named
 >     def bark
->         print "${name} says: Woof!"
+>         print("${name} says: Woof!")
 > ```
 
 > ❌ **Calling `super` to chain into a "parent"**
@@ -356,7 +356,7 @@ none of them coupled into a fragile inheritance chain.
 > class Car adds Acceleratable
 >     def accelerate
 >         base_accelerate()
->         print "Car cruising at ${speed} mph"
+>         print("Car cruising at ${speed} mph")
 > ```
 
 > ❌ **Two mixins declaring the same method name**
@@ -364,11 +364,11 @@ none of them coupled into a fragile inheritance chain.
 > ```zebra
 > mixin A
 >     def hello
->         print "A"
+>         print("A")
 >
 > mixin B
 >     def hello
->         print "B"
+>         print("B")
 >
 > class C adds A, B               # ❌ ambiguous: which hello()?
 > ```
@@ -378,11 +378,11 @@ none of them coupled into a fragile inheritance chain.
 > ```zebra
 > mixin A
 >     def hello_a
->         print "A"
+>         print("A")
 >
 > mixin B
 >     def hello_b
->         print "B"
+>         print("B")
 >
 > class C adds A, B
 > ```
@@ -413,11 +413,11 @@ mixin Engine
 
     def start
         running = true
-        print "Engine started"
+        print("Engine started")
 
     def stop
         running = false
-        print "Engine stopped"
+        print("Engine stopped")
 
 class Car adds Engine
     var brand: str = ""
@@ -452,7 +452,7 @@ class Truck adds Engine
 def main()
     var car = Car("Toyota")
     car.start()
-    print car.describe()
+    print(car.describe())
     car.stop()
 ```
 
@@ -576,7 +576,7 @@ def main()
     shapes.add(Triangle(3.0, 4.0, 5.0))
 
     for s in shapes
-        print "area=${s.area()} perim=${s.perimeter()}"
+        print("area=${s.area()} perim=${s.perimeter()}")
 ```
 
 </details>

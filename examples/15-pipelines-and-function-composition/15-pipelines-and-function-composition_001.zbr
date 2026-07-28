@@ -1,0 +1,6 @@
+var text = "HELLO WORLD"
+var first_word = (text
+    -> .lower()
+    -> .split(" ")
+    -> .at(0))
+var length = first_word.len   # .len is a field, not a call — pipelines need calls

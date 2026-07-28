@@ -1,0 +1,16 @@
+def parse_csv(line: str): List(str)
+    var out: List(str) = line.split(",")
+    return out
+
+def parse_with_trim(line: str): List(str)
+    var trimmed = List(str)()
+    for field in line.split(",")
+        trimmed.add(field.trim())
+    return trimmed
+
+def main()
+    var csv = "Alice, 30, NYC"
+    var fields = parse_with_trim(csv)
+    for field in fields
+        var f: str = field
+        print("|${f}|")

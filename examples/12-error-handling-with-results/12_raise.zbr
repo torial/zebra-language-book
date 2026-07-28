@@ -1,0 +1,12 @@
+# file: 12_raise.zbr
+# teaches: raise statement
+# chapter: 12-Error-Handling
+
+class FileLoader
+    static
+        def load(path: str): str throws
+            if path.len == 0
+                raise "Path cannot be empty"
+            if not path.endsWith(".txt")
+                raise "Only .txt files supported"
+            return "file contents here"

@@ -1,0 +1,6 @@
+var x = "10".toInt()
+var y = "5".toInt()
+
+if x != nil and y != nil
+    var sum = x + y         # 15
+    print(sum)

@@ -1,25 +1,28 @@
-// file: 03_lists.zbr
-// teaches: list creation and access
-// chapter: 03-Collections
+# file: 03_lists.zbr
+# teaches: list creation and access
+# chapter: 03-Collections
 
-class Main
-    shared
-        def main
-            // Create an empty list
-            var fruits as List(str) = List()
-            
-            // Add items
-            fruits.add("apple")
-            fruits.add("banana")
-            fruits.add("cherry")
-            
-            // Access by index
-            print fruits.at(0)   // apple
-            print fruits.at(1)   // banana
-            
-            // Check size
-            print fruits.count() // 3
-            
-            // Iterate
-            for fruit in fruits
-                print fruit
+def main()
+    # List literal — the cleanest way to make a populated list.
+    # The element type is inferred from the first element.
+    var fruits = ["apple", "banana", "cherry"]
+
+    # An empty list with an explicit annotation — and `.add()` to grow:
+    var empty: List(str) = []
+    empty.add("date")
+    print(empty.count())  # 1
+
+    # Access by index — assign through a typed local before printing
+    # so the formatter picks {s} instead of the byte-array fallback.
+    var first: str = fruits.at(0)
+    var second: str = fruits.at(1)
+    print(first)  # apple
+    print(second)  # banana
+
+    # Check size
+    print(fruits.count())  # 3
+
+    # Iterate — assign through a typed local for {s} formatting (BUG-090 workaround)
+    for fruit in fruits
+        var f: str = fruit
+        print(f)

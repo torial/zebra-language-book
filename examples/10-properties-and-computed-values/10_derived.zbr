@@ -1,27 +1,25 @@
-// file: 10_derived.zbr
-// teaches: deriving values from fields
-// chapter: 10-Properties-and-Computed-Values
+# file: 10_derived.zbr
+# teaches: deriving values from fields
+# chapter: 10-Properties-and-Computed-Values
 
 class Rectangle
-    var width as int = 0
-    var height as int = 0
+    var width: int = 0
+    var height: int = 0
     
-    def area as int
+    def area: int
         return width * height
     
-    def perimeter as int
+    def perimeter: int
         return 2 * (width + height)
     
-    def is_square as bool
+    def is_square: bool
         return width == height
 
-class Main
-    shared
-        def main
-            var rect = Rectangle()
-            rect.width = 10
-            rect.height = 10
-            
-            print "Area: ${rect.area()}"         // 100
-            print "Perimeter: ${rect.perimeter()}" // 40
-            print "Square: ${rect.is_square()}"    // true
+def main()
+    var rect = Rectangle()
+    rect.width = 10
+    rect.height = 10
+
+    print("Area: ${rect.area()}")  # 100
+    print("Perimeter: ${rect.perimeter()}")  # 40
+    print("Square: ${rect.is_square()}")  # true

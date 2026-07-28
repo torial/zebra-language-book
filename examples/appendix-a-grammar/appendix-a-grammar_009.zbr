@@ -1,0 +1,6 @@
+class Math
+    static
+        def add(a: int, b: int): int
+            return a + b
+
+var result = Math.add(2, 3)

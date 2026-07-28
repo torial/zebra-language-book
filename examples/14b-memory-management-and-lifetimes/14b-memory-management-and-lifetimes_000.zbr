@@ -1,0 +1,9 @@
+def main()
+    var s = "hello"
+    var t = " world"
+    var combined = s + t          # allocates a new str — arena handles it
+    var nums = List(int)()
+    nums.add(1); nums.add(2)       # List growth — arena handles it
+    var c = Circle(radius: 5.0)   # class instance — arena handles it
+    print(combined)
+    # Program exits; arena is destroyed; all of the above freed at once.

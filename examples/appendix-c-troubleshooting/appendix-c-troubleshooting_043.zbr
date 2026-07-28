@@ -1,0 +1,11 @@
+var result = File.read("missing.txt")
+
+if result.isErr()
+    print("File not found: ${result.error(}"))
+else
+    var content = result.value()
+    print(content)
+
+# Or check first
+if File.exists("missing.txt")
+    var result = File.read("missing.txt")

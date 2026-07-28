@@ -19,17 +19,17 @@ This appendix helps you debug common Zebra programming errors. Each section show
 ```zebra
 var x = 42          # int
 var message = x     # ERROR: trying to assign int to str context
-print "Value: " + x  # ERROR: can't concatenate string + int directly
+print("Value: " + x)  # ERROR: can't concatenate string + int directly
 ```
 
 **Solution:**
 ```zebra
 var x = 42
 var message = x.toString()      # Convert int to string
-print "Value: " + message    # Now it works
+print("Value: " + message)  # Now it works
 
 # Or use interpolation
-print "Value: ${x}"          # Better approach
+print("Value: ${x}")  # Better approach
 ```
 
 ---
@@ -55,7 +55,7 @@ var y = "5".toInt()
 
 if x != nil and y != nil
     var sum = x + y         # 15
-    print sum
+    print(sum)
 ```
 
 **Better:**
@@ -111,7 +111,7 @@ var x: int? = nil
 if x != nil
     var result = x + 1  # Safe—x is definitely int here
 else
-    print "x is nil"
+    print("x is nil")
 ```
 
 **Alternative:**
@@ -157,7 +157,7 @@ if y != nil
 **Example:**
 ```zebra
 var x: int? = nil
-print x + 1          # ERROR if x is nil
+print(x + 1)  # ERROR if x is nil
 ```
 
 **Solution:**
@@ -165,9 +165,9 @@ print x + 1          # ERROR if x is nil
 var x: int? = get_value()
 
 if x != nil
-    print x + 1
+    print(x + 1)
 else
-    print "Value not found"
+    print("Value not found")
 ```
 
 ---
@@ -203,7 +203,7 @@ for i in 0.to(items.count())
 **Better:**
 ```zebra
 for item in items
-    print item            # No index worries
+    print(item)  # No index worries
 ```
 
 ---
@@ -250,7 +250,7 @@ var value = map.fetch("key")
 if value != nil
     var result = value + 1
 else
-    print "Key not found"
+    print("Key not found")
 ```
 
 Note: `set` and `get` are reserved keywords in Zebra. Use `put` and `fetch` instead.
@@ -302,7 +302,7 @@ var text = "hello"
 if text.len > 10
     var char = text.charAt(10)
 else
-    print "Index out of range"
+    print("Index out of range")
 
 # Safe way
 var last = text.charAt(text.len - 1)  # Get last character
@@ -431,14 +431,14 @@ var result = File.read("file.txt")
 if result.isOk()
     var content = result.value()
 else
-    print "Error: ${result.error(}")
+    print("Error: ${result.error(}"))
 
 # Or use branch
 branch result
     on ok(content)
-        print content
+        print(content)
     on err(error)
-        print "Error: ${error}"
+        print("Error: ${error}")
 ```
 
 ---
@@ -575,10 +575,10 @@ var result = File.read("missing.txt")
 var result = File.read("missing.txt")
 
 if result.isErr()
-    print "File not found: ${result.error(}")
+    print("File not found: ${result.error(}"))
 else
     var content = result.value()
-    print content
+    print(content)
 
 # Or check first
 if File.exists("missing.txt")
@@ -597,7 +597,7 @@ Check permissions or use a different location:
 var result = File.write("output.txt", content)
 
 if result.isErr()
-    print "Cannot write: ${result.error(}")
+    print("Cannot write: ${result.error(}"))
     # Try writing to temp directory instead
     var temp_result = File.write("/tmp/output.txt", content)
 ```
@@ -639,7 +639,7 @@ var pattern = Regex.compile("(abc)")   # Correct
 ```zebra
 var pattern = Regex.compile("^hello$")
 if not pattern.matches("hello world")
-    print "No match"
+    print("No match")
 ```
 
 **Solution:**
@@ -723,11 +723,11 @@ for i in 0.to(items.count())
 
 ```zebra
 var x = 10
-print "x = ${x}"          # Check variable value
-print "After operation"   # Check execution flow
+print("x = ${x}")  # Check variable value
+print("After operation")  # Check execution flow
 
 if condition
-    print "Condition true: ${variable}"
+    print("Condition true: ${variable}")
 ```
 
 ### Assertion-Based Debugging
@@ -742,7 +742,7 @@ assert result.isOk(), "Operation must succeed"
 
 ```zebra
 var x = 42
-print x.toString()        # Force type check
+print(x.toString())  # Force type check
 
 var result: int throws = operation()
 # Type annotation makes intent clear
@@ -754,9 +754,9 @@ var result: int throws = operation()
 var x: int? = get_value()
 
 if x != nil
-    print "Value: ${x}"
+    print("Value: ${x}")
 else
-    print "Value is nil"
+    print("Value is nil")
 ```
 
 ---
@@ -771,7 +771,7 @@ var x: int? = get_value()
 if x != nil
     var result = x + 1
 else
-    print "Value not available"
+    print("Value not available")
 ```
 
 ### Safe Collection Access
@@ -802,7 +802,7 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    print num + 1
+    print(num + 1)
 ```
 
 ### Safe Error Handling
@@ -811,7 +811,7 @@ if num != nil
 var result = risky_operation()
 
 if result.isErr()
-    print "Error: ${result.error(}")
+    print("Error: ${result.error(}"))
     return
 
 var value = result.value()

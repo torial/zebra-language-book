@@ -1,0 +1,7 @@
+class Arithmetic
+    @tag("unit")
+    static def test_add()
+        assert_eq 2 + 2, 4
+
+    static def test_subtract()
+        assert_eq 5 - 3, 2

@@ -1,0 +1,13 @@
+def parse(text: str): int throws
+    if text.len == 0
+        raise "Empty input"
+    return 42
+
+var value = parse("hello") catch 0
+
+# Multi-statement handling uses a method-level catch clause
+def attempt()
+    var v = parse("")
+    print(v)
+catch |err|
+    print("Error: ${err}")

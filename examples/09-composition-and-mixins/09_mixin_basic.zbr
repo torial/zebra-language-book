@@ -1,0 +1,19 @@
+# file: 09_mixin_basic.zbr
+# teaches: declaring and using mixins
+# chapter: 09-Composition-and-Mixins
+
+mixin Loggable
+    def log(message: str)
+        print("[log] ${message}")
+
+mixin Cacheable
+    var _cache: HashMap(str, str)
+
+    cue init
+        _cache = HashMap(str, str)()
+
+    def cache_get(key: str): str?
+        return _cache.get(key)
+
+    def cache_set(key: str, value: str)
+        _cache.set(key, value)

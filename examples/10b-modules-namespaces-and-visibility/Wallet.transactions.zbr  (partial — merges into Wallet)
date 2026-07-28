@@ -1,0 +1,9 @@
+# file: Wallet.transactions.zbr  (partial — merges into Wallet)
+class Wallet
+    public def deposit(amount: float)
+        .balance = .balance + amount
+
+    public def withdraw(amount: float) throws
+        if amount > .balance
+            raise "insufficient funds"
+        .balance = .balance - amount

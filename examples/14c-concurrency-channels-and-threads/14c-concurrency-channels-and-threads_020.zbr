@@ -1,0 +1,7 @@
+> for i in 0..8
+>     pool.submit(def()
+>         capture
+>             var idx: int = i
+>         print(idx)
+>     )
+>

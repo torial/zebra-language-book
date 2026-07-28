@@ -1,0 +1,3 @@
+var x = 42          # int
+var message = x     # ERROR: trying to assign int to str context
+print("Value: " + x)  # ERROR: can't concatenate string + int directly

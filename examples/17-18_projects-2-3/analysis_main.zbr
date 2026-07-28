@@ -1,26 +1,26 @@
-// file: analysis_main.zbr
-// teaches: combining analysis modules
-// project: Project-3-Data-Analysis
+# file: analysis_main.zbr
+# teaches: combining analysis modules
+# project: Project-3-Data-Analysis
 
 class TextAnalysisReport
-    var source_file as str
-    var word_count as int
-    var unique_words as int
-    var top_words as List(WordFrequency)
-    var bigrams as List(NGram)
-    var trigrams as List(NGram)
+    var source_file: str
+    var word_count: int
+    var unique_words: int
+    var top_words: List(WordFrequency)
+    var bigrams: List(NGram)
+    var trigrams: List(NGram)
 
 class AnalysisApplication
-    shared
-        def analyze_file(filename as str) as Result(TextAnalysisReport, str)
+    static
+        def analyze_file(filename: str): TextAnalysisReport throws
             var content_result = File.read(filename)
             
             if content_result.len == 0
-                return Result.err("File not found or empty")
+                raise "File not found or empty"
             
             var content = content_result
             var words = content.split(" ")
-            var unique_words_set as HashMap(str, int) = HashMap()
+            var unique_words_set: HashMap(str, int) = HashMap()
             
             for word in words
                 var cleaned = word.lower().trim()
@@ -42,36 +42,34 @@ class AnalysisApplication
             report.bigrams = bigrams
             report.trigrams = trigrams
             
-            return Result.ok(report)
+            return report
         
-        def print_report(report as TextAnalysisReport)
-            print "==== Text Analysis Report ===="
-            print "File: ${report.source_file}"
-            print "Total words: ${report.word_count}"
-            print "Unique words: ${report.unique_words}"
-            print ""
+        def print_report(report: TextAnalysisReport)
+            print("==== Text Analysis Report ====")
+            print("File: ${report.source_file}")
+            print("Total words: ${report.word_count}")
+            print("Unique words: ${report.unique_words}")
+            print("")
             
-            print "Top 10 Words:"
+            print("Top 10 Words:")
             for wf in report.top_words
-                print "  ${wf.to_string()}"
-            print ""
+                print("  ${wf.to_string()}")
+            print("")
             
-            print "Top 5 Bigrams:"
+            print("Top 5 Bigrams:")
             for bigram in report.bigrams
-                print "  ${bigram.gram} (${bigram.count})"
-            print ""
+                print("  ${bigram.gram} (${bigram.count})")
+            print("")
             
-            print "Top 5 Trigrams:"
+            print("Top 5 Trigrams:")
             for trigram in report.trigrams
-                print "  ${trigram.gram} (${trigram.count})"
+                print("  ${trigram.gram} (${trigram.count})")
 
-class Main
-    shared
-        def main
-            var result = AnalysisApplication.analyze_file("sample.txt")
-            
-            if result.isOk()
-                var report = result.okValue()
-                AnalysisApplication.print_report(report)
-            else
-                print "Error: ${result.errValue()}"
+def main()
+    var result = AnalysisApplication.analyze_file("sample.txt")
+    
+    if result.isOk()
+        var report = result.okValue()
+        AnalysisApplication.print_report(report)
+    else
+        print("Error: ${result.errValue()}")

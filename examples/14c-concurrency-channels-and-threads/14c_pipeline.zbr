@@ -1,0 +1,25 @@
+# file: 14c_pipeline.zbr
+# teaches: producer/consumer with Chan
+# chapter: 14c-Concurrency-Channels-and-Threads
+
+def main()
+    var ch: Chan(int) = Chan(int)(4)
+
+    # Producer: send 1..5, then close
+    sys.go(lambda
+        for i in 1..5
+            ch.send(i)
+        ch.close()
+    )
+
+    # Consumer: read until closed + empty
+    var sum: int = 0
+    var done: bool = false
+    while not done
+        var v: int? = ch.recv()
+        if v as n
+            sum = sum + n
+        else
+            done = true
+
+    print(sum)  # 1+2+3+4 = 10

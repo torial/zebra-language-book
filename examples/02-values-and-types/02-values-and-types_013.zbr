@@ -1,0 +1,3 @@
+var x: int = "hello"  # ❌ Error: can't assign str to int
+var y: str = 42       # ❌ Error: can't assign int to str
+var z: int = 3.14     # ❌ Error: can't assign float to int

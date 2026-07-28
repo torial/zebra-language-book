@@ -1,0 +1,16 @@
+namespace Sql
+    static def version(): str
+        return "1.0"
+
+    namespace Sqlite
+        static def open(path: str): int
+            # ...
+
+    namespace Postgres
+        static def connect(url: str): int
+            # ...
+
+def main()
+    print(Sql.version())
+    var db = Sql.Sqlite.open("mydb.db")
+    var pg = Sql.Postgres.connect("postgresql://localhost/mydb")

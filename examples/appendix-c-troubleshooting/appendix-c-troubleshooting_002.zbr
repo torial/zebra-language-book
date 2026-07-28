@@ -1,0 +1,4 @@
+var x = "10"
+var y = "5"
+var sum = x + y         # ERROR: concatenates "105", not arithmetic sum
+var result = x - y      # ERROR: can't subtract strings

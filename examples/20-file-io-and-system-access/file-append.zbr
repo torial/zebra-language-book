@@ -1,14 +1,14 @@
-// file: file-append.zbr
-// teaches: appending content to existing files
-// chapter: 20
+# file: file-append.zbr
+# teaches: appending content to existing files
+# chapter: 20
 
 def main()
     var filename = "log.txt"
     
-    // Read existing content
+    # Read existing content
     var existing = File.read(filename).unwrapOr("")
     
-    // Append new content
+    # Append new content
     var timestamp = "2025-03-15 14:30:00"
     var message = "Application started"
     
@@ -17,4 +17,4 @@ def main()
     var result = File.write(filename, new_content)
     
     if result.isOk()
-        println("Log entry added")
+        print("Log entry added")

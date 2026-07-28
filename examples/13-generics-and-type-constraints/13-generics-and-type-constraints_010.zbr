@@ -1,0 +1,9 @@
+struct Range
+    var lo: int
+    var hi: int
+
+type ValidRange = Range where value.lo < value.hi
+
+def main()
+    var r: ValidRange = Range(lo: 0, hi: 10)  # OK
+    # var bad: ValidRange = Range(lo: 5, hi: 3)  # runtime panic

@@ -1,0 +1,7 @@
+> class Logger
+>     var count: int = 0
+>     
+>     def get_count: int
+>         count = count + 1  # ❌ Has side effect!
+>         return count
+>

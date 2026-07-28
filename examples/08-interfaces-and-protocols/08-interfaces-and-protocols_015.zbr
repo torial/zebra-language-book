@@ -1,0 +1,26 @@
+interface Database
+    def save(key: str, value: str): bool
+    def load(key: str): str?
+    def delete(key: str): bool
+
+class MemoryDatabase
+    var data: HashMap(str, str) = HashMap(str, str)()
+    implements Database
+        def save(key: str, value: str): bool
+            this.data.put(key, value)
+            return true
+        def load(key: str): str?
+            return this.data.get(key)
+        def delete(key: str): bool
+            this.data.remove(key)
+            return true
+
+def main()
+    var db: Database = MemoryDatabase()
+    db.save("user1", "Alice")
+    db.save("user2", "Bob")
+
+    if db.load("user1") as user
+        print("Found: ${user}")
+
+    db.delete("user1")

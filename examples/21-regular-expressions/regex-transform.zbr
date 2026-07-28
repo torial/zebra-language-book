@@ -1,9 +1,9 @@
-// file: regex-transform.zbr
-// teaches: using regex for data transformation
-// chapter: 21
+# file: regex-transform.zbr
+# teaches: using regex for data transformation
+# chapter: 21
 
 def main()
-    // Convert dates from MM/DD/YYYY to YYYY-MM-DD
+    # Convert dates from MM/DD/YYYY to YYYY-MM-DD
     var date = "03/15/2025"
     
     var parts = date.split("/")
@@ -13,10 +13,10 @@ def main()
         var year = parts.at(2)
         
         var iso_date = "${year}-${month}-${day}"
-        println(iso_date)  // 2025-03-15
+        print(iso_date)  # 2025-03-15
     
-    // Escape special characters
-    def escape_html(text as str) as str
+    # Escape special characters
+    def escape_html(text: str): str
         var escaped = text.replace("&", "&amp;")
         escaped = escaped.replace("<", "&lt;")
         escaped = escaped.replace(">", "&gt;")
@@ -25,4 +25,4 @@ def main()
         return escaped
     
     var html_unsafe = "<script>alert('XSS')</script>"
-    println(escape_html(html_unsafe))
+    print(escape_html(html_unsafe))

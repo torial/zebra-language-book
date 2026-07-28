@@ -1,17 +1,17 @@
-// file: file-write-building.zbr
-// teaches: efficiently building and writing file content
-// chapter: 20
+# file: file-write-building.zbr
+# teaches: efficiently building and writing file content
+# chapter: 20
 
 def main()
-    // Build content in memory
-    var lines = List(str)()
+    # Build content in memory
+    var lines = List()
     
-    // Generate report
+    # Generate report
     lines.add("Sales Report")
     lines.add("=" + "=" + "=" + "=" + "=" + "=")
     lines.add("")
     
-    var items = List(str)()
+    var items = List()
     items.add("Product A")
     items.add("Product B")
     items.add("Product C")
@@ -22,11 +22,11 @@ def main()
     lines.add("")
     lines.add("Total: $300")
     
-    // Join with newlines
+    # Join with newlines
     var content = lines.join("\n")
     
-    // Write once
+    # Write once
     var result = File.write("report.txt", content)
     
     if result.isOk()
-        println("Report written to report.txt")
+        print("Report written to report.txt")

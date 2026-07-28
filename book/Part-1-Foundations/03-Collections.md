@@ -39,22 +39,22 @@ def main()
     # An empty list with an explicit annotation — and `.add()` to grow:
     var empty: List(str) = []
     empty.add("date")
-    print empty.count()           # 1
+    print(empty.count())  # 1
 
     # Access by index — assign through a typed local before printing
     # so the formatter picks {s} instead of the byte-array fallback.
     var first: str = fruits.at(0)
     var second: str = fruits.at(1)
-    print first    # apple
-    print second   # banana
+    print(first)  # apple
+    print(second)  # banana
 
     # Check size
-    print fruits.count() # 3
+    print(fruits.count())  # 3
 
     # Iterate — assign through a typed local for {s} formatting (BUG-090 workaround)
     for fruit in fruits
         var f: str = fruit
-        print f
+        print(f)
 ```
 
 > The constructor form `var fruits = List(str)()` is still valid — useful when you want an empty list to grow without specifying an element type up front (the element type is inferred from the first `.add()`). For populated lists, `[…]` is shorter and reads better.
@@ -72,18 +72,18 @@ def main()
     var nums = [10, 20, 30]             # list literal — type inferred
 
     # Check existence
-    print nums.contains(20)             # true
+    print(nums.contains(20))  # true
 
     # Find index
-    print nums.indexOf(20)              # 1
+    print(nums.indexOf(20))  # 1
 
     # Remove by index (List.remove takes an index, not a value)
     nums.remove(1)
-    print nums.count()                  # 2
+    print(nums.count())  # 2
 
     # Clear
     nums.clear()
-    print nums.count()                  # 0
+    print(nums.count())  # 0
 ```
 
 ### Iteration Patterns
@@ -102,12 +102,12 @@ def main()
     # Simple iteration (typed local works around print's {s} fallback)
     for item in items
         var s: str = item
-        print s
+        print(s)
 
     # Iteration with index — interpolation into a string handles the type fine
     var i = 0
     while i < items.count()
-        print "${i}: ${items.at(i)}"
+        print("${i}: ${items.at(i)}")
         i = i + 1
 ```
 
@@ -163,14 +163,14 @@ def main()
 
     # Retrieve by key — get returns int? (nil if missing)
     if ages.get("Alice") as a
-        print a                          # 30
+        print(a)  # 30
 
     # Check if key exists
-    print ages.contains("Alice")         # true
+    print(ages.contains("Alice"))  # true
 
     # Iterate over key/value pairs
     for name, age in ages
-        print "${name}: ${age}"
+        print("${name}: ${age}")
 ```
 
 > **Two notes on the API:**
@@ -192,19 +192,19 @@ def main()
     config.put("debug", "true")
 
     # Count entries
-    print config.count()                # 3
+    print(config.count())  # 3
 
     # Remove entry
     config.remove("debug")
-    print config.count()                # 2
+    print(config.count())  # 2
 
     # Look up safely — get returns str? (nil if missing)
     if config.get("host") as host
-        print host                      # localhost
+        print(host)  # localhost
 
     # Iterate over keys and values (see BUG-094 note above on the kv-loop gap)
     for key, value in config
-        print "${key} = ${value}"
+        print("${key} = ${value}")
 ```
 
 ### If you know Python
@@ -221,9 +221,9 @@ var ages = HashMap(str, int)()
 ages.put("Alice", 30)
 ages.put("Bob", 25)
 if ages.get("Alice") as a
-    print a
+    print(a)
 for name, age in ages
-    print "${name} ${age}"
+    print("${name} ${age}")
 ```
 
 ---
@@ -248,10 +248,10 @@ def main()
             seen.put(id, true)
             unique.add(id)
 
-    print unique.count()    # 3
+    print(unique.count())  # 3
 
     # Check membership
-    print seen.contains(2)  # true
+    print(seen.contains(2))  # true
 ```
 
 ---
@@ -286,13 +286,13 @@ def main()
     for student in students
         total = total + student.gpa
     var average = total / students.count()
-    print "Average GPA: ${average}"
+    print("Average GPA: ${average}")
 
     # Find student by name
     var target_name = "Alice"
     for student in students
         if student.name == target_name
-            print "Found: ${student.name} (${student.gpa})"
+            print("Found: ${student.name} (${student.gpa})")
 ```
 
 ---
@@ -315,16 +315,16 @@ def main()
         if num % 2 == 0
             evens.add(num)
 
-    print "Evens: "
+    print("Evens: ")
     for e in evens
-        print e
+        print(e)
 
     # Count matching items
     var count_gt_3 = 0
     for num in numbers
         if num > 3
             count_gt_3 = count_gt_3 + 1
-    print "Numbers > 3: ${count_gt_3}"
+    print("Numbers > 3: ${count_gt_3}")
 ```
 
 ---
@@ -391,7 +391,7 @@ def main()
     for num in nums
         sum = sum + num
 
-    print "Sum: ${sum}"  # 100
+    print("Sum: ${sum}")  # 100
 ```
 
 </details>
@@ -412,7 +412,7 @@ def main()
 
     var name = "Bob"
     if phone_book.get(name) as number
-        print "${name}'s number: ${number}"
+        print("${name}'s number: ${number}")
 ```
 
 </details>
@@ -433,8 +433,8 @@ def main()
     for word in words
         seen.put(word, true)
 
-    print "Total words: ${words.count()}"
-    print "Unique words: ${seen.count()}"
+    print("Total words: ${words.count()}")
+    print("Unique words: ${seen.count()}")
 ```
 
 </details>

@@ -1,0 +1,6 @@
+namespace Cli
+    # internal helper — not exposed in cli.zbr's public surface
+    static def normalize_path(p: str): str
+        if p.starts_with("./")
+            return p.slice(2, p.len)
+        return p

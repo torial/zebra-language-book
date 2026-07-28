@@ -1,0 +1,2 @@
+var text = "hello"
+var last = text.charAt(10)      # ERROR: index out of bounds

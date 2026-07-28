@@ -1,0 +1,6 @@
+var x = 42
+var message = x.toString()      # Convert int to string
+print("Value: " + message)  # Now it works
+
+# Or use interpolation
+print("Value: ${x}")  # Better approach

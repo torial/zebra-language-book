@@ -1,0 +1,8 @@
+# Email
+var email_re = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
+
+# Phone
+var phone_re = Regex.compile("\\d{3}-\\d{3}-\\d{4}")
+
+# URL
+var url_re = Regex.compile("https?://[a-z0-9]+\\.[a-z]+")

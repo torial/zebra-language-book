@@ -1,0 +1,21 @@
+interface SortStrategy
+    def sort(items: List(int))
+
+class AscendingSort
+    implements SortStrategy
+        def sort(items: List(int))
+            # Sort ascending
+
+class DescendingSort
+    implements SortStrategy
+        def sort(items: List(int))
+            # Sort descending
+
+class Sorter
+    var strategy: SortStrategy
+
+    def set_strategy(s: SortStrategy)
+        this.strategy = s
+
+    def sort(items: List(int))
+        this.strategy.sort(items)

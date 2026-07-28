@@ -1,0 +1,12 @@
+# file: 12_catch_typed.zbr
+# teaches: catch with typed error binding
+# chapter: 12-Error-Handling
+
+def attempt()
+    var value = Validator.parse_int("")
+    print(value)
+catch |err as str|
+    print("String error: ${err}")
+
+def main()
+    attempt()

@@ -25,7 +25,7 @@ var x: int? = nil         # Can be int or nil
 var s: str? = "hello"     # Can be string or nil
 
 if x != nil
-    print x              # Safe to use x here
+    print(x)  # Safe to use x here
 ```
 
 **References:** Chapter 11 (Nil Tracking and Safety)
@@ -55,9 +55,9 @@ var value = parse("hello") catch 0
 # Multi-statement handling uses a method-level catch clause
 def attempt()
     var v = parse("")
-    print v
+    print(v)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 ```
 
 **References:** Chapter 12 (Error Handling)
@@ -132,7 +132,7 @@ class Person
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
-print person.describe()
+print(person.describe())
 ```
 
 **References:** Chapter 07 (Classes and Instances)
@@ -176,7 +176,7 @@ class Dog implements Animal
 
 var dog = Dog()
 dog.name = "Buddy"
-print dog.speak()  # "Woof!"
+print(dog.speak())  # "Woof!"
 ```
 
 **References:** Chapter 08 (Interfaces and Protocols)
@@ -212,11 +212,11 @@ class Circle implements Shape
 
 ```zebra
 if x > 10
-    print "Large"
+    print("Large")
 elif x > 5
-    print "Medium"
+    print("Medium")
 else
-    print "Small"
+    print("Small")
 ```
 
 **References:** Chapter 05 (Control Flow)
@@ -226,7 +226,7 @@ else
 ```zebra
 var i = 0
 while i < 10
-    print i
+    print(i)
     i = i + 1
 ```
 
@@ -236,10 +236,10 @@ while i < 10
 
 ```zebra
 for item in collection
-    print item
+    print(item)
 
 for i in 0.to(10)
-    print i  # 0, 1, 2, ..., 9
+    print(i)  # 0, 1, 2, ..., 9
 ```
 
 **References:** Chapter 05 (Control Flow)
@@ -256,7 +256,7 @@ while i < 10
         i = i + 1
         continue         # Skip to next iteration
     
-    print i
+    print(i)
     i = i + 1
 ```
 
@@ -269,9 +269,9 @@ var value: int? = 42
 
 branch value
     on nil
-        print "Value is nil"
+        print("Value is nil")
     on _
-        print "Value is ${value}"
+        print("Value is ${value}")
 
 ```
 
@@ -289,9 +289,9 @@ var data = load("") catch "default"
 # Method-level catch clause (attaches to a def)
 def attempt()
     var d = load("")
-    print d
+    print(d)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 ```
 
 **References:** Chapter 12 (Error Handling)
@@ -385,10 +385,10 @@ def example()
     
     if true
         var y = 20         # y is only visible here
-        print x         # x is visible (outer scope)
-        print y         # y is visible
+        print(x)  # x is visible (outer scope)
+        print(y)  # y is visible
     
-    print x             # x is visible
+    print(x)  # x is visible
     # print y           # ERROR: y is out of scope
 ```
 
@@ -475,9 +475,9 @@ var result = divide(10, 0) catch |e| -1
 ```zebra
 def attempt()
     var value = divide(10, 0)
-    print value
+    print(value)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 
 # The `try expr` prefix form and `try ... catch ...` block form were removed
 # in 0.15. Use `expr?` for inline propagation, or attach `catch` to a `def`.
@@ -496,10 +496,10 @@ var x: int? = nil
 
 if x != nil
     # Safe to use x as int here
-    print x + 1
+    print(x + 1)
 
 if x == nil
-    print "x is nil"
+    print("x is nil")
 ```
 
 ### Safe Navigation
@@ -565,7 +565,7 @@ items.contains("apple")         # Check membership
 items.clear()                   # Remove all items
 
 for item in items
-    print item               # Iterate
+    print(item)  # Iterate
 ```
 
 ### HashMap Operations
@@ -579,7 +579,7 @@ map.contains("a")               # Check key exists
 map.remove("a")                 # Remove key
 
 for key, value in map
-    print "${key} => ${value}"
+    print("${key} => ${value}")
 ```
 
 ### Deduplication (via HashMap)
@@ -591,7 +591,7 @@ seen.put("apple", true)         # Track item
 seen.contains("apple")          # Check membership
 
 for key, _ in seen
-    print key                    # Iterate unique items
+    print(key)  # Iterate unique items
 ```
 
 **References:** Chapter 03 (Collections)
@@ -744,7 +744,7 @@ namespace MyApp.Utils
 ```zebra
 var x: int? = 42
 if x != nil
-    print x + 1
+    print(x + 1)
 ```
 
 ### Null Coalescing (using unwrapOr)
@@ -759,16 +759,16 @@ var value = x.unwrapOr(0)  # Use 0 if x is nil
 ```zebra
 var result = operation()
 if result.isErr()
-    print "Error: ${result.error(}")
+    print("Error: ${result.error(}"))
 else
-    print "Success: ${result.value(}")
+    print("Success: ${result.value(}"))
 ```
 
 ### For-Each Loop
 
 ```zebra
 for item in collection
-    print item
+    print(item)
 ```
 
 ### String Interpolation
@@ -776,7 +776,7 @@ for item in collection
 ```zebra
 var name = "Alice"
 var age = 30
-print "${name} is ${age} years old"
+print("${name} is ${age} years old")
 ```
 
 ---

@@ -1,0 +1,5 @@
+var numbers: List(int) = List()
+var mapping: HashMap(str, int) = HashMap()
+
+numbers.add(1)
+mapping.put("key", 42)

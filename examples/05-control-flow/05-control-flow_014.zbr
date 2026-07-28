@@ -1,0 +1,8 @@
+if age < 13
+    category = "child"
+else if age < 18
+    category = "teen"
+else if age < 65
+    category = "adult"
+else
+    category = "senior"

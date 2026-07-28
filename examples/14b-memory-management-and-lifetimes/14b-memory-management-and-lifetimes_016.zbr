@@ -1,0 +1,5 @@
+> var out: HashMap(str, int) = HashMap(str, int)()
+> allocate Arena()
+>     var tmp: HashMap(str, int) = HashMap(str, int)()
+>     out <- tmp                        # ERROR: HashMap copy-out not supported
+>

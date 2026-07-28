@@ -1,53 +1,50 @@
-// file: 07_user_system.zbr
-// teaches: realistic class design
-// chapter: 07-Classes-and-Instances
+# file: 07_user_system.zbr
+# teaches: realistic class design
+# chapter: 07-Classes-and-Instances
 
 class User
-    var username as str = ""
-    var email as str = ""
-    var created_at as str = ""
-    var is_active as bool = true
-    
-    def is_valid as bool
-        return username.len > 0 and email.contains("@")
-    
-    def deactivate
-        is_active = false
-    
-    def display_profile
-        print "User: ${username}"
-        print "Email: ${email}"
-        print "Active: ${is_active}"
+    var username: str = ""
+    var email: str = ""
+    var created_at: str = ""
+    var is_active: bool = true
+
+    def is_valid(): bool
+        return this.username.len > 0 and this.email.contains("@")
+
+    def deactivate()
+        this.is_active = false
+
+    def display_profile()
+        print("User: ${this.username}")
+        print("Email: ${this.email}")
+        print("Active: ${this.is_active}")
 
 class UserManager
-    shared
-        var users as List(User) = List()
-        
-        def add_user(user as User) as bool
-            if not user.is_valid
+    static
+        var users: List(User) = List(User)()
+
+        def add_user(user: User): bool
+            if not user.is_valid()
                 return false
-            users.add(user)
+            UserManager.users.add(user)
             return true
-        
-        def find_user(username as str) as User?
-            for user in users
+
+        def find_user(username: str): User?
+            for user in UserManager.users
                 if user.username == username
                     return user
             return nil
-        
-        def user_count as int
-            return users.count()
 
-class Main
-    shared
-        def main
-            var user1 = User()
-            user1.username = "alice"
-            user1.email = "alice@example.com"
-            
-            if UserManager.add_user(user1)
-                print "User added"
-            
-            var found = UserManager.find_user("alice")
-            if found != nil
-                found.display_profile()
+        def user_count(): int
+            return UserManager.users.count()
+
+def main()
+    var user1 = User()
+    user1.username = "alice"
+    user1.email = "alice@example.com"
+
+    if UserManager.add_user(user1)
+        print("User added")
+
+    if UserManager.find_user("alice") as found
+        found.display_profile()

@@ -1,20 +1,20 @@
-// file: file-convert.zbr
-// teaches: reading one format and writing another
-// chapter: 20
+# file: file-convert.zbr
+# teaches: reading one format and writing another
+# chapter: 20
 
 def main()
-    // Read CSV
+    # Read CSV
     var csv_result = File.read("data.csv")
     
     if csv_result.isErr()
-        println("Error reading CSV")
+        print("Error reading CSV")
         return
     
     var csv_content = csv_result.value()
     var lines = csv_content.split("\n")
     
-    // Convert to tab-separated
-    var output_lines = List(str)()
+    # Convert to tab-separated
+    var output_lines = List()
     
     for line in lines
         var fields = line.split(",")
@@ -23,8 +23,8 @@ def main()
     
     var output = output_lines.join("\n")
     
-    // Write TSV
+    # Write TSV
     var write_result = File.write("data.tsv", output)
     
     if write_result.isOk()
-        println("Conversion complete: data.tsv")
+        print("Conversion complete: data.tsv")

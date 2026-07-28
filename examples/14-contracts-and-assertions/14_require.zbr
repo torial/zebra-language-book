@@ -1,0 +1,19 @@
+# file: 14_require.zbr
+# teaches: precondition checking with require
+# chapter: 14-Contracts-and-Assertions
+
+class Bank
+    var balance: int = 100
+
+    def withdraw(amount: int): int
+        require
+            amount > 0
+            amount <= balance
+        balance = balance - amount
+        return balance
+
+def main()
+    var bank = Bank()
+    print(bank.withdraw(50))  # 50
+    # bank.withdraw(-10)            # → panic: require failed in 'withdraw'
+    # bank.withdraw(1000)           # → panic: require failed in 'withdraw'

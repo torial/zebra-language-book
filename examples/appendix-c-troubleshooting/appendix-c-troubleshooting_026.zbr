@@ -1,0 +1,7 @@
+var text = "hello"
+
+var start = 1
+var end = 4
+
+if start >= 0 and end <= text.len and start <= end
+    var part = text.substring(start, end)  # "ell"

@@ -1,0 +1,4 @@
+> class Dog inherits Animal       # ❌ `inherits` doesn't exist in Zebra
+>     def bark
+>         print("${name} says: Woof!")
+>

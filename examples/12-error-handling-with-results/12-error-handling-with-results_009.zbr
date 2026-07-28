@@ -1,0 +1,28 @@
+class AgeValidator
+    static
+        def parse_age(text: str): int throws
+            if text.len == 0
+                raise "Empty input"
+            var age = text.toInt()
+            if age == nil
+                raise "Not a number"
+            return age
+
+        def validate_age(text: str): str throws
+            var age = parse_age(text)
+            if age < 0
+                raise "Age cannot be negative"
+            if age > 150
+                raise "Age too large"
+            return "valid"
+
+def attempt_validate(text: str)
+    var result = AgeValidator.validate_age(text)
+    print(result)  # "valid"
+catch |err|
+    print("Error: ${err}")
+
+def main()
+    attempt_validate("25")        # prints "valid"
+    var r2 = AgeValidator.validate_age("200") catch "invalid"
+    print(r2)  # invalid

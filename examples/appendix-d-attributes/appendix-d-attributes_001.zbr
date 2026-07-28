@@ -1,0 +1,5 @@
+class Renderer
+    @profile
+    def draw_frame()
+        # body is timed automatically
+        ...

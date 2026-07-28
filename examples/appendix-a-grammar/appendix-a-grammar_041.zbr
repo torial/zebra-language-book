@@ -1,0 +1,7 @@
+var seen: HashMap(str, bool) = HashMap()
+
+seen.put("apple", true)         # Track item
+seen.contains("apple")          # Check membership
+
+for key, _ in seen
+    print(key)  # Iterate unique items

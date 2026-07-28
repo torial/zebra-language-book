@@ -1,0 +1,7 @@
+var text = "Hello"
+
+text.len            # Length
+text.upper()        # Uppercase
+text.lower()        # Lowercase
+text.trim()         # Remove whitespace
+text.contains("ll") # Check substring

@@ -1,0 +1,6 @@
+var items = List()
+items.add(42)
+
+var first = items.at(0)     # OK
+var second = items.at(1)    # ERROR: index 1 doesn't exist
+var third = items.at(-1)    # ERROR: negative index

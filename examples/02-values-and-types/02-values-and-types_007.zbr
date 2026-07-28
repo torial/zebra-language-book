@@ -1,0 +1,4 @@
+var age: int = 25                          # redundant; inference would do
+var payment_amount: float = compute_total()  # earns its keep — return type isn't visible
+var counter: int8 = 0                      # narrower than the default int
+var maybeUser: User? = nil                 # required: nil alone has no type

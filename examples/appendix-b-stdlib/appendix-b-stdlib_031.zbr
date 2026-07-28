@@ -1,0 +1,9 @@
+var result = File.read("data.txt")
+
+if result.isOk()
+    var content = result.value()
+    print(content)
+else
+    print("Error: ${result.error(}"))
+
+var write_result = File.write("output.txt", "Hello")

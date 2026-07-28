@@ -1,0 +1,8 @@
+> class User
+>     var age: int = 0
+>     def set_age(new_age: int): bool
+>         if new_age < 0
+>             return false
+>         age = new_age
+>         return true
+>

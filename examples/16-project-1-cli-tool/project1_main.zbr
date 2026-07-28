@@ -1,14 +1,14 @@
-// file: project1_main.zbr
-// teaches: orchestrating modules
-// project: Project-1-CLI-Tool
+# file: project1_main.zbr
+# teaches: orchestrating modules
+# project: Project-1-CLI-Tool
 
 class Application
-    var args as CliArgs
+    var args: CliArgs
     
-    def init(parsed_args as CliArgs)
+    def init(parsed_args: CliArgs)
         args = parsed_args
     
-    def run as Result(bool, str)
+    def run: bool throws
         if args.command == "count"
             return handle_count()
         elif args.command == "search"
@@ -16,9 +16,9 @@ class Application
         elif args.command == "stats"
             return handle_stats()
         
-        return Result.err("Unknown command: ${args.command}")
+        raise "Unknown command: ${args.command}"
     
-    def handle_count as Result(bool, str)
+    def handle_count: bool throws
         var lines = FileProcessor.count_lines(args.filename)
         
         if lines.isErr()
@@ -27,15 +27,15 @@ class Application
         var words = FileProcessor.count_words(args.filename)
         var chars = FileProcessor.count_chars(args.filename)
         
-        print "${lines.okValue()} lines"
-        print "${words.okValue()} words"
-        print "${chars.okValue()} chars"
+        print("${lines.okValue()} lines")
+        print("${words.okValue()} words")
+        print("${chars.okValue()} chars")
         
-        return Result.ok(true)
+        return true
     
-    def handle_search as Result(bool, str)
+    def handle_search: bool throws
         if args.pattern == nil
-            return Result.err("Search requires a pattern")
+            raise "Search requires a pattern"
         
         var results = PatternMatcher.search_lines(args.filename, args.pattern)
         
@@ -43,39 +43,37 @@ class Application
             return results
         
         var matches = results.okValue()
-        print "Found ${matches.count()} matches:"
+        print("Found ${matches.count()} matches:")
         
         for match in matches
-            print match
+            print(match)
         
-        return Result.ok(true)
+        return true
     
-    def handle_stats as Result(bool, str)
+    def handle_stats: bool throws
         var stats = FileProcessor.get_stats(args.filename)
         
         if stats.isErr()
             return stats
         
         var s = stats.okValue()
-        print s.display()
+        print(s.display())
         
-        return Result.ok(true)
+        return true
 
-class Main
-    shared
-        def main
-            var args = CommandLine.args()
-            
-            var parsed = CommandParser.parse(args)
-            
-            if parsed.isErr()
-                print "Error: ${parsed.errValue()}"
-                return
-            
-            var cli_args = parsed.okValue()
-            var app = Application(cli_args)
-            
-            var result = app.run()
-            
-            if result.isErr()
-                print "Error: ${result.errValue()}"
+def main()
+    var args = CommandLine.args()
+    
+    var parsed = CommandParser.parse(args)
+    
+    if parsed.isErr()
+        print("Error: ${parsed.errValue()}")
+        return
+    
+    var cli_args = parsed.okValue()
+    var app = Application(cli_args)
+    
+    var result = app.run()
+    
+    if result.isErr()
+        print("Error: ${result.errValue()}")

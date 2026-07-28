@@ -1,0 +1,4 @@
+def get_value(): int
+    if true
+        return 42
+    # Missing return for false case

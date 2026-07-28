@@ -1,0 +1,12 @@
+union Expr
+    num(value: int)
+    add(left: ^Expr, right: ^Expr)
+
+def main()
+    var e = Expr.add(left: Expr.num(1), right: Expr.num(2))
+    branch e
+        on Expr.add as a
+            # a.left: Expr (not ^Expr — auto-deref'd)
+            print("add")
+        on Expr.num as n
+            print(n.value)

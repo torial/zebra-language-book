@@ -1,0 +1,19 @@
+# file: 03_dedup.zbr
+# teaches: using HashMap for uniqueness
+# chapter: 03-Collections
+
+def main()
+    var seen = HashMap(int, bool)()
+    var unique = List(int)()
+
+    var ids = [1, 2, 3, 2]              # last element is a duplicate
+
+    for id in ids
+        if not seen.contains(id)
+            seen.put(id, true)
+            unique.add(id)
+
+    print(unique.count())  # 3
+
+    # Check membership
+    print(seen.contains(2))  # true

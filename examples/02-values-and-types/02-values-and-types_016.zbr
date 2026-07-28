@@ -1,0 +1,2 @@
+> var result: int = compute()  # Clear: it's an int
+>

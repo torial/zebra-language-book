@@ -1,0 +1,16 @@
+# Single file (start)
+struct Circle
+    var radius: float
+
+    def area(): float
+        return 3.14159 * radius * radius
+
+def total_area(circles: List(Circle)): float
+    var sum = 0.0
+    for c in circles
+        sum = sum + c.area()
+    return sum
+
+def main()
+    var cs = [Circle(1.0), Circle(2.0), Circle(3.0)]
+    print(total_area(cs))

@@ -1,0 +1,3 @@
+print(value)                # Output without newline
+print(value)  # Output with newline
+sys.errln(message)       # Error output to stderr

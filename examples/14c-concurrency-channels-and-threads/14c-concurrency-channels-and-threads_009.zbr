@@ -1,0 +1,15 @@
+def main()
+    var pool: ThreadPool = ThreadPool(4)        # 4 worker threads
+    var counter: Atomic(int) = Atomic(int)(0)
+
+    var i: int = 0
+    while i < 8
+        pool.submit(def()
+            capture
+                var counter: Atomic(int) = counter
+            var _: int = counter.add(1)
+        )
+        i = i + 1
+
+    pool.wait()                  # blocks until all submitted tasks finish
+    print(counter.load())  # 8

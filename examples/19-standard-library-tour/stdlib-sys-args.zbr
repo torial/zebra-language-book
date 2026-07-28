@@ -1,0 +1,14 @@
+# file: stdlib-sys-args.zbr
+# teaches: accessing command-line arguments
+# chapter: 19
+
+def main()
+    # Raw arguments
+    var args = sys.args()
+    for arg in args
+        print(arg)
+
+    # Exit with status code
+    if args.count() == 0
+        print("No arguments provided")
+        sys.exit(1)

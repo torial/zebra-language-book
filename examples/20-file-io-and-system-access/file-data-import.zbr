@@ -1,14 +1,14 @@
-// file: file-data-import.zbr
-// teaches: importing and exporting structured data
-// chapter: 20
+# file: file-data-import.zbr
+# teaches: importing and exporting structured data
+# chapter: 20
 
 class Person
-    var name as str
-    var age as int
-    var email as str
+    var name: str
+    var age: int
+    var email: str
     
-    shared
-        def from_csv_line(line as str) as Person?
+    static
+        def from_csv_line(line: str): Person?
             var parts = line.split(",")
             if parts.count() != 3
                 return nil
@@ -23,14 +23,14 @@ class Person
             person.email = parts.at(2).trim()
             return person
         
-        def load_from_csv(filename as str) as Result(List(Person), str)
+        def load_from_csv(filename: str): List(Person) throws
             var content_result = File.read(filename)
             
             if content_result.isErr()
-                return Result.err(content_result.error())
+                raise content_result.error()
             
             var content = content_result.value()
-            var people = List(Person)()
+            var people = List()
             var lines = content.split("\n")
             
             for line in lines
@@ -41,30 +41,30 @@ class Person
                 if person != nil
                     people.add(person)
             
-            return Result.ok(people)
+            return people
     
-    def to_csv_line() as str
+    def to_csv_line(): str
         return "${name},${age},${email}"
 
 def main()
-    // Load data
+    # Load data
     var result = Person.load_from_csv("people.csv")
     
     if result.isErr()
-        println("Error: ${result.error()}")
+        print("Error: ${result.error(}"))
         return
     
     var people = result.value()
-    println("Loaded ${people.count()} people")
+    print("Loaded ${people.count(} people"))
     
-    // Filter and export
-    var adults = List(Person)()
+    # Filter and export
+    var adults = List()
     for person in people
         if person.age >= 18
             adults.add(person)
     
-    // Save filtered data
-    var output_lines = List(str)()
+    # Save filtered data
+    var output_lines = List()
     for person in adults
         output_lines.add(person.to_csv_line())
     
@@ -72,4 +72,4 @@ def main()
     var write_result = File.write("adults.csv", csv_output)
     
     if write_result.isOk()
-        println("Exported ${adults.count()} adults to adults.csv")
+        print("Exported ${adults.count(} adults to adults.csv"))

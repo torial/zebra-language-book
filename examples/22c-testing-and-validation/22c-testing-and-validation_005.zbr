@@ -1,0 +1,17 @@
+class Calc
+    static def add(a: int, b: int): int
+        return a + b
+
+    static def divide(a: int, b: int): int throws
+        if b == 0
+            raise "division by zero"
+        return a / b
+
+    static def max_of(items: List(int)): int throws
+        if items.count() == 0
+            raise "empty list"
+        var best = items.at(0)
+        for n in items
+            if n > best
+                best = n
+        return best

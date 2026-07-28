@@ -1,0 +1,12 @@
+# file: 14_ensure_result.zbr
+# teaches: result in ensure clauses
+# chapter: 14-Contracts-and-Assertions
+
+class Strings
+    static
+        def normalise(s: str): str
+            ensure
+                result.len <= s.len           # never grows
+                not result.startsWith(" ")
+                not result.endsWith(" ")
+            return s.trim()

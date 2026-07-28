@@ -1,0 +1,21 @@
+# file: 12_propagation.zbr
+# teaches: error propagation
+# chapter: 12-Error-Handling
+
+class Parser
+    static
+        def parse_config(text: str): str throws
+            if text.len == 0
+                raise "Empty config"
+            return "parsed"
+
+class System
+    static
+        def load_system(config_text: str): str throws
+            # If parse_config raises, the error propagates up
+            var parsed = Parser.parse_config(config_text)
+            return "System loaded with: ${parsed}"
+
+def main()
+    var result = System.load_system("data") catch "load failed"
+    print(result)

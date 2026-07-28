@@ -1,0 +1,11 @@
+var items = List()
+
+items.add("apple")              # Add item
+items.remove("apple")           # Remove item
+items.count()                   # Count items
+items.at(0)                     # Get item at index
+items.contains("apple")         # Check membership
+items.clear()                   # Remove all items
+
+for item in items
+    print(item)  # Iterate

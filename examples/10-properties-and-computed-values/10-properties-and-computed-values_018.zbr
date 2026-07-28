@@ -1,0 +1,40 @@
+class UserProfile
+    var username: str = ""
+    var email: str = ""
+    var age: int = 0
+    
+    def set_username(name: str): bool
+        if name.len < 3 or name.len > 20
+            return false
+        username = name
+        return true
+    
+    def set_email(addr: str): bool
+        if not addr.contains("@") or not addr.contains(".")
+            return false
+        email = addr
+        return true
+    
+    def set_age(a: int): bool
+        if a < 13 or a > 120
+            return false
+        age = a
+        return true
+    
+    def is_adult: bool
+        return age >= 18
+    
+    def is_valid: bool
+        return username.len > 0 and email.contains("@") and age > 0
+
+def main()
+    var user = UserProfile()
+    if user.set_username("alice_wonder")
+        print("Username set")
+    if user.set_email("alice@example.com")
+        print("Email set")
+    if user.set_age(25)
+        print("Age set")
+
+    print("Is adult: ${user.is_adult()}")
+    print("Is valid: ${user.is_valid()}")

@@ -1,0 +1,11 @@
+class IntegratedSystem
+    static
+        def run_analysis_via_http(port: int, analysis_dir: str)
+            # Start HTTP server (Project 2)
+            # Serve text analysis results (Project 3)
+            # Process files via CLI (Project 1)
+            
+            # GET /health — Health check
+            # POST /analyze — Upload and analyze file
+            # GET /results — Retrieve analysis results
+            # GET /compare — Compare two documents

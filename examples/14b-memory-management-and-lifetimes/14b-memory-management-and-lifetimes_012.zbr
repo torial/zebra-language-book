@@ -1,0 +1,5 @@
+var head: ^Node? = nil
+allocate Arena()
+    var n = Node(value: "a", next: Node(value: "b", next: nil))
+    head <- n              # recursively copies the entire chain into parent
+# inner nodes freed; head's chain is intact in the parent arena.

@@ -1,0 +1,7 @@
+def main()
+    var src = "the quick brown fox jumps over the lazy dog"
+    var compressed = Compress.gzip(src)
+    print(compressed.count())  # smaller than src.len for typical input
+
+    var decompressed = Compress.gunzip(compressed)
+    print(decompressed)  # same as src

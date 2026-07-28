@@ -1,0 +1,3 @@
+a and b                     # Logical AND
+a or b                      # Logical OR
+not a                       # Logical NOT

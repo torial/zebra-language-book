@@ -1,20 +1,16 @@
-// file: 05_guards.zbr
-// teaches: guard conditions
-// chapter: 05-Control-Flow
+# file: 05_guards.zbr
+# teaches: guard conditions
+# chapter: 05-Control-Flow
 
-class Main
-    shared
-        def process(name as str)
-            # Early return if invalid
-            if name.len == 0
-                return
-            if name.len > 100
-                return
-            
-            # Process only if valid
-            print "Processing: ${name}"
+def process(name: str)
+    # Zebra has a `guard` form for early returns:
+    guard name.len > 0, return
+    guard name.len <= 100, return
 
-        def main
-            process("")            // Returns early
-            process("Alice")       // Processes
-            process("x" * 200)     // Returns early
+    # Process only if all guards passed
+    print("Processing: ${name}")
+
+def main()
+    process("")            # Guard fails — returns early
+    process("Alice")       # Guards pass — processes
+    process("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  # too long — returns early

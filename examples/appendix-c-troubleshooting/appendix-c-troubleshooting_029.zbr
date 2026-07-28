@@ -1,0 +1,4 @@
+def greet(name: str): str
+    return "Hello, ${name}"
+
+greet(42)               # ERROR: expects str, got int

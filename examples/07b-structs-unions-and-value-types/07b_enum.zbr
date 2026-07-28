@@ -1,0 +1,17 @@
+# file: 07b_enum.zbr
+# teaches: enum types
+# chapter: 07b-Structs-Unions
+
+enum Color
+    red
+    green
+    blue
+
+enum Status(int)
+    ok = 0
+    err = 1
+
+def main()
+    var c = Color.red
+    var s = Status.ok
+    print(s)  # 0

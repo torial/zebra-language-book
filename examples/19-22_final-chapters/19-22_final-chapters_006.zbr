@@ -1,0 +1,9 @@
+class ZigInterop
+    static
+        def zig_sqrt(x: float): float
+            # Call Zig function
+            return 0.0
+        
+        def zig_random: int
+            # Call Zig's random
+            return 0

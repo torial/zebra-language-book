@@ -1,0 +1,7 @@
+> namespace Colors
+>     struct Rgb
+>         var r: int
+>
+> # Wrong — can't instantiate a namespace:
+> # var c = Colors(...)
+>

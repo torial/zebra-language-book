@@ -1,0 +1,15 @@
+# file: 12_throws_basic.zbr
+# teaches: throws annotation
+# chapter: 12-Error-Handling
+
+class Validator
+    static
+        def parse_int(text: str): int throws
+            if text.len == 0
+                raise "Empty string"
+            # Parse and return
+            return 42
+
+def main()
+    var result = Validator.parse_int("123") catch 0
+    print(result)

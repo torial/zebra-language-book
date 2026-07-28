@@ -1,0 +1,8 @@
+# file: stdlib-arg-parse.zbr
+# teaches: structured argument parsing
+# chapter: 19
+
+def main()
+    var result = Arg.parse()
+    # Access parsed flags and positional arguments
+    print(result)

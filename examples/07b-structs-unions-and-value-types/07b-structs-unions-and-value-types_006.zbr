@@ -1,0 +1,15 @@
+branch color
+    on Color.red
+        print("Stop")
+    on Color.green
+        print("Go")
+    else
+        print("Unknown")
+
+branch command
+    on "quit"
+        sys.exit(0)
+    on "help"
+        print("Available commands: quit, help")
+    else
+        print("Unknown command")

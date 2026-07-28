@@ -1,0 +1,10 @@
+class Example
+    static
+        var count: int = 10        # Class-level
+
+        def show()
+            var count = 5           # Local (shadows class variable)
+            print(count)  # 5 (local shadows class)
+
+        def another()
+            print(count)  # 10 (uses class-level)

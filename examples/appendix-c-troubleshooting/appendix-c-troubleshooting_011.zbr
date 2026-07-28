@@ -1,0 +1,4 @@
+var y: int? = 42
+
+if y != nil
+    var z: int = y    # Safe now—y is definitely int

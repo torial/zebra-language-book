@@ -1,0 +1,15 @@
+def reverse_str(text: str): str
+    var chars = List(str)()
+    for c in text.chars()
+        chars.add(c.toString())
+
+    var result = ""
+    var i = chars.count() - 1
+    while i >= 0
+        result = result.concat(chars.at(i))
+        i = i - 1
+    return result
+
+def main()
+    var reversed = reverse_str("hello")
+    print(reversed)  # olleh

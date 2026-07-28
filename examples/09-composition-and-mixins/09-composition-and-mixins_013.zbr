@@ -1,0 +1,38 @@
+mixin Compensated
+    var name: str = ""
+    var salary: float = 0.0
+
+    def info: str
+        return "${name} (${salary})"
+
+class Employee adds Compensated
+    cue init(n: str, s: float)
+        name = n
+        salary = s
+
+class Manager adds Compensated
+    var team: List(Employee)
+
+    cue init(n: str, s: float)
+        name = n
+        salary = s
+        team = List(Employee)()
+
+    def add_report(e: Employee)
+        team.add(e)
+
+    def info: str
+        return "${name} (${salary}, manages ${team.count()})"
+
+class Director adds Compensated
+    var managers: List(Manager)
+    var budget: float = 0.0
+
+    cue init(n: str, s: float, b: float)
+        name = n
+        salary = s
+        budget = b
+        managers = List(Manager)()
+
+    def info: str
+        return "${name} (${salary}, budget ${budget})"

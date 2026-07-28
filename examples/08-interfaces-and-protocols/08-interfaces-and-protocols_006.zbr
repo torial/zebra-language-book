@@ -1,0 +1,15 @@
+interface NewSystem
+    def process(data: str)
+
+class OldSystem
+    def old_process(input: str)
+        # Old implementation
+        pass
+
+class OldSystemAdapter
+    implements NewSystem
+        var old_system: OldSystem = OldSystem()
+
+        def process(data: str)
+            # Adapt new interface to old system
+            this.old_system.old_process(data)

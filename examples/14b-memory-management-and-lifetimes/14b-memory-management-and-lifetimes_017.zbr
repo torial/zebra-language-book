@@ -1,0 +1,3 @@
+> for k, v in tmp
+>     out.set(k, v)                     # primitives copy implicitly
+>

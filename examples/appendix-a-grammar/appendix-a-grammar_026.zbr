@@ -1,0 +1,3 @@
+var x = 42                  # Local variable, inferred type
+var x: int = 42          # Local variable, explicit type
+var x = 42, y = "hello"    # Multiple declarations

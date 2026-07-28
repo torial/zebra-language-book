@@ -1,0 +1,4 @@
+> var counter: Atomic(int) = Atomic(int)(0)
+> sys.go(lambda  var _ = counter.add(1)  )
+> sys.go(lambda  var _ = counter.add(1)  )
+>

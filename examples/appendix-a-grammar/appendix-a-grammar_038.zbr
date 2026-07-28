@@ -1,0 +1,4 @@
+text.split(",")                 # Split by delimiter
+text.replace("o", "a")          # Replace all occurrences
+text.substring(0, 5)            # Extract portion
+text.charAt(0)                  # Get character at position

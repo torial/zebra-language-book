@@ -1,0 +1,3 @@
+extend str is Printable
+    def show(): str
+        return this

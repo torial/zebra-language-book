@@ -1,0 +1,9 @@
+class LineReader
+    static
+        def process_lines(path: str): int throws
+            var lines = 0
+            var content = read_file(path).unwrapOr("")
+            for line in content.split("\n")
+                if line.len > 0
+                    lines = lines + 1
+            return lines

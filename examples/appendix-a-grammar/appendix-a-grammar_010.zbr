@@ -1,0 +1,5 @@
+class Circle
+    var radius: float = 0.0
+    
+    def area(): float
+        return 3.14159 * radius * radius

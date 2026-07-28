@@ -29,7 +29,7 @@ def main()
     var age = 18
 
     if age >= 18
-        print "You can vote"
+        print("You can vote")
 ```
 
 ### If / Else
@@ -43,13 +43,13 @@ def main()
     var score = 75
 
     if score >= 90
-        print "A"
+        print("A")
     else if score >= 80
-        print "B"
+        print("B")
     else if score >= 70
-        print "C"
+        print("C")
     else
-        print "F"
+        print("F")
 ```
 
 **Breakdown:**
@@ -69,10 +69,10 @@ def main()
     var has_license = true
 
     if age >= 18 and has_license
-        print "Can drive"
+        print("Can drive")
 
     if age < 16 or not has_license
-        print "Cannot drive"
+        print("Cannot drive")
 ```
 
 **Operators:**
@@ -96,7 +96,7 @@ Zebra lets you write short conditions on one line, and use `if` as an
 
 def main()
     var x = 10
-    if x > 0: print "positive"       # colon required before body
+    if x > 0: print("positive")     # colon required before body
 
     # One-line with else:
     var label = ""
@@ -106,7 +106,7 @@ def main()
     var grade = 78
     var letter = ""
     if grade >= 90: letter = "A" else if grade >= 80: letter = "B" else: letter = "C"
-    print letter                     # C
+    print(letter)  # C
 ```
 
 The `:` is required before the body. No block — the condition and body sit
@@ -126,7 +126,7 @@ def main()
 
     # Assign the result of an if-expression:
     var result = if score >= 60: "pass" else: "fail"
-    print result                     # pass
+    print(result)  # pass
 
     # Use directly in a function call:
     print(if score > 50: "pass" else: "fail")
@@ -134,7 +134,7 @@ def main()
     # Compute absolute value:
     var n: int = -5
     var abs_n: int = if n >= 0: n else: -n
-    print abs_n                      # 5
+    print(abs_n)  # 5
 ```
 
 **Rules for the expression form:**
@@ -164,13 +164,13 @@ def main()
 
     branch color
         on "red"
-            print "Stop"
+            print("Stop")
         on "yellow"
-            print "Caution"
+            print("Caution")
         on "green"
-            print "Go"
+            print("Go")
         else
-            print "Unknown"
+            print("Unknown")
 ```
 
 ### Match With Types
@@ -193,11 +193,11 @@ def main()
 
     branch pet
         on Pet.dog as name
-            print "${name} says: Woof!"
+            print("${name} says: Woof!")
         on Pet.cat as name
-            print "${name} says: Meow!"
+            print("${name} says: Meow!")
         on Pet.fish as size
-            print "tank: ${size}"
+            print("tank: ${size}")
         else
             pass
 ```
@@ -219,9 +219,9 @@ match color:
 # Zebra
 branch color
     on "red"
-        print "Stop"
+        print("Stop")
     on "green"
-        print "Go"
+        print("Go")
 ```
 
 ---
@@ -243,12 +243,12 @@ def main()
 
     for fruit in fruits
         var f: str = fruit       # typed local for {s} formatting
-        print f
+        print(f)
 
     # Numeric range — n.to(end) is exclusive on `end`.
     var i = 0
     while i < fruits.count()
-        print "Item ${i}: ${fruits.at(i)}"
+        print("Item ${i}: ${fruits.at(i)}")
         i = i + 1
 ```
 
@@ -263,10 +263,10 @@ def main()
     var count = 0
 
     while count < 5
-        print "Count: ${count}"
+        print("Count: ${count}")
         count = count + 1
 
-    print "Done!"
+    print("Done!")
 ```
 
 ### Break and Continue
@@ -282,7 +282,7 @@ def main()
     while true
         if i == 5
             break
-        print i
+        print(i)
         i = i + 1
 
     # Continue: skip to next iteration. Numeric ranges use either `start:end`
@@ -291,7 +291,7 @@ def main()
     for num in 1.to(11)
         if num % 2 == 0
             continue
-        print num  # Prints odd numbers only
+        print(num)  # Prints odd numbers only
 ```
 
 ---
@@ -311,7 +311,7 @@ def process(name: str)
     guard name.len <= 100, return
 
     # Process only if all guards passed
-    print "Processing: ${name}"
+    print("Processing: ${name}")
 
 def main()
     process("")            # Guard fails — returns early
@@ -359,9 +359,9 @@ def main()
     for email in emails
         var e: str = email
         if validate_email(e)
-            print "Valid: ${e}"
+            print("Valid: ${e}")
         else
-            print "Invalid: ${e}"
+            print("Invalid: ${e}")
 ```
 
 ---
@@ -420,16 +420,16 @@ else
 >
 > ```zebra
 > if age >= 18  # Missing condition or wrong structure
->     print "Adult"
->     print "Extra"  # Both print regardless
+>     print("Adult")
+>     print("Extra")  # Both print regardless
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > if age >= 18
->     print "Adult"
+>     print("Adult")
 > else
->     print "Minor"
+>     print("Minor")
 > ```
 
 > ❌ **Mistake:** Unreachable code
@@ -505,7 +505,7 @@ def main()
 
     for score in scores
         var grade = grade_to_letter(score)
-        print "${score} = ${grade}"
+        print("${score} = ${grade}")
 ```
 
 </details>
@@ -537,7 +537,7 @@ def main()
     nums.add(34)
 
     var max = find_max(nums)
-    print "Max: ${max}"  # 89
+    print("Max: ${max}")  # 89
 ```
 
 </details>
@@ -567,7 +567,7 @@ def main()
     nums.add(6)
 
     var even_count = count_evens(nums)
-    print "Even numbers: ${even_count}"  # 3
+    print("Even numbers: ${even_count}")  # 3
 ```
 
 </details>

@@ -1,0 +1,6 @@
+# file: main.zbr
+use math_utils exposing square
+
+def main()
+    var answer = square(5)
+    print(answer)  # 25

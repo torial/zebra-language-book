@@ -1,0 +1,8 @@
+class Options
+    var verbose: bool = false
+    var input_path: str = ""
+
+def parse_args(args: List(str)): Options
+    var opts = Options()
+    # ... parse args ...
+    return opts

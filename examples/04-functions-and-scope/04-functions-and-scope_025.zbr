@@ -1,0 +1,18 @@
+def even_numbers(nums: List(int)): List(int)
+    var evens = List(int)()
+    for num in nums
+        if num % 2 == 0
+            evens.add(num)
+    return evens
+
+def main()
+    var nums = List(int)()
+    nums.add(1)
+    nums.add(2)
+    nums.add(3)
+    nums.add(4)
+    nums.add(5)
+
+    var result = even_numbers(nums)
+    for r in result
+        print(r)

@@ -1,0 +1,7 @@
+var result = risky_operation()
+
+if result.isErr()
+    print("Error: ${result.error(}"))
+    return
+
+var value = result.value()

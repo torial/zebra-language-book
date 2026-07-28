@@ -1,0 +1,3 @@
+> class Tree
+>     var left:  ^Tree?                 # ERROR: ^ClassName is illegal
+>

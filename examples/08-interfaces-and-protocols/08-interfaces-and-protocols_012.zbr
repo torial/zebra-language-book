@@ -1,0 +1,4 @@
+> class Dog  # ❌ Doesn't say implements Animal
+>     def speak(): str
+>         return "Woof!"
+>

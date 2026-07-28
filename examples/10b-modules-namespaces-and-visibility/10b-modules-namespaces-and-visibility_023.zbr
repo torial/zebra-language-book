@@ -1,0 +1,3 @@
+> def main()
+>     var v = math_utils.square(5)   # ERROR: math_utils not in scope
+>

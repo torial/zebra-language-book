@@ -1,0 +1,42 @@
+# file: 09_document_capabilities.zbr
+# teaches: combining interface + mixin + composition
+# chapter: 09-Composition-and-Mixins
+
+interface Publishable
+    def publish()
+
+mixin Versioned
+    var version: int = 0
+
+    def bump()
+        this.version = this.version + 1
+
+class Storage
+    var path: str = ""
+
+    cue init(p: str)
+        path = p
+
+    def write(content: str)
+        File.write(path, content)
+
+class BlogPost implements Publishable adds Versioned
+    var title: str = ""
+    var body: str = ""
+    var storage: Storage
+
+    cue init(t: str, store_path: str)
+        title = t
+        storage = Storage(store_path)
+
+    def publish()
+        this.bump()                              # mixin method
+        var content = "${this.title} v${this.version}\n\n${this.body}"
+        this.storage.write(content)              # composition
+
+def main()
+    var post = BlogPost("Hello", "/tmp/hello.txt")
+    post.body = "First post"
+    post.publish()                       # writes v1
+    post.body = "First post (revised)"
+    post.publish()                       # writes v2

@@ -1,0 +1,12 @@
+class Config
+    @once
+    def load(): str                  # body runs once; result cached on the instance
+        return File.read("config.json")
+
+    @profile
+    def heavy_work()                 # body wrapped with Profile.start/end automatically
+        # ...
+
+    @tag("unit", "fast")
+    static def test_defaults()       # tagged for filtered test runs
+        assert_eq Config().load(), "{}"

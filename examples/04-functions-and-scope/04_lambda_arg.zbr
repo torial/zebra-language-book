@@ -1,0 +1,16 @@
+# file: 04_lambda_arg.zbr
+# teaches: lambda as call argument (statement-body form)
+# chapter: 04-Functions-and-Scope
+
+sig IntFn(x: int): int      # name the function type first
+
+def apply(n: int, transform: IntFn): int
+    return transform(n)
+
+def main()
+    # Statement-body lambda as a call argument:
+    var result = apply(5, def(x: int): int
+        var doubled = x * 2
+        return doubled
+    )
+    print(result)  # 10

@@ -1,0 +1,3 @@
+b.exe("app", "src/main.zbr")
+    .platform("aarch64-linux")
+    .option("optimize", "ReleaseSafe")

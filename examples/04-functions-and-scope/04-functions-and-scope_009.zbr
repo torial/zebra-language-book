@@ -1,0 +1,6 @@
+def log(message: str, prefix: str = "[INFO]")
+    print("${prefix} ${message}")
+
+def main()
+    log("Application started")              # [INFO] Application started
+    log("Disk failing", "[WARN]")           # [WARN] Disk failing

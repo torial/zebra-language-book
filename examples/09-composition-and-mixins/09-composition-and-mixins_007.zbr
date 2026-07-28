@@ -1,0 +1,7 @@
+> mixin Named
+>     var name: str = ""
+>
+> class Dog adds Named
+>     def bark
+>         print("${name} says: Woof!")
+>

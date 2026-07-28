@@ -1,0 +1,16 @@
+class Options
+    public var verbose: bool = false
+    public var input_path: str = ""
+
+namespace Cli
+    static def usage(): str
+        return "my-tool [--verbose] FILE"
+
+def parse_args(args: List(str)): Options
+    var opts = Options()
+    for arg in args
+        if arg == "--verbose"
+            opts.verbose = true
+        else
+            opts.input_path = arg
+    return opts

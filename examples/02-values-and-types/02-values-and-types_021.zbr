@@ -1,0 +1,9 @@
+def main()
+    var count = 42
+    var price = 19.99
+
+    var count_str = count.toString()
+    var price_str = price.toString()
+
+    print("Count: ${count_str}")
+    print("Price: ${price_str}")

@@ -1,0 +1,7 @@
+def parse_url(url: str): HashMap(str, str)
+    var result = HashMap(str, str)()
+    var parts: List(str) = url.split("://")
+    if parts.count() == 2
+        var proto: str = parts.at(0)
+        result.put("protocol", proto)
+    return result

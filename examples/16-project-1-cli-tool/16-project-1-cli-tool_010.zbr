@@ -1,0 +1,7 @@
+# Read and process line-by-line instead of all at once
+def count_lines_streaming(filename: str): int throws
+    # (Pseudocode - requires file iteration API)
+    var count = 0
+    # for line in File.read_lines(filename)
+    #     count = count + 1
+    return count

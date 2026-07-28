@@ -1,0 +1,12 @@
+def get_value(): int
+    if true
+        return 42
+    else
+        return 0    # Now all paths return
+
+# Or use branch
+def get_value(): int
+    var result = 0
+    if condition
+        result = 42
+    return result

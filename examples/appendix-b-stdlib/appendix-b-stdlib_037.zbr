@@ -1,0 +1,5 @@
+var name = "Alice"
+var age = 30
+print("${name} is ${age} years old")
+print("Sum: ${10 + 5}")
+print("Upper: ${"hello".upper(}"))

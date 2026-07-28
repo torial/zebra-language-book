@@ -1,0 +1,33 @@
+# file: 09_composition.zbr
+# teaches: composition with helper classes
+# chapter: 09-Composition-and-Mixins
+
+class FileWriter
+    var path: str = ""
+
+    cue init(p: str)
+        path = p
+
+    def write(content: str)
+        File.write(path, content)
+
+class AuditedReport
+    var writer: FileWriter
+    var entries: List(str)
+
+    cue init(p: str)
+        this.writer = FileWriter(p)
+        this.entries = List(str)()
+
+    def add_entry(line: str)
+        this.entries.add(line)
+
+    def publish()
+        var content = this.entries.join("\n")
+        this.writer.write(content)
+
+def main()
+    var r = AuditedReport("/tmp/audit.log")
+    r.add_entry("user logged in")
+    r.add_entry("user updated profile")
+    r.publish()

@@ -1,0 +1,6 @@
+var x: int? = get_value()
+
+if x != nil
+    print("Value: ${x}")
+else
+    print("Value is nil")

@@ -1,0 +1,25 @@
+def main()
+    var ch: Chan(int) = Chan(int)(8)
+    var pool: ThreadPool = ThreadPool(4)
+
+    for i in 0..8
+        pool.submit(def()
+            capture
+                var idx: int = i
+                var ch: Chan(int) = ch
+            ch.send(idx * idx)
+        )
+
+    pool.wait()                  # all tasks done; close the channel
+    ch.close()
+
+    var sum: int = 0
+    var done: bool = false
+    while not done
+        var v: int? = ch.recv()
+        if v as n
+            sum = sum + n
+        else
+            done = true
+
+    print(sum)  # 0+1+4+9+16+25+36+49 = 140

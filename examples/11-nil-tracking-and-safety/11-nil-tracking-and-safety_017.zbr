@@ -1,0 +1,17 @@
+class Calculator
+    static
+        def safe_divide(a: float, b: float): float?
+            if b == 0.0
+                return nil
+            return a / b
+
+def main()
+    var result = Calculator.safe_divide(10.0, 2.0)
+    if result != nil
+        print("Result: ${result}")
+    
+    var bad = Calculator.safe_divide(10.0, 0.0)
+    if bad != nil
+        print(bad)
+    else
+        print("Cannot divide by zero")

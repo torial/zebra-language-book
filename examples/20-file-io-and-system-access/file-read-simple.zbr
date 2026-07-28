@@ -1,6 +1,6 @@
-// file: file-read-simple.zbr
-// teaches: simple file reading with error handling
-// chapter: 20
+# file: file-read-simple.zbr
+# teaches: simple file reading with error handling
+# chapter: 20
 
 def main()
     var filename = "example.txt"
@@ -9,7 +9,7 @@ def main()
     
     branch result
         on ok(content)
-            println("File contents:")
-            println(content)
+            print("File contents:")
+            print(content)
         on err(error)
-            println("Error reading file: ${error}")
+            print("Error reading file: ${error}")

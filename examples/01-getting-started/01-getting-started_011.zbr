@@ -1,0 +1,3 @@
+def main()
+    var my_name = "Alice"
+    print("Hello! My name is ${my_name}.")

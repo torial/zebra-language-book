@@ -1,0 +1,10 @@
+def main()
+    var key = Crypto.deriveKey("user-password", "fixed-salt-bytes")
+    var ciphertext = Crypto.encrypt("secret message", key)
+    print(ciphertext)  # base64-encoded blob
+
+    var plaintext = Crypto.decrypt(ciphertext, key)
+    if plaintext as msg
+        print(msg)  # "secret message"
+    else
+        print("decrypt failed — wrong key or tampered ciphertext")

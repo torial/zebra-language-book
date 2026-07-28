@@ -425,7 +425,7 @@ use cli
 
 def run(opts: cli.Options)
     if opts.verbose
-        print "Processing ${opts.input_path}"
+        print("Processing ${opts.input_path}")
     # ... do work ...
 ```
 

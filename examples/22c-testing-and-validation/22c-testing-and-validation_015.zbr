@@ -1,0 +1,14 @@
+class UserTests
+    @tag("unit")
+    static def test_email_validation()
+        assert_true  User.is_valid_email("a@b.com")
+        assert_false User.is_valid_email("not-an-email")
+
+    @tag("unit")
+    static def test_name_normalization()
+        assert_eq User.normalize_name("  Alice  "), "Alice"
+
+    @tag("integration")
+    static def test_save_and_load()
+        # ... uses Sqlite or a file ...
+        assert_true true

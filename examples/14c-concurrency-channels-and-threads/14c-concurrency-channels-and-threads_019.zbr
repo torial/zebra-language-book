@@ -1,0 +1,6 @@
+> for i in 0..8
+>     pool.submit(def()
+>         # capture missing — task sees the LATEST value of i, not its own
+>         print(i)
+>     )
+>

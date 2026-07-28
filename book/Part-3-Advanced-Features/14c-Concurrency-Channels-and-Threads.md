@@ -54,7 +54,7 @@ def main()
     var v3: int? = ch.recv()       # nil — channel closed + empty
 
     if v1 as n: print n            # 1
-    if v3 == nil: print "done"
+    if v3 == nil: print("done")
 ```
 
 ### The `<-` operator
@@ -87,7 +87,7 @@ runs the lambda body:
 
 ```zebra
 sys.go(lambda
-    print "hello from a thread"
+    print("hello from a thread")
 )
 ```
 
@@ -115,7 +115,7 @@ def main()
             sum = sum + n
         else
             done = true
-    print sum             # 3
+    print(sum)  # 3
 ```
 
 ### What `sys.go()` does NOT give you
@@ -160,7 +160,7 @@ def main()
         else
             done = true
 
-    print sum                 # 1+2+3+4 = 10
+    print(sum)  # 1+2+3+4 = 10
 ```
 
 This is the workhorse of concurrent Zebra. Two takeaways:
@@ -210,7 +210,7 @@ def main()
     sys.go(lambda  var _ = total.add(1)  )
     sys.sleep(50)              # give threads time to finish
 
-    print total.load()         # 2
+    print(total.load())  # 2
 ```
 
 ### One-shot done flag
@@ -227,7 +227,7 @@ def main()
     while not done.load()
         sys.sleep(10)
 
-    print "worker finished"
+    print("worker finished")
 ```
 
 ---
@@ -268,7 +268,7 @@ def main()
         i = i + 1
 
     pool.wait()                  # blocks until all submitted tasks finish
-    print counter.load()         # 8
+    print(counter.load())  # 8
 ```
 
 | Method | Notes |
@@ -328,7 +328,7 @@ def main()
         else
             done = true
 
-    print sum                    # 0+1+4+9+16+25+36+49 = 140
+    print(sum)  # 0+1+4+9+16+25+36+49 = 140
 ```
 
 Three things to notice:
@@ -409,7 +409,7 @@ def main()
             done = true
 
     for r in results
-        print "${r.path}: ${r.line_count} lines"
+        print("${r.path}: ${r.line_count} lines")
 ```
 
 This same shape — pool + channel + capture closure — covers parallel
@@ -488,7 +488,7 @@ most other batch I/O patterns.
 > for i in 0..8
 >     pool.submit(def()
 >         # capture missing — task sees the LATEST value of i, not its own
->         print i
+>         print(i)
 >     )
 > ```
 >
@@ -498,7 +498,7 @@ most other batch I/O patterns.
 >     pool.submit(def()
 >         capture
 >             var idx: int = i
->         print idx
+>         print(idx)
 >     )
 > ```
 
@@ -533,7 +533,7 @@ def main()
         else
             done = true
 
-    print sum                 # 55
+    print(sum)  # 55
 ```
 
 </details>
@@ -569,7 +569,7 @@ def main()
         if v as n: sum = sum + n
         else:      done = true
 
-    print sum                 # 0^2 + 1^2 + ... + 15^2 = 1240
+    print(sum)  # 0^2 + 1^2 + ... + 15^2 = 1240
 ```
 
 </details>
@@ -595,7 +595,7 @@ def main()
     while not done.load()
         sys.sleep(10)
 
-    print "background work finished"
+    print("background work finished")
 ```
 
 For a single signal, this is fine. For more than one — multiple

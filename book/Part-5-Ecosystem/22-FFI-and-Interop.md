@@ -51,10 +51,10 @@ shared class Math
 
 def main()
     var result = Math.sqrt(16.0)
-    print result  # 4.0
+    print(result)  # 4.0
     
     var power = Math.pow(2.0, 8.0)
-    print power  # 256.0
+    print(power)  # 256.0
 ```
 
 ### String Marshaling
@@ -85,15 +85,15 @@ shared class CString
 def main()
     var text = "Hello, World!"
     var length = CString.strlen(text)
-    print "Length: ${length}"
+    print("Length: ${length}")
     
     var cmp = CString.strcmp("apple", "apple")
     if cmp == 0
-        print "Strings are equal"
+        print("Strings are equal")
     
     cmp = CString.strcmp("apple", "banana")
     if cmp < 0
-        print "apple comes before banana"
+        print("apple comes before banana")
 ```
 
 ### Working with Arrays
@@ -133,10 +133,10 @@ def main()
     numbers.add(15)
     
     var sum = CArray.sum_array(numbers)
-    print "Sum: ${sum}"  # 45
+    print("Sum: ${sum}")  # 45
     
     var max_val = CArray.max_array(numbers)
-    print "Max: ${max_val}"  # 20
+    print("Max: ${max_val}")  # 20
 ```
 
 ### Pointers and Memory Management
@@ -167,9 +167,9 @@ def main()
     var result = CMemory.process_buffer(my_data)
     
     if result.isOk()
-        print "Processed: ${result.value(} bytes")
+        print("Processed: ${result.value(} bytes"))
     else
-        print "Error: ${result.error(}")
+        print("Error: ${result.error(}"))
     
     # Zebra's scoping ensures my_data is cleaned up automatically
 ```
@@ -200,12 +200,12 @@ shared class ZigMath
 
 def main()
     var result = ZigMath.gcd(48, 18)
-    print result  # 6
+    print(result)  # 6
     
     if ZigMath.is_prime(17)
-        print "17 is prime"
+        print("17 is prime")
     else
-        print "17 is not prime"
+        print("17 is not prime")
 ```
 
 ### Zig String Handling
@@ -237,10 +237,10 @@ shared class ZigString
 def main()
     var text = "Hello, Zig!"
     var len = ZigString.string_length(text)
-    print "Length: ${len}"
+    print("Length: ${len}")
     
     var upper = ZigString.to_uppercase(text)
-    print "Uppercase: ${upper}"
+    print("Uppercase: ${upper}")
 ```
 
 ---
@@ -285,13 +285,13 @@ def main()
     
     branch result
         on ok(handle)
-            print "File opened: ${handle}"
+            print("File opened: ${handle}")
             
             var close_result = CFile.close_file(handle)
             if close_result.isOk()
-                print "File closed"
+                print("File closed")
         on err(error)
-            print "Error: ${error}"
+            print("Error: ${error}")
 ```
 
 ### Exception-Like Patterns
@@ -319,7 +319,7 @@ def main()
     var result = SafeLibrary.risky_operation("data")
     
     if result.isErr()
-        print "Operation failed safely"
+        print("Operation failed safely")
 ```
 
 ---
@@ -353,7 +353,7 @@ shared class Numeric
 def main()
     # Small numbers are safe
     var result = Numeric.c_int32_function(100)
-    print result
+    print(result)
     
     # Large numbers may overflow in C int32
     # Be careful!
@@ -393,7 +393,7 @@ def main()
     var p2 = Point(3.0, 4.0)
     
     var dist = Geometry.distance(p1, p2)
-    print dist  # ~5.0 (3-4-5 triangle)
+    print(dist)  # ~5.0 (3-4-5 triangle)
 ```
 
 ---
@@ -430,7 +430,7 @@ def main()
     var size_result = Platform.get_file_size("data.txt")
     
     if size_result.isOk()
-        print "File size: ${size_result.value(} bytes")
+        print("File size: ${size_result.value(} bytes"))
 ```
 
 ### Conditional Compilation
@@ -451,8 +451,8 @@ shared class OSSpecific
             return "/"
 
 def main()
-    print "Platform: ${OSSpecific.platform_name(}")
-    print "Separator: ${OSSpecific.file_separator(}")
+    print("Platform: ${OSSpecific.platform_name(}"))
+    print("Separator: ${OSSpecific.file_separator(}"))
 ```
 
 ---
@@ -604,15 +604,15 @@ shared class Crypto
 def main()
     var message = "Secret password"
     var hash = Crypto.sha256(message)
-    print "SHA256: ${hash}"
+    print("SHA256: ${hash}")
     
     # Verify integrity
     var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
     
     if Crypto.verify_sha256(message, stored_hash)
-        print "Hash verified!"
+        print("Hash verified!")
     else
-        print "Hash mismatch!"
+        print("Hash mismatch!")
 ```
 
 ---
@@ -767,8 +767,8 @@ def main()
     var lib = DynLib.open("greeter.dll")           # path follows OS convention
     var g = lib.lookup(IGreeter, "greeter")        # factory symbol name
 
-    print g.greet("World")                          # "Hello, World"
-    print g.version()                               # 1
+    print(g.greet("World"))  # "Hello, World"
+    print(g.version())  # 1
 
     lib.close()
 ```

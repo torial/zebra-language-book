@@ -1,0 +1,25 @@
+sig IntPredicate(x: int): bool      # name the function type
+
+class ListUtils
+    static
+        def filter(items: List(int), pred: IntPredicate): List(int)
+            var result: List(int) = List()
+            for item in items
+                if pred(item)
+                    result.add(item)
+            return result
+
+def is_even(x: int): bool
+    return x % 2 == 0
+
+def main()
+    var numbers: List(int) = List()
+    numbers.add(1)
+    numbers.add(2)
+    numbers.add(3)
+    numbers.add(4)
+
+    var evens = ListUtils.filter(numbers, is_even)
+
+    for e in evens
+        print(e)

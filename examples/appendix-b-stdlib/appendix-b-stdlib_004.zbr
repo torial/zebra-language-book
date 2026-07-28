@@ -1,0 +1,2 @@
+text.upper()                # Convert to UPPERCASE
+text.lower()                # Convert to lowercase

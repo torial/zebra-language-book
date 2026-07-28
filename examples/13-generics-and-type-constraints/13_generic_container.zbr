@@ -1,23 +1,21 @@
-// file: 13_generic_container.zbr
-// teaches: generic class definition
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_container.zbr
+# teaches: generic class definition
+# chapter: 13-Generics-and-Type-Constraints
 
 class Container(T)
-    var item as T
+    var item: T
     
-    def store(value as T)
+    def store(value: T)
         item = value
-
-    def retrieve as T
+    
+    def retrieve: T
         return item
 
-class Main
-    shared
-        def main
-            var int_box = Container(int)()
-            int_box.store(42)
-            print int_box.retrieve()  # Output: 42
-
-            var str_box = Container(str)()
-            str_box.store("hello")
-            print str_box.retrieve()  # Output: hello
+def main()
+    var int_box = Container(int)()
+    int_box.store(42)
+    print(int_box.retrieve())  # Output: 42
+    
+    var str_box = Container(str)()
+    str_box.store("hello")
+    print(str_box.retrieve())  # Output: hello

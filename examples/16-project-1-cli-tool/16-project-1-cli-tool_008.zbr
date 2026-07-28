@@ -1,0 +1,20 @@
+class PatternMatcher
+    static
+        def search_case_insensitive(filename: str, pattern: str): List(str) throws
+            var content_result = FileProcessor.read_file(filename)
+            if content_result.isErr()
+                return content_result
+            
+            var content = content_result.okValue()
+            var lines = content.split("\n")
+            var pattern_lower = pattern.lower()
+            
+            var matches: List(str) = List()
+            var line_num = 0
+            
+            for line in lines
+                line_num = line_num + 1
+                if line.lower().contains(pattern_lower)
+                    matches.add("${line_num}: ${line}")
+            
+            return matches

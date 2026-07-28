@@ -1,0 +1,4 @@
+var x: int? = 42
+
+if x != nil
+    var doubled = x * 2  # Safe because x is checked

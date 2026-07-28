@@ -1,0 +1,6 @@
+var x: int? = get_value()
+
+if x != nil
+    print(x + 1)
+else
+    print("Value not found")

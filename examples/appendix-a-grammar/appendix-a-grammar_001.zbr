@@ -1,0 +1,5 @@
+var x: int? = nil         # Can be int or nil
+var s: str? = "hello"     # Can be string or nil
+
+if x != nil
+    print(x)  # Safe to use x here

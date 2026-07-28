@@ -1,0 +1,7 @@
+def process(data: str?)
+    if data == nil
+        return
+    if data.len == 0
+        return
+    # Now process safely
+    do_work(data)

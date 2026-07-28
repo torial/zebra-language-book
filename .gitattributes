@@ -1,0 +1,4 @@
+# Zebra source must be LF-only — the tokenizer rejects CR with
+# "error.UnexpectedCharacter" and no source location, which looks unrelated.
+# (The zebra-language repo carries the same line for the same reason.)
+*.zbr text eol=lf

@@ -1,0 +1,10 @@
+> var counter = 0
+>
+> def test_increment_once()
+>     counter = counter + 1
+>     assert_eq counter, 1   # passes the first time, breaks if run after another test
+>
+> def test_increment_twice()
+>     counter = counter + 1  # depends on counter == 0 — fragile
+>     assert_eq counter, 1
+>

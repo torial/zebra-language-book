@@ -1,0 +1,10 @@
+class BankAccount
+    var balance: float = 0.0
+    
+    def get_balance: float
+        return balance  # Can read
+    
+    def deposit(amount: float)
+        balance = balance + amount  # Can modify only via methods
+    
+    # No setter: direct assignment not allowed

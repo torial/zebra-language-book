@@ -1,0 +1,5 @@
+def main()
+    var name = "World"             # inferred from the literal
+    var age = 30
+    var pi = 3.14159
+    print("${name} is ${age}")

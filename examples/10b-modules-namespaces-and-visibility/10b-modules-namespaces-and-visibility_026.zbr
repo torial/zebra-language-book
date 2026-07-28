@@ -1,0 +1,9 @@
+> # helpers.zbr
+> def is_prime(n: int): bool
+>     # ...
+>
+> # main.zbr
+> use helpers exposing is_prime
+> def main()
+>     print(is_prime(7))
+>

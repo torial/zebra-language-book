@@ -44,8 +44,8 @@ struct Point
 def main()
     var a = Point(3, 4)
     var b = a              # copies the entire Point
-    print a.distSq()       # 25
-    print b.x              # 3
+    print(a.distSq())  # 25
+    print(b.x)  # 3
 ```
 
 ### When to use struct vs class
@@ -90,9 +90,9 @@ def main()
     var base = Config(0, "nobody", false)
     var inner = base.indented()
     var owned = inner.withOwner("Alice")
-    print owned.indent      # 1
-    print owned.owner       # Alice
-    print owned.verbose     # false (unchanged)
+    print(owned.indent)  # 1
+    print(owned.owner)  # Alice
+    print(owned.verbose)  # false (unchanged)
 ```
 
 ### Critical rule: no method chaining on temporaries
@@ -130,7 +130,7 @@ enum Status(int)
 def main()
     var c = Color.red
     var s = Status.ok
-    print s     # 0
+    print(s)  # 0
 ```
 
 Use `branch` (see below) to match on enum values.
@@ -198,8 +198,8 @@ def describe(s: Shape): str
 def main()
     var c = Shape.circle(3.14)
     var r = Shape.rect(Dims(10.0, 5.0))
-    print describe(c)    # Circle with radius 3.14
-    print describe(r)    # Rectangle 10.0 x 5.0
+    print(describe(c))  # Circle with radius 3.14
+    print(describe(r))  # Rectangle 10.0 x 5.0
 ```
 
 **Rules:**
@@ -214,19 +214,19 @@ def main()
 ```zebra
 branch color
     on Color.red
-        print "Stop"
+        print("Stop")
     on Color.green
-        print "Go"
+        print("Go")
     else
-        print "Unknown"
+        print("Unknown")
 
 branch command
     on "quit"
         sys.exit(0)
     on "help"
-        print "Available commands: quit, help"
+        print("Available commands: quit, help")
     else
-        print "Unknown command"
+        print("Unknown command")
 ```
 
 ---
@@ -254,7 +254,7 @@ def main()
     var a = Node(1, nil)
     var b = Node(2, nil)
     a.next = b              # auto-boxes: copies b to the heap
-    print a.value           # 1
+    print(a.value)  # 1
 ```
 
 **Key points:**
@@ -319,7 +319,7 @@ def main()
     var three = Expr.num(3)
     var two = Expr.neg(Expr.num(2))
     var sum = Expr.add(BinExpr(three, two))
-    print eval(sum)     # 1
+    print(eval(sum))  # 1
 ```
 
 ---
@@ -355,8 +355,8 @@ def main()
     var red = Color(255, 0, 0)
     var blue = Color(0, 0, 255)
     var purple = red.mix(blue)
-    print purple.r      # 127
-    print purple.b      # 127
+    print(purple.r)  # 127
+    print(purple.b)  # 127
 ```
 
 </details>

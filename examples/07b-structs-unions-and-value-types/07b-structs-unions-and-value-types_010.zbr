@@ -1,0 +1,23 @@
+struct Color
+    var r: int
+    var g: int
+    var b: int
+
+    cue init(r: int, g: int, b: int)
+        this.r = r
+        this.g = g
+        this.b = b
+
+    def mix(other: Color): Color
+        var c = this except
+            r = (r + other.r) / 2
+            g = (g + other.g) / 2
+            b = (b + other.b) / 2
+        return c
+
+def main()
+    var red = Color(255, 0, 0)
+    var blue = Color(0, 0, 255)
+    var purple = red.mix(blue)
+    print(purple.r)  # 127
+    print(purple.b)  # 127

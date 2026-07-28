@@ -1,0 +1,5 @@
+> use math_utils
+>
+> def main()
+>     var v = math_utils.square(5)
+>

@@ -1,14 +1,35 @@
 {
   "version": "1.0",
-  "total_examples": 180,
-  "generated": "1775579309.2146854",
+  "total_examples": 686,
+  "generated": "1785214308.777066",
   "examples": [
     {
       "chapter": "01-Getting-Started",
       "file": "hello.zbr",
-      "teaches": "hello world, print statement",
+      "teaches": "hello world, the print function",
       "project": null,
       "path": "examples/01-getting-started/hello.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_001.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_002.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_003.zbr"
     },
     {
       "chapter": "01-Getting-Started",
@@ -18,11 +39,74 @@
       "path": "examples/01-getting-started/greet.zbr"
     },
     {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_005.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_006.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_007.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "math_utils.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/math_utils.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "main.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/main.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_010.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_011.zbr"
+    },
+    {
+      "chapter": "01-Getting-Started",
+      "file": "01-getting-started_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/01-getting-started/01-getting-started_012.zbr"
+    },
+    {
       "chapter": "02-Values-and-Types",
       "file": "02_integers.zbr",
       "teaches": "integer types, arithmetic",
       "project": null,
       "path": "examples/02-values-and-types/02_integers.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_001.zbr"
     },
     {
       "chapter": "02-Values-and-Types",
@@ -47,10 +131,45 @@
     },
     {
       "chapter": "02-Values-and-Types",
+      "file": "02_tuples.zbr",
+      "teaches": "tuple types, literals, destructuring, and indexing",
+      "project": null,
+      "path": "examples/02-values-and-types/02_tuples.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_006.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_007.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_008.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
       "file": "02_comparisons.zbr",
       "teaches": "comparison operators",
       "project": null,
       "path": "examples/02-values-and-types/02_comparisons.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_010.zbr"
     },
     {
       "chapter": "02-Values-and-Types",
@@ -68,10 +187,80 @@
     },
     {
       "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_013.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
       "file": "02_user_data.zbr",
       "teaches": "realistic variable use",
       "project": null,
       "path": "examples/02-values-and-types/02_user_data.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_015.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_016.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_017.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_018.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_019.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_020.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_021.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_022.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02-values-and-types_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/02-values-and-types/02-values-and-types_023.zbr"
     },
     {
       "chapter": "03-Collections",
@@ -110,10 +299,10 @@
     },
     {
       "chapter": "03-Collections",
-      "file": "03_sets.zbr",
-      "teaches": "sets for uniqueness",
+      "file": "03_dedup.zbr",
+      "teaches": "using HashMap for uniqueness",
       "project": null,
-      "path": "examples/03-collections/03_sets.zbr"
+      "path": "examples/03-collections/03_dedup.zbr"
     },
     {
       "chapter": "03-Collections",
@@ -128,6 +317,69 @@
       "teaches": "collection patterns",
       "project": null,
       "path": "examples/03-collections/03_patterns.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_008.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_009.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_010.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_011.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_012.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_013.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_014.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_015.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03-collections_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/03-collections/03-collections_016.zbr"
     },
     {
       "chapter": "04-Functions-and-Scope",
@@ -159,6 +411,13 @@
     },
     {
       "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_004.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
       "file": "04_closures.zbr",
       "teaches": "closures and variable capture",
       "project": null,
@@ -187,10 +446,122 @@
     },
     {
       "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_009.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_010.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
       "file": "04_higher_order.zbr",
       "teaches": "functions as arguments",
       "project": null,
       "path": "examples/04-functions-and-scope/04_higher_order.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_sig.zbr",
+      "teaches": "named function types with sig",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_sig.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_013.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_014.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_lambda_arg.zbr",
+      "teaches": "lambda as call argument (statement-body form)",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_lambda_arg.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_nested_lambda.zbr",
+      "teaches": "nested lambda as argument",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_nested_lambda.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_017.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_018.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_019.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_020.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_021.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_022.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_023.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_024.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04-functions-and-scope_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/04-functions-and-scope/04-functions-and-scope_025.zbr"
     },
     {
       "chapter": "05-Control-Flow",
@@ -215,6 +586,20 @@
     },
     {
       "chapter": "05-Control-Flow",
+      "file": "05_inline_if.zbr",
+      "teaches": "one-line if statement",
+      "project": null,
+      "path": "examples/05-control-flow/05_inline_if.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05_if_expr.zbr",
+      "teaches": "if-expression",
+      "project": null,
+      "path": "examples/05-control-flow/05_if_expr.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
       "file": "05_match.zbr",
       "teaches": "pattern matching",
       "project": null,
@@ -223,7 +608,7 @@
     {
       "chapter": "05-Control-Flow",
       "file": "05_match_type.zbr",
-      "teaches": "type-based matching",
+      "teaches": "type-based matching with unions",
       "project": null,
       "path": "examples/05-control-flow/05_match_type.zbr"
     },
@@ -261,6 +646,90 @@
       "teaches": "practical control flow",
       "project": null,
       "path": "examples/05-control-flow/05_validation.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_012.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_013.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_014.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_015.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_016.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_017.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_018.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_019.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_020.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_021.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_022.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
+      "file": "05-control-flow_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/05-control-flow/05-control-flow_023.zbr"
     },
     {
       "chapter": "06-Strings-and-Unicode",
@@ -340,16 +809,100 @@
       "path": "examples/06-strings-and-unicode/06_text_processing.zbr"
     },
     {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_011.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_012.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_013.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_014.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_015.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_016.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_017.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_018.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_019.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_020.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_021.zbr"
+    },
+    {
+      "chapter": "06-Strings-and-Unicode",
+      "file": "06-strings-and-unicode_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/06-strings-and-unicode/06-strings-and-unicode_022.zbr"
+    },
+    {
       "chapter": "07-Classes-and-Instances",
       "file": "07_class_basic.zbr",
-      "teaches": "class definition",
+      "teaches": "class definition, cue init",
       "project": null,
       "path": "examples/07-classes-and-instances/07_class_basic.zbr"
     },
     {
       "chapter": "07-Classes-and-Instances",
       "file": "07_init.zbr",
-      "teaches": "field initialization",
+      "teaches": "field defaults vs. explicit init",
       "project": null,
       "path": "examples/07-classes-and-instances/07_init.zbr"
     },
@@ -362,10 +915,31 @@
     },
     {
       "chapter": "07-Classes-and-Instances",
-      "file": "07_shared.zbr",
-      "teaches": "shared (class) methods",
+      "file": "07_static.zbr",
+      "teaches": "static (class-level) methods",
       "project": null,
-      "path": "examples/07-classes-and-instances/07_shared.zbr"
+      "path": "examples/07-classes-and-instances/07_static.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_004.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_005.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_006.zbr"
     },
     {
       "chapter": "07-Classes-and-Instances",
@@ -373,6 +947,146 @@
       "teaches": "realistic class design",
       "project": null,
       "path": "examples/07-classes-and-instances/07_user_system.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_008.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_009.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_010.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_011.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_012.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_013.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_014.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_015.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_016.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_struct_basic.zbr",
+      "teaches": "struct definition and value semantics",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_struct_basic.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_except.zbr",
+      "teaches": "except struct update syntax",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_except.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b-structs-unions-and-value-types_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_002.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_enum.zbr",
+      "teaches": "enum types",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_enum.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_union_basic.zbr",
+      "teaches": "union definition and construction",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_union_basic.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_branch.zbr",
+      "teaches": "branch pattern matching",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_branch.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b-structs-unions-and-value-types_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_006.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_heap_indirect.zbr",
+      "teaches": "^T heap indirection",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_heap_indirect.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b-structs-unions-and-value-types_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_008.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_mini_ast.zbr",
+      "teaches": "combining structs, unions, and ^T",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_mini_ast.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b-structs-unions-and-value-types_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_010.zbr"
     },
     {
       "chapter": "08-Interfaces-and-Protocols",
@@ -410,53 +1124,193 @@
       "path": "examples/08-interfaces-and-protocols/08_logger_system.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_inheritance_basic.zbr",
-      "teaches": "class inheritance",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_005.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_inheritance_basic.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_005.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_override.zbr",
-      "teaches": "overriding parent methods",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_006.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_override.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_006.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_super.zbr",
-      "teaches": "calling parent implementation",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_007.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_super.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_007.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_hierarchy.zbr",
-      "teaches": "inheritance hierarchies",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_008.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_hierarchy.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_008.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_polymorphic_hierarchy.zbr",
-      "teaches": "treating children as parents",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_009.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_009.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_mixins.zbr",
-      "teaches": "mixin composition",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_010.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_mixins.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_010.zbr"
     },
     {
-      "chapter": "09-Inheritance-and-Mixins",
-      "file": "09_document_hierarchy.zbr",
-      "teaches": "realistic inheritance use",
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_011.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/09-inheritance-and-mixins/09_document_hierarchy.zbr"
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_011.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_012.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_013.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_014.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_015.zbr"
+    },
+    {
+      "chapter": "08-Interfaces-and-Protocols",
+      "file": "08-interfaces-and-protocols_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/08-interfaces-and-protocols/08-interfaces-and-protocols_016.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09_mixin_basic.zbr",
+      "teaches": "declaring and using mixins",
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09_mixin_basic.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_001.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09_composition.zbr",
+      "teaches": "composition with helper classes",
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09_composition.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09_multiple_mixins.zbr",
+      "teaches": "combining multiple mixins",
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09_multiple_mixins.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09_polymorphism.zbr",
+      "teaches": "interface-based polymorphism (instead of inheritance)",
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09_polymorphism.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09_document_capabilities.zbr",
+      "teaches": "combining interface + mixin + composition",
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09_document_capabilities.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_006.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_007.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_008.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_009.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_010.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_011.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_012.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_013.zbr"
+    },
+    {
+      "chapter": "09-Composition-and-Mixins",
+      "file": "09-composition-and-mixins_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/09-composition-and-mixins/09-composition-and-mixins_014.zbr"
     },
     {
       "chapter": "10-Properties-and-Computed-Values",
@@ -515,6 +1369,335 @@
       "path": "examples/10-properties-and-computed-values/10_config.zbr"
     },
     {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_008.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_009.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_010.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_011.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_012.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_013.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_014.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_015.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_016.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_017.zbr"
+    },
+    {
+      "chapter": "10-Properties-and-Computed-Values",
+      "file": "10-properties-and-computed-values_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10-properties-and-computed-values/10-properties-and-computed-values_018.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "math_utils.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/math_utils.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "main.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/main.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "main.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/main.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_003.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_004.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_005.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "wallet.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/wallet.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "main.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/main.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "colors.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/colors.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_009.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_010.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_011.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_012.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_013.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_014.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "helpers.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/helpers.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "main.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/main.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "Wallet.zbr  (primary)",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/Wallet.zbr  (primary)"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "Wallet.transactions.zbr  (partial \u2014 merges into Wallet)",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/Wallet.transactions.zbr  (partial \u2014 merges into Wallet)"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_019.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_020.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_021.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_022.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_023.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_024.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_025.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_026.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_026.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_027.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_027.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_028.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_028.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_029.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_029.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_030.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_030.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_031.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_031.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_032.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_032.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_033.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_033.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_034.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_034.zbr"
+    },
+    {
+      "chapter": "10b-Modules-Namespaces-and-Visibility",
+      "file": "10b-modules-namespaces-and-visibility_035.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_035.zbr"
+    },
+    {
       "chapter": "11-Nil-Tracking-and-Safety",
       "file": "11_nullable.zbr",
       "teaches": "nullable types",
@@ -534,6 +1717,20 @@
       "teaches": "type narrowing",
       "project": null,
       "path": "examples/11-nil-tracking-and-safety/11_narrowing.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11_if_as.zbr",
+      "teaches": "optional unwrap binding form",
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11_if_as.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_004.zbr"
     },
     {
       "chapter": "11-Nil-Tracking-and-Safety",
@@ -557,32 +1754,158 @@
       "path": "examples/11-nil-tracking-and-safety/11_database.zbr"
     },
     {
-      "chapter": "12-Error-Handling-with-Results",
-      "file": "12_result_basic.zbr",
-      "teaches": "result type",
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_008.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/12-error-handling-with-results/12_result_basic.zbr"
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_008.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_009.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_010.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_011.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_012.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_013.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_014.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_015.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_016.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_017.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_018.zbr"
     },
     {
       "chapter": "12-Error-Handling-with-Results",
-      "file": "12_result_unwrap.zbr",
-      "teaches": "result unwrapping",
+      "file": "12_throws_basic.zbr",
+      "teaches": "throws annotation",
       "project": null,
-      "path": "examples/12-error-handling-with-results/12_result_unwrap.zbr"
+      "path": "examples/12-error-handling-with-results/12_throws_basic.zbr"
     },
     {
       "chapter": "12-Error-Handling-with-Results",
-      "file": "12_error_propagation.zbr",
-      "teaches": "propagating errors",
+      "file": "12_raise.zbr",
+      "teaches": "raise statement",
       "project": null,
-      "path": "examples/12-error-handling-with-results/12_error_propagation.zbr"
+      "path": "examples/12-error-handling-with-results/12_raise.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_method_catch.zbr",
+      "teaches": "method-level catch clause",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_method_catch.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_catch_binding.zbr",
+      "teaches": "catch with error binding",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_catch_binding.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_catch_typed.zbr",
+      "teaches": "catch with typed error binding",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_catch_typed.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_catch_expr.zbr",
+      "teaches": "catch expression for defaults",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_catch_expr.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12_propagation.zbr",
+      "teaches": "error propagation",
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12_propagation.zbr"
     },
     {
       "chapter": "12-Error-Handling-with-Results",
       "file": "12_api_client.zbr",
-      "teaches": "results in realistic code",
+      "teaches": "realistic error handling",
       "project": null,
       "path": "examples/12-error-handling-with-results/12_api_client.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12-error-handling-with-results_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12-error-handling-with-results_008.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
+      "file": "12-error-handling-with-results_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12-error-handling-with-results_009.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_000.zbr"
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",
@@ -607,6 +1930,13 @@
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_generic_function.zbr",
+      "teaches": "top-level generic function declaration",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_generic_function.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
       "file": "13_generic_collections.zbr",
       "teaches": "using generic stdlib types",
       "project": null,
@@ -628,66 +1958,556 @@
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_type_aliases.zbr",
+      "teaches": "type aliases with constraints",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_type_aliases.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13_refinement_types.zbr",
+      "teaches": "parametric refinement types",
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13_refinement_types.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_010.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
       "file": "13_generic_cache.zbr",
       "teaches": "realistic generic class",
       "project": null,
       "path": "examples/13-generics-and-type-constraints/13_generic_cache.zbr"
     },
     {
-      "chapter": "14-Contracts-and-Assertions",
-      "file": "14_preconditions.zbr",
-      "teaches": "precondition checking",
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_012.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_preconditions.zbr"
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_012.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_013.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_014.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_015.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_016.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_017.zbr"
+    },
+    {
+      "chapter": "13-Generics-and-Type-Constraints",
+      "file": "13-generics-and-type-constraints_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_018.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_postconditions.zbr",
-      "teaches": "postcondition checking",
+      "file": "14-contracts-and-assertions_000.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_postconditions.zbr"
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_000.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_invariants.zbr",
+      "file": "14_require.zbr",
+      "teaches": "precondition checking with require",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_require.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_ensure.zbr",
+      "teaches": "postcondition checking with ensure",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_ensure.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_ensure_result.zbr",
+      "teaches": "result in ensure clauses",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_ensure_result.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_ensure_old.zbr",
+      "teaches": "old snapshots in ensure clauses",
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14_ensure_old.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14_invariant.zbr",
       "teaches": "class invariants",
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_invariants.zbr"
+      "path": "examples/14-contracts-and-assertions/14_invariant.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_assertions.zbr",
-      "teaches": "assertions",
+      "file": "14_assert.zbr",
+      "teaches": "assert statement",
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_assertions.zbr"
+      "path": "examples/14-contracts-and-assertions/14_assert.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_sort_postcondition.zbr",
-      "teaches": "postcondition in realistic code",
+      "file": "14_sorted_list.zbr",
+      "teaches": "combining require, ensure, and invariant",
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_sort_postcondition.zbr"
+      "path": "examples/14-contracts-and-assertions/14_sorted_list.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_guard_clauses.zbr",
-      "teaches": "guard clause pattern",
+      "file": "14-contracts-and-assertions_008.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_guard_clauses.zbr"
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_008.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_early_return.zbr",
-      "teaches": "fail fast principle",
+      "file": "14-contracts-and-assertions_009.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_early_return.zbr"
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_009.zbr"
     },
     {
       "chapter": "14-Contracts-and-Assertions",
-      "file": "14_dual_verify.zbr",
-      "teaches": "verifying both input and output",
+      "file": "14-contracts-and-assertions_010.zbr",
+      "teaches": null,
       "project": null,
-      "path": "examples/14-contracts-and-assertions/14_dual_verify.zbr"
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_010.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14-contracts-and-assertions_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_011.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14-contracts-and-assertions_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_012.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14-contracts-and-assertions_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_013.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14-contracts-and-assertions_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_014.zbr"
+    },
+    {
+      "chapter": "14-Contracts-and-Assertions",
+      "file": "14-contracts-and-assertions_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14-contracts-and-assertions/14-contracts-and-assertions_015.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_000.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_001.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_002.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_003.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_004.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_005.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_006.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_007.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_008.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_009.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_010.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_011.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_012.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b_streaming_processor.zbr",
+      "teaches": "allocate + <- + using together",
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b_streaming_processor.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_014.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_015.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_016.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_017.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_018.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_019.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_020.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_021.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_022.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_023.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_024.zbr"
+    },
+    {
+      "chapter": "14b-Memory-Management-and-Lifetimes",
+      "file": "14b-memory-management-and-lifetimes_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_025.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_000.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_001.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_002.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_003.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_004.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c_pipeline.zbr",
+      "teaches": "producer/consumer with Chan",
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c_pipeline.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_006.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_007.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_008.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_009.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_010.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c_parallel_files.zbr",
+      "teaches": "ThreadPool + Chan for parallel I/O",
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c_parallel_files.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_012.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_013.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_014.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_015.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_016.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_017.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_018.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_019.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_020.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_021.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_022.zbr"
+    },
+    {
+      "chapter": "14c-Concurrency-Channels-and-Threads",
+      "file": "14c-concurrency-channels-and-threads_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_023.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_000.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_001.zbr"
     },
     {
       "chapter": "15-Pipelines-and-Function-Composition",
@@ -739,6 +2559,55 @@
       "path": "examples/15-pipelines-and-function-composition/15_pipeline_results.zbr"
     },
     {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_009.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_011.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_012.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_014.zbr"
+    },
+    {
+      "chapter": "15-Pipelines-and-Function-Composition",
+      "file": "15-pipelines-and-function-composition_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_015.zbr"
+    },
+    {
       "chapter": "16-Project-1-CLI-Tool",
       "file": "cli_args.zbr",
       "teaches": "argument parsing",
@@ -765,6 +2634,55 @@
       "teaches": "orchestrating modules",
       "project": "Project-1-CLI-Tool",
       "path": "examples/16-project-1-cli-tool/project1_main.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_004.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_005.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_006.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_007.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_008.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_009.zbr"
+    },
+    {
+      "chapter": "16-Project-1-CLI-Tool",
+      "file": "16-project-1-cli-tool_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_010.zbr"
     },
     {
       "chapter": "17-18_Projects-2-3",
@@ -816,6 +2734,97 @@
       "path": "examples/17-18_projects-2-3/analysis_main.zbr"
     },
     {
+      "chapter": "17-18_Projects-2-3",
+      "file": "17-18_projects-2-3_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/17-18_projects-2-3/17-18_projects-2-3_007.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_000.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_001.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_002.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_003.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_004.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_005.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_006.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_007.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_008.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_009.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_010.zbr"
+    },
+    {
+      "chapter": "19-22_Final-Chapters",
+      "file": "19-22_final-chapters_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-22_final-chapters/19-22_final-chapters_011.zbr"
+    },
+    {
       "chapter": "19-Standard-Library-Tour",
       "file": "stdlib-string-inspect.zbr",
       "teaches": "string properties and inspection methods",
@@ -828,13 +2837,6 @@
       "teaches": "case conversion methods",
       "project": null,
       "path": "examples/19-standard-library-tour/stdlib-string-case.zbr"
-    },
-    {
-      "chapter": "19-Standard-Library-Tour",
-      "file": "stdlib-string-search.zbr",
-      "teaches": "searching and replacing in strings",
-      "project": null,
-      "path": "examples/19-standard-library-tour/stdlib-string-search.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
@@ -852,10 +2854,10 @@
     },
     {
       "chapter": "19-Standard-Library-Tour",
-      "file": "stdlib-string-extract-concat.zbr",
-      "teaches": "substring extraction and string concatenation",
+      "file": "stdlib-string-builder.zbr",
+      "teaches": "efficient string building",
       "project": null,
-      "path": "examples/19-standard-library-tour/stdlib-string-extract-concat.zbr"
+      "path": "examples/19-standard-library-tour/stdlib-string-builder.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
@@ -873,10 +2875,17 @@
     },
     {
       "chapter": "19-Standard-Library-Tour",
-      "file": "stdlib-set-ops.zbr",
-      "teaches": "set operations for uniqueness",
+      "file": "stdlib-math-constants.zbr",
+      "teaches": "Math module constants",
       "project": null,
-      "path": "examples/19-standard-library-tour/stdlib-set-ops.zbr"
+      "path": "examples/19-standard-library-tour/stdlib-math-constants.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-math-functions.zbr",
+      "teaches": "Math module functions",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-math-functions.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
@@ -887,17 +2896,31 @@
     },
     {
       "chapter": "19-Standard-Library-Tour",
-      "file": "stdlib-math-operations.zbr",
-      "teaches": "basic math operations in Zebra",
+      "file": "stdlib-sys-args.zbr",
+      "teaches": "accessing command-line arguments",
       "project": null,
-      "path": "examples/19-standard-library-tour/stdlib-math-operations.zbr"
+      "path": "examples/19-standard-library-tour/stdlib-sys-args.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
-      "file": "stdlib-system-access.zbr",
-      "teaches": "accessing system information",
+      "file": "stdlib-arg-parse.zbr",
+      "teaches": "structured argument parsing",
       "project": null,
-      "path": "examples/19-standard-library-tour/stdlib-system-access.zbr"
+      "path": "examples/19-standard-library-tour/stdlib-arg-parse.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-json.zbr",
+      "teaches": "JSON parsing and generation",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-json.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "stdlib-file-io.zbr",
+      "teaches": "file system operations",
+      "project": null,
+      "path": "examples/19-standard-library-tour/stdlib-file-io.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
@@ -905,6 +2928,41 @@
       "teaches": "printing to console",
       "project": null,
       "path": "examples/19-standard-library-tour/stdlib-console-io.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "19-standard-library-tour_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-standard-library-tour/19-standard-library-tour_015.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "19-standard-library-tour_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-standard-library-tour/19-standard-library-tour_016.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "19-standard-library-tour_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-standard-library-tour/19-standard-library-tour_017.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "19-standard-library-tour_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-standard-library-tour/19-standard-library-tour_018.zbr"
+    },
+    {
+      "chapter": "19-Standard-Library-Tour",
+      "file": "19-standard-library-tour_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/19-standard-library-tour/19-standard-library-tour_019.zbr"
     },
     {
       "chapter": "19-Standard-Library-Tour",
@@ -996,6 +3054,34 @@
       "teaches": "path operations and directory access",
       "project": null,
       "path": "examples/20-file-io-and-system-access/file-paths.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "20-file-io-and-system-access_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/20-file-io-and-system-access_012.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "20-file-io-and-system-access_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/20-file-io-and-system-access_013.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "20-file-io-and-system-access_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/20-file-io-and-system-access_014.zbr"
+    },
+    {
+      "chapter": "20-File-IO-and-System-Access",
+      "file": "20-file-io-and-system-access_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/20-file-io-and-system-access/20-file-io-and-system-access_015.zbr"
     },
     {
       "chapter": "20-File-IO-and-System-Access",
@@ -1262,6 +3348,1462 @@
       "teaches": "batching FFI operations",
       "project": null,
       "path": "examples/22-ffi-and-interop/ffi-batching.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "greeter.zbr",
+      "teaches": "@export class for DynLib plugins",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/greeter.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "22-ffi-and-interop_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22-ffi-and-interop/22-ffi-and-interop_019.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "greeter_host.zbr",
+      "teaches": "DynLib.open + lookup",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/greeter_host.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "22-ffi-and-interop_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22-ffi-and-interop/22-ffi-and-interop_021.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "build.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/build.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "build.zbr",
+      "teaches": "imperative-style build script",
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/build.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_002.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_003.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "build.zbr",
+      "teaches": "declarative-style build script",
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/build.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_005.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_006.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_007.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_008.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_009.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_010.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_011.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_012.zbr"
+    },
+    {
+      "chapter": "22b-Build-System-and-Tooling",
+      "file": "22b-build-system-and-tooling_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22b-build-system-and-tooling/22b-build-system-and-tooling_013.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c_first_test.zbr",
+      "teaches": "writing a single test",
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c_first_test.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c_assertions.zbr",
+      "teaches": "the four assertion forms",
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c_assertions.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c_tags.zbr",
+      "teaches": "@tag-based test filtering",
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c_tags.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_003.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "arithmetic_test.zbr",
+      "teaches": "class-scoped tests",
+      "project": null,
+      "path": "examples/22c-testing-and-validation/arithmetic_test.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_005.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_006.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_007.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_008.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_009.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_010.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_011.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_012.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_013.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_014.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_015.zbr"
+    },
+    {
+      "chapter": "22c-Testing-and-Validation",
+      "file": "22c-testing-and-validation_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/22c-testing-and-validation/22c-testing-and-validation_016.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_000.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_001.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_002.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_003.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_004.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_005.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_006.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_007.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_008.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_009.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_010.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_011.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_012.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_013.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_014.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_015.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_016.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_017.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_018.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_019.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_020.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_021.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_022.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_023.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_024.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_025.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_026.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_026.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_027.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_027.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_028.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_028.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_029.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_029.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_030.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_030.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_031.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_031.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_032.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_032.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_033.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_033.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_034.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_034.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_035.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_035.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_036.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_036.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_037.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_037.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_038.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_038.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_039.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_039.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_040.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_040.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_041.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_041.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_042.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_042.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_043.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_043.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_044.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_044.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_045.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_045.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_046.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_046.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_047.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_047.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_048.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_048.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_049.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_049.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_050.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_050.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_051.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_051.zbr"
+    },
+    {
+      "chapter": "Appendix-A-Grammar",
+      "file": "appendix-a-grammar_052.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-a-grammar/appendix-a-grammar_052.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_000.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_001.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_002.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_003.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_004.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_005.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_006.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_007.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_008.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_009.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_010.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_011.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_012.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_013.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_014.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_015.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_016.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_017.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_018.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_019.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_020.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_021.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_022.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_023.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_024.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_025.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_026.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_026.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_027.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_027.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_028.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_028.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_029.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_029.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_030.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_030.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_031.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_031.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_032.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_032.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_033.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_033.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_034.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_034.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_035.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_035.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_036.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_036.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_037.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_037.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_038.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_038.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_039.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_039.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_040.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_040.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_041.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_041.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_042.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_042.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_043.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_043.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_044.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_044.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_045.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_045.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_046.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_046.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_047.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_047.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_048.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_048.zbr"
+    },
+    {
+      "chapter": "Appendix-B-Stdlib",
+      "file": "appendix-b-stdlib_049.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_049.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_000.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_001.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_002.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_003.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_004.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_005.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_006.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_007.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_008.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_009.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_009.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_010.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_010.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_011.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_011.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_012.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_012.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_013.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_014.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_015.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_016.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_017.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_018.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_019.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_020.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_021.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_021.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_022.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_022.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_023.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_023.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_024.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_024.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_025.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_025.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_026.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_026.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_027.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_027.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_028.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_028.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_029.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_029.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_030.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_030.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_031.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_031.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_032.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_032.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_033.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_033.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_034.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_034.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_035.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_035.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_036.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_036.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_037.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_037.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_038.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_038.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_039.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_039.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_040.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_040.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_041.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_041.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_042.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_042.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_043.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_043.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_044.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_044.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_045.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_045.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_046.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_046.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_047.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_047.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_048.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_048.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_049.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_049.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_050.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_050.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_051.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_051.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_052.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_052.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_053.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_053.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_054.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_054.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_055.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_055.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_056.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_056.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_057.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_057.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_058.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_058.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_059.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_059.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_060.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_060.zbr"
+    },
+    {
+      "chapter": "Appendix-C-Troubleshooting",
+      "file": "appendix-c-troubleshooting_061.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_061.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_000.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_000.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_001.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_001.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_002.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_002.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_003.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_004.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_004.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_005.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_005.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_006.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_006.zbr"
+    },
+    {
+      "chapter": "Appendix-D-Attributes",
+      "file": "appendix-d-attributes_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/appendix-d-attributes/appendix-d-attributes_007.zbr"
     }
   ]
 }

@@ -1,0 +1,5 @@
+> var s: str
+> allocate Arena()
+>     var tmp = File.read("config.txt")
+>     s <- tmp                          # deep-copy into parent
+>

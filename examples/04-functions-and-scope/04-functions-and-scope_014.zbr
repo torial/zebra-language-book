@@ -1,0 +1,9 @@
+# callbacks.zbr
+sig OnReady()
+sig OnError(msg: str)
+
+# main.zbr
+use callbacks exposing OnReady, OnError
+
+def run(cb: OnReady)
+    cb()

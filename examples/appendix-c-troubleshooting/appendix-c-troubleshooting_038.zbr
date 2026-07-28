@@ -1,0 +1,7 @@
+class Person
+    var name: str = ""        # Mutable
+    var age: int = 0          # Mutable
+
+var person = Person()
+person.name = "Alice"           # Now OK
+person.age = 30                 # Now OK

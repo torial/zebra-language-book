@@ -1,0 +1,13 @@
+class Stats
+    var filename: str
+    var lines: int
+    var words: int
+    var chars: int
+    var min_line_len: int
+    var max_line_len: int
+    var avg_line_len: float
+    
+    def display: str
+        var summary = "${lines} lines, ${words} words, ${chars} chars\n"
+        summary = summary.concat("Line lengths: min=${min_line_len}, max=${max_line_len}, avg=${avg_line_len}")
+        return summary

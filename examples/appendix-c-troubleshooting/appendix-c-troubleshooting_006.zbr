@@ -1,0 +1,5 @@
+var numbers = List()
+numbers.add(42)
+
+var names = List()
+names.add("hello")

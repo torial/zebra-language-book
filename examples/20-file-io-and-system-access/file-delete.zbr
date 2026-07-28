@@ -1,6 +1,6 @@
-// file: file-delete.zbr
-// teaches: safely deleting files
-// chapter: 20
+# file: file-delete.zbr
+# teaches: safely deleting files
+# chapter: 20
 
 def main()
     var temp_file = "temp.txt"
@@ -9,8 +9,8 @@ def main()
         var result = File.delete(temp_file)
         
         if result.isOk()
-            println("Temporary file deleted")
+            print("Temporary file deleted")
         else
-            println("Error deleting file: ${result.error()}")
+            print("Error deleting file: ${result.error(}"))
     else
-        println("File doesn't exist")
+        print("File doesn't exist")

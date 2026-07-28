@@ -1,22 +1,22 @@
-// file: 13_generic_cache.zbr
-// teaches: realistic generic class
-// chapter: 13-Generics-and-Type-Constraints
+# file: 13_generic_cache.zbr
+# teaches: realistic generic class
+# chapter: 13-Generics-and-Type-Constraints
 
 class Cache(K, V)
-    var data as HashMap(K, V) = HashMap()
-    var max_size as int
+    var data: HashMap(K, V) = HashMap()
+    var max_size: int
     
-    def init(max_size as int)
+    def init(max_size: int)
         this.max_size = max_size
     
-    def put(key as K, value as V)
+    def put(key: K, value: V)
         if data.count() >= max_size and not data.contains(key)
             # Evict first key (simplistic LRU simulation)
             # In real code, track access order
             pass
         data.put(key, value)
     
-    def lookup(key as K) as V?
+    def lookup(key: K): V?
         if data.contains(key)
             return data.fetch(key)
         return nil
@@ -24,15 +24,13 @@ class Cache(K, V)
     def clear
         data = HashMap()
 
-class Main
-    shared
-        def main
-            var cache = Cache(str, int)()
-            cache.init(3)
-            cache.put("a", 1)
-            cache.put("b", 2)
-            cache.put("c", 3)
-            
-            var val = cache.lookup("b")
-            if val != nil
-                print "Got: ${val}"
+def main()
+    var cache = Cache(str, int)()
+    cache.init(3)
+    cache.put("a", 1)
+    cache.put("b", 2)
+    cache.put("c", 3)
+    
+    var val = cache.lookup("b")
+    if val != nil
+        print("Got: ${val}")

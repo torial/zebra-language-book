@@ -1,0 +1,6 @@
+# C expects: int foo(const char* str, int* out_len)
+# Zebra code:
+def call_c_func(input: str)
+    var out_len: int = 0
+    var result = c_func(input, out_len)
+    return out_len

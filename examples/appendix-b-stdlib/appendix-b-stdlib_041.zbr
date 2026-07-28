@@ -1,0 +1,5 @@
+var x: int? = 42
+
+if x != nil
+    # Safe to use x as int here
+    print(x)

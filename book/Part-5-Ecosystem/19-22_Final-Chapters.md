@@ -313,7 +313,7 @@ def function_name(param: Type): ReturnType
 → Field is read-only. Create setter method or use `var` not `shared var`
 
 **"error: nil pointer"**
-→ You unwrapped nil with `to!`. Check before unwrapping: `if x != nil`
+→ You force-unwrapped nil with `!`. Check before unwrapping: `if x != nil`
 
 **"error: unimplemented interface method"**
 → Your class doesn't implement all interface methods. Add the missing method.
@@ -344,7 +344,7 @@ for item in items
 # Search list
 for item in items
     if item.contains("search")
-        print item
+        print(item)
 
 # Convert types
 var num = "42".toInt()
@@ -352,12 +352,12 @@ var num = "42".toInt()
 # Handle nil
 var value: str? = get_value()
 if value != nil
-    print value
+    print(value)
 
 # Handle errors
 var result = operation()
 if result.isErr()
-    print result.errValue()
+    print(result.errValue())
 ```
 
 ---

@@ -1,0 +1,12 @@
+def main()
+    var ch: Chan(int) = Chan(int)(4)
+    ch.send(1)
+    ch.send(2)
+    ch.close()
+
+    var v1: int? = ch.recv()       # 1
+    var v2: int? = ch.recv()       # 2
+    var v3: int? = ch.recv()       # nil — channel closed + empty
+
+    if v1 as n: print n            # 1
+    if v3 == nil: print("done")

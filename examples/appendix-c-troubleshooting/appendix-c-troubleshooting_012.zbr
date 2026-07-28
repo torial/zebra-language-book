@@ -1,0 +1,2 @@
+var x: int? = nil
+print(x + 1)  # ERROR if x is nil

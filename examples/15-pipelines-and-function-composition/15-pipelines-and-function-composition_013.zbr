@@ -1,0 +1,17 @@
+class TextStats
+    static
+        def count_words(text: str): int
+            if text.len == 0
+                return 0
+            var words = text.split(" ")
+            return words.count()
+
+def main()
+    var user_input = "  HELLO WORLD FOO  "
+
+    var word_count = (user_input
+        -> .lower()
+        -> .trim()
+        -> TextStats.count_words())
+
+    print("Words: ${word_count}")

@@ -1,0 +1,3 @@
+> def addition_test()        # Wrong — runner doesn't see this
+>     assert_eq 1 + 1, 2
+>

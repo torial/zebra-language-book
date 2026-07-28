@@ -1,0 +1,20 @@
+# TOO MUCH — hard to follow after many steps
+var result = ("data"
+    -> .lower()
+    -> .trim()
+    -> .replace("a", "b")
+    -> .reverse()
+    -> .split("")
+    -> Filter.remove_blanks()
+    -> Sorter.sort()
+    -> Formatter.join_with_commas())
+
+# BETTER — break into logical chunks with intermediate variables
+var cleaned = ("data"
+    -> .lower()
+    -> .trim()
+    -> .replace("a", "b"))
+
+var processed = (cleaned
+    -> .reverse()
+    -> .split(""))

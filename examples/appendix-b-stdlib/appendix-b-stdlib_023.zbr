@@ -1,0 +1,4 @@
+int_to_str(n)               # str: int to string
+str_to_int(s)               # int?: string to int
+float_to_str(f)             # str: float to string
+str_to_float(s)             # float?: string to float

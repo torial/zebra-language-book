@@ -1,0 +1,6 @@
+def main()
+    var b = Build.new()
+    b.exe("app-debug",   "src/main.zbr").option("optimize", "Debug")
+    b.exe("app-release", "src/main.zbr")
+        .option("optimize", "ReleaseSafe")
+        .platform("aarch64-linux")

@@ -1,0 +1,2 @@
+var pattern = Regex.compile("[a-z")    # ERROR: unclosed bracket
+var pattern = Regex.compile("(abc")    # ERROR: unclosed group

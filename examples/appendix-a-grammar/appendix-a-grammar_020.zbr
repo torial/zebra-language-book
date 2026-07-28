@@ -1,0 +1,6 @@
+10 > 5          # Greater than
+10 < 5          # Less than
+10 >= 5         # Greater than or equal
+10 <= 5         # Less than or equal
+10 == 5         # Equal
+10 != 5         # Not equal

@@ -1,0 +1,7 @@
+> def divide(a: int, b: int): int throws
+>     ensure
+>         result > 0
+>     if b == 0
+>         raise "div by zero"
+>     return a / b
+>

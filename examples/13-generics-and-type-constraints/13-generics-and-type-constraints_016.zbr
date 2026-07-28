@@ -1,0 +1,25 @@
+class Stack(T)
+    var items: List(T) = List()
+    
+    def push(value: T)
+        items.add(value)
+    
+    def pop: T?
+        if items.count() == 0
+            return nil
+        var value = items.at(items.count() - 1)
+        # Remove last item (simplified - no remove method)
+        return value
+    
+    def is_empty: bool
+        return items.count() == 0
+
+def main()
+    var stack = Stack(int)()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    
+    var val = stack.pop()
+    if val != nil
+        print("Popped: ${val}")

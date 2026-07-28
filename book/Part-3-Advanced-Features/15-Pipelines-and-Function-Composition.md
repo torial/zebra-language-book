@@ -66,7 +66,7 @@ def main()
 
     # Both are equivalent
     for word in result2
-        print word
+        print(word)
 ```
 
 Notice how pipeline reads more naturally: "take text, lowercase it, split it". Each `->` says "pass the result of the previous expression to this one".
@@ -93,7 +93,7 @@ class StringProcessor
 def main()
     var input = "  HELLO   WORLD  "
     var output = StringProcessor.process(input)
-    print output  # Output: hello world
+    print(output)  # Output: hello world
 ```
 
 Each line applies one transformation. This is **much clearer** than deeply nested method calls.
@@ -124,7 +124,7 @@ def main()
         -> .split(" "))
 
     var count = words.count()
-    print "Word count: ${count}"
+    print("Word count: ${count}")
 ```
 
 Here, the pipeline takes a string, lowercases it, splits into a list, and we can call `.count()` on the result.
@@ -157,7 +157,7 @@ def main()
         -> Utils.add_ten()
         -> Utils.format_result())
 
-    print result  # Output: Result: 20
+    print(result)  # Output: Result: 20
 ```
 
 The pipeline auto-prepends the left-hand value as the **first argument** to the
@@ -206,7 +206,7 @@ def main()
         -> DataAnalysis.sum_list()
         -> DataAnalysis.average(4))         # auto-prepends sum as first arg
 
-    print "Average: ${avg}"
+    print("Average: ${avg}")
 ```
 
 This reads as: "Parse CSV, sum values, calculate average." Much clearer than nested calls!
@@ -242,7 +242,7 @@ class Transform
 def main()
     var input = "HELLO WORLD"
     var output = Transform.compose_all(input)
-    print output  # Output: dlrowolleh
+    print(output)  # Output: dlrowolleh
 ```
 
 Each step is a self-contained function. Composition lets you **reuse them in different orders**.
@@ -278,9 +278,9 @@ def run(input: str)
     var doubled = (input
         -> SafeParser.parse_int()
         -> SafeParser.double_it())
-    print doubled
+    print(doubled)
 catch |e|
-    print "error: ${e}"
+    print("error: ${e}")
 
 def main()
     run("42")               # prints 84
@@ -388,7 +388,7 @@ def main()
         -> .trim()
         -> TextStats.count_words())
 
-    print "Words: ${word_count}"
+    print("Words: ${word_count}")
 ```
 
 </details>
@@ -423,9 +423,9 @@ def run(input: str)
         -> NumUtils.double_it()
         -> NumUtils.add_ten()
         -> NumUtils.to_message())
-    print final
+    print(final)
 catch |e|
-    print "error: ${e}"
+    print("error: ${e}")
 
 def main()
     run("5")               # prints "Final result: 20"
@@ -470,7 +470,7 @@ def main()
         -> ListOps.filter_even()
         -> ListOps.sum_all())
 
-    print "Sum of evens: ${sum}"
+    print("Sum of evens: ${sum}")
 ```
 
 </details>

@@ -1,0 +1,9 @@
+def main()
+    var paths = File.list_dir("./logs")
+    var counts: List(int) = List()
+    for path in paths
+        var n: int = 0
+        allocate Arena()
+            var src = File.read(path)
+            n <- src.split("\n").count()
+        counts.add(n)

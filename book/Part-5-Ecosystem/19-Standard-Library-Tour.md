@@ -60,21 +60,21 @@ def main()
     var text = "Hello, World!"
 
     # Length
-    print text.len           # 13
+    print(text.len)  # 13
 
     # Character access
     var first_char = text.charAt(0)     # 'H'
-    print first_char
+    print(first_char)
 
     # Check existence
     if text.contains("World")
-        print "Found World"
+        print("Found World")
 
     if text.startsWith("Hello")
-        print "Greeting detected"
+        print("Greeting detected")
 
     if text.endsWith("!")
-        print "Exclamation found"
+        print("Exclamation found")
 ```
 
 ### Case Conversion
@@ -88,10 +88,10 @@ def main()
     var text = "Zebra Programming"
 
     var upper = text.upper()        # "ZEBRA PROGRAMMING"
-    print upper
+    print(upper)
 
     var lower = text.lower()        # "zebra programming"
-    print lower
+    print(lower)
 ```
 
 ### String Splitting and Joining
@@ -106,12 +106,12 @@ def main()
     var csv_line = "John,25,Engineer,San Francisco"
     var fields = csv_line.split(",")
 
-    print fields.count()     # 4
-    print fields.at(0)       # "John"
+    print(fields.count())  # 4
+    print(fields.at(0))  # "John"
 
     # Join with separator
     var rejoined = fields.join(" | ")
-    print rejoined  # "John | 25 | Engineer | San Francisco"
+    print(rejoined)  # "John | 25 | Engineer | San Francisco"
 ```
 
 ### Whitespace Trimming
@@ -124,7 +124,7 @@ def main()
 def main()
     var input = "  Hello, World!  "
     var trimmed = input.trim()      # "Hello, World!"
-    print trimmed
+    print(trimmed)
 ```
 
 ### String Building
@@ -142,7 +142,7 @@ def main()
     sb.append(", ")
     sb.append("World!")
     var result = sb.toString()
-    print result  # "Hello, World!"
+    print(result)  # "Hello, World!"
 ```
 
 ---
@@ -165,22 +165,22 @@ def main()
     items.add("apple")
     items.add("banana")
     items.add("cherry")
-    print items.count()  # 3
+    print(items.count())  # 3
 
     # Access by index
-    print items.at(0)    # "apple"
+    print(items.at(0))  # "apple"
 
     # Check contents
     if items.contains("banana")
-        print "Found banana"
+        print("Found banana")
 
     # Remove specific item
     items.remove("banana")
-    print items.count()  # 2
+    print(items.count())  # 2
 
     # Iterate over list
     for fruit in items
-        print "Fruit: ${fruit}"
+        print("Fruit: ${fruit}")
 ```
 
 ### HashMap Operations
@@ -203,18 +203,18 @@ def main()
     # Retrieve value
     var alice_score = scores.fetch("Alice")
     if alice_score != nil
-        print "Alice scored: ${alice_score}"
+        print("Alice scored: ${alice_score}")
 
     # Check if key exists
     if scores.contains("Bob")
-        print "Bob's record found"
+        print("Bob's record found")
 
     # Update value (overwrites previous)
     scores.put("Bob", 89)
 
     # Iterate over entries
     for name, score in scores
-        print "${name}: ${score}"
+        print("${name}: ${score}")
 ```
 
 ---
@@ -231,11 +231,11 @@ Zebra provides a `Math` module with constants and functions:
 # chapter: 19
 
 def main()
-    print Math.PI       # 3.14159...
-    print Math.E        # 2.71828...
-    print Math.TAU      # 6.28318... (2 * PI)
-    print Math.INF      # infinity
-    print Math.NAN      # not a number
+    print(Math.PI)  # 3.14159...
+    print(Math.E)  # 2.71828...
+    print(Math.TAU)  # 6.28318... (2 * PI)
+    print(Math.INF)  # infinity
+    print(Math.NAN)  # not a number
 ```
 
 ### Functions
@@ -247,29 +247,29 @@ def main()
 
 def main()
     # Trigonometry
-    print Math.sin(Math.PI / 2)   # 1.0
-    print Math.cos(0.0)           # 1.0
-    print Math.atan2(1.0, 1.0)    # ~0.785
+    print(Math.sin(Math.PI / 2))  # 1.0
+    print(Math.cos(0.0))  # 1.0
+    print(Math.atan2(1.0, 1.0))  # ~0.785
 
     # Powers and roots
-    print Math.sqrt(16.0)         # 4.0
-    print Math.pow(2.0, 10.0)     # 1024.0
-    print Math.exp(1.0)           # ~2.718
+    print(Math.sqrt(16.0))  # 4.0
+    print(Math.pow(2.0, 10.0))  # 1024.0
+    print(Math.exp(1.0))  # ~2.718
 
     # Rounding
-    print Math.floor(3.7)         # 3.0
-    print Math.ceil(3.2)          # 4.0
-    print Math.round(3.5)         # 4.0
+    print(Math.floor(3.7))  # 3.0
+    print(Math.ceil(3.2))  # 4.0
+    print(Math.round(3.5))  # 4.0
 
     # Logarithms
-    print Math.log(Math.E)        # 1.0
-    print Math.log2(8.0)          # 3.0
-    print Math.log10(100.0)       # 2.0
+    print(Math.log(Math.E))  # 1.0
+    print(Math.log2(8.0))  # 3.0
+    print(Math.log10(100.0))  # 2.0
 
     # Utilities
-    print Math.abs(-42)           # 42
-    print Math.min(3, 7)          # 3
-    print Math.max(3, 7)          # 7
+    print(Math.abs(-42))  # 42
+    print(Math.min(3, 7))  # 3
+    print(Math.max(3, 7))  # 7
 ```
 
 ---
@@ -287,23 +287,23 @@ def main()
     # String to int
     var num_str = "42"
     var num = num_str.toInt()
-    print num  # 42
+    print(num)  # 42
 
     # String to float
     var float_str = "3.14"
     var float_val = float_str.toFloat()
-    print float_val  # 3.14
+    print(float_val)  # 3.14
 
     # Int to string
     var n = 100
     var s = n.toString()
-    print s  # "100"
+    print(s)  # "100"
 
     # Safe conversions with nil checking
     var user_input = "not a number"
     var parsed = user_input.toInt()
     if parsed == nil
-        print "Invalid number"
+        print("Invalid number")
 ```
 
 ---
@@ -323,11 +323,11 @@ def main()
     # Raw arguments
     var args = sys.args()
     for arg in args
-        print arg
+        print(arg)
 
     # Exit with status code
     if args.count() == 0
-        print "No arguments provided"
+        print("No arguments provided")
         sys.exit(1)
 ```
 
@@ -341,7 +341,7 @@ def main()
 def main()
     var result = Arg.parse()
     # Access parsed flags and positional arguments
-    print result
+    print(result)
 ```
 
 ---
@@ -358,7 +358,7 @@ Parse and generate JSON with the `Json` and `JsonValue` modules:
 def main()
     var text = "{\"name\": \"Alice\", \"age\": 30}"
     var parsed = Json.parse(text)
-    print parsed
+    print(parsed)
 ```
 
 ---
@@ -375,7 +375,7 @@ Use `File`, `Dir`, and `Path` for file system operations:
 def main()
     # Read a file
     var content = File.read("data.txt") catch "could not read"
-    print content
+    print(content)
 
     # Write a file
     File.write("output.txt", "Hello from Zebra!")
@@ -394,16 +394,16 @@ See **Chapter 20** for a deeper dive into file I/O.
 
 def main()
     # Simple output
-    print "Hello, World!"
+    print("Hello, World!")
 
     # String interpolation
     var name = "Alice"
     var age = 30
-    print "${name} is ${age} years old"
+    print("${name} is ${age} years old")
 
     # Formatted output
     var price = 19.99
-    print "Price: $${price}"
+    print("Price: $${price}")
 ```
 
 ---
@@ -455,7 +455,7 @@ def main()
     db.exec("INSERT INTO users VALUES (2, 'Bob')")
 
     for row in db.query("SELECT id, name FROM users")
-        print "${row.asInt(0)}: ${row.asStr(1)}"
+        print("${row.asInt(0)}: ${row.asStr(1)}")
 
     db.close()
 ```
@@ -483,10 +483,10 @@ sensitive values.
 def main()
     var src = "the quick brown fox jumps over the lazy dog"
     var compressed = Compress.gzip(src)
-    print compressed.count()             # smaller than src.len for typical input
+    print(compressed.count())  # smaller than src.len for typical input
 
     var decompressed = Compress.gunzip(compressed)
-    print decompressed                   # same as src
+    print(decompressed)  # same as src
 ```
 
 | Call | Returns | Notes |
@@ -512,13 +512,13 @@ modules, which handle TLS themselves).
 def main()
     var key = Crypto.deriveKey("user-password", "fixed-salt-bytes")
     var ciphertext = Crypto.encrypt("secret message", key)
-    print ciphertext                  # base64-encoded blob
+    print(ciphertext)  # base64-encoded blob
 
     var plaintext = Crypto.decrypt(ciphertext, key)
     if plaintext as msg
-        print msg                     # "secret message"
+        print(msg)  # "secret message"
     else
-        print "decrypt failed — wrong key or tampered ciphertext"
+        print("decrypt failed — wrong key or tampered ciphertext")
 ```
 
 | Call | Returns | Notes |
@@ -529,7 +529,7 @@ def main()
 
 The `str?` return on `decrypt` is the API's safety mechanism — checking
 for `nil` is **mandatory** because that's how you detect a tampered or
-forged ciphertext. Don't `to!` the result without thinking about it.
+forged ciphertext. Don't `!` the result without thinking about it.
 
 ---
 
@@ -546,10 +546,10 @@ def main()
     var now_tokyo = DateTime.inZone("Asia/Tokyo")
     var now_syd   = DateTime.inZone("Australia/Sydney")
 
-    print "UTC:    ${now_utc.toString()}"
-    print "NY:     ${now_ny.toString()}"
-    print "Tokyo:  ${now_tokyo.toString()}"
-    print "Sydney: ${now_syd.toString()}"
+    print("UTC:    ${now_utc.toString()}")
+    print("NY:     ${now_ny.toString()}")
+    print("Tokyo:  ${now_tokyo.toString()}")
+    print("Sydney: ${now_syd.toString()}")
 ```
 
 The table includes the major US, EU, AU, and NZ zones plus the typical
@@ -587,7 +587,7 @@ def main()
 
     # Report
     for name, value in scores
-        print "${name}: ${value}"
+        print("${name}: ${value}")
 ```
 
 ---

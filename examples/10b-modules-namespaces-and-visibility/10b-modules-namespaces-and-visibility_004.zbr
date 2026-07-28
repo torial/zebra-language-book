@@ -1,0 +1,4 @@
+use http exposing Request, Response
+
+def handle(req: Request): Response
+    return http.json_response(req.body)

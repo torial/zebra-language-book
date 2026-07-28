@@ -1,0 +1,6 @@
+def template(text: str, values: HashMap(str, str)): str
+    var result = text
+    for key, value in values
+        var placeholder = "${${key}}"
+        result = result.replace(placeholder, value)
+    return result

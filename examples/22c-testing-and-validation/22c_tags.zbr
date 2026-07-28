@@ -1,0 +1,20 @@
+# file: 22c_tags.zbr
+# teaches: @tag-based test filtering
+# chapter: 22c-Testing-and-Validation
+
+@tag("unit", "math")
+def test_addition()
+    assert_eq 1 + 1, 2
+
+@tag("integration")
+def test_database_roundtrip()
+    var db = Sqlite.open(":memory:")
+    db.exec("CREATE TABLE t (x INTEGER)")
+    db.exec("INSERT INTO t VALUES (42)")
+    var row = db.query("SELECT x FROM t").at(0)
+    assert_eq row.asInt(0), 42
+
+@tag("slow")
+def test_large_dataset()
+    # ... long-running test ...
+    assert_true true

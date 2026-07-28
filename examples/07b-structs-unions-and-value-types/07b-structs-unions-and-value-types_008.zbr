@@ -1,0 +1,10 @@
+union Expr
+    int_: int
+    str_: str
+    binary: ^ExprBinary       # recursive: contains two sub-Exprs
+    call: ^ExprCall
+
+struct ExprBinary
+    var left: ^Expr
+    var op: BinaryOp
+    var right: ^Expr

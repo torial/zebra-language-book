@@ -1,0 +1,9 @@
+mixin Serializable
+    def to_json(): str
+        return "{}"
+
+class Person implements Serializable
+    var name: str = ""
+    
+    def to_json(): str
+        return "{\"name\": \"${name}\"}"

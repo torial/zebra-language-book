@@ -1,0 +1,13 @@
+class System
+    static
+        def args: List(str)
+            # Command-line arguments
+            return List()
+        
+        def env(name: str): str?
+            # Environment variables
+            return nil
+        
+        def cwd: str
+            # Current directory
+            return "."

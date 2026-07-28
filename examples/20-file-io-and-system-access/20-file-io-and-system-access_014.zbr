@@ -1,0 +1,17 @@
+# Client:
+def main()
+    var ws = Ws.connect("wss://echo.example.com/")
+    ws.send("hello")
+    var reply = ws.recv()
+    if reply as msg
+        print(msg)
+    ws.close()
+
+# Server:
+def main()
+    Ws.serve(8081, def(conn)
+        var msg: str? = conn.recv()
+        if msg as m
+            conn.send("echo: ${m}")
+        conn.close()
+    )

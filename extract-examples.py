@@ -21,6 +21,12 @@ Output:
 
 import os
 import re
+import sys as _sys
+try:  # Windows consoles default to cp1252 and choke on the check marks
+    _sys.stdout.reconfigure(encoding='utf-8')
+    _sys.stderr.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 import json
 import sys
 from pathlib import Path
@@ -41,8 +47,20 @@ class ExampleExtractor:
         """Find all chapter markdown files."""
         chapters = []
 
-        # Search in Part directories
-        for part_dir in self.book_root.glob("Part-*"):
+        # Search in Part directories.  The chapters live under book/Part-*; the
+        # original glob looked for Part-* at the REPO ROOT, which matched nothing
+        # after the reorg -- find_chapters() returned [] and the script still exited
+        # 0, so extraction quietly became a no-op (and validation kept re-checking
+        # months-old files).  Search both layouts, and fail loudly if neither exists.
+        part_dirs = sorted(self.book_root.glob("book/Part-*"))
+        if not part_dirs:
+            part_dirs = sorted(self.book_root.glob("Part-*"))
+        if not part_dirs:
+            raise SystemExit(
+                "extract-examples: no Part-* chapter directories found under "
+                + str(self.book_root.resolve())
+                + " -- refusing to silently extract nothing.")
+        for part_dir in part_dirs:
             if not part_dir.is_dir():
                 continue
 
@@ -69,6 +87,7 @@ class ExampleExtractor:
             metadata = self._parse_metadata(code)
             metadata['chapter'] = chapter_name
             metadata['content'] = code
+            metadata['index'] = len(code_blocks)
 
             code_blocks.append(metadata)
 
@@ -82,18 +101,17 @@ class ExampleExtractor:
             'project': None,
         }
 
-        # Look for comment lines at the start
+        # Look for comment lines at the start.  Accept BOTH comment styles:
+        # Zebra comments are `#`; the `//` form is Cobra-era and survives only in
+        # older chapters.  Recognising only `//` meant every modern block lost its
+        # filename and was dropped by write_example -- silently, with exit 0.
         lines = code.split('\n')
         for line in lines[:10]:  # Check first 10 lines
-            # Match: // file: name.zbr
-            if '// file:' in line:
-                metadata['file'] = line.split('// file:')[1].strip()
-            # Match: // teaches: topic
-            if '// teaches:' in line:
-                metadata['teaches'] = line.split('// teaches:')[1].strip()
-            # Match: // project: name
-            if '// project:' in line:
-                metadata['project'] = line.split('// project:')[1].strip()
+            for prefix in ('# ', '// '):
+                for key in ('file', 'teaches', 'project'):
+                    marker = prefix + key + ':'
+                    if marker in line:
+                        metadata[key] = line.split(marker)[1].strip()
 
         return metadata
 
@@ -108,12 +126,19 @@ class ExampleExtractor:
     def write_example(self, chapter_dir: Path, metadata: Dict) -> bool:
         """Write code example to file."""
         if not metadata['file']:
-            return False
+            # No `file:` header -- synthesise a stable name rather than dropping the
+            # block.  Silently discarding unnamed blocks is what made this tool report
+            # zero examples per chapter while still exiting successfully.
+            slug = metadata.get('chapter', 'block').lower().replace(' ', '-')
+            metadata['file'] = slug + '_' + str(metadata.get('index', 0)).zfill(3) + '.zbr'
 
         filepath = chapter_dir / metadata['file']
 
         try:
-            with open(filepath, 'w', encoding='utf-8') as f:
+            # newline= LF is REQUIRED: Python on Windows writes CRLF by
+            # default and the Zebra tokenizer rejects CR with
+            # error.UnexpectedCharacter and no source location.
+            with open(filepath, 'w', encoding='utf-8', newline='\n') as f:
                 f.write(metadata['content'])
             return True
         except Exception as e:
@@ -181,7 +206,7 @@ class ExampleExtractor:
         manifest_path = self.examples_dir / "manifest.json"
 
         try:
-            with open(manifest_path, 'w', encoding='utf-8') as f:
+            with open(manifest_path, 'w', encoding='utf-8', newline='\n') as f:
                 json.dump(manifest, f, indent=2)
             print(f"\n✓ Created manifest: {manifest_path}")
             return True
@@ -263,7 +288,7 @@ This compiles and tests each example to ensure correctness.
                 readme_content += f"- `{ex['file']}` — {teaches}\n"
 
         try:
-            with open(readme_path, 'w', encoding='utf-8') as f:
+            with open(readme_path, 'w', encoding='utf-8', newline='\n') as f:
                 f.write(readme_content)
             print(f"✓ Created README: {readme_path}")
             return True

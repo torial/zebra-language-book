@@ -1,0 +1,6 @@
+def main()
+    var paths = File.list_dir("./logs")
+    var counts: List(int) = List()
+    for path in paths
+        var src = File.read(path)        # accumulates across iterations
+        counts.add(src.split("\n").count())

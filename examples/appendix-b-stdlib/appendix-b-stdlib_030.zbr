@@ -1,0 +1,4 @@
+File.read(filename)         # Result(str, str): read entire file
+File.write(filename, content)  # Result(bool, str): write file
+File.exists(path)           # bool: file exists?
+File.delete(path)           # Result(bool, str): delete file

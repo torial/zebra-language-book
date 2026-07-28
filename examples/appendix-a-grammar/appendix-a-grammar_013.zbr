@@ -1,0 +1,6 @@
+if x > 10
+    print("Large")
+elif x > 5
+    print("Medium")
+else
+    print("Small")

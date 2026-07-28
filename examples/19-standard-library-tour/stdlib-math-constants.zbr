@@ -1,0 +1,10 @@
+# file: stdlib-math-constants.zbr
+# teaches: Math module constants
+# chapter: 19
+
+def main()
+    print(Math.PI)  # 3.14159...
+    print(Math.E)  # 2.71828...
+    print(Math.TAU)  # 6.28318... (2 * PI)
+    print(Math.INF)  # infinity
+    print(Math.NAN)  # not a number

@@ -1,0 +1,8 @@
+struct Node
+    var value: int
+    var next:  ^Node?              # heap-boxed optional pointer
+
+def main()
+    var a = Node(1, nil)
+    var b = Node(2, nil)
+    a.next = b                     # auto-boxes b into a *Node on the heap

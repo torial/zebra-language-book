@@ -1,0 +1,5 @@
+for user in users
+    if user.is_active
+        for order in user.orders
+            if order.status == "pending"
+                process_order(order)

@@ -48,7 +48,7 @@ def main()
     var nums = List(int)()
     nums.add(1); nums.add(2)       # List growth — arena handles it
     var c = Circle(radius: 5.0)   # class instance — arena handles it
-    print combined
+    print(combined)
     # Program exits; arena is destroyed; all of the above freed at once.
 ```
 
@@ -86,7 +86,7 @@ def main()
         var parsed = parse(src)
         summary <- summarise(parsed)        # copy result out (see below)
     # src, parsed, and all parse temporaries freed here.
-    print summary
+    print(summary)
 ```
 
 Inside the block, every implicit allocation goes through the inner
@@ -142,7 +142,7 @@ var dangling: str
 allocate Arena()
     var src = File.read("config.txt")
     dangling = src                # WRONG: src lives in the inner arena
-print dangling                    # dangling slice — undefined behaviour
+print(dangling)  # dangling slice — undefined behaviour
 ```
 
 The compiler can't always catch this — `dangling = src` looks like a
@@ -162,7 +162,7 @@ allocate Arena()
     var s = process(src)
     summary <- s                  # deep-copies s into the parent allocator
 # src + s + temporaries freed; summary survives.
-print summary
+print(summary)
 ```
 
 For each supported type, `<-` does the right thing:
@@ -225,7 +225,7 @@ class CountGroup
 def main()
     var g = CountGroup()
     using g
-        print "inside the using block"
+        print("inside the using block")
     # Here: g.entered == 1, g.exited == 1
 ```
 
@@ -316,7 +316,7 @@ def main()
     root.left = child              # auto-boxes child into *TreeNode
 
     if root.left as n              # n: TreeNode — pointer is transparent
-        print n.value
+        print(n.value)
 ```
 
 ### Unions with `^T` payload
@@ -333,9 +333,9 @@ def main()
     branch e
         on Expr.add as a
             # a.left: Expr (not ^Expr — auto-deref'd)
-            print "add"
+            print("add")
         on Expr.num as n
-            print n.value
+            print(n.value)
 ```
 
 This is exactly how Zebra's own compiler models its AST.
@@ -396,7 +396,7 @@ def main()
         summaries.add(s)               # Summary itself is in the outer arena
 
     for s in summaries
-        print "${s.filename}: ${s.word_count} words, top=${s.top_word}"
+        print("${s.filename}: ${s.word_count} words, top=${s.top_word}")
 ```
 
 Each call to `process_one` reads its file, computes its summary, copies
@@ -528,7 +528,7 @@ def main()
     var leaf  = TreeNode(value: 3, left: nil, right: nil)
     var leaf2 = TreeNode(value: 7, left: nil, right: nil)
     var root  = TreeNode(value: 5, left: leaf, right: leaf2)
-    print count_nodes(root)   # 3
+    print(count_nodes(root))  # 3
 ```
 
 </details>
@@ -554,7 +554,7 @@ class Timer
 
     def end()
         var elapsed = Time.monotonic_ms() - .start_ms
-        print "${.label}: ${elapsed} ms"
+        print("${.label}: ${elapsed} ms")
 
 def main()
     using Timer("file read")

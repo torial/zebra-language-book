@@ -1,0 +1,10 @@
+def main()
+    var now_utc   = DateTime.now()
+    var now_ny    = DateTime.inZone("America/New_York")
+    var now_tokyo = DateTime.inZone("Asia/Tokyo")
+    var now_syd   = DateTime.inZone("Australia/Sydney")
+
+    print("UTC:    ${now_utc.toString()}")
+    print("NY:     ${now_ny.toString()}")
+    print("Tokyo:  ${now_tokyo.toString()}")
+    print("Sydney: ${now_syd.toString()}")

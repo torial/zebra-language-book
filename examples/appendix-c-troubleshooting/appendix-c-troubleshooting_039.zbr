@@ -1,0 +1,11 @@
+interface Shape
+    def area(): float
+    def perimeter(): float
+
+class Circle implements Shape
+    var radius: float = 0.0
+    
+    def area(): float
+        return 3.14 * radius * radius
+    
+    # ERROR: missing perimeter() method

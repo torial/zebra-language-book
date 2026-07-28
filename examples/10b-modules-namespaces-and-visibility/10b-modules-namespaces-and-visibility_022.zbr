@@ -1,0 +1,10 @@
+use cli exposing Options
+
+extend Options
+    def describe(): str
+        return "verbose=${.verbose}, input=${.input_path}"
+
+def run(opts: Options)
+    if opts.verbose
+        print("Processing: ${opts.describe()}")
+    # ... core logic ...

@@ -1,0 +1,3 @@
+> ch.close()
+> ch.send(1)              # PANIC at runtime
+>

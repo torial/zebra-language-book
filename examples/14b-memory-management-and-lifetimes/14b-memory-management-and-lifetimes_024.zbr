@@ -1,0 +1,15 @@
+struct TreeNode
+    var value: int
+    var left:  ^TreeNode?
+    var right: ^TreeNode?
+
+def count_nodes(t: ^TreeNode?): int
+    if t as n                # n: TreeNode — pointer is transparent
+        return 1 + count_nodes(n.left) + count_nodes(n.right)
+    return 0
+
+def main()
+    var leaf  = TreeNode(value: 3, left: nil, right: nil)
+    var leaf2 = TreeNode(value: 7, left: nil, right: nil)
+    var root  = TreeNode(value: 5, left: leaf, right: leaf2)
+    print(count_nodes(root))  # 3

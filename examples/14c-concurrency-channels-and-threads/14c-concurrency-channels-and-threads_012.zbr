@@ -1,0 +1,6 @@
+> sys.go(lambda
+>     for i in 1..5
+>         ch.send(i)
+>     # ch.close() omitted — consumer will block forever after the 4th value
+> )
+>

@@ -1,0 +1,6 @@
+> def step(): int
+>     ensure
+>         logger.write("step done")    # ❌ side effect in ensure
+>         result > 0
+>     ...
+>

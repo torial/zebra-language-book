@@ -1,0 +1,17 @@
+# file: 05_inline_if.zbr
+# teaches: one-line if statement
+# chapter: 05-Control-Flow
+
+def main()
+    var x = 10
+    if x > 0: print("positive")     # colon required before body
+
+    # One-line with else:
+    var label = ""
+    if x > 0: label = "pos" else: label = "non-pos"
+
+    # Chained else-if on one line:
+    var grade = 78
+    var letter = ""
+    if grade >= 90: letter = "A" else if grade >= 80: letter = "B" else: letter = "C"
+    print(letter)  # C

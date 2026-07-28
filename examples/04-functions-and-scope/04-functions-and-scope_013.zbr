@@ -1,0 +1,8 @@
+sig OnClick()
+
+class Button
+    var onClick: OnClick? = nil
+
+    def click()
+        if .onClick as cb
+            cb()

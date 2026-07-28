@@ -1,0 +1,20 @@
+# file: 07b_struct_basic.zbr
+# teaches: struct definition and value semantics
+# chapter: 07b-Structs-Unions
+
+struct Point
+    var x: int
+    var y: int
+
+    cue init(x: int, y: int)
+        this.x = x
+        this.y = y
+
+    def distSq(): int
+        return x * x + y * y
+
+def main()
+    var a = Point(3, 4)
+    var b = a              # copies the entire Point
+    print(a.distSq())  # 25
+    print(b.x)  # 3

@@ -1,0 +1,12 @@
+# file: 12_catch_expr.zbr
+# teaches: catch expression for defaults
+# chapter: 12-Error-Handling
+
+def main()
+    # Provide a default value if the call fails
+    var value = Validator.parse_int("abc") catch 0
+    print(value)  # 0
+
+    # Catch with binding
+    var msg = Validator.parse_int("") catch |e| "failed: ${e}"
+    print(msg)

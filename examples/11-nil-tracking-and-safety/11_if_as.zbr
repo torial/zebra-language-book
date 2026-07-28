@@ -1,0 +1,12 @@
+# file: 11_if_as.zbr
+# teaches: optional unwrap binding form
+# chapter: 11-Nil-Tracking-and-Safety
+
+def main()
+    var maybe_name: str? = "Alice"
+
+    if maybe_name as name
+        # `name` is `str` here — non-optional
+        print("Hello, ${name}!")
+    else
+        print("No name")

@@ -1,0 +1,3 @@
+> var map = HashMap(str, int)()
+> map.put(1, 100)  # ❌ Key should be str, not int
+>

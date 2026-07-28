@@ -1,0 +1,9 @@
+> class DataSet
+>     var numbers: List(int) = List()
+>     
+>     def sum: int  # Recalculates every call
+>         var total = 0
+>         for num in numbers
+>             total = total + num
+>         return total  # O(n) every time!
+>

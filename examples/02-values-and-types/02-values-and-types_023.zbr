@@ -1,0 +1,14 @@
+class Person
+    var name: str
+    var age: int
+    var email: str
+
+def main()
+    var person = Person()
+    person.name = "Carol"
+    person.age = 28
+    person.email = "carol@example.com"
+
+    print("Name: ${person.name}")
+    print("Age: ${person.age}")
+    print("Email: ${person.email}")

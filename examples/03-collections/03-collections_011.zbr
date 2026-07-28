@@ -1,0 +1,7 @@
+> var to_remove = List(str)()
+> for item in items
+>     if should_remove(item)
+>         to_remove.add(item)
+> for item in to_remove
+>     items.remove(items.indexOf(item))
+>

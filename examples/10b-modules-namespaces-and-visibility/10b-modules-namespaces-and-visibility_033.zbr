@@ -1,0 +1,5 @@
+use geometry exposing Circle, total_area
+
+def main()
+    var cs = [Circle(1.0), Circle(2.0), Circle(3.0)]
+    print(total_area(cs))

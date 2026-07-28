@@ -36,7 +36,7 @@ class Dog
             return "Woof!"
 
         def move()
-            print "Running on four legs"
+            print("Running on four legs")
 
 class Bird
     implements Animal
@@ -44,15 +44,15 @@ class Bird
             return "Tweet!"
 
         def move()
-            print "Flying through the air"
+            print("Flying through the air")
 
 def main()
     var dog: Animal = Dog()
-    print dog.speak()      # Woof!
+    print(dog.speak())  # Woof!
     dog.move()             # Running on four legs
 
     var bird: Animal = Bird()
-    print bird.speak()     # Tweet!
+    print(bird.speak())  # Tweet!
     bird.move()            # Flying through the air
 ```
 
@@ -76,11 +76,11 @@ interface PaymentProcessor
 class CreditCardProcessor
     implements PaymentProcessor
         def process(amount: float): bool
-            print "Processing credit card: ${amount}"
+            print("Processing credit card: ${amount}")
             return true
         
         def refund(transaction_id: str): bool
-            print "Refunding transaction: ${transaction_id}"
+            print("Refunding transaction: ${transaction_id}")
             return true
         
         def get_status(transaction_id: str): str
@@ -89,11 +89,11 @@ class CreditCardProcessor
 class PayPalProcessor
     implements PaymentProcessor
         def process(amount: float): bool
-            print "Processing PayPal: ${amount}"
+            print("Processing PayPal: ${amount}")
             return true
         
         def refund(transaction_id: str): bool
-            print "PayPal refund: ${transaction_id}"
+            print("PayPal refund: ${transaction_id}")
             return true
         
         def get_status(transaction_id: str): str
@@ -113,9 +113,9 @@ class PayPalProcessor
 
 def process_payment(processor: PaymentProcessor, amount: float)
     if processor.process(amount)
-        print "Payment successful"
+        print("Payment successful")
     else
-        print "Payment failed"
+        print("Payment failed")
 
 def main()
     var cc_processor = CreditCardProcessor()
@@ -141,7 +141,7 @@ class Zoo
 
     def make_them_speak()
         for animal in this.animals
-            print animal.speak()
+            print(animal.speak())
 
     def exercise_all()
         for animal in this.animals
@@ -175,16 +175,16 @@ interface Logger
 class ConsoleLogger
     implements Logger
         def debug(message: str)
-            print "[DEBUG] ${message}"
+            print("[DEBUG] ${message}")
         
         def info(message: str)
-            print "[INFO] ${message}"
+            print("[INFO] ${message}")
         
         def warn(message: str)
-            print "[WARN] ${message}"
+            print("[WARN] ${message}")
         
         def error(message: str)
-            print "[ERROR] ${message}"
+            print("[ERROR] ${message}")
 
 class FileLogger
     implements Logger
@@ -345,7 +345,7 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >         def speak(): str
 >             return "Woof!"
 >         def move()
->             print "Running"
+>             print("Running")
 > ```
 
 > ❌ **Mistake:** Wrong method signature
@@ -418,8 +418,8 @@ class Rectangle
             return 2.0 * (this.width + this.height)
 
 def print_shape_info(shape: Shape)
-    print "Area: ${shape.area()}"
-    print "Perimeter: ${shape.perimeter()}"
+    print("Area: ${shape.area()}")
+    print("Perimeter: ${shape.perimeter()}")
 
 def main()
     var circle = Circle()
@@ -465,7 +465,7 @@ def main()
     db.save("user2", "Bob")
 
     if db.load("user1") as user
-        print "Found: ${user}"
+        print("Found: ${user}")
 
     db.delete("user1")
 ```
@@ -502,9 +502,9 @@ class JSONValidator
 def process_document(processor: DocumentProcessor, doc: str)
     if processor.validate(doc)
         var processed = processor.process(doc)
-        print "Processed: ${processed}"
+        print("Processed: ${processed}")
     else
-        print "Invalid document"
+        print("Invalid document")
 
 def main()
     var md = MarkdownProcessor()

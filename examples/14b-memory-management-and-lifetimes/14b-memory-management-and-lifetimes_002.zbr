@@ -1,0 +1,6 @@
+# UNSAFE — DO NOT DO THIS
+var dangling: str
+allocate Arena()
+    var src = File.read("config.txt")
+    dangling = src                # WRONG: src lives in the inner arena
+print(dangling)  # dangling slice — undefined behaviour

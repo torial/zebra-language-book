@@ -1,0 +1,5 @@
+> def parse_age(s: str): int
+>     require
+>         s.len > 0       # ❌ user-supplied — should be a graceful failure, not a panic
+>     return 42
+>

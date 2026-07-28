@@ -59,7 +59,7 @@ use math_utils
 def main()
     var n = math_utils.square(5)
     var v = math_utils.Vec2(3.0, 4.0)
-    print v.length()
+    print(v.length())
 ```
 
 The compiler resolves `use math_utils` by looking for `math_utils.zbr`:
@@ -83,7 +83,7 @@ use math_utils exposing square, Vec2
 def main()
     var n = square(5)            # no math_utils. prefix
     var v = Vec2(3.0, 4.0)
-    print v.length()
+    print(v.length())
 ```
 
 Combine forms freely:
@@ -164,7 +164,7 @@ class Wallet
 
     private def log_event(msg: str)
         # internal bookkeeping — callers can't reach this
-        print "[wallet] ${msg}"
+        print("[wallet] ${msg}")
 ```
 
 ```zebra
@@ -174,7 +174,7 @@ use wallet exposing Wallet
 def main()
     var w = Wallet()
     w.deposit(100.0)            # ok — deposit is public
-    print w.get_balance()       # ok
+    print(w.get_balance())  # ok
     # w.balance                  # ERROR — balance is private
     # w.log_event("oops")        # ERROR — log_event is private
 ```
@@ -273,7 +273,7 @@ namespace Sql
             # ...
 
 def main()
-    print Sql.version()
+    print(Sql.version())
     var db = Sql.Sqlite.open("mydb.db")
     var pg = Sql.Postgres.connect("postgresql://localhost/mydb")
 ```
@@ -297,8 +297,8 @@ extend str
 
 # Anywhere in the same file:
 var s = "hello world"
-print s.shout()         # HELLO WORLD!
-print s.word_count()    # 2
+print(s.shout())  # HELLO WORLD!
+print(s.word_count())  # 2
 ```
 
 `this` inside an `extend` body is the receiver value. The extended type
@@ -465,7 +465,7 @@ extend Options
 
 def run(opts: Options)
     if opts.verbose
-        print "Processing: ${opts.describe()}"
+        print("Processing: ${opts.describe()}")
     # ... core logic ...
 ```
 
@@ -509,7 +509,7 @@ Two things worth noticing:
 > # main.zbr
 > use helpers
 > def main()
->     print 7.is_prime()         # ERROR: extension not visible here
+>     print(7.is_prime())         # ERROR: extension not visible here
 > ```
 >
 > ✅ **Better:** wrap the logic in a regular function instead:
@@ -521,7 +521,7 @@ Two things worth noticing:
 > # main.zbr
 > use helpers exposing is_prime
 > def main()
->     print is_prime(7)
+>     print(is_prime(7))
 > ```
 
 > ❌ **Mistake:** Making everything `public` by default
@@ -581,7 +581,7 @@ def total_area(circles: List(Circle)): float
 
 def main()
     var cs = [Circle(1.0), Circle(2.0), Circle(3.0)]
-    print total_area(cs)
+    print(total_area(cs))
 ```
 
 <details>
@@ -608,7 +608,7 @@ use geometry exposing Circle, total_area
 
 def main()
     var cs = [Circle(1.0), Circle(2.0), Circle(3.0)]
-    print total_area(cs)
+    print(total_area(cs))
 ```
 
 </details>

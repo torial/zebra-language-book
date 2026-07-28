@@ -1,0 +1,35 @@
+# file: 07b_mini_ast.zbr
+# teaches: combining structs, unions, and ^T
+# chapter: 07b-Structs-Unions
+
+union Expr
+    num: int
+    add: ^BinExpr
+    neg: ^Expr
+
+struct BinExpr
+    var left: ^Expr
+    var right: ^Expr
+
+    cue init(left: ^Expr, right: ^Expr)
+        this.left = left
+        this.right = right
+
+def eval(e: Expr): int
+    branch e
+        on Expr.num as n
+            return n
+        on Expr.add as b
+            return eval(b.left) + eval(b.right)
+        on Expr.neg as inner
+            return 0 - eval(inner)
+        else
+            pass
+    return 0
+
+def main()
+    # 3 + (neg 2) = 1
+    var three = Expr.num(3)
+    var two = Expr.neg(Expr.num(2))
+    var sum = Expr.add(BinExpr(three, two))
+    print(eval(sum))  # 1

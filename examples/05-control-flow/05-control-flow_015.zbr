@@ -1,0 +1,4 @@
+> if age >= 18  # Missing condition or wrong structure
+>     print("Adult")
+>     print("Extra")  # Both print regardless
+>

@@ -2,270 +2,191 @@
 """
 Zebra Programming Book - Code Example Validator
 
-Compiles and validates all extracted examples to ensure correctness.
+Compiles every extracted example with the real Zebra compiler and gates on
+REGRESSION against a baseline, in the same style as the language repo's
+tools/full_sweep.sh.
 
-Usage:
-    python3 validate-examples.py
+    python validate-examples.py                    # validate; exit 1 on regression
+    python validate-examples.py --update-baseline  # re-lock the passing set
 
-Output:
-    validation-report.json (detailed results)
-    validation-report.txt (human-readable summary)
+Why a baseline instead of "everything must pass": `examples/` is extracted from
+the book's code blocks, and many blocks are legitimately not standalone programs
+(fragments illustrating one line, deliberately-wrong "mistake" examples, or one
+half of a two-module example). Requiring 100% would make the gate permanently
+red and therefore ignored. The baseline is the allow-list of what currently
+compiles; the gate fails only when something that used to compile stops.
+
+History / why this file was rewritten (2026-07-27)
+--------------------------------------------------
+The previous version could not fail. It ran a `validate_syntax` pre-check that
+required both `class ` and `def ` to appear in a file before it would attempt
+compilation; most examples satisfy neither, so they were marked *skipped* and
+never compiled. The checked-in report read:
+
+    Total examples:  180
+    Passed:          0
+    Failed:          0
+    Skipped:         180
+
+Zero passed, zero failed - a green-looking report from a harness that had never
+compiled a single line. It also invoked a bare `zebra` from PATH, which is not
+where the compiler lives on this machine. Both are fixed here: the compiler is
+located explicitly, and the compiler itself is the only judge of validity.
+
+Outputs: validation-report.json, validation-report.txt, validation-baseline.txt
 """
 
-import os
-import sys
 import json
+import os
+import shutil
 import subprocess
-from pathlib import Path
-from typing import Dict, List, Tuple
+import sys
 from datetime import datetime
+from pathlib import Path
 
-class ExampleValidator:
-    def __init__(self, examples_dir: str = "examples"):
-        self.examples_dir = Path(examples_dir)
-        self.results = {
-            'total': 0,
-            'passed': 0,
-            'failed': 0,
-            'skipped': 0,
-            'examples': [],
-            'timestamp': datetime.now().isoformat(),
-        }
+try:  # Windows consoles default to cp1252 and choke on the status glyphs
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
-    def find_examples(self) -> List[Path]:
-        """Find all .zbr files in examples directory."""
-        if not self.examples_dir.exists():
-            print(f"✗ Examples directory not found: {self.examples_dir}")
-            return []
+REPO = Path(__file__).resolve().parent
+BASELINE = REPO / "validation-baseline.txt"
 
-        examples = list(self.examples_dir.rglob("*.zbr"))
-        return sorted(examples)
 
-    def compile_example(self, filepath: Path) -> Tuple[bool, str, str]:
-        """Attempt to compile an example with the Zebra compiler."""
-        try:
-            # Try to compile with zebra compiler
-            result = subprocess.run(
-                ["zebra", "-c", str(filepath)],
-                capture_output=True,
-                text=True,
-                timeout=10
-            )
+def find_compiler() -> Path:
+    """Locate the Zebra compiler. $ZEBRA wins, then PATH, then the sibling repo."""
+    env = os.environ.get("ZEBRA")
+    if env and Path(env).exists():
+        return Path(env)
+    on_path = shutil.which("zebra") or shutil.which("zebra.exe")
+    if on_path:
+        return Path(on_path)
+    sibling = REPO.parent / "zebra-language" / "zig-out" / "bin" / "zebra.exe"
+    if sibling.exists():
+        return sibling
+    raise SystemExit(
+        "validate-examples: cannot find the Zebra compiler.\n"
+        "  Set $ZEBRA, put `zebra` on PATH, or build ../zebra-language "
+        "(zig build).")
 
-            if result.returncode == 0:
-                return True, "Compiled successfully", ""
-            else:
-                return False, "Compilation failed", result.stderr or result.stdout
 
-        except FileNotFoundError:
-            return None, "Compiler not found", "zebra command not in PATH"
-        except subprocess.TimeoutExpired:
-            return False, "Compilation timeout", "Took longer than 10 seconds"
-        except Exception as e:
-            return False, "Compilation error", str(e)
-
-    def validate_syntax(self, filepath: Path) -> Tuple[bool, str]:
-        """Basic syntax validation without compilation."""
-        try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                content = f.read()
-
-            # Check for basic structure
-            checks = [
-                ("class Main" in content or "class " in content, "Must have at least one class"),
-                ("def main" in content or "def " in content, "Must have at least one method"),
-                (content.strip(), "File must not be empty"),
-            ]
-
-            for check, message in checks:
-                if not check:
-                    return False, message
-
-            return True, "Syntax OK"
-
-        except Exception as e:
-            return False, f"Read error: {e}"
-
-    def validate_example(self, filepath: Path) -> Dict:
-        """Validate a single example."""
-        relative_path = filepath.relative_to(self.examples_dir)
-
-        result = {
-            'file': str(relative_path).replace('\\', '/'),
-            'path': str(filepath).replace('\\', '/'),
-            'status': 'unknown',
-            'message': '',
-            'details': '',
-        }
-
-        self.results['total'] += 1
-
-        # First: syntax check
-        syntax_ok, syntax_msg = self.validate_syntax(filepath)
-        if not syntax_ok:
-            result['status'] = 'skipped'
-            result['message'] = 'Syntax check failed'
-            result['details'] = syntax_msg
-            self.results['skipped'] += 1
-            return result
-
-        # Second: try to compile
-        compile_ok, compile_msg, compile_err = self.compile_example(filepath)
-
-        if compile_ok is None:
-            # Compiler not available, skip
-            result['status'] = 'skipped'
-            result['message'] = compile_msg
-            result['details'] = compile_err
-            self.results['skipped'] += 1
-
-        elif compile_ok:
-            result['status'] = 'passed'
-            result['message'] = 'Compiled successfully'
-            self.results['passed'] += 1
-
-        else:
-            result['status'] = 'failed'
-            result['message'] = compile_msg
-            result['details'] = compile_err[:200]  # Truncate error
-            self.results['failed'] += 1
-
-        return result
-
-    def run(self):
-        """Run validation on all examples."""
-        print("=" * 70)
-        print("Zebra Programming Book - Code Example Validator")
-        print("=" * 70)
-        print()
-
-        # Find examples
-        examples = self.find_examples()
-
-        if not examples:
-            print(f"✗ No examples found in {self.examples_dir}")
-            return False
-
-        print(f"Found {len(examples)} examples\n")
-        print("Validating...")
-        print()
-
-        # Validate each example
-        for i, filepath in enumerate(examples, 1):
-            result = self.validate_example(filepath)
-            self.results['examples'].append(result)
-
-            # Status indicator
-            status_icon = {
-                'passed': '✓',
-                'failed': '✗',
-                'skipped': '⊝',
-                'unknown': '?'
-            }.get(result['status'], '?')
-
-            # Print progress
-            if i % 10 == 0 or i == len(examples):
-                print(f"  [{i}/{len(examples)}] {status_icon} {result['file']}")
-
-        # Print summary
-        self._print_summary()
-
-        # Save reports
-        self._save_reports()
-
-        return self.results['failed'] == 0
-
-    def _print_summary(self):
-        """Print validation summary."""
-        print()
-        print("=" * 70)
-        print("VALIDATION SUMMARY")
-        print("=" * 70)
-
-        total = self.results['total']
-        passed = self.results['passed']
-        failed = self.results['failed']
-        skipped = self.results['skipped']
-
-        print(f"Total examples:  {total}")
-        print(f"✓ Passed:        {passed} ({100*passed//total if total else 0}%)")
-        print(f"✗ Failed:        {failed}")
-        print(f"⊝ Skipped:       {skipped}")
-        print()
-
-        if failed > 0:
-            print("FAILED EXAMPLES:")
-            for ex in self.results['examples']:
-                if ex['status'] == 'failed':
-                    print(f"  ✗ {ex['file']}")
-                    print(f"    {ex['message']}")
-                    if ex['details']:
-                        print(f"    {ex['details'][:100]}")
-
-        print()
-        if failed == 0:
-            print("✓ All examples validated successfully!")
-        else:
-            print(f"⚠️  {failed} example(s) failed validation")
-
-        print()
-
-    def _save_reports(self):
-        """Save validation reports."""
-        # JSON report
-        json_path = Path("validation-report.json")
-        try:
-            with open(json_path, 'w', encoding='utf-8') as f:
-                json.dump(self.results, f, indent=2)
-            print(f"✓ Saved JSON report: {json_path}")
-        except Exception as e:
-            print(f"✗ Error saving JSON report: {e}")
-
-        # Text report
-        txt_path = Path("validation-report.txt")
-        try:
-            with open(txt_path, 'w', encoding='utf-8') as f:
-                f.write("ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT\n")
-                f.write("=" * 70 + "\n\n")
-                f.write(f"Generated: {self.results['timestamp']}\n\n")
-
-                f.write("SUMMARY\n")
-                f.write("-" * 70 + "\n")
-                f.write(f"Total examples:  {self.results['total']}\n")
-                f.write(f"Passed:          {self.results['passed']}\n")
-                f.write(f"Failed:          {self.results['failed']}\n")
-                f.write(f"Skipped:         {self.results['skipped']}\n\n")
-
-                if self.results['failed'] > 0:
-                    f.write("FAILED EXAMPLES\n")
-                    f.write("-" * 70 + "\n")
-                    for ex in self.results['examples']:
-                        if ex['status'] == 'failed':
-                            f.write(f"\n{ex['file']}\n")
-                            f.write(f"  {ex['message']}\n")
-                            if ex['details']:
-                                f.write(f"  {ex['details']}\n")
-
-                f.write("\n" + "=" * 70 + "\n")
-                f.write("END OF REPORT\n")
-
-            print(f"✓ Saved text report: {txt_path}")
-        except Exception as e:
-            print(f"✗ Error saving text report: {e}")
-
-        print()
-
-def main():
+def compile_example(zebra: Path, filepath: Path):
+    """Return (ok, detail). The compiler is the only judge — no pre-filtering."""
     try:
-        validator = ExampleValidator("examples")
-        success = validator.run()
-        sys.exit(0 if success else 1)
-    except KeyboardInterrupt:
-        print("\n\n⚠️  Validation cancelled")
-        sys.exit(1)
-    except Exception as e:
-        print(f"\n✗ Fatal error: {e}", file=sys.stderr)
-        sys.exit(1)
+        r = subprocess.run([str(zebra), "-c", str(filepath)],
+                           capture_output=True, text=True, timeout=60,
+                           encoding='utf-8', errors='replace')
+    except subprocess.TimeoutExpired:
+        return False, "compilation timeout (>60s)"
+    except Exception as e:  # noqa: BLE001 - report, don't crash the sweep
+        return False, "harness error: " + str(e)
+    if r.returncode == 0:
+        return True, ""
+    out = ((r.stderr or "") + (r.stdout or "")).strip()
+    for line in out.split("\n"):
+        if "error" in line.lower():
+            return False, line.strip()[:200]
+    return False, out.split("\n")[0][:200] if out else "non-zero exit"
+
+
+def load_baseline():
+    if not BASELINE.exists():
+        return None
+    return {ln.strip() for ln in BASELINE.read_text(encoding='utf-8').split("\n")
+            if ln.strip() and not ln.startswith("#")}
+
+
+def main() -> int:
+    update = "--update-baseline" in sys.argv
+    zebra = find_compiler()
+    examples_dir = REPO / "examples"
+    examples = sorted(examples_dir.rglob("*.zbr"))
+
+    print("=" * 70)
+    print("Zebra Programming Book - Code Example Validator")
+    print("=" * 70)
+    print("compiler: " + str(zebra))
+    if not examples:
+        print("\n[FAIL] No examples found in " + str(examples_dir) +
+              "\n       Run `python extract-examples.py` first.")
+        return 1
+    print("examples: " + str(len(examples)) + "\n")
+
+    passed, failed = [], []
+    detail = {}
+    for i, f in enumerate(examples, 1):
+        rel = f.relative_to(examples_dir).as_posix()
+        ok, msg = compile_example(zebra, f)
+        (passed if ok else failed).append(rel)
+        if not ok:
+            detail[rel] = msg
+        if i % 50 == 0 or i == len(examples):
+            print("  [" + str(i) + "/" + str(len(examples)) + "] " +
+                  str(len(passed)) + " pass / " + str(len(failed)) + " fail")
+
+    report = {
+        "timestamp": datetime.now().isoformat(),
+        "compiler": str(zebra),
+        "total": len(examples),
+        "passed": len(passed),
+        "failed": len(failed),
+        "failures": detail,
+    }
+    (REPO / "validation-report.json").write_text(
+        json.dumps(report, indent=2), encoding='utf-8', newline='\n')
+
+    lines = ["ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT",
+             "=" * 70, "",
+             "Generated: " + report["timestamp"],
+             "Compiler:  " + str(zebra), "",
+             "Total:  " + str(report["total"]),
+             "Passed: " + str(report["passed"]),
+             "Failed: " + str(report["failed"]), ""]
+    if detail:
+        lines += ["FAILURES", "-" * 70]
+        for k in sorted(detail):
+            lines.append("  " + k)
+            lines.append("      " + detail[k])
+    (REPO / "validation-report.txt").write_text(
+        "\n".join(lines) + "\n", encoding='utf-8', newline='\n')
+
+    print("\nTotal " + str(len(examples)) +
+          " | pass " + str(len(passed)) + " | fail " + str(len(failed)))
+
+    if update:
+        BASELINE.write_text(
+            "# Examples that compile cleanly. Regenerate with:\n"
+            "#   python validate-examples.py --update-baseline\n"
+            "# The gate fails when an entry here stops compiling.\n"
+            + "\n".join(sorted(passed)) + "\n", encoding='utf-8', newline='\n')
+        print("baseline updated: " + str(len(passed)) + " passing examples")
+        return 0
+
+    base = load_baseline()
+    if base is None:
+        print("\n[WARN] no validation-baseline.txt — nothing to gate against.")
+        print("       Create one with: python validate-examples.py --update-baseline")
+        return 0
+
+    regressed = sorted(base - set(passed))
+    if regressed:
+        print("\n[FAIL] " + str(len(regressed)) +
+              " example(s) that used to compile no longer do:")
+        for r in regressed[:25]:
+            print("   " + r + "\n       " + detail.get(r, "(no longer present)"))
+        if len(regressed) > 25:
+            print("   ... and " + str(len(regressed) - 25) + " more")
+        return 1
+
+    gained = sorted(set(passed) - base)
+    if gained:
+        print("\n[OK] no regressions. " + str(len(gained)) +
+              " newly-passing example(s) — run --update-baseline to lock them in.")
+    else:
+        print("\n[OK] no regressions vs baseline (" + str(len(base)) + " examples).")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

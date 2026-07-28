@@ -1,23 +1,22 @@
-// file: file-batch-process.zbr
-// teaches: processing multiple files
-// chapter: 20
+# file: file-batch-process.zbr
+# teaches: processing multiple files
+# chapter: 20
 
 def main()
-    // List of files to process
-    var files = List(str)()
+    # List of files to process
+    var files = List()
     files.add("data1.txt")
     files.add("data2.txt")
     files.add("data3.txt")
     
-    var results = HashMap(str, int)()
+    var results = HashMap()
     
     for filename in files
         print("Processing ${filename}... ")
-        
         var content_result = File.read(filename)
         
         if content_result.isErr()
-            println("FAILED: ${content_result.error()}")
+            print("FAILED: ${content_result.error(}"))
             results.put(filename, 0)
             continue
         
@@ -25,15 +24,13 @@ def main()
         var line_count = content.split("\n").count()
         
         results.put(filename, line_count)
-        println("OK (${line_count} lines)")
+        print("OK (${line_count} lines"))
     
-    // Summary
-    println("\nSummary:")
+    # Summary
+    print("\nSummary:")
     var total = 0
-    for filename in results.keys()
-        var count = results.fetch(filename)
-        if count != nil
-            total = total + count
-            println("${filename}: ${count} lines")
+    for filename, count in results
+        total = total + count
+        print("${filename}: ${count} lines")
     
-    println("Total: ${total} lines")
+    print("Total: ${total} lines")

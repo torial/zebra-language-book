@@ -1,0 +1,7 @@
+# WRONG
+var box = Container(int)()
+box.store("hello")  # Error: Expected int, got str
+
+# CORRECT
+var box = Container(str)()
+box.store("hello")

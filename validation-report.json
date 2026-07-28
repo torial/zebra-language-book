@@ -1,1269 +1,571 @@
 {
-  "total": 180,
-  "passed": 0,
-  "failed": 0,
-  "skipped": 180,
-  "examples": [
-    {
-      "file": "01-getting-started/greet.zbr",
-      "path": "examples/01-getting-started/greet.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "01-getting-started/hello.zbr",
-      "path": "examples/01-getting-started/hello.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_bools.zbr",
-      "path": "examples/02-values-and-types/02_bools.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_comparisons.zbr",
-      "path": "examples/02-values-and-types/02_comparisons.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_conversions.zbr",
-      "path": "examples/02-values-and-types/02_conversions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_floats.zbr",
-      "path": "examples/02-values-and-types/02_floats.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_integers.zbr",
-      "path": "examples/02-values-and-types/02_integers.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_nullables.zbr",
-      "path": "examples/02-values-and-types/02_nullables.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_strings.zbr",
-      "path": "examples/02-values-and-types/02_strings.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "02-values-and-types/02_user_data.zbr",
-      "path": "examples/02-values-and-types/02_user_data.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_hashmap_ops.zbr",
-      "path": "examples/03-collections/03_hashmap_ops.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_hashmaps.zbr",
-      "path": "examples/03-collections/03_hashmaps.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_iteration.zbr",
-      "path": "examples/03-collections/03_iteration.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_list_ops.zbr",
-      "path": "examples/03-collections/03_list_ops.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_lists.zbr",
-      "path": "examples/03-collections/03_lists.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_patterns.zbr",
-      "path": "examples/03-collections/03_patterns.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_real_world.zbr",
-      "path": "examples/03-collections/03_real_world.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "03-collections/03_sets.zbr",
-      "path": "examples/03-collections/03_sets.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_capture.zbr",
-      "path": "examples/04-functions-and-scope/04_capture.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_closures.zbr",
-      "path": "examples/04-functions-and-scope/04_closures.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_functions.zbr",
-      "path": "examples/04-functions-and-scope/04_functions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_higher_order.zbr",
-      "path": "examples/04-functions-and-scope/04_higher_order.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_multi_params.zbr",
-      "path": "examples/04-functions-and-scope/04_multi_params.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_patterns.zbr",
-      "path": "examples/04-functions-and-scope/04_patterns.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_scope.zbr",
-      "path": "examples/04-functions-and-scope/04_scope.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_utilities.zbr",
-      "path": "examples/04-functions-and-scope/04_utilities.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "04-functions-and-scope/04_void.zbr",
-      "path": "examples/04-functions-and-scope/04_void.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_break_continue.zbr",
-      "path": "examples/05-control-flow/05_break_continue.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_conditions.zbr",
-      "path": "examples/05-control-flow/05_conditions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_for.zbr",
-      "path": "examples/05-control-flow/05_for.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_guards.zbr",
-      "path": "examples/05-control-flow/05_guards.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_if.zbr",
-      "path": "examples/05-control-flow/05_if.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_if_else.zbr",
-      "path": "examples/05-control-flow/05_if_else.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_match.zbr",
-      "path": "examples/05-control-flow/05_match.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_match_type.zbr",
-      "path": "examples/05-control-flow/05_match_type.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_validation.zbr",
-      "path": "examples/05-control-flow/05_validation.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "05-control-flow/05_while.zbr",
-      "path": "examples/05-control-flow/05_while.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_char_iter.zbr",
-      "path": "examples/06-strings-and-unicode/06_char_iter.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_interpolation.zbr",
-      "path": "examples/06-strings-and-unicode/06_interpolation.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_regex_intro.zbr",
-      "path": "examples/06-strings-and-unicode/06_regex_intro.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_replace.zbr",
-      "path": "examples/06-strings-and-unicode/06_replace.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_search.zbr",
-      "path": "examples/06-strings-and-unicode/06_search.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_split_join.zbr",
-      "path": "examples/06-strings-and-unicode/06_split_join.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_string_basics.zbr",
-      "path": "examples/06-strings-and-unicode/06_string_basics.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_string_props.zbr",
-      "path": "examples/06-strings-and-unicode/06_string_props.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_text_processing.zbr",
-      "path": "examples/06-strings-and-unicode/06_text_processing.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_trim_pad.zbr",
-      "path": "examples/06-strings-and-unicode/06_trim_pad.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "06-strings-and-unicode/06_unicode.zbr",
-      "path": "examples/06-strings-and-unicode/06_unicode.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "07-classes-and-instances/07_class_basic.zbr",
-      "path": "examples/07-classes-and-instances/07_class_basic.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "07-classes-and-instances/07_init.zbr",
-      "path": "examples/07-classes-and-instances/07_init.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "07-classes-and-instances/07_methods.zbr",
-      "path": "examples/07-classes-and-instances/07_methods.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "07-classes-and-instances/07_shared.zbr",
-      "path": "examples/07-classes-and-instances/07_shared.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "07-classes-and-instances/07_user_system.zbr",
-      "path": "examples/07-classes-and-instances/07_user_system.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "08-interfaces-and-protocols/08_collection_interface.zbr",
-      "path": "examples/08-interfaces-and-protocols/08_collection_interface.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "08-interfaces-and-protocols/08_interface_basic.zbr",
-      "path": "examples/08-interfaces-and-protocols/08_interface_basic.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "08-interfaces-and-protocols/08_interface_methods.zbr",
-      "path": "examples/08-interfaces-and-protocols/08_interface_methods.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "08-interfaces-and-protocols/08_logger_system.zbr",
-      "path": "examples/08-interfaces-and-protocols/08_logger_system.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "08-interfaces-and-protocols/08_polymorphism.zbr",
-      "path": "examples/08-interfaces-and-protocols/08_polymorphism.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_document_hierarchy.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_document_hierarchy.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_hierarchy.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_hierarchy.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_inheritance_basic.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_inheritance_basic.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_mixins.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_mixins.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_override.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_override.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_polymorphic_hierarchy.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "09-inheritance-and-mixins/09_super.zbr",
-      "path": "examples/09-inheritance-and-mixins/09_super.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_computed.zbr",
-      "path": "examples/10-properties-and-computed-values/10_computed.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_config.zbr",
-      "path": "examples/10-properties-and-computed-values/10_config.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_derived.zbr",
-      "path": "examples/10-properties-and-computed-values/10_derived.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_getter.zbr",
-      "path": "examples/10-properties-and-computed-values/10_getter.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_lazy_init.zbr",
-      "path": "examples/10-properties-and-computed-values/10_lazy_init.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_setter_effects.zbr",
-      "path": "examples/10-properties-and-computed-values/10_setter_effects.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_setter_validation.zbr",
-      "path": "examples/10-properties-and-computed-values/10_setter_validation.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "10-properties-and-computed-values/10_temperature.zbr",
-      "path": "examples/10-properties-and-computed-values/10_temperature.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_database.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_database.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_narrowing.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_narrowing.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_nil_check.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_nil_check.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_nullable.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_nullable.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_unwrap.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_unwrap.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "11-nil-tracking-and-safety/11_unwrap_or.zbr",
-      "path": "examples/11-nil-tracking-and-safety/11_unwrap_or.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "12-error-handling-with-results/12_api_client.zbr",
-      "path": "examples/12-error-handling-with-results/12_api_client.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "12-error-handling-with-results/12_error_propagation.zbr",
-      "path": "examples/12-error-handling-with-results/12_error_propagation.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "12-error-handling-with-results/12_result_basic.zbr",
-      "path": "examples/12-error-handling-with-results/12_result_basic.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "12-error-handling-with-results/12_result_unwrap.zbr",
-      "path": "examples/12-error-handling-with-results/12_result_unwrap.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_cache.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_cache.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_collections.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_collections.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_constraints_advanced.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_constraints_advanced.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_container.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_container.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_methods.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_methods.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_generic_pair.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_generic_pair.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "13-generics-and-type-constraints/13_type_constraints.zbr",
-      "path": "examples/13-generics-and-type-constraints/13_type_constraints.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_assertions.zbr",
-      "path": "examples/14-contracts-and-assertions/14_assertions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_dual_verify.zbr",
-      "path": "examples/14-contracts-and-assertions/14_dual_verify.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_early_return.zbr",
-      "path": "examples/14-contracts-and-assertions/14_early_return.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_guard_clauses.zbr",
-      "path": "examples/14-contracts-and-assertions/14_guard_clauses.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_invariants.zbr",
-      "path": "examples/14-contracts-and-assertions/14_invariants.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_postconditions.zbr",
-      "path": "examples/14-contracts-and-assertions/14_postconditions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_preconditions.zbr",
-      "path": "examples/14-contracts-and-assertions/14_preconditions.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "14-contracts-and-assertions/14_sort_postcondition.zbr",
-      "path": "examples/14-contracts-and-assertions/14_sort_postcondition.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_function_composition.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_function_composition.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_basics.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_chain.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_collections.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_custom.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_custom.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_real_world.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_real_world.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "15-pipelines-and-function-composition/15_pipeline_results.zbr",
-      "path": "examples/15-pipelines-and-function-composition/15_pipeline_results.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "16-project-1-cli-tool/cli_args.zbr",
-      "path": "examples/16-project-1-cli-tool/cli_args.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "16-project-1-cli-tool/file_processor.zbr",
-      "path": "examples/16-project-1-cli-tool/file_processor.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "16-project-1-cli-tool/pattern_search.zbr",
-      "path": "examples/16-project-1-cli-tool/pattern_search.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "16-project-1-cli-tool/project1_main.zbr",
-      "path": "examples/16-project-1-cli-tool/project1_main.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/analysis_main.zbr",
-      "path": "examples/17-18_projects-2-3/analysis_main.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/frequency_analysis.zbr",
-      "path": "examples/17-18_projects-2-3/frequency_analysis.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/http_server.zbr",
-      "path": "examples/17-18_projects-2-3/http_server.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/http_types.zbr",
-      "path": "examples/17-18_projects-2-3/http_types.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/ngram_analysis.zbr",
-      "path": "examples/17-18_projects-2-3/ngram_analysis.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/router.zbr",
-      "path": "examples/17-18_projects-2-3/router.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "17-18_projects-2-3/similarity_analysis.zbr",
-      "path": "examples/17-18_projects-2-3/similarity_analysis.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-console-io.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-console-io.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-data-processing.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-data-processing.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-hashmap-ops.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-hashmap-ops.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-list-ops.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-list-ops.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-math-operations.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-math-operations.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-set-ops.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-set-ops.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-case.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-case.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-extract-concat.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-extract-concat.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-inspect.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-inspect.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-search.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-search.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-split-join.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-split-join.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-string-trim.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-string-trim.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-system-access.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-system-access.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "19-standard-library-tour/stdlib-type-conversions.zbr",
-      "path": "examples/19-standard-library-tour/stdlib-type-conversions.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-analyze.zbr",
-      "path": "examples/20-file-io-and-system-access/file-analyze.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-append.zbr",
-      "path": "examples/20-file-io-and-system-access/file-append.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-batch-process.zbr",
-      "path": "examples/20-file-io-and-system-access/file-batch-process.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-config-management.zbr",
-      "path": "examples/20-file-io-and-system-access/file-config-management.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-convert.zbr",
-      "path": "examples/20-file-io-and-system-access/file-convert.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-data-import.zbr",
-      "path": "examples/20-file-io-and-system-access/file-data-import.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-delete.zbr",
-      "path": "examples/20-file-io-and-system-access/file-delete.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-exists.zbr",
-      "path": "examples/20-file-io-and-system-access/file-exists.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-logging.zbr",
-      "path": "examples/20-file-io-and-system-access/file-logging.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-paths.zbr",
-      "path": "examples/20-file-io-and-system-access/file-paths.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-read-lines.zbr",
-      "path": "examples/20-file-io-and-system-access/file-read-lines.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-read-simple.zbr",
-      "path": "examples/20-file-io-and-system-access/file-read-simple.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-read-unwrap.zbr",
-      "path": "examples/20-file-io-and-system-access/file-read-unwrap.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-write-building.zbr",
-      "path": "examples/20-file-io-and-system-access/file-write-building.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "20-file-io-and-system-access/file-write-simple.zbr",
-      "path": "examples/20-file-io-and-system-access/file-write-simple.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-anchors.zbr",
-      "path": "examples/21-regular-expressions/regex-anchors.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-character-classes.zbr",
-      "path": "examples/21-regular-expressions/regex-character-classes.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-dot.zbr",
-      "path": "examples/21-regular-expressions/regex-dot.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-email.zbr",
-      "path": "examples/21-regular-expressions/regex-email.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-escaping.zbr",
-      "path": "examples/21-regular-expressions/regex-escaping.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-extract-structured.zbr",
-      "path": "examples/21-regular-expressions/regex-extract-structured.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-finding.zbr",
-      "path": "examples/21-regular-expressions/regex-finding.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-greedy.zbr",
-      "path": "examples/21-regular-expressions/regex-greedy.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-groups.zbr",
-      "path": "examples/21-regular-expressions/regex-groups.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-literals.zbr",
-      "path": "examples/21-regular-expressions/regex-literals.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-log-analysis.zbr",
-      "path": "examples/21-regular-expressions/regex-log-analysis.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-phone.zbr",
-      "path": "examples/21-regular-expressions/regex-phone.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-quantifiers.zbr",
-      "path": "examples/21-regular-expressions/regex-quantifiers.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-replace.zbr",
-      "path": "examples/21-regular-expressions/regex-replace.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-shortcuts.zbr",
-      "path": "examples/21-regular-expressions/regex-shortcuts.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-transform.zbr",
-      "path": "examples/21-regular-expressions/regex-transform.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "21-regular-expressions/regex-url.zbr",
-      "path": "examples/21-regular-expressions/regex-url.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-batching.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-batching.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-c-arrays.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-c-arrays.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-c-pointers.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-c-pointers.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-c-simple.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-c-simple.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-c-strings.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-c-strings.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-conditional.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-conditional.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-crypto-example.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-crypto-example.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-error-codes.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-error-codes.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-error-wrapper.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-error-wrapper.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-numeric-types.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-numeric-types.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-performance.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-performance.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-platform-specific.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-platform-specific.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-safety-lifetime.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-safety-lifetime.zbr",
-      "status": "skipped",
-      "message": "Syntax check failed",
-      "details": "Must have at least one class"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-safety-memory.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-safety-memory.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-safety-types.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-safety-types.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-structures.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-structures.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-zig-basic.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-zig-basic.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    },
-    {
-      "file": "22-ffi-and-interop/ffi-zig-strings.zbr",
-      "path": "examples/22-ffi-and-interop/ffi-zig-strings.zbr",
-      "status": "skipped",
-      "message": "Compiler not found",
-      "details": "zebra command not in PATH"
-    }
-  ],
-  "timestamp": "2026-04-07T09:43:32.884476"
+  "timestamp": "2026-07-27T22:46:01.087211",
+  "compiler": "C:\\Projects\\zebra-language\\zig-out\\bin\\zebra.exe",
+  "total": 679,
+  "passed": 117,
+  "failed": 562,
+  "failures": {
+    "01-getting-started/01-getting-started_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_001.zbr:2:11: error: expected '(', got '\"broken\"'",
+    "01-getting-started/01-getting-started_005.zbr": "C:/Projects/zebra-language-book/examples/01-getting-started/01-getting-started_005.zbr:2: error: expected type 'str', found 'comptime_int'",
+    "01-getting-started/01-getting-started_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_006.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
+    "01-getting-started/01-getting-started_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\01-getting-started\\01-getting-started_007.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
+    "01-getting-started/01-getting-started_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '01-getting-started_010' has no member named 'main'",
+    "01-getting-started/math_utils.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'math_utils' has no member named 'main'",
+    "02-values-and-types/02-values-and-types_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, e",
+    "02-values-and-types/02-values-and-types_006.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '02-values-and-types_006' has no member named 'main'",
+    "02-values-and-types/02-values-and-types_007.zbr": "C:\\Presolved\\tmp\\02-values-and-types_007.zig:3776:29: error: use of undeclared identifier 'User'",
+    "02-values-and-types/02-values-and-types_008.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '02-values-and-types_008' has no member named 'main'",
+    "02-values-and-types/02-values-and-types_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '02-values-and-types_010' has no member named 'main'",
+    "02-values-and-types/02-values-and-types_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_013.zbr:1:0: error: type mismatch: expected int, found str",
+    "02-values-and-types/02-values-and-types_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "02-values-and-types/02-values-and-types_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_016.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "02-values-and-types/02-values-and-types_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "02-values-and-types/02-values-and-types_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "02-values-and-types/02-values-and-types_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "02-values-and-types/02-values-and-types_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\02-values-and-types\\02-values-and-types_020.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "03-collections/03-collections_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_008.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03-collections_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_009.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03-collections_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03-collections_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03-collections_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03-collections_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\03-collections\\03-collections_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "03-collections/03_list_ops.zbr": "C:/Projects/zebra-language-book/examples/03-collections/03_list_ops.zbr:6: error: expected type 'str', found 'array_list.Aligned(i64,null)'",
+    "03-collections/03_real_world.zbr": "C:/Projects/zebra-language-book/examples/03-collections/03_real_world.zbr:27: error: incompatible types: 'f64' and 'i64'",
+    "04-functions-and-scope/04-functions-and-scope_004.zbr": "C:/Projects/zebra-language-book/examples/04-functions-and-scope/04-functions-and-scope_004.zbr:6: error: local constant shadows declaration of 'count'",
+    "04-functions-and-scope/04-functions-and-scope_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_010.zbr:1:1: error: unexpected top-level token: 'log' \u2014 expected a declaration (def, class, struct, enum, union, ",
+    "04-functions-and-scope/04-functions-and-scope_013.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '04-functions-and-scope_013' has no member named 'main'",
+    "04-functions-and-scope/04-functions-and-scope_014.zbr": "C:\\Presolved\\tmp\\04-functions-and-scope_014.zig:3773:11: error: duplicate struct member name 'OnReady'",
+    "04-functions-and-scope/04-functions-and-scope_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04-functions-and-scope_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04-functions-and-scope_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04-functions-and-scope_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_020.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04-functions-and-scope_021.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_021.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04-functions-and-scope_022.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04-functions-and-scope_022.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "04-functions-and-scope/04_closures.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04_closures.zbr:5:43: error: expected ':', got '",
+    "04-functions-and-scope/04_multi_params.zbr": "C:\\Presolved\\tmp\\04_multi_params.zig:296:11: error: local constant shadows declaration of 'pad'",
+    "04-functions-and-scope/04_patterns.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '04_patterns' has no member named 'main'",
+    "04-functions-and-scope/04_utilities.zbr": "C:\\Projects\\zebra-language-book\\examples\\04-functions-and-scope\\04_utilities.zbr:14:34: error: unexpected expression token: '@as'",
+    "05-control-flow/05-control-flow_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_012.zbr:2:17: error: undefined name: 'fetch_order'",
+    "05-control-flow/05-control-flow_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_013.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, union",
+    "05-control-flow/05-control-flow_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_014.zbr:1:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, union,",
+    "05-control-flow/05-control-flow_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05-control-flow_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_016.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05-control-flow_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05-control-flow_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05-control-flow_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05-control-flow_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05-control-flow_020.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const)",
+    "05-control-flow/05_guards.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05_guards.zbr:7:23: error: expected 'else', got ','",
+    "05-control-flow/05_if_expr.zbr": "C:\\Projects\\zebra-language-book\\examples\\05-control-flow\\05_if_expr.zbr:9:21: error: expected '(', got 'score'",
+    "06-strings-and-unicode/06-strings-and-unicode_011.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '06-strings-and-unicode_011' has no member named 'main'",
+    "06-strings-and-unicode/06-strings-and-unicode_012.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '06-strings-and-unicode_012' has no member named 'main'",
+    "06-strings-and-unicode/06-strings-and-unicode_013.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_013.zbr",
+    "06-strings-and-unicode/06-strings-and-unicode_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06-strings-and-unicode_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06-strings-and-unicode_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_016.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06-strings-and-unicode_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06-strings-and-unicode_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06-strings-and-unicode_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\06-strings-and-unicode\\06-strings-and-unicode_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union, us",
+    "06-strings-and-unicode/06_regex_intro.zbr": "C:/Projects/zebra-language-book/examples/06-strings-and-unicode/06_regex_intro.zbr:15: error: expected optional type, found 'str'",
+    "07-classes-and-instances/07-classes-and-instances_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_004.zbr:11:5: error: unexpected member: 'static'",
+    "07-classes-and-instances/07-classes-and-instances_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_005.zbr:1:1: error: 'with' is a statement and can't appear at the top level \u2014 only declarations (def, class, ",
+    "07-classes-and-instances/07-classes-and-instances_006.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\hash\\auto_hash.zig:87:12: error: unable to hash type f64",
+    "07-classes-and-instances/07-classes-and-instances_008.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '07-classes-and-instances_008' has no member named 'main'",
+    "07-classes-and-instances/07-classes-and-instances_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_009.zbr:3:18: error: expected identifier, got 'to'",
+    "07-classes-and-instances/07-classes-and-instances_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_010.zbr:13:20: error: undefined name: 'User'",
+    "07-classes-and-instances/07-classes-and-instances_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union",
+    "07-classes-and-instances/07-classes-and-instances_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union",
+    "07-classes-and-instances/07-classes-and-instances_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union",
+    "07-classes-and-instances/07-classes-and-instances_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, union",
+    "07-classes-and-instances/07-classes-and-instances_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\07-classes-and-instances\\07-classes-and-instances_016.zbr:7:29: error: unexpected expression token: '@as'",
+    "07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_002.zbr": "C:\\Presolved\\tmp\\07b-structs-unions-and-value-types_002.zig:3773:22: error: use of undeclared identifier 'makeConfig'",
+    "07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\07b-structs-unions-and-value-types\\07b-structs-unions-and-value-types_006.zbr:1:1: error: 'branch' is a statement and can't appear at the top level \u2014 only decl",
+    "07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_008.zbr": "C:\\Presolved\\tmp\\07b-structs-unions-and-value-types_008.zig:3777:12: error: use of undeclared identifier 'ExprCall'",
+    "07b-structs-unions-and-value-types/07b_heap_indirect.zbr": "C:/Projects/zebra-language-book/examples/07b-structs-unions-and-value-types/07b_heap_indirect.zbr:14: error: local variable is never mutated",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_005.zbr:5:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_006.zbr:10:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_007.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '08-interfaces-and-protocols_007' has no member named 'main'",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_008.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_009.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_014.zbr:7:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_015.zbr:8:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08-interfaces-and-protocols_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08-interfaces-and-protocols_016.zbr:6:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08_collection_interface.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08_collection_interface.zbr:21:20: error: undefined name: 'Dog'",
+    "08-interfaces-and-protocols/08_interface_basic.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08_interface_basic.zbr:10:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08_interface_methods.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08_interface_methods.zbr:11:5: error: unexpected member: 'implements'",
+    "08-interfaces-and-protocols/08_logger_system.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08_logger_system.zbr:9:9: error: expected identifier, got 'error'",
+    "08-interfaces-and-protocols/08_polymorphism.zbr": "C:\\Projects\\zebra-language-book\\examples\\08-interfaces-and-protocols\\08_polymorphism.zbr:12:24: error: undefined name: 'CreditCardProcessor'",
+    "09-composition-and-mixins/09-composition-and-mixins_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_001.zbr:2:13: error: expected '(', got '",
+    "09-composition-and-mixins/09-composition-and-mixins_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_006.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_007.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_008.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_009.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, uni",
+    "09-composition-and-mixins/09-composition-and-mixins_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_012.zbr:19:17: error: unexpected member: ':'",
+    "09-composition-and-mixins/09-composition-and-mixins_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_013.zbr:5:13: error: unexpected member: ':'",
+    "09-composition-and-mixins/09-composition-and-mixins_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09-composition-and-mixins_014.zbr:2:13: error: unexpected member: ':'",
+    "09-composition-and-mixins/09_document_capabilities.zbr": "C:/Projects/zebra-language-book/examples/09-composition-and-mixins/09_document_capabilities.zbr:34: error: no field named 'version' in struct 'BlogPost'",
+    "09-composition-and-mixins/09_mixin_basic.zbr": "C:\\Projects\\zebra-language-book\\examples\\09-composition-and-mixins\\09_mixin_basic.zbr:12:13: error: expected '(', got '",
+    "09-composition-and-mixins/09_multiple_mixins.zbr": "C:/Projects/zebra-language-book/examples/09-composition-and-mixins/09_multiple_mixins.zbr:27: error: no field named 'tags' in struct 'BlogPost'",
+    "09-composition-and-mixins/09_polymorphism.zbr": "C:/Projects/zebra-language-book/examples/09-composition-and-mixins/09_polymorphism.zbr:27: error: expected type 'Sounding', found '*Dog'",
+    "10-properties-and-computed-values/10-properties-and-computed-values_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_008.zbr:4:20: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10-properties-and-computed-values_009.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '10-properties-and-computed-values_009' has no member named 'main'",
+    "10-properties-and-computed-values/10-properties-and-computed-values_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, s",
+    "10-properties-and-computed-values/10-properties-and-computed-values_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_016.zbr:28:20: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10-properties-and-computed-values_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_017.zbr:10:17: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10-properties-and-computed-values_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10-properties-and-computed-values_018.zbr:24:17: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_computed.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_computed.zbr:8:12: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_config.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_config.zbr:22:16: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_derived.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_derived.zbr:9:13: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_getter.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_getter.zbr:8:12: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_lazy_init.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_lazy_init.zbr:9:23: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_setter_validation.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_setter_validation.zbr:22:20: error: unexpected member: ':'",
+    "10-properties-and-computed-values/10_temperature.zbr": "C:\\Projects\\zebra-language-book\\examples\\10-properties-and-computed-values\\10_temperature.zbr:8:19: error: unexpected member: ':'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_003.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '10b-modules-namespaces-and-visibility_003' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_004.zbr": "C:\\Presolved\\tmp\\10b-modules-namespaces-and-visibility_004.zig:530:15: error: local constant shadows declaration of 'handle'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_005.zbr": "C:\\Presolved\\tmp\\10b-modules-namespaces-and-visibility_005.zig:3773:9: error: duplicate struct member name '_zbr_mv_v'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_009.zbr:5:32: error: unexpected expression token: '0x0000FF'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_010.zbr": "C:\\Presolved\\tmp\\10b-modules-namespaces-and-visibility_010.zig:3775:39: error: function with non-void return type 'i64' implicitly returns",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_011.zbr": "C:/Projects/zebra-language-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_011.zbr:3: error: function with non-void return type 'i64' implicitly returns",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_012.zbr:10:1: error: 'print' is a statement and can't appear at the top level \u2014 onl",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_013.zbr": "C:/Projects/zebra-language-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_013.zbr:7: error: use of undeclared identifier 'Unknown'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_014.zbr:1:12: error: extend 'str' must have a body",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_019.zbr": "C:\\Presolved\\tmp\\cli.zig:1:1: error: unable to load 'cli.zig': FileNotFound",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_020.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '10b-modules-namespaces-and-visibility_020' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_021.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '10b-modules-namespaces-and-visibility_021' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_022.zbr": "C:\\Presolved\\tmp\\cli.zig:1:1: error: unable to load 'cli.zig': FileNotFound",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_023.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_023.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_024.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_024.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_025.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_025.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_026.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_026.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_027.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_027.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_028.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_028.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_029.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_029.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_030.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_030.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, ",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_031.zbr": "C:/Projects/zebra-language-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_031.zbr:15: error: type 'Circle' does not support array initialization syntax",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_032.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '10b-modules-namespaces-and-visibility_032' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_033.zbr": "C:\\Presolved\\tmp\\geometry.zig:1:1: error: unable to load 'geometry.zig': FileNotFound",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_034.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_034.zbr:2:18: error: expected ')', got '>>'",
+    "10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_035.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\10b-modules-namespaces-and-visibility_035.zbr:3:22: error: expected ')', got '>>'",
+    "10b-modules-namespaces-and-visibility/colors.zbr": "C:\\Projects\\zebra-language-book\\examples\\10b-modules-namespaces-and-visibility\\colors.zbr:9:28: error: expected ')', got '>>'",
+    "10b-modules-namespaces-and-visibility/helpers.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'helpers' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/math_utils.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'math_utils' has no member named 'main'",
+    "10b-modules-namespaces-and-visibility/wallet.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'wallet' has no member named 'main'",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_004.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_008.zbr:2:16: error: undefined name: 'find_user'",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_009.zbr:7:5: error: undefined name: 'do_work'",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11-nil-tracking-and-safety_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_016.zbr": "C:/Projects/zebra-language-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_016.zbr:21: error: type '?*User' does not support field access",
+    "11-nil-tracking-and-safety/11-nil-tracking-and-safety_018.zbr": "C:/Projects/zebra-language-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_018.zbr:15: error: type '?*User' does not support field access",
+    "11-nil-tracking-and-safety/11_database.zbr": "C:/Projects/zebra-language-book/examples/11-nil-tracking-and-safety/11_database.zbr:25: error: type '?*User' does not support field access",
+    "11-nil-tracking-and-safety/11_narrowing.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '11_narrowing' has no member named 'main'",
+    "11-nil-tracking-and-safety/11_nil_check.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\Io\\Writer.zig:1803:5: error: invalid format string 's' for type '?[]const u8'",
+    "11-nil-tracking-and-safety/11_unwrap.zbr": "C:\\Projects\\zebra-language-book\\examples\\11-nil-tracking-and-safety\\11_unwrap.zbr:9:26: error: unexpected expression token: 'to'",
+    "12-error-handling-with-results/12-error-handling-with-results_009.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12-error-handling-with-results_009.zbr",
+    "12-error-handling-with-results/12_api_client.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_api_client.zbr",
+    "12-error-handling-with-results/12_catch_binding.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_catch_binding.zbr",
+    "12-error-handling-with-results/12_catch_expr.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_catch_expr.zbr",
+    "12-error-handling-with-results/12_catch_typed.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_catch_typed.zbr",
+    "12-error-handling-with-results/12_method_catch.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_method_catch.zbr",
+    "12-error-handling-with-results/12_propagation.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_propagation.zbr",
+    "12-error-handling-with-results/12_raise.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\12-error-handling-with-results\\12_raise.zbr",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_000.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_000.zbr:4:12: error: unexpected member: ':'",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_012.zbr:3:1: error: unexpected top-level token: 'box' \u2014 expected a declaration (def, class, s",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_013.zbr:3:1: error: unexpected top-level token: 'box' \u2014 expected a declaration (def, class, s",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_014.zbr": "C:\\Presolved\\tmp\\13-generics-and-type-constraints_014.zig:3773:8: error: duplicate struct member name 'find_max'",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_015.zbr:4:17: error: expected ':', got 'isa'",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_016.zbr:7:12: error: unexpected member: ':'",
+    "13-generics-and-type-constraints/13-generics-and-type-constraints_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13-generics-and-type-constraints_018.zbr:3:22: error: unexpected member: '->'",
+    "13-generics-and-type-constraints/13_generic_cache.zbr": "C:\\Presolved\\tmp\\13_generic_cache.zig:3776:57: error: expected expression, found 'anytype'",
+    "13-generics-and-type-constraints/13_generic_constraints_advanced.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13_generic_constraints_advanced.zbr:6:27: error: expected type name, got 'this'",
+    "13-generics-and-type-constraints/13_generic_container.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13_generic_container.zbr:11:17: error: unexpected member: ':'",
+    "13-generics-and-type-constraints/13_generic_function.zbr": "C:/Projects/zebra-language-book/examples/13-generics-and-type-constraints/13_generic_function.zbr:17: error: capture 'n' shadows local constant from outer scope",
+    "13-generics-and-type-constraints/13_generic_methods.zbr": "C:\\Presolved\\tmp\\13_generic_methods.zig:3775:28: error: use of undeclared identifier 'T'",
+    "13-generics-and-type-constraints/13_generic_pair.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13_generic_pair.zbr:15:16: error: unexpected member: ':'",
+    "13-generics-and-type-constraints/13_type_constraints.zbr": "C:\\Projects\\zebra-language-book\\examples\\13-generics-and-type-constraints\\13_type_constraints.zbr:6:16: error: unexpected member: ':'",
+    "14-contracts-and-assertions/14-contracts-and-assertions_000.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_000.zbr:7:5: error: undefined name: 'balance'",
+    "14-contracts-and-assertions/14-contracts-and-assertions_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_008.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "14-contracts-and-assertions/14-contracts-and-assertions_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_009.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "14-contracts-and-assertions/14-contracts-and-assertions_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "14-contracts-and-assertions/14-contracts-and-assertions_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "14-contracts-and-assertions/14-contracts-and-assertions_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum,",
+    "14-contracts-and-assertions/14-contracts-and-assertions_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_014.zbr:4:13: error: expected '(', got '",
+    "14-contracts-and-assertions/14-contracts-and-assertions_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14-contracts-and-assertions_015.zbr:5:13: error: expected '(', got '",
+    "14-contracts-and-assertions/14_assert.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '14_assert' has no member named 'main'",
+    "14-contracts-and-assertions/14_ensure.zbr": "C:/Projects/zebra-language-book/examples/14-contracts-and-assertions/14_ensure.zbr:12: error: unreachable code",
+    "14-contracts-and-assertions/14_ensure_old.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '14_ensure_old' has no member named 'main'",
+    "14-contracts-and-assertions/14_ensure_result.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '14_ensure_result' has no member named 'main'",
+    "14-contracts-and-assertions/14_sorted_list.zbr": "C:\\Projects\\zebra-language-book\\examples\\14-contracts-and-assertions\\14_sorted_list.zbr:8:13: error: expected '(', got '",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_000.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_000.zbr:6:16: error: unexpected expression token: ';'",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_001.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_001.zbr:5: error: use of undeclared identifier 'parse'",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_002.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_002.zbr:3:1: error: unexpected top-level token: 'allocate' \u2014 expected a declaration (de",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_003.zbr:2:1: error: unexpected top-level token: 'allocate' \u2014 expected a declaration (de",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_004.zbr:2:1: error: unexpected top-level token: 'allocate' \u2014 expected a declaration (de",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_005.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_005.zbr:2: error: unused local variable",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_007.zbr:1:1: error: unexpected top-level token: '{' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_008.zbr:1:1: error: unexpected top-level token: 'using' \u2014 expected a declaration (def, ",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_009.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_009.zbr:6: error: local variable is never mutated",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_010.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_010.zbr:7: error: local variable is never mutated",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_011.zbr:2:5: error: expected identifier, got 'num'",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_012.zbr:2:1: error: unexpected top-level token: 'allocate' \u2014 expected a declaration (de",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_016.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_020.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_021.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_021.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, clas",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_022.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_022.zbr:2: error: unreachable code",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_023.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_023.zbr:2: error: unreachable code",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_024.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_024.zbr:14: error: expected type '?*T', found 'T'",
+    "14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_025.zbr": "C:\\Projects\\zebra-language-book\\examples\\14b-memory-management-and-lifetimes\\14b-memory-management-and-lifetimes_025.zbr:9:21: error: undefined name: 'Time'",
+    "14b-memory-management-and-lifetimes/14b_streaming_processor.zbr": "C:/Projects/zebra-language-book/examples/14b-memory-management-and-lifetimes/14b_streaming_processor.zbr:27: error: unreachable code",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_000.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '14c-concurrency-channels-and-threads_000' has no member named 'main'",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_001.zbr:11:15: error: inline if does not support capture binding; use block form",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_002.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_002.zbr:1:1: error: unexpected top-level token: 'ch' \u2014 expected a declaration (def, c",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_003.zbr:1:1: error: unexpected top-level token: 'sys' \u2014 expected a declaration (def, ",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_004.zbr:4:12: error: undefined name: 'lambda'",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_006.zbr:2:1: error: unexpected top-level token: 'counter' \u2014 expected a declaration (d",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_007.zbr:4:20: error: 'var' is a statement keyword and can't be used as an expression ",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_008.zbr:4:12: error: undefined name: 'lambda'",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_014.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_015.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_016.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_017.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_018.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_019.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_020.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, cl",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_021.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_021.zbr:5:9: error: 'for' is a statement keyword and can't be used as an expression h",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_022.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_022.zbr:20:18: error: inline if does not support capture binding; use block form",
+    "14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_023.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c-concurrency-channels-and-threads_023.zbr:4:12: error: undefined name: 'lambda'",
+    "14c-concurrency-channels-and-threads/14c_parallel_files.zbr": "C:/Projects/zebra-language-book/examples/14c-concurrency-channels-and-threads/14c_parallel_files.zbr:18: error: unreachable code",
+    "14c-concurrency-channels-and-threads/14c_pipeline.zbr": "C:\\Projects\\zebra-language-book\\examples\\14c-concurrency-channels-and-threads\\14c_pipeline.zbr:10:9: error: 'for' is a statement keyword and can't be used as an expression here",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_000.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '15-pipelines-and-function-composition_000' has no member named 'main'",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_001.zbr": "C:\\Presolved\\tmp\\15-pipelines-and-function-composition_001.zig:3774:30: error: use of undeclared identifier 'self'",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_009.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\15-pipelines-and-function-composition\\15-pipelines-and-function-composition_009.zbr",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\15-pipelines-and-function-composition\\15-pipelines-and-function-composition_010.zbr:3:1: error: unexpected end of input at the top level",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_011.zbr": "C:\\Presolved\\tmp\\15-pipelines-and-function-composition_011.zig:3773:26: error: use of undeclared identifier 'Utils'",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_012.zbr": "C:\\Presolved\\tmp\\15-pipelines-and-function-composition_012.zig:3773:26: error: use of undeclared identifier 'Formatter'",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr:12: error: use of undeclared identifier 'self'",
+    "15-pipelines-and-function-composition/15-pipelines-and-function-composition_014.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_014.zbr:18: error: use of undeclared identifier 'e'",
+    "15-pipelines-and-function-composition/15_pipeline_basics.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr:12: error: use of undeclared identifier 'self'",
+    "15-pipelines-and-function-composition/15_pipeline_chain.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr:8: error: use of undeclared identifier 'self'",
+    "15-pipelines-and-function-composition/15_pipeline_collections.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr:8: error: use of undeclared identifier 'self'",
+    "15-pipelines-and-function-composition/15_pipeline_real_world.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15_pipeline_real_world.zbr:25: error: expected type 'f64', found 'i64'",
+    "15-pipelines-and-function-composition/15_pipeline_results.zbr": "C:/Projects/zebra-language-book/examples/15-pipelines-and-function-composition/15_pipeline_results.zbr:20: error: use of undeclared identifier 'e'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_004.zbr:4:32: error: undefined name: 'FileProcessor'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_005.zbr:2:19: error: undefined name: 'PatternMatcher'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_006.zbr:17:59: error: unexpected expression token: ')'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_007.zbr:10:16: error: unexpected member: ':'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_008.zbr:4:34: error: undefined name: 'FileProcessor'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\16-project-1-cli-tool_009.zbr:10:25: error: undefined name: 'FileProcessor'",
+    "16-project-1-cli-tool/16-project-1-cli-tool_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '16-project-1-cli-tool_010' has no member named 'main'",
+    "16-project-1-cli-tool/cli_args.zbr": "C:\\Presolved\\tmp\\cli_args.zig:3778:12: error: duplicate struct member name 'init'",
+    "16-project-1-cli-tool/file_processor.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\file_processor.zbr:96:16: error: unexpected member: ':'",
+    "16-project-1-cli-tool/pattern_search.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\pattern_search.zbr:8:34: error: undefined name: 'FileProcessor'",
+    "16-project-1-cli-tool/project1_main.zbr": "C:\\Projects\\zebra-language-book\\examples\\16-project-1-cli-tool\\project1_main.zbr:11:12: error: unexpected member: ':'",
+    "17-18_projects-2-3/17-18_projects-2-3_007.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '17-18_projects-2-3_007' has no member named 'main'",
+    "17-18_projects-2-3/analysis_main.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\analysis_main.zbr:30:33: error: undefined name: 'FrequencyAnalyzer'",
+    "17-18_projects-2-3/frequency_analysis.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\frequency_analysis.zbr:13:18: error: unexpected member: ':'",
+    "17-18_projects-2-3/http_server.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\http_server.zbr:17:14: error: unexpected member: ':'",
+    "17-18_projects-2-3/http_types.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\http_types.zbr:40:22: error: unexpected member: ':'",
+    "17-18_projects-2-3/ngram_analysis.zbr": "C:\\Presolved\\tmp\\ngram_analysis.zig:3778:12: error: duplicate struct member name 'init'",
+    "17-18_projects-2-3/router.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\router.zbr:23:20: error: unexpected member: ':'",
+    "17-18_projects-2-3/similarity_analysis.zbr": "C:\\Projects\\zebra-language-book\\examples\\17-18_projects-2-3\\similarity_analysis.zbr:20:17: error: expected identifier, got 'union'",
+    "19-22_final-chapters/19-22_final-chapters_000.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '19-22_final-chapters_000' has no member named 'main'",
+    "19-22_final-chapters/19-22_final-chapters_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_001.zbr:5:27: error: undefined name: 'read_file'",
+    "19-22_final-chapters/19-22_final-chapters_002.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_002.zbr:3:17: error: unexpected member: ':'",
+    "19-22_final-chapters/19-22_final-chapters_003.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '19-22_final-chapters_003' has no member named 'main'",
+    "19-22_final-chapters/19-22_final-chapters_004.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '19-22_final-chapters_004' has no member named 'main'",
+    "19-22_final-chapters/19-22_final-chapters_005.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '19-22_final-chapters_005' has no member named 'main'",
+    "19-22_final-chapters/19-22_final-chapters_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_006.zbr:7:23: error: unexpected member: ':'",
+    "19-22_final-chapters/19-22_final-chapters_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_007.zbr:5:18: error: undefined name: 'c_func'",
+    "19-22_final-chapters/19-22_final-chapters_008.zbr": "C:\\Presolved\\tmp\\19-22_final-chapters_008.zig:3775:12: error: use of undeclared identifier 'Type'",
+    "19-22_final-chapters/19-22_final-chapters_009.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '19-22_final-chapters_009' has no member named 'main'",
+    "19-22_final-chapters/19-22_final-chapters_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_010.zbr:2:12: error: undefined name: 'value'",
+    "19-22_final-chapters/19-22_final-chapters_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-22_final-chapters\\19-22_final-chapters_011.zbr:8:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, e",
+    "19-standard-library-tour/19-standard-library-tour_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\19-standard-library-tour\\19-standard-library-tour_015.zbr:4:9: error: expected identifier, got 'error'",
+    "19-standard-library-tour/19-standard-library-tour_016.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/19-standard-library-tour_016.zbr:2: error: no field or member function named 'exec_' in '?*_SqliteDbInner'",
+    "19-standard-library-tour/19-standard-library-tour_017.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/19-standard-library-tour_017.zbr:3: error: no member named 'items' in 'str'",
+    "19-standard-library-tour/19-standard-library-tour_018.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/19-standard-library-tour_018.zbr:2: error: unreachable code",
+    "19-standard-library-tour/19-standard-library-tour_019.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/19-standard-library-tour_019.zbr:3: error: use of undeclared identifier 'DateTime'",
+    "19-standard-library-tour/stdlib-data-processing.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-data-processing.zbr:17: error: comparison of 'i64' with null",
+    "19-standard-library-tour/stdlib-file-io.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-file-io.zbr:7: error: expected error union type, found 'str'",
+    "19-standard-library-tour/stdlib-hashmap-ops.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-hashmap-ops.zbr:15: error: comparison of 'i64' with null",
+    "19-standard-library-tour/stdlib-list-ops.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-list-ops.zbr:18: error: expected integer or vector, found '*const [6:0]u8'",
+    "19-standard-library-tour/stdlib-string-inspect.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-string-inspect.zbr:12: error: expected type 'str', found 'u8'",
+    "19-standard-library-tour/stdlib-type-conversions.zbr": "C:/Projects/zebra-language-book/examples/19-standard-library-tour/stdlib-type-conversions.zbr:24: error: comparison of 'i64' with null",
+    "20-file-io-and-system-access/20-file-io-and-system-access_012.zbr": "C:\\Presolved\\tmp\\20-file-io-and-system-access_012.zig:3773:8: error: duplicate struct member name 'main'",
+    "20-file-io-and-system-access/20-file-io-and-system-access_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\20-file-io-and-system-access_013.zbr:3:15: error: expected identifier, got 'from'",
+    "20-file-io-and-system-access/20-file-io-and-system-access_014.zbr": "C:\\Presolved\\tmp\\20-file-io-and-system-access_014.zig:3773:8: error: duplicate struct member name 'main'",
+    "20-file-io-and-system-access/20-file-io-and-system-access_015.zbr": "C:\\Presolved\\tmp\\20-file-io-and-system-access_015.zig:1446:23: error: expected type '*const fn (T) U', found '*const fn (T, U) void'",
+    "20-file-io-and-system-access/file-analyze.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-analyze.zbr:18:33: error: unexpected expression token: '}'",
+    "20-file-io-and-system-access/file-append.zbr": "C:/Projects/zebra-language-book/examples/20-file-io-and-system-access/file-append.zbr:9: error: no field or member function named 'unwrapOr' in 'str'",
+    "20-file-io-and-system-access/file-batch-process.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-batch-process.zbr:19:45: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-config-management.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-config-management.zbr:15:66: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-convert.zbr": "C:/Projects/zebra-language-book/examples/20-file-io-and-system-access/file-convert.zbr:17: error: expected expression, found 'anytype'",
+    "20-file-io-and-system-access/file-data-import.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-data-import.zbr:30:38: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-delete.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-delete.zbr:14:50: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-logging.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-logging.zbr:19:9: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-read-lines.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-read-lines.zbr:12:32: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-read-simple.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-read-simple.zbr:11:22: error: unexpected expression token: ')'",
+    "20-file-io-and-system-access/file-read-unwrap.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-read-unwrap.zbr:15:13: error: expected identifier, got 'error'",
+    "20-file-io-and-system-access/file-write-building.zbr": "C:/Projects/zebra-language-book/examples/20-file-io-and-system-access/file-write-building.zbr:7: error: expected expression, found 'anytype'",
+    "20-file-io-and-system-access/file-write-simple.zbr": "C:\\Projects\\zebra-language-book\\examples\\20-file-io-and-system-access\\file-write-simple.zbr:14:32: error: expected identifier, got 'error'",
+    "21-regular-expressions/regex-anchors.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-anchors.zbr:9: error: no field or member function named 'matches' in 'Regex'",
+    "21-regular-expressions/regex-character-classes.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-character-classes.zbr:39:47: error: unexpected expression token: ')'",
+    "21-regular-expressions/regex-dot.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-dot.zbr:9: error: no field or member function named 'matches' in 'Regex'",
+    "21-regular-expressions/regex-email.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-email.zbr:20:5: error: a function definition ('def') can't appear in expression position \u2014 use a lambda `def(args) body`, or move ",
+    "21-regular-expressions/regex-escaping.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-escaping.zbr:12: error: no field or member function named 'matches' in 'Regex'",
+    "21-regular-expressions/regex-extract-structured.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-extract-structured.zbr:27:46: error: unexpected expression token: '}'",
+    "21-regular-expressions/regex-finding.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-finding.zbr:29:17: error: expected identifier, got 'char'",
+    "21-regular-expressions/regex-groups.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-groups.zbr:9: error: no field or member function named 'matches' in 'Regex'",
+    "21-regular-expressions/regex-literals.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-literals.zbr:9: error: no field or member function named 'matches' in 'str'",
+    "21-regular-expressions/regex-log-analysis.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-log-analysis.zbr:8:32: error: expected identifier, got 'error'",
+    "21-regular-expressions/regex-phone.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-phone.zbr:22:5: error: a function definition ('def') can't appear in expression position \u2014 use a lambda `def(args) body`, or move ",
+    "21-regular-expressions/regex-quantifiers.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-quantifiers.zbr:10:40: error: unexpected expression token: ')'",
+    "21-regular-expressions/regex-replace.zbr": "C:/Projects/zebra-language-book/examples/21-regular-expressions/regex-replace.zbr:14: error: expected type 'str', found 'Regex'",
+    "21-regular-expressions/regex-shortcuts.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-shortcuts.zbr:44:49: error: unexpected expression token: ')'",
+    "21-regular-expressions/regex-transform.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-transform.zbr:19:5: error: a function definition ('def') can't appear in expression position \u2014 use a lambda `def(args) body`, or m",
+    "21-regular-expressions/regex-url.zbr": "C:\\Projects\\zebra-language-book\\examples\\21-regular-expressions\\regex-url.zbr:19:5: error: a function definition ('def') can't appear in expression position \u2014 use a lambda `def(args) body`, or move it",
+    "22-ffi-and-interop/22-ffi-and-interop_019.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22-ffi-and-interop_019' has no member named 'main'",
+    "22-ffi-and-interop/22-ffi-and-interop_021.zbr": "C:\\Presolved\\tmp\\22-ffi-and-interop_021.zig:3779:51: error: use of undeclared identifier 'PluginContext'",
+    "22-ffi-and-interop/ffi-batching.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-batching.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const",
+    "22-ffi-and-interop/ffi-c-arrays.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-c-arrays.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const",
+    "22-ffi-and-interop/ffi-c-pointers.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-c-pointers.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, con",
+    "22-ffi-and-interop/ffi-c-simple.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-c-simple.zbr:7:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, const",
+    "22-ffi-and-interop/ffi-c-strings.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-c-strings.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, cons",
+    "22-ffi-and-interop/ffi-conditional.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-conditional.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "22-ffi-and-interop/ffi-crypto-example.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-crypto-example.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "22-ffi-and-interop/ffi-error-codes.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-error-codes.zbr",
+    "22-ffi-and-interop/ffi-error-wrapper.zbr": "compiling: C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-error-wrapper.zbr",
+    "22-ffi-and-interop/ffi-numeric-types.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-numeric-types.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, ",
+    "22-ffi-and-interop/ffi-performance.zbr": "C:/Projects/zebra-language-book/examples/22-ffi-and-interop/ffi-performance.zbr:16: error: expected expression, found 'anytype'",
+    "22-ffi-and-interop/ffi-platform-specific.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-platform-specific.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, v",
+    "22-ffi-and-interop/ffi-safety-lifetime.zbr": "C:/Projects/zebra-language-book/examples/22-ffi-and-interop/ffi-safety-lifetime.zbr:27: error: expected expression, found 'anytype'",
+    "22-ffi-and-interop/ffi-safety-memory.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-safety-memory.zbr:22:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "22-ffi-and-interop/ffi-safety-types.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-safety-types.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, c",
+    "22-ffi-and-interop/ffi-structures.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-structures.zbr:13:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "22-ffi-and-interop/ffi-zig-basic.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-zig-basic.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, cons",
+    "22-ffi-and-interop/ffi-zig-strings.zbr": "C:\\Projects\\zebra-language-book\\examples\\22-ffi-and-interop\\ffi-zig-strings.zbr:5:1: error: unexpected top-level token: 'shared' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "22-ffi-and-interop/greeter.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'greeter' has no member named 'main'",
+    "22-ffi-and-interop/greeter_host.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\dynamic_library.zig:22:26: error: unsupported platform",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_002.zbr": "C:\\Projects\\zebra-language-book\\examples\\22b-build-system-and-tooling\\22b-build-system-and-tooling_002.zbr:1:1: error: unexpected top-level token: 'b' \u2014 expected a declaration (def, class, struct, enu",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\22b-build-system-and-tooling\\22b-build-system-and-tooling_003.zbr:1:1: error: unexpected top-level token: 'b' \u2014 expected a declaration (def, class, struct, enu",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_005.zbr": "C:\\Presolved\\tmp\\cli.zig:1:1: error: unable to load 'cli.zig': FileNotFound",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_006.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22b-build-system-and-tooling_006' has no member named 'main'",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_007.zbr": "C:\\Presolved\\tmp\\cli.zig:1:1: error: unable to load 'cli.zig': FileNotFound",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_008.zbr": "C:/Projects/zebra-language-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_008.zbr:2: error: no field or member function named 'option' in '_BuildTarget'",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_009.zbr": "C:/Projects/zebra-language-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_009.zbr:2: error: no field or member function named 'option' in '_BuildTarget'",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\22b-build-system-and-tooling\\22b-build-system-and-tooling_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enu",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\22b-build-system-and-tooling\\22b-build-system-and-tooling_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enu",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_012.zbr": "C:/Projects/zebra-language-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_012.zbr:2: error: no field or member function named 'option' in '_BuildTarget'",
+    "22b-build-system-and-tooling/22b-build-system-and-tooling_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\22b-build-system-and-tooling\\22b-build-system-and-tooling_013.zbr:5:1: error: unexpected end of input while parsing an expression",
+    "22b-build-system-and-tooling/build.zbr": "C:/Projects/zebra-language-book/examples/22b-build-system-and-tooling/build.zbr:6: error: no field or member function named 'option' in '_BuildTarget'",
+    "22c-testing-and-validation/22c-testing-and-validation_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_003.zbr:3:5: error: unexpected member: 'static'",
+    "22c-testing-and-validation/22c-testing-and-validation_005.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22c-testing-and-validation_005' has no member named 'main'",
+    "22c-testing-and-validation/22c-testing-and-validation_006.zbr": "C:/Projects/zebra-language-book/examples/22c-testing-and-validation/22c-testing-and-validation_006.zbr:5: error: use of undeclared identifier 'Calc'",
+    "22c-testing-and-validation/22c-testing-and-validation_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_007.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_008.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_009.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_010.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_011.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_012.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_013.zbr:1:1: error: unexpected top-level token: '>' \u2014 expected a declaration (def, class, struct, enum, u",
+    "22c-testing-and-validation/22c-testing-and-validation_014.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22c-testing-and-validation_014' has no member named 'main'",
+    "22c-testing-and-validation/22c-testing-and-validation_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\22c-testing-and-validation\\22c-testing-and-validation_015.zbr:3:5: error: unexpected member: 'static'",
+    "22c-testing-and-validation/22c-testing-and-validation_016.zbr": "C:/Projects/zebra-language-book/examples/22c-testing-and-validation/22c-testing-and-validation_016.zbr:4: error: use of undeclared identifier 'Calc'",
+    "22c-testing-and-validation/22c_assertions.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22c_assertions' has no member named 'main'",
+    "22c-testing-and-validation/22c_first_test.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22c_first_test' has no member named 'main'",
+    "22c-testing-and-validation/22c_tags.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct '22c_tags' has no member named 'main'",
+    "22c-testing-and-validation/arithmetic_test.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'arithmetic_test' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_000.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_000' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_001.zbr:4:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_002.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_002.zbr:4:1: error: unexpected top-level token: 'numbers' \u2014 expected a declaration (def, class, struct, enum, union, use,",
+    "appendix-a-grammar/appendix-a-grammar_003.zbr": "C:/Projects/zebra-language-book/examples/appendix-a-grammar/appendix-a-grammar_003.zbr:10: error: use of undeclared identifier 'err'",
+    "appendix-a-grammar/appendix-a-grammar_004.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_004' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_005.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_005' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_006.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_006' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_007.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_007' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_008.zbr:13:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, en",
+    "appendix-a-grammar/appendix-a-grammar_009.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_009' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_010' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_011.zbr:11:1: error: unexpected top-level token: 'dog' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_012.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_012' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_013.zbr:1:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_014.zbr:2:1: error: 'while' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
+    "appendix-a-grammar/appendix-a-grammar_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_015.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum,",
+    "appendix-a-grammar/appendix-a-grammar_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_016.zbr:2:1: error: 'while' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
+    "appendix-a-grammar/appendix-a-grammar_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_017.zbr:3:1: error: 'branch' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, en",
+    "appendix-a-grammar/appendix-a-grammar_018.zbr": "C:/Projects/zebra-language-book/examples/appendix-a-grammar/appendix-a-grammar_018.zbr:11: error: use of undeclared identifier 'err'",
+    "appendix-a-grammar/appendix-a-grammar_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_019.zbr:1:1: error: unexpected top-level token: '10' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-a-grammar/appendix-a-grammar_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_020.zbr:1:1: error: unexpected top-level token: '10' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-a-grammar/appendix-a-grammar_021.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_021.zbr:1:1: error: unexpected top-level token: 'true' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_022.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_022.zbr:1:1: error: unexpected top-level token: '\"hello\"' \u2014 expected a declaration (def, class, struct, enum, union, use,",
+    "appendix-a-grammar/appendix-a-grammar_023.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_023.zbr:2:1: error: unexpected top-level token: 'x' \u2014 expected a declaration (def, class, struct, enum, union, use, var, ",
+    "appendix-a-grammar/appendix-a-grammar_024.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_024.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_025.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_025' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_026.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_026.zbr:3:11: error: unexpected top-level token: ',' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-a-grammar/appendix-a-grammar_027.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_027' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_028.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_028.zbr:7:1: error: unexpected top-level token: 'nums' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_029.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_029.zbr:11:1: error: unexpected top-level token: 'box' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_030.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_030.zbr:1:30: error: unexpected top-level token: 'where' \u2014 expected a declaration (def, class, struct, enum, union, use, ",
+    "appendix-a-grammar/appendix-a-grammar_031.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_031' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_032.zbr": "C:\\Presolved\\tmp\\appendix-a-grammar_032.zig:3773:26: error: use of undeclared identifier 'divide'",
+    "appendix-a-grammar/appendix-a-grammar_033.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_033.zbr:2:17: error: undefined name: 'divide'",
+    "appendix-a-grammar/appendix-a-grammar_034.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_035.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_035.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_036.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_036.zbr:3:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_037.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_037.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_038.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_038.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_039.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_039.zbr:3:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enum, union, use, v",
+    "appendix-a-grammar/appendix-a-grammar_040.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_040.zbr:3:1: error: unexpected top-level token: 'map' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "appendix-a-grammar/appendix-a-grammar_041.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_041.zbr:3:1: error: unexpected top-level token: 'seen' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-a-grammar/appendix-a-grammar_042.zbr": "C:\\Presolved\\tmp\\appendix-a-grammar_042.zig:3775:9: error: duplicate struct member name '_zbr_mv_str'",
+    "appendix-a-grammar/appendix-a-grammar_043.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_043.zbr:2:13: error: expected indent, got 'b'",
+    "appendix-a-grammar/appendix-a-grammar_044.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_044.zbr:1:1: error: unexpected top-level token: 'assert' \u2014 expected a declaration (def, class, struct, enum, union, use, ",
+    "appendix-a-grammar/appendix-a-grammar_045.zbr": "C:/Projects/zebra-language-book/examples/appendix-a-grammar/appendix-a-grammar_045.zbr:9: error: use of undeclared identifier 'Serializable'",
+    "appendix-a-grammar/appendix-a-grammar_046.zbr": "C:\\Presolved\\tmp\\MathUtils.zig:1:1: error: unable to load 'MathUtils.zig': FileNotFound",
+    "appendix-a-grammar/appendix-a-grammar_047.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_047' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_048.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_048.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_049.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-a-grammar_049' has no member named 'main'",
+    "appendix-a-grammar/appendix-a-grammar_050.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_050.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, ",
+    "appendix-a-grammar/appendix-a-grammar_051.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_051.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum,",
+    "appendix-a-grammar/appendix-a-grammar_052.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-a-grammar\\appendix-a-grammar_052.zbr:3:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enu",
+    "appendix-b-stdlib/appendix-b-stdlib_000.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_000.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum,",
+    "appendix-b-stdlib/appendix-b-stdlib_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_001.zbr:1:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum,",
+    "appendix-b-stdlib/appendix-b-stdlib_002.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-b-stdlib_002' has no member named 'main'",
+    "appendix-b-stdlib/appendix-b-stdlib_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_003.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_004.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_005.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_006.zbr:1:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_007.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_007.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_008.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-b-stdlib_008' has no member named 'main'",
+    "appendix-b-stdlib/appendix-b-stdlib_009.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_009.zbr:1:1: error: unexpected top-level token: 'text' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_010.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_010.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_011.zbr": "C:\\Presolved\\tmp\\appendix-b-stdlib_011.zig:3773:25: error: use of undeclared identifier 'List'",
+    "appendix-b-stdlib/appendix-b-stdlib_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_012.zbr:1:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "appendix-b-stdlib/appendix-b-stdlib_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_013.zbr:2:1: error: unexpected top-level token: 'numbers' \u2014 expected a declaration (def, class, struct, enum, union, use, v",
+    "appendix-b-stdlib/appendix-b-stdlib_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_014.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, u",
+    "appendix-b-stdlib/appendix-b-stdlib_015.zbr": "C:\\Presolved\\tmp\\appendix-b-stdlib_015.zig:3773:41: error: expected expression, found 'anytype'",
+    "appendix-b-stdlib/appendix-b-stdlib_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_016.zbr:1:1: error: unexpected top-level token: 'map' \u2014 expected a declaration (def, class, struct, enum, union, use, var, ",
+    "appendix-b-stdlib/appendix-b-stdlib_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_017.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, u",
+    "appendix-b-stdlib/appendix-b-stdlib_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_018.zbr:2:1: error: unexpected top-level token: 'scores' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-b-stdlib/appendix-b-stdlib_019.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_019.zbr:2:1: error: unexpected top-level token: 'seen' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_020.zbr:3:1: error: unexpected top-level token: 'n' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "appendix-b-stdlib/appendix-b-stdlib_021.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_021.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, u",
+    "appendix-b-stdlib/appendix-b-stdlib_022.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_022.zbr:3:1: error: unexpected top-level token: 'x' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "appendix-b-stdlib/appendix-b-stdlib_023.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_023.zbr:1:1: error: unexpected top-level token: 'int_to_str' \u2014 expected a declaration (def, class, struct, enum, union, use",
+    "appendix-b-stdlib/appendix-b-stdlib_024.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_024.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_025.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_025.zbr:2:1: error: unexpected top-level token: 'a' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "appendix-b-stdlib/appendix-b-stdlib_026.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_026.zbr:1:1: error: unexpected top-level token: 'a' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "appendix-b-stdlib/appendix-b-stdlib_027.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_027.zbr:1:1: error: unexpected top-level token: 'a' \u2014 expected a declaration (def, class, struct, enum, union, use, var, co",
+    "appendix-b-stdlib/appendix-b-stdlib_028.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_028.zbr:1:1: error: unexpected top-level token: 'sys' \u2014 expected a declaration (def, class, struct, enum, union, use, var, ",
+    "appendix-b-stdlib/appendix-b-stdlib_029.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_029.zbr:2:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, u",
+    "appendix-b-stdlib/appendix-b-stdlib_030.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_030.zbr:1:1: error: unexpected top-level token: 'File' \u2014 expected a declaration (def, class, struct, enum, union, use, var,",
+    "appendix-b-stdlib/appendix-b-stdlib_031.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_031.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_032.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_032.zbr:1:1: error: unexpected top-level token: 'Regex' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "appendix-b-stdlib/appendix-b-stdlib_033.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_033.zbr:3:1: error: unexpected top-level token: 'pattern' \u2014 expected a declaration (def, class, struct, enum, union, use, v",
+    "appendix-b-stdlib/appendix-b-stdlib_034.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_035.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-b-stdlib_035' has no member named 'main'",
+    "appendix-b-stdlib/appendix-b-stdlib_036.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_036.zbr:8:1: error: unexpected top-level token: 'try' \u2014 expected a declaration (def, class, struct, enum, union, use, var, ",
+    "appendix-b-stdlib/appendix-b-stdlib_037.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_037.zbr:3:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum,",
+    "appendix-b-stdlib/appendix-b-stdlib_038.zbr": "C:\\Presolved\\tmp\\appendix-b-stdlib_038.zig:3773:25: error: use of undeclared identifier 'List'",
+    "appendix-b-stdlib/appendix-b-stdlib_039.zbr": "C:\\Presolved\\tmp\\appendix-b-stdlib_039.zig:3773:41: error: expected expression, found 'anytype'",
+    "appendix-b-stdlib/appendix-b-stdlib_040.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_040.zbr:1:1: error: unexpected top-level token: 'value' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "appendix-b-stdlib/appendix-b-stdlib_041.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_041.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_042.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_042.zbr:1:1: error: unexpected top-level token: 'assert' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-b-stdlib/appendix-b-stdlib_043.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_043.zbr:1:1: error: unexpected top-level token: 'assert' \u2014 expected a declaration (def, class, struct, enum, union, use, va",
+    "appendix-b-stdlib/appendix-b-stdlib_044.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_044.zbr:3:1: error: 'branch' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum",
+    "appendix-b-stdlib/appendix-b-stdlib_045.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_045.zbr:3:1: error: 'branch' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum",
+    "appendix-b-stdlib/appendix-b-stdlib_046.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_046.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_047.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_047.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-b-stdlib/appendix-b-stdlib_048.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_048.zbr:2:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enum, union, use, var",
+    "appendix-b-stdlib/appendix-b-stdlib_049.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-b-stdlib\\appendix-b-stdlib_049.zbr:4:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class, struct, enum, un",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_000.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_000.zbr:3:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, cl",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, cl",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_002.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_002' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_003.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_003.zbr:4:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_004.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_005.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_005.zbr:2:1: error: unexpected top-level token: 'numbers' \u2014 expected a declaration (def, class, struct, e",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_006.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_006.zbr:2:1: error: unexpected top-level token: 'numbers' \u2014 expected a declaration (def, class, struct, e",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_007.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_007' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_008.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_008.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_009.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_009' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_010.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_010' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_011.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_011.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_012.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_012.zbr:2:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, cl",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_013.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_013.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_014.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_014.zbr:2:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enu",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_015.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_015.zbr:2:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enu",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_016.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_016.zbr:1:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_017.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_017.zbr:2:1: error: unexpected top-level token: 'items' \u2014 expected a declaration (def, class, struct, enu",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_018.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_018.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_019.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_019' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_020.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_020.zbr:4:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_021.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_021' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_022.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_022.zig:3774:9: error: duplicate struct member name '_zbr_mv_message'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_023.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_023' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_024.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_024.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_025.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_025.zig:3774:9: error: duplicate struct member name '_zbr_mv_part'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_026.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_026.zbr:6:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_027.zbr": "C:/Projects/zebra-language-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_027.zbr:2: error: duplicate struct member name '_zbr_mv_sum'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_028.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_028' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_029.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_029.zbr:4:1: error: unexpected top-level token: 'greet' \u2014 expected a declaration (def, class, struct, enu",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_030.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_030.zbr:4:1: error: unexpected top-level token: 'greet' \u2014 expected a declaration (def, class, struct, enu",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_031.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_031' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_032.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_032.zbr:10:8: error: undefined name: 'condition'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_033.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_033' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_034.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_035.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_035.zig:3773:26: error: use of undeclared identifier 'operation'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_036.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_036.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_037.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_037.zbr:5:1: error: unexpected top-level token: 'person' \u2014 expected a declaration (def, class, struct, en",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_038.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_038.zbr:6:1: error: unexpected top-level token: 'person' \u2014 expected a declaration (def, class, struct, en",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_039.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_039' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_040.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_040' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_041.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_041' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_042.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-c-troubleshooting_042' has no member named 'main'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_043.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_043.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_044.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_044.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_045.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_045.zig:3773:9: error: duplicate struct member name '_zbr_mv_pattern'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_046.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_046.zig:3773:9: error: duplicate struct member name '_zbr_mv_pattern'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_047.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_047.zbr:2:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_048.zbr": "C:\\Presolved\\tmp\\appendix-c-troubleshooting_048.zig:3773:9: error: duplicate struct member name '_zbr_mv_pattern'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_049.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_049.zbr:3:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_050.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_050.zbr:3:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_051.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_051.zbr:3:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_052.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_052.zbr:2:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_053.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_053.zbr:2:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, cl",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_054.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_054.zbr:1:1: error: unexpected top-level token: 'assert' \u2014 expected a declaration (def, class, struct, en",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_055.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_055.zbr:2:1: error: 'print' is a statement and can't appear at the top level \u2014 only declarations (def, cl",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_056.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_056.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_057.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_057.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_058.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_058.zbr:3:1: error: 'for' is a statement and can't appear at the top level \u2014 only declarations (def, clas",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_059.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_059.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_060.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_060.zbr:4:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_061.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_061.zbr:3:1: error: 'if' is a statement and can't appear at the top level \u2014 only declarations (def, class",
+    "appendix-d-attributes/appendix-d-attributes_001.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-d-attributes\\appendix-d-attributes_001.zbr:5:9: error: unexpected expression token: '..'",
+    "appendix-d-attributes/appendix-d-attributes_002.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-d-attributes_002' has no member named 'main'",
+    "appendix-d-attributes/appendix-d-attributes_003.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-d-attributes_003' has no member named 'main'",
+    "appendix-d-attributes/appendix-d-attributes_004.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-d-attributes\\appendix-d-attributes_004.zbr:3:40: error: unexpected end of input at the top level",
+    "appendix-d-attributes/appendix-d-attributes_006.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-d-attributes_006' has no member named 'main'",
+    "appendix-d-attributes/appendix-d-attributes_007.zbr": "C:\\Users\\Sean\\.zvm\\0.16.0\\lib\\std\\start.zig:697:43: error: root source file struct 'appendix-d-attributes_007' has no member named 'main'"
+  }
 }

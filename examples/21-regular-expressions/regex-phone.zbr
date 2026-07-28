@@ -1,26 +1,26 @@
-// file: regex-phone.zbr
-// teaches: phone number pattern matching
-// chapter: 21
+# file: regex-phone.zbr
+# teaches: phone number pattern matching
+# chapter: 21
 
 def main()
-    // US format: 123-456-7890
+    # US format: 123-456-7890
     var us_phone = Regex.compile("\\d{3}-\\d{3}-\\d{4}")
     
     if us_phone.matches("555-123-4567")
-        println("Valid US phone")
+        print("Valid US phone")
     
-    if not us_phone.matches("5551234567")  // Missing dashes
-        println("Invalid: wrong format")
+    if not us_phone.matches("5551234567")  # Missing dashes
+        print("Invalid: wrong format")
     
-    // International: +1-234-567-8900
+    # International: +1-234-567-8900
     var intl_phone = Regex.compile("\\+\\d{1,3}-\\d{3}-\\d{3}-\\d{4}")
     
     if intl_phone.matches("+1-555-123-4567")
-        println("Valid international")
+        print("Valid international")
     
-    // Flexible: accept various formats
-    def is_valid_phone_flexible(phone as str) as bool
-        // Must have at least 10 digits
+    # Flexible: accept various formats
+    def is_valid_phone_flexible(phone: str): bool
+        # Must have at least 10 digits
         var digits_only = phone.replace("-", "").replace(" ", "").replace("(", "").replace(")", "")
         
         var digit_count = 0

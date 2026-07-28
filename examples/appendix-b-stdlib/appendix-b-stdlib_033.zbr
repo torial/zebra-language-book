@@ -1,0 +1,8 @@
+var pattern = Regex.compile("\\d+")
+
+pattern.matches(text)       # bool: does text match pattern exactly?
+pattern.find(text)          # str?: find first match
+pattern.findAll(text)       # List(str): find all matches
+pattern.replace(text, replacement)      # str: replace first match
+pattern.replaceAll(text, replacement)   # str: replace all matches
+pattern.split(text)         # List(str): split by matches

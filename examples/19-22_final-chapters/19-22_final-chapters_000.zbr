@@ -1,0 +1,15 @@
+class FileIO
+    static
+        def read_file(path: str): str throws
+            # Read entire file
+            return "content"
+        
+        def write_file(path: str, content: str): bool throws
+            # Write file
+            return true
+        
+        def file_exists(path: str): bool
+            return true
+        
+        def delete_file(path: str): bool throws
+            return true

@@ -1,0 +1,2 @@
+for item in items
+    print(item)  # No index worries

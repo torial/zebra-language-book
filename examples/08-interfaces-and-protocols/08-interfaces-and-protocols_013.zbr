@@ -1,0 +1,5 @@
+> class Dog
+>     implements Animal  # ✅ Explicit contract
+>         def speak(): str
+>             return "Woof!"
+>

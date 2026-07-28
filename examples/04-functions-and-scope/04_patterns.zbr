@@ -1,14 +1,12 @@
-// file: 04_patterns.zbr
-// teaches: early return pattern
-// chapter: 04-Functions-and-Scope
+# file: 04_patterns.zbr
+# teaches: early return pattern
+# chapter: 04-Functions-and-Scope
 
-class Validator
-    shared
-        def validate_email(email as str) as bool
-            if email.len == 0
-                return false
-            if not email.contains("@")
-                return false
-            if not email.contains(".")
-                return false
-            return true
+def validate_email(email: str): bool
+    if email.len == 0
+        return false
+    if not email.contains("@")
+        return false
+    if not email.contains(".")
+        return false
+    return true

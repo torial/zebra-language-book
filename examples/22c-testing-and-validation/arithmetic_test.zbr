@@ -1,0 +1,17 @@
+# file: arithmetic_test.zbr
+# teaches: class-scoped tests
+# chapter: 22c-Testing-and-Validation
+
+class Arithmetic
+    static def test_add()
+        assert_eq 2 + 2, 4
+
+    static def test_subtract()
+        assert_eq 10 - 3, 7
+
+class Strings
+    static def test_concat()
+        assert_eq "foo" + "bar", "foobar"
+
+    static def test_len()
+        assert_eq "hello".len, 5

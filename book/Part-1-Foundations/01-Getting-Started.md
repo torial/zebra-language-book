@@ -76,11 +76,11 @@ Create a file named `hello.zbr`:
 
 ```zebra
 # file: hello.zbr
-# teaches: hello world, print statement
+# teaches: hello world, the print function
 # chapter: 01-Getting-Started
 
 def main()
-    print "Hello, Zebra!"
+    print("Hello, Zebra!")
 ```
 
 Run it:
@@ -97,7 +97,7 @@ Hello, Zebra!
 ### What just happened?
 
 1. **`def main()`** — Defined the entry point function. Zebra runs `main` automatically when the program starts.
-2. **`print "..."`** — Printed text to the console.
+2. **`print("...")`** — Printed text to the console.
 3. **`zebra hello.zbr`** — Compiled and ran the program.
 
 That's the whole program. No class wrapper, no boilerplate.
@@ -106,7 +106,7 @@ That's the whole program. No class wrapper, no boilerplate.
 
 > A **function** is a reusable block of code. `main` is special — it runs automatically when you start the program.
 >
-> A **statement** is an instruction. `print "Hello, Zebra!"` is a statement that outputs text.
+> A **statement** is an instruction. `print("Hello, Zebra!")` is a statement that outputs text.
 >
 > Larger programs often group related code into **classes** (Chapter 07). Small scripts don't need them.
 
@@ -116,8 +116,8 @@ That's the whole program. No class wrapper, no boilerplate.
 # Python
 print("Hello, World!")
 
-# Zebra
-print "Hello, Zebra!"
+# Zebra — same call syntax
+print("Hello, Zebra!")
 ```
 
 Where Python's entry point is implicit (top-level statements run at import), Zebra's is explicit (you define `main`). The clarity scales: as programs grow you can group code into classes and modules without reshaping the entry point.
@@ -131,7 +131,7 @@ def main()
     var name: str = "World"        # explicit — annotation aids the reader
     var age: int = 30
     var pi: float = 3.14159
-    print "${name} is ${age}"
+    print("${name} is ${age}")
 ```
 
 or, equivalently:
@@ -141,7 +141,7 @@ def main()
     var name = "World"             # inferred from the literal
     var age = 30
     var pi = 3.14159
-    print "${name} is ${age}"
+    print("${name} is ${age}")
 ```
 
 Both compile to the same Zig. **Use annotations when they aid the reader** (function signatures, public class fields, hairy generic returns) and **drop them when the right-hand side already makes the type obvious** (literals, named-constructor calls, expressions whose return type is plain). The book mostly uses the inferred form going forward; you'll see explicit annotations where they earn their keep.
@@ -152,7 +152,7 @@ You can also still use the class-based entry point if you prefer it (older code 
 class Main
     static
         def main
-            print "Hello, Zebra!"
+            print("Hello, Zebra!")
 ```
 
 Both forms work. Bare `def main()` is the recommended default for scripts and small programs.
@@ -214,7 +214,7 @@ zebra -kif hello.zbr
 
 def main()
     var name = "World"
-    print "Hello, ${name}!"
+    print("Hello, ${name}!")
 ```
 
 **Output:**
@@ -235,14 +235,13 @@ When you make a mistake, Zebra tells you clearly:
 
 ```zebra
 def main()
-    print "Hello " + 5  # ❌ Can't add string + number
+    var greeting: str = "Hello " + 5   # ❌ Can't add string + number
+    print(greeting)
 ```
 
 **Error:**
 ```
-greet.zbr:5:24: error: arithmetic requires numeric type, got 'str'
-    print "Hello " + 5
-                   ^
+greet.zbr:2: error: expected type 'str', found 'comptime_int'
 ```
 
 **What it means:**
@@ -252,12 +251,12 @@ greet.zbr:5:24: error: arithmetic requires numeric type, got 'str'
 
 **Fix:** Use string concatenation:
 ```zebra
-print "Hello ".concat(5.toString())
+print("Hello ".concat(5.toString()))
 ```
 
 Or use string interpolation:
 ```zebra
-print "Hello ${5}"
+print("Hello ${5}")
 ```
 
 ---
@@ -295,7 +294,7 @@ use math_utils exposing square
 
 def main()
     var answer = square(5)
-    print answer  # 25
+    print(answer)  # 25
 ```
 
 > **Naming note:** `result` is a reserved keyword in Zebra (it binds the return value inside an `ensure` block — see Chapter 14). Pick another name like `answer` or `total` for ordinary locals.
@@ -326,7 +325,7 @@ Modify `hello.zbr` to:
 ```zebra
 def main()
     var my_name = "Alice"
-    print "Hello! My name is ${my_name}."
+    print("Hello! My name is ${my_name}.")
 ```
 
 **Output:**
@@ -352,7 +351,7 @@ def main()
     var first_name = "Bob"
     var last_name = "Smith"
     var age = 30
-    print "My name is ${first_name} ${last_name} and I'm ${age} years old."
+    print("My name is ${first_name} ${last_name} and I'm ${age} years old.")
 ```
 
 **Output:**

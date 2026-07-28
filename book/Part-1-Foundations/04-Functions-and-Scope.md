@@ -34,10 +34,10 @@ def multiply(x: int, y: int): int
 
 def main()
     var result1 = add(5, 3)
-    print result1                       # 8
+    print(result1)  # 8
 
     var result2 = multiply(4, 7)
-    print result2                       # 28
+    print(result2)  # 28
 ```
 
 **Breakdown:**
@@ -61,7 +61,7 @@ def pad(text: str, width: int, fill: str): str
 
 def main()
     var padded = pad("hi", 10, "*")
-    print padded
+    print(padded)
 ```
 
 ### Optional Logic (No Return Value)
@@ -72,7 +72,7 @@ def main()
 # chapter: 04-Functions-and-Scope
 
 def log(message: str)
-    print "[LOG] ${message}"
+    print("[LOG] ${message}")
 
 def main()
     log("Application started")
@@ -105,8 +105,8 @@ class Calculator
 
         def compute()
             var local_val = 50      # Local to this function
-            print local_val         # ✅ Can access
-            print global_val        # ✅ Can access class-level
+            print(local_val)  # ✅ Can access
+            print(global_val)  # ✅ Can access class-level
 
         def other()
             # print local_val       # ❌ Can't access, it's not here
@@ -125,10 +125,10 @@ class Example
 
         def show()
             var count = 5           # Local (shadows class variable)
-            print count             # 5 (local shadows class)
+            print(count)  # 5 (local shadows class)
 
         def another()
-            print count             # 10 (uses class-level)
+            print(count)  # 10 (uses class-level)
 ```
 
 Shadowing can be confusing. Rename to clarify intent.
@@ -160,8 +160,8 @@ def main()
     var double = make_multiplier(2)
     var triple = make_multiplier(3)
 
-    print double(5)             # 10
-    print triple(5)             # 15
+    print(double(5))  # 10
+    print(triple(5))  # 15
 ```
 
 **What's happening:**
@@ -188,9 +188,9 @@ def make_counter(): def(): int
 
 def main()
     var counter = make_counter()
-    print counter()             # 1
-    print counter()             # 2
-    print counter()             # 3
+    print(counter())  # 1
+    print(counter())  # 2
+    print(counter())  # 3
 ```
 
 ---
@@ -219,7 +219,7 @@ def pad_left(text: str, width: int): str
 
 def main()
     var padded = pad_left("hello", 10)
-    print "[${padded}]"         # [     hello]
+    print("[${padded}]")  # [     hello]
 ```
 
 > **Aside:** the `@as(int, text.len)` cast works around BUG-093 (`s.len` is `usize`, not `int`, so it can't be subtracted from an `int` literal directly). Once that bug is fixed the cast becomes optional.
@@ -251,7 +251,7 @@ Zebra supports parameter defaults directly — you don't need an overload:
 
 ```zebra
 def log(message: str, prefix: str = "[INFO]")
-    print "${prefix} ${message}"
+    print("${prefix} ${message}")
 
 def main()
     log("Application started")              # [INFO] Application started
@@ -287,7 +287,7 @@ def main()
     var doubled = map_int(nums, double_it)
 
     for d in doubled
-        print d                 # 2, 4, 6
+        print(d)  # 2, 4, 6
 ```
 
 ### `sig` — Named Function Types
@@ -325,9 +325,9 @@ def main()
     var squared = apply_all(nums, square)
 
     for d in doubled
-        print d          # 2, 4, 6
+        print(d)  # 2, 4, 6
     for s in squared
-        print s          # 1, 4, 9
+        print(s)  # 1, 4, 9
 ```
 
 `sig Transformer(x: int): int` is a type alias — "a function that takes
@@ -381,7 +381,7 @@ def main()
         var doubled = x * 2
         return doubled
     )
-    print result             # 10
+    print(result)  # 10
 ```
 
 **Indentation rule:** the lambda body indents under `def(...)`. The closing
@@ -400,14 +400,14 @@ def run_twice(action: VoidFn)
     action()
 
 def with_logging(label: str, action: VoidFn)
-    print "start: ${label}"
+    print("start: ${label}")
     action()
-    print "end: ${label}"
+    print("end: ${label}")
 
 def main()
     with_logging("outer", def()
         run_twice(def()
-            print "  inner"
+            print("  inner")
         )
     )
     # Prints:
@@ -441,7 +441,7 @@ def main()
 >     var data = fetch_data()
 >
 > def use()
->     print data  # ❌ data doesn't exist here
+>     print(data)  # ❌ data doesn't exist here
 > ```
 >
 > ✅ **Better:**
@@ -452,7 +452,7 @@ def main()
 >
 > def use()
 >     var data = process()
->     print data  # ✅ data is here
+>     print(data)  # ✅ data is here
 > ```
 
 > ❌ **Mistake:** Forgetting to return
@@ -488,7 +488,7 @@ def factorial(n: int): int
     return n * factorial(n - 1)
 
 def main()
-    print factorial(5)     # 120
+    print(factorial(5))  # 120
 ```
 
 </details>
@@ -509,8 +509,8 @@ def make_adder(base: int): def(int): int
 
 def main()
     var add_10 = make_adder(10)
-    print add_10(5)              # 15
-    print add_10(20)             # 30
+    print(add_10(5))  # 15
+    print(add_10(20))  # 30
 ```
 
 </details>
@@ -540,7 +540,7 @@ def main()
 
     var result = even_numbers(nums)
     for r in result
-        print r
+        print(r)
 ```
 
 </details>

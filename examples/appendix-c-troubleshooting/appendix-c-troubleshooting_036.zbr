@@ -1,0 +1,7 @@
+var result = operation()
+
+if result.isOk()
+    var value = result.unwrap()  # Safe now
+
+# Or use unwrapOr with default
+var value = result.unwrapOr(default_value)

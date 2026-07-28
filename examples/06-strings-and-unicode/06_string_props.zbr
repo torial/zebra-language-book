@@ -1,23 +1,21 @@
-// file: 06_string_props.zbr
-// teaches: string properties and methods
-// chapter: 06-Strings-and-Unicode
+# file: 06_string_props.zbr
+# teaches: string properties and methods
+# chapter: 06-Strings-and-Unicode
 
-class Main
-    shared
-        def main
-            var text = "Hello, World!"
-            
-            // Length
-            print text.len                      // 13
-            
-            // Character at index
-            var first_char = text[0]
-            print first_char                    // H
-            
-            // Substring/slice
-            var part = text[0..4]
-            print part                          // Hello
-            
-            // Case conversion
-            print text.upper()                  // HELLO, WORLD!
-            print text.lower()                  // hello, world!
+def main()
+    var text = "Hello, World!"
+
+    # Byte length (Unicode-aware count is below — see codePointCount)
+    print(text.len)  # 13
+
+    # Character at index — text[i] returns a char, .toString() lifts it back to str
+    var first_char = text[0]
+    print(first_char.toString())  # H
+
+    # Substring/slice
+    var part: str = text[0..5]
+    print(part)  # Hello
+
+    # Case conversion
+    print(text.upper())  # HELLO, WORLD!
+    print(text.lower())  # hello, world!

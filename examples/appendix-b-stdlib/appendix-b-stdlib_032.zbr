@@ -1,0 +1,1 @@
+Regex.compile(pattern)      # Regex: compile pattern

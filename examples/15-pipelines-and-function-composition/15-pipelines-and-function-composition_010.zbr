@@ -1,0 +1,12 @@
+# WRONG — the expression ends at the first newline
+var result = text
+    -> .lower()             # parse error: unexpected token
+    -> .split(" ")
+
+# CORRECT — wrap the whole pipeline in parens
+var result = (text
+    -> .lower()
+    -> .split(" "))
+
+# Or write it on a single line (no parens needed):
+var result = text -> .lower() -> .split(" ")

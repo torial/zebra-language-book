@@ -1,0 +1,2 @@
+var result = operation()
+var value = result.unwrap()     # ERROR if result.isErr()

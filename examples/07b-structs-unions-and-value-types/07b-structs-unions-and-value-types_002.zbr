@@ -1,0 +1,7 @@
+# WRONG — temporary struct can't be mutated:
+# var c = makeConfig().indented().withOwner("Foo")
+
+# RIGHT — use intermediate variables:
+var c0 = makeConfig()
+var c1 = c0.indented()
+var c = c1.withOwner("Foo")

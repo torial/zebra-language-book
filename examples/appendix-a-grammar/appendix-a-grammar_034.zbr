@@ -1,0 +1,8 @@
+var x: int? = nil
+
+if x != nil
+    # Safe to use x as int here
+    print(x + 1)
+
+if x == nil
+    print("x is nil")

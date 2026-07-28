@@ -1,0 +1,16 @@
+> class DataSet
+>     var numbers: List(int) = List()
+>     var cached_sum: int? = nil
+>     
+>     def sum: int
+>         if cached_sum == nil
+>             var total = 0
+>             for num in numbers
+>                 total = total + num
+>             cached_sum = total
+>         return cached_sum
+>     
+>     def add_number(num: int)
+>         numbers.add(num)
+>         cached_sum = nil  # Invalidate cache
+>

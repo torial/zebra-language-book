@@ -1,6 +1,6 @@
-// file: ffi-performance.zbr
-// teaches: FFI performance tradeoffs
-// chapter: 22
+# file: ffi-performance.zbr
+# teaches: FFI performance tradeoffs
+# chapter: 22
 
 def main()
     # FFI calls are expensive compared to Zebra calls
@@ -13,16 +13,16 @@ def main()
         sum = sum + expensive_c_function(i)
     
     # BETTER: Pass the whole array to C
-    var nums = List(int)()
+    var nums = List()
     for i in 0.to(1000000)
         nums.add(i)
     
     sum = sum_all(nums)  # Single FFI call
 
-def expensive_c_function(n as int) as int
+def expensive_c_function(n: int): int
     return n * 2
 
-def sum_all(nums as List(int)) as int
+def sum_all(nums: List(int)): int
     var total = 0
     for num in nums
         total = total + num

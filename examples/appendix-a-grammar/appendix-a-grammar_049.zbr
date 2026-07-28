@@ -1,0 +1,2 @@
+var x: int? = nil
+var value = x.unwrapOr(0)  # Use 0 if x is nil

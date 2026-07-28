@@ -1,0 +1,3 @@
+> var emoji = "👋"
+> print(emoji.len)  # ❌ Returns 4 (bytes), not 1
+>

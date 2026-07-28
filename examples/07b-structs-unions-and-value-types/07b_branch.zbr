@@ -1,0 +1,33 @@
+# file: 07b_branch.zbr
+# teaches: branch pattern matching
+# chapter: 07b-Structs-Unions
+
+union Shape
+    circle: float           # radius
+    rect: Dims              # width/height struct
+    point                   # no payload
+
+struct Dims
+    var w: float
+    var h: float
+    cue init(w: float, h: float)
+        this.w = w
+        this.h = h
+
+def describe(s: Shape): str
+    branch s
+        on Shape.circle as r
+            return "Circle with radius ${r}"
+        on Shape.rect as d
+            return "Rectangle ${d.w} x ${d.h}"
+        on Shape.point
+            return "Point"
+        else
+            pass
+    return "unknown"
+
+def main()
+    var c = Shape.circle(3.14)
+    var r = Shape.rect(Dims(10.0, 5.0))
+    print(describe(c))  # Circle with radius 3.14
+    print(describe(r))  # Rectangle 10.0 x 5.0

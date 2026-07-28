@@ -1,0 +1,14 @@
+# String to int (returns nullable)
+var num = "42".toInt()          # int?
+
+# String to float (returns nullable)
+var decimal = "3.14".toFloat()  # float?
+
+# Int to string
+var str = 42.toString()         # str
+
+# Float to string
+var str = 3.14.toString()       # str
+
+# Boolean to string
+var str = true.toString()       # "true"

@@ -1,0 +1,36 @@
+class Product
+    var name: str = ""
+    var price: float = 0.0
+    var quantity: int = 0
+
+    def total_value(): float
+        return this.price * @as(f64, @floatFromInt(this.quantity))
+
+class Store
+    var products: List(Product) = List(Product)()
+
+    def add_product(product: Product)
+        this.products.add(product)
+
+    def total_inventory_value(): float
+        var total = 0.0
+        for product in this.products
+            total = total + product.total_value()
+        return total
+
+def main()
+    var store = Store()
+
+    var apple = Product()
+    apple.name = "Apple"
+    apple.price = 0.50
+    apple.quantity = 100
+    store.add_product(apple)
+
+    var orange = Product()
+    orange.name = "Orange"
+    orange.price = 0.75
+    orange.quantity = 80
+    store.add_product(orange)
+
+    print("Total value: ${store.total_inventory_value()}")

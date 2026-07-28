@@ -1,0 +1,6 @@
+def main()
+    var sock = Udp.bind(9000)                  # listen
+    var (msg, from) = sock.recv(1024)          # blocks; returns bytes + sender addr
+    print("from ${from}: ${msg}")
+    sock.send("alice.example.com", 9001, "ack")
+    sock.close()

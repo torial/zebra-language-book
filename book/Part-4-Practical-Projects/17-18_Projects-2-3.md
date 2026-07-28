@@ -214,11 +214,11 @@ class HttpServer
         register_handler("/health", HealthHandler())
         register_handler("/api/users", UserHandler())
         
-        print "Server starting on port ${port}..."
-        print "Available routes:"
+        print("Server starting on port ${port}...")
+        print("Available routes:")
         var routes = router.list_routes()
         for route in routes
-            print "  ${route}"
+            print("  ${route}")
         
         # Main server loop
         # In real implementation, this would:
@@ -246,7 +246,7 @@ class HttpServer
         var result = router.route_request(request)
         if result.isOk()
             var response = result.okValue()
-            print response.format_response()
+            print(response.format_response())
 
 def main()
     var server = HttpServer(8080)
@@ -254,9 +254,9 @@ def main()
     var result = server.start()
     
     if result.isErr()
-        print "Error: ${result.errValue()}"
+        print("Error: ${result.errValue()}")
     else
-        print "Server running. (Ctrl+C to stop)"
+        print("Server running. (Ctrl+C to stop)")
 ```
 
 ---
@@ -581,25 +581,25 @@ class AnalysisApplication
             return report
         
         def print_report(report: TextAnalysisReport)
-            print "==== Text Analysis Report ===="
-            print "File: ${report.source_file}"
-            print "Total words: ${report.word_count}"
-            print "Unique words: ${report.unique_words}"
-            print ""
+            print("==== Text Analysis Report ====")
+            print("File: ${report.source_file}")
+            print("Total words: ${report.word_count}")
+            print("Unique words: ${report.unique_words}")
+            print("")
             
-            print "Top 10 Words:"
+            print("Top 10 Words:")
             for wf in report.top_words
-                print "  ${wf.to_string()}"
-            print ""
+                print("  ${wf.to_string()}")
+            print("")
             
-            print "Top 5 Bigrams:"
+            print("Top 5 Bigrams:")
             for bigram in report.bigrams
-                print "  ${bigram.gram} (${bigram.count})"
-            print ""
+                print("  ${bigram.gram} (${bigram.count})")
+            print("")
             
-            print "Top 5 Trigrams:"
+            print("Top 5 Trigrams:")
             for trigram in report.trigrams
-                print "  ${trigram.gram} (${trigram.count})"
+                print("  ${trigram.gram} (${trigram.count})")
 
 def main()
     var result = AnalysisApplication.analyze_file("sample.txt")
@@ -608,7 +608,7 @@ def main()
         var report = result.okValue()
         AnalysisApplication.print_report(report)
     else
-        print "Error: ${result.errValue()}"
+        print("Error: ${result.errValue()}")
 ```
 
 ---

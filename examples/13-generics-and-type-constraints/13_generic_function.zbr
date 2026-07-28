@@ -1,0 +1,18 @@
+# file: 13_generic_function.zbr
+# teaches: top-level generic function declaration
+# chapter: 13-Generics-and-Type-Constraints
+
+def identity(T)(value: T): T
+    return value
+
+def first(T)(items: List(T)): T?
+    if items.count() == 0
+        return nil
+    return items.at(0)
+
+def main()
+    var n: int = identity(int)(42)         # explicit type
+    var s: str = identity("hello")          # inferred from arg
+    var first_num = first([1, 2, 3])        # inferred — List(int)
+    if first_num as n
+        print(n)  # 1

@@ -1,0 +1,16 @@
+class UserBuilder
+    var username: str = ""
+    var email: str = ""
+    var age: int = 0
+
+    def with_username(name: str)
+        this.username = name
+
+    def with_email(addr: str)
+        this.email = addr
+
+    def build(): User
+        var user = User()
+        user.username = this.username
+        user.email = this.email
+        return user

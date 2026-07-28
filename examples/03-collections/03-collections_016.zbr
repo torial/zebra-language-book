@@ -1,0 +1,10 @@
+def main()
+    var text = "the quick brown fox jumps over the lazy dog"
+    var words: List(str) = text.split(" ")  # typed annotation auto-collects the iterator
+
+    var seen = HashMap(str, bool)()
+    for word in words
+        seen.put(word, true)
+
+    print("Total words: ${words.count()}")
+    print("Unique words: ${seen.count()}")

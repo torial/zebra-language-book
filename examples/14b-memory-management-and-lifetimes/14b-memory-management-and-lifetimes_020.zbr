@@ -1,0 +1,4 @@
+> allocate Page()
+>     var src = File.read("huge.bin")
+> # src is NOT freed here — Page() is non-scoped
+>

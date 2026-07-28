@@ -1,0 +1,17 @@
+# file: 07b_heap_indirect.zbr
+# teaches: ^T heap indirection
+# chapter: 07b-Structs-Unions
+
+struct Node
+    var value: int
+    var next: ^Node?     # optional heap pointer to another Node
+
+    cue init(value: int, next: ^Node?)
+        this.value = value
+        this.next = next
+
+def main()
+    var a = Node(1, nil)
+    var b = Node(2, nil)
+    a.next = b              # auto-boxes: copies b to the heap
+    print(a.value)  # 1

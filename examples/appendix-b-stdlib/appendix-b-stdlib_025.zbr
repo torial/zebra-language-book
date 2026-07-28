@@ -1,0 +1,6 @@
+# Operators (not functions)
+a + b                       # Addition
+a - b                       # Subtraction
+a * b                       # Multiplication
+a / b                       # Integer or float division
+a % b                       # Modulo (remainder)

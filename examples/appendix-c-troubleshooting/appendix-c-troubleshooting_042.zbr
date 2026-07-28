@@ -1,0 +1,2 @@
+var result = File.read("missing.txt")
+# If not handling Result, this fails

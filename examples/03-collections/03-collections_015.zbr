@@ -1,0 +1,9 @@
+def main()
+    var phone_book = HashMap(str, str)()
+    phone_book.put("Alice", "555-1234")
+    phone_book.put("Bob", "555-5678")
+    phone_book.put("Carol", "555-9999")
+
+    var name = "Bob"
+    if phone_book.get(name) as number
+        print("${name}'s number: ${number}")

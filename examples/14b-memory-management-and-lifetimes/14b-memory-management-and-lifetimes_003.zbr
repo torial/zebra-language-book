@@ -1,0 +1,7 @@
+var summary: str = ""
+allocate Arena()
+    var src = File.read("big_file.txt")
+    var s = process(src)
+    summary <- s                  # deep-copies s into the parent allocator
+# src + s + temporaries freed; summary survives.
+print(summary)

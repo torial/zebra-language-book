@@ -1,0 +1,5 @@
+map.put(key, value)         # Add or update key-value pair
+map.fetch(key)              # ValueType?: get value (nil if key not found)
+map.contains(key)           # bool: key exists?
+map.remove(key)             # Remove key
+map.clear()                 # Remove all entries

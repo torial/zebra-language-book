@@ -1,0 +1,2 @@
+var small: int8 = 100
+var big: int = small  # ✅ Fine: int8 → int is always safe

@@ -1,0 +1,9 @@
+var map = HashMap(str, int)()
+
+map.put("a", 1)                 # Add/update
+map.fetch("a")                  # Get value (returns nullable)
+map.contains("a")               # Check key exists
+map.remove("a")                 # Remove key
+
+for key, value in map
+    print("${key} => ${value}")

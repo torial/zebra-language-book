@@ -1,0 +1,20 @@
+class FileAnalyzer
+    static
+        def analyze(filename: str): str throws
+            var lines_result = FileProcessor.count_lines(filename)
+            if lines_result.isErr()
+                raise lines_result.errValue()
+            
+            var words_result = FileProcessor.count_words(filename)
+            if words_result.isErr()
+                raise words_result.errValue()
+            
+            var lines = lines_result.okValue()
+            var words = words_result.okValue()
+            var report = "Lines: ${lines}, Words: ${words}"
+            return report
+
+def main()
+    var result = FileAnalyzer.analyze("test.txt")
+    if result.isOk()
+        print(result.okValue())

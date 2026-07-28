@@ -1,0 +1,10 @@
+> mixin A
+>     def hello_a
+>         print("A")
+>
+> mixin B
+>     def hello_b
+>         print("B")
+>
+> class C adds A, B
+>

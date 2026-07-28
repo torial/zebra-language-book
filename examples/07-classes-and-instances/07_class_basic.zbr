@@ -1,18 +1,18 @@
-// file: 07_class_basic.zbr
-// teaches: class definition
-// chapter: 07-Classes-and-Instances
+# file: 07_class_basic.zbr
+# teaches: class definition, cue init
+# chapter: 07-Classes-and-Instances
 
 class Person
-    var name as str
-    var age as int
-    
-    def greet
-        print "Hi, I'm ${name}"
+    var name: str
+    var age: int
 
-class Main
-    shared
-        def main
-            var person = Person()
-            person.name = "Alice"
-            person.age = 30
-            person.greet()  // Hi, I'm Alice
+    cue init(name: str, age: int)
+        this.name = name
+        this.age = age
+
+    def greet()
+        print("Hi, I'm ${this.name}")
+
+def main()
+    var person = Person("Alice", 30)
+    person.greet()  # Hi, I'm Alice

@@ -1,0 +1,9 @@
+use calc
+
+def test_divide_success()
+    assert_eq Calc.divide(20, 4) catch 0, 5
+    assert_eq Calc.divide(7, 1) catch 0, 7
+
+def test_divide_zero_raises()
+    # Sentinel: divide on success can't return -1 for positive inputs
+    assert_eq Calc.divide(10, 0) catch -1, -1

@@ -1,0 +1,15 @@
+# file: 13_type_aliases.zbr
+# teaches: type aliases with constraints
+# chapter: 13-Generics-and-Type-Constraints
+
+type PositiveInt = int where value > 0
+type NonEmptyStr = str where value.len > 0
+type Ratio       = float where value >= 0.0 and value <= 1.0
+type UncheckedInt = int                       # no constraint — plain alias
+
+def main()
+    var count: PositiveInt = 42               # OK — 42 > 0
+    var doubled: int = count * 2              # transparent — works as int
+    print(doubled)  # 84
+
+    # var bad: PositiveInt = -1               # runtime panic: "type constraint 'PositiveInt' failed"

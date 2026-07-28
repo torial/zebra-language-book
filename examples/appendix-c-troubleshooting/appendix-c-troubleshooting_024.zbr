@@ -1,0 +1,9 @@
+var text = "hello"
+
+if text.len > 10
+    var char = text.charAt(10)
+else
+    print("Index out of range")
+
+# Safe way
+var last = text.charAt(text.len - 1)  # Get last character

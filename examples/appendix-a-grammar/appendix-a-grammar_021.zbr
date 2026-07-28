@@ -1,0 +1,3 @@
+true and false      # Logical AND
+true or false       # Logical OR
+not true            # Logical NOT

@@ -1,0 +1,17 @@
+class UserService adds Loggable, Cacheable
+    cue init
+        _cache = HashMap(str, str)()
+
+    def lookup(id: str): str
+        var hit = cache_get(id)
+        if hit as found
+            return found
+        log("cache miss for ${id}")
+        var fetched = "user-${id}"
+        cache_set(id, fetched)
+        return fetched
+
+def main()
+    var svc = UserService()
+    print(svc.lookup("42"))  # logs "cache miss for 42", returns "user-42"
+    print(svc.lookup("42"))  # silent cache hit, returns "user-42"

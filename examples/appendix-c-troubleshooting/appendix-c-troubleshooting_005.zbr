@@ -1,0 +1,3 @@
+var numbers = List()
+numbers.add(42)         # OK
+numbers.add("hello")    # ERROR: expecting int, got str

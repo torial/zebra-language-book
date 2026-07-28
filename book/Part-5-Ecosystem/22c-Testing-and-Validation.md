@@ -429,7 +429,7 @@ Two patterns worth noticing:
 >     assert_true true
 >
 > def main()                 # silently dropped in test mode — confusing
->     print "this never runs under zebra test"
+>     print("this never runs under zebra test")
 > ```
 >
 > Just delete the `main()` — the runner generates one.

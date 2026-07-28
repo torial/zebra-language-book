@@ -1,0 +1,20 @@
+def find_max(nums: List(int)): int
+    if nums.count() == 0
+        return 0
+
+    var max_val = nums.at(0)
+    for num in nums
+        if num > max_val
+            max_val = num
+    return max_val
+
+def main()
+    var nums = List(int)()
+    nums.add(10)
+    nums.add(45)
+    nums.add(23)
+    nums.add(89)
+    nums.add(34)
+
+    var max = find_max(nums)
+    print("Max: ${max}")  # 89

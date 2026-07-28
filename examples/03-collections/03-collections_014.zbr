@@ -1,0 +1,8 @@
+def main()
+    var nums = [10, 20, 30, 40]
+
+    var sum = 0
+    for num in nums
+        sum = sum + num
+
+    print("Sum: ${sum}")  # 100

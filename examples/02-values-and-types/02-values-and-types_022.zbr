@@ -1,0 +1,8 @@
+def main()
+    var x = 100
+    var y = 75
+
+    if x > y
+        print("${x} is larger than ${y}")
+    else
+        print("${y} is larger than ${x}")

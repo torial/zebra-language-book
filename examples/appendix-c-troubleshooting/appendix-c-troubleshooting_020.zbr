@@ -1,0 +1,7 @@
+var map = HashMap(str, int)()
+var value = map.fetch("key")
+
+if value != nil
+    var result = value + 1
+else
+    print("Key not found")

@@ -1,0 +1,8 @@
+> def process(): str
+>     var data = fetch_data()
+>     return data
+>
+> def use()
+>     var data = process()
+>     print(data)  # ✅ data is here
+>

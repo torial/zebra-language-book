@@ -1,0 +1,7 @@
+var result = operation()
+
+branch result
+    on ok(value)
+        print("Success: ${value}")
+    on err(error)
+        print("Error: ${error}")

@@ -1,0 +1,8 @@
+# file: build.zbr
+# teaches: declarative-style build script
+# chapter: 22b-Build-System-and-Tooling
+
+def main()
+    var b = Build.new()
+    b.exe("myapp", "src/main.zbr").option("optimize", "ReleaseSafe")
+    # no b.run() needed — zebra build calls it automatically

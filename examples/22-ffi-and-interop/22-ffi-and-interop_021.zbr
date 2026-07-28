@@ -1,0 +1,30 @@
+# Plugin interface — shared between IDE and plugins
+interface IPlugin
+    def name(): str
+    def on_load(ctx: PluginContext)
+    def on_file_open(path: str)
+
+# A plugin (compiled to plugins/highlighter.dll)
+@export("highlighter")
+class Highlighter implements IPlugin
+    def name(): str
+        return "Syntax Highlighter"
+
+    def on_load(ctx: PluginContext)
+        ctx.register_highlighter("zbr", .colorize_zbr)
+
+    def on_file_open(path: str)
+        # ...
+
+# IDE startup
+def load_plugins(dir: str): List(IPlugin)
+    var loaded: List(IPlugin) = List()
+    var files = Dir.list(dir)
+    for f in files
+        if f.endsWith(".dll")
+            var lib = DynLib.open(Path.join(dir, f))
+            # convention: symbol name = filename without extension
+            var sym = Path.stem(f)
+            var p = lib.lookup(IPlugin, sym)
+            loaded.add(p)
+    return loaded

@@ -1,0 +1,18 @@
+class RegexOps
+    static
+        def match(re: Regex, text: str): bool
+            return re.match(text)
+        
+        def find(re: Regex, text: str): str?
+            return re.find(text)
+        
+        def findAll(re: Regex, text: str): List(str)
+            var results: List(str) = List()
+            # Collect all matches
+            return results
+        
+        def replace(re: Regex, text: str, replacement: str): str
+            return re.replace(text, replacement)
+        
+        def split(re: Regex, text: str): List(str)
+            return re.split(text)

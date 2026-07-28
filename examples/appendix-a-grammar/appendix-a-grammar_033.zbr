@@ -1,0 +1,8 @@
+def attempt()
+    var value = divide(10, 0)
+    print(value)
+catch |err|
+    print("Error: ${err}")
+
+# The `try expr` prefix form and `try ... catch ...` block form were removed
+# in 0.15. Use `expr?` for inline propagation, or attach `catch` to a `def`.

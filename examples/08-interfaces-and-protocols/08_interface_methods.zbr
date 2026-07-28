@@ -1,34 +1,34 @@
-// file: 08_interface_methods.zbr
-// teaches: interface with multiple methods
-// chapter: 08-Interfaces-and-Protocols
+# file: 08_interface_methods.zbr
+# teaches: interface with multiple methods
+# chapter: 08-Interfaces-and-Protocols
 
 interface PaymentProcessor
-    def process(amount as float) as bool
-    def refund(transaction_id as str) as bool
-    def get_status(transaction_id as str) as str
+    def process(amount: float): bool
+    def refund(transaction_id: str): bool
+    def get_status(transaction_id: str): str
 
 class CreditCardProcessor
     implements PaymentProcessor
-        def process(amount as float) as bool
-            print "Processing credit card: ${amount}"
+        def process(amount: float): bool
+            print("Processing credit card: ${amount}")
             return true
         
-        def refund(transaction_id as str) as bool
-            print "Refunding transaction: ${transaction_id}"
+        def refund(transaction_id: str): bool
+            print("Refunding transaction: ${transaction_id}")
             return true
         
-        def get_status(transaction_id as str) as str
+        def get_status(transaction_id: str): str
             return "completed"
 
 class PayPalProcessor
     implements PaymentProcessor
-        def process(amount as float) as bool
-            print "Processing PayPal: ${amount}"
+        def process(amount: float): bool
+            print("Processing PayPal: ${amount}")
             return true
         
-        def refund(transaction_id as str) as bool
-            print "PayPal refund: ${transaction_id}"
+        def refund(transaction_id: str): bool
+            print("PayPal refund: ${transaction_id}")
             return true
         
-        def get_status(transaction_id as str) as str
+        def get_status(transaction_id: str): str
             return "pending"

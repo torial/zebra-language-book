@@ -1,0 +1,32 @@
+# file: 09_polymorphism.zbr
+# teaches: interface-based polymorphism (instead of inheritance)
+# chapter: 09-Composition-and-Mixins
+
+interface Sounding
+    def sound(): str
+
+class Dog implements Sounding
+    var name: str = ""
+
+    cue init(n: str)
+        this.name = n
+
+    def sound(): str
+        return "${this.name}: Woof!"
+
+class Cat implements Sounding
+    var name: str = ""
+
+    cue init(n: str)
+        this.name = n
+
+    def sound(): str
+        return "${this.name}: Meow!"
+
+def main()
+    var animals: List(Sounding) = List(Sounding)()
+    animals.add(Dog("Rex"))
+    animals.add(Cat("Whiskers"))
+
+    for a in animals
+        print(a.sound())

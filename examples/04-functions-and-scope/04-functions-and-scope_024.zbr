@@ -1,0 +1,10 @@
+def make_adder(base: int): def(int): int
+    return def(x: int): int
+        capture
+            var base: int = base
+        return x + base
+
+def main()
+    var add_10 = make_adder(10)
+    print(add_10(5))  # 15
+    print(add_10(20))  # 30

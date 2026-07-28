@@ -1,0 +1,13 @@
+# file: wallet.zbr
+class Wallet
+    private var balance: float     # only Wallet's own methods can read/write
+
+    public def deposit(amount: float)
+        .balance = .balance + amount
+
+    public def get_balance(): float
+        return .balance
+
+    private def log_event(msg: str)
+        # internal bookkeeping — callers can't reach this
+        print("[wallet] ${msg}")

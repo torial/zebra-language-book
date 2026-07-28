@@ -1,25 +1,21 @@
-// file: 05_match_type.zbr
-// teaches: type-based matching
-// chapter: 05-Control-Flow
+# file: 05_match_type.zbr
+# teaches: type-based matching with unions
+# chapter: 05-Control-Flow
 
-interface Animal
-    def speak as str
+union Pet
+    dog: str       # name
+    cat: str       # name
+    fish: str      # tank-size
 
-class Dog
-    implements Animal
-        def speak as str
-            return "Woof!"
+def main()
+    var pet: Pet = Pet.dog("Rex")
 
-class Cat
-    implements Animal
-        def speak as str
-            return "Meow!"
-
-class Main
-    shared
-        def main
-            var pet as Animal = Dog()
-
-            if pet implements Dog
-                var d = pet to Dog
-                print d.speak()
+    branch pet
+        on Pet.dog as name
+            print("${name} says: Woof!")
+        on Pet.cat as name
+            print("${name} says: Meow!")
+        on Pet.fish as size
+            print("tank: ${size}")
+        else
+            pass

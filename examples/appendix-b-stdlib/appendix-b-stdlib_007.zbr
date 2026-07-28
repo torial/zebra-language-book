@@ -1,0 +1,10 @@
+text.substring(start, end)  # str: extract portion [start, end)
+text.charAt(index)          # char: character at index
+text.split(delimiter)       # List(str): split by delimiter
+text.replace(old, new)      # str: replace first occurrence
+text.replaceAll(old, new)   # str: replace all occurrences
+text.trim()                 # str: remove leading/trailing whitespace
+text.trimLeft()             # str: remove leading whitespace
+text.trimRight()            # str: remove trailing whitespace
+text.concat(other)          # str: concatenate strings
+text.reverse()              # str: reverse string

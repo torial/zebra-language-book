@@ -1,0 +1,12 @@
+class Box(T)
+    var item: T?
+    
+    def store(item: T)
+        this.item = item
+    
+    def fetch(): T?
+        return this.item
+
+var box = Box(str)()
+box.store("Hello")
+var value = box.fetch()  # Type is str?

@@ -1,0 +1,5 @@
+> use Build   # Wrong — Build is not a user module
+>
+> def main()
+>     var b = Build.new()
+>

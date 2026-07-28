@@ -1,20 +1,20 @@
-// file: 06_split_join.zbr
-// teaches: splitting and joining strings
-// chapter: 06-Strings-and-Unicode
+# file: 06_split_join.zbr
+# teaches: splitting and joining strings
+# chapter: 06-Strings-and-Unicode
 
-class Main
-    shared
-        def main
-            // Split
-            var csv = "apple,banana,cherry"
-            var fruits = csv.split(",")
-            for fruit in fruits
-                print fruit
-            
-            // Join
-            var items as List(str) = List()
-            items.add("one")
-            items.add("two")
-            items.add("three")
-            var result = ", ".join(items)
-            print result                        // one, two, three
+def main()
+    # Split — annotate the local with `: List(str)` to materialise the iterator
+    # into an actual list (otherwise it stays as a forward iterator only).
+    var csv = "apple,banana,cherry"
+    var fruits: List(str) = csv.split(",")
+    for fruit in fruits
+        var f: str = fruit
+        print(f)
+
+    # Join
+    var items = List(str)()
+    items.add("one")
+    items.add("two")
+    items.add("three")
+    var result = ", ".join(items)
+    print(result)  # one, two, three

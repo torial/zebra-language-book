@@ -1,0 +1,3 @@
+> def main()
+>     var b = Build.new()   # Build is built-in; no use needed
+>

@@ -1,0 +1,7 @@
+def search_with_numbers(filename: str, pattern: str): List(str) throws
+    var results = PatternMatcher.search_lines(filename, pattern)
+    if results.isErr()
+        return results
+    
+    # Results already have line numbers from PatternMatcher
+    return results

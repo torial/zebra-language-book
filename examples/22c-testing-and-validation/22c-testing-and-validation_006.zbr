@@ -1,0 +1,25 @@
+use calc
+
+class CalcTests
+    static def test_add_basic()
+        assert_eq Calc.add(2, 3), 5
+
+    static def test_add_negatives()
+        assert_eq Calc.add(-2, -3), -5
+        assert_eq Calc.add(-5, 10), 5
+
+    static def test_divide_normal()
+        assert_eq Calc.divide(10, 2) catch 0, 5
+        assert_eq Calc.divide(15, 3) catch 0, 5
+
+    static def test_divide_by_zero()
+        # divide(_, 0) raises; the inline catch substitutes -1
+        assert_eq Calc.divide(10, 0) catch -1, -1
+
+    static def test_max_of_normal()
+        var nums = [3, 1, 4, 1, 5, 9, 2, 6]
+        assert_eq Calc.max_of(nums) catch 0, 9
+
+    static def test_max_of_empty()
+        var empty: List(int) = []
+        assert_eq Calc.max_of(empty) catch -1, -1

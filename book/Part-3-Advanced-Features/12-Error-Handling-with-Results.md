@@ -45,7 +45,7 @@ class Validator
 
 def main()
     var result = Validator.parse_int("123") catch 0
-    print result
+    print(result)
 ```
 
 **Breakdown:**
@@ -93,9 +93,9 @@ at the same indent level as the `def` keyword. The clause runs when any
 
 def attempt()
     var value = Validator.parse_int("")
-    print "Got: ${value}"
+    print("Got: ${value}")
 catch
-    print "Failed to parse"
+    print("Failed to parse")
 
 def main()
     attempt()
@@ -112,9 +112,9 @@ Bind the error value to inspect it:
 
 def attempt()
     var value = Validator.parse_int("")
-    print "Got: ${value}"
+    print("Got: ${value}")
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 
 def main()
     attempt()
@@ -131,9 +131,9 @@ Specify a type for the error binding:
 
 def attempt()
     var value = Validator.parse_int("")
-    print value
+    print(value)
 catch |err as str|
-    print "String error: ${err}"
+    print("String error: ${err}")
 
 def main()
     attempt()
@@ -158,11 +158,11 @@ For simple cases, use `catch` as an expression to provide a default:
 def main()
     # Provide a default value if the call fails
     var value = Validator.parse_int("abc") catch 0
-    print value  # 0
+    print(value)  # 0
 
     # Catch with binding
     var msg = Validator.parse_int("") catch |e| "failed: ${e}"
-    print msg
+    print(msg)
 ```
 
 This is the most common pattern for simple error recovery.
@@ -196,7 +196,7 @@ class System
 
 def main()
     var result = System.load_system("data") catch "load failed"
-    print result
+    print(result)
 ```
 
 ---
@@ -223,14 +223,14 @@ class APIClient
 
 def attempt_greet(user_id: int)
     var g = APIClient.fetch_and_greet(user_id)
-    print g
+    print(g)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 
 def main()
     # Using inline catch expression
     var greeting = APIClient.fetch_and_greet(1) catch "Could not greet"
-    print greeting              # Hello, Alice!
+    print(greeting)  # Hello, Alice!
 
     # Using method-level catch (wraps a multi-line block)
     attempt_greet(999)          # prints "Error: User not found"
@@ -258,8 +258,8 @@ class MathUtils
 def main()
     var r1 = MathUtils.safe_divide(10, 2) catch 0
     var r2 = MathUtils.safe_divide(10, 0) catch 0
-    print r1  # 5
-    print r2  # 0
+    print(r1)  # 5
+    print(r2)  # 0
 ```
 
 </details>
@@ -292,14 +292,14 @@ class AgeValidator
 
 def attempt_validate(text: str)
     var result = AgeValidator.validate_age(text)
-    print result                  # "valid"
+    print(result)  # "valid"
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 
 def main()
     attempt_validate("25")        # prints "valid"
     var r2 = AgeValidator.validate_age("200") catch "invalid"
-    print r2                      # invalid
+    print(r2)  # invalid
 ```
 
 </details>

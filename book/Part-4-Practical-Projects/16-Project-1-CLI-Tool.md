@@ -297,9 +297,9 @@ class Application
         var words = FileProcessor.count_words(args.filename)
         var chars = FileProcessor.count_chars(args.filename)
         
-        print "${lines.okValue()} lines"
-        print "${words.okValue()} words"
-        print "${chars.okValue()} chars"
+        print("${lines.okValue()} lines")
+        print("${words.okValue()} words")
+        print("${chars.okValue()} chars")
         
         return true
     
@@ -313,10 +313,10 @@ class Application
             return results
         
         var matches = results.okValue()
-        print "Found ${matches.count()} matches:"
+        print("Found ${matches.count()} matches:")
         
         for match in matches
-            print match
+            print(match)
         
         return true
     
@@ -327,7 +327,7 @@ class Application
             return stats
         
         var s = stats.okValue()
-        print s.display()
+        print(s.display())
         
         return true
 
@@ -337,7 +337,7 @@ def main()
     var parsed = CommandParser.parse(args)
     
     if parsed.isErr()
-        print "Error: ${parsed.errValue()}"
+        print("Error: ${parsed.errValue()}")
         return
     
     var cli_args = parsed.okValue()
@@ -346,7 +346,7 @@ def main()
     var result = app.run()
     
     if result.isErr()
-        print "Error: ${result.errValue()}"
+        print("Error: ${result.errValue()}")
 ```
 
 ---
@@ -373,7 +373,7 @@ class FileAnalyzer
 def main()
     var result = FileAnalyzer.analyze("test.txt")
     if result.isOk()
-        print result.okValue()
+        print(result.okValue())
 ```
 
 ---

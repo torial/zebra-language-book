@@ -48,11 +48,11 @@ class Container(T)
 def main()
     var int_box = Container(int)()
     int_box.store(42)
-    print int_box.retrieve()  # Output: 42
+    print(int_box.retrieve())  # Output: 42
     
     var str_box = Container(str)()
     str_box.store("hello")
-    print str_box.retrieve()  # Output: hello
+    print(str_box.retrieve())  # Output: hello
 ```
 
 Notice the syntax:
@@ -87,7 +87,7 @@ def main()
     var p = Pair(str, int)()
     p.set_key("count")
     p.set_value(42)
-    print "Key: ${p.get_key()}, Value: ${p.get_value()}"
+    print("Key: ${p.get_key()}, Value: ${p.get_value()}")
 ```
 
 ---
@@ -111,13 +111,13 @@ class Utils
 
 def main()
     var x = Utils.identity(42)
-    print x  # Output: 42
+    print(x)  # Output: 42
     
     var y = Utils.identity("hello")
-    print y  # Output: hello
+    print(y)  # Output: hello
     
     var z = Utils.first_of_three(1, 2, 3)
-    print z  # Output: 1
+    print(z)  # Output: 1
 ```
 
 The type parameter `T` is inferred from the arguments you pass.
@@ -147,7 +147,7 @@ def main()
     var s: str = identity("hello")          # inferred from arg
     var first_num = first([1, 2, 3])        # inferred — List(int)
     if first_num as n
-        print n                              # 1
+        print(n)  # 1
 ```
 
 **Rules:**
@@ -183,14 +183,14 @@ def main()
     numbers.add(3)
     
     for n in numbers
-        print n
+        print(n)
     
     var ages: HashMap(str, int) = HashMap()
     ages.put("Alice", 30)
     ages.put("Bob", 25)
     
     for name, age in ages
-        print "${name}: ${age}"
+        print("${name}: ${age}")
 ```
 
 These are all generic types. The standard library provides them pre-built.
@@ -222,7 +222,7 @@ class Cat
 class Printer
     static
         def print_item(item: Printable)
-            print item.display()
+            print(item.display())
 
 def main()
     var dog = Dog()
@@ -270,7 +270,7 @@ def main()
     list.add(20)
     var max = list.find_max()
     if max != nil
-        print "Max: ${max}"
+        print("Max: ${max}")
 ```
 
 ---
@@ -298,7 +298,7 @@ type UncheckedInt = int                       # no constraint — plain alias
 def main()
     var count: PositiveInt = 42               # OK — 42 > 0
     var doubled: int = count * 2              # transparent — works as int
-    print doubled                             # 84
+    print(doubled)  # 84
 
     # var bad: PositiveInt = -1               # runtime panic: "type constraint 'PositiveInt' failed"
 ```
@@ -333,7 +333,7 @@ def main()
     # var bad: Bounded(0, 100) = 150          # runtime panic
 
     var temp: Bounded(-273, 1000) = 37        # body temperature — OK
-    print temp                                # 37
+    print(temp)  # 37
 ```
 
 The parameters (here `lo` and `hi`) sit alongside `value` in the `where`
@@ -409,7 +409,7 @@ def main()
     
     var val = cache.lookup("b")
     if val != nil
-        print "Got: ${val}"
+        print("Got: ${val}")
 ```
 
 ---
@@ -467,7 +467,7 @@ def find_max(items: List(T)): T
 def process(items: List(T))
     for item in items
         if item isa int  # This may not work as expected
-            print item + 10
+            print(item + 10)
 ```
 
 In Zebra, type parameters are **erased** during code generation to Zig. Use interfaces to encode types you need at runtime.
@@ -508,7 +508,7 @@ def main()
     
     var val = stack.pop()
     if val != nil
-        print "Popped: ${val}"
+        print("Popped: ${val}")
 ```
 
 </details>
@@ -547,7 +547,7 @@ def main()
     var evens = ListUtils.filter(numbers, is_even)
 
     for e in evens
-        print e
+        print(e)
 ```
 
 A truly *generic* filter — `filter(T)(items: List(T), pred: ???)` — would need
@@ -587,10 +587,10 @@ def main()
     age_box.init({ x in x >= 0 and x <= 150 })
     
     if age_box.store(25)
-        print "Valid age: ${age_box.retrieve()}"
+        print("Valid age: ${age_box.retrieve()}")
     
     if not age_box.store(200)
-        print "Invalid age"
+        print("Invalid age")
 ```
 
 </details>

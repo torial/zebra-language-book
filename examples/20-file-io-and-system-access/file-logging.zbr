@@ -1,34 +1,34 @@
-// file: file-logging.zbr
-// teaches: generating timestamped log files
-// chapter: 20
+# file: file-logging.zbr
+# teaches: generating timestamped log files
+# chapter: 20
 
 class Logger
-    var filename as str
-    var entries as List(str)
+    var filename: str
+    var entries: List(str)
     
-    def init(filename as str)
+    def init(filename: str)
         this.filename = filename
-        this.entries = List(str)()
+        this.entries = List()
     
-    def log(message as str)
+    def log(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
         this.entries.add(entry)
-        println(entry)
+        print(entry)
     
-    def error(message as str)
+    def error(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
         this.entries.add(entry)
-        println(entry)
+        print(entry)
     
-    def save() as bool
+    def save(): bool
         var content = entries.join("\n")
         var result = File.write(filename, content)
         return result.isOk()
 
-def get_timestamp() as str
-    // Placeholder—in real code, use actual time
+def get_timestamp(): str
+    # Placeholder—in real code, use actual time
     return "2025-03-15 14:30:00"
 
 def main()
@@ -41,6 +41,6 @@ def main()
     logger.log("Connection successful")
     
     if logger.save()
-        println("Log saved to ${logger.filename}")
+        print("Log saved to ${logger.filename}")
     else
-        println("Failed to save log")
+        print("Failed to save log")

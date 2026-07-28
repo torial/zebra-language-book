@@ -1,0 +1,11 @@
+# file: colors.zbr
+namespace Colors
+    struct Rgb
+        var r: int
+        var g: int
+        var b: int
+
+    def from_hex(hex: int): Rgb
+        return Rgb(r: (hex >> 16) & 0xFF,
+                   g: (hex >> 8)  & 0xFF,
+                   b: hex & 0xFF)

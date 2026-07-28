@@ -1,0 +1,10 @@
+def example()
+    var x = 10
+    
+    if true
+        var y = 20         # y is only visible here
+        print(x)  # x is visible (outer scope)
+        print(y)  # y is visible
+    
+    print(x)  # x is visible
+    # print y           # ERROR: y is out of scope

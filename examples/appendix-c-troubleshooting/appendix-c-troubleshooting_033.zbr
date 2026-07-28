@@ -1,0 +1,2 @@
+var result = File.read("file.txt")
+var content = result.value()    # ERROR: might be error!

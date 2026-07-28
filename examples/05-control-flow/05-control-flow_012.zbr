@@ -1,0 +1,16 @@
+def process_order(order_id: int): bool
+    var order = fetch_order(order_id)
+    
+    if order == nil
+        return false
+    
+    if order.total == 0
+        return false
+    
+    if not order.has_items
+        return false
+    
+    # Do the real processing
+    charge_card(order)
+    ship_items(order)
+    return true

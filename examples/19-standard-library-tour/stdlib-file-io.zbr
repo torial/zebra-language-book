@@ -1,0 +1,11 @@
+# file: stdlib-file-io.zbr
+# teaches: file system operations
+# chapter: 19
+
+def main()
+    # Read a file
+    var content = File.read("data.txt") catch "could not read"
+    print(content)
+
+    # Write a file
+    File.write("output.txt", "Hello from Zebra!")

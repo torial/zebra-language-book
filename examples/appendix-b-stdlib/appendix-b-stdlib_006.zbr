@@ -1,0 +1,3 @@
+if text.contains("World")
+    var pos = text.indexOf("World")
+    print("Found at ${pos}")

@@ -1,0 +1,24 @@
+# file: 02_tuples.zbr
+# teaches: tuple types, literals, destructuring, and indexing
+# chapter: 02-Values-and-Types
+
+def minmax(a: int, b: int): (int, int)
+    if a < b
+        return (a, b)
+    return (b, a)
+
+def main()
+    # Positional destructure into named locals
+    var (lo, hi) = minmax(7, 3)
+    print(lo)  # 3
+    print(hi)  # 7
+
+    # Hold as a tuple value, index into it
+    var t = minmax(1, 9)
+    print(t.0)  # 1
+    print(t.1)  # 9
+
+    # Mixed types work — (str, int), (float, bool), etc.
+    var pair: (str, int) = ("alice", 42)
+    print(pair.0)  # alice
+    print(pair.1)  # 42

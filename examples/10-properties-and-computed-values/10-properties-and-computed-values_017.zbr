@@ -1,0 +1,35 @@
+class Circle
+    var radius: float = 0.0
+    
+    def set_radius(r: float): bool
+        if r <= 0.0
+            return false
+        radius = r
+        return true
+    
+    def diameter: float
+        return radius * 2.0
+    
+    def set_diameter(d: float): bool
+        if d <= 0.0
+            return false
+        radius = d / 2.0
+        return true
+    
+    def area: float
+        return 3.14159 * radius * radius
+    
+    def circumference: float
+        return 2.0 * 3.14159 * radius
+
+def main()
+    var circle = Circle()
+    circle.set_radius(5.0)
+
+    print("Radius: ${circle.radius}")
+    print("Diameter: ${circle.diameter()}")
+    print("Area: ${circle.area()}")
+    print("Circumference: ${circle.circumference()}")
+
+    circle.set_diameter(20.0)
+    print("New radius: ${circle.radius}")

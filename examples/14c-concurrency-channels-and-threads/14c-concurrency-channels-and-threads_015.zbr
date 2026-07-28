@@ -1,0 +1,8 @@
+> for i in 0..8
+>     pool.submit(def()
+>         capture; var ch = ch
+>         ch.send(work())
+>     )
+> ch.close()              # WRONG: tasks are still running
+> pool.wait()
+>

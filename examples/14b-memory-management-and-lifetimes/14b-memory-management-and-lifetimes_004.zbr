@@ -1,0 +1,7 @@
+var out: HashMap(str, int) = HashMap(str, int)()
+allocate Arena()
+    var tmp: HashMap(str, int) = HashMap(str, int)()
+    populate(tmp)
+    # tmp <- out                                    # ERROR
+    for k, v in tmp                                 # iterate + rebuild
+        out.set(k, v)                               # k and v are str/int — copy-out implicit

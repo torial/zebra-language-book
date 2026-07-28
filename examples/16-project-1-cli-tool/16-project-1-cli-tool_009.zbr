@@ -1,0 +1,18 @@
+class Application
+    var files: List(str)
+    
+    def aggregate_stats(filenames: List(str)): str throws
+        var total_lines = 0
+        var total_words = 0
+        var total_chars = 0
+        
+        for filename in filenames
+            var stats = FileProcessor.get_stats(filename)
+            if stats.isOk()
+                var s = stats.okValue()
+                total_lines = total_lines + s.lines
+                total_words = total_words + s.words
+                total_chars = total_chars + s.chars
+        
+        var result = "Total: ${total_lines} lines, ${total_words} words, ${total_chars} chars"
+        return result

@@ -1,0 +1,5 @@
+def main()
+    var name: str = "World"        # explicit — annotation aids the reader
+    var age: int = 30
+    var pi: float = 3.14159
+    print("${name} is ${age}")

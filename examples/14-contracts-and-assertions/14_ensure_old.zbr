@@ -1,0 +1,13 @@
+# file: 14_ensure_old.zbr
+# teaches: old snapshots in ensure clauses
+# chapter: 14-Contracts-and-Assertions
+
+class Counter
+    var count: int = 0
+
+    def increment(): int
+        ensure
+            result == old count + 1       # post-state vs pre-state
+            count == old count + 1
+        count = count + 1
+        return count

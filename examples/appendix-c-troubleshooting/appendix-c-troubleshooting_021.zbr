@@ -1,0 +1,2 @@
+var x = 42
+var message = "Value: " + x     # ERROR: can't add string + int

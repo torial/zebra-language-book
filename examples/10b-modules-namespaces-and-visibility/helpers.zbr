@@ -1,0 +1,4 @@
+# file: helpers.zbr
+extend int
+    def double(): int
+        return this * 2

@@ -1,0 +1,5 @@
+text.contains(substring)    # bool: contains substring?
+text.startsWith(prefix)     # bool: starts with prefix?
+text.endsWith(suffix)       # bool: ends with suffix?
+text.indexOf(substring)     # int: position of substring (-1 if not found)
+text.lastIndexOf(substring) # int: position of last occurrence

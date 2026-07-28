@@ -1,0 +1,29 @@
+class NumUtils
+    static
+        def parse_safe(text: str): int throws
+            if text == "5"
+                return 5
+            raise "Invalid number"
+
+        def double_it(x: int): int
+            return x * 2
+
+        def add_ten(x: int): int
+            return x + 10
+
+        def to_message(x: int): str
+            return "Final result: ${x}"
+
+def run(input: str)
+    var final = (input
+        -> NumUtils.parse_safe()
+        -> NumUtils.double_it()
+        -> NumUtils.add_ten()
+        -> NumUtils.to_message())
+    print(final)
+catch |e|
+    print("error: ${e}")
+
+def main()
+    run("5")               # prints "Final result: 20"
+    run("not a number")    # prints "error: Invalid number"

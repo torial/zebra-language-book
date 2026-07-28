@@ -1,0 +1,7 @@
+items.add(element)          # Add element to end
+items.remove(element)       # Remove specific element
+items.clear()               # Remove all elements
+items.count()               # int: number of elements
+items.at(index)             # ElementType: element at index
+items.contains(element)     # bool: contains element?
+items.indexOf(element)      # int: position (-1 if not found)

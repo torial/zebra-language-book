@@ -1,0 +1,30 @@
+# file: 14_invariant.zbr
+# teaches: class invariants
+# chapter: 14-Contracts-and-Assertions
+
+class Account
+    var balance: int = 0
+    var transactions: int = 0
+
+    invariant
+        balance >= 0
+        transactions >= 0
+
+    def deposit(amount: int)
+        require
+            amount > 0
+        balance = balance + amount
+        transactions = transactions + 1
+
+    def withdraw(amount: int)
+        require
+            amount > 0
+            amount <= balance
+        balance = balance - amount
+        transactions = transactions + 1
+
+def main()
+    var acct = Account()
+    acct.deposit(50)
+    acct.withdraw(30)
+    # Both invariants checked after each method returns.

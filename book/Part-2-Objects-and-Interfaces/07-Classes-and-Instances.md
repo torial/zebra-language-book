@@ -38,7 +38,7 @@ class Person
         this.age = age
 
     def greet()
-        print "Hi, I'm ${this.name}"
+        print("Hi, I'm ${this.name}")
 
 def main()
     var person = Person("Alice", 30)
@@ -72,7 +72,7 @@ def main()
     var rect = Rectangle()
     rect.width = 10
     rect.height = 5
-    print rect.area()  # 50
+    print(rect.area())  # 50
 ```
 
 > Field defaults make a class **bare-constructible** (`Rectangle()` works) and let callers fill in only the fields they care about. Adding `cue init(width: int, height: int)` would make construction strict and let you drop the defaults — both styles compose.
@@ -104,9 +104,9 @@ def main()
     counter.increment()
     counter.increment()
     counter.increment()
-    print counter.get_count()  # 3
+    print(counter.get_count())  # 3
     counter.reset()
-    print counter.get_count()  # 0
+    print(counter.get_count())  # 0
 ```
 
 ### Static Methods (Class Methods)
@@ -129,8 +129,8 @@ class MathUtil
             return b
 
 def main()
-    print MathUtil.abs(-5)      # 5
-    print MathUtil.max_of(10, 20)  # 20
+    print(MathUtil.abs(-5))  # 5
+    print(MathUtil.max_of(10, 20))  # 20
 ```
 
 > When the methods are pure and don't share state, you have a choice: group them on a class for namespacing (as above) or write them as plain top-level `def`s in a module. Pick the form that reads better at the call site. Top-level `def` keeps the call as `abs(-5)`; the class form makes `MathUtil.abs(-5)` self-documenting at a distance.
@@ -227,9 +227,9 @@ struct Point
 def main()
     var p = Point(x: 1.0, y: 2.0)
     var q = Point(x: 1.0, y: 2.0)
-    print p.toString()         # "Point(x=1.0, y=2.0)"
-    print p.eql(q)             # true
-    print p.hash() == q.hash() # true
+    print(p.toString())  # "Point(x=1.0, y=2.0)"
+    print(p.eql(q))  # true
+    print(p.hash() == q.hash())  # true
 ```
 
 What each trait generates:
@@ -270,9 +270,9 @@ class User
         this.is_active = false
 
     def display_profile()
-        print "User: ${this.username}"
-        print "Email: ${this.email}"
-        print "Active: ${this.is_active}"
+        print("User: ${this.username}")
+        print("Email: ${this.email}")
+        print("Active: ${this.is_active}")
 
 class UserManager
     static
@@ -299,7 +299,7 @@ def main()
     user1.email = "alice@example.com"
 
     if UserManager.add_user(user1)
-        print "User added"
+        print("User added")
 
     if UserManager.find_user("alice") as found
         found.display_profile()
@@ -361,7 +361,7 @@ class UserBuilder
 > class Person
 >     var name: str  # No default value
 > var p = Person()
-> print p.name  # ❌ Uninitialized!
+> print(p.name)  # ❌ Uninitialized!
 > ```
 >
 > ✅ **Better:**
@@ -421,9 +421,9 @@ def main()
     var account = BankAccount()
     account.account_number = "1234567890"
     account.deposit(1000.0)
-    print "Balance: ${account.get_balance()}"
+    print("Balance: ${account.get_balance()}")
     account.withdraw(100.0)
-    print "Balance: ${account.get_balance()}"
+    print("Balance: ${account.get_balance()}")
 ```
 
 </details>
@@ -471,7 +471,7 @@ def main()
     orange.quantity = 80
     store.add_product(orange)
 
-    print "Total value: ${store.total_inventory_value()}"
+    print("Total value: ${store.total_inventory_value()}")
 ```
 
 > The `@as(f64, @floatFromInt(this.quantity))` is a temporary float-from-int cast — Zebra's `int * float` doesn't auto-promote (mixed-type arithmetic is rejected, by design). Once a typed `float(int)` builtin lands, that escape hatch becomes a clean conversion.

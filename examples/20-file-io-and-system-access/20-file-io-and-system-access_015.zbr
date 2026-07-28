@@ -1,0 +1,10 @@
+# Server with route handler:
+def main()
+    Http.serve(8080, def(req: HttpRequest, res: HttpResponse)
+        if req.path == "/health"
+            res.status = 200
+            res.body = "ok"
+        else
+            res.status = 404
+            res.body = "not found"
+    )

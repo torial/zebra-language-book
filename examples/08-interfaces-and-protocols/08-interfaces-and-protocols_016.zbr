@@ -1,0 +1,32 @@
+interface DocumentProcessor
+    def process(content: str): str
+    def validate(content: str): bool
+
+class MarkdownProcessor
+    implements DocumentProcessor
+        def process(content: str): str
+            # Convert markdown to HTML
+            return "<html>${content}</html>"
+        def validate(content: str): bool
+            return content.len > 0
+
+class JSONValidator
+    implements DocumentProcessor
+        def process(content: str): str
+            return content  # Already valid JSON
+        def validate(content: str): bool
+            return content.contains("{") and content.contains("}")
+
+def process_document(processor: DocumentProcessor, doc: str)
+    if processor.validate(doc)
+        var processed = processor.process(doc)
+        print("Processed: ${processed}")
+    else
+        print("Invalid document")
+
+def main()
+    var md = MarkdownProcessor()
+    process_document(md, "# Hello")
+
+    var json = JSONValidator()
+    process_document(json, "{}")

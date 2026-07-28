@@ -1,0 +1,9 @@
+class CInterop
+    static
+        def c_add(a: int, b: int): int
+            # Call C function
+            return a + b
+        
+        def c_strlen(s: str): int
+            # Call strlen from C stdlib
+            return 0

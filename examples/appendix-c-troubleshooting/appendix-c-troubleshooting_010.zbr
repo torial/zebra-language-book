@@ -1,0 +1,4 @@
+var x: int = 42
+var y: int? = x       # OK: int can become int?
+
+var z: int = y        # ERROR: int? cannot become int (might be nil!)

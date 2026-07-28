@@ -1,0 +1,5 @@
+> class User
+>     var age: int = 0
+> var user = User()
+> user.age = -5  # ❌ No validation!
+>

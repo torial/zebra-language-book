@@ -1,0 +1,8 @@
+var n = 42
+
+n.toString()                # str: convert to string
+n.toFloat()                 # float: convert to floating-point
+
+# Range generation
+n.to(end)                   # List(int): numbers from n to end-1
+# Example: 1.to(5) gives [1, 2, 3, 4]

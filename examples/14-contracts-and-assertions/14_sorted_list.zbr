@@ -1,0 +1,49 @@
+# file: 14_sorted_list.zbr
+# teaches: combining require, ensure, and invariant
+# chapter: 14-Contracts-and-Assertions
+
+class SortedList
+    var items: List(int)
+
+    cue init
+        items = List(int)()
+
+    invariant
+        # The list is always non-decreasing
+        isSorted()
+
+    def isSorted(): bool
+        var i = 1
+        while i < items.count()
+            if items.at(i - 1) > items.at(i)
+                return false
+            i = i + 1
+        return true
+
+    def insert(value: int)
+        ensure
+            items.count() == old items.count() + 1
+        # Insert preserving sorted order.
+        var i = 0
+        while i < items.count() and items.at(i) < value
+            i = i + 1
+        items.add(value)
+        # Bubble the new value left into its sorted position.
+        var j = items.count() - 1
+        while j > i
+            var tmp = items.at(j - 1)
+            items.add(items.at(j))
+            j = j - 1
+
+    def smallest(): int
+        require
+            items.count() > 0
+        return items.at(0)
+
+def main()
+    var sl = SortedList()
+    sl.insert(3)
+    sl.insert(1)
+    sl.insert(2)
+    print(sl.smallest())  # 1
+    # Invariant verified after every public method.

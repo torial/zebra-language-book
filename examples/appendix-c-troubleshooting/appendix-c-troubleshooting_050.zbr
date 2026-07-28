@@ -1,0 +1,8 @@
+# SLOW
+var copy = big_list  # Copies entire list
+for item in copy
+    process(item)
+
+# FAST
+for item in big_list
+    process(item)

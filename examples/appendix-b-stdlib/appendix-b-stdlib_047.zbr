@@ -1,0 +1,7 @@
+var result = File.read("file.txt")
+
+if result.isErr()
+    print("Error: ${result.error(}"))
+    return
+    
+var content = result.value()

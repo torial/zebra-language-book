@@ -1,0 +1,1 @@
+var ch: Chan(int) = Chan(int)(4)   # buffer up to 4 values

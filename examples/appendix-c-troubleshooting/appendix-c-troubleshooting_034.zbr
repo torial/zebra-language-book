@@ -1,0 +1,13 @@
+var result = File.read("file.txt")
+
+if result.isOk()
+    var content = result.value()
+else
+    print("Error: ${result.error(}"))
+
+# Or use branch
+branch result
+    on ok(content)
+        print(content)
+    on err(error)
+        print("Error: ${error}")

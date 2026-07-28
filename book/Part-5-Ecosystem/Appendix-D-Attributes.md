@@ -149,9 +149,9 @@ class User
 def main()
     var src = "{\"name\":\"Alice\",\"age\":30}"
     if Json.parseStrict(User, src) as u
-        print u.name              # "Alice"
+        print(u.name)  # "Alice"
     else
-        print "parse failed"
+        print("parse failed")
 ```
 
 **Generated code:** per-field name and type tables

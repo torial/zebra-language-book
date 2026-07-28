@@ -1,20 +1,20 @@
-// file: ffi-batching.zbr
-// teaches: batching FFI operations
-// chapter: 22
+# file: ffi-batching.zbr
+# teaches: batching FFI operations
+# chapter: 22
 
 shared class Batch
-    shared
+    static
         # Process one item (slow)
-        def process_item(item as str) as str
+        def process_item(item: str): str
             return item.upper()
         
         # Process many items (fast)
-        def process_batch(items as List(str)) as List(str)
+        def process_batch(items: List(str)): List(str)
             # Single FFI call for all items
             return items
 
 def main()
-    var items = List(str)()
+    var items = List()
     for i in 0.to(100)
         items.add("item-${i}")
     

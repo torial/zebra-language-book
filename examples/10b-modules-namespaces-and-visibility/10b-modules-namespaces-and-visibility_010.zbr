@@ -1,0 +1,6 @@
+namespace Sql.Sqlite
+    static def open(path: str): int
+        # ...
+
+def main()
+    var db = Sql.Sqlite.open("mydb.db")

@@ -1,0 +1,10 @@
+def is_valid_email(email: str): bool
+    if not email.contains("@")
+        return false
+    var parts: List(str) = email.split("@")
+    if parts.count() != 2
+        return false
+    var domain: str = parts.at(1)
+    if not domain.contains(".")
+        return false
+    return true

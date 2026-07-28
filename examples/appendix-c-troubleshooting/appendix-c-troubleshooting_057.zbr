@@ -1,0 +1,6 @@
+var x: int? = get_value()
+
+if x != nil
+    var result = x + 1
+else
+    print("Value not available")

@@ -1,0 +1,4 @@
+> for i in 0..8: pool.submit(...)
+> pool.wait()             # all sends are complete
+> ch.close()
+>

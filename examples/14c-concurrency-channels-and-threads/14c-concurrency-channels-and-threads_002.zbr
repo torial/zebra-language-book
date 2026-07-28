@@ -1,0 +1,4 @@
+ch <- 42                # equivalent to ch.send(42)
+
+var v: int? = nil
+v <- ch                 # equivalent to v = ch.recv()

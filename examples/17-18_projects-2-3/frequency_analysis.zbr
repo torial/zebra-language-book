@@ -1,23 +1,23 @@
-// file: frequency_analysis.zbr
-// teaches: frequency counting and sorting
-// project: Project-3-Data-Analysis
+# file: frequency_analysis.zbr
+# teaches: frequency counting and sorting
+# project: Project-3-Data-Analysis
 
 class WordFrequency
-    var word as str
-    var count as int
+    var word: str
+    var count: int
     
-    def init(word as str, count as int)
+    def init(word: str, count: int)
         this.word = word
         this.count = count
     
-    def to_string as str
+    def to_string: str
         return "${word}: ${count}"
 
 class FrequencyAnalyzer
-    shared
-        def analyze_text(text as str) as List(WordFrequency)
+    static
+        def analyze_text(text: str): List(WordFrequency)
             var words = text.lower().split(" ")
-            var freq as HashMap(str, int) = HashMap()
+            var freq: HashMap(str, int) = HashMap()
             
             # Count occurrences
             for word in words
@@ -29,7 +29,7 @@ class FrequencyAnalyzer
                         freq.put(cleaned, 1)
             
             # Convert to list and sort by frequency
-            var results as List(WordFrequency) = List()
+            var results: List(WordFrequency) = List()
             for word, count in freq
                 var wf = WordFrequency(word, count)
                 results.add(wf)
@@ -51,9 +51,9 @@ class FrequencyAnalyzer
             
             return results
         
-        def top_words(text as str, limit as int) as List(WordFrequency)
+        def top_words(text: str, limit: int): List(WordFrequency)
             var all_freqs = analyze_text(text)
-            var results as List(WordFrequency) = List()
+            var results: List(WordFrequency) = List()
             
             var i = 0
             while i < limit and i < all_freqs.count()

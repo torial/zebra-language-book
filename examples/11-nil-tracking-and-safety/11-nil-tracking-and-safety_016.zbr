@@ -1,0 +1,28 @@
+class User
+    var id: int
+    var name: str
+    var email: str?
+
+class UserDB
+    static
+        def find_user(id: int): User?
+            if id == 1
+                var user = User()
+                user.id = 1
+                user.name = "Alice"
+                user.email = "alice@example.com"
+                return user
+            return nil
+        
+        def get_email(user_id: int): str?
+            var user = find_user(user_id)
+            if user == nil
+                return nil
+            return user.email
+
+def main()
+    var email = UserDB.get_email(1)
+    if email != nil
+        print("Email: ${email}")
+    else
+        print("User not found or no email")

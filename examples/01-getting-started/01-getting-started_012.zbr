@@ -1,0 +1,5 @@
+def main()
+    var first_name = "Bob"
+    var last_name = "Smith"
+    var age = 30
+    print("My name is ${first_name} ${last_name} and I'm ${age} years old.")

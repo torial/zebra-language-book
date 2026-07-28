@@ -1,0 +1,33 @@
+# file: 14b_streaming_processor.zbr
+# teaches: allocate + <- + using together
+# chapter: 14b-Memory-Management-and-Lifetimes
+
+class Summary
+    public var filename: str = ""
+    public var word_count: int = 0
+    public var top_word: str = ""
+
+def process_one(path: str): Summary
+    var result = Summary()
+    result.filename = path
+    allocate Arena()
+        var src = File.read(path)
+        var words = src.split(" ")
+        result.word_count = words.count()
+        result.top_word <- most_frequent(words)   # copy-out the single str
+    # All of src + words freed here; result survives.
+    return result
+
+def most_frequent(words: List(str)): str
+    # ... implementation that allocates a HashMap internally ...
+    return ""
+
+def main()
+    var summaries: List(Summary) = List()
+    var paths = File.list_dir("./docs")
+    for path in paths
+        var s = process_one(path)
+        summaries.add(s)               # Summary itself is in the outer arena
+
+    for s in summaries
+        print("${s.filename}: ${s.word_count} words, top=${s.top_word}")

@@ -1,0 +1,11 @@
+extend int
+    def is_even(): bool
+        return this % 2 == 0
+
+    def abs(): int
+        if this < 0: return -this
+        return this
+
+extend List(str)
+    def join_with(sep: str): str
+        return this.join(sep)

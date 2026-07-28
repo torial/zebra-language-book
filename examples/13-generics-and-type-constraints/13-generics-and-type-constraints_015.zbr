@@ -1,0 +1,5 @@
+# DANGER - at runtime, type information is lost
+def process(items: List(T))
+    for item in items
+        if item isa int  # This may not work as expected
+            print(item + 10)

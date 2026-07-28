@@ -1,0 +1,4 @@
+with g
+    text("Status: ready")        # → g.text("Status: ready")
+    button("OK", .ok)            # → g.button("OK", .ok)
+    x = 5                        # → g.x = 5

@@ -1,0 +1,4 @@
+var text = "HELLO WORLD"
+var words = text.lower().split(" ")
+var first_word = words.at(0)
+var length = first_word.len

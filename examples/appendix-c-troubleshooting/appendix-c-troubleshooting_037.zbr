@@ -1,0 +1,11 @@
+class Person
+    var name: str = ""
+
+var person = Person()
+person.name = "Alice"           # OK if var field
+
+class Circle
+    var radius: float = 0.0   # If immutable
+    
+var circle = Circle()
+circle.radius = 5.0             # ERROR if immutable

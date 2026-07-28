@@ -1,0 +1,16 @@
+# file: greeter_host.zbr
+# teaches: DynLib.open + lookup
+# chapter: 22-FFI-and-Interop
+
+interface IGreeter
+    def greet(name: str): str
+    def version(): int
+
+def main()
+    var lib = DynLib.open("greeter.dll")           # path follows OS convention
+    var g = lib.lookup(IGreeter, "greeter")        # factory symbol name
+
+    print(g.greet("World"))  # "Hello, World"
+    print(g.version())  # 1
+
+    lib.close()

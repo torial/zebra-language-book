@@ -1,0 +1,2 @@
+for key, value in map       # Iterate over key-value pairs
+    print("${key}: ${value}")

@@ -1,0 +1,16 @@
+# file: greeter.zbr
+# compile with:  zebra --shared greeter.zbr
+# teaches: @export class for DynLib plugins
+# chapter: 22-FFI-and-Interop
+
+interface IGreeter
+    def greet(name: str): str
+    def version(): int
+
+@export("greeter")
+class HelloGreeter implements IGreeter
+    def greet(name: str): str
+        return "Hello, " + name
+
+    def version(): int
+        return 1

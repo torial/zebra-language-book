@@ -1,0 +1,15 @@
+class CountGroup
+    var entered: int = 0
+    var exited: int = 0
+
+    def begin()
+        .entered = .entered + 1
+
+    def end()
+        .exited = .exited + 1
+
+def main()
+    var g = CountGroup()
+    using g
+        print("inside the using block")
+    # Here: g.entered == 1, g.exited == 1

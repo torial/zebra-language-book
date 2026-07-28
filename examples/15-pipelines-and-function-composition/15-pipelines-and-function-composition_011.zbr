@@ -1,0 +1,5 @@
+# Pipeline auto-prepends the left-hand value as the FIRST argument.
+# So `10 -> Utils.add(5)` calls `Utils.add(10, 5)`, not `Utils.add(5, 10)`.
+
+# Want 10 as the SECOND argument? Don't use a pipeline:
+var result = Utils.add(5, 10)

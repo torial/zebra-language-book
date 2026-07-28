@@ -1,0 +1,6 @@
+> class Counter
+>     var count: int = 0  # Instance field
+>     
+>     def reset
+>         count = 0  # Only this instance
+>

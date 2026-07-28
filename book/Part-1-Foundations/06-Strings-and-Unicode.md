@@ -29,18 +29,18 @@
 def main()
     # Simple string
     var greeting = "Hello"
-    print greeting
+    print(greeting)
 
     # With quotes inside
     var quoted = "She said \"Hello\""
-    print quoted
+    print(quoted)
 
     # Multi-line (triple-quoted)
     var poem = """
     Roses are red
     Violets are blue
     """
-    print poem
+    print(poem)
 
     # Escape sequences
     var path = "C:\\Users\\Name\\Documents"
@@ -59,19 +59,19 @@ def main()
     var text = "Hello, World!"
 
     # Byte length (Unicode-aware count is below — see codePointCount)
-    print text.len                      # 13
+    print(text.len)  # 13
 
     # Character at index — text[i] returns a char, .toString() lifts it back to str
     var first_char = text[0]
-    print first_char.toString()         # H
+    print(first_char.toString())  # H
 
     # Substring/slice
     var part: str = text[0..5]
-    print part                          # Hello
+    print(part)  # Hello
 
     # Case conversion
-    print text.upper()                  # HELLO, WORLD!
-    print text.lower()                  # hello, world!
+    print(text.upper())  # HELLO, WORLD!
+    print(text.lower())  # hello, world!
 ```
 
 ### String Interpolation
@@ -86,18 +86,18 @@ def main()
     var age = 30
 
     # Simple interpolation
-    print "Name: ${name}"               # Name: Alice
+    print("Name: ${name}")  # Name: Alice
 
     # Expressions in interpolation
-    print "Age next year: ${age + 1}"   # Age next year: 31
+    print("Age next year: ${age + 1}")  # Age next year: 31
 
     # Method calls
     var lower_name = name.lower()
-    print "Lowercase: ${lower_name}"    # Lowercase: alice
+    print("Lowercase: ${lower_name}")  # Lowercase: alice
 
     # Format specifiers
     var price = 19.99
-    print "Price: ${price:.2f}"         # Price: 19.99
+    print("Price: ${price:.2f}")  # Price: 19.99
 ```
 
 ---
@@ -115,16 +115,16 @@ def main()
     var text = "Hello, World!"
 
     # Contains
-    print text.contains("World")        # true
-    print text.contains("xyz")          # false
+    print(text.contains("World"))  # true
+    print(text.contains("xyz"))  # false
 
     # Index — returns -1 when not found
-    print text.indexOf("World")         # 7
-    print text.indexOf("xyz")           # -1
+    print(text.indexOf("World"))  # 7
+    print(text.indexOf("xyz"))  # -1
 
     # Starts/ends with
-    print text.startsWith("Hello")      # true
-    print text.endsWith("!")            # true
+    print(text.startsWith("Hello"))  # true
+    print(text.endsWith("!"))  # true
 ```
 
 ### Splitting and Joining
@@ -141,7 +141,7 @@ def main()
     var fruits: List(str) = csv.split(",")
     for fruit in fruits
         var f: str = fruit
-        print f
+        print(f)
 
     # Join
     var items = List(str)()
@@ -149,7 +149,7 @@ def main()
     items.add("two")
     items.add("three")
     var result = ", ".join(items)
-    print result                        # one, two, three
+    print(result)  # one, two, three
 ```
 
 ### Trimming and Padding
@@ -163,15 +163,15 @@ def main()
     var padded = "  hello  "
 
     # Trim whitespace
-    print "|${padded.trim()}|"          # |hello|
-    print "|${padded.trimLeft()}|"      # |hello  |
-    print "|${padded.trimRight()}|"     # |  hello|
+    print("|${padded.trim()}|")  # |hello|
+    print("|${padded.trimLeft()}|")  # |hello  |
+    print("|${padded.trimRight()}|")  # |  hello|
 
     # Padding
     var short = "hi"
-    print short.padLeft(10, "*")        # ********hi
-    print short.padRight(10, "-")       # hi--------
-    print short.center(10, "*")         # ****hi****
+    print(short.padLeft(10, "*"))  # ********hi
+    print(short.padRight(10, "-"))  # hi--------
+    print(short.center(10, "*"))  # ****hi****
 ```
 
 ### Replacing
@@ -186,14 +186,14 @@ def main()
 
     # Replace (first occurrence, or all)
     var once = text.replace("and", "or")      # Replaces once
-    print once
+    print(once)
 
     var all = text.replaceAll("and", "or")    # Replaces all
-    print all
+    print(all)
 
     # Case conversion
     var lower = "Hello World".lower()
-    print lower                         # hello world
+    print(lower)  # hello world
 ```
 
 ---
@@ -212,21 +212,21 @@ def main()
 def main()
     # Emoji
     var emoji = "Hello 👋 🌍 🎉"
-    print emoji
-    print emoji.len                     # Byte length
-    print emoji.codePointCount()        # Character count
+    print(emoji)
+    print(emoji.len)  # Byte length
+    print(emoji.codePointCount())  # Character count
 
     # Chinese
     var chinese = "你好世界"             # Hello World in Chinese
-    print chinese
+    print(chinese)
 
     # Arabic (right-to-left)
     var arabic = "مرحبا بالعالم"         # Hello World
-    print arabic
+    print(arabic)
 
     # Mixed scripts
     var mixed = "Hello 世界 مرحبا"
-    print mixed
+    print(mixed)
 ```
 
 ### Character Iteration
@@ -241,12 +241,12 @@ def main()
 
     # Iterate characters (yields `char`; .toString() lifts back to str for printing)
     for c in text.chars()
-        print c.toString()
+        print(c.toString())
 
     # Byte iteration — yields each byte as a u8
     var data = "AB"
     for byte in data.bytes()
-        print byte                  # 65, 66 (ASCII values)
+        print(byte)  # 65, 66 (ASCII values)
 ```
 
 > `.chars()` and `.bytes()` are different lenses on the same string. `.chars()` walks Unicode codepoints (so `"👋"` yields one element); `.bytes()` walks the raw UTF-8 bytes (so `"👋"` yields four). Use whichever matches what you're counting.
@@ -269,17 +269,17 @@ def main()
     var email = "alice@example.com"
     var pattern = Regex.compile("[a-z]+@[a-z]+\\.[a-z]+")
 
-    print pattern.match(email)          # true
+    print(pattern.match(email))  # true
 
     # Find matches
     var text = "I have 2 apples and 3 oranges"
     var digit_pattern = Regex.compile("\\d+")
     if digit_pattern.find(text) as found
-        print found                     # 2
+        print(found)  # 2
 
     # Replace
     var clean = digit_pattern.replace(text, "X")
-    print clean                         # I have X apples and X oranges
+    print(clean)  # I have X apples and X oranges
 ```
 
 ---
@@ -316,15 +316,15 @@ def main()
     var fields = parse_csv_line(csv_line)
     var name: str = fields.at(0)
     var age:  str = fields.at(1)
-    print "Name: ${name}"
-    print "Age: ${age}"
+    print("Name: ${name}")
+    print("Age: ${age}")
 
     # Extract numbers
     var text = "I was born in 1990 and moved in 2005"
     var years = extract_numbers(text)
     for year in years
         var y: str = year
-        print y
+        print(y)
 ```
 
 ---
@@ -390,13 +390,13 @@ def template(text: str, values: HashMap(str, str)): str
 >
 > ```zebra
 > var emoji = "👋"
-> print emoji.len  # ❌ Returns 4 (bytes), not 1
+> print(emoji.len)  # ❌ Returns 4 (bytes), not 1
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > var emoji = "👋"
-> print emoji.codePointCount()  # ✅ Returns 1 (characters)
+> print(emoji.codePointCount())  # ✅ Returns 1 (characters)
 > ```
 
 > ❌ **Mistake:** Inefficient concatenation in loops
@@ -441,7 +441,7 @@ def reverse_str(text: str): str
 
 def main()
     var reversed = reverse_str("hello")
-    print reversed  # olleh
+    print(reversed)  # olleh
 ```
 
 > Zebra also has a built-in `text.reverse()` for the common case; the loop above is just to show character iteration.
@@ -480,9 +480,9 @@ def main()
     for email in emails
         var e: str = email
         if is_valid_email(e)
-            print "Valid: ${e}"
+            print("Valid: ${e}")
         else
-            print "Invalid: ${e}"
+            print("Invalid: ${e}")
 ```
 
 </details>
@@ -510,7 +510,7 @@ def main()
     var fields = parse_with_trim(csv)
     for field in fields
         var f: str = field
-        print "|${f}|"
+        print("|${f}|")
 ```
 
 </details>

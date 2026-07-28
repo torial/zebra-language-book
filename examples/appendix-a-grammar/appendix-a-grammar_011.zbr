@@ -1,0 +1,12 @@
+interface Animal
+    def speak(): str
+
+class Dog implements Animal
+    var name: str = ""
+    
+    def speak(): str
+        return "Woof!"
+
+var dog = Dog()
+dog.name = "Buddy"
+print(dog.speak())  # "Woof!"

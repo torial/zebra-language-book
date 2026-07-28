@@ -1,0 +1,14 @@
+# Zebra (using interfaces)
+interface Animal
+    def speak(): str
+
+class Dog implements Animal
+    def speak(): str
+        return "Woof!"
+
+class Bird implements Animal
+    def speak(): str
+        return "Tweet!"
+
+def get_sound(animal: Animal): str
+    return animal.speak()

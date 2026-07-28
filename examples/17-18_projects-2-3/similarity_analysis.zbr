@@ -1,10 +1,10 @@
-// file: similarity_analysis.zbr
-// teaches: similarity metrics and comparison
-// project: Project-3-Data-Analysis
+# file: similarity_analysis.zbr
+# teaches: similarity metrics and comparison
+# project: Project-3-Data-Analysis
 
 class SimilarityMetrics
-    shared
-        def jaccard_similarity(text1 as str, text2 as str) as float
+    static
+        def jaccard_similarity(text1: str, text2: str): float
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
             
@@ -24,7 +24,7 @@ class SimilarityMetrics
             
             return intersection / union
         
-        def cosine_similarity(text1 as str, text2 as str) as float
+        def cosine_similarity(text1: str, text2: str): float
             # Simplified cosine similarity (not true cosine, but similar)
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
@@ -44,7 +44,7 @@ class SimilarityMetrics
             var denominator = len1 + len2
             return (2.0 * common) / denominator
         
-        def hamming_distance(text1 as str, text2 as str) as int
+        def hamming_distance(text1: str, text2: str): int
             var words1 = text1.lower().split(" ")
             var words2 = text2.lower().split(" ")
             

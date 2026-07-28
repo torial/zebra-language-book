@@ -1,16 +1,16 @@
-// file: ffi-c-strings.zbr
-// teaches: passing strings to C functions
-// chapter: 22
+# file: ffi-c-strings.zbr
+# teaches: passing strings to C functions
+# chapter: 22
 
 shared class CString
-    shared
+    static
         # C strlen: int strlen(const char* s)
-        def strlen(s as str) as int
+        def strlen(s: str): int
             # Native C implementation
             return 0
         
         # C strcmp: int strcmp(const char* a, const char* b)
-        def strcmp(a as str, b as str) as int
+        def strcmp(a: str, b: str): int
             # Returns: 0 if equal, <0 if a<b, >0 if a>b
             return 0
         
@@ -21,12 +21,12 @@ shared class CString
 def main()
     var text = "Hello, World!"
     var length = CString.strlen(text)
-    println("Length: ${length}")
+    print("Length: ${length}")
     
     var cmp = CString.strcmp("apple", "apple")
     if cmp == 0
-        println("Strings are equal")
+        print("Strings are equal")
     
     cmp = CString.strcmp("apple", "banana")
     if cmp < 0
-        println("apple comes before banana")
+        print("apple comes before banana")

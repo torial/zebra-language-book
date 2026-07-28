@@ -1,0 +1,6 @@
+class Point
+    var x: int = 0
+    var y: int = 0
+
+    def distance_from_origin(): float
+        return 0.0  # sqrt(x*x + y*y) once you have a sqrt to call

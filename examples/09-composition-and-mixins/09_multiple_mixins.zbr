@@ -1,0 +1,34 @@
+# file: 09_multiple_mixins.zbr
+# teaches: combining multiple mixins
+# chapter: 09-Composition-and-Mixins
+
+mixin Timestamped
+    var created_at_ms: int = 0
+
+    def stamp_now()
+        this.created_at_ms = DateTime.now().epochMs
+
+mixin Tagged
+    var tags: List(str)
+
+    cue init()
+        this.tags = List(str)()
+
+    def tag(t: str)
+        this.tags.add(t)
+
+class BlogPost adds Timestamped, Tagged
+    var title: str = ""
+    var body: str = ""
+
+    cue init(t: str, b: str)
+        this.title = t
+        this.body = b
+        this.tags = List(str)()
+        this.stamp_now()
+
+def main()
+    var p = BlogPost("Hello", "First post body")
+    p.tag("intro")
+    p.tag("zebra")
+    print("${p.title} — ${p.tags.count()} tags @ ${p.created_at_ms} ms")

@@ -1,0 +1,19 @@
+class Timer
+    var label: str
+    var start_ms: int = 0
+
+    cue init(label: str)
+        .label = label
+
+    def begin()
+        .start_ms = Time.monotonic_ms()
+
+    def end()
+        var elapsed = Time.monotonic_ms() - .start_ms
+        print("${.label}: ${elapsed} ms")
+
+def main()
+    using Timer("file read")
+        var src = File.read("big.txt")
+        # ... work ...
+    # Prints "file read: NN ms" when the block exits

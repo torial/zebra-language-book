@@ -1,0 +1,4 @@
+var user_id = 42           # ✅ Good
+var UserID = 42            # ❌ Avoid (that's for classes)
+var user_id_number = 42    # ✅ Clear but verbose
+var uid = 42               # ❌ Too abbreviated

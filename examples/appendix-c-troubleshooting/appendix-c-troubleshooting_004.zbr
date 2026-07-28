@@ -1,0 +1,3 @@
+var result = "10".toInt() and "5".toInt()
+if result != nil
+    # Handle both being valid

@@ -1,0 +1,7 @@
+var text = "hello"
+
+if text.len > 0
+    var first = text.charAt(0)
+
+if text.contains("ll")
+    var pos = text.indexOf("ll")

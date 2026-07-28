@@ -1,0 +1,2 @@
+text.toInt()                # int?: convert to integer (nil if invalid)
+text.toFloat()              # float?: convert to float (nil if invalid)

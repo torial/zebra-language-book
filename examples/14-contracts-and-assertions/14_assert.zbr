@@ -1,0 +1,12 @@
+# file: 14_assert.zbr
+# teaches: assert statement
+# chapter: 14-Contracts-and-Assertions
+
+class Math
+    static
+        def divide(a: int, b: int): int
+            require
+                b != 0
+            var q = a / b
+            assert q * b == a       # integer-division sanity probe
+            return q

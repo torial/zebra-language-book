@@ -1,0 +1,4 @@
+var items = List()
+
+if items.count() > 0
+    items.remove(42)

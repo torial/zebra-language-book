@@ -1,31 +1,31 @@
-// file: http_server.zbr
-// teaches: network server programming
-// project: Project-2-HTTP-Server
+# file: http_server.zbr
+# teaches: network server programming
+# project: Project-2-HTTP-Server
 
 class HttpServer
-    var port as int
-    var router as Router
-    var is_running as bool = false
+    var port: int
+    var router: Router
+    var is_running: bool = false
     
-    def init(port as int)
+    def init(port: int)
         this.port = port
         router = Router()
     
-    def register_handler(path as str, handler as RequestHandler)
+    def register_handler(path: str, handler: RequestHandler)
         router.register(path, handler)
     
-    def start as Result(bool, str)
+    def start: bool throws
         is_running = true
         
         # Register default handlers
         register_handler("/health", HealthHandler())
         register_handler("/api/users", UserHandler())
         
-        print "Server starting on port ${port}..."
-        print "Available routes:"
+        print("Server starting on port ${port}...")
+        print("Available routes:")
         var routes = router.list_routes()
         for route in routes
-            print "  ${route}"
+            print("  ${route}")
         
         # Main server loop
         # In real implementation, this would:
@@ -39,7 +39,7 @@ class HttpServer
         # Simplified simulation
         handle_request_simulation()
         
-        return Result.ok(true)
+        return true
     
     def handle_request_simulation
         # Simulate receiving a GET /health request
@@ -53,16 +53,14 @@ class HttpServer
         var result = router.route_request(request)
         if result.isOk()
             var response = result.okValue()
-            print response.format_response()
+            print(response.format_response())
 
-class Main
-    shared
-        def main
-            var server = HttpServer(8080)
-            
-            var result = server.start()
-            
-            if result.isErr()
-                print "Error: ${result.errValue()}"
-            else
-                print "Server running. (Ctrl+C to stop)"
+def main()
+    var server = HttpServer(8080)
+    
+    var result = server.start()
+    
+    if result.isErr()
+        print("Error: ${result.errValue()}")
+    else
+        print("Server running. (Ctrl+C to stop)")

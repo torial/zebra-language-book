@@ -1,0 +1,3 @@
+> def accelerate
+>     super.accelerate()           # ❌ no `super` in Zebra
+>

@@ -1,0 +1,12 @@
+class MathUtils
+    static
+        def safe_divide(a: int, b: int): int throws
+            if b == 0
+                raise "Division by zero"
+            return a / b
+
+def main()
+    var r1 = MathUtils.safe_divide(10, 2) catch 0
+    var r2 = MathUtils.safe_divide(10, 0) catch 0
+    print(r1)  # 5
+    print(r2)  # 0

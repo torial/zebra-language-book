@@ -1,0 +1,9 @@
+class Shape          # Abstract-ish
+    # ...
+
+class Circle implements Shape
+    # Provide all implementations
+    # ...
+
+var circle = Circle()  # OK
+# var shape = Shape()  # ERROR

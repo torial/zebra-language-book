@@ -1,0 +1,2 @@
+var items = List()
+items.remove(42)        # ERROR: can't remove from empty list

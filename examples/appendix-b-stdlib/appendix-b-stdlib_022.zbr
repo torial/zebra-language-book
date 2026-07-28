@@ -1,0 +1,4 @@
+var x = 3.14
+
+x.toString()                # str: convert to string
+x.toInt()                   # int: truncate to integer

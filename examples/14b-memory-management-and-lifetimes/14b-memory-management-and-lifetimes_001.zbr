@@ -1,0 +1,8 @@
+def main()
+    var summary = ""
+    allocate Arena()
+        var src = File.read("big_file.txt")
+        var parsed = parse(src)
+        summary <- summarise(parsed)        # copy result out (see below)
+    # src, parsed, and all parse temporaries freed here.
+    print(summary)

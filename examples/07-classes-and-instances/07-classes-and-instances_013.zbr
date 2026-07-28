@@ -1,0 +1,6 @@
+> class Counter
+>     static var count: int = 0
+>     
+>     def reset
+>         count = 0  # Affects ALL instances!
+>

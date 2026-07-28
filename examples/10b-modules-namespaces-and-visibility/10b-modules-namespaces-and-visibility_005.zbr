@@ -1,0 +1,6 @@
+# Qualified:
+var v: math_utils.Vec2 = math_utils.Vec2(1.0, 2.0)
+
+# Exposed:
+use math_utils exposing Vec2
+var v: Vec2 = Vec2(1.0, 2.0)

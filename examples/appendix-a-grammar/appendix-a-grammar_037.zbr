@@ -1,0 +1,3 @@
+text.indexOf("ll")              # Find position of substring
+text.startsWith("He")           # Check prefix
+text.endsWith("o")              # Check suffix

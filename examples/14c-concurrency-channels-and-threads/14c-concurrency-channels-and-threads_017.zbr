@@ -1,0 +1,4 @@
+> var counter: int = 0
+> sys.go(lambda  counter = counter + 1  )     # data race
+> sys.go(lambda  counter = counter + 1  )
+>

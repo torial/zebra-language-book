@@ -1,0 +1,23 @@
+class BankAccount
+    var balance: float = 0.0
+    var account_number: str = ""
+
+    def deposit(amount: float)
+        this.balance = this.balance + amount
+
+    def withdraw(amount: float): bool
+        if amount > this.balance
+            return false
+        this.balance = this.balance - amount
+        return true
+
+    def get_balance(): float
+        return this.balance
+
+def main()
+    var account = BankAccount()
+    account.account_number = "1234567890"
+    account.deposit(1000.0)
+    print("Balance: ${account.get_balance()}")
+    account.withdraw(100.0)
+    print("Balance: ${account.get_balance()}")

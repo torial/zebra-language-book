@@ -1,0 +1,31 @@
+# file: 07b_except.zbr
+# teaches: except struct update syntax
+# chapter: 07b-Structs-Unions
+
+struct Config
+    var indent: int
+    var owner: str
+    var verbose: bool
+
+    cue init(indent: int, owner: str, verbose: bool)
+        this.indent = indent
+        this.owner = owner
+        this.verbose = verbose
+
+    def indented(): Config
+        var c = this except
+            indent = indent + 1
+        return c
+
+    def withOwner(name: str): Config
+        var c = this except
+            owner = name
+        return c
+
+def main()
+    var base = Config(0, "nobody", false)
+    var inner = base.indented()
+    var owned = inner.withOwner("Alice")
+    print(owned.indent)  # 1
+    print(owned.owner)  # Alice
+    print(owned.verbose)  # false (unchanged)

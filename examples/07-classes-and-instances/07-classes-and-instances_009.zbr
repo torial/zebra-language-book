@@ -1,0 +1,5 @@
+class EmailService
+    static
+        def send(to: str, subject: str, body: str): bool
+            # Implementation
+            return true

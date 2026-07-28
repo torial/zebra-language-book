@@ -1,37 +1,37 @@
-// file: router.zbr
-// teaches: request routing and dispatching
-// project: Project-2-HTTP-Server
+# file: router.zbr
+# teaches: request routing and dispatching
+# project: Project-2-HTTP-Server
 
 interface RequestHandler
-    def handle(request as HttpRequest) as HttpResponse
+    def handle(request: HttpRequest): HttpResponse
 
 class Router
-    var routes as HashMap(str, RequestHandler) = HashMap()
+    var routes: HashMap(str, RequestHandler) = HashMap()
     
-    def register(path as str, handler as RequestHandler)
+    def register(path: str, handler: RequestHandler)
         routes.put(path, handler)
     
-    def route_request(request as HttpRequest) as Result(HttpResponse, str)
+    def route_request(request: HttpRequest): HttpResponse throws
         if routes.contains(request.path)
             var handler = routes.fetch(request.path)
             var response = handler.handle(request)
-            return Result.ok(response)
+            return response
         
         # Path not found
-        return Result.ok(HttpResponse.not_found())
+        return HttpResponse.not_found()
     
-    def list_routes as List(str)
-        var paths as List(str) = List()
+    def list_routes: List(str)
+        var paths: List(str) = List()
         for path in routes
             paths.add(path)
         return paths
 
 class UserHandler
     implements RequestHandler
-        shared var users as HashMap(int, User) = HashMap()
-        shared var next_id as int = 1
+        static var users: HashMap(int, User) = HashMap()
+        static var next_id: int = 1
         
-        def handle(request as HttpRequest) as HttpResponse
+        def handle(request: HttpRequest): HttpResponse
             if request.method == "GET"
                 return handle_get(request)
             elif request.method == "POST"
@@ -43,7 +43,7 @@ class UserHandler
             
             return HttpResponse.bad_request("Method not allowed")
         
-        def handle_get(request as HttpRequest) as HttpResponse
+        def handle_get(request: HttpRequest): HttpResponse
             # If path is /api/users, list all users
             if request.path == "/api/users"
                 var response_body = "["
@@ -58,7 +58,7 @@ class UserHandler
             
             return HttpResponse.not_found()
         
-        def handle_post(request as HttpRequest) as HttpResponse
+        def handle_post(request: HttpRequest): HttpResponse
             # Create new user from JSON body
             # Simplified: real impl would parse JSON properly
             var user = User()
@@ -71,14 +71,14 @@ class UserHandler
             
             return HttpResponse.created(user.to_json())
         
-        def handle_put(request as HttpRequest) as HttpResponse
+        def handle_put(request: HttpRequest): HttpResponse
             return HttpResponse.bad_request("PUT not yet implemented")
         
-        def handle_delete(request as HttpRequest) as HttpResponse
+        def handle_delete(request: HttpRequest): HttpResponse
             return HttpResponse.bad_request("DELETE not yet implemented")
 
 class HealthHandler
     implements RequestHandler
-        def handle(request as HttpRequest) as HttpResponse
+        def handle(request: HttpRequest): HttpResponse
             var response = "{\"status\": \"healthy\"}"
             return HttpResponse.ok(response)

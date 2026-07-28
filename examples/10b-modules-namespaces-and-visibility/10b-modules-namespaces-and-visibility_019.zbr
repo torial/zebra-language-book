@@ -1,0 +1,6 @@
+use cli exposing Options
+use work
+
+def main()
+    var opts = cli.parse_args(sys.args())
+    work.run(opts)

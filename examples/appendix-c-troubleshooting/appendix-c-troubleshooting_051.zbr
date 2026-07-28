@@ -1,0 +1,9 @@
+# SLOW: O(n) for each lookup
+var found = false
+for item in list
+    if item == search_key
+        found = true
+
+# FAST: O(1) lookup
+if set.contains(search_key)
+    found = true

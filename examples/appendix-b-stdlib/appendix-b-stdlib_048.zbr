@@ -1,0 +1,6 @@
+var items = List()
+items.add(1)
+items.add(2)
+
+for item in items
+    print(item)

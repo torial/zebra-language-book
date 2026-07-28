@@ -1,26 +1,23 @@
-// file: 03_hashmaps.zbr
-// teaches: hashmap creation and access
-// chapter: 03-Collections
+# file: 03_hashmaps.zbr
+# teaches: hashmap creation and access
+# chapter: 03-Collections
 
-class Main
-    shared
-        def main
-            // Create empty HashMap
-            var ages as HashMap(str, int) = HashMap()
-            
-            // Add key-value pairs
-            ages.put("Alice", 30)
-            ages.put("Bob", 25)
-            ages.put("Carol", 28)
-            
-            // Retrieve by key
-            var alice_age = ages.fetch("Alice")
-            print alice_age                     // 30
-            
-            // Check if key exists
-            var has_alice = ages.contains("Alice")
-            print has_alice                     // true
-            
-            // Iterate
-            for name, age in ages
-                print "${name}: ${age}"
+def main()
+    # Create empty HashMap
+    var ages = HashMap(str, int)()
+
+    # Add key-value pairs
+    ages.put("Alice", 30)
+    ages.put("Bob", 25)
+    ages.put("Carol", 28)
+
+    # Retrieve by key — get returns int? (nil if missing)
+    if ages.get("Alice") as a
+        print(a)  # 30
+
+    # Check if key exists
+    print(ages.contains("Alice"))  # true
+
+    # Iterate over key/value pairs
+    for name, age in ages
+        print("${name}: ${age}")

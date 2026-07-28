@@ -1,0 +1,29 @@
+class SafeArray
+    var items: List(int)
+
+    cue init
+        items = List(int)()
+
+    def push(v: int)
+        ensure
+            items.count() == old items.count() + 1
+        items.add(v)
+
+    def at(i: int): int
+        require
+            i >= 0
+            i < items.count()
+        return items.at(i)
+
+    def first(): int
+        require
+            items.count() > 0
+        return items.at(0)
+
+def main()
+    var sa = SafeArray()
+    sa.push(10)
+    sa.push(20)
+    print(sa.at(0))  # 10
+    print(sa.first())  # 10
+    # sa.at(99)                # → panic: require failed in 'at'
