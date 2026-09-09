@@ -18,8 +18,10 @@ def main()
     var s = n.toString()
     print(s)  # "100"
 
-    # Safe conversions with nil checking
+    # Safe conversions with nil checking — toInt() returns a plain int
+    # (0 on bad input, not nil), so nil-checking it is a type error.
+    # tryInt() is the nil-checkable form.
     var user_input = "not a number"
-    var parsed = user_input.toInt()
+    var parsed = user_input.tryInt()
     if parsed == nil
         print("Invalid number")

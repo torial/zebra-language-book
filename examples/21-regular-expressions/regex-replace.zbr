@@ -5,14 +5,12 @@
 def main()
     var text = "The cat sat on the mat"
     
-    # Replace first occurrence of pattern
+    # re.replace(s, repl) replaces EVERY match — there's no separate
+    # single-replacement or `.replaceAll` on Regex (that name exists on `str`,
+    # not on `Regex`).
     var pattern = Regex.compile("at")
     var replaced = pattern.replace(text, "AT")
-    print(replaced)  # "The cAT sat on the mat"
-    
-    # Replace all occurrences
-    var all_replaced = pattern.replaceAll(text, "AT")
-    print(all_replaced)  # "The cAT sAT on the mAT"
+    print(replaced)  # "The cAT sAT on the mAT"
     
     # Case-insensitive replacement (if supported)
     var case_insensitive = text.lower().replace("cat", "dog")

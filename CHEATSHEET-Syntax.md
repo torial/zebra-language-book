@@ -28,7 +28,7 @@ def add(a: int, b: int): int
 var result = add(2, 3)                  # 5
 
 def no_return()
-    print "Just print"
+    print("Just print")
 ```
 
 ---
@@ -79,16 +79,16 @@ struct Point
     var y: int
 
 union Value
-    int_ as int
-    str_ as str
+    int_: int
+    str_: str
     none_
 
 # Pattern matching
 branch v
     on Value.int_ as n
-        print n
+        print(n)
     on Value.str_ as s
-        print s
+        print(s)
     else
         pass
 ```
@@ -104,10 +104,10 @@ Zebra has **no class inheritance.**  Reuse via interfaces (Ch 08), mixins
 # Mixin — shared methods pulled into multiple classes:
 mixin Loggable
     def log(message: str)
-        print "[log] ${message}"
+        print("[log] ${message}")
 
 class UserService adds Loggable
-    cue init
+    cue init()
         pass
     # `log()` is now a method on UserService.
 
@@ -130,26 +130,26 @@ See Chapter 09 for the full picture.
 ## Control Flow
 
 ```zebra
-# If/Elif/Else
+# If/Else if/Else
 if x > 10
-    print "Large"
-elif x > 5
-    print "Medium"
+    print("Large")
+else if x > 5
+    print("Medium")
 else
-    print "Small"
+    print("Small")
 
 # While loop
 var i = 0
 while i < 10
-    print i
+    print(i)
     i = i + 1
 
 # For loop
 for item in items
-    print item
+    print(item)
 
 for i in 0..10
-    print i  # 0, 1, 2, ..., 9
+    print(i)  # 0, 1, 2, ..., 9
 
 # Break & Continue
 while true
@@ -158,7 +158,7 @@ while true
     if x == 2
         x = x + 1
         continue
-    print x
+    print(x)
     x = x + 1
 ```
 
@@ -194,7 +194,7 @@ var numbers = List(int)()
 numbers.add(1)
 numbers.add(2)
 for num in numbers
-    print num
+    print(num)
 numbers.count()
 numbers.at(0)
 numbers.contains(1)
@@ -207,7 +207,7 @@ map.fetch("a")                        # retrieve value
 map.contains("a")
 map.remove("a")
 for key, value in map
-    print "${key}: ${value}"
+    print("${key}: ${value}")
 ```
 
 ---
@@ -251,15 +251,16 @@ def parse(text: str): int throws
 # Catch expression (inline fallback)
 var value = parse("abc") catch 0
 
-# Try/catch block
-try
+# Method-level catch (there is no try/catch block; a catch clause
+# attaches to a def, at the same indent as def)
+def attempt()
     var v = parse("")
-    print v
+    print(v)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err.message}")
 
-# Catch with binding
-var result = parse("x") catch |e| -1
+# Catch expression fallback — no binding needed for a fixed value
+var result = parse("x") catch -1
 ```
 
 ---
@@ -280,13 +281,8 @@ if x != nil
 ## Generics
 
 ```zebra
-# Generic function
-def first(items: List(T)) as T?
-    if items.count() > 0
-        return items.at(0)
-    return nil
-
-# Generic class
+# Generics are class-scoped in Zebra — there is no free top-level generic
+# function; a generic method lives on a generic class:
 class Box(T)
     var item: T?
 
@@ -318,15 +314,15 @@ var parts = upper.split(" ")
 ## File I/O
 
 ```zebra
-# Read file
-var content = File.read("file.txt") catch ""
+# Read file (File.read/write are not `throws`; guard with File.exists)
+var content = File.read("file.txt")
 
 # Write file
 File.write("output.txt", content)
 
 # Check existence
 if File.exists("file.txt")
-    print "File exists"
+    print("File exists")
 ```
 
 ---
@@ -432,9 +428,9 @@ class User
     var name: str = ""
     var age: int = 0
 
-print Reflect.className(u)              # "User"
+print(Reflect.className(u))  # "User"
 for n in Reflect.fieldNames(u)
-    print n
+    print(n)
 
 # Tier 3: strict JSON deserialization
 @reflectable
@@ -443,7 +439,7 @@ class User
     var age: int = 0
 
 if Json.parseStrict(User, src) as u
-    print u.name
+    print(u.name)
 ```
 
 Strict semantics: missing key, type mismatch, or extra key → nil.
@@ -476,7 +472,7 @@ Scope-1 fields: int / float / bool / str.
 | `interface` | Define interface |
 | `is` | Member attribute / type check |
 | `implements` | Implement interface |
-| `if`, `elif`, `else` | Conditional |
+| `if`, `else if`, `else` | Conditional |
 | `while` | While loop |
 | `for` | For loop |
 | `break` | Exit loop |

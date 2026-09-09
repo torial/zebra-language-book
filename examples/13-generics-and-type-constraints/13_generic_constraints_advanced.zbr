@@ -11,7 +11,7 @@ class ComparableList(T)
     def add(item: T)
         items.add(item)
     
-    def find_max: T?
+    def find_max(): T?
         if items.count() == 0
             return nil
         var max = items.at(0)

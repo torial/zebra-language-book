@@ -1,5 +1,8 @@
-var result = operation()
-if result.isErr()
-    print("Error: ${result.error(}"))
-else
-    print("Success: ${result.value(}"))
+def operation(): int throws
+    raise "something went wrong"
+
+def main()
+    var result = operation()
+    print("Result: ${result}")
+catch |e|
+    print("Error: ${e.message}")

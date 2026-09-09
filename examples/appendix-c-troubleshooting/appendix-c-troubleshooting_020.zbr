@@ -1,5 +1,5 @@
 var map = HashMap(str, int)()
-var value = map.fetch("key")
+var value = map.get("key")
 
 if value != nil
     var result = value + 1

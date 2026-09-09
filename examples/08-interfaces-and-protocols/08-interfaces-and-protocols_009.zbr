@@ -1,7 +1,6 @@
-> class Dog
->     implements Animal
->         def speak(): str
->             return "Woof!"
->         def move()
->             print("Running")
+> class Dog implements Animal
+>     def speak(): str
+>         return "Woof!"
+>     def move()
+>         print("Running")
 >

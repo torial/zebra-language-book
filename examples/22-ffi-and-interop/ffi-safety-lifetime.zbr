@@ -24,7 +24,7 @@ def safe_parameter(numbers: List(int)): int
     return numbers.at(0)
 
 def main()
-    var my_list = List()
+    var my_list = List(int)()
     my_list.add(42)
     
     # Safe—my_list is still alive

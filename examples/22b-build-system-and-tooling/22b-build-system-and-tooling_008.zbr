@@ -1,3 +1,4 @@
 def main()
     var b = Build.new()
-    b.exe("my-tool", "src/main.zbr").option("optimize", "ReleaseSafe")
+    var t = b.exe("my-tool", "src/main.zbr")
+    t.option("optimize", "ReleaseSafe")

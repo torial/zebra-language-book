@@ -1,15 +1,13 @@
 interface SortStrategy
     def sort(items: List(int))
 
-class AscendingSort
-    implements SortStrategy
-        def sort(items: List(int))
-            # Sort ascending
+class AscendingSort implements SortStrategy
+    def sort(items: List(int))
+        # Sort ascending
 
-class DescendingSort
-    implements SortStrategy
-        def sort(items: List(int))
-            # Sort descending
+class DescendingSort implements SortStrategy
+    def sort(items: List(int))
+        # Sort descending
 
 class Sorter
     var strategy: SortStrategy

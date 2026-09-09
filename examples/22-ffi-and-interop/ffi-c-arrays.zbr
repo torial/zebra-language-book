@@ -2,7 +2,7 @@
 # teaches: passing arrays to C functions
 # chapter: 22
 
-shared class CArray
+class CArray
     static
         # C qsort: void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*))
         # This is complex to use in Zebra—better to sort in Zebra
@@ -24,7 +24,7 @@ shared class CArray
             return max_val
 
 def main()
-    var numbers = List()
+    var numbers = List(int)()
     numbers.add(10)
     numbers.add(20)
     numbers.add(15)

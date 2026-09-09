@@ -1,5 +1,6 @@
-var x = 42
-print(x.toString())  # Force type check
+var x: int? = get_value()
 
-var result: int throws = operation()
-# Type annotation makes intent clear
+if x != nil
+    var result = x + 1
+else
+    print("Value not available")

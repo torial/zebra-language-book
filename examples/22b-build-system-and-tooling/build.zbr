@@ -4,5 +4,6 @@
 
 def main()
     var b = Build.new()
-    b.exe("myapp", "src/main.zbr").option("optimize", "ReleaseSafe")
+    var t = b.exe("myapp", "src/main.zbr")
+    t.option("optimize", "ReleaseSafe")
     # no b.run() needed — zebra build calls it automatically

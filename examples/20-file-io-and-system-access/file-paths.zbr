@@ -3,7 +3,10 @@
 # chapter: 20
 
 def main()
-    var cwd = sys.cwd()
+    # NOTE: annotate the type here — an un-annotated `var cwd = sys.cwd()` currently
+    # prints as a raw byte array instead of text when interpolated (a codegen bug in
+    # today's compiler); `var cwd: str = sys.cwd()` sidesteps it.
+    var cwd: str = sys.cwd()
     print("Current directory: ${cwd}")
     
     # Build path (simple string concatenation)

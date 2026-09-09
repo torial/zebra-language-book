@@ -1,9 +1,11 @@
-class Shape          # Abstract-ish
-    # ...
+if File.exists("missing.txt")
+    var content = File.read("missing.txt")
+    print(content)
+else
+    print("File not found")
 
-class Circle implements Shape
-    # Provide all implementations
-    # ...
-
-var circle = Circle()  # OK
-# var shape = Shape()  # ERROR
+# Or: wrap it so callers can use catch/?
+def read_safely(path: str): str throws
+    if not File.exists(path)
+        raise "file not found: ${path}"
+    return File.read(path)

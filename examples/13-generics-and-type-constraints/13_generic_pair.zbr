@@ -12,10 +12,10 @@ class Pair(K, V)
     def set_value(v: V)
         value = v
     
-    def get_key: K
+    def get_key(): K
         return key
     
-    def get_value: V
+    def get_value(): V
         return value
 
 def main()

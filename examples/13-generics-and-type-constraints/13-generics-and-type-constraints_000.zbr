@@ -1,5 +1,5 @@
 class Container(T)
     var item: T
     
-    def get: T
+    def get(): T
         return item

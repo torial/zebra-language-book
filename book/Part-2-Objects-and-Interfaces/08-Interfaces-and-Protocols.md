@@ -30,21 +30,19 @@ interface Animal
     def speak(): str
     def move()
 
-class Dog
-    implements Animal
-        def speak(): str
-            return "Woof!"
+class Dog implements Animal
+    def speak(): str
+        return "Woof!"
 
-        def move()
-            print("Running on four legs")
+    def move()
+        print("Running on four legs")
 
-class Bird
-    implements Animal
-        def speak(): str
-            return "Tweet!"
+class Bird implements Animal
+    def speak(): str
+        return "Tweet!"
 
-        def move()
-            print("Flying through the air")
+    def move()
+        print("Flying through the air")
 
 def main()
     var dog: Animal = Dog()
@@ -58,7 +56,8 @@ def main()
 
 **Key points:**
 - `interface Animal` — Define what any animal must do
-- `implements Animal` — Promise to implement all methods
+- `implements Animal` goes on the `class` line itself (`class Dog implements Animal`) — Promise to implement all methods
+- To implement more than one interface, list them on the same line: `class Dog implements Animal, Trainable`
 - Treat objects as their interface type (`var dog: Animal`)
 
 ### Multiple Methods
@@ -73,31 +72,29 @@ interface PaymentProcessor
     def refund(transaction_id: str): bool
     def get_status(transaction_id: str): str
 
-class CreditCardProcessor
-    implements PaymentProcessor
-        def process(amount: float): bool
-            print("Processing credit card: ${amount}")
-            return true
+class CreditCardProcessor implements PaymentProcessor
+    def process(amount: float): bool
+        print("Processing credit card: ${amount}")
+        return true
         
-        def refund(transaction_id: str): bool
-            print("Refunding transaction: ${transaction_id}")
-            return true
+    def refund(transaction_id: str): bool
+        print("Refunding transaction: ${transaction_id}")
+        return true
         
-        def get_status(transaction_id: str): str
-            return "completed"
+    def get_status(transaction_id: str): str
+        return "completed"
 
-class PayPalProcessor
-    implements PaymentProcessor
-        def process(amount: float): bool
-            print("Processing PayPal: ${amount}")
-            return true
+class PayPalProcessor implements PaymentProcessor
+    def process(amount: float): bool
+        print("Processing PayPal: ${amount}")
+        return true
         
-        def refund(transaction_id: str): bool
-            print("PayPal refund: ${transaction_id}")
-            return true
+    def refund(transaction_id: str): bool
+        print("PayPal refund: ${transaction_id}")
+        return true
         
-        def get_status(transaction_id: str): str
-            return "pending"
+    def get_status(transaction_id: str): str
+        return "pending"
 ```
 
 ---
@@ -170,35 +167,33 @@ interface Logger
     def debug(message: str)
     def info(message: str)
     def warn(message: str)
-    def error(message: str)
+    def log_error(message: str)
 
-class ConsoleLogger
-    implements Logger
-        def debug(message: str)
-            print("[DEBUG] ${message}")
+class ConsoleLogger implements Logger
+    def debug(message: str)
+        print("[DEBUG] ${message}")
         
-        def info(message: str)
-            print("[INFO] ${message}")
+    def info(message: str)
+        print("[INFO] ${message}")
         
-        def warn(message: str)
-            print("[WARN] ${message}")
+    def warn(message: str)
+        print("[WARN] ${message}")
         
-        def error(message: str)
-            print("[ERROR] ${message}")
+    def log_error(message: str)
+        print("[ERROR] ${message}")
 
-class FileLogger
-    implements Logger
-        def debug(message: str)
-            # Write to file: [DEBUG] message
+class FileLogger implements Logger
+    def debug(message: str)
+        # Write to file: [DEBUG] message
         
-        def info(message: str)
-            # Write to file: [INFO] message
+    def info(message: str)
+        # Write to file: [INFO] message
         
-        def warn(message: str)
-            # Write to file: [WARN] message
+    def warn(message: str)
+        # Write to file: [WARN] message
         
-        def error(message: str)
-            # Write to file: [ERROR] message
+    def log_error(message: str)
+        # Write to file: [ERROR] message
 
 class Application
     var logger: Logger
@@ -223,6 +218,14 @@ def main()
     app.do_work()
 ```
 
+> **Why `log_error`, not `error`?** `error` is a plain identifier in Zebra
+> itself, but an interface's methods are also emitted as a Zig vtable field
+> name, and `error` is a Zig keyword there — `interface Logger` with a plain
+> `def error(...)` type-checks but fails at build with a Zig parse error
+> (`expected '.', found ':'`). It's a gap in the compiler's keyword-escaping
+> for interface vtables specifically (BUG to file), not a rule of the
+> language — but until it's fixed, avoid `error` as an interface method name.
+
 ---
 
 ## Common Patterns
@@ -233,15 +236,13 @@ def main()
 interface SortStrategy
     def sort(items: List(int))
 
-class AscendingSort
-    implements SortStrategy
-        def sort(items: List(int))
-            # Sort ascending
+class AscendingSort implements SortStrategy
+    def sort(items: List(int))
+        # Sort ascending
 
-class DescendingSort
-    implements SortStrategy
-        def sort(items: List(int))
-            # Sort descending
+class DescendingSort implements SortStrategy
+    def sort(items: List(int))
+        # Sort descending
 
 class Sorter
     var strategy: SortStrategy
@@ -264,13 +265,12 @@ class OldSystem
         # Old implementation
         pass
 
-class OldSystemAdapter
-    implements NewSystem
-        var old_system: OldSystem = OldSystem()
+class OldSystemAdapter implements NewSystem
+    var old_system: OldSystem = OldSystem()
 
-        def process(data: str)
-            # Adapt new interface to old system
-            this.old_system.old_process(data)
+    def process(data: str)
+        # Adapt new interface to old system
+        this.old_system.old_process(data)
 ```
 
 ---
@@ -329,23 +329,21 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >     def speak(): str
 >     def move()
 >
-> class Dog
->     implements Animal
->         def speak(): str
->             return "Woof!"
->         # ❌ Missing: def move
+> class Dog implements Animal
+>     def speak(): str
+>         return "Woof!"
+>     # ❌ Missing: def move
 > ```
 >
 > 💡 **Why:** The compiler requires all methods. You're breaking the contract.
 >
 > ✅ **Better:**
 > ```zebra
-> class Dog
->     implements Animal
->         def speak(): str
->             return "Woof!"
->         def move()
->             print("Running")
+> class Dog implements Animal
+>     def speak(): str
+>         return "Woof!"
+>     def move()
+>         print("Running")
 > ```
 
 > ❌ **Mistake:** Wrong method signature
@@ -354,18 +352,16 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 > interface PaymentProcessor
 >     def process(amount: float): bool
 >
-> class CreditCard
->     implements PaymentProcessor
->         def process(amount: int): bool  # ❌ int, not float
->             return true
+> class CreditCard implements PaymentProcessor
+>     def process(amount: int): bool  # ❌ int, not float
+>         return true
 > ```
 >
 > ✅ **Better:**
 > ```zebra
-> class CreditCard
->     implements PaymentProcessor
->         def process(amount: float): bool  # ✅ Matches interface
->             return true
+> class CreditCard implements PaymentProcessor
+>     def process(amount: float): bool  # ✅ Matches interface
+>         return true
 > ```
 
 > ❌ **Mistake:** Forgetting to declare implementation
@@ -378,10 +374,9 @@ Python relies on duck typing ("if it quacks like a duck"). Zebra makes the contr
 >
 > ✅ **Better:**
 > ```zebra
-> class Dog
->     implements Animal  # ✅ Explicit contract
->         def speak(): str
->             return "Woof!"
+> class Dog implements Animal  # ✅ Explicit contract
+>     def speak(): str
+>         return "Woof!"
 > ```
 
 ---
@@ -400,22 +395,22 @@ interface Shape
     def area(): float
     def perimeter(): float
 
-class Circle
+class Circle implements Shape
     var radius: float = 0.0
-    implements Shape
-        def area(): float
-            return 3.14 * this.radius * this.radius
-        def perimeter(): float
-            return 2.0 * 3.14 * this.radius
 
-class Rectangle
+    def area(): float
+        return 3.14 * this.radius * this.radius
+    def perimeter(): float
+        return 2.0 * 3.14 * this.radius
+
+class Rectangle implements Shape
     var width: float = 0.0
     var height: float = 0.0
-    implements Shape
-        def area(): float
-            return this.width * this.height
-        def perimeter(): float
-            return 2.0 * (this.width + this.height)
+
+    def area(): float
+        return this.width * this.height
+    def perimeter(): float
+        return 2.0 * (this.width + this.height)
 
 def print_shape_info(shape: Shape)
     print("Area: ${shape.area()}")
@@ -447,17 +442,17 @@ interface Database
     def load(key: str): str?
     def delete(key: str): bool
 
-class MemoryDatabase
+class MemoryDatabase implements Database
     var data: HashMap(str, str) = HashMap(str, str)()
-    implements Database
-        def save(key: str, value: str): bool
-            this.data.put(key, value)
-            return true
-        def load(key: str): str?
-            return this.data.get(key)
-        def delete(key: str): bool
-            this.data.remove(key)
-            return true
+
+    def save(key: str, value: str): bool
+        this.data.put(key, value)
+        return true
+    def load(key: str): str?
+        return this.data.get(key)
+    def delete(key: str): bool
+        this.data.remove(key)
+        return true
 
 def main()
     var db: Database = MemoryDatabase()
@@ -484,20 +479,18 @@ interface DocumentProcessor
     def process(content: str): str
     def validate(content: str): bool
 
-class MarkdownProcessor
-    implements DocumentProcessor
-        def process(content: str): str
-            # Convert markdown to HTML
-            return "<html>${content}</html>"
-        def validate(content: str): bool
-            return content.len > 0
+class MarkdownProcessor implements DocumentProcessor
+    def process(content: str): str
+        # Convert markdown to HTML
+        return "<html>${content}</html>"
+    def validate(content: str): bool
+        return content.len > 0
 
-class JSONValidator
-    implements DocumentProcessor
-        def process(content: str): str
-            return content  # Already valid JSON
-        def validate(content: str): bool
-            return content.contains("{") and content.contains("}")
+class JSONValidator implements DocumentProcessor
+    def process(content: str): str
+        return content  # Already valid JSON
+    def validate(content: str): bool
+        return content.contains("{") and content.contains("}")
 
 def process_document(processor: DocumentProcessor, doc: str)
     if processor.validate(doc)

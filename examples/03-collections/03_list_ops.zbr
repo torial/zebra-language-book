@@ -8,8 +8,9 @@ def main()
     # Check existence
     print(nums.contains(20))  # true
 
-    # Find index
-    print(nums.indexOf(20))  # 1
+    # Find the first matching element (there's no indexOf — search with a predicate;
+    # .find() returns an Optional, nil if nothing matches)
+    print(nums.find(def(x) = x == 20))  # 20
 
     # Remove by index (List.remove takes an index, not a value)
     nums.remove(1)

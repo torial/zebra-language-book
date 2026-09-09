@@ -6,21 +6,19 @@ interface Animal
     def speak(): str
     def move()
 
-class Dog
-    implements Animal
-        def speak(): str
-            return "Woof!"
+class Dog implements Animal
+    def speak(): str
+        return "Woof!"
 
-        def move()
-            print("Running on four legs")
+    def move()
+        print("Running on four legs")
 
-class Bird
-    implements Animal
-        def speak(): str
-            return "Tweet!"
+class Bird implements Animal
+    def speak(): str
+        return "Tweet!"
 
-        def move()
-            print("Flying through the air")
+    def move()
+        print("Flying through the air")
 
 def main()
     var dog: Animal = Dog()

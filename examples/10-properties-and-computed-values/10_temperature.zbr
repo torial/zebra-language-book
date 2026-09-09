@@ -5,10 +5,10 @@
 class Temperature
     var celsius: float = 0.0
     
-    def fahrenheit: float
+    def fahrenheit(): float
         return celsius * 9.0 / 5.0 + 32.0
     
-    def kelvin: float
+    def kelvin(): float
         return celsius + 273.15
     
     def set_from_fahrenheit(f: float)
@@ -17,10 +17,10 @@ class Temperature
     def set_from_kelvin(k: float)
         celsius = k - 273.15
     
-    def is_freezing: bool
+    def is_freezing(): bool
         return celsius <= 0.0
     
-    def is_boiling: bool
+    def is_boiling(): bool
         return celsius >= 100.0
 
 def main()

@@ -18,13 +18,25 @@ After this chapter, you will:
 
 ## Overview: Reading and Writing Files
 
-Most real-world programs interact with the filesystem. Zebra's file API focuses on safety and clarity, using the Result type to handle errors that inevitably occur (file not found, permission denied, disk full).
+Most real-world programs interact with the filesystem. Zebra's file API is a set of plain
+static calls on `File` and `Dir` — `File.read(path)` returns a `str` directly, not a
+`Result` or an error union. There is no `.isOk()` / `.isErr()` / `.unwrapOr()` / `.value()`
+/ `.error()` family in the language.
+
+That has a real consequence: **`File.read` and `File.write` are not `throws`.** If the
+file doesn't exist (or can't be read for some other reason), `File.read` panics the
+process — there's no `catch` clause and no `?` that can intercept it, because both of
+those only work on an error union, and `File.read`'s return type is a bare `str`.
 
 Key principles:
-- All file operations return `Result(T, E)` for error handling
-- Always check for errors—silence is not an option
-- Use appropriate reading strategies for different file sizes
-- Close resources properly (Zebra handles this with scoping)
+- `File.read` / `File.write` / `File.readLines` / `File.append` return plain values, not
+  a Result — check `File.exists(path)` **before** you call them if the file might be
+  missing, since there's no error to catch afterward.
+- If you want the `raise` / `catch` / `?` idiom from Chapter 12, wrap the file call in
+  your own `throws` function — see "Safe Reading With Your Own throws Wrapper" below.
+- Use appropriate reading strategies for different file sizes.
+- There's no separate "close" step in this API — `File.read`/`File.write` are one-shot
+  calls, not a handle you open and close.
 
 ---
 
@@ -33,58 +45,60 @@ Key principles:
 ### Simple File Reading
 
 The simplest approach: load the entire file into memory. Good for small files.
+`File.read` returns the content directly — no wrapper type to unwrap:
 
 ```zebra
 # file: file-read-simple.zbr
-# teaches: simple file reading with error handling
+# teaches: simple file reading
 # chapter: 20
 
 def main()
     var filename = "example.txt"
-    
-    var result = File.read(filename)
-    
-    branch result
-        on ok(content)
-            print("File contents:")
-            print(content)
-        on err(error)
-            print("Error reading file: ${error}")
+
+    if File.exists(filename)
+        var content = File.read(filename)
+        print("File contents:")
+        print(content)
+    else
+        print("Error reading file: not found")
 ```
 
-### Safe Extraction with the Result Pattern
+### Safe Reading With Your Own `throws` Wrapper
 
-When you're sure the file should exist, you can use unwrap methods carefully.
+`File.read` itself can't be `catch`-ed or `?`-propagated — it isn't `throws`. If you want
+that idiom (from Chapter 12), write a small wrapper that checks first and raises:
 
 ```zebra
 # file: file-read-unwrap.zbr
-# teaches: safe error handling for file reads
+# teaches: wrapping File.read in a throws function for catch/? handling
 # chapter: 20
+
+def readOrThrow(path: str): str throws
+    if not File.exists(path)
+        raise "cannot read ${path}: not found"
+    return File.read(path)
 
 def main()
     var filename = "config.txt"
-    
-    var result = File.read(filename)
-    
-    # Option 1: Check then access
-    if result.isOk()
-        var content = result.value()  # Safe to access
-        print("Read ${content.len} characters")
-    else
-        var error = result.error()
-        print("Cannot read config: ${error}")
-    
-    # Option 2: Using unwrapOr with fallback
-    var content = File.read(filename).unwrapOr("")
+
+    # Option 1: catch with a fallback value
+    var content = readOrThrow(filename) catch ""
     if content.len == 0
         print("Using default configuration")
     else
         print("Configuration loaded: ${content.len} bytes")
+
+    # Option 2: method-level catch, printing the error
+    var loaded = readOrThrow(filename)
+    print("Read ${loaded.len} characters")
+catch |e|
+    print("Cannot read config: ${e.message}")
 ```
 
 ### Processing Large Files: Line by Line
 
-For files too large to fit in memory, read line-by-line.
+For files too large to fit in memory as one string, use `File.readLines`, which splits
+the file the same way `str.lines()` does — no trailing empty entry after a final `\n`.
 
 ```zebra
 # file: file-read-lines.zbr
@@ -93,33 +107,29 @@ For files too large to fit in memory, read line-by-line.
 
 def main()
     var filename = "large_log.txt"
-    
-    # Read entire file first
-    var result = File.read(filename)
-    
-    if result.isErr()
-        print("Error: ${result.error(}"))
+
+    if not File.exists(filename)
+        print("Error: large_log.txt not found")
         return
-    
-    var content = result.value()
-    var lines = content.split("\n")
-    
+
+    var lines = File.readLines(filename)
+
     # Process line by line
     var line_count = 0
     var error_count = 0
-    
+
     for line in lines
         line_count = line_count + 1
-        
+
         # Skip empty lines
         if line.trim().len == 0
             continue
-        
+
         # Check for errors (assuming "ERROR" in log means error line)
         if line.contains("ERROR")
             error_count = error_count + 1
             print("Line ${line_count}: ${line}")
-    
+
     print("Total lines: ${line_count}")
     print("Errors found: ${error_count}")
 ```
@@ -133,36 +143,34 @@ def main()
 
 def main()
     var filename = "document.txt"
-    
-    var result = File.read(filename)
-    
-    if result.isErr()
+
+    if not File.exists(filename)
         print("Cannot read file")
         return
-    
-    var content = result.value()
-    
+
+    var content = File.read(filename)
+
     # Line count
     var lines = content.split("\n")
-    print("Lines: ${lines.count(}"))
-    
+    print("Lines: ${lines.count()}")
+
     # Word count
     var word_count = 0
     for line in lines
         var words = line.split(" ")
         word_count = word_count + words.count()
     print("Words: ${word_count}")
-    
+
     # Character count
     print("Characters: ${content.len}")
-    
+
     # Find longest line
     var longest_line = ""
     for line in lines
         if line.len > longest_line.len
             longest_line = line
-    
-    print("Longest line (${longest_line.len} chars: ${longest_line.substring(0, 50)}"))
+
+    print("Longest line (${longest_line.len} chars): ${longest_line.substring(0, 50)}")
 ```
 
 ---
@@ -171,7 +179,9 @@ def main()
 
 ### Simple File Writing
 
-Write content to a file, overwriting if it exists.
+Write content to a file, overwriting if it exists. `File.write` returns `void` — there's
+nothing to check, the call either succeeds or panics on a real I/O failure (e.g. the
+directory doesn't exist):
 
 ```zebra
 # file: file-write-simple.zbr
@@ -181,13 +191,9 @@ Write content to a file, overwriting if it exists.
 def main()
     var content = "Hello, File!\nLine 2\nLine 3\n"
     var filename = "output.txt"
-    
-    var result = File.write(filename, content)
-    
-    if result.isOk()
-        print("File written successfully")
-    else
-        print("Error: ${result.error(}"))
+
+    File.write(filename, content)
+    print("File written successfully")
 ```
 
 ### Building Content Then Writing
@@ -201,14 +207,14 @@ Don't write to a file in a loop. Build the content first, then write once.
 
 def main()
     # Build content in memory
-    var lines = List()
+    var lines = List(str)()
     
     # Generate report
     lines.add("Sales Report")
     lines.add("=" + "=" + "=" + "=" + "=" + "=")
     lines.add("")
     
-    var items = List()
+    var items = List(str)()
     items.add("Product A")
     items.add("Product B")
     items.add("Product C")
@@ -223,13 +229,14 @@ def main()
     var content = lines.join("\n")
     
     # Write once
-    var result = File.write("report.txt", content)
-    
-    if result.isOk()
-        print("Report written to report.txt")
+    File.write("report.txt", content)
+    print("Report written to report.txt")
 ```
 
 ### Appending to Files
+
+`File.append(path, data)` appends without you needing to re-read and re-write the whole
+file. Use it directly rather than the read-concatenate-write dance:
 
 ```zebra
 # file: file-append.zbr
@@ -238,20 +245,13 @@ def main()
 
 def main()
     var filename = "log.txt"
-    
-    # Read existing content
-    var existing = File.read(filename).unwrapOr("")
-    
-    # Append new content
+
+    # Append new content — creates the file if it doesn't exist yet
     var timestamp = "2025-03-15 14:30:00"
     var message = "Application started"
-    
-    var new_content = existing + timestamp + " - " + message + "\n"
-    
-    var result = File.write(filename, new_content)
-    
-    if result.isOk()
-        print("Log entry added")
+
+    File.append(filename, "${timestamp} - ${message}\n")
+    print("Log entry added")
 ```
 
 ---
@@ -267,35 +267,31 @@ def main()
 
 def main()
     # List of files to process
-    var files = List()
-    files.add("data1.txt")
-    files.add("data2.txt")
-    files.add("data3.txt")
-    
-    var results = HashMap()
-    
+    var files: List(str) = ["data1.txt", "data2.txt", "data3.txt"]
+
+    var results = HashMap(str, int)()
+
     for filename in files
         print("Processing ${filename}... ")
-        var content_result = File.read(filename)
-        
-        if content_result.isErr()
-            print("FAILED: ${content_result.error(}"))
-            results.put(filename, 0)
+
+        if not File.exists(filename)
+            print("FAILED: not found")
+            results.set(filename, 0)
             continue
-        
-        var content = content_result.value()
+
+        var content = File.read(filename)
         var line_count = content.split("\n").count()
-        
-        results.put(filename, line_count)
-        print("OK (${line_count} lines"))
-    
+
+        results.set(filename, line_count)
+        print("OK (${line_count} lines)")
+
     # Summary
     print("\nSummary:")
     var total = 0
     for filename, count in results
         total = total + count
         print("${filename}: ${count} lines")
-    
+
     print("Total: ${total} lines")
 ```
 
@@ -308,30 +304,26 @@ def main()
 
 def main()
     # Read CSV
-    var csv_result = File.read("data.csv")
-    
-    if csv_result.isErr()
+    if not File.exists("data.csv")
         print("Error reading CSV")
         return
-    
-    var csv_content = csv_result.value()
+
+    var csv_content = File.read("data.csv")
     var lines = csv_content.split("\n")
-    
+
     # Convert to tab-separated
-    var output_lines = List()
-    
+    var output_lines: List(str) = []
+
     for line in lines
         var fields = line.split(",")
         var tab_separated = fields.join("\t")
         output_lines.add(tab_separated)
-    
+
     var output = output_lines.join("\n")
-    
+
     # Write TSV
-    var write_result = File.write("data.tsv", output)
-    
-    if write_result.isOk()
-        print("Conversion complete: data.tsv")
+    File.write("data.tsv", output)
+    print("Conversion complete: data.tsv")
 ```
 
 ---
@@ -366,17 +358,17 @@ def main()
 
 def main()
     var temp_file = "temp.txt"
-    
+
     if File.exists(temp_file)
-        var result = File.delete(temp_file)
-        
-        if result.isOk()
-            print("Temporary file deleted")
-        else
-            print("Error deleting file: ${result.error(}"))
+        File.delete(temp_file)
+        print("Temporary file deleted")
     else
         print("File doesn't exist")
 ```
+
+`File.delete` is a no-op if the file is already missing, so the `File.exists` check above
+is purely to control the print message — you don't need it to avoid a panic here, unlike
+`File.read`.
 
 ### Working with Paths
 
@@ -386,7 +378,10 @@ def main()
 # chapter: 20
 
 def main()
-    var cwd = sys.cwd()
+    # NOTE: annotate the type here — an un-annotated `var cwd = sys.cwd()` currently
+    # prints as a raw byte array instead of text when interpolated (a codegen bug in
+    # today's compiler); `var cwd: str = sys.cwd()` sidesteps it.
+    var cwd: str = sys.cwd()
     print("Current directory: ${cwd}")
     
     # Build path (simple string concatenation)
@@ -445,8 +440,8 @@ def main()
 ```zebra
 def main()
     var sock = Udp.bind(9000)                  # listen
-    var (msg, from) = sock.recv(1024)          # blocks; returns bytes + sender addr
-    print("from ${from}: ${msg}")
+    var msg = sock.recv(1024)                  # blocks; returns the datagram bytes
+    print("received: ${msg}")
     sock.send("alice.example.com", 9001, "ack")
     sock.close()
 ```
@@ -456,7 +451,7 @@ def main()
 | `Udp.bind(port)` | Server: bind a local port |
 | `Udp.socket()` | Client: ephemeral socket for outbound sends |
 | `sock.send(host, port, data)` | Send a datagram |
-| `sock.recv(n)` | Receive a datagram; returns `(data, sender_addr)` |
+| `sock.recv(n)` | Receive a datagram; returns the data as `str` (**not** a `(data, sender_addr)` tuple — the sender's address isn't exposed by `recv` itself) |
 
 UDP is fire-and-forget; there's no connection state, no ordering, and
 no retransmission. Use it for telemetry, game state updates, DNS — and
@@ -533,17 +528,15 @@ class Config
     
     static
         def from_file(filename: str): Config throws
-            var content_result = File.read(filename)
-            
-            if content_result.isErr()
-                raise "Cannot read config file: ${content_result.error(}")
-            
-            var content = content_result.value()
+            if not File.exists(filename)
+                raise "Cannot read config file: ${filename} not found"
+
+            var content = File.read(filename)
             var config = Config()
             var lines = content.split("\n")
             
-            for line in lines
-                line = line.trim()
+            for raw_line in lines
+                var line = raw_line.trim()
                 
                 # Skip empty lines and comments
                 if line.len == 0 or line.startsWith("#")
@@ -563,25 +556,20 @@ class Config
                 # Set config values
                 if key == "host"
                     config.host = value
-                elif key == "port"
-                    var port_val = value.toInt()
-                    if port_val != nil
+                else if key == "port"
+                    if value.tryInt() as port_val
                         config.port = port_val
-                elif key == "debug"
+                else if key == "debug"
                     config.debug = value.lower() == "true"
             
             return config
 
 def main()
-    var result = Config.from_file("app.conf")
-    
-    if result.isErr()
-        print("Error: ${result.error(}"))
-        return
-    
-    var config = result.value()
+    var config = Config.from_file("app.conf")
     print("Server: ${config.host}:${config.port}")
     print("Debug: ${config.debug}")
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ---
@@ -597,26 +585,25 @@ class Logger
     var filename: str
     var entries: List(str)
     
-    def init(filename: str)
-        this.filename = filename
-        this.entries = List()
+    cue init(filename: str)
+        .filename = filename
+        .entries = List(str)()
     
     def log(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
-        this.entries.add(entry)
+        .entries.add(entry)
         print(entry)
     
     def error(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
-        this.entries.add(entry)
+        .entries.add(entry)
         print(entry)
     
-    def save(): bool
-        var content = entries.join("\n")
-        var result = File.write(filename, content)
-        return result.isOk()
+    def save()
+        var content = .entries.join("\n")
+        File.write(.filename, content)
 
 def get_timestamp(): str
     # Placeholder—in real code, use actual time
@@ -631,11 +618,14 @@ def main()
     logger.log("Retrying connection...")
     logger.log("Connection successful")
     
-    if logger.save()
-        print("Log saved to ${logger.filename}")
-    else
-        print("Failed to save log")
+    logger.save()
+    print("Log saved to ${logger.filename}")
 ```
+
+`save()` has no way to report failure back to the caller — `File.write` doesn't return a
+success flag, it either writes or panics the process (permissions, a missing parent
+directory, disk full). If you need a save that can fail gracefully, give it a `throws`
+signature and check `Dir.exists` on the parent directory yourself before writing.
 
 ---
 
@@ -657,79 +647,73 @@ class Person
             if parts.count() != 3
                 return nil
             
-            var age_val = parts.at(1).trim().toInt()
+            var age_val = parts.at(1).trim().tryInt()
             if age_val == nil
                 return nil
             
             var person = Person()
             person.name = parts.at(0).trim()
-            person.age = age_val
+            person.age = age_val!
             person.email = parts.at(2).trim()
             return person
         
         def load_from_csv(filename: str): List(Person) throws
-            var content_result = File.read(filename)
-            
-            if content_result.isErr()
-                raise content_result.error()
-            
-            var content = content_result.value()
-            var people = List()
+            if not File.exists(filename)
+                raise "cannot read ${filename}: not found"
+
+            var content = File.read(filename)
+            var people: List(Person) = []
             var lines = content.split("\n")
             
             for line in lines
                 if line.trim().len == 0
                     continue
                 
-                var person = from_csv_line(line)
-                if person != nil
+                if from_csv_line(line) as person
                     people.add(person)
             
             return people
     
     def to_csv_line(): str
-        return "${name},${age},${email}"
+        return "${.name},${.age},${.email}"
 
 def main()
     # Load data
-    var result = Person.load_from_csv("people.csv")
-    
-    if result.isErr()
-        print("Error: ${result.error(}"))
-        return
-    
-    var people = result.value()
-    print("Loaded ${people.count(} people"))
+    var people = Person.load_from_csv("people.csv")
+    print("Loaded ${people.count()} people")
     
     # Filter and export
-    var adults = List()
+    var adults: List(Person) = []
     for person in people
         if person.age >= 18
             adults.add(person)
     
     # Save filtered data
-    var output_lines = List()
+    var output_lines: List(str) = []
     for person in adults
         output_lines.add(person.to_csv_line())
     
     var csv_output = output_lines.join("\n")
-    var write_result = File.write("adults.csv", csv_output)
-    
-    if write_result.isOk()
-        print("Exported ${adults.count(} adults to adults.csv"))
+    File.write("adults.csv", csv_output)
+    print("Exported ${adults.count()} adults to adults.csv")
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ---
 
 ## Key Takeaways
 
-1. **Always Handle Errors** — File operations fail. Use Result types and check them.
+1. **Always Handle Errors** — `File.read`/`File.write` aren't `throws`; a missing file
+   panics. Check `File.exists` first, or wrap the call in your own `throws` function if
+   you want `catch`/`?` handling.
 
 2. **Think About Scale** — Small files? Load all at once. Large files? Process line-by-line.
 
 3. **Build First, Write Once** — Never write in a loop. Build your content, then write it all at once.
 
-4. **Close Files Properly** — Zebra's scoping ensures this, but be aware of resource management.
+4. **No Handles to Manage** — `File.read`/`File.write`/`File.append` are one-shot calls,
+   not an open-handle API, so there's no separate close step to forget.
 
 5. **Paths Are Strings** — Treat filesystem paths carefully. Consider cross-platform separators.
 

@@ -1,7 +1,8 @@
-var text = "hello"
+def risky_operation(): int throws
+    return 42
 
-if text.len > 0
-    var first = text.charAt(0)
-
-if text.contains("ll")
-    var pos = text.indexOf("ll")
+def main()
+    var value = risky_operation()
+    print(value)
+catch |e|
+    print("Error: ${e.message}")

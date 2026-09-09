@@ -7,28 +7,26 @@ interface PaymentProcessor
     def refund(transaction_id: str): bool
     def get_status(transaction_id: str): str
 
-class CreditCardProcessor
-    implements PaymentProcessor
-        def process(amount: float): bool
-            print("Processing credit card: ${amount}")
-            return true
+class CreditCardProcessor implements PaymentProcessor
+    def process(amount: float): bool
+        print("Processing credit card: ${amount}")
+        return true
         
-        def refund(transaction_id: str): bool
-            print("Refunding transaction: ${transaction_id}")
-            return true
+    def refund(transaction_id: str): bool
+        print("Refunding transaction: ${transaction_id}")
+        return true
         
-        def get_status(transaction_id: str): str
-            return "completed"
+    def get_status(transaction_id: str): str
+        return "completed"
 
-class PayPalProcessor
-    implements PaymentProcessor
-        def process(amount: float): bool
-            print("Processing PayPal: ${amount}")
-            return true
+class PayPalProcessor implements PaymentProcessor
+    def process(amount: float): bool
+        print("Processing PayPal: ${amount}")
+        return true
         
-        def refund(transaction_id: str): bool
-            print("PayPal refund: ${transaction_id}")
-            return true
+    def refund(transaction_id: str): bool
+        print("PayPal refund: ${transaction_id}")
+        return true
         
-        def get_status(transaction_id: str): str
-            return "pending"
+    def get_status(transaction_id: str): str
+        return "pending"

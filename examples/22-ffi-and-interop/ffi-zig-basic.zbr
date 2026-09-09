@@ -2,7 +2,7 @@
 # teaches: calling Zig functions from Zebra
 # chapter: 22
 
-shared class ZigMath
+class ZigMath
     static
         # Zig function: pub fn gcd(a: i64, b: i64) -> i64
         def gcd(a: int, b: int): int

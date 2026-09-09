@@ -62,8 +62,9 @@ def main()
     # Length
     print(text.len)  # 13
 
-    # Character access
-    var first_char = text.charAt(0)     # 'H'
+    # Character access — charAt returns a byte, not a str, so this prints
+    # 72 (the ASCII code for 'H'), not "H"
+    var first_char = text.charAt(0)
     print(first_char)
 
     # Check existence
@@ -174,18 +175,25 @@ def main()
     if items.contains("banana")
         print("Found banana")
 
-    # Remove specific item
-    items.remove("banana")
-    print(items.count())  # 2
+    # Remove a specific item BY VALUE: `.remove()` takes an index, not a
+    # value — List has no indexOf either, so filter() is the idiom for
+    # "everything except this value."
+    var filtered: List(str) = items.filter(def(x) = x != "banana")
+    print(filtered.count())  # 2
 
     # Iterate over list
-    for fruit in items
+    for fruit in filtered
         print("Fruit: ${fruit}")
 ```
 
 ### HashMap Operations
 
-HashMaps store key-value pairs with `.put()` and `.fetch()` (`set` and `get` are reserved keywords):
+HashMaps store key-value pairs with `.set()` and `.get()` — despite reading
+like they should be, `set` and `get` are **not** reserved words in Zebra;
+they work fine as ordinary method (or variable) names, and `.set`/`.get`
+are the documented HashMap API. (`.put`/`.fetch` also work as aliases on
+today's compiler, but aren't in the documented method table — prefer
+`.set`/`.get`.)
 
 ```zebra
 # file: stdlib-hashmap-ops.zbr
@@ -196,12 +204,12 @@ def main()
     var scores = HashMap(str, int)()
 
     # Add key-value pairs
-    scores.put("Alice", 95)
-    scores.put("Bob", 87)
-    scores.put("Charlie", 92)
+    scores.set("Alice", 95)
+    scores.set("Bob", 87)
+    scores.set("Charlie", 92)
 
-    # Retrieve value
-    var alice_score = scores.fetch("Alice")
+    # Retrieve value — .get() returns V? (int? here)
+    var alice_score = scores.get("Alice")
     if alice_score != nil
         print("Alice scored: ${alice_score}")
 
@@ -210,7 +218,7 @@ def main()
         print("Bob's record found")
 
     # Update value (overwrites previous)
-    scores.put("Bob", 89)
+    scores.set("Bob", 89)
 
     # Iterate over entries
     for name, score in scores
@@ -299,9 +307,11 @@ def main()
     var s = n.toString()
     print(s)  # "100"
 
-    # Safe conversions with nil checking
+    # Safe conversions with nil checking — toInt() returns a plain int
+    # (0 on bad input, not nil), so nil-checking it is a type error.
+    # tryInt() is the nil-checkable form.
     var user_input = "not a number"
-    var parsed = user_input.toInt()
+    var parsed = user_input.tryInt()
     if parsed == nil
         print("Invalid number")
 ```
@@ -333,22 +343,53 @@ def main()
 
 ### Argument Parsing with `Arg`
 
+`Arg.parse()` returns an `ArgResult` with accessor methods — printing the
+result directly just dumps its internal representation, so use the
+accessors instead:
+
 ```zebra
 # file: stdlib-arg-parse.zbr
 # teaches: structured argument parsing
 # chapter: 19
 
 def main()
-    var result = Arg.parse()
-    # Access parsed flags and positional arguments
-    print(result)
+    var args = Arg.parse()
+
+    # flag() takes BOTH a long and a short form — there's no 1-argument
+    # overload, even if you never plan to use the short form.
+    var verbose = args.flag("--verbose", "-v")
+    var output = args.option("--out", "default.txt")
+
+    var path = args.positional(0)
+    if path as p
+        # Explicit `str` annotation works around a compiler bug where an
+        # inferred string pulled through Arg/positional() prints as its
+        # raw byte array instead of text (same bug as sys.cwd() in
+        # Chapter 20's File I/O chapter — annotate the type to avoid it).
+        var pstr: str = p
+        print("path: ${pstr}")
+    else
+        print("no positional arg")
+
+    print("verbose: ${verbose}")
+    print("output: ${output}")
 ```
+
+| Call | Returns | Notes |
+|---|---|---|
+| `args.positional(i)` | `str?` | i-th non-flag argument, 0-based |
+| `args.flag(long, short)` | `bool` | true if either form is present; **both forms are required arguments** |
+| `args.option(name, default)` | `str` | value after `name`, or `default` if absent |
+| `args.optionInt(name, default)` | `int` | same, parsed as an integer |
+| `args.contains(name)` | `bool` | true if `name` appears anywhere in argv |
 
 ---
 
 ## JSON
 
-Parse and generate JSON with the `Json` and `JsonValue` modules:
+Parse and generate JSON with the `Json` and `JsonValue` modules. `Json.parse`
+returns `JsonValue?` — printing it directly dumps the internal tagged-union
+representation, so unwrap it and pull out fields with the typed accessors:
 
 ```zebra
 # file: stdlib-json.zbr
@@ -358,7 +399,11 @@ Parse and generate JSON with the `Json` and `JsonValue` modules:
 def main()
     var text = "{\"name\": \"Alice\", \"age\": 30}"
     var parsed = Json.parse(text)
-    print(parsed)
+    if parsed as v
+        print(v.getStr("name"))
+        print(v.getInt("age"))
+    else
+        print("invalid JSON")
 ```
 
 ---
@@ -373,9 +418,14 @@ Use `File`, `Dir`, and `Path` for file system operations:
 # chapter: 19
 
 def main()
-    # Read a file
-    var content = File.read("data.txt") catch "could not read"
-    print(content)
+    # File.read/File.write are plain-value calls, not `throws` — they are
+    # NOT paired with `catch`. A missing file panics the process, so guard
+    # with File.exists() first. See Chapter 20 for the full explanation.
+    if File.exists("data.txt")
+        var content = File.read("data.txt")
+        print(content)
+    else
+        print("could not read")
 
     # Write a file
     File.write("output.txt", "Hello from Zebra!")
@@ -417,13 +467,18 @@ severity levels:
 def main()
     Log.info("server starting on :8080")
     Log.warn("config key missing — using default")
-    Log.error("database connection failed")
+    # NOTE: the error-level call is `Log.err`, not `Log.error` — `Log.error`
+    # both fails to compile if anything follows it (misread by the checker
+    # as a noreturn/error-raising call) and isn't implemented in codegen
+    # (`Log.error` alone gives "selfhost: unknown Log.error"). QUICKSTART's
+    # own table documents `Log.error(msg)`, which is also wrong today.
+    Log.err("database connection failed")
 
-    # JSON-lines output for ingestion by log aggregators:
-    Log.json("info", "request handled",
-             HashMap(str, str)()
-                .set("method", "GET")
-                .set("path", "/api"))
+    # JSON-lines output for ingestion by log aggregators. `data` is a plain
+    # str that gets embedded as the JSON-string value of the "data" field —
+    # it is NOT merged in as structured key/value pairs, so pre-format it
+    # yourself if you want nested JSON there.
+    Log.json("info", "request handled", "method=GET path=/api")
 
     # Redirect to a file (subsequent calls write there):
     Log.setFile("./out.log")
@@ -432,8 +487,9 @@ def main()
 
 | Call | Notes |
 |---|---|
-| `Log.info(msg)` / `Log.warn(msg)` / `Log.error(msg)` | Timestamped line; uppercase level prefix |
-| `Log.json(level, msg, data)` | One JSON object per line; `data` is `HashMap(str, str)` |
+| `Log.info(msg)` / `Log.warn(msg)` | Timestamped line; uppercase level prefix |
+| `Log.err(msg)` | Same, at error level — **not** `Log.error`, despite QUICKSTART documenting that name |
+| `Log.json(level, msg, data)` | One JSON object per line; `data` is a `str`, embedded as the "data" field's string value |
 | `Log.setFile(path)` | Redirect all subsequent log output to a file |
 
 For interactive output use `print`; for diagnostic output meant for
@@ -449,23 +505,25 @@ linked into the binary — no separate DB server.
 
 ```zebra
 def main()
-    var db = Sqlite.open("./data.db")        # or ":memory:" for in-memory
+    # Sqlite.open returns SqliteDb? — nil on failure — so unwrap before
+    # calling methods on it.
+    var db = Sqlite.open("./data.db")!        # or ":memory:" for in-memory
     db.exec("CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT)")
     db.exec("INSERT INTO users VALUES (1, 'Alice')")
     db.exec("INSERT INTO users VALUES (2, 'Bob')")
 
     for row in db.query("SELECT id, name FROM users")
-        print("${row.asInt(0)}: ${row.asStr(1)}")
+        print("${row.asInt("id")}: ${row.asStr("name")}")
 
     db.close()
 ```
 
 | Call | Returns | Notes |
 |---|---|---|
-| `Sqlite.open(path)` | `Sqlite` | Opens the file (creates if missing); `:memory:` for in-memory |
+| `Sqlite.open(path)` | `SqliteDb?` | `nil` on failure — always unwrap/check before use; `:memory:` for in-memory |
 | `db.exec(sql)` | `void` | Run a statement without expecting rows |
-| `db.query(sql)` | iterator | Yields one `row` at a time |
-| `row.asInt(col)` / `asStr(col)` / `asFloat(col)` / `asBool(col)` | typed | Column value at `col` (zero-based) |
+| `db.query(sql)` | list | Snapshot of rows — `for row in db.query(...)` iterates it |
+| `row.asInt(col)` / `asStr(col)` / `asFloat(col)` / `asBool(col)` | typed | Column value at `col` — the **column name**, not an index |
 | `db.begin()` / `db.commit()` / `db.rollback()` | `void` | Transaction control |
 | `db.close()` | `void` | Release the database handle |
 
@@ -477,22 +535,31 @@ sensitive values.
 
 ## Compression: `Compress`
 
-`Compress.gzip` and `gunzip` round-trip gzip:
+`Compress.gzip` and `gunzip` round-trip gzip. Both actually work on `str`
+values, not `List(byte)` — the compressed bytes come back as a `str` (use
+`.len`, not `.count()`), and `gunzip` returns `str?` since decompression
+can fail on invalid input:
 
 ```zebra
 def main()
     var src = "the quick brown fox jumps over the lazy dog"
     var compressed = Compress.gzip(src)
-    print(compressed.count())  # smaller than src.len for typical input
+    print(compressed.len)  # smaller than src.len for typical input
 
     var decompressed = Compress.gunzip(compressed)
-    print(decompressed)  # same as src
+    if decompressed as d
+        # Explicit `str` annotation works around a compiler bug where an
+        # unwrapped optional prints as its raw byte array instead of text.
+        var dstr: str = d
+        print(dstr)  # same as src
+    else
+        print("gunzip failed")
 ```
 
 | Call | Returns | Notes |
 |---|---|---|
-| `Compress.gzip(data)` | `List(byte)` | gzip-compress a string |
-| `Compress.gunzip(data)` | `List(byte)` | gzip-decompress a `List(byte)` |
+| `Compress.gzip(data)` | `str` | gzip-compress a string; result is raw bytes packed into a `str`, not text |
+| `Compress.gunzip(data)` | `str?` | gzip-decompress; `nil` on invalid input |
 
 Useful when reading or writing `.gz` files, or when sending compressed
 payloads over the network without depending on the transport's
@@ -502,19 +569,27 @@ compression.
 
 ## Cryptography: `Crypto`
 
-`Crypto` provides authenticated symmetric encryption (AES-256-GCM) and a
-key-derivation helper (HKDF-SHA256). It's the right tool for "encrypt
-this value so an operator can't read it" — not for password hashing
-(use bcrypt/argon2 via FFI) and not for TLS (use the `Ws` / `Http`
-modules, which handle TLS themselves).
+`Crypto` provides authenticated symmetric encryption (AES-256-GCM). It's
+the right tool for "encrypt this value so an operator can't read it" —
+not for password hashing (use bcrypt/argon2 via FFI) and not for TLS
+(use the `Ws` / `Http` modules, which handle TLS themselves).
+
+> **No key-derivation helper.** An earlier build of the compiler added
+> `Crypto.deriveKey(password, salt)`, and it's still listed in some
+> notes — but calling it today compiles fine under `zebra -c` (the
+> checker accepts it) and then fails at full compile with `error:
+> selfhost: unknown Crypto.deriveKey` — the code generator never
+> learned about it. Until that's fixed, supply your own fixed-length
+> key string (from a secrets manager, an environment variable, etc.)
+> instead of deriving one from a password.
 
 ```zebra
 def main()
-    var key = Crypto.deriveKey("user-password", "fixed-salt-bytes")
-    var ciphertext = Crypto.encrypt("secret message", key)
-    print(ciphertext)  # base64-encoded blob
+    var key = "a-fixed-32-byte-demo-key-value!!"
+    var ciphertext = Crypto.encrypt(key, "secret message")
+    print(ciphertext)  # hex-encoded blob
 
-    var plaintext = Crypto.decrypt(ciphertext, key)
+    var plaintext = Crypto.decrypt(key, ciphertext)
     if plaintext as msg
         print(msg)  # "secret message"
     else
@@ -523,9 +598,13 @@ def main()
 
 | Call | Returns | Notes |
 |---|---|---|
-| `Crypto.encrypt(plaintext, key)` | `str` | AES-256-GCM; output is base64-encoded |
-| `Crypto.decrypt(ciphertext, key)` | `str?` | `nil` on authentication failure (wrong key or tampered ciphertext) |
-| `Crypto.deriveKey(password, salt)` | `str` | HKDF-SHA256; 32-byte hex output suitable as a key |
+| `Crypto.encrypt(key, plaintext)` | `str` | AES-256-GCM; output is hex-encoded |
+| `Crypto.decrypt(key, ciphertext)` | `str?` | `nil` on authentication failure (wrong key or tampered ciphertext) |
+
+Notice the key comes **first** in both calls — some older notes show
+`Crypto.encrypt(plaintext, key)` with the arguments reversed, which
+compiles (both are `str`) but silently encrypts the wrong value and
+then fails to decrypt. Check argument order against the table above.
 
 The `str?` return on `decrypt` is the API's safety mechanism — checking
 for `nil` is **mandatory** because that's how you detect a tampered or
@@ -536,30 +615,37 @@ forged ciphertext. Don't `!` the result without thinking about it.
 ## Dates with Time Zones: `DateTime.inZone`
 
 The `DateTime` module ships with an embedded IANA timezone table covering
-~75 zones. `DateTime.inZone("Region/City")` returns a calendar view of
-the current instant in that zone:
+~75 zones. `inZone("Region/City")` is an **instance** method — call it on
+a `DateTime` value (such as the one `DateTime.now()` returns), not on the
+`DateTime` module itself. `DateTime.inZone(...)` called directly on the
+module compiles under `zebra -c` but fails at full compile with `error:
+use of undeclared identifier 'DateTime'` — a checker blind spot. There's
+also no `toString()` on `DateTime`; printing a value directly dumps its
+internal struct, so format it with `toIso8601()` (or `format(pattern)`,
+covered in Appendix B) instead:
 
 ```zebra
 def main()
     var now_utc   = DateTime.now()
-    var now_ny    = DateTime.inZone("America/New_York")
-    var now_tokyo = DateTime.inZone("Asia/Tokyo")
-    var now_syd   = DateTime.inZone("Australia/Sydney")
+    var now_ny    = now_utc.inZone("America/New_York")
+    var now_tokyo = now_utc.inZone("Asia/Tokyo")
+    var now_syd   = now_utc.inZone("Australia/Sydney")
 
-    print("UTC:    ${now_utc.toString()}")
-    print("NY:     ${now_ny.toString()}")
-    print("Tokyo:  ${now_tokyo.toString()}")
-    print("Sydney: ${now_syd.toString()}")
+    print("UTC:    ${now_utc.toIso8601()}")
+    print("NY:     ${now_ny.toIso8601()}")
+    print("Tokyo:  ${now_tokyo.toIso8601()}")
+    print("Sydney: ${now_syd.toIso8601()}")
 ```
 
 The table includes the major US, EU, AU, and NZ zones plus the typical
 international set. DST is handled correctly for the included rule families
-(US, EU, AU, NZ). For an exhaustive zone list, run
-`DateTime.listZones()`.
+(US, EU, AU, NZ).
 
-> **Binary size note.** The IANA table is included in the binary only
-> if your program references `DateTime.inZone` or `listZones`. Programs
-> that use `DateTime.now()` alone don't pay the ~50 KB cost.
+> **`DateTime.listZones()` is currently broken.** Calling it — as a
+> static call, the only form documented — compiles under `zebra -c` but
+> fails full compile with `error: unreachable code`. Until that's fixed,
+> there's no way to enumerate the embedded zone table at runtime; treat
+> the ~75-zone list above as the reference.
 
 ---
 
@@ -581,9 +667,10 @@ def main()
         var parts = line.split(",")
         if parts.count() == 2
             var name = parts.at(0)
-            var score = parts.at(1).toInt()
-            if score != nil
-                scores.put(name, score)
+            # tryInt(), not toInt() — toInt() returns a plain int (0 on bad
+            # input), which can't be nil-checked.
+            if parts.at(1).tryInt() as score
+                scores.set(name, score)
 
     # Report
     for name, value in scores
@@ -598,7 +685,7 @@ def main()
 
 2. **String Operations** — Master `.split()`, `.join()`, `.contains()`, `.replace()` and type conversions — you'll use them constantly.
 
-3. **Collections** — `List` for sequences, `HashMap` for key-value lookups. Use `.put()` / `.fetch()` for HashMap access (`set` and `get` are reserved keywords).
+3. **Collections** — `List` for sequences, `HashMap` for key-value lookups. Use `.set()` / `.get()` for HashMap access.
 
 4. **Math Module** — `Math.sin()`, `Math.sqrt()`, `Math.PI` etc. — a real module, not just arithmetic operators.
 

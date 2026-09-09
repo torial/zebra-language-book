@@ -6,12 +6,12 @@ def main()
     var scores = HashMap(str, int)()
 
     # Add key-value pairs
-    scores.put("Alice", 95)
-    scores.put("Bob", 87)
-    scores.put("Charlie", 92)
+    scores.set("Alice", 95)
+    scores.set("Bob", 87)
+    scores.set("Charlie", 92)
 
-    # Retrieve value
-    var alice_score = scores.fetch("Alice")
+    # Retrieve value — .get() returns V? (int? here)
+    var alice_score = scores.get("Alice")
     if alice_score != nil
         print("Alice scored: ${alice_score}")
 
@@ -20,7 +20,7 @@ def main()
         print("Bob's record found")
 
     # Update value (overwrites previous)
-    scores.put("Bob", 89)
+    scores.set("Bob", 89)
 
     # Iterate over entries
     for name, score in scores

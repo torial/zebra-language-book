@@ -10,7 +10,7 @@ def safe_pattern(data: str): int
     return data.len
 
 # UNSAFE: C allocates memory Zebra must free
-# shared class Unsafe
+# class Unsafe
 #     shared
 #         def allocate_buffer(): str
 #             # C allocates memory with malloc
@@ -19,7 +19,7 @@ def safe_pattern(data: str): int
 #             return ""
 
 # BETTER: Provide deallocation function
-shared class BetterAlloc
+class BetterAlloc
     static
         # C allocates
         def create_buffer(size: int): int

@@ -2,7 +2,7 @@
 # teaches: passing strings to C functions
 # chapter: 22
 
-shared class CString
+class CString
     static
         # C strlen: int strlen(const char* s)
         def strlen(s: str): int

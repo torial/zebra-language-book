@@ -1,6 +1,7 @@
-var x: int? = get_value()
+var text = "hello"
 
-if x != nil
-    var result = x + 1
-else
-    print("Value not available")
+if text.len > 0
+    var first = text.charAt(0)
+
+if text.contains("ll")
+    var pos = text.indexOf("ll")

@@ -1,5 +1,2 @@
-var numbers = List()
-numbers.add(42)
-
-var names = List()
-names.add("hello")
+var x: int? = nil
+var result = x + 1      # ERROR: can't add to potentially nil value

@@ -1,7 +1,7 @@
 var map = HashMap(str, int)()
 
-map.put("a", 1)                 # Add/update
-map.fetch("a")                  # Get value (returns nullable)
+map.set("a", 1)                 # Add/update
+map.get("a")                    # Get value (returns nullable)
 map.contains("a")               # Check key exists
 map.remove("a")                 # Remove key
 

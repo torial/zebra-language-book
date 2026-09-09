@@ -2,7 +2,7 @@
 # teaches: handling platform differences
 # chapter: 22
 
-shared class Platform
+class Platform
     static
         # Windows: GetFileSize
         # Unix: stat
@@ -20,7 +20,8 @@ shared class Platform
             pass
 
 def main()
-    var size_result = Platform.get_file_size("data.txt")
-    
-    if size_result.isOk()
-        print("File size: ${size_result.value(} bytes"))
+    # get_file_size is `throws`, so catch the error rather than checking isOk.
+    var size = Platform.get_file_size("data.txt")
+    print("File size: ${size} bytes")
+catch |e|
+    print("Could not get file size: ${e.message}")

@@ -6,13 +6,13 @@ class Rectangle
     var width: int = 0
     var height: int = 0
     
-    def area: int
+    def area(): int
         return width * height
     
-    def perimeter: int
+    def perimeter(): int
         return 2 * (width + height)
     
-    def is_square: bool
+    def is_square(): bool
         return width == height
 
 def main()

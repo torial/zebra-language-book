@@ -6,38 +6,38 @@ def main()
     # ^ = start of string
     var starts_with_hello = Regex.compile("^hello")
     
-    if starts_with_hello.matches("hello world")
+    if starts_with_hello.match("hello world")
         print("Matches: string starts with 'hello'")
     
-    if not starts_with_hello.matches("say hello")
+    if not starts_with_hello.match("say hello")
         print("Doesn't match: 'hello' is not at start")
     
     # $ = end of string
     var ends_with_txt = Regex.compile("\\.txt$")
     
-    if ends_with_txt.matches("document.txt")
+    if ends_with_txt.match("document.txt")
         print("Matches: filename ends with .txt")
     
-    if not ends_with_txt.matches("document.txt.bak")
+    if not ends_with_txt.match("document.txt.bak")
         print("Doesn't match: .txt is not at end")
     
     # Combining ^ and $
     var exact_pattern = Regex.compile("^[a-z]+$")  # Only lowercase letters
     
-    if exact_pattern.matches("hello")
+    if exact_pattern.match("hello")
         print("Matches: all lowercase")
     
-    if not exact_pattern.matches("Hello")
+    if not exact_pattern.match("Hello")
         print("Doesn't match: has uppercase")
     
-    if not exact_pattern.matches("hello123")
+    if not exact_pattern.match("hello123")
         print("Doesn't match: has numbers")
     
     # Word boundary: \b
     var word_boundary = Regex.compile("\\bhello\\b")
     
-    if word_boundary.matches("hello world")
+    if word_boundary.match("hello world")
         print("Matches: 'hello' is a word")
     
-    if not word_boundary.matches("helloworld")
+    if not word_boundary.match("helloworld")
         print("Doesn't match: 'hello' is part of 'helloworld'")

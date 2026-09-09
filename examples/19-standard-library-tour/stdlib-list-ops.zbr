@@ -18,10 +18,12 @@ def main()
     if items.contains("banana")
         print("Found banana")
 
-    # Remove specific item
-    items.remove("banana")
-    print(items.count())  # 2
+    # Remove a specific item BY VALUE: `.remove()` takes an index, not a
+    # value — List has no indexOf either, so filter() is the idiom for
+    # "everything except this value."
+    var filtered: List(str) = items.filter(def(x) = x != "banana")
+    print(filtered.count())  # 2
 
     # Iterate over list
-    for fruit in items
+    for fruit in filtered
         print("Fruit: ${fruit}")

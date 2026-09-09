@@ -18,7 +18,7 @@ class Highlighter implements IPlugin
 
 # IDE startup
 def load_plugins(dir: str): List(IPlugin)
-    var loaded: List(IPlugin) = List()
+    var loaded: List(IPlugin) = List(IPlugin)()
     var files = Dir.list(dir)
     for f in files
         if f.endsWith(".dll")

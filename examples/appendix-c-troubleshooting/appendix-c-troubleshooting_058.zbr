@@ -1,4 +1,5 @@
-var items = List()
+var num_str = "42"
+var num = num_str.tryInt()   # toInt() is a plain int — can't be nil-checked
 
-for i in 0.to(items.count())
-    var item = items.at(i)  # Always safe with this pattern
+if num != nil
+    print(num + 1)

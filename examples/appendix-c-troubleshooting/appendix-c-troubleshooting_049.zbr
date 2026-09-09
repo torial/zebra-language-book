@@ -1,10 +1,9 @@
-# SLOW
-var result = ""
-for item in items
-    result = result + item + ", "
+# SLOW: O(n) for each lookup
+var found = false
+for item in list
+    if item == search_key
+        found = true
 
-# FAST
-var parts = List()
-for item in items
-    parts.add(item)
-var result = parts.join(", ")
+# FAST: O(1) lookup
+if set.contains(search_key)
+    found = true

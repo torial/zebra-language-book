@@ -1,6 +1,6 @@
 interface Shape
-    def area: float
-    def perimeter: float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
     var radius: float = 0.0
@@ -8,10 +8,10 @@ class Circle implements Shape
     cue init(r: float)
         radius = r
 
-    def area: float
+    def area(): float
         return 3.14 * radius * radius
 
-    def perimeter: float
+    def perimeter(): float
         return 2.0 * 3.14 * radius
 
 class Rectangle implements Shape
@@ -22,10 +22,10 @@ class Rectangle implements Shape
         width = w
         height = h
 
-    def area: float
+    def area(): float
         return width * height
 
-    def perimeter: float
+    def perimeter(): float
         return 2.0 * (width + height)
 
 class Triangle implements Shape
@@ -38,10 +38,10 @@ class Triangle implements Shape
         height = h
         hypotenuse = hy
 
-    def area: float
+    def area(): float
         return 0.5 * base * height
 
-    def perimeter: float
+    def perimeter(): float
         return base + height + hypotenuse
 
 def main()

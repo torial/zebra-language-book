@@ -41,25 +41,21 @@ def main()
     empty.add("date")
     print(empty.count())  # 1
 
-    # Access by index — assign through a typed local before printing
-    # so the formatter picks {s} instead of the byte-array fallback.
-    var first: str = fruits.at(0)
-    var second: str = fruits.at(1)
+    # Access by index
+    var first = fruits.at(0)
+    var second = fruits.at(1)
     print(first)  # apple
     print(second)  # banana
 
     # Check size
     print(fruits.count())  # 3
 
-    # Iterate — assign through a typed local for {s} formatting (BUG-090 workaround)
+    # Iterate
     for fruit in fruits
-        var f: str = fruit
-        print(f)
+        print(fruit)
 ```
 
 > The constructor form `var fruits = List(str)()` is still valid — useful when you want an empty list to grow without specifying an element type up front (the element type is inferred from the first `.add()`). For populated lists, `[…]` is shorter and reads better.
-
-> **Print formatting note:** when the formatter can't see the element type — for example, a fresh for-loop binding from a List(str), or a class field of type `str` — `print` falls back to byte-array formatting (`{ 97, 112, ... }`). Assigning through a typed local (`var f: str = fruit`) gives the formatter the `[]const u8` it expects. This is a known gap (BUG-089/090); examples in this chapter include the workaround so they actually print as you'd expect.
 
 ### List Operations
 
@@ -74,8 +70,9 @@ def main()
     # Check existence
     print(nums.contains(20))  # true
 
-    # Find index
-    print(nums.indexOf(20))  # 1
+    # Find the first matching element (there's no indexOf — search with a predicate;
+    # .find() returns an Optional, nil if nothing matches)
+    print(nums.find(def(x) = x == 20))  # 20
 
     # Remove by index (List.remove takes an index, not a value)
     nums.remove(1)
@@ -134,7 +131,7 @@ fruits.add("apple")
 fruits.add("banana")
 fruits.add("cherry")
 for fruit in fruits
-    print fruit
+    print(fruit)
 ```
 
 The main difference: Zebra requires the element type (`List(str)`) at the construction site; once declared, the type flows through inference.
@@ -173,10 +170,7 @@ def main()
         print("${name}: ${age}")
 ```
 
-> **Two notes on the API:**
->
-> - `.put()`/`.fetch()` are older HashMap method names that still work; `.set()`/`.get()` are the canonical forms used by QUICKSTART. `.fetch()` returns the value directly and panics on missing keys; `.get()` returns an optional — the safer pattern.
-> - HashMap key/value iteration (`for k, v in m`) is the canonical form, but a known compiler gap in the current selfhost (BUG-094, filed separately) emits a spurious `_ = name;` discard that Zig rejects. As a workaround until that's fixed: iterate the keys via a list you maintain alongside the map, or read values back via `.get(known_key)` for the small number of cases where you need values during a loop.
+> **A note on the API:** `.put()`/`.fetch()` are older HashMap method names that still work; `.set()`/`.get()` are the canonical forms used by QUICKSTART. `.fetch()` returns the value directly and panics on missing keys; `.get()` returns an optional — the safer pattern.
 
 ### HashMap Operations
 
@@ -202,7 +196,7 @@ def main()
     if config.get("host") as host
         print(host)  # localhost
 
-    # Iterate over keys and values (see BUG-094 note above on the kv-loop gap)
+    # Iterate over keys and values
     for key, value in config
         print("${key} = ${value}")
 ```
@@ -356,7 +350,10 @@ def main()
 >     if should_remove(item)
 >         to_remove.add(item)
 > for item in to_remove
->     items.remove(items.indexOf(item))
+>     for i in 0..items.count()
+>         if items.at(i) == item
+>             items.remove(i)
+>             break
 > ```
 
 > ❌ **Mistake:** Using wrong key type for HashMap

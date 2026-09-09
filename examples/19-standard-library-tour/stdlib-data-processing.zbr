@@ -13,9 +13,10 @@ def main()
         var parts = line.split(",")
         if parts.count() == 2
             var name = parts.at(0)
-            var score = parts.at(1).toInt()
-            if score != nil
-                scores.put(name, score)
+            # tryInt(), not toInt() — toInt() returns a plain int (0 on bad
+            # input), which can't be nil-checked.
+            if parts.at(1).tryInt() as score
+                scores.set(name, score)
 
     # Report
     for name, value in scores

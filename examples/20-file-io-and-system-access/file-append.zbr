@@ -4,17 +4,10 @@
 
 def main()
     var filename = "log.txt"
-    
-    # Read existing content
-    var existing = File.read(filename).unwrapOr("")
-    
-    # Append new content
+
+    # Append new content — creates the file if it doesn't exist yet
     var timestamp = "2025-03-15 14:30:00"
     var message = "Application started"
-    
-    var new_content = existing + timestamp + " - " + message + "\n"
-    
-    var result = File.write(filename, new_content)
-    
-    if result.isOk()
-        print("Log entry added")
+
+    File.append(filename, "${timestamp} - ${message}\n")
+    print("Log entry added")

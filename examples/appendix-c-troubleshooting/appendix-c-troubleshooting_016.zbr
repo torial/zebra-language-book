@@ -1,2 +1,2 @@
-for item in items
-    print(item)  # No index worries
+var items: List(int) = List()
+items.remove(0)        # PANIC: index out of bounds: index 0, len 0

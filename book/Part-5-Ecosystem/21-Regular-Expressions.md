@@ -23,6 +23,13 @@ Zebra's regex engine uses **Thompson NFA** with **Laurikari** for proper unicode
 
 Key principle: **Regexes are for pattern matching, not parsing.** Use a real parser for structured data (XML, JSON, code).
 
+A note on the API before the examples: a compiled pattern is a `Regex`, built with
+`Regex.compile(pattern)`. Its `.match(s)` checks whether the **whole** string `s`
+matches the pattern (both ends anchored) and returns `bool` — there is no `.matches()`
+method, on `Regex` or on `str`. To check whether the pattern occurs *anywhere* in a
+larger string, use `.find(s) != ""` instead (`.find` returns the first matching
+substring, or `""` if there's no match).
+
 ---
 
 ## Regex Basics
@@ -38,13 +45,14 @@ The simplest regex is just literal characters:
 
 def main()
     var text = "The cat sat on the mat"
-    var pattern = "cat"
+    var pattern = Regex.compile("cat")
     
-    if text.matches(pattern)
+    if pattern.find(text) != ""
         print("Pattern found!")
     
     # Case-sensitive
-    if not text.matches("CAT")
+    var upper_pattern = Regex.compile("CAT")
+    if upper_pattern.find(text) == ""
         print("'CAT' doesn't match 'cat'")
     
     # Substring matching
@@ -73,23 +81,23 @@ def main()
     var re = Regex.compile("c.t")
     
     # Matches: cat, cot, cut, c9t, c t
-    if re.matches("cat")
+    if re.match("cat")
         print("Matches 'cat'")
     
-    if re.matches("cot")
+    if re.match("cot")
         print("Matches 'cot'")
     
-    if re.matches("cut")
+    if re.match("cut")
         print("Matches 'cut'")
     
-    if not re.matches("coat")  # 'oa' is two chars, not one
+    if not re.match("coat")  # 'oa' is two chars, not one
         print("Doesn't match 'coat'")
     
     # Practical: match email-ish pattern (simplified)
     var email_pattern = ".+@.+"
     var email_re = Regex.compile(email_pattern)
     
-    if email_re.matches("user@example.com")
+    if email_re.match("user@example.com")
         print("Valid email pattern")
 ```
 
@@ -108,37 +116,37 @@ def main()
     # Single character from a set
     var re1 = Regex.compile("[aeiou]")  # Match any vowel
     
-    if re1.matches("a")
+    if re1.match("a")
         print("'a' is a vowel")
     
-    if re1.matches("e")
+    if re1.match("e")
         print("'e' is a vowel")
     
-    if not re1.matches("x")
+    if not re1.match("x")
         print("'x' is not a vowel")
     
     # Character ranges
     var digit_re = Regex.compile("[0-9]")  # Any digit
     
-    if digit_re.matches("5")
+    if digit_re.match("5")
         print("'5' is a digit")
     
-    if not digit_re.matches("a")
+    if not digit_re.match("a")
         print("'a' is not a digit")
     
     var letter_re = Regex.compile("[a-zA-Z]")  # Any letter
     
-    if letter_re.matches("X")
+    if letter_re.match("X")
         print("'X' is a letter")
     
     # Negation: NOT in set
     var non_vowel_re = Regex.compile("[^aeiou]")
     
-    if non_vowel_re.matches("b")
+    if non_vowel_re.match("b")
         print("'b' is not a vowel")
     
-    if not non_vowel_re.matches("a")
-        print("'a' is a vowel (excluded by ^"))
+    if not non_vowel_re.match("a")
+        print("'a' is a vowel (excluded by ^)")
 ```
 
 ### Common Character Classes (Shortcuts)
@@ -154,28 +162,28 @@ def main()
     # \d = [0-9] = digit
     var digit_re = Regex.compile("\\d")
     
-    if digit_re.matches("7")
+    if digit_re.match("7")
         print("Found digit")
     
     # \w = [a-zA-Z0-9_] = word character
     var word_re = Regex.compile("\\w")
     
-    if word_re.matches("a")
+    if word_re.match("a")
         print("'a' is a word character")
     
-    if word_re.matches("_")
+    if word_re.match("_")
         print("'_' is a word character")
     
-    if not word_re.matches("-")
+    if not word_re.match("-")
         print("'-' is not a word character")
     
     # \s = whitespace (space, tab, newline)
     var space_re = Regex.compile("\\s")
     
-    if space_re.matches(" ")
+    if space_re.match(" ")
         print("Space matches whitespace")
     
-    if space_re.matches("\t")
+    if space_re.match("\t")
         print("Tab matches whitespace")
     
     # Inverse (uppercase)
@@ -185,11 +193,11 @@ def main()
     
     var not_digit = Regex.compile("\\D")
     
-    if not_digit.matches("x")
+    if not_digit.match("x")
         print("'x' is not a digit")
     
-    if not not_digit.matches("5")
-        print("'5' is a digit (excluded by \\D"))
+    if not not_digit.match("5")
+        print("'5' is a digit (excluded by \\D)")
 ```
 
 ---
@@ -207,65 +215,65 @@ def main()
     # * = zero or more
     var re_star = Regex.compile("ab*c")  # ac, abc, abbc, abbbc, etc.
     
-    if re_star.matches("ac")
-        print("Matches 'ac' (zero b's"))
+    if re_star.match("ac")
+        print("Matches 'ac' (zero b's)")
     
-    if re_star.matches("abc")
-        print("Matches 'abc' (one b"))
+    if re_star.match("abc")
+        print("Matches 'abc' (one b)")
     
-    if re_star.matches("abbbc")
-        print("Matches 'abbbc' (three b's"))
+    if re_star.match("abbbc")
+        print("Matches 'abbbc' (three b's)")
     
-    if not re_star.matches("aXc")
-        print("Doesn't match 'aXc' (X is not b"))
+    if not re_star.match("aXc")
+        print("Doesn't match 'aXc' (X is not b)")
     
     # + = one or more
     var re_plus = Regex.compile("ab+c")  # abc, abbc, abbbc, etc. (NOT ac)
     
-    if not re_plus.matches("ac")
-        print("Doesn't match 'ac' (need at least one b"))
+    if not re_plus.match("ac")
+        print("Doesn't match 'ac' (need at least one b)")
     
-    if re_plus.matches("abc")
+    if re_plus.match("abc")
         print("Matches 'abc'")
     
-    if re_plus.matches("abbc")
+    if re_plus.match("abbc")
         print("Matches 'abbc'")
     
     # ? = zero or one
     var re_optional = Regex.compile("colou?r")  # color or colour
     
-    if re_optional.matches("color")
-        print("Matches 'color' (American spelling"))
+    if re_optional.match("color")
+        print("Matches 'color' (American spelling)")
     
-    if re_optional.matches("colour")
-        print("Matches 'colour' (British spelling"))
+    if re_optional.match("colour")
+        print("Matches 'colour' (British spelling)")
     
-    if not re_optional.matches("coloor")
-        print("Doesn't match 'coloor' (too many o's"))
+    if not re_optional.match("coloor")
+        print("Doesn't match 'coloor' (too many o's)")
     
     # Exact count: {n}
     var re_exact = Regex.compile("a{3}")  # exactly three a's
     
-    if re_exact.matches("aaa")
+    if re_exact.match("aaa")
         print("Matches 'aaa'")
     
-    if not re_exact.matches("aa")
+    if not re_exact.match("aa")
         print("Doesn't match 'aa'")
     
     # Range: {n,m}
     var re_range = Regex.compile("a{2,4}")  # 2 to 4 a's
     
-    if re_range.matches("aa")
+    if re_range.match("aa")
         print("Matches 'aa'")
     
-    if re_range.matches("aaa")
+    if re_range.match("aaa")
         print("Matches 'aaa'")
     
-    if re_range.matches("aaaa")
+    if re_range.match("aaaa")
         print("Matches 'aaaa'")
     
-    if not re_range.matches("aaaaa")
-        print("Doesn't match 'aaaaa' (too many"))
+    if not re_range.match("aaaaa")
+        print("Doesn't match 'aaaaa' (too many)")
 ```
 
 ---
@@ -283,40 +291,40 @@ def main()
     # ^ = start of string
     var starts_with_hello = Regex.compile("^hello")
     
-    if starts_with_hello.matches("hello world")
+    if starts_with_hello.match("hello world")
         print("Matches: string starts with 'hello'")
     
-    if not starts_with_hello.matches("say hello")
+    if not starts_with_hello.match("say hello")
         print("Doesn't match: 'hello' is not at start")
     
     # $ = end of string
     var ends_with_txt = Regex.compile("\\.txt$")
     
-    if ends_with_txt.matches("document.txt")
+    if ends_with_txt.match("document.txt")
         print("Matches: filename ends with .txt")
     
-    if not ends_with_txt.matches("document.txt.bak")
+    if not ends_with_txt.match("document.txt.bak")
         print("Doesn't match: .txt is not at end")
     
     # Combining ^ and $
     var exact_pattern = Regex.compile("^[a-z]+$")  # Only lowercase letters
     
-    if exact_pattern.matches("hello")
+    if exact_pattern.match("hello")
         print("Matches: all lowercase")
     
-    if not exact_pattern.matches("Hello")
+    if not exact_pattern.match("Hello")
         print("Doesn't match: has uppercase")
     
-    if not exact_pattern.matches("hello123")
+    if not exact_pattern.match("hello123")
         print("Doesn't match: has numbers")
     
     # Word boundary: \b
     var word_boundary = Regex.compile("\\bhello\\b")
     
-    if word_boundary.matches("hello world")
+    if word_boundary.match("hello world")
         print("Matches: 'hello' is a word")
     
-    if not word_boundary.matches("helloworld")
+    if not word_boundary.match("helloworld")
         print("Doesn't match: 'hello' is part of 'helloworld'")
 ```
 
@@ -335,41 +343,41 @@ def main()
     # Alternation: |
     var greeting_re = Regex.compile("hello|hi|hey")
     
-    if greeting_re.matches("hello")
+    if greeting_re.match("hello")
         print("Matches 'hello'")
     
-    if greeting_re.matches("hi")
+    if greeting_re.match("hi")
         print("Matches 'hi'")
     
-    if greeting_re.matches("hey")
+    if greeting_re.match("hey")
         print("Matches 'hey'")
     
-    if not greeting_re.matches("goodbye")
+    if not greeting_re.match("goodbye")
         print("Doesn't match 'goodbye'")
     
     # Groups with quantifiers
     var repeating_group = Regex.compile("(ab)+")  # ab, abab, ababab, etc.
     
-    if repeating_group.matches("ab")
+    if repeating_group.match("ab")
         print("Matches 'ab'")
     
-    if repeating_group.matches("abab")
+    if repeating_group.match("abab")
         print("Matches 'abab'")
     
-    if repeating_group.matches("ababab")
+    if repeating_group.match("ababab")
         print("Matches 'ababab'")
     
-    if not repeating_group.matches("aba")
+    if not repeating_group.match("aba")
         print("Doesn't match 'aba'")
     
     # Optional group
     var optional_group = Regex.compile("colou?r|color")
     # Actually redundant—simpler: colou?r
     
-    if optional_group.matches("color")
+    if optional_group.match("color")
         print("Matches 'color'")
     
-    if optional_group.matches("colour")
+    if optional_group.match("colour")
         print("Matches 'colour'")
 ```
 
@@ -386,41 +394,42 @@ Warning: email validation is complex! This is a *simplified* pattern.
 # teaches: email validation pattern (simplified)
 # chapter: 21
 
+def is_valid_email(email: str): bool
+    # Must have @ and .
+    if not email.contains("@")
+        return false
+    
+    var parts = email.split("@")
+    if parts.count() != 2
+        return false  # Multiple @ signs
+    
+    var local = parts.at(0)
+    var domain = parts.at(1)
+    
+    if local.len == 0 or domain.len == 0
+        return false  # Empty parts
+    
+    if not domain.contains(".")
+        return false  # No TLD
+    
+    return true
+
 def main()
     # Very basic email pattern
     # In production, use an email verification service
     var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
     
-    if email_pattern.matches("user@example.com")
+    if email_pattern.match("user@example.com")
         print("Valid format")
     
-    if not email_pattern.matches("invalid.email@")
+    if not email_pattern.match("invalid.email@")
         print("Invalid: missing domain")
     
-    if not email_pattern.matches("no-at-sign.com")
+    if not email_pattern.match("no-at-sign.com")
         print("Invalid: no @ sign")
     
-    # Better validation: check length, etc.
-    def is_valid_email(email: str): bool
-        # Must have @ and .
-        if not email.contains("@")
-            return false
-        
-        var parts = email.split("@")
-        if parts.count() != 2
-            return false  # Multiple @ signs
-        
-        var local = parts.at(0)
-        var domain = parts.at(1)
-        
-        if local.len == 0 or domain.len == 0
-            return false  # Empty parts
-        
-        if not domain.contains(".")
-            return false  # No TLD
-        
-        return true
-    
+    # Better validation: check length, etc. (top-level def — a `def` can't be
+    # nested inside another function's body in Zebra)
     if is_valid_email("alice@example.com")
         print("Email looks valid")
 ```
@@ -432,33 +441,36 @@ def main()
 # teaches: phone number pattern matching
 # chapter: 21
 
+def is_valid_phone_flexible(phone: str): bool
+    # Must have at least 10 digits
+    var digits_only = phone.replace("-", "").replace(" ", "").replace("(", "").replace(")", "")
+    
+    var digit_count = 0
+    for ch in digits_only.chars()
+        if Regex.compile("\\d").match("${ch:c}")
+            digit_count = digit_count + 1
+    
+    return digit_count >= 10 and digit_count <= 15
+
 def main()
     # US format: 123-456-7890
     var us_phone = Regex.compile("\\d{3}-\\d{3}-\\d{4}")
     
-    if us_phone.matches("555-123-4567")
+    if us_phone.match("555-123-4567")
         print("Valid US phone")
     
-    if not us_phone.matches("5551234567")  # Missing dashes
+    if not us_phone.match("5551234567")  # Missing dashes
         print("Invalid: wrong format")
     
     # International: +1-234-567-8900
     var intl_phone = Regex.compile("\\+\\d{1,3}-\\d{3}-\\d{3}-\\d{4}")
     
-    if intl_phone.matches("+1-555-123-4567")
+    if intl_phone.match("+1-555-123-4567")
         print("Valid international")
     
-    # Flexible: accept various formats
-    def is_valid_phone_flexible(phone: str): bool
-        # Must have at least 10 digits
-        var digits_only = phone.replace("-", "").replace(" ", "").replace("(", "").replace(")", "")
-        
-        var digit_count = 0
-        for char in digits_only.split("")
-            if Regex.compile("\\d").matches(char)
-                digit_count = digit_count + 1
-        
-        return digit_count >= 10 and digit_count <= 15
+    # Flexible: accept various formats (top-level def, see regex-email.zbr note)
+    if is_valid_phone_flexible("(555) 123-4567")
+        print("Flexible format accepted")
 ```
 
 ### URL Validation
@@ -468,37 +480,40 @@ def main()
 # teaches: URL pattern matching
 # chapter: 21
 
+def is_valid_url(url: str): bool
+    if not url.startsWith("http://") and not url.startsWith("https://")
+        return false
+    
+    var after_protocol = url.substring(7, url.len)
+    if after_protocol.len == 0
+        return false
+    
+    # Must have at least one dot
+    if not after_protocol.contains(".")
+        return false
+    
+    # No spaces
+    if after_protocol.contains(" ")
+        return false
+    
+    return true
+
 def main()
     # Basic HTTP(S) URL
     var url_pattern = Regex.compile("https?://[a-z0-9]+\\.[a-z0-9]+")
     
-    if url_pattern.matches("https://example.com")
+    if url_pattern.match("https://example.com")
         print("Valid HTTPS URL")
     
-    if url_pattern.matches("http://example.co.uk")
+    if url_pattern.match("http://example.co.uk")
         print("Valid HTTP URL")
     
-    if not url_pattern.matches("ftp://example.com")
+    if not url_pattern.match("ftp://example.com")
         print("Doesn't match: FTP not in pattern")
     
-    # More complete
-    def is_valid_url(url: str): bool
-        if not url.startsWith("http://") and not url.startsWith("https://")
-            return false
-        
-        var after_protocol = url.substring(7, url.len)
-        if after_protocol.len == 0
-            return false
-        
-        # Must have at least one dot
-        if not after_protocol.contains(".")
-            return false
-        
-        # No spaces
-        if after_protocol.contains(" ")
-            return false
-        
-        return true
+    # More complete (top-level def, see regex-email.zbr note)
+    if is_valid_url("https://example.com/path")
+        print("Complete validation passed")
 ```
 
 ---
@@ -519,30 +534,34 @@ def main()
     var price_pattern = Regex.compile("\\$\\d+")
     
     # Find first match
-    if price_pattern.matches(text)
+    if price_pattern.match(text)
         print("Contains price pattern")
     
     # Extract all prices
-    var prices = List()
+    var prices: List(str) = []
     
-    # Manual extraction (since full regex API varies)
+    # Manual extraction (since full regex API varies). indexOf takes one
+    # argument — to search from an offset, use indexOfFrom, which returns int?
     var search_start = 0
     while search_start < text.len
-        var dollar_pos = text.indexOf("$", search_start)
-        if dollar_pos < 0
+        var dollar_pos = text.indexOfFrom("$", search_start)
+        if dollar_pos == nil
             break
+        var dp = dollar_pos!
         
-        var num_start = dollar_pos + 1
+        var num_start = dp + 1
         var num_end = num_start
         
         while num_end < text.len
-            var char = text.charAt(num_end)
-            if Regex.compile("\\d").matches(char)
+            # charAt returns a byte, not a str — format it with :c to get a
+            # 1-character str Regex.match can take.
+            var digit_char = "${text.charAt(num_end):c}"
+            if Regex.compile("\\d").match(digit_char)
                 num_end = num_end + 1
             else
                 break
         
-        var price = text.substring(dollar_pos, num_end)
+        var price = text.substring(dp, num_end)
         prices.add(price)
         search_start = num_end
     
@@ -567,22 +586,23 @@ def extract_person_data(line: str): HashMap(str, str)?
     if parts.count() != 3
         return nil
     
-    var data = HashMap()
-    data.put("name", parts.at(0).trim())
-    data.put("age", parts.at(1).trim())
-    data.put("email", parts.at(2).trim())
+    var data = HashMap(str, str)()
+    data.set("name", parts.at(0).trim())
+    data.set("age", parts.at(1).trim())
+    data.set("email", parts.at(2).trim())
     
     return data
 
 def main()
     var record = "John Smith | 30 | john@example.com"
     
-    var extracted = extract_person_data(record)
-    
-    if extracted != nil
-        print("Name: ${extracted.fetch("name"}"))
-        print("Age: ${extracted.fetch("age"}"))
-        print("Email: ${extracted.fetch("email"}"))
+    if extract_person_data(record) as extracted
+        # .get() returns V? (str?) — a HashMap(str,str) lookup can miss, so
+        # interpolating it needs an unwrap. orelse gives a fallback for a
+        # genuinely-missing key; here we know the keys are present.
+        print("Name: ${extracted.get("name") orelse ""}")
+        print("Age: ${extracted.get("age") orelse ""}")
+        print("Email: ${extracted.get("email") orelse ""}")
 ```
 
 ---
@@ -599,14 +619,12 @@ def main()
 def main()
     var text = "The cat sat on the mat"
     
-    # Replace first occurrence of pattern
+    # re.replace(s, repl) replaces EVERY match — there's no separate
+    # single-replacement or `.replaceAll` on Regex (that name exists on `str`,
+    # not on `Regex`).
     var pattern = Regex.compile("at")
     var replaced = pattern.replace(text, "AT")
-    print(replaced)  # "The cAT sat on the mat"
-    
-    # Replace all occurrences
-    var all_replaced = pattern.replaceAll(text, "AT")
-    print(all_replaced)  # "The cAT sAT on the mAT"
+    print(replaced)  # "The cAT sAT on the mAT"
     
     # Case-insensitive replacement (if supported)
     var case_insensitive = text.lower().replace("cat", "dog")
@@ -619,6 +637,14 @@ def main()
 # file: regex-transform.zbr
 # teaches: using regex for data transformation
 # chapter: 21
+
+def escape_html(text: str): str
+    var escaped = text.replace("&", "&amp;")
+    escaped = escaped.replace("<", "&lt;")
+    escaped = escaped.replace(">", "&gt;")
+    escaped = escaped.replace("\"", "&quot;")
+    escaped = escaped.replace("'", "&#39;")
+    return escaped
 
 def main()
     # Convert dates from MM/DD/YYYY to YYYY-MM-DD
@@ -633,15 +659,7 @@ def main()
         var iso_date = "${year}-${month}-${day}"
         print(iso_date)  # 2025-03-15
     
-    # Escape special characters
-    def escape_html(text: str): str
-        var escaped = text.replace("&", "&amp;")
-        escaped = escaped.replace("<", "&lt;")
-        escaped = escaped.replace(">", "&gt;")
-        escaped = escaped.replace("\"", "&quot;")
-        escaped = escaped.replace("'", "&#39;")
-        return escaped
-    
+    # Escape special characters (top-level def, see regex-email.zbr note)
     var html_unsafe = "<script>alert('XSS')</script>"
     print(escape_html(html_unsafe))
 ```
@@ -687,19 +705,19 @@ def main()
     # To match a literal dot
     var file_extension = Regex.compile("\\.txt$")
     
-    if file_extension.matches("document.txt")
+    if file_extension.match("document.txt")
         print("Matches text file")
     
     # To match a literal dollar sign
     var price_pattern = Regex.compile("\\$[0-9]+")
     
-    if price_pattern.matches("$50")
+    if price_pattern.match("$50")
         print("Matches price")
     
     # To match a literal backslash
     var path_pattern = Regex.compile("C:\\\\Users")  # Note: double backslash
     
-    if path_pattern.matches("C:\\Users")
+    if path_pattern.match("C:\\Users")
         print("Matches Windows path")
 ```
 
@@ -722,23 +740,22 @@ Check documentation for your version.
 # chapter: 21
 
 def analyze_logs(filename: str)
-    var result = File.read(filename)
-    if result.isErr()
-        print("Error: ${result.error(}"))
+    if not File.exists(filename)
+        print("Error: ${filename} not found")
         return
     
-    var content = result.value()
+    var content = File.read(filename)
     var lines = content.split("\n")
     
     var error_count = 0
     var warning_count = 0
-    var error_lines = List()
+    var error_lines: List(str) = []
     
     for line in lines
         if line.contains("[ERROR]")
             error_count = error_count + 1
             error_lines.add(line)
-        elif line.contains("[WARN]")
+        else if line.contains("[WARN]")
             warning_count = warning_count + 1
     
     print("Log Analysis:")

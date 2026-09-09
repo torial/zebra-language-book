@@ -9,7 +9,7 @@ mixin Loggable
 mixin Cacheable
     var _cache: HashMap(str, str)
 
-    cue init
+    cue init()
         _cache = HashMap(str, str)()
 
     def cache_get(key: str): str?

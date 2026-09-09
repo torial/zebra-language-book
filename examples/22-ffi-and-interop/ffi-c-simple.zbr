@@ -4,7 +4,7 @@
 
 # Declare C function signature
 # Note: This example assumes the function is available at link time
-shared class Math
+class Math
     static
         def sqrt(x: float): float
             # This would be implemented in C

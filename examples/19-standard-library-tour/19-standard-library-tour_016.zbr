@@ -1,10 +1,12 @@
 def main()
-    var db = Sqlite.open("./data.db")        # or ":memory:" for in-memory
+    # Sqlite.open returns SqliteDb? — nil on failure — so unwrap before
+    # calling methods on it.
+    var db = Sqlite.open("./data.db")!        # or ":memory:" for in-memory
     db.exec("CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT)")
     db.exec("INSERT INTO users VALUES (1, 'Alice')")
     db.exec("INSERT INTO users VALUES (2, 'Bob')")
 
     for row in db.query("SELECT id, name FROM users")
-        print("${row.asInt(0)}: ${row.asStr(1)}")
+        print("${row.asInt("id")}: ${row.asStr("name")}")
 
     db.close()

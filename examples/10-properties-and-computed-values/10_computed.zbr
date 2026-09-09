@@ -5,25 +5,25 @@
 class DataSet
     var numbers: List(int) = List()
     
-    def sum: int
+    def sum(): int
         var total = 0
         for num in numbers
             total = total + num
         return total
     
-    def average: float
+    def average(): float
         if numbers.count() == 0
             return 0.0
         return sum / numbers.count()
     
-    def min_value: int
+    def min_value(): int
         var min = numbers.at(0)
         for num in numbers
             if num < min
                 min = num
         return min
     
-    def max_value: int
+    def max_value(): int
         var max = numbers.at(0)
         for num in numbers
             if num > max

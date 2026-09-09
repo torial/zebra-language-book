@@ -6,39 +6,39 @@ def main()
     # Alternation: |
     var greeting_re = Regex.compile("hello|hi|hey")
     
-    if greeting_re.matches("hello")
+    if greeting_re.match("hello")
         print("Matches 'hello'")
     
-    if greeting_re.matches("hi")
+    if greeting_re.match("hi")
         print("Matches 'hi'")
     
-    if greeting_re.matches("hey")
+    if greeting_re.match("hey")
         print("Matches 'hey'")
     
-    if not greeting_re.matches("goodbye")
+    if not greeting_re.match("goodbye")
         print("Doesn't match 'goodbye'")
     
     # Groups with quantifiers
     var repeating_group = Regex.compile("(ab)+")  # ab, abab, ababab, etc.
     
-    if repeating_group.matches("ab")
+    if repeating_group.match("ab")
         print("Matches 'ab'")
     
-    if repeating_group.matches("abab")
+    if repeating_group.match("abab")
         print("Matches 'abab'")
     
-    if repeating_group.matches("ababab")
+    if repeating_group.match("ababab")
         print("Matches 'ababab'")
     
-    if not repeating_group.matches("aba")
+    if not repeating_group.match("aba")
         print("Doesn't match 'aba'")
     
     # Optional group
     var optional_group = Regex.compile("colou?r|color")
     # Actually redundant—simpler: colou?r
     
-    if optional_group.matches("color")
+    if optional_group.match("color")
         print("Matches 'color'")
     
-    if optional_group.matches("colour")
+    if optional_group.match("colour")
         print("Matches 'colour'")

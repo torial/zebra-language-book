@@ -1,2 +1,2 @@
 var text = "hello"
-var last = text.charAt(10)      # ERROR: index out of bounds
+var last = text.charAt(10)      # PANIC: index 10 outside slice of length 5

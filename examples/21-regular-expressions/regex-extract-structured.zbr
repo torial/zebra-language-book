@@ -11,19 +11,20 @@ def extract_person_data(line: str): HashMap(str, str)?
     if parts.count() != 3
         return nil
     
-    var data = HashMap()
-    data.put("name", parts.at(0).trim())
-    data.put("age", parts.at(1).trim())
-    data.put("email", parts.at(2).trim())
+    var data = HashMap(str, str)()
+    data.set("name", parts.at(0).trim())
+    data.set("age", parts.at(1).trim())
+    data.set("email", parts.at(2).trim())
     
     return data
 
 def main()
     var record = "John Smith | 30 | john@example.com"
     
-    var extracted = extract_person_data(record)
-    
-    if extracted != nil
-        print("Name: ${extracted.fetch("name"}"))
-        print("Age: ${extracted.fetch("age"}"))
-        print("Email: ${extracted.fetch("email"}"))
+    if extract_person_data(record) as extracted
+        # .get() returns V? (str?) — a HashMap(str,str) lookup can miss, so
+        # interpolating it needs an unwrap. orelse gives a fallback for a
+        # genuinely-missing key; here we know the keys are present.
+        print("Name: ${extracted.get("name") orelse ""}")
+        print("Age: ${extracted.get("age") orelse ""}")
+        print("Email: ${extracted.get("email") orelse ""}")

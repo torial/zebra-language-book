@@ -1,9 +1,9 @@
 def main()
-    var key = Crypto.deriveKey("user-password", "fixed-salt-bytes")
-    var ciphertext = Crypto.encrypt("secret message", key)
-    print(ciphertext)  # base64-encoded blob
+    var key = "a-fixed-32-byte-demo-key-value!!"
+    var ciphertext = Crypto.encrypt(key, "secret message")
+    print(ciphertext)  # hex-encoded blob
 
-    var plaintext = Crypto.decrypt(ciphertext, key)
+    var plaintext = Crypto.decrypt(key, ciphertext)
     if plaintext as msg
         print(msg)  # "secret message"
     else

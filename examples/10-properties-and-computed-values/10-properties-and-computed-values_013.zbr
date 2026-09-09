@@ -2,7 +2,7 @@
 >     var numbers: List(int) = List()
 >     var cached_sum: int? = nil
 >     
->     def sum: int
+>     def sum(): int
 >         if cached_sum == nil
 >             var total = 0
 >             for num in numbers

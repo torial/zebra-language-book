@@ -2,7 +2,7 @@
 # teaches: Zig string interop
 # chapter: 22
 
-shared class ZigString
+class ZigString
     static
         # Zig function with slices
         # pub fn string_length(s: []const u8) -> usize

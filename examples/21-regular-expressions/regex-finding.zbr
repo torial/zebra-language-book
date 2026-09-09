@@ -9,30 +9,34 @@ def main()
     var price_pattern = Regex.compile("\\$\\d+")
     
     # Find first match
-    if price_pattern.matches(text)
+    if price_pattern.match(text)
         print("Contains price pattern")
     
     # Extract all prices
-    var prices = List()
+    var prices: List(str) = []
     
-    # Manual extraction (since full regex API varies)
+    # Manual extraction (since full regex API varies). indexOf takes one
+    # argument — to search from an offset, use indexOfFrom, which returns int?
     var search_start = 0
     while search_start < text.len
-        var dollar_pos = text.indexOf("$", search_start)
-        if dollar_pos < 0
+        var dollar_pos = text.indexOfFrom("$", search_start)
+        if dollar_pos == nil
             break
+        var dp = dollar_pos!
         
-        var num_start = dollar_pos + 1
+        var num_start = dp + 1
         var num_end = num_start
         
         while num_end < text.len
-            var char = text.charAt(num_end)
-            if Regex.compile("\\d").matches(char)
+            # charAt returns a byte, not a str — format it with :c to get a
+            # 1-character str Regex.match can take.
+            var digit_char = "${text.charAt(num_end):c}"
+            if Regex.compile("\\d").match(digit_char)
                 num_end = num_end + 1
             else
                 break
         
-        var price = text.substring(dollar_pos, num_end)
+        var price = text.substring(dp, num_end)
         prices.add(price)
         search_start = num_end
     

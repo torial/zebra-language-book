@@ -8,11 +8,14 @@ def test_addition()
 
 @tag("integration")
 def test_database_roundtrip()
-    var db = Sqlite.open(":memory:")
+    # Sqlite.open returns SqliteDb? — unwrap before calling methods on it.
+    var db = Sqlite.open(":memory:")!
     db.exec("CREATE TABLE t (x INTEGER)")
     db.exec("INSERT INTO t VALUES (42)")
-    var row = db.query("SELECT x FROM t").at(0)
-    assert_eq row.asInt(0), 42
+    var rows = db.query("SELECT x FROM t")
+    var row = rows.at(0)
+    # Row accessors take the COLUMN NAME, not an index.
+    assert_eq row.asInt("x"), 42
 
 @tag("slow")
 def test_large_dataset()

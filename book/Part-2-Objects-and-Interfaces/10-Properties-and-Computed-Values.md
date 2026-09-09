@@ -9,11 +9,23 @@
 
 ## The Big Picture
 
-**Properties** let you control how fields are accessed and modified. Instead of letting code directly access `person.age`, you can:
+**Properties**, in the sense this chapter uses the word, let you control how a value is read or changed instead of letting code touch a field directly. You can:
 - **Validate** on assignment (no negative ages)
 - **Calculate** on access (compute age from birth year)
 - **Cache** computed values
 - **Log** access for debugging
+
+**Zebra has no dedicated property syntax.** There is no `prop`, `get`, or `set`
+keyword, and no paren-less "computed field" declaration — a `def` that looks
+like a field access (`def age: int`, no parentheses) is a parse error. Every
+pattern in this chapter is an **ordinary method**: declared with `()`
+(`def age(): int`) and called with `()` (`person.age()`). "Property" here
+describes the *pattern* — a method that behaves like a field from the
+caller's point of view — not a language feature. A plain `var` field, by
+contrast, is read and assigned with no parentheses at all (`person.age`,
+`person.age = 30`) — see the "Read-only and write-only" section below for how
+that interacts with the method-based patterns here — see "Read-Only
+Properties" and "Write-Only Properties" under Common Patterns.
 
 ---
 
@@ -29,10 +41,10 @@
 class Person
     var birth_year: int = 2000
     
-    def age: int
+    def age(): int
         return 2024 - birth_year
     
-    def name_length: int
+    def name_length(): int
         var name = "Alice"
         return name.len
 
@@ -54,13 +66,13 @@ class Rectangle
     var width: int = 0
     var height: int = 0
     
-    def area: int
+    def area(): int
         return width * height
     
-    def perimeter: int
+    def perimeter(): int
         return 2 * (width + height)
     
-    def is_square: bool
+    def is_square(): bool
         return width == height
 
 def main()
@@ -101,7 +113,7 @@ class Account
         balance = balance - amount
         return true
     
-    def get_balance: float
+    def get_balance(): float
         return balance
 
 def main()
@@ -164,25 +176,25 @@ def main()
 class DataSet
     var numbers: List(int) = List()
     
-    def sum: int
+    def sum(): int
         var total = 0
         for num in numbers
             total = total + num
         return total
     
-    def average: float
+    def average(): float
         if numbers.count() == 0
             return 0.0
         return sum / numbers.count()
     
-    def min_value: int
+    def min_value(): int
         var min = numbers.at(0)
         for num in numbers
             if num < min
                 min = num
         return min
     
-    def max_value: int
+    def max_value(): int
         var max = numbers.at(0)
         for num in numbers
             if num > max
@@ -215,12 +227,12 @@ class Database
     var connection: str?   = nil
     var is_connected: bool = false
     
-    def get_connection: str
+    def get_connection(): str
         if connection == nil
             # Expensive operation: only when needed
             connection = "Connected to DB"
             is_connected = true
-        return connection
+        return connection!  # narrowed to str? above; unwrap for the str return type
 
 def main()
     var db = Database()
@@ -229,12 +241,12 @@ def main()
     print("Is connected: ${db.is_connected}")  # false
 
     # Access connection (now it's created)
-    if db.get_connection() as conn
-        print(conn)  # Connected to DB
+    var conn = db.get_connection()
+    print(conn)  # Connected to DB
 
-    # Already exists
-    if db.get_connection() as conn2
-        print(conn2)  # Connected to DB
+    # Already exists — no second connection attempt
+    var conn2 = db.get_connection()
+    print(conn2)  # Connected to DB
 ```
 
 ---
@@ -249,10 +261,10 @@ def main()
 class Temperature
     var celsius: float = 0.0
     
-    def fahrenheit: float
+    def fahrenheit(): float
         return celsius * 9.0 / 5.0 + 32.0
     
-    def kelvin: float
+    def kelvin(): float
         return celsius + 273.15
     
     def set_from_fahrenheit(f: float)
@@ -261,10 +273,10 @@ class Temperature
     def set_from_kelvin(k: float)
         celsius = k - 273.15
     
-    def is_freezing: bool
+    def is_freezing(): bool
         return celsius <= 0.0
     
-    def is_boiling: bool
+    def is_boiling(): bool
         return celsius >= 100.0
 
 def main()
@@ -307,7 +319,7 @@ class Config
         port = p
         return true
     
-    def get_url: str
+    def get_url(): str
         return "http://${host}:${port}"
     
     def set_debug(d: bool)
@@ -333,7 +345,7 @@ def main()
 class BankAccount
     var balance: float = 0.0
     
-    def get_balance: float
+    def get_balance(): float
         return balance  # Can read
     
     def deposit(amount: float)
@@ -397,7 +409,7 @@ class Password
 > class DataSet
 >     var numbers: List(int) = List()
 >     
->     def sum: int  # Recalculates every call
+>     def sum(): int  # Recalculates every call
 >         var total = 0
 >         for num in numbers
 >             total = total + num
@@ -410,7 +422,7 @@ class Password
 >     var numbers: List(int) = List()
 >     var cached_sum: int? = nil
 >     
->     def sum: int
+>     def sum(): int
 >         if cached_sum == nil
 >             var total = 0
 >             for num in numbers
@@ -429,7 +441,7 @@ class Password
 > class Logger
 >     var count: int = 0
 >     
->     def get_count: int
+>     def get_count(): int
 >         count = count + 1  # ❌ Has side effect!
 >         return count
 > ```
@@ -439,7 +451,7 @@ class Password
 > class Logger
 >     var count: int = 0
 >     
->     def get_count: int
+>     def get_count(): int
 >         return count  # ✅ Pure getter, no side effects
 >     
 >     def log_access
@@ -485,7 +497,7 @@ class BankAccount
         var interest = balance * interest_rate
         balance = balance + interest
     
-    def get_balance: float
+    def get_balance(): float
         return balance
 
 def main()
@@ -515,7 +527,7 @@ class Circle
         radius = r
         return true
     
-    def diameter: float
+    def diameter(): float
         return radius * 2.0
     
     def set_diameter(d: float): bool
@@ -524,10 +536,10 @@ class Circle
         radius = d / 2.0
         return true
     
-    def area: float
+    def area(): float
         return 3.14159 * radius * radius
     
-    def circumference: float
+    def circumference(): float
         return 2.0 * 3.14159 * radius
 
 def main()
@@ -576,10 +588,10 @@ class UserProfile
         age = a
         return true
     
-    def is_adult: bool
+    def is_adult(): bool
         return age >= 18
     
-    def is_valid: bool
+    def is_valid(): bool
         return username.len > 0 and email.contains("@") and age > 0
 
 def main()
@@ -609,6 +621,8 @@ def main()
 
 ## Key Takeaways
 
+- **Zebra has no property syntax** — every getter and setter in this chapter
+  is an ordinary method, declared and called with `()`
 - **Getters compute** values from fields
 - **Setters validate** before storing
 - **Computed properties** derive from other data

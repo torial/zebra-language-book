@@ -2,40 +2,41 @@
 # teaches: email validation pattern (simplified)
 # chapter: 21
 
+def is_valid_email(email: str): bool
+    # Must have @ and .
+    if not email.contains("@")
+        return false
+    
+    var parts = email.split("@")
+    if parts.count() != 2
+        return false  # Multiple @ signs
+    
+    var local = parts.at(0)
+    var domain = parts.at(1)
+    
+    if local.len == 0 or domain.len == 0
+        return false  # Empty parts
+    
+    if not domain.contains(".")
+        return false  # No TLD
+    
+    return true
+
 def main()
     # Very basic email pattern
     # In production, use an email verification service
     var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
     
-    if email_pattern.matches("user@example.com")
+    if email_pattern.match("user@example.com")
         print("Valid format")
     
-    if not email_pattern.matches("invalid.email@")
+    if not email_pattern.match("invalid.email@")
         print("Invalid: missing domain")
     
-    if not email_pattern.matches("no-at-sign.com")
+    if not email_pattern.match("no-at-sign.com")
         print("Invalid: no @ sign")
     
-    # Better validation: check length, etc.
-    def is_valid_email(email: str): bool
-        # Must have @ and .
-        if not email.contains("@")
-            return false
-        
-        var parts = email.split("@")
-        if parts.count() != 2
-            return false  # Multiple @ signs
-        
-        var local = parts.at(0)
-        var domain = parts.at(1)
-        
-        if local.len == 0 or domain.len == 0
-            return false  # Empty parts
-        
-        if not domain.contains(".")
-            return false  # No TLD
-        
-        return true
-    
+    # Better validation: check length, etc. (top-level def — a `def` can't be
+    # nested inside another function's body in Zebra)
     if is_valid_email("alice@example.com")
         print("Email looks valid")

@@ -21,10 +21,10 @@ class UserProfile
         age = a
         return true
     
-    def is_adult: bool
+    def is_adult(): bool
         return age >= 18
     
-    def is_valid: bool
+    def is_valid(): bool
         return username.len > 0 and email.contains("@") and age > 0
 
 def main()

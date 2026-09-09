@@ -24,6 +24,7 @@ class BlogPost implements Publishable adds Versioned
     var title: str = ""
     var body: str = ""
     var storage: Storage
+    var version: int = 0            # redeclared from Versioned — see the note above
 
     cue init(t: str, store_path: str)
         title = t

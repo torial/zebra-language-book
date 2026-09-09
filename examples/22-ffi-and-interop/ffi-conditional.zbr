@@ -2,7 +2,7 @@
 # teaches: platform-specific compilation
 # chapter: 22
 
-shared class OSSpecific
+class OSSpecific
     static
         def platform_name(): str
             # This might vary based on compilation target
@@ -13,5 +13,5 @@ shared class OSSpecific
             return "/"
 
 def main()
-    print("Platform: ${OSSpecific.platform_name(}"))
-    print("Separator: ${OSSpecific.file_separator(}"))
+    print("Platform: ${OSSpecific.platform_name()}")
+    print("Separator: ${OSSpecific.file_separator()}")

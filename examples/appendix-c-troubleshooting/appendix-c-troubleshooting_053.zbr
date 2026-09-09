@@ -1,6 +1,7 @@
-var x = 10
-print("x = ${x}")  # Check variable value
-print("After operation")  # Check execution flow
+var x = 42
+print(x.toString())  # Force type check
 
-if condition
-    print("Condition true: ${variable}")
+def operation(): int throws
+    return 42
+
+var result: int = operation() catch 0

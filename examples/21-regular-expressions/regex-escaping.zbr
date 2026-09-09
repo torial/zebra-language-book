@@ -9,17 +9,17 @@ def main()
     # To match a literal dot
     var file_extension = Regex.compile("\\.txt$")
     
-    if file_extension.matches("document.txt")
+    if file_extension.match("document.txt")
         print("Matches text file")
     
     # To match a literal dollar sign
     var price_pattern = Regex.compile("\\$[0-9]+")
     
-    if price_pattern.matches("$50")
+    if price_pattern.match("$50")
         print("Matches price")
     
     # To match a literal backslash
     var path_pattern = Regex.compile("C:\\\\Users")  # Note: double backslash
     
-    if path_pattern.matches("C:\\Users")
+    if path_pattern.match("C:\\Users")
         print("Matches Windows path")

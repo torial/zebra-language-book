@@ -6,62 +6,62 @@ def main()
     # * = zero or more
     var re_star = Regex.compile("ab*c")  # ac, abc, abbc, abbbc, etc.
     
-    if re_star.matches("ac")
-        print("Matches 'ac' (zero b's"))
+    if re_star.match("ac")
+        print("Matches 'ac' (zero b's)")
     
-    if re_star.matches("abc")
-        print("Matches 'abc' (one b"))
+    if re_star.match("abc")
+        print("Matches 'abc' (one b)")
     
-    if re_star.matches("abbbc")
-        print("Matches 'abbbc' (three b's"))
+    if re_star.match("abbbc")
+        print("Matches 'abbbc' (three b's)")
     
-    if not re_star.matches("aXc")
-        print("Doesn't match 'aXc' (X is not b"))
+    if not re_star.match("aXc")
+        print("Doesn't match 'aXc' (X is not b)")
     
     # + = one or more
     var re_plus = Regex.compile("ab+c")  # abc, abbc, abbbc, etc. (NOT ac)
     
-    if not re_plus.matches("ac")
-        print("Doesn't match 'ac' (need at least one b"))
+    if not re_plus.match("ac")
+        print("Doesn't match 'ac' (need at least one b)")
     
-    if re_plus.matches("abc")
+    if re_plus.match("abc")
         print("Matches 'abc'")
     
-    if re_plus.matches("abbc")
+    if re_plus.match("abbc")
         print("Matches 'abbc'")
     
     # ? = zero or one
     var re_optional = Regex.compile("colou?r")  # color or colour
     
-    if re_optional.matches("color")
-        print("Matches 'color' (American spelling"))
+    if re_optional.match("color")
+        print("Matches 'color' (American spelling)")
     
-    if re_optional.matches("colour")
-        print("Matches 'colour' (British spelling"))
+    if re_optional.match("colour")
+        print("Matches 'colour' (British spelling)")
     
-    if not re_optional.matches("coloor")
-        print("Doesn't match 'coloor' (too many o's"))
+    if not re_optional.match("coloor")
+        print("Doesn't match 'coloor' (too many o's)")
     
     # Exact count: {n}
     var re_exact = Regex.compile("a{3}")  # exactly three a's
     
-    if re_exact.matches("aaa")
+    if re_exact.match("aaa")
         print("Matches 'aaa'")
     
-    if not re_exact.matches("aa")
+    if not re_exact.match("aa")
         print("Doesn't match 'aa'")
     
     # Range: {n,m}
     var re_range = Regex.compile("a{2,4}")  # 2 to 4 a's
     
-    if re_range.matches("aa")
+    if re_range.match("aa")
         print("Matches 'aa'")
     
-    if re_range.matches("aaa")
+    if re_range.match("aaa")
         print("Matches 'aaa'")
     
-    if re_range.matches("aaaa")
+    if re_range.match("aaaa")
         print("Matches 'aaaa'")
     
-    if not re_range.matches("aaaaa")
-        print("Doesn't match 'aaaaa' (too many"))
+    if not re_range.match("aaaaa")
+        print("Doesn't match 'aaaaa' (too many)")

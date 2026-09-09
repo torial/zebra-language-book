@@ -12,14 +12,14 @@ class APIClient
             raise "User not found"
 
         def fetch_and_greet(user_id: int): str throws
-            var user = fetch_user(user_id)
+            var user = fetch_user(user_id)?
             return "Hello, ${user}!"
 
 def attempt_greet(user_id: int)
     var g = APIClient.fetch_and_greet(user_id)
     print(g)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 
 def main()
     # Using inline catch expression

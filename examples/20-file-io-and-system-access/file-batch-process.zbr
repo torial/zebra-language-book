@@ -4,33 +4,29 @@
 
 def main()
     # List of files to process
-    var files = List()
-    files.add("data1.txt")
-    files.add("data2.txt")
-    files.add("data3.txt")
-    
-    var results = HashMap()
-    
+    var files: List(str) = ["data1.txt", "data2.txt", "data3.txt"]
+
+    var results = HashMap(str, int)()
+
     for filename in files
         print("Processing ${filename}... ")
-        var content_result = File.read(filename)
-        
-        if content_result.isErr()
-            print("FAILED: ${content_result.error(}"))
-            results.put(filename, 0)
+
+        if not File.exists(filename)
+            print("FAILED: not found")
+            results.set(filename, 0)
             continue
-        
-        var content = content_result.value()
+
+        var content = File.read(filename)
         var line_count = content.split("\n").count()
-        
-        results.put(filename, line_count)
-        print("OK (${line_count} lines"))
-    
+
+        results.set(filename, line_count)
+        print("OK (${line_count} lines)")
+
     # Summary
     print("\nSummary:")
     var total = 0
     for filename, count in results
         total = total + count
         print("${filename}: ${count} lines")
-    
+
     print("Total: ${total} lines")

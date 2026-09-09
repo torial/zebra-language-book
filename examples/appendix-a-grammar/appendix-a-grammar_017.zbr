@@ -1,7 +1,11 @@
-var value: int? = 42
+union Shape
+    circle: float
+    square: float
 
-branch value
-    on nil
-        print("Value is nil")
-    on _
-        print("Value is ${value}")
+var s = Shape.circle(5.0)
+
+branch s
+    on Shape.circle as r
+        print("circle with radius ${r}")
+    on Shape.square as side
+        print("square with side ${side}")

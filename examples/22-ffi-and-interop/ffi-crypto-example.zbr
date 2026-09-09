@@ -2,7 +2,10 @@
 # teaches: practical FFI example with crypto
 # chapter: 22
 
-shared class Crypto
+# NOTE: named CryptoLib rather than Crypto — `Crypto` is a reserved builtin
+# identifier in today's compiler (undocumented; it's not in QUICKSTART's
+# module list), and a user class of that exact name miscompiles.
+class CryptoLib
     static
         # OpenSSL/BoringSSL: compute SHA256
         def sha256(input: str): str
@@ -17,13 +20,13 @@ shared class Crypto
 
 def main()
     var message = "Secret password"
-    var hash = Crypto.sha256(message)
+    var hash = CryptoLib.sha256(message)
     print("SHA256: ${hash}")
     
     # Verify integrity
     var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
     
-    if Crypto.verify_sha256(message, stored_hash)
+    if CryptoLib.verify_sha256(message, stored_hash)
         print("Hash verified!")
     else
         print("Hash mismatch!")

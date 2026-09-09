@@ -3,17 +3,15 @@
 # chapter: 13-Generics-and-Type-Constraints
 
 interface Printable
-    def display: str
+    def display(): str
 
-class Dog
-    implements Printable
-        def display: str
-            return "Woof!"
+class Dog implements Printable
+    def display(): str
+        return "Woof!"
 
-class Cat
-    implements Printable
-        def display: str
-            return "Meow!"
+class Cat implements Printable
+    def display(): str
+        return "Meow!"
 
 class Printer
     static

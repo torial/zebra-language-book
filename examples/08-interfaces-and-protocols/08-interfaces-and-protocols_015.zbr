@@ -3,17 +3,17 @@ interface Database
     def load(key: str): str?
     def delete(key: str): bool
 
-class MemoryDatabase
+class MemoryDatabase implements Database
     var data: HashMap(str, str) = HashMap(str, str)()
-    implements Database
-        def save(key: str, value: str): bool
-            this.data.put(key, value)
-            return true
-        def load(key: str): str?
-            return this.data.get(key)
-        def delete(key: str): bool
-            this.data.remove(key)
-            return true
+
+    def save(key: str, value: str): bool
+        this.data.put(key, value)
+        return true
+    def load(key: str): str?
+        return this.data.get(key)
+    def delete(key: str): bool
+        this.data.remove(key)
+        return true
 
 def main()
     var db: Database = MemoryDatabase()

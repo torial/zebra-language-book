@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "total_examples": 702,
-  "generated": "1785214308.777066",
+  "total_examples": 699,
+  "generated": "1785214308.0",
   "examples": [
     {
       "chapter": "01-Getting-Started",
@@ -1860,13 +1860,6 @@
     },
     {
       "chapter": "12-Error-Handling-with-Results",
-      "file": "12_catch_typed.zbr",
-      "teaches": "catch with typed error binding",
-      "project": null,
-      "path": "examples/12-error-handling-with-results/12_catch_typed.zbr"
-    },
-    {
-      "chapter": "12-Error-Handling-with-Results",
       "file": "12_catch_expr.zbr",
       "teaches": "catch expression for defaults",
       "project": null,
@@ -1888,17 +1881,17 @@
     },
     {
       "chapter": "12-Error-Handling-with-Results",
+      "file": "12-error-handling-with-results_007.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/12-error-handling-with-results/12-error-handling-with-results_007.zbr"
+    },
+    {
+      "chapter": "12-Error-Handling-with-Results",
       "file": "12-error-handling-with-results_008.zbr",
       "teaches": null,
       "project": null,
       "path": "examples/12-error-handling-with-results/12-error-handling-with-results_008.zbr"
-    },
-    {
-      "chapter": "12-Error-Handling-with-Results",
-      "file": "12-error-handling-with-results_009.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/12-error-handling-with-results/12-error-handling-with-results_009.zbr"
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",
@@ -3086,14 +3079,14 @@
     {
       "chapter": "20-File-IO-and-System-Access",
       "file": "file-read-simple.zbr",
-      "teaches": "simple file reading with error handling",
+      "teaches": "simple file reading",
       "project": null,
       "path": "examples/20-file-io-and-system-access/file-read-simple.zbr"
     },
     {
       "chapter": "20-File-IO-and-System-Access",
       "file": "file-read-unwrap.zbr",
-      "teaches": "safe error handling for file reads",
+      "teaches": "wrapping File.read in a throws function for catch/? handling",
       "project": null,
       "path": "examples/20-file-io-and-system-access/file-read-unwrap.zbr"
     },
@@ -4846,20 +4839,6 @@
       "teaches": null,
       "project": null,
       "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_059.zbr"
-    },
-    {
-      "chapter": "Appendix-C-Troubleshooting",
-      "file": "appendix-c-troubleshooting_060.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_060.zbr"
-    },
-    {
-      "chapter": "Appendix-C-Troubleshooting",
-      "file": "appendix-c-troubleshooting_061.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/appendix-c-troubleshooting/appendix-c-troubleshooting_061.zbr"
     },
     {
       "chapter": "Appendix-D-Attributes",

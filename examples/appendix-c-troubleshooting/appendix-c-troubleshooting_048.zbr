@@ -1,3 +1,8 @@
-var pattern = Regex.compile("hello")   # Matches substring
-var pattern = Regex.compile("^hello")  # Matches start
-var pattern = Regex.compile("hello.*") # Matches hello + anything
+# SLOW
+var copy = big_list  # Copies entire list
+for item in copy
+    process(item)
+
+# FAST
+for item in big_list
+    process(item)

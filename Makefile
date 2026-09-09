@@ -165,7 +165,7 @@ dev: extract
 # ============================================================================
 
 readme:
-	@cat BUILD_PDF_README.md
+	@cat BUILD.md
 
 info:
 	@echo "$(BLUE)Zebra Programming Book - Build System$(NC)"

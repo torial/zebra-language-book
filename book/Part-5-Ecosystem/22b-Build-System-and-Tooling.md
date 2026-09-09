@@ -213,12 +213,17 @@ def main()
 
 ### BuildTarget chain methods
 
-All chain methods return the target, so you can fluently chain:
+`platform`/`option`/`linkLib` are documented as returning the target — but in
+today's compiler, chaining two of them together (`t.platform(...).option(...)`,
+or `b.exe(...).option(...)` directly) fails to compile, whichever position the
+chain is in (bare statement, `var` init, or after a stored target). Call each
+one as its own statement on a stored target instead — this is the pattern
+that actually works:
 
 ```zebra
-b.exe("app", "src/main.zbr")
-    .platform("aarch64-linux")
-    .option("optimize", "ReleaseSafe")
+var t = b.exe("app", "src/main.zbr")
+t.platform("aarch64-linux")
+t.option("optimize", "ReleaseSafe")
 ```
 
 | Method | Effect |
@@ -265,7 +270,8 @@ after `main()` returns:
 
 def main()
     var b = Build.new()
-    b.exe("myapp", "src/main.zbr").option("optimize", "ReleaseSafe")
+    var t = b.exe("myapp", "src/main.zbr")
+    t.option("optimize", "ReleaseSafe")
     # no b.run() needed — zebra build calls it automatically
 ```
 
@@ -434,7 +440,8 @@ def run(opts: cli.Options)
 ```zebra
 def main()
     var b = Build.new()
-    b.exe("my-tool", "src/main.zbr").option("optimize", "ReleaseSafe")
+    var t = b.exe("my-tool", "src/main.zbr")
+    t.option("optimize", "ReleaseSafe")
 ```
 
 Run it:
@@ -455,8 +462,10 @@ For a side-by-side debug build, register two exe targets:
 ```zebra
 def main()
     var b = Build.new()
-    b.exe("my-tool",       "src/main.zbr").option("optimize", "ReleaseSafe")
-    b.exe("my-tool-debug", "src/main.zbr").option("optimize", "Debug")
+    var t = b.exe("my-tool", "src/main.zbr")
+    t.option("optimize", "ReleaseSafe")
+    var td = b.exe("my-tool-debug", "src/main.zbr")
+    td.option("optimize", "Debug")
 ```
 
 `zebra build` produces both binaries. Use the debug one with
@@ -513,8 +522,10 @@ same source file under different binary names.
 ```zebra
 def main()
     var b = Build.new()
-    b.exe("app-debug",   "src/main.zbr").option("optimize", "Debug")
-    b.exe("app-release", "src/main.zbr").option("optimize", "ReleaseSafe")
+    var debug_t = b.exe("app-debug", "src/main.zbr")
+    debug_t.option("optimize", "Debug")
+    var release_t = b.exe("app-release", "src/main.zbr")
+    release_t.option("optimize", "ReleaseSafe")
 ```
 
 </details>
@@ -530,11 +541,16 @@ the host platform.
 ```zebra
 def main()
     var b = Build.new()
-    b.exe("app-debug",   "src/main.zbr").option("optimize", "Debug")
-    b.exe("app-release", "src/main.zbr")
-        .option("optimize", "ReleaseSafe")
-        .platform("aarch64-linux")
+    var debug_t = b.exe("app-debug", "src/main.zbr")
+    debug_t.option("optimize", "Debug")
+    var release_t = b.exe("app-release", "src/main.zbr")
+    release_t.option("optimize", "ReleaseSafe")
+    release_t.platform("aarch64-linux")
 ```
+
+(Each `BuildTarget` method call is its own statement — chaining two of them
+together, `t.option(...).platform(...)`, does not compile in today's
+compiler even though both are documented as returning the target.)
 
 </details>
 

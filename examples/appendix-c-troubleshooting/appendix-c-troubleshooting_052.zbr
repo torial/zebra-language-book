@@ -1,7 +1,2 @@
-# SLOW: O(n²) nested loops
-for i in 0.to(items.count())
-    for j in 0.to(items.count())
-        process(items.at(i), items.at(j))
-
-# FAST: O(n log n) or O(n)
-# Use appropriate algorithm
+assert x > 0, "x must be positive"
+assert items.count() == 3, "Expected 3 items"

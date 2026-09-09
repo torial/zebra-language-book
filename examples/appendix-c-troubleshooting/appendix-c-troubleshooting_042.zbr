@@ -1,2 +1,4 @@
-var result = File.read("missing.txt")
-# If not handling Result, this fails
+def write_safely(path: str, content: str): void throws
+    if not Dir.exists(Path.dirname(path))
+        raise "directory does not exist: ${Path.dirname(path)}"
+    File.write(path, content)

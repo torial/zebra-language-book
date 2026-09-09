@@ -19,7 +19,7 @@ class Account
         balance = balance - amount
         return true
     
-    def get_balance: float
+    def get_balance(): float
         return balance
 
 def main()

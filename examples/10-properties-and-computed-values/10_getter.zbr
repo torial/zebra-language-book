@@ -5,10 +5,10 @@
 class Person
     var birth_year: int = 2000
     
-    def age: int
+    def age(): int
         return 2024 - birth_year
     
-    def name_length: int
+    def name_length(): int
         var name = "Alice"
         return name.len
 

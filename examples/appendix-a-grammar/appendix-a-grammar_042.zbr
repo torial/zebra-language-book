@@ -1,8 +1,11 @@
-# String to int (returns nullable)
-var num = "42".toInt()          # int?
+# String to int — toInt() returns a PLAIN int (0 on bad input), not
+# int?. Comparing it to `nil` compiles under `zebra -c` but fails full
+# compile with `error: comparison of 'i64' with null`. Use tryInt()
+# for a real int? you can nil-check.
+var num = "42".tryInt()         # int?
 
-# String to float (returns nullable)
-var decimal = "3.14".toFloat()  # float?
+# String to float — same story: toFloat() is plain float, tryFloat() is float?
+var decimal = "3.14".tryFloat() # float?
 
 # Int to string
 var str = 42.toString()         # str

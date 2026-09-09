@@ -5,9 +5,11 @@ def parse(text: str): int throws
 
 var value = parse("hello") catch 0
 
-# Multi-statement handling uses a method-level catch clause
+# Multi-statement handling uses a method-level catch clause. The
+# caught value's text is `.message` — interpolating it directly
+# (`${err}`) fails with `use of undeclared identifier 'err'`.
 def attempt()
     var v = parse("")
     print(v)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")

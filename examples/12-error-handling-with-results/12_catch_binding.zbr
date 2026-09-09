@@ -6,7 +6,7 @@ def attempt()
     var value = Validator.parse_int("")
     print("Got: ${value}")
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 
 def main()
     attempt()

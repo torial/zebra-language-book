@@ -1,2 +1,6 @@
-var result = File.read("file.txt")
-var content = result.value()    # ERROR: might be error!
+def operation(): int throws
+    raise "fail"
+
+def main()
+    var value = operation()    # ERROR: unhandled `anyerror!int`
+    print(value)

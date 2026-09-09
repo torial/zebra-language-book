@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 702 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 699 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,9 +42,9 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 702
+- **Total Examples:** 699
 - **Chapters Covered:** 33
-- **Topics:** 215
+- **Topics:** 214
 
 ## Quick Reference
 
@@ -338,17 +338,16 @@ This compiles and tests each example to ensure correctness.
 - `11-nil-tracking-and-safety_017.zbr` — basic example
 - `11-nil-tracking-and-safety_018.zbr` — basic example
 
-### 12-Error-Handling-with-Results (10 examples)
+### 12-Error-Handling-with-Results (9 examples)
 - `12_throws_basic.zbr` — throws annotation
 - `12_raise.zbr` — raise statement
 - `12_method_catch.zbr` — method-level catch clause
 - `12_catch_binding.zbr` — catch with error binding
-- `12_catch_typed.zbr` — catch with typed error binding
 - `12_catch_expr.zbr` — catch expression for defaults
 - `12_propagation.zbr` — error propagation
 - `12_api_client.zbr` — realistic error handling
+- `12-error-handling-with-results_007.zbr` — basic example
 - `12-error-handling-with-results_008.zbr` — basic example
-- `12-error-handling-with-results_009.zbr` — basic example
 
 ### 13-Generics-and-Type-Constraints (19 examples)
 - `13-generics-and-type-constraints_000.zbr` — basic example
@@ -540,8 +539,8 @@ This compiles and tests each example to ensure correctness.
 - `stdlib-data-processing.zbr` — combining stdlib functions for data processing
 
 ### 20-File-IO-and-System-Access (19 examples)
-- `file-read-simple.zbr` — simple file reading with error handling
-- `file-read-unwrap.zbr` — safe error handling for file reads
+- `file-read-simple.zbr` — simple file reading
+- `file-read-unwrap.zbr` — wrapping File.read in a throws function for catch/? handling
 - `file-read-lines.zbr` — efficient line-by-line file reading
 - `file-analyze.zbr` — analyzing file contents
 - `file-write-simple.zbr` — basic file writing
@@ -745,7 +744,7 @@ This compiles and tests each example to ensure correctness.
 - `appendix-b-stdlib_048.zbr` — basic example
 - `appendix-b-stdlib_049.zbr` — basic example
 
-### Appendix-C-Troubleshooting (62 examples)
+### Appendix-C-Troubleshooting (60 examples)
 - `appendix-c-troubleshooting_000.zbr` — basic example
 - `appendix-c-troubleshooting_001.zbr` — basic example
 - `appendix-c-troubleshooting_002.zbr` — basic example
@@ -806,8 +805,6 @@ This compiles and tests each example to ensure correctness.
 - `appendix-c-troubleshooting_057.zbr` — basic example
 - `appendix-c-troubleshooting_058.zbr` — basic example
 - `appendix-c-troubleshooting_059.zbr` — basic example
-- `appendix-c-troubleshooting_060.zbr` — basic example
-- `appendix-c-troubleshooting_061.zbr` — basic example
 
 ### Appendix-D-Attributes (8 examples)
 - `appendix-d-attributes_000.zbr` — basic example

@@ -6,28 +6,28 @@ def main()
     # \d = [0-9] = digit
     var digit_re = Regex.compile("\\d")
     
-    if digit_re.matches("7")
+    if digit_re.match("7")
         print("Found digit")
     
     # \w = [a-zA-Z0-9_] = word character
     var word_re = Regex.compile("\\w")
     
-    if word_re.matches("a")
+    if word_re.match("a")
         print("'a' is a word character")
     
-    if word_re.matches("_")
+    if word_re.match("_")
         print("'_' is a word character")
     
-    if not word_re.matches("-")
+    if not word_re.match("-")
         print("'-' is not a word character")
     
     # \s = whitespace (space, tab, newline)
     var space_re = Regex.compile("\\s")
     
-    if space_re.matches(" ")
+    if space_re.match(" ")
         print("Space matches whitespace")
     
-    if space_re.matches("\t")
+    if space_re.match("\t")
         print("Tab matches whitespace")
     
     # Inverse (uppercase)
@@ -37,8 +37,8 @@ def main()
     
     var not_digit = Regex.compile("\\D")
     
-    if not_digit.matches("x")
+    if not_digit.match("x")
         print("'x' is not a digit")
     
-    if not not_digit.matches("5")
-        print("'5' is a digit (excluded by \\D"))
+    if not not_digit.match("5")
+        print("'5' is a digit (excluded by \\D)")

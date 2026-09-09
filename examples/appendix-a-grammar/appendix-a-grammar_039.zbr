@@ -1,7 +1,7 @@
-var items = List()
+var items: List(str) = List()
 
 items.add("apple")              # Add item
-items.remove("apple")           # Remove item
+items = items.filter(def(x) = x != "apple")  # Remove by value
 items.count()                   # Count items
 items.at(0)                     # Get item at index
 items.contains("apple")         # Check membership

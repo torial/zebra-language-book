@@ -48,7 +48,7 @@ mixin Loggable
 mixin Cacheable
     var _cache: HashMap(str, str)
 
-    cue init
+    cue init()
         _cache = HashMap(str, str)()
 
     def cache_get(key: str): str?
@@ -62,16 +62,18 @@ Then use `adds` on the class:
 
 ```zebra
 class UserService adds Loggable, Cacheable
-    cue init
+    var _cache: HashMap(str, str)   # redeclared — see the note below
+
+    cue init()
         _cache = HashMap(str, str)()
 
     def lookup(id: str): str
-        var hit = cache_get(id)
+        var hit = this.cache_get(id)
         if hit as found
             return found
-        log("cache miss for ${id}")
+        this.log("cache miss for ${id}")
         var fetched = "user-${id}"
-        cache_set(id, fetched)
+        this.cache_set(id, fetched)
         return fetched
 
 def main()
@@ -86,10 +88,27 @@ def main()
   its own.
 - `class C adds M1, M2, M3` includes `M1`'s, `M2`'s, and `M3`'s methods (and
   fields) into `C` as if they were declared on `C` directly.
-- All mixin methods are accessible on the class without any dotted prefix.
-  `svc.log(...)` and `svc.cache_get(...)` look identical to native methods.
+- From **outside** the class, mixin members look identical to native ones:
+  `svc.log(...)` and `svc.cache_get(...)` need no dotted prefix.
 - No method-resolution magic: if two mixins define a method with the same
   name, that's a compile error — pick one or rename one.
+
+> **Two workarounds you'll need with the current compiler.** The current
+> Zebra compiler (2026-09) has a codegen gap with mixin state that a plain
+> reading of the language wouldn't predict, so both patterns below are
+> deliberate, not stylistic:
+> 1. **Redeclare mixin `var` fields on the class itself** (`var _cache:
+>    HashMap(str, str)` on `UserService` above, matching the mixin's
+>    declaration exactly). Without the redeclaration, the field type-checks
+>    fine but the compiler never emits it into the class's struct, and every
+>    access — even `this.field` — fails at compile time with "no field named
+>    … in struct". This is a compiler bug, not a language rule; it has no
+>    workaround inside the mixin's own methods, only at the class that adds it.
+> 2. **Call a mixin method from the class's *own* methods with an explicit
+>    `this.` prefix** (`this.cache_get(id)`, not bare `cache_get(id)`). Bare
+>    calls to mixin methods only resolve for an *external* caller
+>    (`svc.cache_get(...)`); called bare from inside the class that added the
+>    mixin, they fail with "undefined name". `this.` sidesteps it.
 
 ---
 
@@ -181,6 +200,8 @@ mixin Tagged
 class BlogPost adds Timestamped, Tagged
     var title: str = ""
     var body: str = ""
+    var created_at_ms: int = 0      # redeclared from Timestamped — see the note above
+    var tags: List(str)             # redeclared from Tagged
 
     cue init(t: str, b: str)
         this.title = t
@@ -278,6 +299,7 @@ class BlogPost implements Publishable adds Versioned
     var title: str = ""
     var body: str = ""
     var storage: Storage
+    var version: int = 0            # redeclared from Versioned — see the note above
 
     cue init(t: str, store_path: str)
         title = t
@@ -422,31 +444,34 @@ mixin Engine
 class Car adds Engine
     var brand: str = ""
     var doors: int = 4
+    var running: bool = false       # redeclared from Engine — see the note above
 
     cue init(b: str)
         brand = b
 
-    def describe: str
+    def describe(): str
         return "${brand} car with ${doors} doors"
 
 class Motorcycle adds Engine
     var brand: str = ""
+    var running: bool = false       # redeclared from Engine
 
     cue init(b: str)
         brand = b
 
-    def describe: str
+    def describe(): str
         return "${brand} motorcycle"
 
 class Truck adds Engine
     var brand: str = ""
     var payload_kg: int = 0
+    var running: bool = false       # redeclared from Engine
 
     cue init(b: str, p: int)
         brand = b
         payload_kg = p
 
-    def describe: str
+    def describe(): str
         return "${brand} truck (${payload_kg}kg payload)"
 
 def main()
@@ -472,15 +497,20 @@ mixin Compensated
     var name: str = ""
     var salary: float = 0.0
 
-    def info: str
+    def info(): str
         return "${name} (${salary})"
 
 class Employee adds Compensated
+    var name: str = ""               # redeclared from Compensated
+    var salary: float = 0.0          # redeclared from Compensated
+
     cue init(n: str, s: float)
         name = n
         salary = s
 
 class Manager adds Compensated
+    var name: str = ""               # redeclared from Compensated
+    var salary: float = 0.0          # redeclared from Compensated
     var team: List(Employee)
 
     cue init(n: str, s: float)
@@ -491,10 +521,12 @@ class Manager adds Compensated
     def add_report(e: Employee)
         team.add(e)
 
-    def info: str
-        return "${name} (${salary}, manages ${team.count()})"
+    def full_info(): str
+        return "${this.info()}, manages ${team.count()}"
 
 class Director adds Compensated
+    var name: str = ""               # redeclared from Compensated
+    var salary: float = 0.0          # redeclared from Compensated
     var managers: List(Manager)
     var budget: float = 0.0
 
@@ -504,13 +536,21 @@ class Director adds Compensated
         budget = b
         managers = List(Manager)()
 
-    def info: str
-        return "${name} (${salary}, budget ${budget})"
+    def full_info(): str
+        return "${this.info()}, budget ${budget}"
 ```
 
 `Manager` and `Director` aren't subclasses of `Employee` — they each `adds
 Compensated` independently. Where a manager needs to know its reports, it
 holds them by composition (`team: List(Employee)`).
+
+Note two things that follow from the workarounds described earlier in this
+chapter: `name` and `salary` are redeclared on every class that adds
+`Compensated`, and `Manager`/`Director` can't simply override `info()` —
+redeclaring a mixin's *method* name on the class is a separate compiler bug
+(a "duplicate struct member" error at build time, even though it type-checks).
+So each defines a differently-named `full_info()` that calls the mixin's
+`info()` via `this.info()` and appends its own detail, rather than shadowing it.
 
 </details>
 
@@ -524,8 +564,8 @@ no shared base, no inheritance.
 
 ```zebra
 interface Shape
-    def area: float
-    def perimeter: float
+    def area(): float
+    def perimeter(): float
 
 class Circle implements Shape
     var radius: float = 0.0
@@ -533,10 +573,10 @@ class Circle implements Shape
     cue init(r: float)
         radius = r
 
-    def area: float
+    def area(): float
         return 3.14 * radius * radius
 
-    def perimeter: float
+    def perimeter(): float
         return 2.0 * 3.14 * radius
 
 class Rectangle implements Shape
@@ -547,10 +587,10 @@ class Rectangle implements Shape
         width = w
         height = h
 
-    def area: float
+    def area(): float
         return width * height
 
-    def perimeter: float
+    def perimeter(): float
         return 2.0 * (width + height)
 
 class Triangle implements Shape
@@ -563,10 +603,10 @@ class Triangle implements Shape
         height = h
         hypotenuse = hy
 
-    def area: float
+    def area(): float
         return 0.5 * base * height
 
-    def perimeter: float
+    def perimeter(): float
         return base + height + hypotenuse
 
 def main()

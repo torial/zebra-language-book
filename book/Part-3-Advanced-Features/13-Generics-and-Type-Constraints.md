@@ -17,7 +17,7 @@ Generics let you write code that's *type-safe* but *reusable* across different t
 class Container(T)
     var item: T
     
-    def get: T
+    def get(): T
         return item
 ```
 
@@ -42,7 +42,7 @@ class Container(T)
     def store(value: T)
         item = value
     
-    def retrieve: T
+    def retrieve(): T
         return item
 
 def main()
@@ -77,10 +77,10 @@ class Pair(K, V)
     def set_value(v: V)
         value = v
     
-    def get_key: K
+    def get_key(): K
         return key
     
-    def get_value: V
+    def get_value(): V
         return value
 
 def main()
@@ -207,17 +207,15 @@ Sometimes you want a generic that works with **any type that implements an inter
 # chapter: 13-Generics-and-Type-Constraints
 
 interface Printable
-    def display: str
+    def display(): str
 
-class Dog
-    implements Printable
-        def display: str
-            return "Woof!"
+class Dog implements Printable
+    def display(): str
+        return "Woof!"
 
-class Cat
-    implements Printable
-        def display: str
-            return "Meow!"
+class Cat implements Printable
+    def display(): str
+        return "Meow!"
 
 class Printer
     static
@@ -250,7 +248,7 @@ class ComparableList(T)
     def add(item: T)
         items.add(item)
     
-    def find_max: T?
+    def find_max(): T?
         if items.count() == 0
             return nil
         var max = items.at(0)
@@ -490,14 +488,14 @@ class Stack(T)
     def push(value: T)
         items.add(value)
     
-    def pop: T?
+    def pop(): T?
         if items.count() == 0
             return nil
         var value = items.at(items.count() - 1)
         # Remove last item (simplified - no remove method)
         return value
     
-    def is_empty: bool
+    def is_empty(): bool
         return items.count() == 0
 
 def main()
@@ -579,7 +577,7 @@ class ValidatedBox(T)
             return true
         return false
     
-    def get: T?
+    def get(): T?
         return item
 
 def main()

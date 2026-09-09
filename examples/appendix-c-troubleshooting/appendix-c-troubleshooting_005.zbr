@@ -1,3 +1,5 @@
-var numbers = List()
-numbers.add(42)         # OK
-numbers.add("hello")    # ERROR: expecting int, got str
+var numbers: List(int) = List()
+numbers.add(42)
+
+var names: List(str) = List()
+names.add("hello")

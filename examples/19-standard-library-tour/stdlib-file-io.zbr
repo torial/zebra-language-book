@@ -3,9 +3,14 @@
 # chapter: 19
 
 def main()
-    # Read a file
-    var content = File.read("data.txt") catch "could not read"
-    print(content)
+    # File.read/File.write are plain-value calls, not `throws` — they are
+    # NOT paired with `catch`. A missing file panics the process, so guard
+    # with File.exists() first. See Chapter 20 for the full explanation.
+    if File.exists("data.txt")
+        var content = File.read("data.txt")
+        print(content)
+    else
+        print("could not read")
 
     # Write a file
     File.write("output.txt", "Hello from Zebra!")

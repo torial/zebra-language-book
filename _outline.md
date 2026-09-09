@@ -11,34 +11,42 @@ PART 1: FOUNDATIONS (6 chapters, ~12 hours)
 ├─ 05-Control-Flow.md .............................. (90 min)
 └─ 06-Strings-and-Unicode.md ....................... (90 min)
 
-PART 2: OBJECTS & INTERFACES (4 chapters, ~8 hours)
+PART 2: OBJECTS & INTERFACES (6 chapters, ~8 hours)
 ├─ 07-Classes-and-Instances.md (requires: 01,02,04,05)
+├─ 07b-Structs-Unions-and-Value-Types.md (requires: 02,04,07)
 ├─ 08-Interfaces-and-Protocols.md (requires: 07)
 ├─ 09-Composition-and-Mixins.md (requires: 08)
-└─ 10-Properties-and-Computed-Values.md (requires: 07)
+├─ 10-Properties-and-Computed-Values.md (requires: 07)
+└─ 10b-Modules-Namespaces-and-Visibility.md (requires: 04,07)
 
-PART 3: ADVANCED FEATURES (5 chapters, ~10 hours)
+PART 3: ADVANCED FEATURES (7 chapters, ~10 hours)
 ├─ 11-Nil-Tracking-and-Safety.md (requires: 02,05,07)
 ├─ 12-Error-Handling-with-Results.md (requires: 02,11)
 ├─ 13-Generics-and-Type-Constraints.md (requires: 02,08)
 ├─ 14-Contracts-and-Assertions.md (requires: 04)
+├─ 14b-Memory-Management-and-Lifetimes.md (requires: 07,07b)
+├─ 14c-Concurrency-Channels-and-Threads.md (requires: 04,14b)
 └─ 15-Pipelines-and-Function-Composition.md (requires: 04,05)
 
-PART 4: PRACTICAL PROJECTS (3 chapters, ~12 hours)
+PART 4: PRACTICAL PROJECTS (4 chapters, ~12 hours)
 ├─ Project-1-CLI-Tool.md (requires: 01-06, 21)
 ├─ Project-2-HTTP-Server.md (requires: 01-12, 20)
-└─ Project-3-Data-Analysis.md (requires: 01-06, 13)
+├─ Project-3-Data-Analysis.md (requires: 01-06, 13)
+└─ 18b-GUI-Applications.md (requires: 05,07,07b)
 
-PART 5: ECOSYSTEM (4 chapters, ~6 hours)
+PART 5: ECOSYSTEM (6 chapters, ~6 hours)
 ├─ 16-Standard-Library-Tour.md (requires: 01-06)
 ├─ 17-File-IO-and-System-Access.md (requires: 02,05,06)
 ├─ 18-Regular-Expressions.md (requires: 06)
-└─ 19-FFI-and-Interop.md (requires: 02,07)
+├─ 19-FFI-and-Interop.md (requires: 02,07)
+├─ 22b-Build-System-and-Tooling.md (requires: 01,04)
+└─ 22c-Testing-and-Validation.md (requires: 04,12,22b)
 
-APPENDICES (3 chapters, reference)
+APPENDICES (4 chapters, reference)
 ├─ A-Grammar-Reference.md
 ├─ B-Built-in-Functions.md
-└─ C-Troubleshooting.md
+├─ C-Troubleshooting.md
+└─ D-Attribute-Reference.md
 ```
 
 ## Reading Paths
@@ -112,9 +120,11 @@ APPENDICES (3 chapters, reference)
 | Chapter | Covers | Projects |
 |---------|--------|----------|
 | **07** | Class definition, instantiation, methods, shared members | OOP basics |
+| **07b** | Structs (value types), unions, `^T` heap indirection, `except`, `branch` | Value semantics |
 | **08** | Interface definition, protocol conformance, polymorphism | Contracts |
 | **09** | Inheritance, mixins, super, abstract methods | Hierarchies |
 | **10** | Properties, getters/setters, computed properties, lazy init | Encapsulation |
+| **10b** | Modules across files, `use`/`exposing`, visibility keywords, namespaces, `extend` | Code organization |
 
 ### Part 3: Advanced Features
 
@@ -124,6 +134,8 @@ APPENDICES (3 chapters, reference)
 | **12** | Result type, ok/err, unwrapOr, error propagation | Error handling |
 | **13** | Generics, constraints, variance, type parameters | Reusability |
 | **14** | Contracts (pre/post), assertions, invariants | Correctness |
+| **14b** | Arena allocator, scoped `allocate` blocks, `<-` copy-out, `using EXPR`, `^T` for recursive types | Memory |
+| **14c** | `Chan(T)`, `sys.go()`, `Atomic(T)`, `ThreadPool(n)` | Concurrency |
 | **15** | Pipeline operator (->), composition, functional patterns | Style |
 
 ### Part 4: Projects
@@ -143,6 +155,8 @@ APPENDICES (3 chapters, reference)
 | **17** | File reading/writing, directories, system calls, args | I/O |
 | **18** | Thompson NFA regex, matching, groups, split, replace | Text |
 | **19** | C FFI, Zig FFI, calling native functions, callbacks | Systems |
+| **22b** | `zebra` subcommands, `zebra build` + `Build` module, REPL, dead-code analysis, DAP debugger | Tooling |
+| **22c** | `assert_*` statements, `zebra test` runner, `@tag` filtering, organizing tests | Testing |
 
 ## Time Estimates
 
@@ -175,7 +189,7 @@ Every code example is:
    // teaches: hello world, print
    // chapter: 01-Getting-Started
    ```
-4. **Validated by make build** (must compile and run correctly)
+4. **Validated by `make validate`** (must compile; see `BUILD.md` for the baseline-gate mechanism — there is no `make build` target)
 
 To run an example:
 ```bash

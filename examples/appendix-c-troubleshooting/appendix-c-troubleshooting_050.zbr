@@ -1,8 +1,7 @@
-# SLOW
-var copy = big_list  # Copies entire list
-for item in copy
-    process(item)
+# SLOW: O(n²) nested loops
+for i in 0.to(items.count())
+    for j in 0.to(items.count())
+        process(items.at(i), items.at(j))
 
-# FAST
-for item in big_list
-    process(item)
+# FAST: O(n log n) or O(n)
+# Use appropriate algorithm

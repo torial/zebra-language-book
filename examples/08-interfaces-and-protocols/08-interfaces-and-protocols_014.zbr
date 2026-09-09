@@ -2,22 +2,22 @@ interface Shape
     def area(): float
     def perimeter(): float
 
-class Circle
+class Circle implements Shape
     var radius: float = 0.0
-    implements Shape
-        def area(): float
-            return 3.14 * this.radius * this.radius
-        def perimeter(): float
-            return 2.0 * 3.14 * this.radius
 
-class Rectangle
+    def area(): float
+        return 3.14 * this.radius * this.radius
+    def perimeter(): float
+        return 2.0 * 3.14 * this.radius
+
+class Rectangle implements Shape
     var width: float = 0.0
     var height: float = 0.0
-    implements Shape
-        def area(): float
-            return this.width * this.height
-        def perimeter(): float
-            return 2.0 * (this.width + this.height)
+
+    def area(): float
+        return this.width * this.height
+    def perimeter(): float
+        return 2.0 * (this.width + this.height)
 
 def print_shape_info(shape: Shape)
     print("Area: ${shape.area()}")

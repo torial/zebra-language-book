@@ -37,7 +37,7 @@ var numbers: List(int) = List()
 var mapping: HashMap(str, int) = HashMap()
 
 numbers.add(1)
-mapping.put("key", 42)
+mapping.set("key", 42)
 ```
 
 **References:** Chapter 03 (Collections)
@@ -52,12 +52,14 @@ def parse(text: str): int throws
 
 var value = parse("hello") catch 0
 
-# Multi-statement handling uses a method-level catch clause
+# Multi-statement handling uses a method-level catch clause. The
+# caught value's text is `.message` — interpolating it directly
+# (`${err}`) fails with `use of undeclared identifier 'err'`.
 def attempt()
     var v = parse("")
     print(v)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 ```
 
 **References:** Chapter 12 (Error Handling)
@@ -119,12 +121,17 @@ def divide(a: int, b: int): Result
 
 ### Basic Class Definition
 
+The constructor keyword is `cue init`, not `def init` — a plain `def
+init` collides with the class's auto-generated default constructor and
+fails full compile with `error: duplicate struct member name 'init'`
+(it passes `zebra -c`, so this one is a checker blind spot):
+
 ```zebra
 class Person
     var name: str = ""
     var age: int = 0
     
-    def init(name: str, age: int)
+    cue init(name: str, age: int)
         this.name = name
         this.age = age
     
@@ -208,12 +215,14 @@ class Circle implements Shape
 
 ## Control Flow
 
-### If/Elif/Else
+### If/Else If/Else
+
+There is no `elif` keyword — the middle branch is `else if`:
 
 ```zebra
 if x > 10
     print("Large")
-elif x > 5
+else if x > 5
     print("Medium")
 else
     print("Small")
@@ -264,15 +273,24 @@ while i < 10
 
 ### Branch (Pattern Matching)
 
+`branch` pattern-matches on **union variants** (or struct field
+patterns) — it isn't a nil-check dispatcher. `branch` on a plain `T?`
+with `on nil` fails full compile with `error: switch on type '?i64'`;
+use `if x != nil` / `if x as n` (Nil Safety, above) for optionals
+instead:
+
 ```zebra
-var value: int? = 42
+union Shape
+    circle: float
+    square: float
 
-branch value
-    on nil
-        print("Value is nil")
-    on _
-        print("Value is ${value}")
+var s = Shape.circle(5.0)
 
+branch s
+    on Shape.circle as r
+        print("circle with radius ${r}")
+    on Shape.square as side
+        print("square with side ${side}")
 ```
 
 ### Error Handling
@@ -286,12 +304,13 @@ def load(path: str): str throws
 # Inline postfix catch expression
 var data = load("") catch "default"
 
-# Method-level catch clause (attaches to a def)
+# Method-level catch clause (attaches to a def) — the caught value's
+# text is `.message`; interpolating `err` directly is a compile error.
 def attempt()
     var d = load("")
     print(d)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 ```
 
 **References:** Chapter 12 (Error Handling)
@@ -343,13 +362,22 @@ not true            # Logical NOT
 ```zebra
 var x = 10              # Simple assignment
 x = x + 5               # Update
-var x = 10, y = 20      # Multiple assignments
 ```
+
+There's no comma-separated multi-declaration form (`var x = 10, y = 20`
+is a parse error) — declare each variable on its own line.
 
 ### Pipelines
 
+The right-hand side of `->` must be a call expression — `a -> f()` passes
+`a` as `f`'s first argument. A bare function name (`a -> f`) or a
+leading-dot method chain (`a -> .trim()`) both fail at compile time:
+
 ```zebra
-text -> .trim() -> .upper() -> .split(" ")
+def double(x: int): int
+    return x * 2
+
+var result = 5 -> double()   # same as double(5)
 ```
 
 **References:** Chapter 15 (Pipelines and Function Composition)
@@ -374,8 +402,10 @@ text -> .trim() -> .upper() -> .split(" ")
 ```zebra
 var x = 42                  # Local variable, inferred type
 var x: int = 42          # Local variable, explicit type
-var x = 42, y = "hello"    # Multiple declarations
 ```
+
+(As above, there's no comma-separated multi-declaration form — each
+`var` declares exactly one name.)
 
 ### Scope
 
@@ -400,16 +430,24 @@ def example()
 
 ### Generic Functions
 
-```zebra
-def first(items: List(T)): T?
-    if items.count() > 0
-        return items.at(0)
-    return nil
+Zebra's generics are documented — and actually implemented — on
+**classes only**. A free-standing top-level `def` that references an
+unbound type parameter like `T` compiles under `zebra -c`, but fails
+full compile with `error: use of undeclared identifier 'T'`, because
+nothing ever binds `T` to a concrete type outside of a `class(T)`
+declaration:
 
-var nums = List()
-nums.add(42)
-var first_num = first(nums)  # Type is int?
+```zebra
+# NOT SUPPORTED — fails full compile: T is never bound to a type.
+# def first(items: List(T)): T?
+#     if items.count() > 0
+#         return items.at(0)
+#     return nil
 ```
+
+To get the same behavior, put the function on a generic class instead
+(see Generic Classes, below) or write one non-generic version per
+concrete type you need.
 
 **References:** Chapter 13 (Generics and Type Constraints)
 
@@ -434,15 +472,16 @@ var value = box.fetch()  # Type is str?
 
 ### Type Constraints
 
+Constraints are written on the type parameter itself — `T where T
+implements InterfaceName` — not as a trailing clause on a `def`, and
+there's no `T where T can be X` shorthand:
+
 ```zebra
-def compare(a: T, b: T): int where T can be Comparable
-    # T must implement Comparable interface
-    if a < b
-        return -1
-    elif a > b
-        return 1
-    else
-        return 0
+class SortedBox(T where T implements Comparable)
+    var item: T?
+
+    def store(item: T)
+        this.item = item
 ```
 
 **References:** Chapter 13 (Generics and Type Constraints)
@@ -462,12 +501,17 @@ def divide(a: int, b: int): int throws
 
 ### Catch Expression
 
+There's no inline `catch |e| expr` binding form — a bound `catch |e|`
+only exists as the method-level clause below, and it must actually use
+`e` (an unused capture is a compile error):
+
 ```zebra
 # Inline fallback
 var value = divide(10, 0) catch 0
 
-# Catch with binding
-var result = divide(10, 0) catch |e| -1
+# Explicit propagation instead
+def caller(): int throws
+    return divide(10, 0)?
 ```
 
 ### Method-Level Catch Clause
@@ -477,7 +521,7 @@ def attempt()
     var value = divide(10, 0)
     print(value)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 
 # The `try expr` prefix form and `try ... catch ...` block form were removed
 # in 0.15. Use `expr?` for inline propagation, or attach `catch` to a `def`.
@@ -543,7 +587,7 @@ text.endsWith("o")              # Check suffix
 text.split(",")                 # Split by delimiter
 text.replace("o", "a")          # Replace all occurrences
 text.substring(0, 5)            # Extract portion
-text.charAt(0)                  # Get character at position
+text.charAt(0)                  # Byte at position (returns `byte`, not `str`)
 ```
 
 **References:** Chapter 06 (Strings and Unicode), Chapter 19 (Standard Library)
@@ -554,11 +598,16 @@ text.charAt(0)                  # Get character at position
 
 ### List Operations
 
+A bare `List()` with no type argument and no annotated `var` type
+compiles under `zebra -c` but fails full compile — give it a type
+argument. `.remove()` takes an **index**, not a value — there's no
+remove-by-value; filter it out instead:
+
 ```zebra
-var items = List()
+var items: List(str) = List()
 
 items.add("apple")              # Add item
-items.remove("apple")           # Remove item
+items = items.filter(def(x) = x != "apple")  # Remove by value
 items.count()                   # Count items
 items.at(0)                     # Get item at index
 items.contains("apple")         # Check membership
@@ -570,11 +619,14 @@ for item in items
 
 ### HashMap Operations
 
+There's no `.put()` or `.fetch()` — the real accessor names are
+`.set()` and `.get()`:
+
 ```zebra
 var map = HashMap(str, int)()
 
-map.put("a", 1)                 # Add/update
-map.fetch("a")                  # Get value (returns nullable)
+map.set("a", 1)                 # Add/update
+map.get("a")                    # Get value (returns nullable)
 map.contains("a")               # Check key exists
 map.remove("a")                 # Remove key
 
@@ -587,7 +639,7 @@ for key, value in map
 ```zebra
 var seen: HashMap(str, bool) = HashMap()
 
-seen.put("apple", true)         # Track item
+seen.set("apple", true)         # Track item
 seen.contains("apple")          # Check membership
 
 for key, _ in seen
@@ -601,11 +653,14 @@ for key, _ in seen
 ## Type Conversion
 
 ```zebra
-# String to int (returns nullable)
-var num = "42".toInt()          # int?
+# String to int — toInt() returns a PLAIN int (0 on bad input), not
+# int?. Comparing it to `nil` compiles under `zebra -c` but fails full
+# compile with `error: comparison of 'i64' with null`. Use tryInt()
+# for a real int? you can nil-check.
+var num = "42".tryInt()         # int?
 
-# String to float (returns nullable)
-var decimal = "3.14".toFloat()  # float?
+# String to float — same story: toFloat() is plain float, tryFloat() is float?
+var decimal = "3.14".tryFloat() # float?
 
 # Int to string
 var str = 42.toString()         # str
@@ -623,11 +678,16 @@ var str = true.toString()       # "true"
 
 ## Advanced Features
 
-### Contracts (if supported)
+### Contracts
+
+`require` is a block keyword, not an inline statement — the condition(s)
+go on their own indented line(s) beneath it, one expression per line, with
+no custom message argument:
 
 ```zebra
 def divide(a: int, b: int): int
-    require b != 0, "Divisor cannot be zero"
+    require
+        b != 0
     return a / b
 ```
 
@@ -643,16 +703,18 @@ assert x > 0, "x must be positive"
 
 ### Mixins
 
+Mixins are pulled in with `adds`, not `implements` — `implements` is
+for interfaces. `class Person implements Serializable` compiles under
+`zebra -c` but fails full compile with `error: use of undeclared
+identifier 'Serializable'`:
+
 ```zebra
 mixin Serializable
     def to_json(): str
         return "{}"
 
-class Person implements Serializable
+class Person adds Serializable
     var name: str = ""
-    
-    def to_json(): str
-        return "{\"name\": \"${name}\"}"
 ```
 
 **References:** Chapter 09 (Composition and Mixins)
@@ -690,20 +752,19 @@ namespace MyApp.Utils
 | `class` | Define class | Chapter 07 |
 | `interface` | Define interface | Chapter 08 |
 | `is` | Runtime type check (interface conformance / class identity) | Chapter 08 |
-| `if`, `elif`, `else` | Conditional | Chapter 05 |
+| `if`, `else if`, `else` | Conditional (no `elif` keyword) | Chapter 05 |
 | `while`, `for` | Loops | Chapter 05 |
 | `break`, `continue` | Loop control | Chapter 05 |
 | `branch`, `on` | Pattern matching | Chapter 12 |
 | `return` | Return from function | Chapter 04 |
 | `nil` | Null value | Chapter 11 |
 | `true`, `false` | Boolean literals | Chapter 02 |
-| `as` | Type annotation | Chapter 02 |
-| `Result` | Error type | Chapter 12 |
-| `shared` | Static/class method | Chapter 07 |
+| `as` | Optional binding / type narrowing (`if x as n`, `if x is T as r`) | Chapter 11 |
 | `this` | Reference to current object | Chapter 07 |
+| `static` | Static/class-level members (not `shared` — that keyword doesn't exist) | Chapter 07 |
 | `require` | Precondition | Chapter 14 |
 | `ensure` | Postcondition | Chapter 14 |
-| `where` | Type constraint | Chapter 13 |
+| `where` | Type constraint (on a generic class's type parameter) | Chapter 13 |
 
 ---
 
@@ -730,10 +791,15 @@ namespace MyApp.Utils
 | `str` | `"hello"` | Variable | UTF-8 encoded strings |
 | `char` | `'x'` | 32-bit | Unicode character |
 | `T?` | `42` or `nil` | Depends on T | T or nil |
-| `List(T)` | `List()` | Dynamic | Ordered collection |
-| `HashMap(K,V)` | `HashMap()` | Dynamic | Key-value pairs |
+| `List(T)` | `List(int)()` | Dynamic | Ordered collection |
+| `HashMap(K,V)` | `HashMap(str, int)()` | Dynamic | Key-value pairs |
 | `struct` | `Point(3, 4)` | Stack | Value type |
 | `union` | `Shape.circle(5)` | Stack | Tagged union |
+
+A bare `List()` / `HashMap()` with no type argument and no annotated
+`var` type is a checker blind spot: it compiles under `zebra -c` but
+fails full compile with `error: expected expression, found 'anytype'`
+— always supply the type, as in the examples above.
 
 ---
 
@@ -747,21 +813,32 @@ if x != nil
     print(x + 1)
 ```
 
-### Null Coalescing (using unwrapOr)
+### Null Coalescing (using `orelse`)
+
+There is no `.unwrapOr()` method — the `orelse` operator is the
+null-coalescing idiom:
 
 ```zebra
 var x: int? = nil
-var value = x.unwrapOr(0)  # Use 0 if x is nil
+var value = x orelse 0  # Use 0 if x is nil
 ```
 
-### Try-Catch Pattern
+### Error Handling Pattern
+
+Zebra has no `Result` type and no `.isErr()` / `.error()` / `.value()`
+methods — errors propagate through `throws` functions instead. Use `?`
+to propagate, `catch value` for a fallback, or a function-level `catch
+|e|` clause to handle the error explicitly:
 
 ```zebra
-var result = operation()
-if result.isErr()
-    print("Error: ${result.error(}"))
-else
-    print("Success: ${result.value(}"))
+def operation(): int throws
+    raise "something went wrong"
+
+def main()
+    var result = operation()
+    print("Result: ${result}")
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ### For-Each Loop

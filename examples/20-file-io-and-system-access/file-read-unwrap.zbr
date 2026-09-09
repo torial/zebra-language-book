@@ -1,23 +1,24 @@
 # file: file-read-unwrap.zbr
-# teaches: safe error handling for file reads
+# teaches: wrapping File.read in a throws function for catch/? handling
 # chapter: 20
+
+def readOrThrow(path: str): str throws
+    if not File.exists(path)
+        raise "cannot read ${path}: not found"
+    return File.read(path)
 
 def main()
     var filename = "config.txt"
-    
-    var result = File.read(filename)
-    
-    # Option 1: Check then access
-    if result.isOk()
-        var content = result.value()  # Safe to access
-        print("Read ${content.len} characters")
-    else
-        var error = result.error()
-        print("Cannot read config: ${error}")
-    
-    # Option 2: Using unwrapOr with fallback
-    var content = File.read(filename).unwrapOr("")
+
+    # Option 1: catch with a fallback value
+    var content = readOrThrow(filename) catch ""
     if content.len == 0
         print("Using default configuration")
     else
         print("Configuration loaded: ${content.len} bytes")
+
+    # Option 2: method-level catch, printing the error
+    var loaded = readOrThrow(filename)
+    print("Read ${loaded.len} characters")
+catch |e|
+    print("Cannot read config: ${e.message}")

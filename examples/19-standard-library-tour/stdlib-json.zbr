@@ -5,4 +5,8 @@
 def main()
     var text = "{\"name\": \"Alice\", \"age\": 30}"
     var parsed = Json.parse(text)
-    print(parsed)
+    if parsed as v
+        print(v.getStr("name"))
+        print(v.getInt("age"))
+    else
+        print("invalid JSON")

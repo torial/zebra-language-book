@@ -9,17 +9,15 @@ class Config
     
     static
         def from_file(filename: str): Config throws
-            var content_result = File.read(filename)
-            
-            if content_result.isErr()
-                raise "Cannot read config file: ${content_result.error(}")
-            
-            var content = content_result.value()
+            if not File.exists(filename)
+                raise "Cannot read config file: ${filename} not found"
+
+            var content = File.read(filename)
             var config = Config()
             var lines = content.split("\n")
             
-            for line in lines
-                line = line.trim()
+            for raw_line in lines
+                var line = raw_line.trim()
                 
                 # Skip empty lines and comments
                 if line.len == 0 or line.startsWith("#")
@@ -39,22 +37,17 @@ class Config
                 # Set config values
                 if key == "host"
                     config.host = value
-                elif key == "port"
-                    var port_val = value.toInt()
-                    if port_val != nil
+                else if key == "port"
+                    if value.tryInt() as port_val
                         config.port = port_val
-                elif key == "debug"
+                else if key == "debug"
                     config.debug = value.lower() == "true"
             
             return config
 
 def main()
-    var result = Config.from_file("app.conf")
-    
-    if result.isErr()
-        print("Error: ${result.error(}"))
-        return
-    
-    var config = result.value()
+    var config = Config.from_file("app.conf")
     print("Server: ${config.host}:${config.port}")
     print("Debug: ${config.debug}")
+catch |e|
+    print("Error: ${e.message}")

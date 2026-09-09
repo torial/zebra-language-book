@@ -1,6 +1,8 @@
-var items = List()
+var items: List(int) = List()
 items.add(42)
 
-var first = items.at(0)     # OK
-var second = items.at(1)    # ERROR: index 1 doesn't exist
-var third = items.at(-1)    # ERROR: negative index
+if items.count() > 0
+    var first = items.at(0)  # Safe
+
+for i in 0.to(items.count())
+    var item = items.at(i)   # Safe—i is valid

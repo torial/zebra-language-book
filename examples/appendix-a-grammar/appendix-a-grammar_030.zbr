@@ -1,8 +1,5 @@
-def compare(a: T, b: T): int where T can be Comparable
-    # T must implement Comparable interface
-    if a < b
-        return -1
-    elif a > b
-        return 1
-    else
-        return 0
+class SortedBox(T where T implements Comparable)
+    var item: T?
+
+    def store(item: T)
+        this.item = item

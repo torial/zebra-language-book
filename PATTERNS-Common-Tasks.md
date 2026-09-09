@@ -8,28 +8,29 @@ Copy-paste patterns for typical programming tasks.
 
 ### Read Entire File Safely
 
+`File.read`/`File.write` are not `throws` — a missing file panics rather
+than raising, so guard with `File.exists()` first:
+
 ```zebra
-var content = File.read("data.txt") catch ""
-if content.len == 0
-    print "Cannot read file"
-    return
-# Use content...
+if not File.exists("data.txt")
+    print("Cannot read file")
+else
+    var content = File.read("data.txt")
+    print(content)
 ```
 
 ### Write File Safely
 
 ```zebra
-try
+def write_output()
     File.write("output.txt", "File contents here")
-    print "File written successfully"
-catch |err|
-    print "Cannot write file: ${err}"
+    print("File written successfully")
 ```
 
 ### Process File Line by Line
 
 ```zebra
-var content = File.read("file.txt") catch ""
+var content = File.read("file.txt")
 var lines = content.split("\n")
 
 for line in lines
@@ -37,13 +38,13 @@ for line in lines
         continue  # Skip empty lines
 
     # Process line...
-    print line
+    print(line)
 ```
 
 ### Read CSV File
 
 ```zebra
-var content = File.read("data.csv") catch ""
+var content = File.read("data.csv")
 var lines = content.split("\n")
 var records = List(List(str))()
 
@@ -55,7 +56,7 @@ for line in lines
     records.add(fields)
 
 for record in records
-    print record  # Each field: record.at(0), record.at(1), etc.
+    print(record)  # Each field: record.at(0), record.at(1), etc.
 ```
 
 ---
@@ -69,7 +70,7 @@ var text = "one two three four five"
 var words = text.split(" ")
 
 for word in words
-    print "Word: ${word}"
+    print("Word: ${word}")
 ```
 
 ### Build String from Parts
@@ -98,7 +99,7 @@ var result2 = text.replaceAll("Hello", "Hi")  # "Hi World Hi"
 # Find position
 var pos = text.indexOf("World")
 if pos >= 0
-    print "Found at position ${pos}"
+    print("Found at position ${pos}")
 ```
 
 ### Extract Substring
@@ -143,11 +144,11 @@ numbers.add(3)
 
 ```zebra
 for item in items
-    print item
+    print(item)
 
 # With index
 for i in 0.to(items.count())
-    print "${i}: ${items.at(i}")
+    print("${i}: ${items.at(i)}")
 ```
 
 ### Find Item in List
@@ -157,7 +158,7 @@ var target = "apple"
 
 for item in items
     if item == target
-        print "Found it!"
+        print("Found it!")
         break
 ```
 
@@ -226,7 +227,7 @@ for item in items
     if item == "apple"
         count = count + 1
 
-print count  # 2
+print(count)  # 2
 ```
 
 ---
@@ -244,23 +245,23 @@ scores.put("Charlie", 92)
 
 var alice_score = scores.fetch("Alice")
 if alice_score != nil
-    print "Alice: ${alice_score}"
+    print("Alice: ${alice_score}")
 ```
 
 ### Loop Over HashMap
 
 ```zebra
 for key, value in scores
-    print "${key}: ${value}"
+    print("${key}: ${value}")
 ```
 
 ### Check if Key Exists
 
 ```zebra
 if scores.contains("Alice")
-    print "Alice found"
+    print("Alice found")
 else
-    print "Alice not found"
+    print("Alice not found")
 ```
 
 ### Count by Category
@@ -297,17 +298,19 @@ def divide(a: int, b: int): int throws
         raise "Cannot divide by zero"
     return a / b
 
+def attempt_divide()
+    var v = divide(10, 0)
+    print(v)
+catch |err|
+    print("Error: ${err.message}")
+
 class Main
     static
         def main
             var value = divide(10, 2) catch 0
-            print "Result: ${value}"
+            print("Result: ${value}")
 
-            try
-                var v = divide(10, 0)
-                print v
-            catch |err|
-                print "Error: ${err}"
+            attempt_divide()
 ```
 
 ### Propagate Errors Up
@@ -358,9 +361,9 @@ def process_data() throws
 var x: int? = get_value()
 
 if x != nil
-    print "Value: ${x}"
+    print("Value: ${x}")
 else
-    print "No value"
+    print("No value")
 ```
 
 ### Use Default Value
@@ -368,7 +371,7 @@ else
 ```zebra
 var x: int? = get_value()
 var value = x.unwrapOr(0)  # Use 0 if nil
-print value
+print(value)
 ```
 
 ### Optional Chain
@@ -378,7 +381,7 @@ var user: User? = get_user()
 
 if user != nil
     if user.address != nil
-        print user.address
+        print(user.address)
 ```
 
 ### Nested Null Checks
@@ -390,7 +393,7 @@ if data != nil
     var items = data.items
     if items != nil
         for item in items
-            print item
+            print(item)
 ```
 
 ---
@@ -404,9 +407,9 @@ var num_str = "42"
 var num = num_str.toInt()
 
 if num != nil
-    print num + 1
+    print(num + 1)
 else
-    print "Invalid number"
+    print("Invalid number")
 ```
 
 ### Number to String
@@ -421,7 +424,7 @@ var message = "The answer is ${text}"
 
 ```zebra
 var num = 42
-print "The answer is ${num}"
+print("The answer is ${num}")
 ```
 
 ### Type Checking
@@ -434,7 +437,7 @@ var as_str = value.toString()  # Force conversion
 
 # Check compatibility
 if value > 0
-    print "Positive"
+    print("Positive")
 ```
 
 ---
@@ -456,7 +459,7 @@ class Person
         return "${name} is ${age} years old"
 
 var person = Person("Alice", 30)
-print person.describe()
+print(person.describe())
 ```
 
 ### Use Interfaces
@@ -473,7 +476,7 @@ class Dog implements Animal
 
 var dog = Dog()
 dog.name = "Buddy"
-print dog.speak()
+print(dog.speak())
 ```
 
 ### Implement Interface
@@ -490,7 +493,7 @@ class Circle implements Shape
 
 var circle = Circle()
 circle.radius = 5.0
-print circle.area()
+print(circle.area())
 ```
 
 ### Static Methods
@@ -514,7 +517,7 @@ var result = Math.add(2, 3)  # 5
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
 if email_pattern.matches("user@example.com")
-    print "Valid email"
+    print("Valid email")
 ```
 
 ### Find Matches
@@ -527,7 +530,7 @@ var matches = numbers.findAll(text)
 # matches = ["3", "7"]
 
 for match in matches
-    print match
+    print(match)
 ```
 
 ### Split by Pattern
@@ -562,11 +565,11 @@ class Main
             var args = sys.args()
 
             if args.count() > 0
-                print "Arguments:"
+                print("Arguments:")
                 for arg in args
-                    print "  - ${arg}"
+                    print("  - ${arg}")
             else
-                print "No arguments provided"
+                print("No arguments provided")
 ```
 
 ### Parse Flags
@@ -582,11 +585,11 @@ class Main
             for arg in args
                 if arg == "-v" or arg == "--verbose"
                     verbose = true
-                elif arg.startsWith("--input=")
+                else if arg.startsWith("--input=")
                     input_file = arg.substring(8, arg.len)
 
-            print "Verbose: ${verbose}"
-            print "Input: ${input_file}"
+            print("Verbose: ${verbose}")
+            print("Input: ${input_file}")
 ```
 
 ---
@@ -611,7 +614,7 @@ var result = Arg.parse()
 
 ```zebra
 for i in 0.to(10)
-    print i  # 0, 1, 2, ..., 9
+    print(i)  # 0, 1, 2, ..., 9
 ```
 
 ### While Loop
@@ -619,7 +622,7 @@ for i in 0.to(10)
 ```zebra
 var i = 0
 while i < 10
-    print i
+    print(i)
     i = i + 1
 ```
 
@@ -628,7 +631,7 @@ while i < 10
 ```zebra
 var count = 0
 while count < 5
-    print count
+    print(count)
     count = count + 1
 ```
 
@@ -637,7 +640,7 @@ while count < 5
 ```zebra
 for item in items
     if item == target
-        print "Found!"
+        print("Found!")
         break
 
 while condition
@@ -652,7 +655,7 @@ for item in items
     if item == skip_value
         continue
     
-    print item
+    print(item)
 ```
 
 ---
@@ -700,15 +703,18 @@ def count_words(filename: str): HashMap(str, int) throws
 
 ### Pipeline Processing
 
+The `->` pipeline operator's right-hand side must be a call to a free
+function (`x -> f()`, meaning `f(x)`) — it can't take a `.method()` on its
+own, and it doesn't span multiple lines. For chaining methods on a value,
+just chain the method calls directly:
+
 ```zebra
 var input = "  hello world  from zebra  "
 
-var result = input
-    -> .trim()
-    -> .lower()
-    -> .split(" ")
+var result = input.trim().lower().split(" ")
 
-# result is List(str) = ["hello", "world", "from", "zebra"]
+# result is a List(str); note double spaces in the input produce empty
+# elements between words, since split(" ") is a raw split
 ```
 
 ---
@@ -719,7 +725,7 @@ var result = input
 
 ```zebra
 var x = 42
-print "x = ${x}"
+print("x = ${x}")
 ```
 
 ### Check Collection Size
@@ -728,18 +734,18 @@ print "x = ${x}"
 var items = List(int)()
 items.add(1)
 items.add(2)
-print "Count: ${items.count(}")
+print("Count: ${items.count()}")
 ```
 
 ### Trace Execution
 
 ```zebra
 def function()
-    print "Start"
+    print("Start")
     # ... code ...
-    print "After step 1"
+    print("After step 1")
     # ... code ...
-    print "Done"
+    print("Done")
 ```
 
 ### Assert Conditions

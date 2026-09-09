@@ -3,6 +3,23 @@
 # chapter: 19
 
 def main()
-    var result = Arg.parse()
-    # Access parsed flags and positional arguments
-    print(result)
+    var args = Arg.parse()
+
+    # flag() takes BOTH a long and a short form — there's no 1-argument
+    # overload, even if you never plan to use the short form.
+    var verbose = args.flag("--verbose", "-v")
+    var output = args.option("--out", "default.txt")
+
+    var path = args.positional(0)
+    if path as p
+        # Explicit `str` annotation works around a compiler bug where an
+        # inferred string pulled through Arg/positional() prints as its
+        # raw byte array instead of text (same bug as sys.cwd() in
+        # Chapter 20's File I/O chapter — annotate the type to avoid it).
+        var pstr: str = p
+        print("path: ${pstr}")
+    else
+        print("no positional arg")
+
+    print("verbose: ${verbose}")
+    print("output: ${output}")

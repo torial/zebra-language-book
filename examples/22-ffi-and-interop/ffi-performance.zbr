@@ -13,7 +13,7 @@ def main()
         sum = sum + expensive_c_function(i)
     
     # BETTER: Pass the whole array to C
-    var nums = List()
+    var nums = List(int)()
     for i in 0.to(1000000)
         nums.add(i)
     

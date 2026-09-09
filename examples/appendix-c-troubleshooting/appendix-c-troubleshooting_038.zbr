@@ -1,7 +1,12 @@
-class Person
-    var name: str = ""        # Mutable
-    var age: int = 0          # Mutable
+interface Shape
+    def area(): float
+    def perimeter(): float
 
-var person = Person()
-person.name = "Alice"           # Now OK
-person.age = 30                 # Now OK
+class Circle implements Shape
+    var radius: float = 0.0
+    
+    def area(): float
+        return 3.14 * radius * radius
+    
+    def perimeter(): float
+        return 2.0 * 3.14 * radius  # Now complete

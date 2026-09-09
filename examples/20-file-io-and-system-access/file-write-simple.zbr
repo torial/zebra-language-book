@@ -5,10 +5,6 @@
 def main()
     var content = "Hello, File!\nLine 2\nLine 3\n"
     var filename = "output.txt"
-    
-    var result = File.write(filename, content)
-    
-    if result.isOk()
-        print("File written successfully")
-    else
-        print("Error: ${result.error(}"))
+
+    File.write(filename, content)
+    print("File written successfully")

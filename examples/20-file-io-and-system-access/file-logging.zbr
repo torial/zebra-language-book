@@ -6,26 +6,25 @@ class Logger
     var filename: str
     var entries: List(str)
     
-    def init(filename: str)
-        this.filename = filename
-        this.entries = List()
+    cue init(filename: str)
+        .filename = filename
+        .entries = List(str)()
     
     def log(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [INFO] ${message}"
-        this.entries.add(entry)
+        .entries.add(entry)
         print(entry)
     
     def error(message: str)
         var timestamp = get_timestamp()
         var entry = "${timestamp} [ERROR] ${message}"
-        this.entries.add(entry)
+        .entries.add(entry)
         print(entry)
     
-    def save(): bool
-        var content = entries.join("\n")
-        var result = File.write(filename, content)
-        return result.isOk()
+    def save()
+        var content = .entries.join("\n")
+        File.write(.filename, content)
 
 def get_timestamp(): str
     # Placeholder—in real code, use actual time
@@ -40,7 +39,5 @@ def main()
     logger.log("Retrying connection...")
     logger.log("Connection successful")
     
-    if logger.save()
-        print("Log saved to ${logger.filename}")
-    else
-        print("Failed to save log")
+    logger.save()
+    print("Log saved to ${logger.filename}")

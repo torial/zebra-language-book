@@ -164,9 +164,10 @@ class Config
     def heavy_work()                 # body wrapped with Profile.start/end automatically
         # ...
 
-    @tag("unit", "fast")
-    static def test_defaults()       # tagged for filtered test runs
-        assert_eq Config().load(), "{}"
+    static
+        @tag("unit", "fast")
+        def test_defaults()          # tagged for filtered test runs
+            assert_eq Config().load(), "{}"
 ```
 
 | Attribute | Effect |

@@ -2,7 +2,7 @@
 # teaches: handling pointers in FFI
 # chapter: 22
 
-shared class CMemory
+class CMemory
     static
         # C malloc: void* malloc(size_t size)
         # C free: void free(void* ptr)
@@ -17,12 +17,11 @@ shared class CMemory
 def main()
     var my_data = "Important data"
     
-    # Pass to C function for processing
-    var result = CMemory.process_buffer(my_data)
-    
-    if result.isOk()
-        print("Processed: ${result.value(} bytes"))
-    else
-        print("Error: ${result.error(}"))
+    # Pass to C function for processing. process_buffer is `throws`, so it
+    # returns the value directly (not a Result) — catch handles the error.
+    var byte_count = CMemory.process_buffer(my_data)
+    print("Processed: ${byte_count} bytes")
     
     # Zebra's scoping ensures my_data is cleaned up automatically
+catch |e|
+    print("Error: ${e.message}")

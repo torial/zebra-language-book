@@ -241,15 +241,15 @@ def main()
 
 **Error:**
 ```
-greet.zbr:3:22: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
-    print("Hello " + count)
-                     ^
+greet.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
+    print("Hello " + count)  # ❌ Can't add string + number
+          ^
 ```
 
 **What it means:**
-- **File and line:** `greet.zbr:5:24` — error at line 5, column 24
-- **Error type:** "arithmetic requires numeric type" — you tried math with incompatible types
-- **The problem:** `+` expects numbers, but got `"Hello "` (a string)
+- **File and line:** `greet.zbr:3:11` — error at line 3, column 11, pointing at the start of `"Hello "`
+- **Error type:** "cannot concatenate 'str' and 'int'" — `+` doesn't mix strings and numbers in Zebra
+- **The problem:** `+` expects both sides to be strings (or both numbers), but got `"Hello "` (a string) and `count` (an int)
 
 **Fix:** Use string concatenation:
 ```zebra
@@ -394,7 +394,7 @@ My name is Bob Smith and I'm 30 years old.
 **"error: file not found: hello.zbr"**
 → Make sure you're in the directory with `hello.zbr`. Try: `ls hello.zbr`
 
-**"error: arithmetic requires numeric type"**
+**"error: cannot concatenate 'str' and 'int'"**
 → You mixed types (like string + number). Use `toString()` or string interpolation instead.
 
 **Program compiles but doesn't run**

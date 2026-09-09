@@ -12,17 +12,15 @@ def main()
     empty.add("date")
     print(empty.count())  # 1
 
-    # Access by index — assign through a typed local before printing
-    # so the formatter picks {s} instead of the byte-array fallback.
-    var first: str = fruits.at(0)
-    var second: str = fruits.at(1)
+    # Access by index
+    var first = fruits.at(0)
+    var second = fruits.at(1)
     print(first)  # apple
     print(second)  # banana
 
     # Check size
     print(fruits.count())  # 3
 
-    # Iterate — assign through a typed local for {s} formatting (BUG-090 workaround)
+    # Iterate
     for fruit in fruits
-        var f: str = fruit
-        print(f)
+        print(fruit)

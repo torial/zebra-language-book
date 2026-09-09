@@ -1,13 +1,19 @@
-var result = File.read("file.txt")
+def operation(): int throws
+    raise "fail"
 
-if result.isOk()
-    var content = result.value()
-else
-    print("Error: ${result.error(}"))
+# Inline fallback
+def main1()
+    var value = operation() catch 0
+    print(value)
 
-# Or use branch
-branch result
-    on ok(content)
-        print(content)
-    on err(error)
-        print("Error: ${error}")
+# Propagate to a throws caller
+def main2(): int throws
+    var value = operation()?
+    return value
+
+# Handle explicitly
+def main3()
+    var value = operation()
+    print(value)
+catch |e|
+    print("Error: ${e.message}")

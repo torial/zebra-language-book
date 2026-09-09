@@ -2,6 +2,14 @@
 # teaches: using regex for data transformation
 # chapter: 21
 
+def escape_html(text: str): str
+    var escaped = text.replace("&", "&amp;")
+    escaped = escaped.replace("<", "&lt;")
+    escaped = escaped.replace(">", "&gt;")
+    escaped = escaped.replace("\"", "&quot;")
+    escaped = escaped.replace("'", "&#39;")
+    return escaped
+
 def main()
     # Convert dates from MM/DD/YYYY to YYYY-MM-DD
     var date = "03/15/2025"
@@ -15,14 +23,6 @@ def main()
         var iso_date = "${year}-${month}-${day}"
         print(iso_date)  # 2025-03-15
     
-    # Escape special characters
-    def escape_html(text: str): str
-        var escaped = text.replace("&", "&amp;")
-        escaped = escaped.replace("<", "&lt;")
-        escaped = escaped.replace(">", "&gt;")
-        escaped = escaped.replace("\"", "&quot;")
-        escaped = escaped.replace("'", "&#39;")
-        return escaped
-    
+    # Escape special characters (top-level def, see regex-email.zbr note)
     var html_unsafe = "<script>alert('XSS')</script>"
     print(escape_html(html_unsafe))

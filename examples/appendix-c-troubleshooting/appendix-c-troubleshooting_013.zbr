@@ -1,6 +1,6 @@
-var x: int? = get_value()
+var items: List(int) = List()
+items.add(42)
 
-if x != nil
-    print(x + 1)
-else
-    print("Value not found")
+var first = items.at(0)     # OK
+var second = items.at(1)    # ERROR: index 1 doesn't exist
+var third = items.at(-1)    # ERROR: negative index

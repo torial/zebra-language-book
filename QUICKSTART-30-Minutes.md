@@ -17,6 +17,27 @@ You can read your first working program in 2 minutes.
 
 ---
 
+## Before You Start: Installing Zebra
+
+Zebra builds with Zig 0.16 — there's no separate installer or package to
+download yet, you build the compiler from source:
+
+```bash
+git clone https://github.com/torial/zebra-language
+cd zebra-language
+zig build                          # build the compiler (~30s from cold)
+```
+
+This produces `zig-out/bin/zebra` (`zebra.exe` on Windows). Put it on your
+`PATH`, or run it by full path — this guide just calls it `zebra` below.
+
+Linux works (build steps in `docs/LINUX_BUILD.md` in the language repo — as
+of this writing the language repo's own `README.md` still says "Windows is
+the only tested platform," but a Linux build has been verified since). Mac
+is not currently tested either way.
+
+---
+
 ## Minute 4-10: Your First Program
 
 Create a file: `hello.zbr`
@@ -25,7 +46,7 @@ Create a file: `hello.zbr`
 class Main
     static
         def main
-            print "Hello, World!"
+            print("Hello, World!")
 ```
 
 Compile and run:
@@ -69,7 +90,7 @@ fruits.add("apple")
 fruits.add("banana")
 
 for fruit in fruits
-    print fruit
+    print(fruit)
 ```
 
 **Key:** Lists are for ordered collections. Use `for...in` to loop.
@@ -80,12 +101,12 @@ for fruit in fruits
 var x = 10
 
 if x > 5
-    print "Large"
+    print("Large")
 else
-    print "Small"
+    print("Small")
 
 while x > 0
-    print x
+    print(x)
     x = x - 1
 ```
 
@@ -96,17 +117,18 @@ while x > 0
 ```zebra
 # Functions that can fail use `throws`
 var content = File.read("data.txt") catch "could not read"
-print content
+print(content)
 
-# Or use try/catch for more control
-try
+# Or attach a catch clause to a def for more control (there is no
+# standalone `try` block — `catch` always attaches to a def's body)
+def read_and_show()
     var data = File.read("data.txt")
-    print data
+    print(data)
 catch |err|
-    print "Error: ${err}"
+    print("Error: ${err}")
 ```
 
-**Key:** Functions annotated with `throws` can fail. Use `catch` for fallback or `try`/`catch` for structured handling.
+**Key:** Functions annotated with `throws` can fail. Use inline `expr catch fallback` for a default value, or a method-level `catch` clause (attached to a `def`, after its body) for structured handling.
 
 ---
 
@@ -122,14 +144,14 @@ class Main
 
             var content = File.read(filename) catch ""
             if content.len == 0
-                print "Error: could not read file"
+                print("Error: could not read file")
                 sys.exit(1)
 
             var lines = content.split("\n")
 
-            print "File: ${filename}"
-            print "Lines: ${lines.count()}"
-            print "Total characters: ${content.len}"
+            print("File: ${filename}")
+            print("Lines: ${lines.count()}")
+            print("Total characters: ${content.len}")
 ```
 
 Run:
@@ -162,14 +184,16 @@ class Main
         def main
             # Use catch for simple fallback
             var value = do_something("data") catch "default"
-            print value
+            print(value)
 
-            # Or try/catch for error details
-            try
-                var v = do_something("")
-                print v
-            catch |err|
-                print "Failed: ${err}"
+            # Or a method-level catch clause for error details
+            try_it()
+
+def try_it()
+    var v = do_something("")?
+    print(v)
+catch |err|
+    print("Failed: ${err}")
 ```
 
 **This pattern handles errors explicitly. No surprises, no crashes.**
@@ -194,7 +218,7 @@ class Main
 -> Use `.toString()` or string interpolation: `"${number}"`
 
 **Program compiles but does nothing**
--> Add a `class Main` with `shared def main` — that's your entry point
+-> Add a top-level `def main()`, or a `class Main` with `static def main` — one of those is your entry point
 
 ---
 

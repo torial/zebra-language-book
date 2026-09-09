@@ -1,2 +1,3 @@
-var pattern = Regex.compile("[a-z")    # ERROR: unclosed bracket
-var pattern = Regex.compile("(abc")    # ERROR: unclosed group
+var pattern = Regex.compile("^hello$")
+if not pattern.match("hello world")
+    print("No match")

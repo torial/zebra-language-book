@@ -1,7 +1,7 @@
-var result = operation()
+class Person
+    var name: str = ""        # Mutable
+    var age: int = 0          # Mutable
 
-if result.isOk()
-    var value = result.unwrap()  # Safe now
-
-# Or use unwrapOr with default
-var value = result.unwrapOr(default_value)
+var person = Person()
+person.name = "Alice"           # Now OK
+person.age = 30                 # Now OK

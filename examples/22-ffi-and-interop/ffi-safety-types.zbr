@@ -2,7 +2,7 @@
 # teaches: type safety across FFI boundaries
 # chapter: 22
 
-shared class TypeSafety
+class TypeSafety
     static
         # C expects: void process_array(int* arr, int len)
         def process_array(arr: List(int))
@@ -16,13 +16,13 @@ shared class TypeSafety
 
 def main()
     # Correct usage
-    var ints = List()
+    var ints = List(int)()
     ints.add(1)
     ints.add(2)
     ints.add(3)
     # process_array(ints)  # Would need implementation
     
-    var floats = List()
+    var floats = List(float)()
     floats.add(1.5)
     floats.add(2.5)
     # var total = sum(floats)  # Correct

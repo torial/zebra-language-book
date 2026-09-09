@@ -4,13 +4,14 @@
 
 def main()
     var text = "The cat sat on the mat"
-    var pattern = "cat"
+    var pattern = Regex.compile("cat")
     
-    if text.matches(pattern)
+    if pattern.find(text) != ""
         print("Pattern found!")
     
     # Case-sensitive
-    if not text.matches("CAT")
+    var upper_pattern = Regex.compile("CAT")
+    if upper_pattern.find(text) == ""
         print("'CAT' doesn't match 'cat'")
     
     # Substring matching

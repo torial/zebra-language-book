@@ -20,6 +20,8 @@ mixin Tagged
 class BlogPost adds Timestamped, Tagged
     var title: str = ""
     var body: str = ""
+    var created_at_ms: int = 0      # redeclared from Timestamped — see the note above
+    var tags: List(str)             # redeclared from Tagged
 
     cue init(t: str, b: str)
         this.title = t

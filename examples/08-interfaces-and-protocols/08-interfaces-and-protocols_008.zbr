@@ -2,9 +2,8 @@
 >     def speak(): str
 >     def move()
 >
-> class Dog
->     implements Animal
->         def speak(): str
->             return "Woof!"
->         # ❌ Missing: def move
+> class Dog implements Animal
+>     def speak(): str
+>         return "Woof!"
+>     # ❌ Missing: def move
 >

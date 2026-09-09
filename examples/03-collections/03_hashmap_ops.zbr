@@ -19,6 +19,6 @@ def main()
     if config.get("host") as host
         print(host)  # localhost
 
-    # Iterate over keys and values (see BUG-094 note above on the kv-loop gap)
+    # Iterate over keys and values
     for key, value in config
         print("${key} = ${value}")

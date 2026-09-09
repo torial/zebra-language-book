@@ -12,31 +12,34 @@ mixin Engine
 class Car adds Engine
     var brand: str = ""
     var doors: int = 4
+    var running: bool = false       # redeclared from Engine — see the note above
 
     cue init(b: str)
         brand = b
 
-    def describe: str
+    def describe(): str
         return "${brand} car with ${doors} doors"
 
 class Motorcycle adds Engine
     var brand: str = ""
+    var running: bool = false       # redeclared from Engine
 
     cue init(b: str)
         brand = b
 
-    def describe: str
+    def describe(): str
         return "${brand} motorcycle"
 
 class Truck adds Engine
     var brand: str = ""
     var payload_kg: int = 0
+    var running: bool = false       # redeclared from Engine
 
     cue init(b: str, p: int)
         brand = b
         payload_kg = p
 
-    def describe: str
+    def describe(): str
         return "${brand} truck (${payload_kg}kg payload)"
 
 def main()

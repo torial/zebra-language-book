@@ -1,7 +1,13 @@
 def main()
     var src = "the quick brown fox jumps over the lazy dog"
     var compressed = Compress.gzip(src)
-    print(compressed.count())  # smaller than src.len for typical input
+    print(compressed.len)  # smaller than src.len for typical input
 
     var decompressed = Compress.gunzip(compressed)
-    print(decompressed)  # same as src
+    if decompressed as d
+        # Explicit `str` annotation works around a compiler bug where an
+        # unwrapped optional prints as its raw byte array instead of text.
+        var dstr: str = d
+        print(dstr)  # same as src
+    else
+        print("gunzip failed")

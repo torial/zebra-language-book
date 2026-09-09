@@ -4,14 +4,14 @@
 
 def main()
     # Build content in memory
-    var lines = List()
+    var lines = List(str)()
     
     # Generate report
     lines.add("Sales Report")
     lines.add("=" + "=" + "=" + "=" + "=" + "=")
     lines.add("")
     
-    var items = List()
+    var items = List(str)()
     items.add("Product A")
     items.add("Product B")
     items.add("Product C")
@@ -26,7 +26,5 @@ def main()
     var content = lines.join("\n")
     
     # Write once
-    var result = File.write("report.txt", content)
-    
-    if result.isOk()
-        print("Report written to report.txt")
+    File.write("report.txt", content)
+    print("Report written to report.txt")

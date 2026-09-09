@@ -2,7 +2,7 @@
 # teaches: batching FFI operations
 # chapter: 22
 
-shared class Batch
+class Batch
     static
         # Process one item (slow)
         def process_item(item: str): str
@@ -14,7 +14,7 @@ shared class Batch
             return items
 
 def main()
-    var items = List()
+    var items = List(str)()
     for i in 0.to(100)
         items.add("item-${i}")
     

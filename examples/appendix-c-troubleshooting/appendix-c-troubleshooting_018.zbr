@@ -1,4 +1,1 @@
-var items = List()
-
-if items.count() > 0
-    items.remove(42)
+items = items.filter(def(x) = x != 42)

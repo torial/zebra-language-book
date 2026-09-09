@@ -2,34 +2,37 @@
 # teaches: URL pattern matching
 # chapter: 21
 
+def is_valid_url(url: str): bool
+    if not url.startsWith("http://") and not url.startsWith("https://")
+        return false
+    
+    var after_protocol = url.substring(7, url.len)
+    if after_protocol.len == 0
+        return false
+    
+    # Must have at least one dot
+    if not after_protocol.contains(".")
+        return false
+    
+    # No spaces
+    if after_protocol.contains(" ")
+        return false
+    
+    return true
+
 def main()
     # Basic HTTP(S) URL
     var url_pattern = Regex.compile("https?://[a-z0-9]+\\.[a-z0-9]+")
     
-    if url_pattern.matches("https://example.com")
+    if url_pattern.match("https://example.com")
         print("Valid HTTPS URL")
     
-    if url_pattern.matches("http://example.co.uk")
+    if url_pattern.match("http://example.co.uk")
         print("Valid HTTP URL")
     
-    if not url_pattern.matches("ftp://example.com")
+    if not url_pattern.match("ftp://example.com")
         print("Doesn't match: FTP not in pattern")
     
-    # More complete
-    def is_valid_url(url: str): bool
-        if not url.startsWith("http://") and not url.startsWith("https://")
-            return false
-        
-        var after_protocol = url.substring(7, url.len)
-        if after_protocol.len == 0
-            return false
-        
-        # Must have at least one dot
-        if not after_protocol.contains(".")
-            return false
-        
-        # No spaces
-        if after_protocol.contains(" ")
-            return false
-        
-        return true
+    # More complete (top-level def, see regex-email.zbr note)
+    if is_valid_url("https://example.com/path")
+        print("Complete validation passed")

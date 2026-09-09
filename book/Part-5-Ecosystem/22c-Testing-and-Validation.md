@@ -113,9 +113,20 @@ message that includes both operands.
 ### What about `assert`?
 
 The plain `assert` keyword (used as `assert cond` and `assert cond, "msg"`)
-also works inside tests, but the `assert_*` forms produce better failure
-messages — they print the actual *values*, not just "expected true, got
-false." Prefer `assert_eq` over `assert lhs == rhs` in tests.
+also works inside a `test_*` function, and — as of 2026-09-09 — behaves the
+same way the `assert_*` forms do: a failing plain `assert` fails *that test*
+(`FAIL: name: assert failed at file.zbr:NN`, or your message if you gave
+one) and the runner moves on to the next test, same as every other
+assertion form. Before that fix (BUG-386) a failing plain `assert` inside a
+test panicked the *whole run* at the first failure instead of just failing
+the test — if you're on an older build, that's the difference you'll see.
+
+Outside a `test_*` function, `assert` is still the ordinary process-ending
+check it always was — it isn't caught or converted to a test failure there.
+
+Prefer `assert_eq`/`assert_ne`/`assert_true`/`assert_false` over `assert` in
+tests anyway: they produce better failure messages — they print the actual
+*values*, not just "expected true, got false."
 
 ---
 
@@ -147,13 +158,21 @@ This makes `zebra test` suitable for CI: a failing test fails the build.
 
 ### Selecting which tests to run
 
-Three ways to narrow down:
-
 ```bash
-zebra test --tag NAME file.zbr     # only tests with @tag("NAME") or auto-tags matching
-zebra test --filter NAME file.zbr  # only test functions whose name contains NAME
-zebra test file.zbr                # everything in the file (default)
+zebra test --tag NAME file.zbr           # only tests with @tag("NAME") or auto-tags matching
+zebra test --only test_a,Calc.test_b file.zbr   # only the named tests (comma-separated)
+zebra test --list file.zbr               # list what would run — label<TAB>line, no build
+zebra test file.zbr                      # everything in the file (default)
 ```
+
+There's no `--filter`-by-substring flag — `--only` takes exact, comma-separated
+labels instead (either a bare test name like `test_a`, or a class-qualified one
+like `Calc.test_b`), and composes with `--tag`. `--list` prints exactly what a
+real run would execute — using the same inclusion rule the runner uses (so a
+parameterized `def test_x(n: int)` correctly doesn't show up, and neither
+does a non-static `test_*` method inside a class) — without compiling
+anything, which makes it useful for an IDE's tests pane or a quick sanity
+check before a real run.
 
 `--tag` is the recommended way to organise large suites — see the next
 section.
@@ -175,11 +194,14 @@ def test_addition()
 
 @tag("integration")
 def test_database_roundtrip()
-    var db = Sqlite.open(":memory:")
+    # Sqlite.open returns SqliteDb? — unwrap before calling methods on it.
+    var db = Sqlite.open(":memory:")!
     db.exec("CREATE TABLE t (x INTEGER)")
     db.exec("INSERT INTO t VALUES (42)")
-    var row = db.query("SELECT x FROM t").at(0)
-    assert_eq row.asInt(0), 42
+    var rows = db.query("SELECT x FROM t")
+    var row = rows.at(0)
+    # Row accessors take the COLUMN NAME, not an index.
+    assert_eq row.asInt("x"), 42
 
 @tag("slow")
 def test_large_dataset()
@@ -218,13 +240,18 @@ Given `math_test.zbr` containing:
 
 ```zebra
 class Arithmetic
-    @tag("unit")
-    static def test_add()
-        assert_eq 2 + 2, 4
+    static
+        @tag("unit")
+        def test_add()
+            assert_eq 2 + 2, 4
 
-    static def test_subtract()
-        assert_eq 5 - 3, 2
+        def test_subtract()
+            assert_eq 5 - 3, 2
 ```
+
+(`@tag` goes *inside* a `static` group block, directly above the `def` it
+tags — `@tag(...)` immediately before the inline `static def` form doesn't
+parse.)
 
 | `--tag` value | Selects |
 |---|---|
@@ -474,19 +501,20 @@ you'd run just the unit tests.
 
 ```zebra
 class UserTests
-    @tag("unit")
-    static def test_email_validation()
-        assert_true  User.is_valid_email("a@b.com")
-        assert_false User.is_valid_email("not-an-email")
+    static
+        @tag("unit")
+        def test_email_validation()
+            assert_true  User.is_valid_email("a@b.com")
+            assert_false User.is_valid_email("not-an-email")
 
-    @tag("unit")
-    static def test_name_normalization()
-        assert_eq User.normalize_name("  Alice  "), "Alice"
+        @tag("unit")
+        def test_name_normalization()
+            assert_eq User.normalize_name("  Alice  "), "Alice"
 
-    @tag("integration")
-    static def test_save_and_load()
-        # ... uses Sqlite or a file ...
-        assert_true true
+        @tag("integration")
+        def test_save_and_load()
+            # ... uses Sqlite or a file ...
+            assert_true true
 ```
 
 Run only unit tests:

@@ -6,7 +6,7 @@
 # Rather than exposing this complexity to Zebra code,
 # wrap it in a simpler Zebra interface
 
-shared class SafeLibrary
+class SafeLibrary
     static
         # C function might throw (via setjmp/longjmp)
         def risky_operation(input: str): str throws
@@ -16,6 +16,6 @@ shared class SafeLibrary
 
 def main()
     var result = SafeLibrary.risky_operation("data")
-    
-    if result.isErr()
-        print("Operation failed safely")
+    print(result)
+catch |e|
+    print("Operation failed safely: ${e.message}")

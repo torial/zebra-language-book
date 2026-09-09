@@ -1,2 +1,4 @@
-var items = List()
-items.remove(42)        # ERROR: can't remove from empty list
+var items: List(int) = List()
+
+if items.count() > 0
+    items.remove(0)

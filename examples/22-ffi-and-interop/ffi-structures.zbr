@@ -6,11 +6,11 @@ class Point
     var x: float
     var y: float
     
-    def init(x: float, y: float)
-        this.x = x
-        this.y = y
+    cue init(x: float, y: float)
+        .x = x
+        .y = y
 
-shared class Geometry
+class Geometry
     static
         # C function: float distance(struct Point a, struct Point b)
         # Assuming C expects Point with fields x, y

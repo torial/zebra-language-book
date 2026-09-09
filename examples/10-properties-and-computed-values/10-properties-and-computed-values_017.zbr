@@ -7,7 +7,7 @@ class Circle
         radius = r
         return true
     
-    def diameter: float
+    def diameter(): float
         return radius * 2.0
     
     def set_diameter(d: float): bool
@@ -16,10 +16,10 @@ class Circle
         radius = d / 2.0
         return true
     
-    def area: float
+    def area(): float
         return 3.14159 * radius * radius
     
-    def circumference: float
+    def circumference(): float
         return 2.0 * 3.14159 * radius
 
 def main()

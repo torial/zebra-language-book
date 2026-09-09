@@ -3,23 +3,22 @@
 # chapter: 21
 
 def analyze_logs(filename: str)
-    var result = File.read(filename)
-    if result.isErr()
-        print("Error: ${result.error(}"))
+    if not File.exists(filename)
+        print("Error: ${filename} not found")
         return
     
-    var content = result.value()
+    var content = File.read(filename)
     var lines = content.split("\n")
     
     var error_count = 0
     var warning_count = 0
-    var error_lines = List()
+    var error_lines: List(str) = []
     
     for line in lines
         if line.contains("[ERROR]")
             error_count = error_count + 1
             error_lines.add(line)
-        elif line.contains("[WARN]")
+        else if line.contains("[WARN]")
             warning_count = warning_count + 1
     
     print("Log Analysis:")

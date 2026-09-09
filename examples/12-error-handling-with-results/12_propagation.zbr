@@ -12,8 +12,8 @@ class Parser
 class System
     static
         def load_system(config_text: str): str throws
-            # If parse_config raises, the error propagates up
-            var parsed = Parser.parse_config(config_text)
+            # The `?` sends a raise from parse_config straight to our caller
+            var parsed = Parser.parse_config(config_text)?
             return "System loaded with: ${parsed}"
 
 def main()

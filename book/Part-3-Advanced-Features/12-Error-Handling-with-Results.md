@@ -103,7 +103,9 @@ def main()
 
 ### Catch with Binding
 
-Bind the error value to inspect it:
+Bind the error value to inspect it. The binding gives you an error object with
+a `.message` field (a plain string binding, `|err|`, prints the whole error via
+interpolation; `.message` is how you pull just the text out):
 
 ```zebra
 # file: 12_catch_binding.zbr
@@ -114,35 +116,17 @@ def attempt()
     var value = Validator.parse_int("")
     print("Got: ${value}")
 catch |err|
-    print("Error: ${err}")
-
-def main()
-    attempt()
-```
-
-### Catch with Type
-
-Specify a type for the error binding:
-
-```zebra
-# file: 12_catch_typed.zbr
-# teaches: catch with typed error binding
-# chapter: 12-Error-Handling
-
-def attempt()
-    var value = Validator.parse_int("")
-    print(value)
-catch |err as str|
-    print("String error: ${err}")
+    print("Error: ${err.message}")
 
 def main()
     attempt()
 ```
 
 > **Note:** Earlier Zebra versions allowed a `try ... catch ...` block at any
-> point inside a method body. That form was removed; today every `catch`
-> clause attaches to either a `def` (method-level) or a single expression
-> (inline postfix `expr catch fallback`).
+> point inside a method body, and a typed error binding written `|err as str|`.
+> Both forms were removed; today every `catch` clause attaches to either a
+> `def` (method-level) or a single expression (inline postfix `expr catch
+> fallback`), and the binding is untyped — use `|err|` and read `.message`.
 
 ---
 
@@ -160,12 +144,15 @@ def main()
     var value = Validator.parse_int("abc") catch 0
     print(value)  # 0
 
-    # Catch with binding
-    var msg = Validator.parse_int("") catch |e| "failed: ${e}"
-    print(msg)
+    var count = Validator.parse_int("") catch 0
+    print(count)  # 0
 ```
 
-This is the most common pattern for simple error recovery.
+This is the most common pattern for simple error recovery. An inline `catch`
+can also bind the error (`expr catch |e| fallback`), but `e` there is a bare
+`anyerror` with no `.message` field — for a fallback that depends on *what*
+went wrong, use a method-level `catch |e|` (above), where `e.message` is
+available.
 
 ---
 
@@ -173,7 +160,7 @@ This is the most common pattern for simple error recovery.
 
 ![Error Propagation Flow](diagrams/05-error-propagation.png)
 
-Functions annotated with `throws` can propagate errors from callees automatically. If a `throws` function calls another `throws` function without catching, the error propagates up:
+Functions annotated with `throws` can propagate errors from callees, but propagation isn't automatic — mark the call with `?`. If a `throws` function calls another `throws` function without catching, the `?` sends the error straight to the caller:
 
 ```zebra
 # file: 12_propagation.zbr
@@ -190,8 +177,8 @@ class Parser
 class System
     static
         def load_system(config_text: str): str throws
-            # If parse_config raises, the error propagates up
-            var parsed = Parser.parse_config(config_text)
+            # The `?` sends a raise from parse_config straight to our caller
+            var parsed = Parser.parse_config(config_text)?
             return "System loaded with: ${parsed}"
 
 def main()
@@ -218,14 +205,14 @@ class APIClient
             raise "User not found"
 
         def fetch_and_greet(user_id: int): str throws
-            var user = fetch_user(user_id)
+            var user = fetch_user(user_id)?
             return "Hello, ${user}!"
 
 def attempt_greet(user_id: int)
     var g = APIClient.fetch_and_greet(user_id)
     print(g)
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 
 def main()
     # Using inline catch expression
@@ -283,7 +270,7 @@ class AgeValidator
             return age
 
         def validate_age(text: str): str throws
-            var age = parse_age(text)
+            var age = parse_age(text)?
             if age < 0
                 raise "Age cannot be negative"
             if age > 150
@@ -294,7 +281,7 @@ def attempt_validate(text: str)
     var result = AgeValidator.validate_age(text)
     print(result)  # "valid"
 catch |err|
-    print("Error: ${err}")
+    print("Error: ${err.message}")
 
 def main()
     attempt_validate("25")        # prints "valid"
@@ -319,7 +306,7 @@ def main()
 - **`raise`** — Signals an error, exits the function immediately
 - **Method-level `catch`** — Attach a `catch` clause to a `def` at the same indent level; it runs when any `throws` call in the body raises
 - **`catch` expression** — Inline fallback: `expr catch default`
-- **Errors propagate** — A `throws` function can let callee errors bubble up
+- **Errors propagate with `?`** — Mark every call to a `throws` function with `?` to send its error to the caller; propagation is not automatic
 - **Errors are explicit** — You always know which functions can fail
 
 ---

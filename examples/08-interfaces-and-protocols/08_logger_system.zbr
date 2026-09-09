@@ -6,35 +6,33 @@ interface Logger
     def debug(message: str)
     def info(message: str)
     def warn(message: str)
-    def error(message: str)
+    def log_error(message: str)
 
-class ConsoleLogger
-    implements Logger
-        def debug(message: str)
-            print("[DEBUG] ${message}")
+class ConsoleLogger implements Logger
+    def debug(message: str)
+        print("[DEBUG] ${message}")
         
-        def info(message: str)
-            print("[INFO] ${message}")
+    def info(message: str)
+        print("[INFO] ${message}")
         
-        def warn(message: str)
-            print("[WARN] ${message}")
+    def warn(message: str)
+        print("[WARN] ${message}")
         
-        def error(message: str)
-            print("[ERROR] ${message}")
+    def log_error(message: str)
+        print("[ERROR] ${message}")
 
-class FileLogger
-    implements Logger
-        def debug(message: str)
-            # Write to file: [DEBUG] message
+class FileLogger implements Logger
+    def debug(message: str)
+        # Write to file: [DEBUG] message
         
-        def info(message: str)
-            # Write to file: [INFO] message
+    def info(message: str)
+        # Write to file: [INFO] message
         
-        def warn(message: str)
-            # Write to file: [WARN] message
+    def warn(message: str)
+        # Write to file: [WARN] message
         
-        def error(message: str)
-            # Write to file: [ERROR] message
+    def log_error(message: str)
+        # Write to file: [ERROR] message
 
 class Application
     var logger: Logger

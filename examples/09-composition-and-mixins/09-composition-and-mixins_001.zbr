@@ -1,14 +1,16 @@
 class UserService adds Loggable, Cacheable
-    cue init
+    var _cache: HashMap(str, str)   # redeclared — see the note below
+
+    cue init()
         _cache = HashMap(str, str)()
 
     def lookup(id: str): str
-        var hit = cache_get(id)
+        var hit = this.cache_get(id)
         if hit as found
             return found
-        log("cache miss for ${id}")
+        this.log("cache miss for ${id}")
         var fetched = "user-${id}"
-        cache_set(id, fetched)
+        this.cache_set(id, fetched)
         return fetched
 
 def main()

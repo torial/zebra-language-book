@@ -1,3 +1,4 @@
 def divide(a: int, b: int): int
-    require b != 0, "Divisor cannot be zero"
+    require
+        b != 0
     return a / b

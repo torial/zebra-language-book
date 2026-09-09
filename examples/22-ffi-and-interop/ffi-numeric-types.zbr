@@ -2,7 +2,7 @@
 # teaches: numeric type marshaling
 # chapter: 22
 
-shared class Numeric
+class Numeric
     static
         # Zebra int (64-bit) → C int32_t (32-bit)
         # Be careful with overflow!

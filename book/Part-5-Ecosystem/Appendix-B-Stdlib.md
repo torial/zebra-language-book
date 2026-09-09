@@ -384,21 +384,30 @@ def divide(a: int, b: int): int throws
     return a / b
 ```
 
-**Handle errors:**
+**Handle errors — three forms:**
 ```zebra
-# Catch expression (inline fallback)
+# 1. Catch expression (inline fallback)
 var value = divide(10, 0) catch 0
 
-# Catch with binding
-var result = divide(10, 0) catch |e| -1
+# 2. Explicit propagation — every call to a `throws` function needs a `?`,
+#    even in the same file; it re-raises to the caller, which must itself
+#    be `throws`
+def caller(): int throws
+    var r = divide(10, 2)?
+    return r
 
-# Try/catch block
-try
+# 3. Method-level catch — a `catch` clause attached to a `def` at the same
+#    indent, running when any `throws` call in the body raises; `e.message`
+#    reads the error text
+def risky()
     var v = divide(10, 0)
     print(v)
-catch |err|
-    print("Error: ${err}")
+catch |e|
+    print("Error: ${e.message}")
 ```
+
+> There is no `try`/`catch` block form — `try` as a prefix keyword was
+> removed. Use `expr?` to propagate or one of the two `catch` forms above.
 
 ---
 

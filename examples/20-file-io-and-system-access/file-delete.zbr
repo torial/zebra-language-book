@@ -4,13 +4,9 @@
 
 def main()
     var temp_file = "temp.txt"
-    
+
     if File.exists(temp_file)
-        var result = File.delete(temp_file)
-        
-        if result.isOk()
-            print("Temporary file deleted")
-        else
-            print("Error deleting file: ${result.error(}"))
+        File.delete(temp_file)
+        print("Temporary file deleted")
     else
         print("File doesn't exist")

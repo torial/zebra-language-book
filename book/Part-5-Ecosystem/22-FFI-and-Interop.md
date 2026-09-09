@@ -39,7 +39,7 @@ The simplest case: C functions with primitive types.
 
 # Declare C function signature
 # Note: This example assumes the function is available at link time
-shared class Math
+class Math
     static
         def sqrt(x: float): float
             # This would be implemented in C
@@ -66,7 +66,7 @@ Strings require special care because Zebra and C have different string represent
 # teaches: passing strings to C functions
 # chapter: 22
 
-shared class CString
+class CString
     static
         # C strlen: int strlen(const char* s)
         def strlen(s: str): int
@@ -105,7 +105,7 @@ Arrays are commonly passed to C functions.
 # teaches: passing arrays to C functions
 # chapter: 22
 
-shared class CArray
+class CArray
     static
         # C qsort: void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*))
         # This is complex to use in Zebra—better to sort in Zebra
@@ -127,7 +127,7 @@ shared class CArray
             return max_val
 
 def main()
-    var numbers = List()
+    var numbers = List(int)()
     numbers.add(10)
     numbers.add(20)
     numbers.add(15)
@@ -148,7 +148,7 @@ This is where FFI gets dangerous.
 # teaches: handling pointers in FFI
 # chapter: 22
 
-shared class CMemory
+class CMemory
     static
         # C malloc: void* malloc(size_t size)
         # C free: void free(void* ptr)
@@ -163,15 +163,14 @@ shared class CMemory
 def main()
     var my_data = "Important data"
     
-    # Pass to C function for processing
-    var result = CMemory.process_buffer(my_data)
-    
-    if result.isOk()
-        print("Processed: ${result.value(} bytes"))
-    else
-        print("Error: ${result.error(}"))
+    # Pass to C function for processing. process_buffer is `throws`, so it
+    # returns the value directly (not a Result) — catch handles the error.
+    var byte_count = CMemory.process_buffer(my_data)
+    print("Processed: ${byte_count} bytes")
     
     # Zebra's scoping ensures my_data is cleaned up automatically
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ---
@@ -187,7 +186,7 @@ Zig is closer to Zebra, making interop more ergonomic.
 # teaches: calling Zig functions from Zebra
 # chapter: 22
 
-shared class ZigMath
+class ZigMath
     static
         # Zig function: pub fn gcd(a: i64, b: i64) -> i64
         def gcd(a: int, b: int): int
@@ -217,7 +216,7 @@ Zig's string handling is different from C's.
 # teaches: Zig string interop
 # chapter: 22
 
-shared class ZigString
+class ZigString
     static
         # Zig function with slices
         # pub fn string_length(s: []const u8) -> usize
@@ -256,7 +255,7 @@ Many C functions return error codes rather than throwing exceptions.
 # teaches: handling C-style error codes
 # chapter: 22
 
-shared class CFile
+class CFile
     static
         # C fopen: FILE* fopen(const char* filename, const char* mode)
         # Returns NULL on error
@@ -281,17 +280,15 @@ shared class CFile
                 raise "Error closing file"
 
 def main()
-    var result = CFile.open_file("data.txt", "r")
+    # open_file/close_file are `throws` — the error is caught below, not
+    # branched on as a Result value.
+    var handle = CFile.open_file("data.txt", "r")
+    print("File opened: ${handle}")
     
-    branch result
-        on ok(handle)
-            print("File opened: ${handle}")
-            
-            var close_result = CFile.close_file(handle)
-            if close_result.isOk()
-                print("File closed")
-        on err(error)
-            print("Error: ${error}")
+    CFile.close_file(handle)
+    print("File closed")
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ### Exception-Like Patterns
@@ -307,7 +304,7 @@ Some C libraries use setjmp/longjmp for exceptions. These are complex to use fro
 # Rather than exposing this complexity to Zebra code,
 # wrap it in a simpler Zebra interface
 
-shared class SafeLibrary
+class SafeLibrary
     static
         # C function might throw (via setjmp/longjmp)
         def risky_operation(input: str): str throws
@@ -317,9 +314,9 @@ shared class SafeLibrary
 
 def main()
     var result = SafeLibrary.risky_operation("data")
-    
-    if result.isErr()
-        print("Operation failed safely")
+    print(result)
+catch |e|
+    print("Operation failed safely: ${e.message}")
 ```
 
 ---
@@ -335,7 +332,7 @@ Most numeric types map directly:
 # teaches: numeric type marshaling
 # chapter: 22
 
-shared class Numeric
+class Numeric
     static
         # Zebra int (64-bit) → C int32_t (32-bit)
         # Be careful with overflow!
@@ -374,11 +371,11 @@ class Point
     var x: float
     var y: float
     
-    def init(x: float, y: float)
-        this.x = x
-        this.y = y
+    cue init(x: float, y: float)
+        .x = x
+        .y = y
 
-shared class Geometry
+class Geometry
     static
         # C function: float distance(struct Point a, struct Point b)
         # Assuming C expects Point with fields x, y
@@ -409,7 +406,7 @@ Different platforms have different APIs.
 # teaches: handling platform differences
 # chapter: 22
 
-shared class Platform
+class Platform
     static
         # Windows: GetFileSize
         # Unix: stat
@@ -427,10 +424,11 @@ shared class Platform
             pass
 
 def main()
-    var size_result = Platform.get_file_size("data.txt")
-    
-    if size_result.isOk()
-        print("File size: ${size_result.value(} bytes"))
+    # get_file_size is `throws`, so catch the error rather than checking isOk.
+    var size = Platform.get_file_size("data.txt")
+    print("File size: ${size} bytes")
+catch |e|
+    print("Could not get file size: ${e.message}")
 ```
 
 ### Conditional Compilation
@@ -440,7 +438,7 @@ def main()
 # teaches: platform-specific compilation
 # chapter: 22
 
-shared class OSSpecific
+class OSSpecific
     static
         def platform_name(): str
             # This might vary based on compilation target
@@ -451,8 +449,8 @@ shared class OSSpecific
             return "/"
 
 def main()
-    print("Platform: ${OSSpecific.platform_name(}"))
-    print("Separator: ${OSSpecific.file_separator(}"))
+    print("Platform: ${OSSpecific.platform_name()}")
+    print("Separator: ${OSSpecific.file_separator()}")
 ```
 
 ---
@@ -476,7 +474,7 @@ def safe_pattern(data: str): int
     return data.len
 
 # UNSAFE: C allocates memory Zebra must free
-# shared class Unsafe
+# class Unsafe
 #     shared
 #         def allocate_buffer(): str
 #             # C allocates memory with malloc
@@ -485,7 +483,7 @@ def safe_pattern(data: str): int
 #             return ""
 
 # BETTER: Provide deallocation function
-shared class BetterAlloc
+class BetterAlloc
     static
         # C allocates
         def create_buffer(size: int): int
@@ -511,7 +509,7 @@ Type mismatches can cause crashes.
 # teaches: type safety across FFI boundaries
 # chapter: 22
 
-shared class TypeSafety
+class TypeSafety
     static
         # C expects: void process_array(int* arr, int len)
         def process_array(arr: List(int))
@@ -525,13 +523,13 @@ shared class TypeSafety
 
 def main()
     # Correct usage
-    var ints = List()
+    var ints = List(int)()
     ints.add(1)
     ints.add(2)
     ints.add(3)
     # process_array(ints)  # Would need implementation
     
-    var floats = List()
+    var floats = List(float)()
     floats.add(1.5)
     floats.add(2.5)
     # var total = sum(floats)  # Correct
@@ -571,7 +569,7 @@ def safe_parameter(numbers: List(int)): int
     return numbers.at(0)
 
 def main()
-    var my_list = List()
+    var my_list = List(int)()
     my_list.add(42)
     
     # Safe—my_list is still alive
@@ -588,7 +586,10 @@ def main()
 # teaches: practical FFI example with crypto
 # chapter: 22
 
-shared class Crypto
+# NOTE: named CryptoLib rather than Crypto — `Crypto` is a reserved builtin
+# identifier in today's compiler (undocumented; it's not in QUICKSTART's
+# module list), and a user class of that exact name miscompiles.
+class CryptoLib
     static
         # OpenSSL/BoringSSL: compute SHA256
         def sha256(input: str): str
@@ -603,13 +604,13 @@ shared class Crypto
 
 def main()
     var message = "Secret password"
-    var hash = Crypto.sha256(message)
+    var hash = CryptoLib.sha256(message)
     print("SHA256: ${hash}")
     
     # Verify integrity
     var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
     
-    if Crypto.verify_sha256(message, stored_hash)
+    if CryptoLib.verify_sha256(message, stored_hash)
         print("Hash verified!")
     else
         print("Hash mismatch!")
@@ -639,7 +640,7 @@ def main()
         sum = sum + expensive_c_function(i)
     
     # BETTER: Pass the whole array to C
-    var nums = List()
+    var nums = List(int)()
     for i in 0.to(1000000)
         nums.add(i)
     
@@ -662,7 +663,7 @@ def sum_all(nums: List(int)): int
 # teaches: batching FFI operations
 # chapter: 22
 
-shared class Batch
+class Batch
     static
         # Process one item (slow)
         def process_item(item: str): str
@@ -674,7 +675,7 @@ shared class Batch
             return items
 
 def main()
-    var items = List()
+    var items = List(str)()
     for i in 0.to(100)
         items.add("item-${i}")
     
@@ -808,7 +809,7 @@ class Highlighter implements IPlugin
 
 # IDE startup
 def load_plugins(dir: str): List(IPlugin)
-    var loaded: List(IPlugin) = List()
+    var loaded: List(IPlugin) = List(IPlugin)()
     var files = Dir.list(dir)
     for f in files
         if f.endsWith(".dll")

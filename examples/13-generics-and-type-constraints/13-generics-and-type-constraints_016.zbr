@@ -4,14 +4,14 @@ class Stack(T)
     def push(value: T)
         items.add(value)
     
-    def pop: T?
+    def pop(): T?
         if items.count() == 0
             return nil
         var value = items.at(items.count() - 1)
         # Remove last item (simplified - no remove method)
         return value
     
-    def is_empty: bool
+    def is_empty(): bool
         return items.count() == 0
 
 def main()

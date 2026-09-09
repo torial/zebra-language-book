@@ -7,6 +7,5 @@ def main()
     var value = Validator.parse_int("abc") catch 0
     print(value)  # 0
 
-    # Catch with binding
-    var msg = Validator.parse_int("") catch |e| "failed: ${e}"
-    print(msg)
+    var count = Validator.parse_int("") catch 0
+    print(count)  # 0

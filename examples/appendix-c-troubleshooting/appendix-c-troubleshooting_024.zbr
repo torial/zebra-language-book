@@ -1,9 +1,10 @@
 var text = "hello"
 
 if text.len > 10
-    var char = text.charAt(10)
+    var byte_val = text.charAt(10)
+    print(byte_val)
 else
     print("Index out of range")
 
 # Safe way
-var last = text.charAt(text.len - 1)  # Get last character
+var last = text.charAt(text.len - 1)  # Get last byte

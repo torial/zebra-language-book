@@ -1,5 +1,5 @@
-var x = "10".toInt()
-var y = "5".toInt()
+var x = "10".tryInt()
+var y = "5".tryInt()
 
 if x != nil and y != nil
     var sum = x + y         # 15

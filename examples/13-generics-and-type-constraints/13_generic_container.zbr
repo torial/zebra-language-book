@@ -8,7 +8,7 @@ class Container(T)
     def store(value: T)
         item = value
     
-    def retrieve: T
+    def retrieve(): T
         return item
 
 def main()

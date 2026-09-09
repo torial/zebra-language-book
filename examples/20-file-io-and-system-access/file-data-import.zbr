@@ -13,63 +13,54 @@ class Person
             if parts.count() != 3
                 return nil
             
-            var age_val = parts.at(1).trim().toInt()
+            var age_val = parts.at(1).trim().tryInt()
             if age_val == nil
                 return nil
             
             var person = Person()
             person.name = parts.at(0).trim()
-            person.age = age_val
+            person.age = age_val!
             person.email = parts.at(2).trim()
             return person
         
         def load_from_csv(filename: str): List(Person) throws
-            var content_result = File.read(filename)
-            
-            if content_result.isErr()
-                raise content_result.error()
-            
-            var content = content_result.value()
-            var people = List()
+            if not File.exists(filename)
+                raise "cannot read ${filename}: not found"
+
+            var content = File.read(filename)
+            var people: List(Person) = []
             var lines = content.split("\n")
             
             for line in lines
                 if line.trim().len == 0
                     continue
                 
-                var person = from_csv_line(line)
-                if person != nil
+                if from_csv_line(line) as person
                     people.add(person)
             
             return people
     
     def to_csv_line(): str
-        return "${name},${age},${email}"
+        return "${.name},${.age},${.email}"
 
 def main()
     # Load data
-    var result = Person.load_from_csv("people.csv")
-    
-    if result.isErr()
-        print("Error: ${result.error(}"))
-        return
-    
-    var people = result.value()
-    print("Loaded ${people.count(} people"))
+    var people = Person.load_from_csv("people.csv")
+    print("Loaded ${people.count()} people")
     
     # Filter and export
-    var adults = List()
+    var adults: List(Person) = []
     for person in people
         if person.age >= 18
             adults.add(person)
     
     # Save filtered data
-    var output_lines = List()
+    var output_lines: List(str) = []
     for person in adults
         output_lines.add(person.to_csv_line())
     
     var csv_output = output_lines.join("\n")
-    var write_result = File.write("adults.csv", csv_output)
-    
-    if write_result.isOk()
-        print("Exported ${adults.count(} adults to adults.csv"))
+    File.write("adults.csv", csv_output)
+    print("Exported ${adults.count()} adults to adults.csv")
+catch |e|
+    print("Error: ${e.message}")

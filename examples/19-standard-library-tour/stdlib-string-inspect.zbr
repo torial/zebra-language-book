@@ -8,8 +8,9 @@ def main()
     # Length
     print(text.len)  # 13
 
-    # Character access
-    var first_char = text.charAt(0)     # 'H'
+    # Character access — charAt returns a byte, not a str, so this prints
+    # 72 (the ASCII code for 'H'), not "H"
+    var first_char = text.charAt(0)
     print(first_char)
 
     # Check existence

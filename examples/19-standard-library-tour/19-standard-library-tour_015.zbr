@@ -1,13 +1,18 @@
 def main()
     Log.info("server starting on :8080")
     Log.warn("config key missing — using default")
-    Log.error("database connection failed")
+    # NOTE: the error-level call is `Log.err`, not `Log.error` — `Log.error`
+    # both fails to compile if anything follows it (misread by the checker
+    # as a noreturn/error-raising call) and isn't implemented in codegen
+    # (`Log.error` alone gives "selfhost: unknown Log.error"). QUICKSTART's
+    # own table documents `Log.error(msg)`, which is also wrong today.
+    Log.err("database connection failed")
 
-    # JSON-lines output for ingestion by log aggregators:
-    Log.json("info", "request handled",
-             HashMap(str, str)()
-                .set("method", "GET")
-                .set("path", "/api"))
+    # JSON-lines output for ingestion by log aggregators. `data` is a plain
+    # str that gets embedded as the JSON-string value of the "data" field —
+    # it is NOT merged in as structured key/value pairs, so pre-format it
+    # yourself if you want nested JSON there.
+    Log.json("info", "request handled", "method=GET path=/api")
 
     # Redirect to a file (subsequent calls write there):
     Log.setFile("./out.log")

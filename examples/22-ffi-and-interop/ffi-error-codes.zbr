@@ -2,7 +2,7 @@
 # teaches: handling C-style error codes
 # chapter: 22
 
-shared class CFile
+class CFile
     static
         # C fopen: FILE* fopen(const char* filename, const char* mode)
         # Returns NULL on error
@@ -27,14 +27,12 @@ shared class CFile
                 raise "Error closing file"
 
 def main()
-    var result = CFile.open_file("data.txt", "r")
+    # open_file/close_file are `throws` — the error is caught below, not
+    # branched on as a Result value.
+    var handle = CFile.open_file("data.txt", "r")
+    print("File opened: ${handle}")
     
-    branch result
-        on ok(handle)
-            print("File opened: ${handle}")
-            
-            var close_result = CFile.close_file(handle)
-            if close_result.isOk()
-                print("File closed")
-        on err(error)
-            print("Error: ${error}")
+    CFile.close_file(handle)
+    print("File closed")
+catch |e|
+    print("Error: ${e.message}")

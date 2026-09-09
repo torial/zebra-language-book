@@ -6,21 +6,21 @@ def main()
     var re = Regex.compile("c.t")
     
     # Matches: cat, cot, cut, c9t, c t
-    if re.matches("cat")
+    if re.match("cat")
         print("Matches 'cat'")
     
-    if re.matches("cot")
+    if re.match("cot")
         print("Matches 'cot'")
     
-    if re.matches("cut")
+    if re.match("cut")
         print("Matches 'cut'")
     
-    if not re.matches("coat")  # 'oa' is two chars, not one
+    if not re.match("coat")  # 'oa' is two chars, not one
         print("Doesn't match 'coat'")
     
     # Practical: match email-ish pattern (simplified)
     var email_pattern = ".+@.+"
     var email_re = Regex.compile(email_pattern)
     
-    if email_re.matches("user@example.com")
+    if email_re.match("user@example.com")
         print("Valid email pattern")

@@ -1,3 +1,2 @@
 var x = 10              # Simple assignment
 x = x + 5               # Update
-var x = 10, y = 20      # Multiple assignments

@@ -3,5 +3,8 @@
 >     if should_remove(item)
 >         to_remove.add(item)
 > for item in to_remove
->     items.remove(items.indexOf(item))
+>     for i in 0..items.count()
+>         if items.at(i) == item
+>             items.remove(i)
+>             break
 >

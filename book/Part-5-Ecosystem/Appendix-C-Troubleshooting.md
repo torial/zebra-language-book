@@ -48,32 +48,37 @@ var sum = x + y         # ERROR: concatenates "105", not arithmetic sum
 var result = x - y      # ERROR: can't subtract strings
 ```
 
-**Solution:**
+**Solution:** `toInt()` returns a **plain** `int` (0 on bad input),
+which can't be `nil`-checked — comparing it to `nil` compiles under
+`zebra -c` but fails full compile (`error: comparison of 'i64' with
+null`). Use `tryInt()`, which genuinely returns `int?`:
+
 ```zebra
-var x = "10".toInt()
-var y = "5".toInt()
+var x = "10".tryInt()
+var y = "5".tryInt()
 
 if x != nil and y != nil
     var sum = x + y         # 15
     print(sum)
 ```
 
-**Better:**
-```zebra
-var result = "10".toInt() and "5".toInt()
-if result != nil
-    # Handle both being valid
-```
+Note that `and`/`or` require `bool` operands — `x != nil and y != nil`
+works because each side is a comparison, but `x and y` directly (with
+`x`, `y` as `int?`) is a type error, not a way to check "both valid."
 
 ---
 
-### "error: type mismatch in collection"
+### "error: type mismatch: expected int, got str"
 
-**What it means:** You're adding the wrong type to a collection.
+**What it means:** You're adding the wrong type to a collection. (Note:
+this needs an explicitly typed `List(int)` — a bare `List()` with no
+type argument is a *different* problem, a checker blind spot that
+fails full compile with `expected expression, found 'anytype'` before
+you'd ever see the type-mismatch error below.)
 
 **Example:**
 ```zebra
-var numbers = List()
+var numbers: List(int) = List()
 numbers.add(42)         # OK
 numbers.add("hello")    # ERROR: expecting int, got str
 ```
@@ -81,10 +86,10 @@ numbers.add("hello")    # ERROR: expecting int, got str
 **Solution:**
 Check the collection's declared type and add matching values:
 ```zebra
-var numbers = List()
+var numbers: List(int) = List()
 numbers.add(42)
 
-var names = List()
+var names: List(str) = List()
 names.add("hello")
 ```
 
@@ -114,10 +119,10 @@ else
     print("x is nil")
 ```
 
-**Alternative:**
+**Alternative:** there's no `.unwrapOr()` method — use `orelse`:
 ```zebra
 var x: int? = nil
-var value = x.unwrapOr(0)  # Use 0 if x is nil
+var value = x orelse 0  # Use 0 if x is nil
 var result = value + 1
 ```
 
@@ -180,7 +185,7 @@ else
 
 **Example:**
 ```zebra
-var items = List()
+var items: List(int) = List()
 items.add(42)
 
 var first = items.at(0)     # OK
@@ -190,7 +195,7 @@ var third = items.at(-1)    # ERROR: negative index
 
 **Solution:**
 ```zebra
-var items = List()
+var items: List(int) = List()
 items.add(42)
 
 if items.count() > 0
@@ -208,22 +213,30 @@ for item in items
 
 ---
 
-### "error: cannot remove from empty list"
+### `thread N panic: index out of bounds`
 
-**What it means:** You're removing from a list with no elements.
+**What it means:** `.remove()` takes an **index**, not a value — there's
+no remove-by-value overload — and removing an out-of-range index (an
+empty list has none) panics the process rather than raising a
+catchable error.
 
 **Example:**
 ```zebra
-var items = List()
-items.remove(42)        # ERROR: can't remove from empty list
+var items: List(int) = List()
+items.remove(0)        # PANIC: index out of bounds: index 0, len 0
 ```
 
 **Solution:**
 ```zebra
-var items = List()
+var items: List(int) = List()
 
 if items.count() > 0
-    items.remove(42)
+    items.remove(0)
+```
+
+To remove by *value* instead of by index, filter it out:
+```zebra
+items = items.filter(def(x) = x != 42)
 ```
 
 ---
@@ -235,17 +248,17 @@ if items.count() > 0
 **Example:**
 ```zebra
 var map = HashMap(str, int)()
-var value = map.fetch("key")  # Returns nil, not an error
+var value = map.get("key")  # Returns nil, not an error
 
 # But if you don't check nil:
-var num = map.fetch("key")
+var num = map.get("key")
 var result = num + 1           # ERROR: num is nil!
 ```
 
 **Solution:**
 ```zebra
 var map = HashMap(str, int)()
-var value = map.fetch("key")
+var value = map.get("key")
 
 if value != nil
     var result = value + 1
@@ -253,7 +266,8 @@ else
     print("Key not found")
 ```
 
-Note: `set` and `get` are reserved keywords in Zebra. Use `put` and `fetch` instead.
+Note: there's no `set`/`get` keyword conflict — those **are** the real
+accessor names. `.put()` and `.fetch()` don't exist on `HashMap` at all.
 
 ---
 
@@ -285,27 +299,32 @@ var message = "Value: ".concat(x.toString())
 
 ---
 
-### "error: string index out of bounds"
+### "error: index N outside slice of length M"
 
-**What it means:** You're accessing a character past the end of the string.
+**What it means:** You're accessing a byte past the end of the string —
+this fails at full compile with the message above; there's no
+catchable exception, just an out-of-bounds crash.
 
 **Example:**
 ```zebra
 var text = "hello"
-var last = text.charAt(10)      # ERROR: index out of bounds
+var last = text.charAt(10)      # PANIC: index 10 outside slice of length 5
 ```
 
-**Solution:**
+**Solution:** guard with `.len` first. Also note `char` is a reserved
+word — it can't be used as a variable name:
+
 ```zebra
 var text = "hello"
 
 if text.len > 10
-    var char = text.charAt(10)
+    var byte_val = text.charAt(10)
+    print(byte_val)
 else
     print("Index out of range")
 
 # Safe way
-var last = text.charAt(text.len - 1)  # Get last character
+var last = text.charAt(text.len - 1)  # Get last byte
 ```
 
 ---
@@ -414,55 +433,55 @@ def get_value(): int
 
 ## Error Handling Errors
 
-### "error: result must be checked before use"
+Zebra has no `Result` type, and no `.isOk()` / `.isErr()` / `.value()`
+/ `.unwrap()` / `.unwrapOr()` methods — those don't exist on anything.
+Functions that can fail are declared `throws` and their errors
+propagate or get handled with `?`, `catch`, or a method-level `catch`
+clause.
 
-**What it means:** You're using a Result without checking if it's success or error.
+### "error: expected type 'T', found 'anyerror!T'"
 
-**Example:**
-```zebra
-var result = File.read("file.txt")
-var content = result.value()    # ERROR: might be error!
-```
-
-**Solution:**
-```zebra
-var result = File.read("file.txt")
-
-if result.isOk()
-    var content = result.value()
-else
-    print("Error: ${result.error(}"))
-
-# Or use branch
-branch result
-    on ok(content)
-        print(content)
-    on err(error)
-        print("Error: ${error}")
-```
-
----
-
-### "error: unwrap on error result would panic"
-
-**What it means:** You're calling `.unwrap()` on an error Result.
+**What it means:** You called a `throws` function and used its result
+directly, without propagating or catching the possible error.
 
 **Example:**
 ```zebra
-var result = operation()
-var value = result.unwrap()     # ERROR if result.isErr()
+def operation(): int throws
+    raise "fail"
+
+def main()
+    var value = operation()    # ERROR: unhandled `anyerror!int`
+    print(value)
 ```
 
-**Solution:**
+**Solution:** propagate with `?`, supply a fallback with `catch value`,
+or attach a method-level `catch |e|` clause:
+
 ```zebra
-var result = operation()
+def operation(): int throws
+    raise "fail"
 
-if result.isOk()
-    var value = result.unwrap()  # Safe now
+# Inline fallback
+def main1()
+    var value = operation() catch 0
+    print(value)
 
-# Or use unwrapOr with default
-var value = result.unwrapOr(default_value)
+# Propagate to a throws caller
+def main2(): int throws
+    var value = operation()?
+    return value
+
+# Handle explicitly
+def main3()
+    var value = operation()
+    print(value)
+catch |e|
+    print("Error: ${e.message}")
 ```
+
+Note that `File.read` / `File.write` are **not** `throws` — see
+Chapter 20. Calling `.catch` on them is a different error (`expected
+error union type, found 'str'`); guard with `File.exists()` instead.
 
 ---
 
@@ -560,46 +579,52 @@ var circle = Circle()  # OK
 
 ## File I/O Errors
 
-### "error: file not found"
+### `thread N panic: File.read error`
 
-**What it means:** You're trying to read a file that doesn't exist.
+**What it means:** `File.read` and `File.write` are plain-value calls,
+not `throws` — there's no `Result` to check and no `.isErr()` to call.
+A missing (or unreadable) file **panics the process outright**. See
+Chapter 20 for the full explanation.
 
 **Example:**
 ```zebra
-var result = File.read("missing.txt")
-# If not handling Result, this fails
+var content = File.read("missing.txt")  # panics if the file is absent
 ```
 
-**Solution:**
+**Solution:** guard with `File.exists()` before reading, or wrap the
+call in your own `throws` function if you want `catch`/`?` semantics:
+
 ```zebra
-var result = File.read("missing.txt")
-
-if result.isErr()
-    print("File not found: ${result.error(}"))
-else
-    var content = result.value()
-    print(content)
-
-# Or check first
 if File.exists("missing.txt")
-    var result = File.read("missing.txt")
+    var content = File.read("missing.txt")
+    print(content)
+else
+    print("File not found")
+
+# Or: wrap it so callers can use catch/?
+def read_safely(path: str): str throws
+    if not File.exists(path)
+        raise "file not found: ${path}"
+    return File.read(path)
 ```
 
 ---
 
-### "error: permission denied writing file"
+### Writing to a location you can't write to
 
-**What it means:** You don't have permission to write to a location.
+**What it means:** `File.write` panics the same way `File.read` does
+if the write fails (e.g. a missing parent directory or a permissions
+problem) — there's no return value to inspect.
 
-**Solution:**
-Check permissions or use a different location:
+**Solution:** Check the target directory exists first, or route writes
+through your own `throws` wrapper the same way as `read_safely` above,
+so a caller can `catch` a failure instead of crashing:
+
 ```zebra
-var result = File.write("output.txt", content)
-
-if result.isErr()
-    print("Cannot write: ${result.error(}"))
-    # Try writing to temp directory instead
-    var temp_result = File.write("/tmp/output.txt", content)
+def write_safely(path: str, content: str): void throws
+    if not Dir.exists(Path.dirname(path))
+        raise "directory does not exist: ${Path.dirname(path)}"
+    File.write(path, content)
 ```
 
 ---
@@ -636,9 +661,14 @@ var pattern = Regex.compile("(abc)")   # Correct
 **What it means:** Pattern doesn't match input (not really an error, just didn't match).
 
 **Example:**
+
+There's no `.matches()` method — `.match()` is the whole-string
+anchored test (both ends must match), so it rejects "hello world"
+against a pattern for just "hello":
+
 ```zebra
 var pattern = Regex.compile("^hello$")
-if not pattern.matches("hello world")
+if not pattern.match("hello world")
     print("No match")
 ```
 
@@ -673,7 +703,7 @@ for item in items
     result = result + item + ", "
 
 # FAST
-var parts = List()
+var parts: List(str) = List()
 for item in items
     parts.add(item)
 var result = parts.join(", ")
@@ -735,17 +765,22 @@ if condition
 ```zebra
 assert x > 0, "x must be positive"
 assert items.count() == 3, "Expected 3 items"
-assert result.isOk(), "Operation must succeed"
 ```
 
 ### Type Checking
+
+`throws` is a function modifier, not part of a variable's type — `var
+result: int throws = ...` is a parse error. Annotate the variable with
+just its value type, and let the function signature carry `throws`:
 
 ```zebra
 var x = 42
 print(x.toString())  # Force type check
 
-var result: int throws = operation()
-# Type annotation makes intent clear
+def operation(): int throws
+    return 42
+
+var result: int = operation() catch 0
 ```
 
 ### Null Checking
@@ -777,7 +812,7 @@ else
 ### Safe Collection Access
 
 ```zebra
-var items = List()
+var items: List(int) = List()
 
 for i in 0.to(items.count())
     var item = items.at(i)  # Always safe with this pattern
@@ -799,7 +834,7 @@ if text.contains("ll")
 
 ```zebra
 var num_str = "42"
-var num = num_str.toInt()
+var num = num_str.tryInt()   # toInt() is a plain int — can't be nil-checked
 
 if num != nil
     print(num + 1)
@@ -808,13 +843,14 @@ if num != nil
 ### Safe Error Handling
 
 ```zebra
-var result = risky_operation()
+def risky_operation(): int throws
+    return 42
 
-if result.isErr()
-    print("Error: ${result.error(}"))
-    return
-
-var value = result.value()
+def main()
+    var value = risky_operation()
+    print(value)
+catch |e|
+    print("Error: ${e.message}")
 ```
 
 ---

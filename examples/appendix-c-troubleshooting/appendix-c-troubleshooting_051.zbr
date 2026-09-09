@@ -1,9 +1,6 @@
-# SLOW: O(n) for each lookup
-var found = false
-for item in list
-    if item == search_key
-        found = true
+var x = 10
+print("x = ${x}")  # Check variable value
+print("After operation")  # Check execution flow
 
-# FAST: O(1) lookup
-if set.contains(search_key)
-    found = true
+if condition
+    print("Condition true: ${variable}")

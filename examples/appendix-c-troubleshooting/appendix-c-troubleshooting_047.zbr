@@ -1,3 +1,10 @@
-var pattern = Regex.compile("^hello$")
-if not pattern.matches("hello world")
-    print("No match")
+# SLOW
+var result = ""
+for item in items
+    result = result + item + ", "
+
+# FAST
+var parts: List(str) = List()
+for item in items
+    parts.add(item)
+var result = parts.join(", ")

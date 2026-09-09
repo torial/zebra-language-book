@@ -19,7 +19,7 @@ class Config
         port = p
         return true
     
-    def get_url: str
+    def get_url(): str
         return "http://${host}:${port}"
     
     def set_debug(d: bool)

@@ -1,1 +1,4 @@
-text -> .trim() -> .upper() -> .split(" ")
+def double(x: int): int
+    return x * 2
+
+var result = 5 -> double()   # same as double(5)

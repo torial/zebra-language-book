@@ -47,7 +47,7 @@ cd zebra-book
 
 ### Step 3: Validate
 ```bash
-make build    # Extract and validate all examples
+make quick    # Extract and validate all examples (there is no `make build`)
 make lint     # Check for common mistakes
 ```
 
