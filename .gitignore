@@ -22,3 +22,9 @@ zebra-programming-book.pdf
 
 # OS
 Thumbs.db
+
+# Debug info and other compiler byproducts (128 .pdb files were tracked until 2026-09-09)
+*.pdb
+*.obj
+*.zig
+*.pdf
