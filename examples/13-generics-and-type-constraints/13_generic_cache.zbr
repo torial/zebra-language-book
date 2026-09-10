@@ -25,8 +25,7 @@ class Cache(K, V)
         data = HashMap()
 
 def main()
-    var cache = Cache(str, int)()
-    cache.init(3)
+    var cache = Cache(str, int)(3)   # the ctor args go on the constructor call
     cache.put("a", 1)
     cache.put("b", 2)
     cache.put("c", 3)

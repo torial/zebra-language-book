@@ -111,7 +111,6 @@
 08-interfaces-and-protocols/08_interface_basic.zbr
 08-interfaces-and-protocols/08_interface_methods.zbr
 08-interfaces-and-protocols/08_logger_system.zbr
-09-composition-and-mixins/09-composition-and-mixins_001.zbr
 09-composition-and-mixins/09-composition-and-mixins_012.zbr
 09-composition-and-mixins/09-composition-and-mixins_013.zbr
 09-composition-and-mixins/09-composition-and-mixins_014.zbr
@@ -210,7 +209,6 @@
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_014.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_015.zbr
 15-pipelines-and-function-composition/15_function_composition.zbr
-15-pipelines-and-function-composition/15_pipeline_chain.zbr
 15-pipelines-and-function-composition/15_pipeline_custom.zbr
 15-pipelines-and-function-composition/15_pipeline_real_world.zbr
 15-pipelines-and-function-composition/15_pipeline_results.zbr

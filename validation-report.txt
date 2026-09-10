@@ -1,12 +1,12 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-10T05:39:55.856925
+Generated: 2026-09-10T10:08:42.357284
 Compiler:  /home/claude/zebra-linux/zig-out/bin/zebra
 
 Total:  696
-Passed: 385
-Failed: 311
+Passed: 383
+Failed: 313
 
 FAILURES
 ----------------------------------------------------------------------
@@ -134,6 +134,8 @@ FAILURES
       /home/claude/zebra-book/examples/08-interfaces-and-protocols/08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
   08-interfaces-and-protocols/08_polymorphism.zbr
       /home/claude/zebra-book/examples/08-interfaces-and-protocols/08_polymorphism.zbr:12:24: error: undefined name: 'CreditCardProcessor'
+  09-composition-and-mixins/09-composition-and-mixins_001.zbr
+      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_001.zbr:8:24: error: 'UserService' has no method 'cache_get' (methods: lookup)
   09-composition-and-mixins/09-composition-and-mixins_006.zbr
       /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_006.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
   09-composition-and-mixins/09-composition-and-mixins_007.zbr
@@ -318,8 +320,10 @@ FAILURES
       /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr:0:0: error: 'this' used outside a class/struct method or 'with' block
   15-pipelines-and-function-composition/15_pipeline_basics.zbr
       /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr:0:0: error: 'this' used outside a class/struct method or 'with' block
+  15-pipelines-and-function-composition/15_pipeline_chain.zbr
+      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr:11:21: error: 'StringProcessor' has no method 'replace' (methods: process)
   15-pipelines-and-function-composition/15_pipeline_collections.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr:0:0: error: 'this' used outside a class/struct method or 'with' block
+      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr:11:21: error: 'DataProcessor' has no method 'count' (methods: count_words)
   16-project-1-cli-tool/16-project-1-cli-tool_004.zbr
       /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_004.zbr:4:32: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/16-project-1-cli-tool_005.zbr
