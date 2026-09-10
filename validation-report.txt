@@ -1,12 +1,12 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-10T10:08:42.357284
+Generated: 2026-09-10T16:57:33.366995
 Compiler:  /home/claude/zebra-linux/zig-out/bin/zebra
 
 Total:  696
-Passed: 383
-Failed: 313
+Passed: 388
+Failed: 308
 
 FAILURES
 ----------------------------------------------------------------------
@@ -312,18 +312,8 @@ FAILURES
       /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_023.zbr:4:12: error: undefined name: 'lambda'
   14c-concurrency-channels-and-threads/14c_pipeline.zbr
       /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c_pipeline.zbr:10:9: error: 'for' is a statement keyword and can't be used as an expression here
-  15-pipelines-and-function-composition/15-pipelines-and-function-composition_009.zbr
-      compiling: /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_009.zbr
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr
       /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr:3:1: error: unexpected end of input at the top level
-  15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr:0:0: error: 'this' used outside a class/struct method or 'with' block
-  15-pipelines-and-function-composition/15_pipeline_basics.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_basics.zbr:0:0: error: 'this' used outside a class/struct method or 'with' block
-  15-pipelines-and-function-composition/15_pipeline_chain.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_chain.zbr:11:21: error: 'StringProcessor' has no method 'replace' (methods: process)
-  15-pipelines-and-function-composition/15_pipeline_collections.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15_pipeline_collections.zbr:11:21: error: 'DataProcessor' has no method 'count' (methods: count_words)
   16-project-1-cli-tool/16-project-1-cli-tool_004.zbr
       /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_004.zbr:4:32: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/16-project-1-cli-tool_005.zbr

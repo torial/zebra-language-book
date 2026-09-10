@@ -204,11 +204,16 @@
 14c-concurrency-channels-and-threads/14c_parallel_files.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_000.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_001.zbr
+15-pipelines-and-function-composition/15-pipelines-and-function-composition_009.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_011.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_012.zbr
+15-pipelines-and-function-composition/15-pipelines-and-function-composition_013.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_014.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_015.zbr
 15-pipelines-and-function-composition/15_function_composition.zbr
+15-pipelines-and-function-composition/15_pipeline_basics.zbr
+15-pipelines-and-function-composition/15_pipeline_chain.zbr
+15-pipelines-and-function-composition/15_pipeline_collections.zbr
 15-pipelines-and-function-composition/15_pipeline_custom.zbr
 15-pipelines-and-function-composition/15_pipeline_real_world.zbr
 15-pipelines-and-function-composition/15_pipeline_results.zbr
