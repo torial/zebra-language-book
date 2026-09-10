@@ -45,7 +45,7 @@ class CliArgs
     var filename: str
     var pattern: str?
     
-    def init(command: str, filename: str)
+    cue init(command: str, filename: str)
         this.command = command
         this.filename = filename
         pattern = nil
@@ -173,7 +173,7 @@ class Stats
     var words: int
     var chars: int
     
-    def init(filename: str, lines: int, words: int, chars: int)
+    cue init(filename: str, lines: int, words: int, chars: int)
         this.filename = filename
         this.lines = lines
         this.words = words
@@ -275,7 +275,7 @@ Tie everything together in the main entry point:
 class Application
     var args: CliArgs
     
-    def init(parsed_args: CliArgs)
+    cue init(parsed_args: CliArgs)
         args = parsed_args
     
     def run: bool throws

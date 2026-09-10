@@ -6,7 +6,7 @@ class WordFrequency
     var word: str
     var count: int
     
-    def init(word: str, count: int)
+    cue init(word: str, count: int)
         this.word = word
         this.count = count
     

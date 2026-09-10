@@ -1,1 +1,1 @@
-var map = HashMap()
+var map = HashMap(str, int)()     # key and value types are part of the constructor

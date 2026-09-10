@@ -2,7 +2,7 @@ class ValidatedBox(T)
     var item: T?
     var validator: T -> bool
     
-    def init(validator: T -> bool)
+    cue init(validator: T -> bool)
         this.validator = validator
     
     def set(value: T): bool

@@ -7,7 +7,7 @@ class NGram
     var count: int
     var positions: List(int)  # Track where it appears
     
-    def init(gram: str)
+    cue init(gram: str)
         this.gram = gram
         count = 1
         positions = List()

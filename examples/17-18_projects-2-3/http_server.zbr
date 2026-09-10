@@ -7,7 +7,7 @@ class HttpServer
     var router: Router
     var is_running: bool = false
     
-    def init(port: int)
+    cue init(port: int)
         this.port = port
         router = Router()
     

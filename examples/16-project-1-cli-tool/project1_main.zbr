@@ -5,7 +5,7 @@
 class Application
     var args: CliArgs
     
-    def init(parsed_args: CliArgs)
+    cue init(parsed_args: CliArgs)
         args = parsed_args
     
     def run: bool throws

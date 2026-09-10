@@ -1,1 +1,1 @@
-var map = HashMap()       # Empty map
+var map = HashMap(str, int)()  # Empty map

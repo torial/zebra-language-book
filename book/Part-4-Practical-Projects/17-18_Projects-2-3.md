@@ -200,7 +200,7 @@ class HttpServer
     var router: Router
     var is_running: bool = false
     
-    def init(port: int)
+    cue init(port: int)
         this.port = port
         router = Router()
     
@@ -312,7 +312,7 @@ class WordFrequency
     var word: str
     var count: int
     
-    def init(word: str, count: int)
+    cue init(word: str, count: int)
         this.word = word
         this.count = count
     
@@ -385,7 +385,7 @@ class NGram
     var count: int
     var positions: List(int)  # Track where it appears
     
-    def init(gram: str)
+    cue init(gram: str)
         this.gram = gram
         count = 1
         positions = List()

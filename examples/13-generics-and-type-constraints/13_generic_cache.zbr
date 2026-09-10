@@ -6,7 +6,7 @@ class Cache(K, V)
     var data: HashMap(K, V) = HashMap()
     var max_size: int
     
-    def init(max_size: int)
+    cue init(max_size: int)
         this.max_size = max_size
     
     def put(key: K, value: V)

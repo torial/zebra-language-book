@@ -3,10 +3,10 @@ class AgeValidator
         def parse_age(text: str): int throws
             if text.len == 0
                 raise "Empty input"
-            var age = text.toInt()
+            var age = text.tryInt()          # int? -- nil when the text is not a number
             if age == nil
                 raise "Not a number"
-            return age
+            return age!
 
         def validate_age(text: str): str throws
             var age = parse_age(text)?

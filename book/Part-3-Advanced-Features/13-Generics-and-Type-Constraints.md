@@ -380,7 +380,7 @@ class Cache(K, V)
     var data: HashMap(K, V) = HashMap()
     var max_size: int
     
-    def init(max_size: int)
+    cue init(max_size: int)
         this.max_size = max_size
     
     def put(key: K, value: V)
@@ -568,7 +568,7 @@ class ValidatedBox(T)
     var item: T?
     var validator: T -> bool
     
-    def init(validator: T -> bool)
+    cue init(validator: T -> bool)
         this.validator = validator
     
     def set(value: T): bool

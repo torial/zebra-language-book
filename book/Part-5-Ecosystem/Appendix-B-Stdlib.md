@@ -114,7 +114,7 @@ if num != nil
 
 Create a list:
 ```zebra
-var items = List()
+var items = List(int)()          # the element type is part of the constructor
 ```
 
 ### Basic Operations
@@ -131,7 +131,7 @@ items.indexOf(element)      # int: position (-1 if not found)
 
 **Example:**
 ```zebra
-var numbers = List()
+var numbers = List(int)()
 numbers.add(1)
 numbers.add(2)
 numbers.add(3)
@@ -152,7 +152,7 @@ for item in items
 
 Create a HashMap:
 ```zebra
-var map = HashMap()
+var map = HashMap(str, int)()     # key and value types are part of the constructor
 ```
 
 ### Basic Operations
@@ -430,7 +430,7 @@ print("Upper: ${"hello".upper(}"))
 ### List
 
 ```zebra
-var items = List()             # Empty list
+var items = List(int)()        # Empty list
 ```
 
 To initialize with values, add them after creation.
@@ -438,7 +438,7 @@ To initialize with values, add them after creation.
 ### HashMap
 
 ```zebra
-var map = HashMap()       # Empty map
+var map = HashMap(str, int)()  # Empty map
 ```
 
 ---
@@ -533,7 +533,7 @@ var content = result.value()
 ### Iteration
 
 ```zebra
-var items = List()
+var items = List(int)()
 items.add(1)
 items.add(2)
 

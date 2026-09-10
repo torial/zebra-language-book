@@ -7,7 +7,7 @@ class CliArgs
     var filename: str
     var pattern: str?
     
-    def init(command: str, filename: str)
+    cue init(command: str, filename: str)
         this.command = command
         this.filename = filename
         pattern = nil

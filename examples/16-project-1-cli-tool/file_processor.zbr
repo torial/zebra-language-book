@@ -87,7 +87,7 @@ class Stats
     var words: int
     var chars: int
     
-    def init(filename: str, lines: int, words: int, chars: int)
+    cue init(filename: str, lines: int, words: int, chars: int)
         this.filename = filename
         this.lines = lines
         this.words = words
