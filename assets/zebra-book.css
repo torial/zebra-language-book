@@ -1,0 +1,7 @@
+/* The chapter titles in SUMMARY.md already carry the book's own numbering
+   (01, 07b, 10b, Appendix A, ...), so hide mdBook's automatic "1." "2." ...
+   sidebar counters, which would otherwise disagree with them. */
+.chapter li.chapter-item > a > strong,
+.chapter li.chapter-item > div > strong {
+    display: none;
+}

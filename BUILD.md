@@ -21,8 +21,12 @@ extract  →  lint          →  html
 - **`validate`** (`validate-examples.py`) compiles every extracted `.zbr` file
   with the real Zebra compiler and gates on regression — see
   [Validating examples](#validating-examples-the-baseline) below.
-- **`html`** (`build-html.py`) generates `docs/index.html` from the chapters
-  directly — it does not require pandoc.
+- **`html`** runs `mdbook build`, which renders `book/` (chapter order and
+  titles come from `book/SUMMARY.md`, settings from `book.toml`) into
+  `public/`. `make serve` (or `mdbook serve --open`) gives a live-reloading
+  local preview. GitHub Pages is published from the same build by
+  `.github/workflows/pages.yml` on every push to `main`; `public/` is
+  git-ignored and never committed.
 - **`pdf`** (`build-pdf.sh` / `build-pdf.bat`) combines `book/Part-*/*.md` (in
   a fixed, hardcoded order — see the script if you add or reorder chapters)
   into one file and runs it through pandoc. It reads `book/` chapters
@@ -54,15 +58,16 @@ is not installed by anything here.
 
 | Tool | Needed for | Notes |
 |---|---|---|
-| Python 3 | extract, lint, validate, html | Standard library only — no pip install. |
+| Python 3 | extract, lint, validate | Standard library only — no pip install. |
+| mdBook | html | `cargo install mdbook`, or download a prebuilt binary from [mdBook releases](https://github.com/rust-lang/mdBook/releases) and put it on `PATH`. The Pages workflow pins the version in `MDBOOK_VERSION`. |
 | Zebra compiler | validate | See [Locating the compiler](#locating-the-compiler). Everything else runs without it. |
 | pandoc | pdf | `brew install pandoc` (Mac) / `apt-get install pandoc` (Linux) / `choco install pandoc` (Windows). |
 | A LaTeX distribution with `xelatex` | pdf | e.g. `texlive-xetex` on Linux, MiKTeX on Windows. `build-pdf.sh` passes `--pdf-engine=xelatex` unconditionally. |
 | Noto Serif, Noto Sans, DejaVu Sans Mono fonts | pdf | `build-pdf.sh` sets these as `-V mainfont`/`-V sansfont`/`-V monofont`. If they're not installed, pandoc/xelatex will substitute or error — install `fonts-noto` and `fonts-dejavu` (Linux) if you hit font errors. |
 | Inkscape | optional, Windows-only | Only for `convert-svg-to-png.bat`; see [Diagrams](#diagrams-current-state) below. |
 
-`html` and `extract`/`lint` need only Python 3. `validate` additionally needs
-the compiler. `pdf` additionally needs pandoc + xelatex + those fonts.
+`extract`/`lint` need only Python 3. `html` needs only mdBook. `validate`
+additionally needs the compiler. `pdf` additionally needs pandoc + xelatex + those fonts.
 
 ## Locating the compiler
 
@@ -115,19 +120,18 @@ detail for every example), plus the baseline file itself when updating.
 - **Windows:** `build-pdf.bat`. Same combine-and-pandoc flow. It also prints a
   reminder to run the optional PNG conversion step first (see below) — it
   does not run that step for you.
-- `extract-examples.py`, `validate-examples.py`, `lint-chapters.py`,
-  `build-html.py` are plain Python and run the same on every platform.
+- `extract-examples.py`, `validate-examples.py`, `lint-chapters.py` are plain
+  Python and run the same on every platform. `mdbook` ships prebuilt binaries
+  for Windows, Mac and Linux.
 
 ## Diagrams: current state
 
-Thirteen chapters reference `diagrams/*.png` images (see `book/diagrams/`).
-As of this writing, **no diagram source files — SVG or PNG — exist anywhere
-in the repository**; `book/diagrams/` contains only a `README.md` describing
-what the diagrams are supposed to show. Building the HTML or PDF today will
-show broken image links wherever a chapter references one.
-
-If/when SVG sources are added to `book/diagrams/`, the optional
-Windows-only conversion path is:
+Thirteen chapters reference `../diagrams/*.png` images (see `book/diagrams/`;
+the `../` is relative to the `book/Part-*/` directory the chapter lives in, and
+resolves the same way for mdBook and for pandoc's `--resource-path`).
+`book/diagrams/` holds both the SVG sources and the 300-DPI PNGs the
+chapters reference (an older note here said none existed; that is no longer
+true). If you edit an SVG, the optional Windows-only reconversion path is:
 
 ```bash
 convert-svg-to-png.bat      REM requires Inkscape (choco install inkscape);
@@ -145,7 +149,7 @@ SVG handling if the diagrams stay as SVG.
 | Path | From |
 |---|---|
 | `examples/` | `extract` |
-| `docs/index.html` | `html` |
+| `public/` (git-ignored; `public/index.html` is the entry point) | `html` |
 | `zebra-programming-book.pdf` | `pdf` (via `build-pdf.sh`; written to the repo root, not a `build/` subdirectory) |
 | `lint-report.txt` | `lint` |
 | `validation-report.json`, `validation-report.txt` | `validate` |

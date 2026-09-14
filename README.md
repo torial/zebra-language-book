@@ -1,5 +1,7 @@
 # The Zebra Programming Language Book
 
+**Read it online: <https://torial.github.io/zebra-language-book/>**
+
 A guide to Zebra from fundamentals through advanced patterns, for experienced
 programmers learning a new language. Twenty-two chapters plus additions
 (structs/unions, modules, memory and lifetimes, concurrency, GUI apps, build
@@ -12,7 +14,8 @@ summaries, and several suggested reading paths (linear, quick-start, safety-
 focused, OOP-focused, data/scripting-focused).
 
 The source lives under `book/Part-1-Foundations/` through
-`book/Part-5-Ecosystem/`, plus `book/Part-5-Ecosystem/Appendix-*.md`.
+`book/Part-5-Ecosystem/`, plus `book/Part-5-Ecosystem/Appendix-*.md`. The
+reading order for the website is `book/SUMMARY.md`; add new chapters there.
 
 ## Building
 
@@ -22,7 +25,12 @@ validate → HTML → PDF), required tools, and platform notes. Short version:
 ```bash
 make all      # everything
 make quick    # extract + validate only, fast sanity check
+make serve    # live preview of the website (needs mdbook)
 ```
+
+The website is built with [mdBook](https://rust-lang.github.io/mdBook/) from
+`book.toml` + `book/SUMMARY.md` and deployed to GitHub Pages by
+`.github/workflows/pages.yml` on every push to `main`.
 
 ## Status
 

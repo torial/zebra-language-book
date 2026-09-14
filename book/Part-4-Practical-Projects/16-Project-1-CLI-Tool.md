@@ -27,7 +27,7 @@ Create a CLI tool that:
 
 **Difficulty:** Intermediate | **Skills Required:** 1-12 chapters | **Team Size:** Solo
 
-![Project 1 Module Architecture](diagrams/08-project1-modules.png)
+![Project 1 Module Architecture](../diagrams/08-project1-modules.png)
 
 ---
 

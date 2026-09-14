@@ -158,7 +158,7 @@ available.
 
 ## Error Propagation
 
-![Error Propagation Flow](diagrams/05-error-propagation.png)
+![Error Propagation Flow](../diagrams/05-error-propagation.png)
 
 Functions annotated with `throws` can propagate errors from callees, but propagation isn't automatic — mark the call with `?`. If a `throws` function calls another `throws` function without catching, the `?` sends the error straight to the caller:
 

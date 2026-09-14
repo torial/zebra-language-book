@@ -200,7 +200,7 @@ def main()
 
 ## Unicode and Internationalization
 
-![Unicode Representation](diagrams/13-unicode-representation.png)
+![Unicode Representation](../diagrams/13-unicode-representation.png)
 
 ### Unicode Basics
 

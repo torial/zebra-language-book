@@ -44,7 +44,7 @@ Pipelines make **data transformations** flow naturally, like reading prose.
 
 ## Basic Pipeline Syntax
 
-![Pipeline Data Flow](diagrams/07-pipeline-flow.png)
+![Pipeline Data Flow](../diagrams/07-pipeline-flow.png)
 
 The `->` operator passes the left-hand value to the right-hand expression:
 

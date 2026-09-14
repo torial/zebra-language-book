@@ -20,7 +20,7 @@ Code: A Car class has fields (color, speed) and methods (accelerate, brake)
 
 ## Defining Classes
 
-![Class Structure](diagrams/12-class-structure.png)
+![Class Structure](../diagrams/12-class-structure.png)
 
 ### Simple Class
 

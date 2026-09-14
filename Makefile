@@ -1,4 +1,4 @@
-.PHONY: all extract lint validate html pdf build-all clean help quick
+.PHONY: all extract lint validate html serve pdf build-all clean help quick
 
 # ============================================================================
 # Zebra Programming Book - Comprehensive Build System
@@ -6,16 +6,18 @@
 
 # Directories
 EXAMPLES_DIR := examples
-DOCS_DIR := docs
+# mdBook output directory (see book.toml [build] build-dir)
+DOCS_DIR := public
 OUTPUT_DIR := build
 
 # Tools
 PYTHON := python3
 ZEBRA := zebra
 PANDOC := pandoc
+MDBOOK := mdbook
 
 # Files
-BUILD_SCRIPTS := extract-examples.py validate-examples.py lint-chapters.py build-html.py
+BUILD_SCRIPTS := extract-examples.py validate-examples.py lint-chapters.py
 
 # Colors for output
 RED := \033[0;31m
@@ -38,7 +40,7 @@ all: extract lint validate html pdf
 	@echo "$(GREEN)✅ Complete build successful!$(NC)"
 	@echo ""
 	@echo "Generated:"
-	@echo "  - $(DOCS_DIR)/index.html (HTML documentation)"
+	@echo "  - $(DOCS_DIR)/index.html (HTML book, mdBook)"
 	@echo "  - $(OUTPUT_DIR)/zebra-programming-book.pdf (PDF book)"
 	@echo "  - $(EXAMPLES_DIR)/ (Extracted code examples)"
 	@echo ""
@@ -71,12 +73,14 @@ validate: check-python extract
 	@$(PYTHON) validate-examples.py
 	@echo ""
 
-html: check-python extract
-	@echo "$(BLUE)🌐 Building HTML documentation...$(NC)"
-	@mkdir -p $(DOCS_DIR)
-	@$(PYTHON) build-html.py
+html: check-mdbook
+	@echo "$(BLUE)🌐 Building HTML book with mdBook...$(NC)"
+	@$(MDBOOK) build
 	@echo "$(GREEN)✅ HTML ready: $(DOCS_DIR)/index.html$(NC)"
 	@echo ""
+
+serve: check-mdbook
+	@$(MDBOOK) serve --open
 
 pdf: check-pandoc extract
 	@echo "$(BLUE)📖 Building PDF book...$(NC)"
@@ -92,6 +96,13 @@ pdf: check-pandoc extract
 check-python:
 	@command -v $(PYTHON) >/dev/null 2>&1 || { \
 		echo "$(RED)❌ Python 3 not found. Install Python first.$(NC)"; \
+		exit 1; \
+	}
+
+check-mdbook:
+	@command -v $(MDBOOK) >/dev/null 2>&1 || { \
+		echo "$(RED)❌ mdbook not found. Install:$(NC)"; \
+		echo "   cargo install mdbook   (or a prebuilt binary from https://github.com/rust-lang/mdBook/releases)"; \
 		exit 1; \
 	}
 
@@ -135,6 +146,7 @@ status:
 	@command -v $(PYTHON) >/dev/null 2>&1 && echo "  $(GREEN)✓$(NC) Python" || echo "  $(RED)✗$(NC) Python"
 	@command -v $(ZEBRA) >/dev/null 2>&1 && echo "  $(GREEN)✓$(NC) Zebra" || echo "  $(YELLOW)⊝$(NC) Zebra (optional)"
 	@command -v $(PANDOC) >/dev/null 2>&1 && echo "  $(GREEN)✓$(NC) Pandoc" || echo "  $(YELLOW)⊝$(NC) Pandoc (for PDF)"
+	@command -v $(MDBOOK) >/dev/null 2>&1 && echo "  $(GREEN)✓$(NC) mdBook" || echo "  $(YELLOW)⊝$(NC) mdBook (for HTML)"
 
 clean:
 	@echo "$(YELLOW)🗑️  Cleaning build artifacts...$(NC)"
@@ -194,7 +206,8 @@ help:
 	@echo "  make extract            # Extract code examples from chapters"
 	@echo "  make lint               # Check chapters for consistency"
 	@echo "  make validate           # Compile all examples and report results"
-	@echo "  make html               # Generate HTML documentation site"
+	@echo "  make html               # Generate HTML book with mdBook (-> public/)"
+	@echo "  make serve              # Live-preview the HTML book in a browser"
 	@echo "  make pdf                # Generate PDF book (requires pandoc)"
 	@echo ""
 	@echo "$(YELLOW)UTILITIES:$(NC)"
@@ -210,11 +223,12 @@ help:
 	@echo "$(YELLOW)INSTALLATION:$(NC)"
 	@echo "  Python 3:               Already required"
 	@echo "  Pandoc (for PDF):       brew install pandoc (Mac) | apt-get install pandoc (Linux)"
+	@echo "  mdBook (for HTML):      cargo install mdbook | prebuilt binary from GitHub releases"
 	@echo "  Zebra (for validation): Install Zebra compiler for example validation"
 	@echo ""
 	@echo "$(YELLOW)OUTPUT:$(NC)"
 	@echo "  $(EXAMPLES_DIR)/                  - Extracted code examples"
-	@echo "  $(DOCS_DIR)/index.html           - HTML documentation site"
+	@echo "  $(DOCS_DIR)/index.html          - HTML book (mdBook)"
 	@echo "  $(OUTPUT_DIR)/zebra-programming-book.pdf - PDF book"
 	@echo "  lint-report.txt                 - Lint findings"
 	@echo "  validation-report.json          - Validation results"

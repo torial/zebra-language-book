@@ -28,3 +28,6 @@ Thumbs.db
 *.obj
 *.zig
 *.pdf
+
+# mdBook output (built by .github/workflows/pages.yml; `mdbook build` locally)
+/public/

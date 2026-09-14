@@ -27,7 +27,7 @@ class Container(T)
 
 ## Generic Classes
 
-![Generics Instantiation](diagrams/06-generics-instantiation.png)
+![Generics Instantiation](../diagrams/06-generics-instantiation.png)
 
 The simplest generic is a **container that holds a single value**:
 

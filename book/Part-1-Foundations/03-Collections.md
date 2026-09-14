@@ -16,7 +16,7 @@ Zebra provides:
 - **HashMap(K, V)** — Key-value pairs (like Python's dict)
 - **StrSet** — Unique strings (a specialized set; the only flavor of `Set` Zebra ships today)
 
-![Collections Comparison](diagrams/02-collections-comparison.png)
+![Collections Comparison](../diagrams/02-collections-comparison.png)
 
 ---
 

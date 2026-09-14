@@ -79,7 +79,7 @@ def main()
 
 ### Type Narrowing
 
-![Type Narrowing Flow](diagrams/04-type-narrowing.png)
+![Type Narrowing Flow](../diagrams/04-type-narrowing.png)
 
 After checking, the type is narrowed:
 

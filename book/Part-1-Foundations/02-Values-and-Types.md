@@ -17,7 +17,7 @@ Every value in Zebra has a **type**. The type tells you:
 
 Zebra's type system is **your best friend**—it catches mistakes at compile time instead of in production.
 
-![Type Hierarchy Diagram](diagrams/01-type-hierarchy.png)
+![Type Hierarchy Diagram](../diagrams/01-type-hierarchy.png)
 
 ---
 

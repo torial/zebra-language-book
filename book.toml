@@ -1,0 +1,33 @@
+[book]
+title = "The Zebra Programming Language"
+description = "A guide to Zebra from fundamentals through advanced patterns, for experienced programmers learning a new language."
+authors = ["Sean McKay"]
+language = "en"
+# Chapter sources stay where they are: book/Part-*/*.md, book/diagrams/.
+src = "book"
+
+[build]
+# NOT "book" (mdBook's default) -- that is our source directory.
+build-dir = "public"
+create-missing = false
+
+[output.html]
+# Required for GitHub project Pages: the site lives under /zebra-language-book/,
+# not at the domain root. Without this, mdBook's generated links can be wrong.
+site-url = "/zebra-language-book/"
+git-repository-url = "https://github.com/torial/zebra-language-book"
+edit-url-template = "https://github.com/torial/zebra-language-book/edit/main/{path}"
+default-theme = "light"
+preferred-dark-theme = "navy"
+# Registers a "zebra" language with the bundled highlight.js so ```zebra fences
+# get highlighted instead of rendering as plain text.
+additional-js = ["assets/zebra-highlight.js"]
+additional-css = ["assets/zebra-book.css"]
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.search]
+enable = true
+limit-results = 20

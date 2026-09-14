@@ -88,7 +88,7 @@ When a function doesn't return a value, omit the `: <type>` after the parameter 
 
 **Scope** is where a variable can be accessed.
 
-![Scope and Lifetime](diagrams/03-scope-and-lifetime.png)
+![Scope and Lifetime](../diagrams/03-scope-and-lifetime.png)
 
 ### Local Scope
 

@@ -12,7 +12,7 @@
 - Stateful server management
 - Error handling in concurrent scenarios
 
-![HTTP Request/Response Cycle](diagrams/09-http-cycle.png)
+![HTTP Request/Response Cycle](../diagrams/09-http-cycle.png)
 
 ---
 
@@ -295,7 +295,7 @@ curl -X POST http://localhost:8080/api/users
 - Statistical analysis
 - Performance optimization with data structures
 
-![Text Analysis Pipeline](diagrams/11-analysis-pipeline.png)
+![Text Analysis Pipeline](../diagrams/11-analysis-pipeline.png)
 
 ---
 
