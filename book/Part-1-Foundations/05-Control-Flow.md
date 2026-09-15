@@ -298,7 +298,10 @@ def main()
 
 ## Guards
 
-**Guards** are conditions that must be true for code to run.
+**Guards** are conditions that must be true for code to run. Zebra spells them with
+the one early-exit form it has — an inline `if` — rather than a dedicated keyword (a
+`guard` statement existed until 2026-09-15 and was removed: it was `if not` with a
+second spelling).
 
 ```zebra
 # file: 05_guards.zbr
@@ -306,9 +309,9 @@ def main()
 # chapter: 05-Control-Flow
 
 def process(name: str)
-    # Zebra has a `guard` form for early returns:
-    guard name.len > 0, return
-    guard name.len <= 100, return
+    # Early returns state the precondition and leave at once:
+    if not name.len > 0: return
+    if name.len > 100: return
 
     # Process only if all guards passed
     print("Processing: ${name}")
@@ -319,7 +322,7 @@ def main()
     process("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  # too long — returns early
 ```
 
-The `guard cond, return` form reads as "the call must satisfy `cond`; otherwise return now". It's equivalent to `if not cond: return` but states the precondition positively. Block form (`guard cond ... else`) is also available — see QUICKSTART §13.
+`if not cond: return` reads as "the call must satisfy `cond`; otherwise return now". When the precondition is a *contract* — something the caller was wrong to violate rather than an input to tolerate — use `require` instead (Chapter 14): it names the violation and can be stripped from a `--turbo` build.
 
 ---
 
