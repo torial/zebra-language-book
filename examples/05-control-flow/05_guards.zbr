@@ -3,9 +3,9 @@
 # chapter: 05-Control-Flow
 
 def process(name: str)
-    # Zebra has a `guard` form for early returns:
-    guard name.len > 0, return
-    guard name.len <= 100, return
+    # Early returns state the precondition and leave at once:
+    if not name.len > 0: return
+    if name.len > 100: return
 
     # Process only if all guards passed
     print("Processing: ${name}")

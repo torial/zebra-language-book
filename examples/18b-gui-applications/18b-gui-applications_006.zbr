@@ -1,0 +1,10 @@
+def testInc()
+    var m = init()
+    var m2 = update(m, Msg.inc)
+    assert m2.count == 1
+    var m3 = update(m2, Msg.inc)
+    assert m3.count == 2
+
+def testReset()
+    var m = update(Counter(count: 41), Msg.reset)
+    assert m.count == 0

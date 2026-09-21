@@ -1,5 +1,3 @@
-> def view(g: Gui, m: Model)
->     using g.vbox("##sidebar", true)    # ✅ always created
->         if m.show_sidebar
->             g.text("Sidebar")
+> g.field("Name", m.first, onFirst)   # ❌ both entries carry the id "Name"
+> g.field("Name", m.last, onLast)
 >

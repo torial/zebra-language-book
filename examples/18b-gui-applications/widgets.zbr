@@ -1,5 +1,5 @@
 # file: widgets.zbr
-# teaches: checkbox, slider, input; the read-compare-send pattern
+# teaches: toggle, field, slider; the on function
 # chapter: 18b-GUI-Applications
 
 struct Model
@@ -22,15 +22,11 @@ def update(m: Model, msg: Msg): Model
         on Msg.set_label as v   return Model(loud: m.loud, volume: m.volume, label: v)
 
 def view(g: Gui, m: Model)
-    var loud = g.checkbox("Loud mode", m.loud)
-    if loud != m.loud
-        g.send(Msg.set_loud(loud))
+    g.toggle("Loud mode", m.loud, def(b: bool): Msg = Msg.set_loud(b))
+    g.field("Label", m.label, def(s: str): Msg = Msg.set_label(s))
     var vol = g.slider("Volume", m.volume, 0.0, 100.0)
     if vol != m.volume
         g.send(Msg.set_volume(vol))
-    var lbl = g.input("Label", m.label)
-    if lbl != m.label
-        g.send(Msg.set_label(lbl))
     g.separator()
     g.text("volume=" + m.volume.toString() + " loud=" + m.loud.toString())
 

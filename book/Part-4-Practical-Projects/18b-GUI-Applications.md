@@ -70,12 +70,9 @@ def view(g: Gui, m: Counter)
     g.text("Count: " + m.count.toString())
     g.separator()
     using g.hbox("##buttons", false)
-        if g.button("+")
-            g.send(Msg.inc)
-        if g.button("-")
-            g.send(Msg.dec)
-        if g.button("Reset")
-            g.send(Msg.reset)
+        g.button("+", Msg.inc)
+        g.button("-", Msg.dec)
+        g.button("Reset", Msg.reset)
 
 def main()
     Gui.run("Counter", 300, 160, init, update, view)
@@ -99,8 +96,9 @@ label updates.
   events — which is why reading it tells you what the program does.
 - **`update`** takes the old state and a message and returns the new state. It
   never touches the screen.
-- **`view`** takes the state and draws it. It never changes the state; it only
-  calls `g.send(...)` to report that something happened.
+- **`view`** takes the state and draws it. It never changes the state; each
+  widget carries the message it sends when the user acts on it (`g.button("+",
+  Msg.inc)`), and `g.send(...)` reports anything else.
 - **`Gui.run`** wires them together and owns the event loop.
 
 Notice that `update` returns a **new** `Counter` rather than modifying the old
@@ -118,7 +116,6 @@ the program does not change:
 ```bash
 zebra --gui-backend=libui_ng counter.zbr   # native OS controls (recommended)
 zebra --gui-backend=tui      counter.zbr   # terminal UI, no GPU, no dependencies
-zebra --gui-backend=glfw     counter.zbr   # Dear ImGui (OpenGL)
 zebra counter.zbr                          # stub backend — see below
 ```
 
@@ -146,7 +143,7 @@ no display, no window manager, no clicking. You can assert on the widget tree th
 way you would assert on any other output. It is also the fastest way to check
 that a layout change did what you meant before waiting on a full native build.
 
-> **Note:** the stub's buttons always report "not clicked," so a single stub frame
+> **Note:** the stub never fires an event, so a single stub frame
 > shows you the initial view. To exercise `update`, send a message unconditionally
 > in `view` (see *Testing your update function* below).
 
@@ -159,7 +156,7 @@ what they typed. Union variants can hold a payload:
 
 ```zebra
 # file: greeter.zbr
-# teaches: payload messages, g.input, mixed unions
+# teaches: payload messages, g.field, mixed unions
 # chapter: 18b-GUI-Applications
 
 struct Model
@@ -187,14 +184,10 @@ def update(m: Model, msg: Msg): Model
 
 def view(g: Gui, m: Model)
     g.text("What is your name?")
-    var typed = g.input("##name", m.name)
-    if typed != m.name
-        g.send(Msg.name_changed(typed))
+    g.field("##name", m.name, def(s: str): Msg = Msg.name_changed(s))
     using g.hbox("##row", false)
-        if g.button("Greet")
-            g.send(Msg.greet)
-        if g.button("Clear")
-            g.send(Msg.clear)
+        g.button("Greet", Msg.greet)
+        g.button("Clear", Msg.clear)
     g.separator()
     g.text(m.greeting)
 
@@ -204,39 +197,36 @@ def main()
 
 Two things to notice.
 
-**Sending a payload** uses call syntax: `g.send(Msg.name_changed(typed))`.
-Receiving it uses a binding in the branch arm: `on Msg.name_changed as newName`.
-This is exactly the union pattern from Chapter 07b — the GUI adds no new
-concepts here.
+**A payload comes from the widget.** `g.field(id, text, on)` shows `text` and
+calls `on` with whatever the user typed; `on` builds the message, here
+`Msg.name_changed(s)` in call syntax. Receiving it uses a binding in the branch
+arm: `on Msg.name_changed as newName`. This is exactly the union pattern from
+Chapter 07b — the GUI adds no new concepts here.
 
 **A `Msg` union may mix** payload and no-payload variants freely, as this one
 does. `greet` and `clear` carry nothing; `name_changed` carries a `str`.
 
 ---
 
-## Widgets That Hold State: the read-compare-send pattern
+## Widgets That Carry Their Message
 
-`g.input` returns the text currently in the box. `g.checkbox` returns the current
-checked state. `g.slider` returns the current value. These widgets report what
-the *user* has done, which means `view` learns about changes before `update`
-does.
+A button carries a message. A checkbox and a text entry carry a *function that
+builds one*, because the message needs the new value:
 
-The pattern is always the same three lines:
+| Widget | Shape | The `on` function |
+|---|---|---|
+| `g.button(label, msg)` | sends `msg` on click | — |
+| `g.toggle(label, checked, on)` | shows `checked`; calls `on` when it flips | `def(b: bool): Msg` |
+| `g.field(label, text, on)` | shows `text`; calls `on` on every change | `def(s: str): Msg` |
 
-```zebra
-var typed = g.input("##name", m.name)   # 1. read what the widget holds now
-if typed != m.name                      # 2. compare against the model
-    g.send(Msg.name_changed(typed))     # 3. if they differ, report it
-```
-
-Read, compare, send. The comparison matters: without it you would dispatch a
-message on every single frame, and `update` would run continuously.
-
-Here it is across three widget types:
+The model drives the widget: you pass the model's value in, and the widget
+reports a change by sending the message `on` returns. `update` stores it; the
+next render passes the stored value back in. Nothing is read out of a widget,
+so `view` never learns about a change before `update` does.
 
 ```zebra
 # file: widgets.zbr
-# teaches: checkbox, slider, input; the read-compare-send pattern
+# teaches: toggle, field, slider; the on function
 # chapter: 18b-GUI-Applications
 
 struct Model
@@ -259,21 +249,23 @@ def update(m: Model, msg: Msg): Model
         on Msg.set_label as v   return Model(loud: m.loud, volume: m.volume, label: v)
 
 def view(g: Gui, m: Model)
-    var loud = g.checkbox("Loud mode", m.loud)
-    if loud != m.loud
-        g.send(Msg.set_loud(loud))
+    g.toggle("Loud mode", m.loud, def(b: bool): Msg = Msg.set_loud(b))
+    g.field("Label", m.label, def(s: str): Msg = Msg.set_label(s))
     var vol = g.slider("Volume", m.volume, 0.0, 100.0)
     if vol != m.volume
         g.send(Msg.set_volume(vol))
-    var lbl = g.input("Label", m.label)
-    if lbl != m.label
-        g.send(Msg.set_label(lbl))
     g.separator()
     g.text("volume=" + m.volume.toString() + " loud=" + m.loud.toString())
 
 def main()
     Gui.run("Widgets", 380, 260, init, update, view)
 ```
+
+**The slider is the exception.** `g.slider` still *returns* its current value
+(as do `g.selectable` and `g.inputMultiline`); a message form for it is owed. For
+those three the pattern is read, compare, send — and the comparison matters:
+without it you would dispatch a message on every render, and `update` would run
+continuously.
 
 ---
 
@@ -303,8 +295,7 @@ def update(m: Model, msg: Msg): Model
 def view(g: Gui, m: Model)
     using g.vbox("##root", true)
         using g.hbox("##toolbar", false)
-            if g.button("Refresh")
-                g.send(Msg.refresh)
+            g.button("Refresh", Msg.refresh)
             g.text("Status: " + m.status)
         g.separator()
         using g.hbox("##body", true)
@@ -339,8 +330,8 @@ indented block — you cannot forget an `endVBox`. The explicit pair exists too:
 
 ```zebra
 g.beginHBox("##row", false)
-    g.button("Left")
-    g.button("Right")
+    g.button("Left", Msg.left)
+    g.button("Right", Msg.right)
 g.endHBox()
 ```
 
@@ -356,20 +347,22 @@ Both compile to the same thing. Prefer `using`.
 | Call | Returns | Notes |
 |---|---|---|
 | `g.text(s)` | — | A label. Its text updates every frame. |
-| `g.button(label)` | `bool` | `true` on the frame it is clicked. |
-| `g.checkbox(label, value)` | `bool` | The current checked state. |
-| `g.slider(label, value, min, max)` | `float` | The current value. Range is fixed at creation. |
-| `g.input(label, value)` | `str` | Single-line text entry. |
-| `g.inputMultiline(label, value, w, h)` | `str` | Multi-line entry. |
+| `g.button(label, msg)` | — | Sends `msg` when clicked. |
+| `g.toggle(label, checked, on)` | — | A checkbox; `on: def(b: bool): Msg` is called when it flips. |
+| `g.field(label, text, on)` | — | Single-line text entry; `on: def(s: str): Msg` on every change. |
+| `g.slider(label, value, min, max)` | `float` | The current value (read-compare-send). Range is fixed at creation. |
+| `g.inputMultiline(label, value, w, h)` | `str` | Multi-line entry (read-compare-send). |
+| `g.menuItem(label, msg)` | — | A menubar item, inside `g.beginMenu(name)` … `g.endMenu()`. |
+| `g.every(ms, msg)` | — | Sends `msg` every `ms` milliseconds while the view declares it. |
 | `g.separator()` | — | A horizontal rule. |
 | `g.send(msg)` | — | Dispatch a message to `update`. |
 | `g.vbox(id, stretch)` / `g.hbox(id, stretch)` | — | Layout containers (with `using`). |
 | `g.beginPanel(id)` / `g.endPanel(id)` | — | A titled group box. |
 
-**Widget identity comes from the label.** Two widgets with the same label share
-state. When you need two distinct widgets that show the same text — or a widget
-whose label you don't want displayed — use the `##` prefix to make the id unique
-and hide the visible label: `g.input("##filepath", m.path)`.
+**Widget identity comes from the label.** A widget is matched to last render's
+widget of the same kind and label, in order — so two buttons labelled `+` are
+still two buttons. For a widget whose label you don't want displayed, use the
+`##` prefix: `g.field("##filepath", m.path, on)`.
 
 ### What is not there yet
 
@@ -380,8 +373,8 @@ Being honest about the edges, because discovering these by trial is unpleasant:
   `hbox`.
 - **`g.textColored`** renders the text but ignores the colour.
 - **`g.selectable`** always returns `false`. Use `g.button`.
-- **Fixed pixel widths** aren't supported; boxes divide space by `stretch`.
-- **Conditional layout** is unsupported — see *Common Mistakes*.
+- **Fixed pixel widths** aren't supported; boxes divide space by `stretch`
+  (`g.minSize(id, w, h)` gives a box a floor).
 
 ---
 
@@ -423,10 +416,8 @@ def update(m: Model, msg: Msg): Model
 def view(g: Gui, m: Model)
     using g.vbox("##root", true)
         using g.hbox("##bar", false)
-            if g.button("Save")
-                g.send(Msg.save)
-            if g.button("Clear")
-                g.send(Msg.clear)
+            g.button("Save", Msg.save)
+            g.button("Clear", Msg.clear)
             g.text(m.status)
         m.editor!.render(g, "##editor", 0, 0)
 
@@ -501,16 +492,16 @@ you can capture and assert on.
 >
 > ```zebra
 > def view(g: Gui, m: Model)
->     if g.button("Add")
->         m.count = m.count + 1     # ❌ view must not change state
+>     m.count = m.count + 1         # ❌ view must not change state
+>     g.text("Count: ${m.count}")
 > ```
 >
-> ✅ **Fix:** Send a message and let `update` do it.
+> ✅ **Fix:** Let a widget send a message and let `update` do it.
 >
 > ```zebra
 > def view(g: Gui, m: Model)
->     if g.button("Add")
->         g.send(Msg.inc)           # ✅
+>     g.button("Add", Msg.inc)      # ✅
+>     g.text("Count: ${m.count}")
 > ```
 >
 > With a `struct` model the compiler stops you outright — the parameter is not
@@ -518,55 +509,40 @@ you can capture and assert on.
 > desynchronise from `update` in ways that are miserable to debug. Treat the
 > discipline as real even when the compiler doesn't enforce it.
 
-> ❌ **Mistake:** Creating layout boxes conditionally
+> ❌ **Mistake:** Sending a message unconditionally from `view`
 >
 > ```zebra
 > def view(g: Gui, m: Model)
->     if m.show_sidebar                  # ❌ layout differs between frames
->         using g.vbox("##sidebar", true)
->             g.text("Sidebar")
+>     g.send(Msg.tick)                   # ❌ every render queues a message …
+>     g.text("ticks: ${m.ticks}")        #    … and a queued message causes a render
 > ```
 >
-> ✅ **Fix:** Create the box every frame; vary its *contents*.
+> ✅ **Fix:** A message comes from an event — a widget, or a subscription.
 >
 > ```zebra
 > def view(g: Gui, m: Model)
->     using g.vbox("##sidebar", true)    # ✅ always created
->         if m.show_sidebar
->             g.text("Sidebar")
+>     g.every(1000, Msg.tick)            # ✅ once a second, while the view says so
+>     g.text("ticks: ${m.ticks}")
 > ```
 >
-> Native backends are retained-mode: widgets are built on the first frame and
-> reused. A box that exists on some frames and not others corrupts the layout.
-
-> ❌ **Mistake:** Sending a message unconditionally from an input widget
->
-> ```zebra
-> var typed = g.input("##name", m.name)
-> g.send(Msg.name_changed(typed))    # ❌ fires every frame, forever
-> ```
->
-> ✅ **Fix:** Compare first.
->
-> ```zebra
-> var typed = g.input("##name", m.name)
-> if typed != m.name
->     g.send(Msg.name_changed(typed))
-> ```
+> `view` runs after an event: a click, a change, a timer. An unconditional
+> `g.send` in `view` is a livelock; the runtime drops it after a few passes with a
+> warning. (A value-returning widget such as `g.slider` is the one place to
+> compare before sending.)
 
 > ❌ **Mistake:** Reusing a widget id
 >
 > ```zebra
-> g.input("Name", m.first)      # ❌ both inputs share the id "Name"
-> g.input("Name", m.last)
+> g.field("Name", m.first, onFirst)   # ❌ both entries carry the id "Name"
+> g.field("Name", m.last, onLast)
 > ```
 >
 > ✅ **Fix:** Give each a unique id; hide the label with `##` if you don't want
 > it shown.
 >
 > ```zebra
-> g.input("##first", m.first)
-> g.input("##last", m.last)
+> g.field("##first", m.first, onFirst)
+> g.field("##last", m.last, onLast)
 > ```
 
 > ❌ **Mistake:** Expecting `sameLine()` to work

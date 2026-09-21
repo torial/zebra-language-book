@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 699 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 696 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,7 +42,7 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 699
+- **Total Examples:** 696
 - **Chapters Covered:** 33
 - **Topics:** 214
 
@@ -483,23 +483,20 @@ This compiles and tests each example to ensure correctness.
 - `analysis_main.zbr` — combining analysis modules
 - `17-18_projects-2-3_007.zbr` — basic example
 
-### 18b-GUI-Applications (16 examples)
+### 18b-GUI-Applications (13 examples)
 - `counter.zbr` — MVU, Gui.run, g.send, hbox layout
-- `greeter.zbr` — payload messages, g.input, mixed unions
-- `18b-gui-applications_002.zbr` — basic example
-- `widgets.zbr` — checkbox, slider, input; the read-compare-send pattern
+- `greeter.zbr` — payload messages, g.field, mixed unions
+- `widgets.zbr` — toggle, field, slider; the on function
 - `layout.zbr` — using g.vbox / g.hbox, nesting, stretch
-- `18b-gui-applications_005.zbr` — basic example
+- `18b-gui-applications_004.zbr` — basic example
 - `editor.zbr` — CodeEditor, class Model, widget handles
+- `18b-gui-applications_006.zbr` — basic example
 - `18b-gui-applications_007.zbr` — basic example
 - `18b-gui-applications_008.zbr` — basic example
 - `18b-gui-applications_009.zbr` — basic example
 - `18b-gui-applications_010.zbr` — basic example
 - `18b-gui-applications_011.zbr` — basic example
 - `18b-gui-applications_012.zbr` — basic example
-- `18b-gui-applications_013.zbr` — basic example
-- `18b-gui-applications_014.zbr` — basic example
-- `18b-gui-applications_015.zbr` — basic example
 
 ### 19-22_Final-Chapters (12 examples)
 - `19-22_final-chapters_000.zbr` — basic example

@@ -1,4 +1,4 @@
 > def view(g: Gui, m: Model)
->     if g.button("Add")
->         g.send(Msg.inc)           # ✅
+>     g.send(Msg.tick)                   # ❌ every render queues a message …
+>     g.text("ticks: ${m.ticks}")        #    … and a queued message causes a render
 >

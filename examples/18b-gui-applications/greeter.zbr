@@ -1,5 +1,5 @@
 # file: greeter.zbr
-# teaches: payload messages, g.input, mixed unions
+# teaches: payload messages, g.field, mixed unions
 # chapter: 18b-GUI-Applications
 
 struct Model
@@ -27,14 +27,10 @@ def update(m: Model, msg: Msg): Model
 
 def view(g: Gui, m: Model)
     g.text("What is your name?")
-    var typed = g.input("##name", m.name)
-    if typed != m.name
-        g.send(Msg.name_changed(typed))
+    g.field("##name", m.name, def(s: str): Msg = Msg.name_changed(s))
     using g.hbox("##row", false)
-        if g.button("Greet")
-            g.send(Msg.greet)
-        if g.button("Clear")
-            g.send(Msg.clear)
+        g.button("Greet", Msg.greet)
+        g.button("Clear", Msg.clear)
     g.separator()
     g.text(m.greeting)
 
