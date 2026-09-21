@@ -4,5 +4,5 @@
 > def test_increment_once()
 >     var c = fresh_counter()
 >     c = c + 1
->     assert_eq c, 1
+>     assert c == 1
 >

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -71,7 +71,7 @@
 
     <rect x="330" y="390" width="200" height="80" class="server-box" rx="5"/>
     <text x="430" y="415" class="label" text-anchor="middle" font-weight="bold">Handler</text>
-    <text x="430" y="440" class="code" text-anchor="middle">Process & create</text>
+    <text x="430" y="440" class="code" text-anchor="middle">Process &amp; create</text>
     <text x="430" y="455" class="code" text-anchor="middle">HttpResponse</text>
   </g>
 

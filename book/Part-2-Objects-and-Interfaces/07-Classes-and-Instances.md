@@ -167,7 +167,7 @@ class Config
     static
         @tag("unit", "fast")
         def test_defaults()          # tagged for filtered test runs
-            assert_eq Config().load(), "{}"
+            assert Config().load() == "{}"
 ```
 
 | Attribute | Effect |
@@ -229,7 +229,7 @@ def main()
     var p = Point(x: 1.0, y: 2.0)
     var q = Point(x: 1.0, y: 2.0)
     print(p.toString())  # "Point(x=1.0, y=2.0)"
-    print(p.eql(q))  # true
+    print(p.equals(q))  # true (and p == q routes through it)
     print(p.hash() == q.hash())  # true
 ```
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -24,7 +24,7 @@
   <!-- Standard Library (bottom) -->
   <rect x="350" y="600" width="300" height="80" class="stdlib-box" rx="5"/>
   <text x="500" y="625" class="label" text-anchor="middle" font-weight="bold">Standard Library</text>
-  <text x="500" y="645" class="code" text-anchor="middle">File, CommandLine, Result</text>
+  <text x="500" y="645" class="code" text-anchor="middle">File, sys.args / Arg, throws</text>
 
   <!-- Modules -->
   <!-- cli_args module -->

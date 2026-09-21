@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }

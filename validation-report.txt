@@ -1,628 +1,654 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-10T16:57:33.366995
-Compiler:  /home/claude/zebra-linux/zig-out/bin/zebra
+Generated: 2026-09-21T15:48:21.555789
+Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  696
-Passed: 388
-Failed: 308
+Total:  698
+Passed: 377
+Failed: 321
 
 FAILURES
 ----------------------------------------------------------------------
   01-getting-started/01-getting-started_005.zbr
-      /home/claude/zebra-book/examples/01-getting-started/01-getting-started_005.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
+      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_005.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
   01-getting-started/01-getting-started_006.zbr
-      /home/claude/zebra-book/examples/01-getting-started/01-getting-started_006.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_006.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
   01-getting-started/01-getting-started_007.zbr
-      /home/claude/zebra-book/examples/01-getting-started/01-getting-started_007.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_007.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+  01-getting-started/01-getting-started_010.zbr
+      compiling: C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_010.zbr
   02-values-and-types/02-values-and-types_001.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, uni
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, e
   02-values-and-types/02-values-and-types_013.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_013.zbr:1:14: error: type mismatch: expected int, found str
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_013.zbr:1:14: error: type mismatch: expected int, found str
   02-values-and-types/02-values-and-types_015.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   02-values-and-types/02-values-and-types_016.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   02-values-and-types/02-values-and-types_017.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   02-values-and-types/02-values-and-types_018.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   02-values-and-types/02-values-and-types_019.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   02-values-and-types/02-values-and-types_020.zbr
-      /home/claude/zebra-book/examples/02-values-and-types/02-values-and-types_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var
   03-collections/03-collections_008.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   03-collections/03-collections_009.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   03-collections/03-collections_010.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   03-collections/03-collections_011.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   03-collections/03-collections_012.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   03-collections/03-collections_013.zbr
-      /home/claude/zebra-book/examples/03-collections/03-collections_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\03-collections\03-collections_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   04-functions-and-scope/04-functions-and-scope_010.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_010.zbr:1:1: error: unexpected top-level token: 'log' — expected a declaration (def, class, struct, enum, union, use, var
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_010.zbr:1:1: error: unexpected top-level token: 'log' — expected a declaration (def, class, struct, enum, union, 
+  04-functions-and-scope/04-functions-and-scope_014.zbr
+      compiling: C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_014.zbr
   04-functions-and-scope/04-functions-and-scope_017.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04-functions-and-scope_018.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04-functions-and-scope_019.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04-functions-and-scope_020.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04-functions-and-scope_021.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_021.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_021.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04-functions-and-scope_022.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04-functions-and-scope_022.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_022.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   04-functions-and-scope/04_closures.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04_closures.zbr:5:43: error: expected ':', got '
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04_closures.zbr:5:43: error: expected ':', got '
   04-functions-and-scope/04_utilities.zbr
-      /home/claude/zebra-book/examples/04-functions-and-scope/04_utilities.zbr:14:34: error: unexpected expression token: '@as'
+      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04_utilities.zbr:14:34: error: unexpected expression token: '@as'
   05-control-flow/05-control-flow_012.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_012.zbr:2:17: error: undefined name: 'fetch_order'
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_012.zbr:2:17: error: undefined name: 'fetch_order'
   05-control-flow/05-control-flow_013.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_013.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_013.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
   05-control-flow/05-control-flow_014.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_014.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use, va
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_014.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union,
   05-control-flow/05-control-flow_015.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05-control-flow_016.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05-control-flow_017.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05-control-flow_018.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05-control-flow_019.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05-control-flow_020.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05-control-flow_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
-  05-control-flow/05_guards.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05_guards.zbr:7:23: error: expected 'else', got ','
+      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, const)
   05-control-flow/05_if_expr.zbr
-      /home/claude/zebra-book/examples/05-control-flow/05_if_expr.zbr:9:21: error: expected '(', got 'score'
+      C:\Projects\zebra-language-book\examples\05-control-flow\05_if_expr.zbr:9:21: error: expected '(', got 'score'
   06-strings-and-unicode/06-strings-and-unicode_013.zbr
-      compiling: /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_013.zbr
+      compiling: C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_013.zbr
   06-strings-and-unicode/06-strings-and-unicode_014.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06-strings-and-unicode_015.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06-strings-and-unicode_016.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06-strings-and-unicode_017.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06-strings-and-unicode_018.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06-strings-and-unicode_019.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06-strings-and-unicode_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, 
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
   06-strings-and-unicode/06_regex_intro.zbr
-      /home/claude/zebra-book/examples/06-strings-and-unicode/06_regex_intro.zbr:15:22: error: `if x as n` requires an optional type, got 'str'
+      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06_regex_intro.zbr:15:22: error: `if x as n` requires an optional type, got 'str'
   07-classes-and-instances/07-classes-and-instances_005.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_005.zbr:1:1: error: 'with' is a statement and can't appear at the top level — only declarations (def, class, struct, 
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_005.zbr:1:1: error: 'with' is a statement and can't appear at the top level — only declarations (def, class, 
   07-classes-and-instances/07-classes-and-instances_009.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_009.zbr:3:18: error: expected identifier, got 'to'
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_009.zbr:3:18: error: expected identifier, got 'to'
   07-classes-and-instances/07-classes-and-instances_010.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_010.zbr:13:20: error: undefined name: 'User'
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_010.zbr:13:20: error: undefined name: 'User'
   07-classes-and-instances/07-classes-and-instances_011.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
   07-classes-and-instances/07-classes-and-instances_012.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
   07-classes-and-instances/07-classes-and-instances_013.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
   07-classes-and-instances/07-classes-and-instances_014.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
   07-classes-and-instances/07-classes-and-instances_016.zbr
-      /home/claude/zebra-book/examples/07-classes-and-instances/07-classes-and-instances_016.zbr:7:29: error: unexpected expression token: '@as'
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_016.zbr:7:29: error: unexpected expression token: '@as'
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_006.zbr
-      /home/claude/zebra-book/examples/07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_006.zbr:1:1: error: 'branch' is a statement and can't appear at the top level — only declarations
+      C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_006.zbr:1:1: error: 'branch' is a statement and can't appear at the top level — only decl
   08-interfaces-and-protocols/08-interfaces-and-protocols_008.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08-interfaces-and-protocols_009.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08-interfaces-and-protocols_010.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08-interfaces-and-protocols_011.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08-interfaces-and-protocols_012.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08-interfaces-and-protocols_013.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08-interfaces-and-protocols_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08-interfaces-and-protocols_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   08-interfaces-and-protocols/08_collection_interface.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
   08-interfaces-and-protocols/08_polymorphism.zbr
-      /home/claude/zebra-book/examples/08-interfaces-and-protocols/08_polymorphism.zbr:12:24: error: undefined name: 'CreditCardProcessor'
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_polymorphism.zbr:12:24: error: undefined name: 'CreditCardProcessor'
   09-composition-and-mixins/09-composition-and-mixins_001.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_001.zbr:8:24: error: 'UserService' has no method 'cache_get' (methods: lookup)
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_001.zbr:8:24: error: 'UserService' has no method 'cache_get' (methods: lookup)
   09-composition-and-mixins/09-composition-and-mixins_006.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_006.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_006.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   09-composition-and-mixins/09-composition-and-mixins_007.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   09-composition-and-mixins/09-composition-and-mixins_008.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   09-composition-and-mixins/09-composition-and-mixins_009.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   09-composition-and-mixins/09-composition-and-mixins_010.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   09-composition-and-mixins/09-composition-and-mixins_011.zbr
-      /home/claude/zebra-book/examples/09-composition-and-mixins/09-composition-and-mixins_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use,
+      C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, uni
   10-properties-and-computed-values/10-properties-and-computed-values_010.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
   10-properties-and-computed-values/10-properties-and-computed-values_011.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
   10-properties-and-computed-values/10-properties-and-computed-values_012.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
   10-properties-and-computed-values/10-properties-and-computed-values_013.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
   10-properties-and-computed-values/10-properties-and-computed-values_014.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
   10-properties-and-computed-values/10-properties-and-computed-values_015.zbr
-      /home/claude/zebra-book/examples/10-properties-and-computed-values/10-properties-and-computed-values_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_004.zbr
+      compiling: C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_004.zbr
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_009.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_009.zbr:4:16: error: undefined name: 'Colors'
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_009.zbr:4:16: error: undefined name: 'Colors'
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_012.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_012.zbr:10:1: error: 'print' is a statement and can't appear at the top level — only declar
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_012.zbr:10:1: error: 'print' is a statement and can't appear at the top level — onl
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_014.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_014.zbr:1:12: error: extend 'str' must have a body
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_014.zbr:1:12: error: extend 'str' must have a body
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_019.zbr
+      compiling: C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_019.zbr
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_022.zbr
+      compiling: C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_022.zbr
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_023.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_023.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_023.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_024.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_024.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_024.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_025.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_025.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_025.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_026.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_026.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_026.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_027.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_027.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_027.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_028.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_028.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_028.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_029.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_029.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_029.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_030.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_030.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_030.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, 
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_033.zbr
+      compiling: C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_033.zbr
   10b-modules-namespaces-and-visibility/colors.zbr
-      /home/claude/zebra-book/examples/10b-modules-namespaces-and-visibility/colors.zbr:9:16: error: undefined name: 'Rgb'
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\colors.zbr:9:16: error: undefined name: 'Rgb'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_004.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_004.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_004.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_008.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_008.zbr:2:16: error: undefined name: 'find_user'
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_008.zbr:2:16: error: undefined name: 'find_user'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_009.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_009.zbr:7:5: error: undefined name: 'do_work'
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_009.zbr:7:5: error: undefined name: 'do_work'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_010.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_011.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_012.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_013.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_014.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_015.zbr
-      /home/claude/zebra-book/examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   12-error-handling-with-results/12-error-handling-with-results_009.zbr
-      compiling: /home/claude/zebra-book/examples/12-error-handling-with-results/12-error-handling-with-results_009.zbr
+      compiling: C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12-error-handling-with-results_009.zbr
   12-error-handling-with-results/12_catch_binding.zbr
-      compiling: /home/claude/zebra-book/examples/12-error-handling-with-results/12_catch_binding.zbr
+      compiling: C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_catch_binding.zbr
   12-error-handling-with-results/12_catch_typed.zbr
-      compiling: /home/claude/zebra-book/examples/12-error-handling-with-results/12_catch_typed.zbr
+      compiling: C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_catch_typed.zbr
   12-error-handling-with-results/12_method_catch.zbr
-      compiling: /home/claude/zebra-book/examples/12-error-handling-with-results/12_method_catch.zbr
+      compiling: C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_method_catch.zbr
   13-generics-and-type-constraints/13-generics-and-type-constraints_012.zbr
-      /home/claude/zebra-book/examples/13-generics-and-type-constraints/13-generics-and-type-constraints_012.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_012.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, s
   13-generics-and-type-constraints/13-generics-and-type-constraints_013.zbr
-      /home/claude/zebra-book/examples/13-generics-and-type-constraints/13-generics-and-type-constraints_013.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, e
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_013.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, s
   13-generics-and-type-constraints/13-generics-and-type-constraints_015.zbr
-      /home/claude/zebra-book/examples/13-generics-and-type-constraints/13-generics-and-type-constraints_015.zbr:4:17: error: expected ':', got 'isa'
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_015.zbr:4:17: error: expected ':', got 'isa'
   13-generics-and-type-constraints/13-generics-and-type-constraints_018.zbr
-      /home/claude/zebra-book/examples/13-generics-and-type-constraints/13-generics-and-type-constraints_018.zbr:3:22: error: unexpected member: '->'
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_018.zbr:3:22: error: unexpected member: '->'
   13-generics-and-type-constraints/13_generic_constraints_advanced.zbr
-      /home/claude/zebra-book/examples/13-generics-and-type-constraints/13_generic_constraints_advanced.zbr:6:27: error: expected type name, got 'this'
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13_generic_constraints_advanced.zbr:6:27: error: expected type name, got 'this'
   14-contracts-and-assertions/14-contracts-and-assertions_000.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_000.zbr:7:5: error: undefined name: 'balance'
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_000.zbr:7:5: error: undefined name: 'balance'
   14-contracts-and-assertions/14-contracts-and-assertions_008.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   14-contracts-and-assertions/14-contracts-and-assertions_009.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   14-contracts-and-assertions/14-contracts-and-assertions_010.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   14-contracts-and-assertions/14-contracts-and-assertions_011.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   14-contracts-and-assertions/14-contracts-and-assertions_012.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum,
   14-contracts-and-assertions/14-contracts-and-assertions_014.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_014.zbr:4:13: error: expected '(', got '
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_014.zbr:4:13: error: expected '(', got '
   14-contracts-and-assertions/14-contracts-and-assertions_015.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14-contracts-and-assertions_015.zbr:5:13: error: expected '(', got '
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_015.zbr:5:13: error: expected '(', got '
   14-contracts-and-assertions/14_sorted_list.zbr
-      /home/claude/zebra-book/examples/14-contracts-and-assertions/14_sorted_list.zbr:8:13: error: expected '(', got '
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14_sorted_list.zbr:8:13: error: expected '(', got '
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_000.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_000.zbr:6:16: error: unexpected expression token: ';'
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_000.zbr:6:16: error: unexpected expression token: ';'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_002.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_002.zbr:3:1: error: unexpected top-level token: 'allocate' — expected a declaration (def, class
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_002.zbr:3:1: error: unexpected top-level token: 'allocate' — expected a declaration (de
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_003.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_003.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (def, class
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_003.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (de
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_004.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_004.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (def, class
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_004.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (de
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_007.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_007.zbr:1:1: error: unexpected top-level token: '{' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_007.zbr:1:1: error: unexpected top-level token: '{' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_008.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_008.zbr:1:1: error: unexpected top-level token: 'using' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_008.zbr:1:1: error: unexpected top-level token: 'using' — expected a declaration (def, 
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_011.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_011.zbr:2:5: error: expected identifier, got 'num'
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_011.zbr:2:5: error: expected identifier, got 'num'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_012.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_012.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (def, class
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_012.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaration (de
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_014.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_015.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_016.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_017.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_018.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_019.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_020.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_021.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_021.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struc
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_021.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, clas
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_025.zbr
-      /home/claude/zebra-book/examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_025.zbr:9:21: error: undefined name: 'Time'
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_025.zbr:9:21: error: undefined name: 'Time'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_001.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_001.zbr:11:15: error: inline if does not support capture binding; use block form
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_001.zbr:11:15: error: inline if does not support capture binding; use block form
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_002.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_002.zbr:1:1: error: unexpected top-level token: 'ch' — expected a declaration (def, class, st
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_002.zbr:1:1: error: unexpected top-level token: 'ch' — expected a declaration (def, c
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_003.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_003.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, s
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_003.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, 
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_004.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_004.zbr:4:12: error: undefined name: 'lambda'
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_004.zbr:4:12: error: undefined name: 'lambda'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_006.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_006.zbr:2:1: error: unexpected top-level token: 'counter' — expected a declaration (def, clas
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_006.zbr:2:1: error: unexpected top-level token: 'counter' — expected a declaration (d
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_007.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_007.zbr:4:20: error: 'var' is a statement keyword and can't be used as an expression here
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_007.zbr:4:20: error: 'var' is a statement keyword and can't be used as an expression 
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_008.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_008.zbr:4:12: error: undefined name: 'lambda'
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_008.zbr:4:12: error: undefined name: 'lambda'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_012.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_013.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_014.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_015.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_016.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_017.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_018.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_019.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_020.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, str
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_020.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, cl
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_021.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_021.zbr:5:9: error: 'for' is a statement keyword and can't be used as an expression here
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_021.zbr:5:9: error: 'for' is a statement keyword and can't be used as an expression h
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_022.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_022.zbr:20:18: error: inline if does not support capture binding; use block form
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_022.zbr:20:18: error: inline if does not support capture binding; use block form
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_023.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_023.zbr:4:12: error: undefined name: 'lambda'
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_023.zbr:4:12: error: undefined name: 'lambda'
   14c-concurrency-channels-and-threads/14c_pipeline.zbr
-      /home/claude/zebra-book/examples/14c-concurrency-channels-and-threads/14c_pipeline.zbr:10:9: error: 'for' is a statement keyword and can't be used as an expression here
+      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c_pipeline.zbr:10:9: error: 'for' is a statement keyword and can't be used as an expression here
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr
-      /home/claude/zebra-book/examples/15-pipelines-and-function-composition/15-pipelines-and-function-composition_010.zbr:3:1: error: unexpected end of input at the top level
+      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_010.zbr:3:1: error: unexpected end of input at the top level
   16-project-1-cli-tool/16-project-1-cli-tool_004.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_004.zbr:4:32: error: undefined name: 'FileProcessor'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_004.zbr:4:32: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/16-project-1-cli-tool_005.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_005.zbr:2:19: error: undefined name: 'PatternMatcher'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_005.zbr:2:19: error: undefined name: 'PatternMatcher'
   16-project-1-cli-tool/16-project-1-cli-tool_006.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_006.zbr:17:59: error: unexpected expression token: ')'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_006.zbr:17:59: error: unexpected expression token: ')'
   16-project-1-cli-tool/16-project-1-cli-tool_007.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_007.zbr:10:16: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_007.zbr:10:16: error: unexpected member: ':'
   16-project-1-cli-tool/16-project-1-cli-tool_008.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_008.zbr:4:34: error: undefined name: 'FileProcessor'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_008.zbr:4:34: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/16-project-1-cli-tool_009.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/16-project-1-cli-tool_009.zbr:10:25: error: undefined name: 'FileProcessor'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_009.zbr:10:25: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/file_processor.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/file_processor.zbr:96:16: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\file_processor.zbr:96:16: error: unexpected member: ':'
   16-project-1-cli-tool/pattern_search.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/pattern_search.zbr:8:34: error: undefined name: 'FileProcessor'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\pattern_search.zbr:8:34: error: undefined name: 'FileProcessor'
   16-project-1-cli-tool/project1_main.zbr
-      /home/claude/zebra-book/examples/16-project-1-cli-tool/project1_main.zbr:11:12: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\project1_main.zbr:11:12: error: unexpected member: ':'
   17-18_projects-2-3/analysis_main.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/analysis_main.zbr:30:33: error: undefined name: 'FrequencyAnalyzer'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\analysis_main.zbr:30:33: error: undefined name: 'FrequencyAnalyzer'
   17-18_projects-2-3/frequency_analysis.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/frequency_analysis.zbr:13:18: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\frequency_analysis.zbr:13:18: error: unexpected member: ':'
   17-18_projects-2-3/http_server.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/http_server.zbr:17:14: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\http_server.zbr:17:14: error: unexpected member: ':'
   17-18_projects-2-3/http_types.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/http_types.zbr:40:22: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\http_types.zbr:40:22: error: unexpected member: ':'
   17-18_projects-2-3/router.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/router.zbr:23:20: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\router.zbr:23:20: error: unexpected member: ':'
   17-18_projects-2-3/similarity_analysis.zbr
-      /home/claude/zebra-book/examples/17-18_projects-2-3/similarity_analysis.zbr:20:17: error: expected identifier, got 'union'
+      C:\Projects\zebra-language-book\examples\17-18_projects-2-3\similarity_analysis.zbr:20:17: error: expected identifier, got 'union'
   18b-gui-applications/18b-gui-applications_002.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_002.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_002.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, en
+  18b-gui-applications/18b-gui-applications_004.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_004.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_005.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_005.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_005.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_006.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_006.zbr:2:13: error: undefined name: 'init'
   18b-gui-applications/18b-gui-applications_007.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_007.zbr:2:13: error: undefined name: 'init'
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_008.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_009.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_010.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_011.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_012.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_013.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_014.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_014.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_015.zbr
-      /home/claude/zebra-book/examples/18b-gui-applications/18b-gui-applications_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_015.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   19-22_final-chapters/19-22_final-chapters_001.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_001.zbr:5:27: error: undefined name: 'read_file'
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_001.zbr:5:27: error: undefined name: 'read_file'
   19-22_final-chapters/19-22_final-chapters_002.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_002.zbr:3:17: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_002.zbr:3:17: error: unexpected member: ':'
   19-22_final-chapters/19-22_final-chapters_006.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_006.zbr:7:23: error: unexpected member: ':'
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_006.zbr:7:23: error: unexpected member: ':'
   19-22_final-chapters/19-22_final-chapters_007.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_007.zbr:5:18: error: undefined name: 'c_func'
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_007.zbr:5:18: error: undefined name: 'c_func'
   19-22_final-chapters/19-22_final-chapters_010.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_010.zbr:2:12: error: undefined name: 'value'
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_010.zbr:2:12: error: undefined name: 'value'
   19-22_final-chapters/19-22_final-chapters_011.zbr
-      /home/claude/zebra-book/examples/19-22_final-chapters/19-22_final-chapters_011.zbr:8:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, uni
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_011.zbr:8:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, e
   22b-build-system-and-tooling/22b-build-system-and-tooling_002.zbr
-      /home/claude/zebra-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_002.zbr:2:1: error: unexpected top-level token: 't' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_002.zbr:2:1: error: unexpected top-level token: 't' — expected a declaration (def, class, struct, enu
   22b-build-system-and-tooling/22b-build-system-and-tooling_003.zbr
-      /home/claude/zebra-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_003.zbr:1:1: error: unexpected top-level token: 'b' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_003.zbr:1:1: error: unexpected top-level token: 'b' — expected a declaration (def, class, struct, enu
+  22b-build-system-and-tooling/22b-build-system-and-tooling_005.zbr
+      compiling: C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_005.zbr
+  22b-build-system-and-tooling/22b-build-system-and-tooling_007.zbr
+      compiling: C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_007.zbr
   22b-build-system-and-tooling/22b-build-system-and-tooling_010.zbr
-      /home/claude/zebra-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enu
   22b-build-system-and-tooling/22b-build-system-and-tooling_011.zbr
-      /home/claude/zebra-book/examples/22b-build-system-and-tooling/22b-build-system-and-tooling_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enu
+  22c-testing-and-validation/22c-testing-and-validation_006.zbr
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_006.zbr:5:16: error: undefined name: 'Calc'
   22c-testing-and-validation/22c-testing-and-validation_007.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_008.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_009.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_009.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_010.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_011.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_012.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
   22c-testing-and-validation/22c-testing-and-validation_013.zbr
-      /home/claude/zebra-book/examples/22c-testing-and-validation/22c-testing-and-validation_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_013.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, u
+  22c-testing-and-validation/22c-testing-and-validation_015.zbr
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_015.zbr:5:20: error: undefined name: 'User'
+  22c-testing-and-validation/22c-testing-and-validation_016.zbr
+      compiling: C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_016.zbr
   appendix-a-grammar/appendix-a-grammar_001.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_001.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, u
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_001.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
   appendix-a-grammar/appendix-a-grammar_002.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_002.zbr:4:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union, use, var, co
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_002.zbr:4:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union, use,
   appendix-a-grammar/appendix-a-grammar_008.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_008.zbr:13:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_008.zbr:13:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, en
   appendix-a-grammar/appendix-a-grammar_011.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_011.zbr:11:1: error: unexpected top-level token: 'dog' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_011.zbr:11:1: error: unexpected top-level token: 'dog' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_013.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_013.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, u
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_013.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
   appendix-a-grammar/appendix-a-grammar_014.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_014.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_014.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
   appendix-a-grammar/appendix-a-grammar_015.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_015.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_015.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum,
   appendix-a-grammar/appendix-a-grammar_016.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_016.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_016.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
   appendix-a-grammar/appendix-a-grammar_017.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_017.zbr:7:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_017.zbr:7:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, en
   appendix-a-grammar/appendix-a-grammar_019.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_019.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_019.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-a-grammar/appendix-a-grammar_020.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_020.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_020.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-a-grammar/appendix-a-grammar_021.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_021.zbr:1:1: error: unexpected top-level token: 'true' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_021.zbr:1:1: error: unexpected top-level token: 'true' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_022.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_022.zbr:1:1: error: unexpected top-level token: '"hello"' — expected a declaration (def, class, struct, enum, union, use, var, co
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_022.zbr:1:1: error: unexpected top-level token: '"hello"' — expected a declaration (def, class, struct, enum, union, use,
   appendix-a-grammar/appendix-a-grammar_023.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_023.zbr:2:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_023.zbr:2:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, var, 
   appendix-a-grammar/appendix-a-grammar_029.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_029.zbr:11:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_029.zbr:11:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_033.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_033.zbr:2:17: error: undefined name: 'divide'
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_033.zbr:2:17: error: undefined name: 'divide'
   appendix-a-grammar/appendix-a-grammar_034.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, u
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
   appendix-a-grammar/appendix-a-grammar_035.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_035.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, u
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_035.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
   appendix-a-grammar/appendix-a-grammar_036.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_036.zbr:3:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_036.zbr:3:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_037.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_037.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_037.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_038.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_038.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_038.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_039.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_039.zbr:3:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_039.zbr:3:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, v
   appendix-a-grammar/appendix-a-grammar_040.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_040.zbr:3:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_040.zbr:3:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var
   appendix-a-grammar/appendix-a-grammar_041.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_041.zbr:3:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_041.zbr:3:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-a-grammar/appendix-a-grammar_044.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_044.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, var, con
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_044.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, 
+  appendix-a-grammar/appendix-a-grammar_046.zbr
+      compiling: C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_046.zbr
   appendix-a-grammar/appendix-a-grammar_048.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_048.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, u
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_048.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
   appendix-a-grammar/appendix-a-grammar_051.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_051.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_051.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum,
   appendix-a-grammar/appendix-a-grammar_052.zbr
-      /home/claude/zebra-book/examples/appendix-a-grammar/appendix-a-grammar_052.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_052.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
   appendix-b-stdlib/appendix-b-stdlib_000.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_000.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_000.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum,
   appendix-b-stdlib/appendix-b-stdlib_001.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_001.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_001.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum,
   appendix-b-stdlib/appendix-b-stdlib_003.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_003.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_003.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_004.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_004.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_004.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_005.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_005.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_005.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_006.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_006.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_006.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_007.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_007.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_007.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_009.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_009.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_009.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_010.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_010.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_010.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_012.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_012.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_012.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, var
   appendix-b-stdlib/appendix-b-stdlib_013.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_013.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_013.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union, use, v
   appendix-b-stdlib/appendix-b-stdlib_014.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_014.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_014.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
   appendix-b-stdlib/appendix-b-stdlib_016.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_016.zbr:1:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_016.zbr:1:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var, 
   appendix-b-stdlib/appendix-b-stdlib_017.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_017.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_017.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
   appendix-b-stdlib/appendix-b-stdlib_018.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_018.zbr:2:1: error: unexpected top-level token: 'scores' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_018.zbr:2:1: error: unexpected top-level token: 'scores' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-b-stdlib/appendix-b-stdlib_019.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_019.zbr:2:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_019.zbr:2:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_020.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_020.zbr:3:1: error: unexpected top-level token: 'n' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_020.zbr:3:1: error: unexpected top-level token: 'n' — expected a declaration (def, class, struct, enum, union, use, var, co
   appendix-b-stdlib/appendix-b-stdlib_021.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_021.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_021.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
   appendix-b-stdlib/appendix-b-stdlib_022.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_022.zbr:3:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_022.zbr:3:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, var, co
   appendix-b-stdlib/appendix-b-stdlib_023.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_023.zbr:1:1: error: unexpected top-level token: 'int_to_str' — expected a declaration (def, class, struct, enum, union, use, var, c
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_023.zbr:1:1: error: unexpected top-level token: 'int_to_str' — expected a declaration (def, class, struct, enum, union, use
   appendix-b-stdlib/appendix-b-stdlib_024.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_024.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_024.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_025.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_025.zbr:2:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_025.zbr:2:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, co
   appendix-b-stdlib/appendix-b-stdlib_026.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_026.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_026.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, co
   appendix-b-stdlib/appendix-b-stdlib_027.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_027.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_027.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, var, co
   appendix-b-stdlib/appendix-b-stdlib_028.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_028.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_028.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, struct, enum, union, use, var, 
   appendix-b-stdlib/appendix-b-stdlib_029.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_029.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, us
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_029.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
   appendix-b-stdlib/appendix-b-stdlib_030.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_030.zbr:1:1: error: unexpected top-level token: 'File' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_030.zbr:1:1: error: unexpected top-level token: 'File' — expected a declaration (def, class, struct, enum, union, use, var,
   appendix-b-stdlib/appendix-b-stdlib_031.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_031.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_031.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_032.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_032.zbr:1:1: error: unexpected top-level token: 'Regex' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_032.zbr:1:1: error: unexpected top-level token: 'Regex' — expected a declaration (def, class, struct, enum, union, use, var
   appendix-b-stdlib/appendix-b-stdlib_033.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_033.zbr:3:1: error: unexpected top-level token: 'pattern' — expected a declaration (def, class, struct, enum, union, use, var, cons
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_033.zbr:3:1: error: unexpected top-level token: 'pattern' — expected a declaration (def, class, struct, enum, union, use, v
   appendix-b-stdlib/appendix-b-stdlib_034.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_034.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_036.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_036.zbr:15:13: error: undefined name: 'divide'
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_036.zbr:15:13: error: undefined name: 'divide'
   appendix-b-stdlib/appendix-b-stdlib_037.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_037.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, 
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_037.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, enum,
   appendix-b-stdlib/appendix-b-stdlib_040.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_040.zbr:1:1: error: unexpected top-level token: 'value' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_040.zbr:1:1: error: unexpected top-level token: 'value' — expected a declaration (def, class, struct, enum, union, use, var
   appendix-b-stdlib/appendix-b-stdlib_041.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_041.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_041.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_042.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_042.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_042.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-b-stdlib/appendix-b-stdlib_043.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_043.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, var, const
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_043.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, use, va
   appendix-b-stdlib/appendix-b-stdlib_044.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_044.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union,
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_044.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, enum
   appendix-b-stdlib/appendix-b-stdlib_045.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_045.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union,
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_045.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct, enum
   appendix-b-stdlib/appendix-b-stdlib_046.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_046.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_046.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_047.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_047.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_047.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-b-stdlib/appendix-b-stdlib_048.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_048.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, var, const)
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_048.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use, var
   appendix-b-stdlib/appendix-b-stdlib_049.zbr
-      /home/claude/zebra-book/examples/appendix-b-stdlib/appendix-b-stdlib_049.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, union, use
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_049.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
   appendix-c-troubleshooting/appendix-c-troubleshooting_000.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_000.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, str
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_000.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, cl
   appendix-c-troubleshooting/appendix-c-troubleshooting_001.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, str
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_001.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, cl
   appendix-c-troubleshooting/appendix-c-troubleshooting_003.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_003.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_003.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_004.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_004.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, uni
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_004.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, e
   appendix-c-troubleshooting/appendix-c-troubleshooting_005.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_005.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, uni
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_005.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, e
   appendix-c-troubleshooting/appendix-c-troubleshooting_007.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_007.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_007.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_009.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_009.zbr:4:14: error: type mismatch: expected int, found int? -- unwrap it: `x!`, `x orelse default`, or `if x as 
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_009.zbr:4:14: error: type mismatch: expected int, found int? -- unwrap it: `x!`, `x orelse default`, or `
   appendix-c-troubleshooting/appendix-c-troubleshooting_010.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_010.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_010.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_011.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_011.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, str
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_011.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, cl
   appendix-c-troubleshooting/appendix-c-troubleshooting_012.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_012.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_012.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_013.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_013.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_013.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_014.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_014.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_014.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_015.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_015.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_015.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_016.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_016.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_016.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_017.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_017.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_017.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_018.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_018.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_018.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_020.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_020.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_020.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_024.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_024.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_024.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_026.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_026.zbr:6:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_026.zbr:6:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_029.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_029.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_029.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_030.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_030.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct, enum, union
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_030.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct, enu
   appendix-c-troubleshooting/appendix-c-troubleshooting_032.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_032.zbr:10:8: error: undefined name: 'condition'
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_032.zbr:10:8: error: undefined name: 'condition'
   appendix-c-troubleshooting/appendix-c-troubleshooting_035.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_035.zbr:5:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_035.zbr:5:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struct, en
   appendix-c-troubleshooting/appendix-c-troubleshooting_036.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_036.zbr:6:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_036.zbr:6:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struct, en
   appendix-c-troubleshooting/appendix-c-troubleshooting_041.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_041.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_041.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_045.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_045.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_045.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_047.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_047.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_047.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_048.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_048.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_048.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_049.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_049.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_049.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_050.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_050.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_050.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_051.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_051.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, str
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_051.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, cl
   appendix-c-troubleshooting/appendix-c-troubleshooting_052.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_052.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, unio
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_052.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, en
   appendix-c-troubleshooting/appendix-c-troubleshooting_053.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_053.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, str
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_053.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, cl
   appendix-c-troubleshooting/appendix-c-troubleshooting_054.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_054.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_054.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_055.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_055.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_055.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_056.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_056.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struc
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_056.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, clas
   appendix-c-troubleshooting/appendix-c-troubleshooting_057.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_057.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_057.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_058.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_058.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_058.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_060.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_060.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_060.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-c-troubleshooting/appendix-c-troubleshooting_061.zbr
-      /home/claude/zebra-book/examples/appendix-c-troubleshooting/appendix-c-troubleshooting_061.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_061.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class
   appendix-d-attributes/appendix-d-attributes_001.zbr
-      /home/claude/zebra-book/examples/appendix-d-attributes/appendix-d-attributes_001.zbr:5:9: error: unexpected expression token: '..'
+      C:\Projects\zebra-language-book\examples\appendix-d-attributes\appendix-d-attributes_001.zbr:5:9: error: unexpected expression token: '..'
   appendix-d-attributes/appendix-d-attributes_004.zbr
-      /home/claude/zebra-book/examples/appendix-d-attributes/appendix-d-attributes_004.zbr:3:40: error: unexpected end of input at the top level
+      C:\Projects\zebra-language-book\examples\appendix-d-attributes\appendix-d-attributes_004.zbr:3:40: error: unexpected end of input at the top level

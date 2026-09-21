@@ -4,7 +4,7 @@
 
 @tag("unit", "math")
 def test_addition()
-    assert_eq 1 + 1, 2
+    assert 1 + 1 == 2
 
 @tag("integration")
 def test_database_roundtrip()
@@ -15,9 +15,9 @@ def test_database_roundtrip()
     var rows = db.query("SELECT x FROM t")
     var row = rows.at(0)
     # Row accessors take the COLUMN NAME, not an index.
-    assert_eq row.asInt("x"), 42
+    assert row.asInt("x") == 42
 
 @tag("slow")
 def test_large_dataset()
     # ... long-running test ...
-    assert_true true
+    assert true

@@ -3569,7 +3569,7 @@
     {
       "chapter": "22c-Testing-and-Validation",
       "file": "22c_assertions.zbr",
-      "teaches": "the four assertion forms",
+      "teaches": "assert on comparisons, and what its failure says",
       "project": null,
       "path": "examples/22c-testing-and-validation/22c_assertions.zbr"
     },

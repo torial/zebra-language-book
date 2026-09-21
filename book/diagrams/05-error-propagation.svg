@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -15,14 +15,14 @@
     </marker>
   </defs>
 
-  <text x="500" y="40" class="title" text-anchor="middle">Error Propagation with Result Types</text>
+  <text x="500" y="40" class="title" text-anchor="middle">Error Propagation with throws, ? and catch</text>
 
   <!-- Success path -->
   <g>
-    <text x="60" y="100" class="section">Success Path: Ok(T)</text>
+    <text x="60" y="100" class="section">Success Path: each throws call returns its value through ?</text>
 
     <circle cx="100" cy="150" r="25" class="ok-box"/>
-    <text x="100" y="160" class="code" text-anchor="middle" font-weight="bold">Ok</text>
+    <text x="100" y="160" class="code" text-anchor="middle" font-weight="bold">f()?</text>
 
     <path d="M 130 150 L 200 150" class="arrow"/>
     <circle cx="230" cy="150" r="25" class="ok-box"/>
@@ -31,60 +31,60 @@
 
     <path d="M 260 150 L 330 150" class="arrow"/>
     <circle cx="360" cy="150" r="25" class="ok-box"/>
-    <text x="360" y="160" class="code" text-anchor="middle" font-weight="bold">Ok</text>
+    <text x="360" y="160" class="code" text-anchor="middle" font-weight="bold">g()?</text>
 
     <path d="M 390 150 L 460 150" class="arrow"/>
     <circle cx="490" cy="150" r="25" class="ok-box"/>
-    <text x="490" y="160" class="code" text-anchor="middle" font-weight="bold">Ok</text>
+    <text x="490" y="160" class="code" text-anchor="middle" font-weight="bold">h()?</text>
 
     <path d="M 520 150 L 590 150" class="arrow"/>
     <rect x="600" y="125" width="150" height="50" class="ok-box" rx="5"/>
-    <text x="675" y="155" class="label" text-anchor="middle" font-weight="bold">Return Ok</text>
+    <text x="675" y="155" class="label" text-anchor="middle" font-weight="bold">return value</text>
   </g>
 
   <!-- Error path -->
   <g>
-    <text x="60" y="260" class="section">Error Path: Err(E) Bubbles Up</text>
+    <text x="60" y="260" class="section">Error Path: raise, then every ? hands the error to its caller</text>
 
     <circle cx="100" cy="310" r="25" class="ok-box"/>
-    <text x="100" y="320" class="code" text-anchor="middle" font-weight="bold">Ok</text>
+    <text x="100" y="320" class="code" text-anchor="middle" font-weight="bold">f()?</text>
 
     <path d="M 130 310 L 200 310" class="arrow"/>
     <circle cx="230" cy="310" r="25" class="err-box"/>
-    <text x="230" y="320" class="code" text-anchor="middle" font-weight="bold">Err</text>
-    <text x="230" y="345" class="label" text-anchor="middle" font-size="11">Error occurs</text>
+    <text x="230" y="320" class="code" text-anchor="middle" font-weight="bold">raise</text>
+    <text x="230" y="345" class="label" text-anchor="middle" font-size="11">raise "msg"</text>
 
     <!-- Error propagates up -->
     <path d="M 260 310 L 330 310" stroke="#dc2626" stroke-width="3" fill="none"/>
     <circle cx="360" cy="310" r="25" class="err-box"/>
-    <text x="360" y="320" class="code" text-anchor="middle" font-weight="bold">Err</text>
+    <text x="360" y="320" class="code" text-anchor="middle" font-weight="bold">?</text>
     <text x="360" y="345" class="label" text-anchor="middle" font-size="11">Passed up</text>
 
     <path d="M 390 310 L 460 310" stroke="#dc2626" stroke-width="3" fill="none"/>
     <circle cx="490" cy="310" r="25" class="err-box"/>
-    <text x="490" y="320" class="code" text-anchor="middle" font-weight="bold">Err</text>
+    <text x="490" y="320" class="code" text-anchor="middle" font-weight="bold">?</text>
     <text x="490" y="345" class="label" text-anchor="middle" font-size="11">Passed up</text>
 
     <path d="M 520 310 L 590 310" stroke="#dc2626" stroke-width="3" fill="none"/>
     <rect x="600" y="285" width="150" height="50" class="err-box" rx="5"/>
-    <text x="675" y="315" class="label" text-anchor="middle" font-weight="bold">Return Err</text>
+    <text x="675" y="315" class="label" text-anchor="middle" font-weight="bold">catch |e|</text>
   </g>
 
   <!-- Code example -->
   <g>
-    <text x="60" y="420" class="section">Code Example: Error Propagation</text>
+    <text x="60" y="420" class="section">Code Example: a throws function propagating with ?, and a caller that catches</text>
 
     <rect x="50" y="440" width="900" height="220" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
 
-    <text x="70" y="465" class="code">def load_config(path as str) as Result(Config, str)</text>
-    <text x="70" y="490" class="code">  var content = File.read(path)  # Returns Result</text>
-    <text x="70" y="515" class="code">  if content.isErr()  # Check for error</text>
-    <text x="70" y="540" class="code">    return content  # Propagate error up</text>
+    <text x="70" y="465" class="code">def load_config(path: str): Config throws</text>
+    <text x="70" y="490" class="code">  if not File.exists(path)</text>
+    <text x="70" y="515" class="code">    raise "no config at ${path}"       # the error starts here</text>
+    <text x="70" y="540" class="code">  var cfg = parse_config(File.read(path))?   # ? hands a parse error up</text>
 
-    <text x="70" y="565" class="code">  var data = parse_json(content.okValue())  # Process if Ok</text>
-    <text x="70" y="590" class="code">  if data.isErr()</text>
-    <text x="70" y="615" class="code">    return data  # Propagate parsing error</text>
+    <text x="70" y="565" class="code">  return cfg                                # (parse_config is `throws` too)</text>
+    <text x="70" y="590" class="code">def main()</text>
+    <text x="70" y="615" class="code">  var cfg = load_config("app.json") catch defaultConfig()   # inline fallback</text>
 
-    <text x="70" y="640" class="code">  return Result.ok(create_config(data.okValue()))</text>
+    <text x="70" y="640" class="code">  # or: a `catch |e|` clause after the body -- an omitted ? is a compile error</text>
   </g>
 </svg>

@@ -80,7 +80,7 @@ Attaches one or more string tags to a `test_*` method so
 ```zebra
 @tag("unit", "fast")
 def test_addition()
-    assert_eq 1 + 1, 2
+    assert 1 + 1 == 2
 
 @tag("integration")
 def test_database_roundtrip()

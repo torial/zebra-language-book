@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -22,8 +22,8 @@
     <text x="60" y="90" class="section">Step 1: Generic Template</text>
     <rect x="50" y="110" width="350" height="130" class="generic" rx="5"/>
     <text x="70" y="135" class="code" font-weight="bold">class Container(T)</text>
-    <text x="70" y="160" class="code">  var item as T</text>
-    <text x="70" y="185" class="code">  def get as T</text>
+    <text x="70" y="160" class="code">  var item: T</text>
+    <text x="70" y="185" class="code">  def get(): T</text>
     <text x="70" y="210" class="code">    return item</text>
     <text x="200" y="240" class="label" text-anchor="middle" fill="#6b7280">T is a parameter</text>
   </g>
@@ -37,8 +37,8 @@
     <text x="550" y="90" class="section">Step 2a: Container(int)</text>
     <rect x="540" y="110" width="400" height="130" class="concrete" rx="5"/>
     <text x="560" y="135" class="code" font-weight="bold">class Container(int)</text>
-    <text x="560" y="160" class="code">  var item as int</text>
-    <text x="560" y="185" class="code">  def get as int</text>
+    <text x="560" y="160" class="code">  var item: int</text>
+    <text x="560" y="185" class="code">  def get(): int</text>
     <text x="560" y="210" class="code">    return item</text>
   </g>
 
@@ -51,8 +51,8 @@
     <text x="550" y="200" class="section">Step 2b: Container(str)</text>
     <rect x="540" y="220" width="400" height="130" class="concrete" rx="5"/>
     <text x="560" y="245" class="code" font-weight="bold">class Container(str)</text>
-    <text x="560" y="270" class="code">  var item as str</text>
-    <text x="560" y="295" class="code">  def get as str</text>
+    <text x="560" y="270" class="code">  var item: str</text>
+    <text x="560" y="295" class="code">  def get(): str</text>
     <text x="560" y="320" class="code">    return item</text>
   </g>
 

@@ -50,7 +50,7 @@ This directory contains SVG diagrams that supplement the textual explanations in
 
 ### Object-Oriented Programming (Chapter 7-9)
 
-9. **10-class-hierarchy.svg** (Chapter 9: Inheritance)
+9. **10-class-hierarchy.svg** (Chapter 9: Composition and Mixins -- interface + mixin, no inheritance)
    - Class hierarchy and inheritance chains
    - Method resolution with super calls
    - Parent and child class relationships

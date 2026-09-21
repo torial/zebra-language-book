@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; font-family: Arial, sans-serif; }
@@ -51,7 +51,7 @@
 
     <!-- Usage -->
     <text x="40" y="270" class="label" font-weight="bold">Usage:</text>
-    <text x="40" y="290" class="code">var items = List()</text>
+    <text x="40" y="290" class="code">var items = List(int)()</text>
     <text x="40" y="310" class="code">items.add(value)</text>
     <text x="40" y="330" class="code">var x = items.at(0)</text>
   </g>
@@ -90,7 +90,7 @@
 
     <!-- Usage -->
     <text x="340" y="270" class="label" font-weight="bold">Usage:</text>
-    <text x="340" y="290" class="code">var map = HashMap()</text>
+    <text x="340" y="290" class="code">var map = HashMap(str, int)()</text>
     <text x="340" y="310" class="code">map.put(key, value)</text>
     <text x="340" y="330" class="code">var x = map.fetch(key)</text>
   </g>
@@ -127,7 +127,7 @@
 
     <!-- Usage -->
     <text x="640" y="320" class="label" font-weight="bold">Usage:</text>
-    <text x="640" y="340" class="code">var s = Set()</text>
+    <text x="640" y="340" class="code">var s = Set(str)()</text>
     <text x="640" y="360" class="code">s.add(value)</text>
     <text x="640" y="380" class="code">if s.contains(x)</text>
   </g>
@@ -141,11 +141,11 @@
       <rect x="30" y="470" width="300" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
       <text x="40" y="490" class="label" font-weight="bold">List - Index Based</text>
       <text x="40" y="510" class="code">for item in list</text>
-      <text x="40" y="530" class="code">  print item</text>
+      <text x="40" y="530" class="code">  print(item)</text>
       <text x="40" y="555" class="label" font-weight="bold">Or with index:</text>
       <text x="40" y="575" class="code">var i = 0</text>
       <text x="40" y="595" class="code">while i &lt; list.count()</text>
-      <text x="40" y="615" class="code">  print list.at(i)</text>
+      <text x="40" y="615" class="code">  print(list.at(i))</text>
       <text x="40" y="635" class="code">  i = i + 1</text>
     </g>
 
@@ -154,8 +154,8 @@
       <rect x="360" y="470" width="300" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
       <text x="370" y="490" class="label" font-weight="bold">HashMap - Key-Value Pair</text>
       <text x="370" y="510" class="code">for key, value in map</text>
-      <text x="370" y="530" class="code">  print key.concat("=")</text>
-      <text x="370" y="550" class="code">  print value</text>
+      <text x="370" y="530" class="code">  print(key.concat("="))</text>
+      <text x="370" y="550" class="code">  print(value)</text>
       <text x="370" y="575" class="label" font-weight="bold">Check membership:</text>
       <text x="370" y="595" class="code">if map.contains(key)</text>
       <text x="370" y="615" class="code">  var v = map.fetch(key)</text>
@@ -167,10 +167,10 @@
       <rect x="690" y="470" width="280" height="180" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
       <text x="700" y="490" class="label" font-weight="bold">Set - Unique Items</text>
       <text x="700" y="510" class="code">for item in set</text>
-      <text x="700" y="530" class="code">  print item</text>
+      <text x="700" y="530" class="code">  print(item)</text>
       <text x="700" y="555" class="label" font-weight="bold">Check membership:</text>
       <text x="700" y="575" class="code">if set.contains(item)</text>
-      <text x="700" y="595" class="code">  print "Found"</text>
+      <text x="700" y="595" class="code">  print("Found")</text>
       <text x="700" y="620" class="label" font-size="11">No direct indexing</text>
       <text x="700" y="635" class="label" font-size="11">No ordering</text>
     </g>

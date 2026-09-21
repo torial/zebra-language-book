@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -81,25 +81,25 @@
     <!-- String length -->
     <rect x="50" y="320" width="900" height="80" class="code-box" rx="3"/>
     <text x="70" y="345" class="label" font-weight="bold">.len — Returns byte count (UTF-8 encoded)</text>
-    <text x="70" y="365" class="code">var str = "Hello🌍"</text>
-    <text x="70" y="385" class="code">print str.len  # Outputs: 9 (5 ASCII bytes + 4 UTF-8 bytes for emoji)</text>
+    <text x="70" y="365" class="code">var s = "Hello🌍"</text>
+    <text x="70" y="385" class="code">print(s.len)  # 9 bytes; s.codePointCount() is 6</text>
   </g>
 
   <!-- String iteration -->
   <g>
     <rect x="50" y="420" width="900" height="100" class="code-box" rx="3"/>
     <text x="70" y="445" class="label" font-weight="bold">.charAt(index) — Gets byte at position</text>
-    <text x="70" y="465" class="code">var str = "Hello"</text>
-    <text x="70" y="485" class="code">print str.charAt(0)  # "H"</text>
-    <text x="70" y="505" class="code">print str.charAt(4)  # "o"</text>
+    <text x="70" y="465" class="code">var s = "Hello"</text>
+    <text x="70" y="485" class="code">print(s.charAt(0))  # 72 (a byte)</text>
+    <text x="70" y="505" class="code">for c in s.chars(): print(c)   # H e l l o, one codepoint each</text>
   </g>
 
   <!-- String operations -->
   <g>
     <rect x="50" y="540" width="900" height="80" class="code-box" rx="3"/>
     <text x="70" y="565" class="label" font-weight="bold">.substring(start, end) — Extract portion</text>
-    <text x="70" y="585" class="code">var str = "Hello World"</text>
-    <text x="70" y="605" class="code">print str.substring(0, 5)  # "Hello"</text>
+    <text x="70" y="585" class="code">var s = "Hello World"</text>
+    <text x="70" y="605" class="code">print(s.substring(0, 5))  # "Hello"</text>
   </g>
 
   <!-- Key points -->

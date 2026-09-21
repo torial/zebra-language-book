@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .box { fill: #e8f4f8; stroke: #2c5aa0; stroke-width: 2; }
@@ -71,13 +71,13 @@
     <!-- Example: int vs int? -->
     <rect x="30" y="480" width="100" height="70" class="box" rx="5"/>
     <text x="80" y="510" class="label" text-anchor="middle" font-weight="bold">int</text>
-    <text x="80" y="530" class="note" text-anchor="middle">Value or</text>
-    <text x="80" y="545" class="note" text-anchor="middle">error</text>
+    <text x="80" y="530" class="note" text-anchor="middle">Always an</text>
+    <text x="80" y="545" class="note" text-anchor="middle">integer</text>
 
     <rect x="180" y="480" width="100" height="70" class="nullable-box" rx="5"/>
     <text x="230" y="510" class="label" text-anchor="middle" font-weight="bold">int?</text>
-    <text x="230" y="530" class="note" text-anchor="middle">Value,</text>
-    <text x="230" y="545" class="note" text-anchor="middle">nil, or error</text>
+    <text x="230" y="530" class="note" text-anchor="middle">Integer or</text>
+    <text x="230" y="545" class="note" text-anchor="middle">nil</text>
 
     <!-- Example: str vs str? -->
     <rect x="330" y="480" width="100" height="70" class="box" rx="5"/>
@@ -96,11 +96,11 @@
     <text x="650" y="250" class="label" font-weight="bold">Error Handling</text>
 
     <rect x="630" y="280" width="140" height="100" class="box" rx="5" style="fill: #f0f9ff; stroke: #0369a1;"/>
-    <text x="700" y="310" class="label" text-anchor="middle" font-weight="bold">Result(T, E)</text>
-    <text x="700" y="335" class="note" text-anchor="middle">Success:</text>
-    <text x="700" y="350" class="note" text-anchor="middle">Ok(value: T)</text>
-    <text x="700" y="370" class="note" text-anchor="middle">Failure:</text>
-    <text x="700" y="385" class="note" text-anchor="middle">Err(error: E)</text>
+    <text x="700" y="310" class="label" text-anchor="middle" font-weight="bold">throws / raise</text>
+    <text x="700" y="335" class="note" text-anchor="middle">a call that can fail:</text>
+    <text x="700" y="350" class="note" text-anchor="middle">f()? or catch</text>
+    <text x="700" y="370" class="note" text-anchor="middle">an optional:</text>
+    <text x="700" y="385" class="note" text-anchor="middle">T? -- nil, never error</text>
   </g>
 
   <!-- Bottom note -->

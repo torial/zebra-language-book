@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; font-family: Arial, sans-serif; }
@@ -51,8 +51,8 @@
 
     <!-- Function scope variables -->
     <rect x="70" y="350" width="420" height="130" class="box" rx="5"/>
-    <text x="90" y="370" class="label" font-weight="bold">Function Parameters & Variables</text>
-    <text x="90" y="395" class="code">def process(name as str)</text>
+    <text x="90" y="370" class="label" font-weight="bold">Function Parameters &amp; Variables</text>
+    <text x="90" y="395" class="code">def process(name: str)</text>
     <text x="90" y="420" class="code">  var count = 0</text>
     <text x="90" y="445" class="code">  # name, count accessible</text>
     <text x="90" y="465" class="code">  # everywhere in function</text>
@@ -60,21 +60,21 @@
 
   <!-- Right side: Closure example -->
   <g>
-    <text x="580" y="80" class="section-title">Closure & Capture</text>
+    <text x="580" y="80" class="section-title">Closure &amp; Capture</text>
 
     <!-- Code example -->
     <rect x="540" y="100" width="440" height="340" fill="#f9fafb" stroke="#d1d5db" stroke-width="1" rx="3"/>
 
-    <text x="560" y="120" class="code" font-weight="bold">def create_multiplier(factor)</text>
-    <text x="560" y="145" class="code">  # Outer scope: factor</text>
-    <text x="560" y="165" class="code">  var closure = capture</text>
-    <text x="560" y="185" class="code">    def multiply(x)</text>
-    <text x="560" y="205" class="code">      return x * factor</text>
-    <text x="560" y="230" class="code">  return closure</text>
-    <text x="560" y="260" class="note">closure "captures"</text>
-    <text x="560" y="275" class="note">the factor variable</text>
-    <text x="560" y="295" class="note">and keeps it alive</text>
-    <text x="560" y="315" class="note">even after</text>
+    <text x="560" y="120" class="code" font-weight="bold">def create_multiplier(factor: int): def(int): int</text>
+    <text x="560" y="145" class="code">  return def(x: int): int</text>
+    <text x="560" y="165" class="code">      capture</text>
+    <text x="560" y="185" class="code">          var f: int = factor   # copied once</text>
+    <text x="560" y="205" class="code">      return x * f</text>
+    <text x="560" y="230" class="code">  # the lambda is the closure</text>
+    <text x="560" y="260" class="note">the capture block</text>
+    <text x="560" y="275" class="note">copies factor into f</text>
+    <text x="560" y="295" class="note">when the closure is made,</text>
+    <text x="560" y="315" class="note">so f outlives</text>
     <text x="560" y="330" class="note">create_multiplier returns</text>
   </g>
 

@@ -617,7 +617,7 @@ This compiles and tests each example to ensure correctness.
 
 ### 22c-Testing-and-Validation (17 examples)
 - `22c_first_test.zbr` — writing a single test
-- `22c_assertions.zbr` — the four assertion forms
+- `22c_assertions.zbr` — assert on comparisons, and what its failure says
 - `22c_tags.zbr` — @tag-based test filtering
 - `22c-testing-and-validation_003.zbr` — basic example
 - `arithmetic_test.zbr` — class-scoped tests

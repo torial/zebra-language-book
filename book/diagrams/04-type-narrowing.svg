@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<svg xml:space="preserve" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .title { font-size: 24px; font-weight: bold; fill: #1f2937; }
@@ -25,10 +25,10 @@
     <g>
       <text x="60" y="135" class="label" font-weight="bold">Before Check:</text>
       <rect x="50" y="150" width="350" height="120" class="before" rx="5"/>
-      <text x="70" y="175" class="code">var name as str? = nil</text>
+      <text x="70" y="175" class="code">var name: str? = nil</text>
       <text x="70" y="200" class="code"># name could be nil or string</text>
       <text x="70" y="225" class="code"># Type: str? (nullable)</text>
-      <text x="70" y="250" class="code">print name  # ERROR!</text>
+      <text x="70" y="250" class="code">var n: int = name.len  # ERROR!</text>
     </g>
 
     <!-- Arrow -->
@@ -41,23 +41,23 @@
       <text x="520" y="175" class="code">if name != nil</text>
       <text x="520" y="200" class="code">  # name is guaranteed not nil</text>
       <text x="520" y="225" class="code">  # Type: str (non-nullable)</text>
-      <text x="520" y="250" class="code">  print name  # OK!</text>
+      <text x="520" y="250" class="code">  var n: int = name.len  # OK!</text>
     </g>
   </g>
 
   <!-- Example 2: Deeper narrowing -->
   <g>
-    <text x="50" y="320" class="section">Example 2: Result Type Narrowing</text>
+    <text x="50" y="320" class="section">Example 2: Binding Form (if x as n)</text>
 
     <!-- Before -->
     <g>
       <text x="60" y="355" class="label" font-weight="bold">Before Check:</text>
       <rect x="50" y="370" width="350" height="140" class="before" rx="5"/>
-      <text x="70" y="395" class="code">var result = parse_int("42")</text>
-      <text x="70" y="420" class="code"># result is Result(int, str)</text>
-      <text x="70" y="445" class="code"># Could be Ok or Err</text>
-      <text x="70" y="470" class="code">var x = result.okValue()</text>
-      <text x="70" y="495" class="code"># ERROR! Could be Err</text>
+      <text x="70" y="395" class="code">var maybe: str? = readLine()</text>
+      <text x="70" y="420" class="code"># maybe could be nil</text>
+      <text x="70" y="445" class="code"># Type: str? (nullable)</text>
+      <text x="70" y="470" class="code">var t = maybe.trim()</text>
+      <text x="70" y="495" class="code"># ERROR! could be nil</text>
     </g>
 
     <!-- Arrow -->
@@ -67,11 +67,11 @@
     <g>
       <text x="510" y="355" class="label" font-weight="bold">After Check:</text>
       <rect x="500" y="370" width="350" height="140" class="after" rx="5"/>
-      <text x="520" y="395" class="code">if result.isOk()</text>
-      <text x="520" y="420" class="code">  var x = result.okValue()</text>
-      <text x="520" y="445" class="code">  # Guaranteed to be Ok now</text>
-      <text x="520" y="470" class="code">  # Type is narrowed to Ok variant</text>
-      <text x="520" y="495" class="code">  print x  # OK!</text>
+      <text x="520" y="395" class="code">if maybe as line</text>
+      <text x="520" y="420" class="code">  var t = line.trim()</text>
+      <text x="520" y="445" class="code">  # line: str, bound for this block</text>
+      <text x="520" y="470" class="code">  # the optional was unwrapped once</text>
+      <text x="520" y="495" class="code">  print(t)  # OK!</text>
     </g>
   </g>
 
@@ -82,7 +82,7 @@
 
     <text x="70" y="610" class="label">✓ Type checker understands control flow</text>
     <text x="70" y="630" class="label">✓ After nil check (if x != nil), x is guaranteed non-nil in that scope</text>
-    <text x="70" y="650" class="label">✓ After Result check (if x.isOk()), x is guaranteed Ok in that scope</text>
+    <text x="70" y="650" class="label">✓ if x as n binds a non-optional n; x orelse fallback supplies a default</text>
     <text x="70" y="670" class="label">✓ Narrowing scope ends at block boundary (outside if block, original type restored)</text>
   </g>
 </svg>

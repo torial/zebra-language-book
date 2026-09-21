@@ -4,7 +4,6 @@
 01-getting-started/01-getting-started_001.zbr
 01-getting-started/01-getting-started_002.zbr
 01-getting-started/01-getting-started_003.zbr
-01-getting-started/01-getting-started_010.zbr
 01-getting-started/01-getting-started_011.zbr
 01-getting-started/01-getting-started_012.zbr
 01-getting-started/greet.zbr
@@ -41,7 +40,6 @@
 04-functions-and-scope/04-functions-and-scope_004.zbr
 04-functions-and-scope/04-functions-and-scope_009.zbr
 04-functions-and-scope/04-functions-and-scope_013.zbr
-04-functions-and-scope/04-functions-and-scope_014.zbr
 04-functions-and-scope/04-functions-and-scope_023.zbr
 04-functions-and-scope/04-functions-and-scope_024.zbr
 04-functions-and-scope/04-functions-and-scope_025.zbr
@@ -61,6 +59,7 @@
 05-control-flow/05_break_continue.zbr
 05-control-flow/05_conditions.zbr
 05-control-flow/05_for.zbr
+05-control-flow/05_guards.zbr
 05-control-flow/05_if.zbr
 05-control-flow/05_if_else.zbr
 05-control-flow/05_inline_if.zbr
@@ -133,18 +132,14 @@
 10-properties-and-computed-values/10_setter_validation.zbr
 10-properties-and-computed-values/10_temperature.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_003.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_004.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_005.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_010.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_011.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_013.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_019.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_020.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_021.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_022.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_031.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_032.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_033.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_034.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_035.zbr
 10b-modules-namespaces-and-visibility/helpers.zbr
@@ -311,9 +306,7 @@
 22-ffi-and-interop/ffi-zig-strings.zbr
 22-ffi-and-interop/greeter.zbr
 22-ffi-and-interop/greeter_host.zbr
-22b-build-system-and-tooling/22b-build-system-and-tooling_005.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_006.zbr
-22b-build-system-and-tooling/22b-build-system-and-tooling_007.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_008.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_009.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_012.zbr
@@ -321,10 +314,7 @@
 22b-build-system-and-tooling/build.zbr
 22c-testing-and-validation/22c-testing-and-validation_003.zbr
 22c-testing-and-validation/22c-testing-and-validation_005.zbr
-22c-testing-and-validation/22c-testing-and-validation_006.zbr
 22c-testing-and-validation/22c-testing-and-validation_014.zbr
-22c-testing-and-validation/22c-testing-and-validation_015.zbr
-22c-testing-and-validation/22c-testing-and-validation_016.zbr
 22c-testing-and-validation/22c_assertions.zbr
 22c-testing-and-validation/22c_first_test.zbr
 22c-testing-and-validation/22c_tags.zbr
@@ -350,7 +340,6 @@ appendix-a-grammar/appendix-a-grammar_032.zbr
 appendix-a-grammar/appendix-a-grammar_042.zbr
 appendix-a-grammar/appendix-a-grammar_043.zbr
 appendix-a-grammar/appendix-a-grammar_045.zbr
-appendix-a-grammar/appendix-a-grammar_046.zbr
 appendix-a-grammar/appendix-a-grammar_047.zbr
 appendix-a-grammar/appendix-a-grammar_049.zbr
 appendix-a-grammar/appendix-a-grammar_050.zbr

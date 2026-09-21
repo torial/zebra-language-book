@@ -415,16 +415,16 @@ four protocols: TCP, UDP, WebSocket, and HTTP.
 # Client:
 def main()
     var conn = Tcp.connect("example.com", 80)
-    conn.send("GET / HTTP/1.0\r\nHost: example.com\r\n\r\n")
-    var response = conn.recv(4096)
+    conn.write("GET / HTTP/1.0\r\nHost: example.com\r\n\r\n")
+    var response = conn.readAll()
     print(response)
     conn.close()
 
 # Server:
 def main()
     Tcp.serve(8080, def(conn)
-        var msg = conn.recv(1024)
-        conn.send("echo: ${msg}")
+        var msg = conn.read()
+        conn.write("echo: ${msg}")
         conn.close()
     )
 ```
@@ -433,7 +433,7 @@ def main()
 |---|---|
 | `Tcp.connect(host, port)` | Client: open a connection; returns a `TcpConn` |
 | `Tcp.serve(port, handler)` | Server: accept connections; calls `handler(conn)` for each |
-| `conn.send(data)` / `conn.recv(n)` / `conn.close()` | I/O primitives on a connection |
+| `conn.write(s)` / `conn.read()` / `conn.readLine()` / `conn.readAll()` / `conn.close()` | I/O primitives on a connection (`read` blocks for the next chunk, `""` at EOF) |
 
 ### UDP
 

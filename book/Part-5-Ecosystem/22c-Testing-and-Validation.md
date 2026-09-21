@@ -3,7 +3,7 @@
 **Audience:** All
 **Time:** 90 minutes
 **Prerequisites:** 04-Functions-and-Scope, 12-Error-Handling, 22b-Build-System-and-Tooling
-**You'll learn:** Writing tests with `assert_*` statements, the `zebra test` runner, filtering with `@tag`, organising tests across a project
+**You'll learn:** Writing tests with `assert`, the `zebra test` runner, filtering with `@tag`, organising tests across a project
 
 ---
 
@@ -39,8 +39,8 @@ A test is a **zero-parameter top-level function whose name starts with
 # chapter: 22c-Testing-and-Validation
 
 def test_addition()
-    assert_eq 1 + 1, 2
-    assert_ne 0, 1
+    assert 1 + 1 == 2
+    assert 0 != 1
 ```
 
 Run it:
@@ -73,38 +73,42 @@ all the failures in one pass.
 
 ## Assertion Statements
 
-Zebra has four built-in assertion **statements** (not functions — they're
-parsed specially so failure messages can include both the expected and
-actual values):
+Zebra has one assertion **statement**, `assert <expr>` (optionally `assert <expr>,
+"message"`). It is parsed specially: when the expression is a comparison (`==`, `!=`,
+`<`, `<=`, `>`, `>=`) the failure message names both sides, so `assert a == b` reports
+`left == right -- left: 3, right: 2` rather than "expected true". That is why the
+four forms of earlier builds -- `assert_eq`, `assert_ne`, `assert_true`, `assert_false`
+-- were retired on 2026-09-15: `assert a == b` already says everything `assert_eq a, b`
+said, and `assert not x` covers `assert_false`.
 
-| Statement | Passes when | Throws when |
+| Statement | Passes when | On failure the message shows |
 |---|---|---|
-| `assert_eq <lhs>, <rhs>` | `lhs == rhs` | `lhs != rhs` |
-| `assert_ne <lhs>, <rhs>` | `lhs != rhs` | `lhs == rhs` |
-| `assert_true <expr>` | `expr` is `true` | `expr` is `false` |
-| `assert_false <expr>` | `expr` is `false` | `expr` is `true` |
+| `assert lhs == rhs` | `lhs == rhs` | both values |
+| `assert lhs != rhs` | `lhs != rhs` | both values |
+| `assert <expr>` | `expr` is `true` | the expression |
+| `assert not <expr>` | `expr` is `false` | the expression |
 
 Examples:
 
 ```zebra
 # file: 22c_assertions.zbr
-# teaches: the four assertion forms
+# teaches: assert on comparisons, and what its failure says
 # chapter: 22c-Testing-and-Validation
 
 def test_equality()
-    assert_eq 1 + 1, 2
-    assert_eq "hello", "hello"
-    assert_eq [1, 2, 3].count(), 3
+    assert 1 + 1 == 2
+    assert "hello" == "hello"
+    assert [1, 2, 3].count() == 3
 
 def test_inequality()
-    assert_ne 1, 2
-    assert_ne "foo", "bar"
+    assert 1 != 2
+    assert "foo" != "bar"
 
 def test_booleans()
-    assert_true  5 > 3
-    assert_true  not false
-    assert_false 1 > 2
-    assert_false "x".len == 0
+    assert 5 > 3
+    assert not false
+    assert not (1 > 2)
+    assert not ("x".len == 0)
 ```
 
 On failure, each assertion throws `error.ZebraError` with a descriptive
@@ -112,9 +116,8 @@ message that includes both operands.
 
 ### What about `assert`?
 
-The plain `assert` keyword (used as `assert cond` and `assert cond, "msg"`)
-also works inside a `test_*` function, and — as of 2026-09-09 — behaves the
-same way the `assert_*` forms do: a failing plain `assert` fails *that test*
+`assert` (used as `assert cond` and `assert cond, "msg"`)
+inside a `test_*` function — as of 2026-09-09 — fails *that test*
 (`FAIL: name: assert failed at file.zbr:NN`, or your message if you gave
 one) and the runner moves on to the next test, same as every other
 assertion form. Before that fix (BUG-386) a failing plain `assert` inside a
@@ -124,9 +127,9 @@ the test — if you're on an older build, that's the difference you'll see.
 Outside a `test_*` function, `assert` is still the ordinary process-ending
 check it always was — it isn't caught or converted to a test failure there.
 
-Prefer `assert_eq`/`assert_ne`/`assert_true`/`assert_false` over `assert` in
-tests anyway: they produce better failure messages — they print the actual
-*values*, not just "expected true, got false."
+Prefer a comparison inside `assert` (`assert got == 4`) over a pre-computed
+boolean (`assert ok`): the comparison form prints both *values* on failure, not
+just "expected true, got false."
 
 ---
 
@@ -190,7 +193,7 @@ Apply one or more string tags to a test function:
 
 @tag("unit", "math")
 def test_addition()
-    assert_eq 1 + 1, 2
+    assert 1 + 1 == 2
 
 @tag("integration")
 def test_database_roundtrip()
@@ -201,12 +204,12 @@ def test_database_roundtrip()
     var rows = db.query("SELECT x FROM t")
     var row = rows.at(0)
     # Row accessors take the COLUMN NAME, not an index.
-    assert_eq row.asInt("x"), 42
+    assert row.asInt("x") == 42
 
 @tag("slow")
 def test_large_dataset()
     # ... long-running test ...
-    assert_true true
+    assert true
 ```
 
 Run only the fast unit tests on every commit, leaving slow integration
@@ -243,10 +246,10 @@ class Arithmetic
     static
         @tag("unit")
         def test_add()
-            assert_eq 2 + 2, 4
+            assert 2 + 2 == 4
 
         def test_subtract()
-            assert_eq 5 - 3, 2
+            assert 5 - 3 == 2
 ```
 
 (`@tag` goes *inside* a `static` group block, directly above the `def` it
@@ -276,17 +279,17 @@ the class name applies:
 
 class Arithmetic
     static def test_add()
-        assert_eq 2 + 2, 4
+        assert 2 + 2 == 4
 
     static def test_subtract()
-        assert_eq 10 - 3, 7
+        assert 10 - 3 == 7
 
 class Strings
     static def test_concat()
-        assert_eq "foo" + "bar", "foobar"
+        assert "foo" + "bar" == "foobar"
 
     static def test_len()
-        assert_eq "hello".len, 5
+        assert "hello".len == 5
 ```
 
 `zebra test arithmetic_test.zbr` runs all four. Use `--tag Arithmetic` or
@@ -348,27 +351,27 @@ use calc
 
 class CalcTests
     static def test_add_basic()
-        assert_eq Calc.add(2, 3), 5
+        assert Calc.add(2, 3) == 5
 
     static def test_add_negatives()
-        assert_eq Calc.add(-2, -3), -5
-        assert_eq Calc.add(-5, 10), 5
+        assert Calc.add(-2, -3) == -5
+        assert Calc.add(-5, 10) == 5
 
     static def test_divide_normal()
-        assert_eq Calc.divide(10, 2) catch 0, 5
-        assert_eq Calc.divide(15, 3) catch 0, 5
+        assert (Calc.divide(10, 2) catch 0) == 5
+        assert (Calc.divide(15, 3) catch 0) == 5
 
     static def test_divide_by_zero()
         # divide(_, 0) raises; the inline catch substitutes -1
-        assert_eq Calc.divide(10, 0) catch -1, -1
+        assert (Calc.divide(10, 0) catch -1) == -1
 
     static def test_max_of_normal()
         var nums = [3, 1, 4, 1, 5, 9, 2, 6]
-        assert_eq Calc.max_of(nums) catch 0, 9
+        assert (Calc.max_of(nums) catch 0) == 9
 
     static def test_max_of_empty()
         var empty: List(int) = []
-        assert_eq Calc.max_of(empty) catch -1, -1
+        assert (Calc.max_of(empty) catch -1) == -1
 ```
 
 Run them:
@@ -402,13 +405,13 @@ Two patterns worth noticing:
 >
 > ```zebra
 > def addition_test()        # Wrong — runner doesn't see this
->     assert_eq 1 + 1, 2
+>     assert 1 + 1 == 2
 > ```
 >
 > ✅ **Better:**
 > ```zebra
 > def test_addition()        # Discovered by the runner
->     assert_eq 1 + 1, 2
+>     assert 1 + 1 == 2
 > ```
 
 > ❌ **Mistake:** Using plain `assert` for value comparisons
@@ -421,7 +424,7 @@ Two patterns worth noticing:
 > ✅ **Better:**
 > ```zebra
 > def test_addition()
->     assert_eq 1 + 1, 2     # failure message includes both values
+>     assert 1 + 1 == 2     # failure message includes both values
 > ```
 
 > ❌ **Mistake:** Sharing state between tests
@@ -431,11 +434,11 @@ Two patterns worth noticing:
 >
 > def test_increment_once()
 >     counter = counter + 1
->     assert_eq counter, 1   # passes the first time, breaks if run after another test
+>     assert counter == 1   # passes the first time, breaks if run after another test
 >
 > def test_increment_twice()
 >     counter = counter + 1  # depends on counter == 0 — fragile
->     assert_eq counter, 1
+>     assert counter == 1
 > ```
 >
 > ✅ **Better:** rebuild the state inside each test, or use a helper:
@@ -446,14 +449,14 @@ Two patterns worth noticing:
 > def test_increment_once()
 >     var c = fresh_counter()
 >     c = c + 1
->     assert_eq c, 1
+>     assert c == 1
 > ```
 
 > ❌ **Mistake:** Putting `def main()` in a test file
 >
 > ```zebra
 > def test_thing()
->     assert_true true
+>     assert true
 >
 > def main()                 # silently dropped in test mode — confusing
 >     print("this never runs under zebra test")
@@ -475,15 +478,15 @@ operations.
 
 ```zebra
 def test_concat()
-    assert_eq "foo" + "bar", "foobar"
+    assert "foo" + "bar" == "foobar"
 
 def test_length()
-    assert_eq "hello".len, 5
-    assert_eq "".len, 0
+    assert "hello".len == 5
+    assert "".len == 0
 
 def test_contains()
-    assert_true  "hello world".contains("world")
-    assert_false "hello world".contains("zebra")
+    assert "hello world".contains("world")
+    assert not ("hello world".contains("zebra"))
 ```
 
 Run it with `zebra test string_test.zbr`.
@@ -504,17 +507,17 @@ class UserTests
     static
         @tag("unit")
         def test_email_validation()
-            assert_true  User.is_valid_email("a@b.com")
-            assert_false User.is_valid_email("not-an-email")
+            assert User.is_valid_email("a@b.com")
+            assert not (User.is_valid_email("not-an-email"))
 
         @tag("unit")
         def test_name_normalization()
-            assert_eq User.normalize_name("  Alice  "), "Alice"
+            assert User.normalize_name("  Alice  ") == "Alice"
 
         @tag("integration")
         def test_save_and_load()
             # ... uses Sqlite or a file ...
-            assert_true true
+            assert true
 ```
 
 Run only unit tests:
@@ -537,15 +540,15 @@ both the success and the throwing paths.
 use calc
 
 def test_divide_success()
-    assert_eq Calc.divide(20, 4) catch 0, 5
-    assert_eq Calc.divide(7, 1) catch 0, 7
+    assert (Calc.divide(20, 4) catch 0) == 5
+    assert (Calc.divide(7, 1) catch 0) == 7
 
 def test_divide_zero_raises()
     # Sentinel: divide on success can't return -1 for positive inputs
-    assert_eq Calc.divide(10, 0) catch -1, -1
+    assert (Calc.divide(10, 0) catch -1) == -1
 ```
 
-The inline `catch` lets `assert_eq` see a value either way. Pick a
+The inline `catch` lets `assert` see a value either way. Pick a
 sentinel that the success path can't produce.
 
 </details>
@@ -564,11 +567,11 @@ sentinel that the success path can't produce.
 
 - **Tests are `def test_*()` top-level (or `static def test_*()` in a class)** — the runner discovers them automatically; no registration needed
 - **`zebra test file.zbr`** compiles in test mode (suppressing `main()`), generates a synthetic entry point, runs every discovered test, reports pass/fail
-- **Use `assert_eq` / `assert_ne` / `assert_true` / `assert_false`** — they produce better failure messages than bare `assert`
+- **Put the comparison inside `assert`** (`assert got == want`) — the failure message then shows both values
 - **`@tag("name")`** marks tests for filtered runs; `zebra test --tag X` runs only matching tests
 - **Auto-tags** include the file stem and the enclosing class/struct name — most filtering needs no explicit `@tag`
 - **Each test is independent** — no shared state, no setup/teardown framework; if you need setup, write a helper called from each test
-- **Inline `catch` is the test-time idiom for throwing functions** — `expr catch sentinel` lets `assert_eq` see a value either way
+- **Inline `catch` is the test-time idiom for throwing functions** — `expr catch sentinel` lets `assert` see a value either way
 
 ---
 

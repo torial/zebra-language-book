@@ -3,16 +3,15 @@
 Thirteen SVGs under `book/diagrams/`, checked against the language as it is (zebra-language
 `f596eba`: QUICKSTART, SURFACE.md, CHANGELOG, the test corpus), every `<text>` element read;
 disputed snippets were RUN through the compiler (marked **[ran]**). Done by a subagent at
-Sean's request, relayed and checked by Fable 5.1. Nothing here is fixed yet; this is the
-worklist.
+Sean's request, relayed and checked by Fable 5.1. STATUS 2026-09-21 (same day): fixes 2-9 below are DONE in the same commit as this note
+(syntax sweep, Result removed, 05 and 10 redrawn, 07/12/13 corrected, three originals that were
+malformed XML repaired, `xml:space="preserve"` so indentation shows); every code panel was run
+through the compiler. Open: fix 1 is withdrawn; fix 10 (09 and 11 vs their chapters) is not done.
 
 ## Cross-cutting (every embedded diagram)
 
-1. The chapters embed `../diagrams/NN-name.png`; the PNGs exist locally (generated from the
-   SVGs by `convert-svg-to-png.bat`) but `.gitignore` keeps them out of the repo (`*.png`; the
-   `!diagrams/*.png` exception does not match `book/diagrams/`), so the PUBLISHED book shows
-   broken images unless the Pages build regenerates them. Check the deployed site; either
-   track the PNGs or embed the SVGs (`diagrams/README.md` says to embed the SVGs).
+1. (Withdrawn.) The audit's first draft said the embedded PNGs were not in the repo, from
+   reading `.gitignore`; `git status` shows all 13 tracked. The images reach readers.
 2. `name as Type` annotations in 03, 04, 05, 06, 10, 12 -- the syntax is `: Type`; `as` is a
    binding clause. **[ran]** `def process(name as str)` is a parse error.
 3. Paren-less `def name as T` in 06, 10, 12 -- must be `def name(): T`.
@@ -43,7 +42,7 @@ worklist.
 
 ## Prioritised fixes
 
-1. Make the images reach readers (cross-cutting #1).
+1. (withdrawn -- the PNGs are tracked)
 2. Delete or redraw 10-class-hierarchy as interface + mixin + composition; fix README.
 3. Redraw 05-error-propagation around `throws` / `raise` / `expr?` / `catch`.
 4. Remove Result from 01 and 04; fix 04's "print name # ERROR!".

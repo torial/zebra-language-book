@@ -1,5 +1,5 @@
 > def test_thing()
->     assert_true true
+>     assert true
 >
 > def main()                 # silently dropped in test mode — confusing
 >     print("this never runs under zebra test")
