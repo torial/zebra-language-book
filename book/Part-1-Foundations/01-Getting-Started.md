@@ -42,8 +42,8 @@ Let's get your environment set up and run your first program.
 ```bash
 # Install Zig first (Zebra compiles to Zig)
 # https://ziglang.org/download/
-# Then install Zebra
-# https://github.com/cobra-language/zebra/releases
+# Then install Zebra (the installer bundles a pinned Zig, so this step is optional)
+# https://github.com/torial/zebra-language/releases
 
 # Verify installation
 zebra --version
@@ -52,7 +52,7 @@ zebra --version
 ### Windows
 
 ```cmd
-# Download from: https://github.com/cobra-language/zebra/releases
+# Download from: https://github.com/torial/zebra-language/releases
 # Extract to a directory
 # Add to PATH
 # Verify:
@@ -62,8 +62,8 @@ zebra --version
 ### From Source
 
 ```bash
-git clone https://github.com/cobra-language/zebra.git
-cd zebra/zig-compiler
+git clone https://github.com/torial/zebra-language.git
+cd zebra-language
 zig build
 # Binary at: zig-out/bin/zebra
 ```

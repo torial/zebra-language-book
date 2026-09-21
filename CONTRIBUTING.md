@@ -36,8 +36,8 @@ Thank you for your interest in improving this book! Here's how to help.
 
 ### Step 1: Set Up
 ```bash
-git clone https://github.com/your-fork/cobra-language.git
-cd zebra-book
+git clone https://github.com/your-fork/zebra-language-book.git
+cd zebra-language-book
 ```
 
 ### Step 2: Make Changes
