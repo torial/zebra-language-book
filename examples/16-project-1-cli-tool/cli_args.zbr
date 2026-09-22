@@ -6,7 +6,7 @@ class CliArgs
     var command: str
     var filename: str
     var pattern: str?
-    
+
     cue init(command: str, filename: str)
         this.command = command
         this.filename = filename
@@ -15,25 +15,25 @@ class CliArgs
 class CommandParser
     static
         def parse(args: List(str)): CliArgs throws
-            # Precondition: at least 2 arguments (program name + command + filename)
+            # Precondition: program name + command + filename
             if args.count() < 3
                 raise "Usage: textool [command] [file]"
-            
+
             var command = args.at(1)
             var filename = args.at(2)
-            
+
             # Validate command
             if not valid_command(command)
                 raise "Unknown command: ${command}"
-            
+
             # Create args object
             var cli_args = CliArgs(command, filename)
-            
+
             # Add pattern if provided
             if args.count() >= 4
                 cli_args.pattern = args.at(3)
-            
+
             return cli_args
-        
+
         def valid_command(cmd: str): bool
             return cmd == "count" or cmd == "search" or cmd == "stats"

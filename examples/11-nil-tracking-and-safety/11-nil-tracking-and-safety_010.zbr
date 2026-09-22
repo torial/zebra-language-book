@@ -1,3 +1,7 @@
-> var email: str? = get_email()
-> print(email.len)  # ❌ Crash if email is nil!
->
+def process(data: str?)
+    if data == nil
+        return
+    if data.len == 0
+        return
+    # Now process safely
+    do_work(data)

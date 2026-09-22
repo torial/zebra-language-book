@@ -1,7 +1,8 @@
-def process(data: str?)
-    if data == nil
-        return
-    if data.len == 0
-        return
-    # Now process safely
-    do_work(data)
+def get_user_city(user_id: int): str?
+    var user = find_user(user_id)
+    if user == nil
+        return nil
+    var address = get_address(user.id)
+    if address == nil
+        return nil
+    return address.city

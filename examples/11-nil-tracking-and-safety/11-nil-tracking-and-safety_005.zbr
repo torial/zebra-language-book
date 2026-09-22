@@ -1,0 +1,4 @@
+# Combined type check + unwrap:
+var maybe_user: User? = lookup()
+if maybe_user is User as u
+    print(u.name)  # u is `User` (non-optional)

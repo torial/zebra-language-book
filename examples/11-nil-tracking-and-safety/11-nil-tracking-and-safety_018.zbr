@@ -1,36 +1,17 @@
-class Profile
-    var name: str
-    var bio: str?
-
-class User
-    var id: int
-    var profile: Profile?
-
-class UserService
+class Calculator
     static
-        def get_user_bio(user_id: int): str?
-            var user = find_user(user_id)
-            if user == nil
+        def safe_divide(a: float, b: float): float?
+            if b == 0.0
                 return nil
-            var profile = user.profile
-            if profile == nil
-                return nil
-            return profile.bio
-        
-        def find_user(id: int): User?
-            if id == 1
-                var user = User()
-                user.id = 1
-                var profile = Profile()
-                profile.name = "Alice"
-                profile.bio = "Developer"
-                user.profile = profile
-                return user
-            return nil
+            return a / b
 
 def main()
-    var bio = UserService.get_user_bio(1)
-    if bio != nil
-        print("Bio: ${bio}")
+    var result = Calculator.safe_divide(10.0, 2.0)
+    if result != nil
+        print("Result: ${result}")
+    
+    var bad = Calculator.safe_divide(10.0, 0.0)
+    if bad != nil
+        print(bad)
     else
-        print("No bio found")
+        print("Cannot divide by zero")

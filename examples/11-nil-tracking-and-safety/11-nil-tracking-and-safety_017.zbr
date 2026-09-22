@@ -1,17 +1,28 @@
-class Calculator
+class User
+    var id: int
+    var name: str
+    var email: str?
+
+class UserDB
     static
-        def safe_divide(a: float, b: float): float?
-            if b == 0.0
+        def find_user(id: int): User?
+            if id == 1
+                var user = User()
+                user.id = 1
+                user.name = "Alice"
+                user.email = "alice@example.com"
+                return user
+            return nil
+        
+        def get_email(user_id: int): str?
+            var user = find_user(user_id)
+            if user == nil
                 return nil
-            return a / b
+            return user.email
 
 def main()
-    var result = Calculator.safe_divide(10.0, 2.0)
-    if result != nil
-        print("Result: ${result}")
-    
-    var bad = Calculator.safe_divide(10.0, 0.0)
-    if bad != nil
-        print(bad)
+    var email = UserDB.get_email(1)
+    if email != nil
+        print("Email: ${email}")
     else
-        print("Cannot divide by zero")
+        print("User not found or no email")

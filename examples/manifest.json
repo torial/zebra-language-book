@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 696,
+  "total_examples": 697,
   "generated": "1785214308.777066",
   "examples": [
     {
@@ -1720,6 +1720,13 @@
     },
     {
       "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_003.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_003.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
       "file": "11_if_as.zbr",
       "teaches": "optional unwrap binding form",
       "project": null,
@@ -1727,10 +1734,10 @@
     },
     {
       "chapter": "11-Nil-Tracking-and-Safety",
-      "file": "11-nil-tracking-and-safety_004.zbr",
+      "file": "11-nil-tracking-and-safety_005.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_004.zbr"
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_005.zbr"
     },
     {
       "chapter": "11-Nil-Tracking-and-Safety",
@@ -1752,13 +1759,6 @@
       "teaches": "nil in realistic scenarios",
       "project": null,
       "path": "examples/11-nil-tracking-and-safety/11_database.zbr"
-    },
-    {
-      "chapter": "11-Nil-Tracking-and-Safety",
-      "file": "11-nil-tracking-and-safety_008.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_008.zbr"
     },
     {
       "chapter": "11-Nil-Tracking-and-Safety",
@@ -1829,6 +1829,13 @@
       "teaches": null,
       "project": null,
       "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_018.zbr"
+    },
+    {
+      "chapter": "11-Nil-Tracking-and-Safety",
+      "file": "11-nil-tracking-and-safety_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/11-nil-tracking-and-safety/11-nil-tracking-and-safety_019.zbr"
     },
     {
       "chapter": "12-Error-Handling-with-Results",

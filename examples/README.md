@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 696 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 697 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,7 +42,7 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 696
+- **Total Examples:** 697
 - **Chapters Covered:** 33
 - **Topics:** 214
 
@@ -317,16 +317,16 @@ This compiles and tests each example to ensure correctness.
 - `10b-modules-namespaces-and-visibility_034.zbr` — basic example
 - `10b-modules-namespaces-and-visibility_035.zbr` — basic example
 
-### 11-Nil-Tracking-and-Safety (19 examples)
+### 11-Nil-Tracking-and-Safety (20 examples)
 - `11_nullable.zbr` — nullable types
 - `11_nil_check.zbr` — nil checking
 - `11_narrowing.zbr` — type narrowing
+- `11-nil-tracking-and-safety_003.zbr` — basic example
 - `11_if_as.zbr` — optional unwrap binding form
-- `11-nil-tracking-and-safety_004.zbr` — basic example
+- `11-nil-tracking-and-safety_005.zbr` — basic example
 - `11_unwrap.zbr` — force-unwrap operator
 - `11_unwrap_or.zbr` — safe unwrapping
 - `11_database.zbr` — nil in realistic scenarios
-- `11-nil-tracking-and-safety_008.zbr` — basic example
 - `11-nil-tracking-and-safety_009.zbr` — basic example
 - `11-nil-tracking-and-safety_010.zbr` — basic example
 - `11-nil-tracking-and-safety_011.zbr` — basic example
@@ -337,6 +337,7 @@ This compiles and tests each example to ensure correctness.
 - `11-nil-tracking-and-safety_016.zbr` — basic example
 - `11-nil-tracking-and-safety_017.zbr` — basic example
 - `11-nil-tracking-and-safety_018.zbr` — basic example
+- `11-nil-tracking-and-safety_019.zbr` — basic example
 
 ### 12-Error-Handling-with-Results (9 examples)
 - `12_throws_basic.zbr` — throws annotation

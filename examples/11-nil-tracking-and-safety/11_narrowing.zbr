@@ -3,9 +3,7 @@
 # chapter: 11-Nil-Tracking-and-Safety
 
 def process_name(input: str?)
-    if input == nil
-        return  # Exit early if nil
-
-    # From here, input is narrowed to str
-    print(input.len)  # ✅ Safe: know it's str
-    print(input.upper())  # ✅ Safe
+    if input != nil
+        # Inside the block, input is narrowed to str
+        print(input.len)  # ✅ Safe: know it's str
+        print(input.upper())  # ✅ Safe

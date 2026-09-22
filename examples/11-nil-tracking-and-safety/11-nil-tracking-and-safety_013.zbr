@@ -1,4 +1,3 @@
 > var value: str? = get_value()
-> if value != nil
->     print(value)  # ✅ Safe, or use unwrapOr
+> print(value!)  # ❌ Crashes if value is nil
 >

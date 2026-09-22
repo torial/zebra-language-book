@@ -1,2 +1,4 @@
-> var name: str = nil  # ❌ str can't be nil
+> var value: str? = get_value()
+> if value != nil
+>     print(value)  # ✅ Safe, or use unwrapOr
 >

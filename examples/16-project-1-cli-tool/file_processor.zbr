@@ -2,96 +2,75 @@
 # teaches: file I/O and text processing
 # project: Project-1-CLI-Tool
 
+class Stats
+    var filename: str
+    var lines: int
+    var words: int
+    var chars: int
+
+    cue init(filename: str, lines: int, words: int, chars: int)
+        this.filename = filename
+        this.lines = lines
+        this.words = words
+        this.chars = chars
+
+    def display(): str
+        return "${lines} lines, ${words} words, ${chars} chars: ${filename}"
+
 class FileProcessor
     static
         def read_file(filename: str): str throws
             # Check if file exists first
             if not File.exists(filename)
                 raise "File not found: ${filename}"
-            
+
             # Read the entire file
             var content = File.read(filename)
-            
+
             if content.len == 0
                 raise "File is empty: ${filename}"
-            
+
             return content
-        
+
         def count_lines(filename: str): int throws
-            var content_result = read_file(filename)
-            
-            if content_result.isErr()
-                raise content_result.errValue()
-            
-            var content = content_result.okValue()
+            var content = read_file(filename)?
             var lines = content.split("\n")
-            
+
             # Count non-empty lines (common behavior)
             var count = 0
             for line in lines
                 if line.trim().len > 0
                     count = count + 1
-            
+
             return count
-        
+
         def count_words(filename: str): int throws
-            var content_result = read_file(filename)
-            
-            if content_result.isErr()
-                raise content_result.errValue()
-            
-            var content = content_result.okValue()
+            var content = read_file(filename)?
             var words = content.split(" ")
-            
+
             var count = 0
             for word in words
                 if word.trim().len > 0
                     count = count + 1
-            
+
             return count
-        
+
         def count_chars(filename: str): int throws
-            var content_result = read_file(filename)
-            
-            if content_result.isErr()
-                raise content_result.errValue()
-            
-            var content = content_result.okValue()
+            var content = read_file(filename)?
             return content.len
-        
+
         def get_stats(filename: str): Stats throws
-            var content_result = read_file(filename)
-            
-            if content_result.isErr()
-                raise content_result.errValue()
-            
-            var content = content_result.okValue()
-            
+            var content = read_file(filename)?
+
             var lines = content.split("\n")
             var line_count = lines.count()
             var word_count = 0
             var char_count = content.len
-            
+
             for line in lines
                 var words = line.split(" ")
                 for word in words
                     if word.len > 0
                         word_count = word_count + 1
-            
-            var stats = Stats(filename, line_count, word_count, char_count)
-            return stats
 
-class Stats
-    var filename: str
-    var lines: int
-    var words: int
-    var chars: int
-    
-    cue init(filename: str, lines: int, words: int, chars: int)
-        this.filename = filename
-        this.lines = lines
-        this.words = words
-        this.chars = chars
-    
-    def display: str
-        return "${lines} lines, ${words} words, ${chars} chars: ${filename}"
+            return Stats(filename, line_count, word_count, char_count)

@@ -1,0 +1,5 @@
+# an early return still works, with an explicit unwrap after it
+def shout(input: str?): str
+    if input == nil
+        return ""
+    return input!.upper()

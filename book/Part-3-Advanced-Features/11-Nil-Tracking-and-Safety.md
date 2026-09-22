@@ -89,12 +89,23 @@ After checking, the type is narrowed:
 # chapter: 11-Nil-Tracking-and-Safety
 
 def process_name(input: str?)
-    if input == nil
-        return  # Exit early if nil
+    if input != nil
+        # Inside the block, input is narrowed to str
+        print(input.len)  # ✅ Safe: know it's str
+        print(input.upper())  # ✅ Safe
+```
 
-    # From here, input is narrowed to str
-    print(input.len)  # ✅ Safe: know it's str
-    print(input.upper())  # ✅ Safe
+Narrowing follows the `if x != nil` block, not an early `return`. The early-return
+shape — `if input == nil: return` and then using `input` below — does **not** narrow
+(the else-branch of `== nil` is on the not-yet list), so write it as the block above,
+or bind with `if input as name` (next section), or unwrap explicitly with `input!`.
+
+```zebra
+# an early return still works, with an explicit unwrap after it
+def shout(input: str?): str
+    if input == nil
+        return ""
+    return input!.upper()
 ```
 
 ---

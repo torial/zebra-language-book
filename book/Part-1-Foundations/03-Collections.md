@@ -14,7 +14,7 @@ Collections let you group values. Instead of declaring 100 separate variables fo
 Zebra provides:
 - **List(T)** — Ordered, resizable sequences (like Python's list)
 - **HashMap(K, V)** — Key-value pairs (like Python's dict)
-- **StrSet** — Unique strings (a specialized set; the only flavor of `Set` Zebra ships today)
+- **Set(T)** — Unique elements of any hashable type (`Set(str)()`, `Set(int)()`)
 
 ![Collections Comparison](../diagrams/02-collections-comparison.png)
 
