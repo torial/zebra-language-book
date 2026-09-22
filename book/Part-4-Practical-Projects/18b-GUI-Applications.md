@@ -352,12 +352,16 @@ Both compile to the same thing. Prefer `using`.
 | `g.slider(label, value, min, max, on)` | — | `on: def(v: float): Msg` as it moves. Range is fixed at creation. |
 | `g.inputMultiline(label, text, on)` | — | Multi-line entry; `on: def(s: str): Msg` on every change. |
 | `g.combobox(label, items, sel, on)` / `g.spinbox(label, value, min, max, on)` | — | `on: def(i: int): Msg`. |
+| `g.radio(label, items, sel, on)` | — | One radio button per item; `on: def(i: int): Msg`. Pick-one-of-N in the open. |
+| `g.password(label, text, on)` / `g.search(label, text, on)` | — | `field` on a masked / search-styled entry. |
 | `g.menuItem(label, msg)` | — | A menubar item, inside `g.beginMenu(name)` … `g.endMenu()`. |
 | `g.every(ms, msg)` | — | Sends `msg` every `ms` milliseconds while the view declares it. |
 | `g.separator()` | — | A horizontal rule. |
 | `g.send(msg)` | — | Dispatch a message to `update`. |
 | `g.vbox(id, stretch)` / `g.hbox(id, stretch)` | — | Layout containers (with `using`). |
 | `g.beginPanel(id)` / `g.endPanel(id)` | — | A titled group box. |
+| `g.beginForm(id)` / `g.endForm(id)` | — | A settings-dialog layout: labels left, aligned; controls right. Each child's label is its row label. |
+| `g.beginTable(id, cols)` … `g.endTable()` | — | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column. |
 
 **Widget identity comes from the label.** A widget is matched to last render's
 widget of the same kind and label, in order — so two buttons labelled `+` are
@@ -368,9 +372,10 @@ still two buttons. For a widget whose label you don't want displayed, use the
 
 Being honest about the edges, because discovering these by trial is unpleasant:
 
-- **Tables and trees** are no-ops. Build a `vbox` of buttons or labels instead.
-- **`g.sameLine()`** is a no-op — it belongs to the immediate-mode style. Use an
-  `hbox`.
+- **Trees** are not there (`treeNode` is a no-op). Tables work, with text cells and
+  one checkbox column; a file browser today is a table.
+- **`g.sameLine()`, `g.spacing()`, `g.indent()`** are cosmetic no-ops on native
+  backends — they belong to the immediate-mode style. Use an `hbox`.
 - **`g.textColored`** renders the text but ignores the colour.
 - **Fixed pixel widths** aren't supported; boxes divide space by `stretch`
   (`g.minSize(id, w, h)` gives a box a floor).
