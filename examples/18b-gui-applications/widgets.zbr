@@ -24,9 +24,7 @@ def update(m: Model, msg: Msg): Model
 def view(g: Gui, m: Model)
     g.toggle("Loud mode", m.loud, def(b: bool): Msg = Msg.set_loud(b))
     g.field("Label", m.label, def(s: str): Msg = Msg.set_label(s))
-    var vol = g.slider("Volume", m.volume, 0.0, 100.0)
-    if vol != m.volume
-        g.send(Msg.set_volume(vol))
+    g.slider("Volume", m.volume, 0.0, 100.0, def(v: float): Msg = Msg.set_volume(v))
     g.separator()
     g.text("volume=" + m.volume.toString() + " loud=" + m.loud.toString())
 

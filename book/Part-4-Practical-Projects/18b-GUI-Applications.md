@@ -251,9 +251,7 @@ def update(m: Model, msg: Msg): Model
 def view(g: Gui, m: Model)
     g.toggle("Loud mode", m.loud, def(b: bool): Msg = Msg.set_loud(b))
     g.field("Label", m.label, def(s: str): Msg = Msg.set_label(s))
-    var vol = g.slider("Volume", m.volume, 0.0, 100.0)
-    if vol != m.volume
-        g.send(Msg.set_volume(vol))
+    g.slider("Volume", m.volume, 0.0, 100.0, def(v: float): Msg = Msg.set_volume(v))
     g.separator()
     g.text("volume=" + m.volume.toString() + " loud=" + m.loud.toString())
 
@@ -261,11 +259,12 @@ def main()
     Gui.run("Widgets", 380, 260, init, update, view)
 ```
 
-**The slider is the exception.** `g.slider` still *returns* its current value
-(as do `g.selectable` and `g.inputMultiline`); a message form for it is owed. For
-those three the pattern is read, compare, send — and the comparison matters:
-without it you would dispatch a message on every render, and `update` would run
-continuously.
+Every widget that holds state has this shape: the model supplies the value the
+widget shows, and the `on` function names the message for a change. There is no
+widget that *returns* a value — so `view` never compares anything, and `update`
+is the only place the model changes. `g.inputMultiline(label, text, on)`,
+`g.combobox(label, items, selected, on)` and `g.spinbox(label, value, min, max, on)`
+follow the same rule with `def(s: str)`, `def(i: int)` and `def(n: int)`.
 
 ---
 
@@ -350,8 +349,9 @@ Both compile to the same thing. Prefer `using`.
 | `g.button(label, msg)` | — | Sends `msg` when clicked. |
 | `g.toggle(label, checked, on)` | — | A checkbox; `on: def(b: bool): Msg` is called when it flips. |
 | `g.field(label, text, on)` | — | Single-line text entry; `on: def(s: str): Msg` on every change. |
-| `g.slider(label, value, min, max)` | `float` | The current value (read-compare-send). Range is fixed at creation. |
-| `g.inputMultiline(label, value, w, h)` | `str` | Multi-line entry (read-compare-send). |
+| `g.slider(label, value, min, max, on)` | — | `on: def(v: float): Msg` as it moves. Range is fixed at creation. |
+| `g.inputMultiline(label, text, on)` | — | Multi-line entry; `on: def(s: str): Msg` on every change. |
+| `g.combobox(label, items, sel, on)` / `g.spinbox(label, value, min, max, on)` | — | `on: def(i: int): Msg`. |
 | `g.menuItem(label, msg)` | — | A menubar item, inside `g.beginMenu(name)` … `g.endMenu()`. |
 | `g.every(ms, msg)` | — | Sends `msg` every `ms` milliseconds while the view declares it. |
 | `g.separator()` | — | A horizontal rule. |
@@ -372,7 +372,6 @@ Being honest about the edges, because discovering these by trial is unpleasant:
 - **`g.sameLine()`** is a no-op — it belongs to the immediate-mode style. Use an
   `hbox`.
 - **`g.textColored`** renders the text but ignores the colour.
-- **`g.selectable`** always returns `false`. Use `g.button`.
 - **Fixed pixel widths** aren't supported; boxes divide space by `stretch`
   (`g.minSize(id, w, h)` gives a box a floor).
 
@@ -527,8 +526,8 @@ you can capture and assert on.
 >
 > `view` runs after an event: a click, a change, a timer. An unconditional
 > `g.send` in `view` is a livelock; the runtime drops it after a few passes with a
-> warning. (A value-returning widget such as `g.slider` is the one place to
-> compare before sending.)
+> warning. No widget returns a value, so there is nothing in `view` to compare;
+> a `g.send` there is almost always a mistake.)
 
 > ❌ **Mistake:** Reusing a widget id
 >
