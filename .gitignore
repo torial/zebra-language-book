@@ -2,6 +2,7 @@
 zebra-programming-book.pdf
 *.png
 !diagrams/*.png
+!book/diagrams/*.png
 
 # Temp files
 *.tmp
