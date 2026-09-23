@@ -379,7 +379,7 @@ Both compile to the same thing. Prefer `using`.
 | `g.vbox(id, stretch)` / `g.hbox(id, stretch)` | — | Layout containers (with `using`). |
 | `g.beginPanel(id)` / `g.endPanel(id)` | — | A titled group box. The `id` is the title; the end call must repeat it. This open/close pair is the only panel form. |
 | `g.beginForm(id)` / `g.endForm(id)` | — | A settings-dialog layout: labels left, aligned; controls right. Each child's label is its row label. See *Forms* below. |
-| `g.beginTable(id, cols)` … `g.endTable()` | `bool` | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column (`on: def(row: int, checked: bool): Msg`; one check column per table). |
+| `g.beginTable(id, cols)` … `g.endTable()` | `bool` | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column (`on: def(row: int, checked: bool): Msg`), `tableSetupEditColumn(name, on)` for an editable text column (`on(row, text)`; a declined edit snaps back on the next render), `tableSetupButtonColumn(name, on)` for a button per row (`on(row)`, cells are the labels); one of each per table. |
 | `g.beginTree(id, onSelect, onActivate, onExpand)` … `g.endTree()` | — | The native tree; `treeNode(key, label, expanded)` … `treePop()` and `treeLeaf(key, label)` between them. See *Trees* below. |
 | `g.tooltip(text)` | — | The hover text for the widget emitted just before it. See *Tooltips, Icons and the Clipboard* below. |
 | `Gui.clipboardText()` / `Gui.setClipboardText(s)` | `str` / — | The system clipboard's text. Statics, called from `update`. |
@@ -403,11 +403,12 @@ Being honest about the edges, because discovering these by trial is unpleasant:
 - **Trees are a single text column.** An icon from a built-in set, but no extra
   columns, no drag-and-drop, no in-place editing, and no keyboard on the TUI. A
   file browser that needs a size column is a table.
-- **Icons are named, not loaded.** `folder`, `file`, `dot` and `warn` are painted by
-  the runtime; there is no image decoder yet, so you cannot hand a tree your own
-  PNG. Buttons and table cells take no images at all.
-- **Drawing gets a mouse press and nothing else.** No drag or move events, no
-  keys, no images, gradients or transforms. libui has them; they are not bound.
+- **Icons are bytes, not files.** `folder`, `file`, `dot` and `warn` are painted by
+  the runtime, and `Gui.registerIcon` takes your own RGBA pixels — but there is no
+  image decoder yet, so a PNG is yours to decode. Buttons and table cells take no
+  images at all.
+- **Drawing has no images, gradients or transforms.** libui has them; they are
+  not bound. (`g.canvas` covers the rest of the mouse and the keyboard — below.)
 - **`g.sameLine()`, `g.spacing()`, `g.indent()`** are cosmetic no-ops on native
   backends — they belong to the immediate-mode style. Use an `hbox`.
 - **`g.textColored`** renders the text but ignores the colour.
@@ -724,6 +725,86 @@ Some things to know:
 
 The TUI shows a placeholder where the area would be.
 
+### The rest of the mouse, and the keyboard
+
+`g.area` reports a press and nothing else. `g.canvas(id, w, h, draw, onMouse, onKey)`
+is the same surface with the whole story: `onMouse(ev, x, y, b)` is called with `ev`
+1 for a press, 2 for a release, 3 for a move (`b` is the buttons held, so a drag is a
+move with `b != 0`), 4 when the pointer enters and 5 when it leaves; `onKey(vk, mods,
+down)` gets keys once the canvas has focus (a click gives it), in the same vocabulary
+as `g.hotkey` — letters as uppercase ASCII, arrows `0x25`–`0x28`. Every event is a
+message, which is the point: a draggable dot is three arms of `update`.
+
+```zebra
+# file: canvas.zbr
+# teaches: g.canvas, mouse move/release and keys as messages, a drag in update
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var x: float
+    var y: float
+    var dragging: bool
+
+struct Ev
+    var ev: int
+    var x: float
+    var y: float
+    var b: int
+
+struct Key
+    var vk: int
+    var mods: int
+    var down: bool
+
+union Msg
+    mouse: Ev
+    key: Key
+
+def init(): Model
+    return Model(x: 60.0, y: 60.0, dragging: false)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.mouse as e
+            var dx: float = e.x - m.x
+            var dy: float = e.y - m.y
+            if e.ev == 1 and dx * dx + dy * dy < 400.0
+                return m except dragging = true
+            if e.ev == 2
+                return m except dragging = false
+            if e.ev == 3 and m.dragging
+                return m except x = e.x, y = e.y
+            return m
+        on Msg.key as k
+            if not k.down
+                return m
+            if k.vk == 0x25
+                return m except x = m.x - 10.0
+            if k.vk == 0x27
+                return m except x = m.x + 10.0
+            return m
+
+def view(g: Gui, m: Model)
+    g.canvas("dot", 240, 160, def(c: Gui)
+        capture
+            var px: float = m.x
+            var py: float = m.y
+            var drag: bool = m.dragging
+        c.fillRect(0.0, 0.0, c.canvasWidth(), c.canvasHeight(), 0xF4F4F4)
+        c.fillCircle(px, py, 20.0, if(drag, 0xE05020, 0x2060C0))
+    , def(ev: int, x: float, y: float, b: int): Msg = Msg.mouse(Ev(ev: ev, x: x, y: y, b: b)), def(vk: int, mods: int, down: bool): Msg = Msg.key(Key(vk: vk, mods: mods, down: down)))
+
+def main()
+    Gui.run("Canvas", 260, 220, init, update, view)
+```
+
+Two closures carry structs because a variant holds one payload (the same reason as
+the check column above). Note that the colour while dragging is not set anywhere in
+`view` — the draw closure captured `dragging`, so the press that flipped it also
+repainted.
+
+![Left: at start. Middle: a press near the dot began a drag and the closure repainted it in the dragging colour as the pointer moved. Right: after the release and two arrow keys.](../diagrams/18b-canvas.png)
+
 ---
 
 ## Tooltips, Icons and the Clipboard
@@ -805,10 +886,14 @@ and what you paste may have come from another program.
 ![Left: hovering Copy shows its tooltip. Right: after Copy, editing the field, and Paste -- the pasted line holds the text that went through the system clipboard. The tree carries icons from the built-in set.](../diagrams/18b-clipboard.png)
 
 `treeNodeIcon` and `treeLeafIcon` are `treeNode` and `treeLeaf` with one more
-argument, an icon name. The set is small and painted by the runtime (`folder`,
-`file`, `dot`, `warn`); any other name draws nothing. It is named rather than
-loaded because Zebra has no image decoder yet — when it does, a path will slot in
-beside these names.
+argument, an icon name. Four are painted by the runtime (`folder`, `file`, `dot`,
+`warn`), and the program can add its own: `Gui.registerIcon(name, w, h, rgba)` takes
+straight-alpha RGBA bytes in a `str` — `w * h * 4` of them, which
+`StringBuilder.appendChar(n)` assembles a byte at a time or a raw file supplies —
+and the name then works wherever a built-in one does. Register in `main` before
+`Gui.run` (registrations are queued until the toolkit is up) or from `update`. Any
+unregistered name draws nothing. Zebra has no image decoder yet, so a PNG is the
+program's to decode; when one exists, a path will slot in beside the bytes.
 
 On the stub:
 

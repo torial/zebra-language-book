@@ -227,6 +227,7 @@
 17-18_projects-2-3/17-18_projects-2-3_007.zbr
 17-18_projects-2-3/ngram_analysis.zbr
 18b-gui-applications/board.zbr
+18b-gui-applications/canvas.zbr
 18b-gui-applications/clipboard.zbr
 18b-gui-applications/counter.zbr
 18b-gui-applications/editor.zbr

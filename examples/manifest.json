@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 704,
+  "total_examples": 705,
   "generated": "1785214308.777066",
   "examples": [
     {
@@ -2798,10 +2798,17 @@
     },
     {
       "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_008.zbr",
+      "file": "canvas.zbr",
+      "teaches": "g.canvas, mouse move/release and keys as messages, a drag in update",
+      "project": null,
+      "path": "examples/18b-gui-applications/canvas.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_009.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_008.zbr"
+      "path": "examples/18b-gui-applications/18b-gui-applications_009.zbr"
     },
     {
       "chapter": "18b-GUI-Applications",
@@ -2816,13 +2823,6 @@
       "teaches": "CodeEditor, class Model, widget handles",
       "project": null,
       "path": "examples/18b-gui-applications/editor.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_011.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_011.zbr"
     },
     {
       "chapter": "18b-GUI-Applications",
@@ -2879,6 +2879,13 @@
       "teaches": null,
       "project": null,
       "path": "examples/18b-gui-applications/18b-gui-applications_019.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_020.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_020.zbr"
     },
     {
       "chapter": "19-22_Final-Chapters",

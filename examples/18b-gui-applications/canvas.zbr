@@ -1,0 +1,60 @@
+# file: canvas.zbr
+# teaches: g.canvas, mouse move/release and keys as messages, a drag in update
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var x: float
+    var y: float
+    var dragging: bool
+
+struct Ev
+    var ev: int
+    var x: float
+    var y: float
+    var b: int
+
+struct Key
+    var vk: int
+    var mods: int
+    var down: bool
+
+union Msg
+    mouse: Ev
+    key: Key
+
+def init(): Model
+    return Model(x: 60.0, y: 60.0, dragging: false)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.mouse as e
+            var dx: float = e.x - m.x
+            var dy: float = e.y - m.y
+            if e.ev == 1 and dx * dx + dy * dy < 400.0
+                return m except dragging = true
+            if e.ev == 2
+                return m except dragging = false
+            if e.ev == 3 and m.dragging
+                return m except x = e.x, y = e.y
+            return m
+        on Msg.key as k
+            if not k.down
+                return m
+            if k.vk == 0x25
+                return m except x = m.x - 10.0
+            if k.vk == 0x27
+                return m except x = m.x + 10.0
+            return m
+
+def view(g: Gui, m: Model)
+    g.canvas("dot", 240, 160, def(c: Gui)
+        capture
+            var px: float = m.x
+            var py: float = m.y
+            var drag: bool = m.dragging
+        c.fillRect(0.0, 0.0, c.canvasWidth(), c.canvasHeight(), 0xF4F4F4)
+        c.fillCircle(px, py, 20.0, if(drag, 0xE05020, 0x2060C0))
+    , def(ev: int, x: float, y: float, b: int): Msg = Msg.mouse(Ev(ev: ev, x: x, y: y, b: b)), def(vk: int, mods: int, down: bool): Msg = Msg.key(Key(vk: vk, mods: mods, down: down)))
+
+def main()
+    Gui.run("Canvas", 260, 220, init, update, view)

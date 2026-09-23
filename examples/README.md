@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 704 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 705 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,9 +42,9 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 704
+- **Total Examples:** 705
 - **Chapters Covered:** 33
-- **Topics:** 218
+- **Topics:** 219
 
 ## Quick Reference
 
@@ -484,7 +484,7 @@ This compiles and tests each example to ensure correctness.
 - `analysis_main.zbr` — combining analysis modules
 - `17-18_projects-2-3_007.zbr` — basic example
 
-### 18b-GUI-Applications (20 examples)
+### 18b-GUI-Applications (21 examples)
 - `counter.zbr` — MVU, Gui.run, g.send, hbox layout
 - `greeter.zbr` — payload messages, g.field, mixed unions
 - `widgets.zbr` — toggle, field, slider; the on function
@@ -493,10 +493,10 @@ This compiles and tests each example to ensure correctness.
 - `settings_form.zbr` — g.beginForm / g.endForm, a widget's label as its row label, m except
 - `file_tree.zbr` — g.beginTree / treeNode / treeLeaf / treePop / endTree, the model owns what is open
 - `board.zbr` — g.area, a draw closure with capture, the mouse-press message
-- `18b-gui-applications_008.zbr` — basic example
+- `canvas.zbr` — g.canvas, mouse move/release and keys as messages, a drag in update
+- `18b-gui-applications_009.zbr` — basic example
 - `clipboard.zbr` — g.tooltip, Gui.clipboardText / setClipboardText, treeNodeIcon / treeLeafIcon
 - `editor.zbr` — CodeEditor, class Model, widget handles
-- `18b-gui-applications_011.zbr` — basic example
 - `18b-gui-applications_012.zbr` — basic example
 - `18b-gui-applications_013.zbr` — basic example
 - `18b-gui-applications_014.zbr` — basic example
@@ -505,6 +505,7 @@ This compiles and tests each example to ensure correctness.
 - `18b-gui-applications_017.zbr` — basic example
 - `18b-gui-applications_018.zbr` — basic example
 - `18b-gui-applications_019.zbr` — basic example
+- `18b-gui-applications_020.zbr` — basic example
 
 ### 19-22_Final-Chapters (12 examples)
 - `19-22_final-chapters_000.zbr` — basic example
