@@ -1,0 +1,2 @@
+> g.treeNode("src", "src/", false)     # ❌ always closed: the click only sends onExpand
+>

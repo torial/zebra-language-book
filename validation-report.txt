@@ -1,12 +1,12 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-22T17:44:48.420672
+Generated: 2026-09-23T00:34:58.603745
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  706
-Passed: 390
-Failed: 316
+Total:  709
+Passed: 391
+Failed: 318
 
 FAILURES
 ----------------------------------------------------------------------
@@ -351,13 +351,13 @@ FAILURES
   18b-gui-applications/18b-gui-applications_007.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_007.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_008.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_008.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_008.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_009.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_009.zbr:2:13: error: undefined name: 'init'
   18b-gui-applications/18b-gui-applications_010.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_010.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_011.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_011.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_011.zbr:2:13: error: undefined name: 'init'
   18b-gui-applications/18b-gui-applications_012.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_012.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_013.zbr
@@ -370,6 +370,10 @@ FAILURES
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_016.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   18b-gui-applications/18b-gui-applications_017.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_017.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_018.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_018.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
+  18b-gui-applications/18b-gui-applications_019.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_019.zbr:1:1: error: unexpected top-level token: '>' — expected a declaration (def, class, struct, enum, union, use, v
   19-22_final-chapters/19-22_final-chapters_001.zbr
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_001.zbr:5:27: error: undefined name: 'read_file'
   19-22_final-chapters/19-22_final-chapters_002.zbr

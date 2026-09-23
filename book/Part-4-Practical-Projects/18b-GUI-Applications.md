@@ -147,6 +147,8 @@ that a layout change did what you meant before waiting on a full native build.
 > shows you the initial view. To exercise `update`, send a message unconditionally
 > in `view` (see *Testing your update function* below).
 
+![The same program on the libui-ng backend (GTK shown; Windows and macOS draw their own native widgets): at start, and after three clicks on +.](../diagrams/18b-counter.png)
+
 ---
 
 ## Messages That Carry Data
@@ -206,6 +208,8 @@ Chapter 07b — the GUI adds no new concepts here.
 **A `Msg` union may mix** payload and no-payload variants freely, as this one
 does. `greet` and `clear` carry nothing; `name_changed` carries a `str`.
 
+![Before and after typing a name and pressing Greet. The field's on function delivered each keystroke; Greet delivered Msg.greet; the label is view reading the model.](../diagrams/18b-greeter.png)
+
 ---
 
 ## Widgets That Carry Their Message
@@ -258,6 +262,8 @@ def view(g: Gui, m: Model)
 def main()
     Gui.run("Widgets", 380, 260, init, update, view)
 ```
+
+![Every stateful widget shows what the model holds. Left: the initial model. Right: after ticking Loud mode and dragging the slider -- the status line is view reading the model, not the widgets.](../diagrams/18b-widgets.png)
 
 Every widget that holds state has this shape: the model supplies the value the
 widget shows, and the `on` function names the message for a change. There is no
@@ -319,6 +325,8 @@ def main()
 That produces a toolbar row across the top and two panels side by side filling
 the rest of the window.
 
+![The toolbar row and the two panels, as laid out by the native boxes.](../diagrams/18b-layout.png)
+
 ### The two arguments
 
 `g.vbox(id, stretch)` and `g.hbox(id, stretch)` both take:
@@ -373,6 +381,8 @@ Both compile to the same thing. Prefer `using`.
 | `g.beginForm(id)` / `g.endForm(id)` | — | A settings-dialog layout: labels left, aligned; controls right. Each child's label is its row label. See *Forms* below. |
 | `g.beginTable(id, cols)` … `g.endTable()` | `bool` | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column (`on: def(row: int, checked: bool): Msg`; one check column per table). |
 | `g.beginTree(id, onSelect, onActivate, onExpand)` … `g.endTree()` | — | The native tree; `treeNode(key, label, expanded)` … `treePop()` and `treeLeaf(key, label)` between them. See *Trees* below. |
+| `g.tooltip(text)` | — | The hover text for the widget emitted just before it. See *Tooltips, Icons and the Clipboard* below. |
+| `Gui.clipboardText()` / `Gui.setClipboardText(s)` | `str` / — | The system clipboard's text. Statics, called from `update`. |
 | `g.area(id, w, h, draw, on)` | — | A canvas; `draw: def(c: Gui)` paints, `on: def(x: float, y: float, button: int): Msg` on a mouse press. See *Drawing* below. |
 
 **Widget identity comes from the label.** A widget is matched to last render's
@@ -390,9 +400,12 @@ The tree's `onExpand` is the same shape; you will see it below.
 
 Being honest about the edges, because discovering these by trial is unpleasant:
 
-- **Trees are a single text column.** No icons, no extra columns, no drag-and-drop,
-  no in-place editing, and no keyboard on the TUI. A file browser that needs a
-  size column is a table.
+- **Trees are a single text column.** An icon from a built-in set, but no extra
+  columns, no drag-and-drop, no in-place editing, and no keyboard on the TUI. A
+  file browser that needs a size column is a table.
+- **Icons are named, not loaded.** `folder`, `file`, `dot` and `warn` are painted by
+  the runtime; there is no image decoder yet, so you cannot hand a tree your own
+  PNG. Buttons and table cells take no images at all.
 - **Drawing gets a mouse press and nothing else.** No drag or move events, no
   keys, no images, gradients or transforms. libui has them; they are not bound.
 - **`g.sameLine()`, `g.spacing()`, `g.indent()`** are cosmetic no-ops on native
@@ -457,6 +470,8 @@ On the stub:
 [gui] ---
 [gui] text: https://localhost:8080
 ```
+
+![The form on GTK: labels in a column, controls aligned. Right: after clicking Use TLS -- the toggle's on function sent Msg.set_tls(false) and the summary line followed the model.](../diagrams/18b-settings_form.png)
 
 Three things to notice.
 
@@ -589,6 +604,8 @@ On the stub:
 [gui] button: Close all
 ```
 
+![The native tree (GtkTreeView here; SysTreeView32 on Windows, NSOutlineView on macOS). Right: after Open all put docs into the model's open list, and a click on main.zbr sent Msg.select.](../diagrams/18b-file_tree.png)
+
 Read `v` as an open node, `>` as a closed one, `-` as a leaf, and `d=` as the
 depth. `src` is open because `init` put it in the list; `docs` is closed. Nothing
 in `view` decided that — `isOpen` only reads the model.
@@ -685,6 +702,8 @@ the draw closure runs once and prints its verbs:
 
 No circles, because every cell starts `false`.
 
+![The area on Cairo. Right: three cells toggled -- each press went through update, and the closure repainted because its captured cells changed.](../diagrams/18b-board.png)
+
 Some things to know:
 
 - **The block-lambda shape.** A multi-line closure is `def(c: Gui)` on the call
@@ -704,6 +723,102 @@ Some things to know:
   mouse.
 
 The TUI shows a placeholder where the area would be.
+
+---
+
+## Tooltips, Icons and the Clipboard
+
+Three small things that separate a working app from a finished one.
+
+`g.tooltip(text)` gives the widget emitted **just before it** a hover text. It is a
+statement about the previous line, so it reads like a caption:
+
+```zebra
+g.button("Copy", Msg.copy)
+g.tooltip("Copy the text above to the system clipboard")
+```
+
+The clipboard has no widget to hang on, so it is two statics on `Gui`, and they
+belong in `update`, where the model changes:
+
+```zebra
+# file: clipboard.zbr
+# teaches: g.tooltip, Gui.clipboardText / setClipboardText, treeNodeIcon / treeLeafIcon
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var text: str
+    var pasted: str
+    var picked: str
+
+union Msg
+    set_text: str
+    copy
+    paste
+    pick: str
+
+def init(): Model
+    return Model(text: "hello from zebra", pasted: "", picked: "")
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.set_text as s
+            return m except text = s
+        on Msg.copy
+            Gui.setClipboardText(m.text)
+            return m
+        on Msg.paste
+            return m except pasted = Gui.clipboardText()
+        on Msg.pick as k
+            return m except picked = k
+
+def view(g: Gui, m: Model)
+    g.field("Text", m.text, def(s: str): Msg = Msg.set_text(s))
+    g.tooltip("What Copy puts on the clipboard")
+    using g.hbox("##row", false)
+        g.button("Copy", Msg.copy)
+        g.tooltip("Copy the text above to the system clipboard")
+        g.button("Paste", Msg.paste)
+        g.tooltip("Read the system clipboard into the line below")
+    g.text("pasted: " + m.pasted)
+    g.beginTree("files", def(k: str): Msg = Msg.pick(k), def(k: str): Msg = Msg.pick(k), def(k: str, o: bool): Msg = Msg.pick(if(o, k, k)))
+    g.treeNodeIcon("src", "src/", true, "folder")
+    g.treeLeafIcon("src/main.zbr", "main.zbr", "file")
+    g.treeLeafIcon("src/todo", "unsaved", "warn")
+    g.treePop()
+    g.treeLeafIcon("build", "build", "dot")
+    g.treeLeaf("plain", "no icon")
+    g.endTree()
+    g.tooltip("Icons come from the built-in set")
+    g.text("picked: " + m.picked)
+
+def main()
+    Gui.run("Clipboard", 340, 360, init, update, view)
+```
+
+`Msg.copy` writes the model's text to the clipboard and returns the model
+unchanged; `Msg.paste` reads the clipboard into the model, and `view` shows it. On
+the stub both are a process-local string, so a copy followed by a paste prints what
+was copied; on a desktop the round trip crosses the operating system's clipboard,
+and what you paste may have come from another program.
+
+![Left: hovering Copy shows its tooltip. Right: after Copy, editing the field, and Paste -- the pasted line holds the text that went through the system clipboard. The tree carries icons from the built-in set.](../diagrams/18b-clipboard.png)
+
+`treeNodeIcon` and `treeLeafIcon` are `treeNode` and `treeLeaf` with one more
+argument, an icon name. The set is small and painted by the runtime (`folder`,
+`file`, `dot`, `warn`); any other name draws nothing. It is named rather than
+loaded because Zebra has no image decoder yet — when it does, a path will slot in
+beside these names.
+
+On the stub:
+
+```
+[gui] tooltip: What Copy puts on the clipboard
+[gui] tree d=0 v src/ (src) [folder]
+[gui] tree d=1 - main.zbr (src/main.zbr) [file]
+```
+
+The TUI ignores tooltips and icons; it has nowhere to hover and no cell to draw in.
 
 ---
 
@@ -967,6 +1082,8 @@ If that felt easy, you have understood why MVU is worth the constraint.
 - **Forms** lay labels left and controls right; **the tree** is a single column
   whose open set lives in the model; **`g.area`** is a canvas whose draw closure
   `capture`s what it paints.
+- **`g.tooltip`** captions the widget before it; **the clipboard** is two `Gui`
+  statics called from `update`; **tree icons** come from a small painted set.
 - **`CodeEditor`** embeds Scintilla; a model that owns widget handles should be a
   `class`, not a `struct`.
 - **The stub backend** prints the widget tree and exits, which makes GUI programs

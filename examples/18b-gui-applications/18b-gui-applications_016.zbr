@@ -1,2 +1,3 @@
-> g.treeNode("src", "src/", false)     # ❌ always closed: the click only sends onExpand
+> g.field("Name", m.first, onFirst)   # ❌ both entries carry the id "Name"
+> g.field("Name", m.last, onLast)
 >

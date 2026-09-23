@@ -1,2 +1,3 @@
-> g.treeNode("src", "src/", isOpen(m, "src"))   # ✅
+> g.field("##first", m.first, onFirst)
+> g.field("##last", m.last, onLast)
 >

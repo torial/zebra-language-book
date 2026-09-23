@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 702,
+  "total_examples": 704,
   "generated": "1785214308.777066",
   "examples": [
     {
@@ -2798,24 +2798,24 @@
     },
     {
       "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_008.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_008.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "clipboard.zbr",
+      "teaches": "g.tooltip, Gui.clipboardText / setClipboardText, treeNodeIcon / treeLeafIcon",
+      "project": null,
+      "path": "examples/18b-gui-applications/clipboard.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
       "file": "editor.zbr",
       "teaches": "CodeEditor, class Model, widget handles",
       "project": null,
       "path": "examples/18b-gui-applications/editor.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_009.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_009.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_010.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_010.zbr"
     },
     {
       "chapter": "18b-GUI-Applications",
@@ -2865,6 +2865,20 @@
       "teaches": null,
       "project": null,
       "path": "examples/18b-gui-applications/18b-gui-applications_017.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_018.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_018.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_019.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_019.zbr"
     },
     {
       "chapter": "19-22_Final-Chapters",
