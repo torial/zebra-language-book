@@ -1,0 +1,34 @@
+# file: settings_form.zbr
+# teaches: g.beginForm / g.endForm, a widget's label as its row label, m except
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var host: str
+    var port: int
+    var tls: bool
+
+union Msg
+    set_host: str
+    set_port: int
+    set_tls: bool
+
+def init(): Model
+    return Model(host: "localhost", port: 8080, tls: true)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.set_host as s  return m except host = s
+        on Msg.set_port as n  return m except port = n
+        on Msg.set_tls as b   return m except tls = b
+
+def view(g: Gui, m: Model)
+    g.beginForm("settings")
+    g.field("Host name", m.host, def(s: str): Msg = Msg.set_host(s))
+    g.spinbox("Port", m.port, 1, 65535, def(n: int): Msg = Msg.set_port(n))
+    g.toggle("Use TLS", m.tls, def(b: bool): Msg = Msg.set_tls(b))
+    g.endForm("settings")
+    g.separator()
+    g.text(if(m.tls, "https://", "http://") + m.host + ":" + m.port.toString())
+
+def main()
+    Gui.run("Settings", 380, 220, init, update, view)

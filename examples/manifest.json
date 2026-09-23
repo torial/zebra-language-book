@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 697,
+  "total_examples": 702,
   "generated": "1785214308.777066",
   "examples": [
     {
@@ -2777,31 +2777,31 @@
     },
     {
       "chapter": "18b-GUI-Applications",
+      "file": "settings_form.zbr",
+      "teaches": "g.beginForm / g.endForm, a widget's label as its row label, m except",
+      "project": null,
+      "path": "examples/18b-gui-applications/settings_form.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "file_tree.zbr",
+      "teaches": "g.beginTree / treeNode / treeLeaf / treePop / endTree, the model owns what is open",
+      "project": null,
+      "path": "examples/18b-gui-applications/file_tree.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "board.zbr",
+      "teaches": "g.area, a draw closure with capture, the mouse-press message",
+      "project": null,
+      "path": "examples/18b-gui-applications/board.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
       "file": "editor.zbr",
       "teaches": "CodeEditor, class Model, widget handles",
       "project": null,
       "path": "examples/18b-gui-applications/editor.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_006.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_006.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_007.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_007.zbr"
-    },
-    {
-      "chapter": "18b-GUI-Applications",
-      "file": "18b-gui-applications_008.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/18b-gui-applications/18b-gui-applications_008.zbr"
     },
     {
       "chapter": "18b-GUI-Applications",
@@ -2830,6 +2830,41 @@
       "teaches": null,
       "project": null,
       "path": "examples/18b-gui-applications/18b-gui-applications_012.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_013.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_013.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_014.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_014.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_015.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_015.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_016.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_016.zbr"
+    },
+    {
+      "chapter": "18b-GUI-Applications",
+      "file": "18b-gui-applications_017.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/18b-gui-applications/18b-gui-applications_017.zbr"
     },
     {
       "chapter": "19-22_Final-Chapters",

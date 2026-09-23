@@ -1,0 +1,65 @@
+# file: file_tree.zbr
+# teaches: g.beginTree / treeNode / treeLeaf / treePop / endTree, the model owns what is open
+# chapter: 18b-GUI-Applications
+
+struct Toggle
+    var key: str
+    var open: bool
+
+struct Model
+    var open: List(str)
+    var selected: str
+
+union Msg
+    select: str
+    expand: Toggle
+    open_all
+    close_all
+
+def init(): Model
+    var open: List(str) = ["src"]
+    return Model(open: open, selected: "")
+
+def isOpen(m: Model, key: str): bool
+    for k in m.open
+        if k == key
+            return true
+    return false
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.select as k
+            return m except selected = k
+        on Msg.expand as t
+            var out: List(str) = []
+            for k in m.open
+                if k != t.key
+                    out.add(k)
+            if t.open
+                out.add(t.key)
+            return m except open = out
+        on Msg.open_all
+            var all: List(str) = ["src", "docs"]
+            return m except open = all
+        on Msg.close_all
+            var none: List(str) = []
+            return m except open = none
+
+def view(g: Gui, m: Model)
+    g.beginTree("files", def(k: str): Msg = Msg.select(k), def(k: str): Msg = Msg.select(k), def(k: str, o: bool): Msg = Msg.expand(Toggle(key: k, open: o)))
+    g.treeNode("src", "src/", isOpen(m, "src"))
+    g.treeLeaf("src/main.zbr", "main.zbr")
+    g.treeLeaf("src/Parser.zbr", "Parser.zbr")
+    g.treePop()
+    g.treeNode("docs", "docs/", isOpen(m, "docs"))
+    g.treeLeaf("docs/README.md", "README.md")
+    g.treePop()
+    g.treeLeaf("build.zbr", "build.zbr")
+    g.endTree()
+    g.text("selected: " + m.selected)
+    using g.hbox("##buttons", false)
+        g.button("Open all", Msg.open_all)
+        g.button("Close all", Msg.close_all)
+
+def main()
+    Gui.run("Files", 320, 320, init, update, view)

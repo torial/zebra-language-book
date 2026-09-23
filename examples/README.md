@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 697 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 702 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -42,9 +42,9 @@ This compiles and tests each example to ensure correctness.
 
 ## By the Numbers
 
-- **Total Examples:** 697
+- **Total Examples:** 702
 - **Chapters Covered:** 33
-- **Topics:** 214
+- **Topics:** 217
 
 ## Quick Reference
 
@@ -484,20 +484,25 @@ This compiles and tests each example to ensure correctness.
 - `analysis_main.zbr` — combining analysis modules
 - `17-18_projects-2-3_007.zbr` — basic example
 
-### 18b-GUI-Applications (13 examples)
+### 18b-GUI-Applications (18 examples)
 - `counter.zbr` — MVU, Gui.run, g.send, hbox layout
 - `greeter.zbr` — payload messages, g.field, mixed unions
 - `widgets.zbr` — toggle, field, slider; the on function
 - `layout.zbr` — using g.vbox / g.hbox, nesting, stretch
 - `18b-gui-applications_004.zbr` — basic example
+- `settings_form.zbr` — g.beginForm / g.endForm, a widget's label as its row label, m except
+- `file_tree.zbr` — g.beginTree / treeNode / treeLeaf / treePop / endTree, the model owns what is open
+- `board.zbr` — g.area, a draw closure with capture, the mouse-press message
 - `editor.zbr` — CodeEditor, class Model, widget handles
-- `18b-gui-applications_006.zbr` — basic example
-- `18b-gui-applications_007.zbr` — basic example
-- `18b-gui-applications_008.zbr` — basic example
 - `18b-gui-applications_009.zbr` — basic example
 - `18b-gui-applications_010.zbr` — basic example
 - `18b-gui-applications_011.zbr` — basic example
 - `18b-gui-applications_012.zbr` — basic example
+- `18b-gui-applications_013.zbr` — basic example
+- `18b-gui-applications_014.zbr` — basic example
+- `18b-gui-applications_015.zbr` — basic example
+- `18b-gui-applications_016.zbr` — basic example
+- `18b-gui-applications_017.zbr` — basic example
 
 ### 19-22_Final-Chapters (12 examples)
 - `19-22_final-chapters_000.zbr` — basic example

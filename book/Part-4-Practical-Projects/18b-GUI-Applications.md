@@ -3,7 +3,7 @@
 **Audience:** All — anyone who wants a window instead of a terminal
 **Time:** 120 minutes
 **Prerequisites:** 05-Control-Flow, 07-Classes-and-Instances, 07b-Structs-Unions-and-Value-Types
-**You'll learn:** The MVU (Model-View-Update) architecture, `Gui.run`, dispatching messages with `g.send`, laying out widgets with `using g.vbox`/`g.hbox`, the widget catalogue, the embedded code editor, and how to test a GUI without ever opening a window
+**You'll learn:** The MVU (Model-View-Update) architecture, `Gui.run`, dispatching messages with `g.send`, laying out widgets with `using g.vbox`/`g.hbox`, the widget catalogue, forms, the native tree, drawing on a canvas, the embedded code editor, and how to test a GUI without ever opening a window
 
 ---
 
@@ -108,7 +108,7 @@ a chain of values rather than a pile of mutations.
 
 ---
 
-## Running It: Three Backends and a Stub
+## Running It: Two Backends and a Stub
 
 The same source runs against several backends. You choose at the command line —
 the program does not change:
@@ -266,6 +266,15 @@ is the only place the model changes. `g.inputMultiline(label, text, on)`,
 `g.combobox(label, items, selected, on)` and `g.spinbox(label, value, min, max, on)`
 follow the same rule with `def(s: str)`, `def(i: int)` and `def(n: int)`.
 
+So do the entries that look different but are not. `g.password(label, text, on)`
+and `g.search(label, text, on)` are `g.field` on a masked entry and a search-styled
+one; same `def(s: str)`. `g.radio(label, items, selected, on)` is one radio button
+per item with exactly one selected; it reports the chosen index with `def(i: int)`,
+like a combobox, but the choices are in the open instead of behind a click.
+`g.comboboxEditable(label, items, text, on)` is a drop-down the user can also type
+into — a recent-files list with "or enter your own" — and because what comes back
+is text, its `on` is `def(s: str)`, not an index.
+
 ---
 
 ## Layout
@@ -352,33 +361,349 @@ Both compile to the same thing. Prefer `using`.
 | `g.slider(label, value, min, max, on)` | — | `on: def(v: float): Msg` as it moves. Range is fixed at creation. |
 | `g.inputMultiline(label, text, on)` | — | Multi-line entry; `on: def(s: str): Msg` on every change. |
 | `g.combobox(label, items, sel, on)` / `g.spinbox(label, value, min, max, on)` | — | `on: def(i: int): Msg`. |
+| `g.comboboxEditable(label, items, text, on)` | — | A drop-down that also takes typed text; `on: def(s: str): Msg` on a pick or a keystroke. |
 | `g.radio(label, items, sel, on)` | — | One radio button per item; `on: def(i: int): Msg`. Pick-one-of-N in the open. |
-| `g.password(label, text, on)` / `g.search(label, text, on)` | — | `field` on a masked / search-styled entry. |
+| `g.password(label, text, on)` / `g.search(label, text, on)` | — | `field` on a masked / search-styled entry; `on: def(s: str): Msg`. |
 | `g.menuItem(label, msg)` | — | A menubar item, inside `g.beginMenu(name)` … `g.endMenu()`. |
 | `g.every(ms, msg)` | — | Sends `msg` every `ms` milliseconds while the view declares it. |
 | `g.separator()` | — | A horizontal rule. |
 | `g.send(msg)` | — | Dispatch a message to `update`. |
 | `g.vbox(id, stretch)` / `g.hbox(id, stretch)` | — | Layout containers (with `using`). |
-| `g.beginPanel(id)` / `g.endPanel(id)` | — | A titled group box. |
-| `g.beginForm(id)` / `g.endForm(id)` | — | A settings-dialog layout: labels left, aligned; controls right. Each child's label is its row label. |
-| `g.beginTable(id, cols)` … `g.endTable()` | — | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column. |
+| `g.beginPanel(id)` / `g.endPanel(id)` | — | A titled group box. The `id` is the title; the end call must repeat it. This open/close pair is the only panel form. |
+| `g.beginForm(id)` / `g.endForm(id)` | — | A settings-dialog layout: labels left, aligned; controls right. Each child's label is its row label. See *Forms* below. |
+| `g.beginTable(id, cols)` … `g.endTable()` | `bool` | A list; `tableSetupColumn(name)` per column, `tableNextRow()` / `tableNextColumn()` + `g.text` per cell, `tableSetupCheckColumn(name, on)` + `tableCheck(checked)` for a checkbox column (`on: def(row: int, checked: bool): Msg`; one check column per table). |
+| `g.beginTree(id, onSelect, onActivate, onExpand)` … `g.endTree()` | — | The native tree; `treeNode(key, label, expanded)` … `treePop()` and `treeLeaf(key, label)` between them. See *Trees* below. |
+| `g.area(id, w, h, draw, on)` | — | A canvas; `draw: def(c: Gui)` paints, `on: def(x: float, y: float, button: int): Msg` on a mouse press. See *Drawing* below. |
 
 **Widget identity comes from the label.** A widget is matched to last render's
 widget of the same kind and label, in order — so two buttons labelled `+` are
 still two buttons. For a widget whose label you don't want displayed, use the
 `##` prefix: `g.field("##filepath", m.path, on)`.
 
+**A variant carries one payload.** The check column's `on` gets two values, a row
+and a flag, and a union variant holds exactly one — so the message carries a small
+struct: `struct Pick` with `row` and `checked`, and
+`def(row: int, checked: bool): Msg = Msg.pick_row(Pick(row: row, checked: checked))`.
+The tree's `onExpand` is the same shape; you will see it below.
+
 ### What is not there yet
 
 Being honest about the edges, because discovering these by trial is unpleasant:
 
-- **Trees** are not there (`treeNode` is a no-op). Tables work, with text cells and
-  one checkbox column; a file browser today is a table.
+- **Trees are a single text column.** No icons, no extra columns, no drag-and-drop,
+  no in-place editing, and no keyboard on the TUI. A file browser that needs a
+  size column is a table.
+- **Drawing gets a mouse press and nothing else.** No drag or move events, no
+  keys, no images, gradients or transforms. libui has them; they are not bound.
 - **`g.sameLine()`, `g.spacing()`, `g.indent()`** are cosmetic no-ops on native
   backends — they belong to the immediate-mode style. Use an `hbox`.
 - **`g.textColored`** renders the text but ignores the colour.
 - **Fixed pixel widths** aren't supported; boxes divide space by `stretch`
   (`g.minSize(id, w, h)` gives a box a floor).
+
+---
+
+## Forms
+
+A settings dialog is two columns: labels on the left, lined up, and the controls
+on the right. `g.beginForm(id)` / `g.endForm(id)` lays its children out that way.
+Nothing else about the view changes. Each widget's own label becomes its row label,
+so `g.field("Host name", ...)` inside a form is a row called `Host name`.
+
+```zebra
+# file: settings_form.zbr
+# teaches: g.beginForm / g.endForm, a widget's label as its row label, m except
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var host: str
+    var port: int
+    var tls: bool
+
+union Msg
+    set_host: str
+    set_port: int
+    set_tls: bool
+
+def init(): Model
+    return Model(host: "localhost", port: 8080, tls: true)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.set_host as s  return m except host = s
+        on Msg.set_port as n  return m except port = n
+        on Msg.set_tls as b   return m except tls = b
+
+def view(g: Gui, m: Model)
+    g.beginForm("settings")
+    g.field("Host name", m.host, def(s: str): Msg = Msg.set_host(s))
+    g.spinbox("Port", m.port, 1, 65535, def(n: int): Msg = Msg.set_port(n))
+    g.toggle("Use TLS", m.tls, def(b: bool): Msg = Msg.set_tls(b))
+    g.endForm("settings")
+    g.separator()
+    g.text(if(m.tls, "https://", "http://") + m.host + ":" + m.port.toString())
+
+def main()
+    Gui.run("Settings", 380, 220, init, update, view)
+```
+
+On the stub:
+
+```
+[gui] form: settings
+[gui] input: Host name = localhost
+[gui] spinbox: Port val=8080 [1,65535]
+[gui] checkbox: Use TLS = true
+[gui] ---
+[gui] text: https://localhost:8080
+```
+
+Three things to notice.
+
+**The form is geometry, not behaviour.** The three widgets inside it are the
+same `field`, `spinbox` and `toggle` from the catalogue, with the same `on`
+functions. Take the `beginForm` / `endForm` lines out and the program still
+works; it just stacks.
+
+**`m except host = s`** is the struct-update idiom from Chapter 07b. `widgets.zbr`
+rebuilt the whole `Model` in every arm; with three fields that was tolerable, with
+ten it is not. `except` copies the model and changes one field.
+
+**A row may be conditional.** Wrap a widget in `if m.advanced` and its row appears
+and disappears with the flag. The backend inserts and removes the row; you do not
+manage it.
+
+On the TUI and the stub a form is a plain vertical box. Only the native backend
+has the two-column layout, which is why the stub output above looks like any
+other stack.
+
+---
+
+## Trees
+
+Every desktop has one native tree: a single text column with expanders, a
+selection, and a double-click. Windows' `SysTreeView32` has no columns at all, so
+that is the subset Zebra binds — the same widget on Win32, GTK (`GtkTreeView`)
+and Cocoa (`NSOutlineView`).
+
+The view emits the whole tree on every render. Between `g.beginTree(...)` and
+`g.endTree()`:
+
+- `g.treeNode(key, label, expanded)` opens a node; the calls that follow are its
+  children, until `g.treePop()`.
+- `g.treeLeaf(key, label)` is a node with no children.
+
+`key` is the app's stable name for the node — a path is the natural key. The
+backend diffs by key from one render to the next, so the tree is not rebuilt
+when a label changes.
+
+The part to get right is expansion. **An expander click does not open the node.**
+It sends `onExpand(key, open)`; `update` puts the key into (or out of) the model;
+the next render passes `expanded: true` for that key, and *that* opens it. The
+model owns what is open. So "Open all" is not a special tree operation — it is a
+message like any other, and `update` sets the list.
+
+`onExpand` gets two values, a key and a flag, and a variant carries one — so the
+message carries a small struct, `Toggle`, exactly as the table's check column did.
+
+```zebra
+# file: file_tree.zbr
+# teaches: g.beginTree / treeNode / treeLeaf / treePop / endTree, the model owns what is open
+# chapter: 18b-GUI-Applications
+
+struct Toggle
+    var key: str
+    var open: bool
+
+struct Model
+    var open: List(str)
+    var selected: str
+
+union Msg
+    select: str
+    expand: Toggle
+    open_all
+    close_all
+
+def init(): Model
+    var open: List(str) = ["src"]
+    return Model(open: open, selected: "")
+
+def isOpen(m: Model, key: str): bool
+    for k in m.open
+        if k == key
+            return true
+    return false
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.select as k
+            return m except selected = k
+        on Msg.expand as t
+            var out: List(str) = []
+            for k in m.open
+                if k != t.key
+                    out.add(k)
+            if t.open
+                out.add(t.key)
+            return m except open = out
+        on Msg.open_all
+            var all: List(str) = ["src", "docs"]
+            return m except open = all
+        on Msg.close_all
+            var none: List(str) = []
+            return m except open = none
+
+def view(g: Gui, m: Model)
+    g.beginTree("files", def(k: str): Msg = Msg.select(k), def(k: str): Msg = Msg.select(k), def(k: str, o: bool): Msg = Msg.expand(Toggle(key: k, open: o)))
+    g.treeNode("src", "src/", isOpen(m, "src"))
+    g.treeLeaf("src/main.zbr", "main.zbr")
+    g.treeLeaf("src/Parser.zbr", "Parser.zbr")
+    g.treePop()
+    g.treeNode("docs", "docs/", isOpen(m, "docs"))
+    g.treeLeaf("docs/README.md", "README.md")
+    g.treePop()
+    g.treeLeaf("build.zbr", "build.zbr")
+    g.endTree()
+    g.text("selected: " + m.selected)
+    using g.hbox("##buttons", false)
+        g.button("Open all", Msg.open_all)
+        g.button("Close all", Msg.close_all)
+
+def main()
+    Gui.run("Files", 320, 320, init, update, view)
+```
+
+On the stub:
+
+```
+[gui] beginTree: files
+[gui] tree d=0 v src/ (src)
+[gui] tree d=1 - main.zbr (src/main.zbr)
+[gui] tree d=1 - Parser.zbr (src/Parser.zbr)
+[gui] tree d=0 > docs/ (docs)
+[gui] tree d=1 - README.md (docs/README.md)
+[gui] tree d=0 - build.zbr (build.zbr)
+[gui] text: selected: 
+[gui] button: Open all
+[gui] button: Close all
+```
+
+Read `v` as an open node, `>` as a closed one, `-` as a leaf, and `d=` as the
+depth. `src` is open because `init` put it in the list; `docs` is closed. Nothing
+in `view` decided that — `isOpen` only reads the model.
+
+`g.beginTree` takes three functions after the id: `onSelect` and `onActivate`
+are `def(key: str): Msg`, sent on selection and on double-click; `onExpand` is
+`def(key: str, open: bool): Msg`. This program does not distinguish a double-click
+from a click, so both build `Msg.select`.
+
+The `treePop()` calls are the tree's structure: `src/` has two leaves and then
+pops, `docs/` has one and pops, and `build.zbr` is at the root. Miss a pop and
+everything after it becomes a child of the wrong node. The stub's `d=` column is
+the quickest way to check.
+
+---
+
+## Drawing
+
+`g.area(id, w, h, draw, on)` is a canvas: Direct2D on Windows, Cairo on GTK,
+CoreGraphics on macOS. `draw` paints it; `on` is the message for a mouse press.
+
+`draw` is different from every other function in this chapter: **the toolkit calls
+it at paint time, not `view`.** By then `view` has returned and `m` is gone. So the
+closure starts with a `capture` block that copies what it needs out of the model.
+The runtime keeps those captured bytes and repaints only when they change — a
+message that alters a captured value repaints the area, one that does not, does
+not.
+
+```zebra
+# file: board.zbr
+# teaches: g.area, a draw closure with capture, the mouse-press message
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var cells: List(bool)
+
+union Msg
+    press: int
+    clear
+
+def init(): Model
+    var cells: List(bool) = [false, false, false, false, false, false, false, false, false]
+    return Model(cells: cells)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.press as cell
+            var out: List(bool) = []
+            var i = 0
+            for c in m.cells
+                out.add(if(i == cell, not c, c))
+                i += 1
+            return Model(cells: out)
+        on Msg.clear
+            return init()
+
+def view(g: Gui, m: Model)
+    g.area("board", 240, 240, def(c: Gui)
+        capture
+            var cells: List(bool) = m.cells
+        var side = 240.0
+        var k = 80.0
+        c.fillRect(0.0, 0.0, side, side, 0xFAFAF0)
+        c.line(k, 0.0, k, side, 0x333333, 2.0)
+        c.line(k * 2.0, 0.0, k * 2.0, side, 0x333333, 2.0)
+        c.line(0.0, k, side, k, 0x333333, 2.0)
+        c.line(0.0, k * 2.0, side, k * 2.0, 0x333333, 2.0)
+        var i = 0
+        for filled in cells
+            if filled
+                var cx = (i % 3).toFloat() * k + k / 2.0
+                var cy = (i / 3).toFloat() * k + k / 2.0
+                c.fillCircle(cx, cy, 28.0, 0x2A6EBB)
+            i += 1
+    , def(x: float, y: float, button: int): Msg = if(button == 1, Msg.press((y / 80.0).toInt() * 3 + (x / 80.0).toInt()), Msg.clear))
+    g.button("Clear", Msg.clear)
+
+def main()
+    Gui.run("Board", 300, 320, init, update, view)
+```
+
+A left click on a cell toggles it; any other button clears the board. On the stub
+the draw closure runs once and prints its verbs:
+
+```
+[gui] area: board 240x240
+[gui] fillRect (0,0) 240x240 #fafaf0
+[gui] line (80,0)-(80,240) #333333 t=2.0
+[gui] line (160,0)-(160,240) #333333 t=2.0
+[gui] line (0,80)-(240,80) #333333 t=2.0
+[gui] line (0,160)-(240,160) #333333 t=2.0
+[gui] button: Clear
+```
+
+No circles, because every cell starts `false`.
+
+Some things to know:
+
+- **The block-lambda shape.** A multi-line closure is `def(c: Gui)` on the call
+  line, its body indented under it, and then `,` on a line of its own to start the
+  next argument. The `capture` block comes first inside the body.
+- **Coordinates are the area's own pixels**, origin top-left; `w` and `h` are a
+  minimum size, and `c.canvasWidth()` / `c.canvasHeight()` tell you what you
+  actually got.
+- **Colours are `0xRRGGBB`**; a float is written with a point (`2.0`, not `2`).
+- **The verbs:** `line(x1, y1, x2, y2, colour, thickness)`,
+  `rect(x, y, w, h, colour, thickness)`, `fillRect(x, y, w, h, colour)`,
+  `circle(cx, cy, r, colour, thickness)`, `fillCircle(cx, cy, r, colour)`,
+  `drawText(x, y, s, colour, size)` with `size` 0 meaning the control font.
+  Outside a draw closure they do nothing.
+- **The press goes through `update` like everything else.** `on` turns a
+  coordinate into a cell index and that into a message; `view` never looks at the
+  mouse.
+
+The TUI shows a placeholder where the area would be.
 
 ---
 
@@ -552,7 +877,23 @@ you can capture and assert on.
 > ❌ **Mistake:** Expecting `sameLine()` to work
 >
 > `g.sameLine()` is an immediate-mode idea and does nothing on native backends.
-> Use `using g.hbox(...)`.
+> Use `using g.hbox(...)`. The same goes for `g.spacing()` and `g.indent()`.
+
+> ❌ **Mistake:** Expecting an expander click to open the node
+>
+> ```zebra
+> g.treeNode("src", "src/", false)     # ❌ always closed: the click only sends onExpand
+> ```
+>
+> ✅ **Fix:** Pass the model's answer. The click sends `onExpand(key, open)`,
+> `update` records it, and the next render opens the node.
+>
+> ```zebra
+> g.treeNode("src", "src/", isOpen(m, "src"))   # ✅
+> ```
+>
+> The same rule as every other widget: the model drives it. A tree whose
+> `expanded` is a constant never moves, however much you click.
 
 ---
 
@@ -588,7 +929,7 @@ Build a window with one input for Celsius and a label showing Fahrenheit.
 - Msg: one payload variant carrying the new text.
 - Use `.toFloat()` to parse, and handle the case where the text isn't a number.
 
-*Hint: the read-compare-send pattern is the whole of `view`.*
+*Hint: one `g.field` with an `on` function and one `g.text` is the whole of `view`.*
 
 ### Exercise 2: A Todo List
 
@@ -621,10 +962,14 @@ If that felt easy, you have understood why MVU is worth the constraint.
   mix payload and no-payload variants.
 - **Layout** is nested `using g.vbox` / `g.hbox`, with stable `##ids` and a
   `stretch` flag. Layout must be identical on every frame.
-- **Stateful widgets** follow read-compare-send.
+- **Stateful widgets** are driven by the model: pass the value in, and the `on`
+  function names the message for a change. No widget returns a value.
+- **Forms** lay labels left and controls right; **the tree** is a single column
+  whose open set lives in the model; **`g.area`** is a canvas whose draw closure
+  `capture`s what it paints.
 - **`CodeEditor`** embeds Scintilla; a model that owns widget handles should be a
   `class`, not a `struct`.
 - **The stub backend** prints the widget tree and exits, which makes GUI programs
   testable without a display.
-- The same source runs on native controls, in a terminal, or under ImGui — chosen
+- The same source runs on native controls, in a terminal, or on the stub — chosen
   by a command-line flag.

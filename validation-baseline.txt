@@ -226,10 +226,13 @@
 16-project-1-cli-tool/project1_main.zbr
 17-18_projects-2-3/17-18_projects-2-3_007.zbr
 17-18_projects-2-3/ngram_analysis.zbr
+18b-gui-applications/board.zbr
 18b-gui-applications/counter.zbr
 18b-gui-applications/editor.zbr
+18b-gui-applications/file_tree.zbr
 18b-gui-applications/greeter.zbr
 18b-gui-applications/layout.zbr
+18b-gui-applications/settings_form.zbr
 18b-gui-applications/widgets.zbr
 19-22_final-chapters/19-22_final-chapters_000.zbr
 19-22_final-chapters/19-22_final-chapters_003.zbr
