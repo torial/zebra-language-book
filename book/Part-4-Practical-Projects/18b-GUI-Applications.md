@@ -881,6 +881,8 @@ The editor's methods:
 | `.getCursorLine()` / `.getCursorCol()` | Caret position, 1-based |
 | `.setCursorPosition(line, col)` | Jump to a location |
 
+![The editor on GTK (Scintilla, the same component on Windows). Right: after typing a third line and pressing Save -- update read the buffer through the handle and the status line reports its length.](../diagrams/18b-editor.png)
+
 ### Why this Model is a `class`
 
 Every other example in this chapter used `struct Model`. This one uses `class`,
@@ -1014,23 +1016,32 @@ you can capture and assert on.
 
 ## Real World: the Zebra IDE
 
-The largest GUI program written in Zebra is the Zebra IDE itself
-(`IDE/ZebraIDE.zbr` in the language repository). It is worth reading once you
-have the basics, because it is this chapter's ideas at full scale:
+The largest GUI program written in Zebra is the Zebra IDE
+(`github.com/torial/zebra-ide`, `src/ide.zbr`): a lightweight IDE for Zebra, C and
+Zig, written in this chapter's idiom and talking to `zebra lsp` and `zebra debug`.
+It is worth reading once you have the basics, because it is every idea above at
+full scale:
 
-- A `class Model` holding **four** `CodeEditor` handles — source, diagnostics,
-  program output, and build output — of which three are `setReadOnly(true)`.
-- A `Msg` union of fourteen variants mixing bare events (`save_file`,
-  `build_start`) with payload-carrying ones (`filepath_changed: str`,
-  `build_output_chunk: str`).
-- Nested `using g.vbox` / `g.hbox` building a toolbar, an editor column, and an
-  output row.
-- Background processes — it spawns the compiler with `sys.spawn`, polls the
-  process from `view`, and streams the output into an editor pane by sending
-  `Msg.build_output_chunk` as the file grows.
+- A `class Model` holding a `BufferSet` of open documents -- each tab is a
+  `CodeEditor` handle -- plus read-only editors for the Build, Tests and Debugger
+  panes; the References, Symbols and Problems panes are tables.
+- A `Msg` union of some forty-five variants: bare events (`save_file`, `build`),
+  payload-carrying ones (`jump_ref: int`, `open_path: str`, `toggle_dir: str`),
+  and `tick`.
+- A menubar (`g.beginMenu`), a project explorer, tabs, a toolbar of `field`s whose
+  messages run the jump / open / find / rename, and the keyboard shortcuts claimed
+  with `g.hotkey` so that Ctrl+S saves with the focus anywhere in the window --
+  `view` pops the claimed chords with `g.takeKey()` and sends each as its message.
+- Long-running work without blocking the loop: the compiler, the gates and the
+  language server run as processes, and a `g.every(100, Msg.tick)` subscription
+  delivers `Msg.tick`; `update` drains what has arrived into the model, and `view`
+  shows it.
 
-That last pattern is how you integrate long-running work into MVU without
-blocking the event loop: `view` polls, and reports what it finds as a message.
+![The IDE on GTK, after typing a deliberate error: the tab shows the dirty marker, `zebra lsp` answered within the second with the boxed message and the margin marker, and the status line counts the error. Every pane you see is a widget from the catalogue above.](../diagrams/18b-ide.png)
+
+That last pattern is how you integrate long-running work into MVU: something
+outside the loop produces, a subscription turns "time passed" into a message, and
+`update` moves the result into the model.
 
 ---
 
