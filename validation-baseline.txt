@@ -235,6 +235,7 @@
 18b-gui-applications/greeter.zbr
 18b-gui-applications/layout.zbr
 18b-gui-applications/settings_form.zbr
+18b-gui-applications/toolbar.zbr
 18b-gui-applications/widgets.zbr
 19-22_final-chapters/19-22_final-chapters_000.zbr
 19-22_final-chapters/19-22_final-chapters_003.zbr

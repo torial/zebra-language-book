@@ -1,3 +1,4 @@
-> g.field("Name", m.first, onFirst)   # ❌ both entries carry the id "Name"
-> g.field("Name", m.last, onLast)
+> def view(g: Gui, m: Model)
+>     g.every(1000, Msg.tick)            # ✅ once a second, while the view says so
+>     g.text("ticks: ${m.ticks}")
 >

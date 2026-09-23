@@ -373,6 +373,7 @@ Both compile to the same thing. Prefer `using`.
 | `g.radio(label, items, sel, on)` | — | One radio button per item; `on: def(i: int): Msg`. Pick-one-of-N in the open. |
 | `g.password(label, text, on)` / `g.search(label, text, on)` | — | `field` on a masked / search-styled entry; `on: def(s: str): Msg`. |
 | `g.menuItem(label, msg)` | — | A menubar item, inside `g.beginMenu(name)` … `g.endMenu()`. |
+| `g.tool(label, msg)` / `g.toolIcon(label, icon, tip, msg)` | — | A toolbar item, inside `g.beginToolbar()` … `g.endToolbar()`; `g.toolSeparator()`, and `g.toolEnabled(bool)` for the next item. See *Toolbars* below. |
 | `g.every(ms, msg)` | — | Sends `msg` every `ms` milliseconds while the view declares it. |
 | `g.separator()` | — | A horizontal rule. |
 | `g.send(msg)` | — | Dispatch a message to `update`. |
@@ -907,6 +908,96 @@ The TUI ignores tooltips and icons; it has nowhere to hover and no cell to draw 
 
 ---
 
+## Toolbars
+
+A menubar is fixed when the window is created, which is why the menus are declared
+in every render and the first one wins. A toolbar is the other kind of strip: it
+lives under the menubar (GTK and Windows) or in the title bar (macOS, where the
+platform keeps them), its items carry icons, and it can *change* -- an item may be
+enabled by the model, and the set itself may grow and shrink between renders. The
+verbs mirror the menus with those two differences:
+
+```zebra
+# file: toolbar.zbr
+# teaches: g.beginToolbar / tool / toolIcon / toolSeparator / toolEnabled, a toolbar that follows the model
+# chapter: 18b-GUI-Applications
+
+struct Model
+    var running: bool
+    var log: str
+    var clicks: int
+
+union Msg
+    build
+    run
+    stop
+    clear
+
+def init(): Model
+    return Model(running: false, log: "idle", clicks: 0)
+
+def update(m: Model, msg: Msg): Model
+    branch msg
+        on Msg.build
+            return m except log = "built", clicks = m.clicks + 1
+        on Msg.run
+            return m except running = true, log = "running", clicks = m.clicks + 1
+        on Msg.stop
+            return m except running = false, log = "stopped", clicks = m.clicks + 1
+        on Msg.clear
+            return m except log = "", clicks = 0
+
+# a 12x12 filled square, straight-alpha RGBA
+def square(r: int, g: int, b: int): str
+    var sb = StringBuilder()
+    var i: int = 0
+    while i < 144
+        sb.appendChar(r)
+        sb.appendChar(g)
+        sb.appendChar(b)
+        sb.appendChar(255)
+        i = i + 1
+    return sb.build()
+
+def view(g: Gui, m: Model)
+    g.beginToolbar()
+    g.toolIcon("Build", "hammer", "Compile the project", Msg.build)
+    g.toolIcon("Run", "go", "Run the tests", Msg.run)
+    g.toolEnabled(m.running)
+    g.tool("Stop", Msg.stop)
+    if m.clicks > 0
+        g.toolSeparator()
+        g.toolIcon("Clear", "warn", "Clear the log", Msg.clear)
+    g.endToolbar()
+    g.text("state: " + m.log)
+    g.text("clicks: " + m.clicks.toString())
+
+def main()
+    Gui.registerIcon("hammer", 12, 12, square(0x60, 0x60, 0xC0))
+    Gui.registerIcon("go", 12, 12, square(0x2E, 0xB8, 0x4E))
+    Gui.run("toolbar", 420, 160, init, update, view)
+```
+
+`g.tool(label, msg)` is a button in the strip; `g.toolIcon(label, icon, tip, msg)`
+adds an icon -- a built-in name or one from `Gui.registerIcon`, exactly as for the
+tree -- and a tooltip. `g.toolEnabled(b)` applies to the **next** item and then
+resets, so `g.toolEnabled(m.running)` followed by the Stop item is the whole of
+"Stop is only clickable while something runs". A `g.toolSeparator()` is an item
+too, which keeps the indices the runtime uses stable.
+
+The strip is compared with the last render's: the same labels, icons and tooltips
+in the same order means the runtime updates it in place (refreshing which message
+each item sends, pushing any enabled change); anything else rebuilds it. So the
+Clear item appearing after the first click costs one rebuild, and nothing in the
+program has to know that.
+
+![Left: after Run and then Stop -- Stop was enabled for the click and is grey again, and a separator and the Clear item have appeared. Right: after Clear, the strip is back to three items.](../diagrams/18b-toolbar.png)
+
+On the stub each item prints as `[gui] tool: Build [hammer]`; the TUI shows a row of
+buttons.
+
+---
+
 ## The Code Editor
 
 Zebra ships a real code editor widget — the libui-ng backend embeds
@@ -1113,8 +1204,10 @@ full scale:
 - A `Msg` union of some forty-five variants: bare events (`save_file`, `build`),
   payload-carrying ones (`jump_ref: int`, `open_path: str`, `toggle_dir: str`),
   and `tick`.
-- A menubar (`g.beginMenu`), a project explorer, tabs, a toolbar of `field`s whose
-  messages run the jump / open / find / rename, and the keyboard shortcuts claimed
+- A menubar (`g.beginMenu`), a toolbar (`g.beginToolbar`) whose debug items follow
+  the session and whose tail is the project's own tools from its manifest, a project
+  explorer, tabs, a find bar of `field`s whose messages run the jump / open / find /
+  rename, and the keyboard shortcuts claimed
   with `g.hotkey` so that Ctrl+S saves with the focus anywhere in the window --
   `view` pops the claimed chords with `g.takeKey()` and sends each as its message.
 - Long-running work without blocking the loop: the compiler, the gates and the
