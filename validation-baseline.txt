@@ -1,6 +1,9 @@
 # Examples that compile cleanly. Regenerate with:
 #   python validate-examples.py --update-baseline
 # The gate fails when an entry here stops compiling.
+# Take it on a CASE-SENSITIVE filesystem (Linux / CI): on Windows `use Build`
+# resolves to a neighbouring build.zbr, so an example can pass there and fail
+# everywhere else (zebra-language BUG-450, found by this repo's CI on its first run).
 01-getting-started/01-getting-started_1abdcdcc.zbr
 01-getting-started/01-getting-started_498a42ab.zbr
 01-getting-started/01-getting-started_b931f5aa.zbr
@@ -390,7 +393,6 @@
 22b-build-system-and-tooling/22b-build-system-and-tooling_5f9642f4.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_d244c54b.zbr
 22b-build-system-and-tooling/22b-build-system-and-tooling_e1b3e185.zbr
-22b-build-system-and-tooling/22b-build-system-and-tooling_f9fd4f57.zbr
 22b-build-system-and-tooling/build.zbr
 22b-build-system-and-tooling/build__2.zbr
 22b-build-system-and-tooling/build__3.zbr

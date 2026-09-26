@@ -191,6 +191,9 @@ def main() -> int:
             "# Examples that compile cleanly. Regenerate with:\n"
             "#   python validate-examples.py " + ("--full " if full else "") + "--update-baseline\n"
             "# The gate fails when an entry here stops compiling.\n"
+            "# Take it on a CASE-SENSITIVE filesystem (Linux / CI): on Windows `use Build`\n"
+            "# resolves to a neighbouring build.zbr, so an example can pass there and fail\n"
+            "# everywhere else (zebra-language BUG-450, found by this repo's CI on its first run).\n"
             + "\n".join(sorted(passed)) + "\n", encoding='utf-8', newline='\n')
         print("baseline updated: " + str(len(passed)) + " passing examples")
         return 0
