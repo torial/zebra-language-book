@@ -1,0 +1,20 @@
+# A function that can fail is marked `throws`; `raise` signals the failure
+def parse_age(text: str): int throws
+    var n = text.tryInt()
+    if n == nil
+        raise "not a number: ${text}"
+    return n!
+
+# Or attach a catch clause to a def for more control (there is no
+# standalone `try` block — `catch` always attaches to a def's body)
+def show_age(text: str)
+    var age = parse_age(text)
+    print("Age: ${age}")
+catch |err|
+    print("Error: ${err}")
+
+def main()
+    print(parse_age("42") catch -1)       # 42
+    print(parse_age("forty") catch -1)    # -1   (the inline fallback)
+    show_age("42")                        # Age: 42
+    show_age("forty")                     # Error: not a number: forty

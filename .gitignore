@@ -32,3 +32,4 @@ Thumbs.db
 
 # mdBook output (built by .github/workflows/pages.yml; `mdbook build` locally)
 /public/
+__pycache__/

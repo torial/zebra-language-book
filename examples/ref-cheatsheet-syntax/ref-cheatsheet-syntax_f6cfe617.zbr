@@ -1,0 +1,17 @@
+struct Point
+    var x: int
+    var y: int
+
+union Value
+    int_: int
+    str_: str
+    none_
+
+# Pattern matching
+branch v
+    on Value.int_ as n
+        print(n)
+    on Value.str_ as s
+        print(s)
+    else
+        pass

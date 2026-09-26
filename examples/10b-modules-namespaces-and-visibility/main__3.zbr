@@ -1,0 +1,9 @@
+# file: main.zbr
+use wallet exposing Wallet
+
+def main()
+    var w = Wallet()
+    w.deposit(100.0)            # ok — deposit is public
+    print(w.get_balance())  # ok
+    # w.balance                  # ERROR — balance is private
+    # w.log_event("oops")        # ERROR — log_event is private

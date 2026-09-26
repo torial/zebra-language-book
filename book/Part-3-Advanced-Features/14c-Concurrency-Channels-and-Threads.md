@@ -53,7 +53,8 @@ def main()
     var v2: int? = ch.recv()       # 2
     var v3: int? = ch.recv()       # nil — channel closed + empty
 
-    if v1 as n: print n            # 1
+    if v1 as n
+        print(n)                   # 1
     if v3 == nil: print("done")
 ```
 
@@ -72,35 +73,39 @@ v <- ch                 # equivalent to v = ch.recv()
 into the variable for receive. Many Zebra programs use the sugar
 exclusively.
 
-> **Note on the other `<-`.** Chapter 14b covers `<-` as the
-> **copy-out** operator inside `allocate` blocks. Both spellings are the
-> same token; the compiler picks the meaning from the operand types.
-> When the right-hand side is a `Chan(T)`, it's channel receive;
-> otherwise it's a copy-out.
+> **Not to be confused with `<<-`.** Chapter 14b covers `<<-`, the
+> **copy-out** operator inside `allocate` blocks. It is a different
+> token: `<-` means channel send/receive and nothing else.
 
 ---
 
 ## Spawning Threads: `sys.go()`
 
-`sys.go(lambda)` spawns a **fire-and-forget background thread** that
-runs the lambda body:
+`sys.go(def() ...)` spawns a **fire-and-forget background thread** that
+runs the function's body:
 
 ```zebra
-sys.go(lambda
+sys.go(def()
     print("hello from a thread")
 )
 ```
 
-The lambda is zero-parameter and can capture variables from the
-enclosing scope. Captured values are copied into the thread closure at
-spawn time, so the spawning function can return immediately without
-leaving dangling references.
+The function takes no parameters. Every variable from the enclosing
+scope that the body uses must be declared in a `capture` block at the
+top of the body — there is no implicit capture, and using an outside
+variable without declaring it is a compile error (`'<name>' not accessible
+from inner function`). Re-declaring under the same name
+(`var ch: Chan(int) = ch`) is the usual idiom. Captured values are
+copied into the thread closure at spawn time, so the spawning function
+can return immediately without leaving dangling references.
 
 ```zebra
 def main()
     var ch: Chan(int) = Chan(int)(4)
 
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var ch: Chan(int) = ch
         ch.send(1)
         ch.send(2)
         ch.close()
@@ -125,7 +130,7 @@ def main()
   return a result.
 - **No backpressure.** Every `sys.go()` call spawns a new OS thread.
   If you need bounded concurrency, use `ThreadPool(n)` (below).
-- **No panic recovery.** If the lambda raises, the thread terminates.
+- **No panic recovery.** If the body raises, the thread terminates.
   Design tasks to validate inputs before running heavy work.
 
 ---
@@ -144,7 +149,9 @@ def main()
     var ch: Chan(int) = Chan(int)(4)
 
     # Producer: send 1..5, then close
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var ch: Chan(int) = ch
         for i in 1..5
             ch.send(i)
         ch.close()
@@ -206,9 +213,20 @@ would be sound and faster, drop into `zig"..."` and call
 def main()
     var total: Atomic(int) = Atomic(int)(0)
 
-    sys.go(lambda  var _ = total.add(1)  )
-    sys.go(lambda  var _ = total.add(1)  )
-    sys.sleep(50)              # give threads time to finish
+    sys.go(def()
+        capture
+            var total: Atomic(int) = total
+        var _ = total.add(1)
+    )
+    sys.go(def()
+        capture
+            var total: Atomic(int) = total
+        var _ = total.add(1)
+    )
+
+    # There is no join: poll until both increments have landed.
+    while total.load() < 2
+        sys.sleep(1)
 
     print(total.load())  # 2
 ```
@@ -216,10 +234,15 @@ def main()
 ### One-shot done flag
 
 ```zebra
+def do_work()
+    sys.sleep(20)                # stand-in for real work
+
 def main()
     var done: Atomic(bool) = Atomic(bool)(false)
 
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var done: Atomic(bool) = done
         do_work()
         done.store(true)
     )
@@ -274,7 +297,7 @@ def main()
 | Method | Notes |
 |---|---|
 | `ThreadPool(n)` | Constructs a pool with `n` workers |
-| `pool.submit(lambda)` | Queue a zero-arg lambda for async execution |
+| `pool.submit(def() ...)` | Queue a zero-parameter function for async execution |
 | `pool.wait()` | Block until all queued tasks finish |
 
 ### Key behaviours
@@ -288,7 +311,7 @@ def main()
 
 ### `ThreadPool` vs. `sys.go()`
 
-| | `ThreadPool(n)` | `sys.go(lambda)` |
+| | `ThreadPool(n)` | `sys.go(def() ...)` |
 |---|---|---|
 | Worker count | Fixed `n` | One new thread per call |
 | Backpressure | Natural — `submit` waits if all workers are busy | None |
@@ -377,21 +400,21 @@ class FileResult
 
 def process_file(path: str): FileResult
     var src = File.read(path)
-    var lines = src.split("\n")
+    var lines = src.lines()        # not split("\n"): that counts the empty piece after a final newline
     var r = FileResult()
     r.path = path
     r.line_count = lines.count()
     return r
 
 def main()
-    var paths = File.list_dir("./docs")
-    var ch: Chan(FileResult) = Chan(FileResult)(paths.count())
+    var names = File.listDir("./docs")        # entry names, not paths
+    var ch: Chan(FileResult) = Chan(FileResult)(names.count())
     var pool: ThreadPool = ThreadPool(4)
 
-    for p in paths
+    for name in names
         pool.submit(def()
             capture
-                var p: str = p
+                var p: str = Path.join("./docs", name)
                 var ch: Chan(FileResult) = ch
             ch.send(process_file(p))
         )
@@ -423,7 +446,9 @@ most other batch I/O patterns.
 > ❌ **Mistake:** Forgetting to close the channel
 >
 > ```zebra
-> sys.go(lambda
+> sys.go(def()
+>     capture
+>         var ch: Chan(int) = ch
 >     for i in 1..5
 >         ch.send(i)
 >     # ch.close() omitted — consumer will block forever after the 4th value
@@ -432,7 +457,9 @@ most other batch I/O patterns.
 >
 > ✅ **Better:**
 > ```zebra
-> sys.go(lambda
+> sys.go(def()
+>     capture
+>         var ch: Chan(int) = ch
 >     for i in 1..5
 >         ch.send(i)
 >     ch.close()
@@ -453,7 +480,8 @@ most other batch I/O patterns.
 > ```zebra
 > for i in 0..8
 >     pool.submit(def()
->         capture; var ch = ch
+>         capture
+>             var ch: Chan(int) = ch
 >         ch.send(work())
 >     )
 > ch.close()              # WRONG: tasks are still running
@@ -467,32 +495,47 @@ most other batch I/O patterns.
 > ch.close()
 > ```
 
-> ❌ **Mistake:** Sharing a non-atomic counter across threads
+> ❌ **Mistake:** Sharing a plain counter across threads
 >
 > ```zebra
 > var counter: int = 0
-> sys.go(lambda  counter = counter + 1  )     # data race
-> sys.go(lambda  counter = counter + 1  )
+> sys.go(def()
+>     counter = counter + 1       # compile error: no implicit capture ("cannot assign to constant")
+> )
 > ```
 >
-> ✅ **Better:** use `Atomic(int)`:
+> The compiler refuses this — `counter` is not declared in a `capture`
+> block. Declaring it there does not make it shared either: a captured
+> `int` is a copy taken at spawn time, so it cannot carry a count back
+> to the spawning thread.
+>
+> ✅ **Better:** use `Atomic(int)` and capture the cell:
 > ```zebra
 > var counter: Atomic(int) = Atomic(int)(0)
-> sys.go(lambda  var _ = counter.add(1)  )
-> sys.go(lambda  var _ = counter.add(1)  )
+> sys.go(def()
+>     capture
+>         var counter: Atomic(int) = counter
+>     var _ = counter.add(1)
+> )
+> sys.go(def()
+>     capture
+>         var counter: Atomic(int) = counter
+>     var _ = counter.add(1)
+> )
 > ```
 
-> ❌ **Mistake:** Capturing the loop variable by reference
+> ❌ **Mistake:** Using the loop variable without capturing it
 >
 > ```zebra
 > for i in 0..8
 >     pool.submit(def()
->         # capture missing — task sees the LATEST value of i, not its own
+>         # capture missing — compile error: mutable 'i' not accessible
 >         print(i)
 >     )
 > ```
 >
-> ✅ **Better:** use a `capture` block to snapshot the value:
+> ✅ **Better:** use a `capture` block to snapshot the value — each task
+> gets its own copy of `i` as it was when the task was submitted:
 > ```zebra
 > for i in 0..8
 >     pool.submit(def()
@@ -518,7 +561,9 @@ through 10 down a channel, and the main thread to print their sum.
 def main()
     var ch: Chan(int) = Chan(int)(4)
 
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var ch: Chan(int) = ch
         for i in 1..11
             ch.send(i)
         ch.close()
@@ -566,8 +611,10 @@ def main()
     var done: bool = false
     while not done
         var v: int? = ch.recv()
-        if v as n: sum = sum + n
-        else:      done = true
+        if v as n
+            sum = sum + n
+        else
+            done = true
 
     print(sum)  # 0^2 + 1^2 + ... + 15^2 = 1240
 ```
@@ -586,7 +633,9 @@ have the main thread wait until a background thread signals completion.
 def main()
     var done: Atomic(bool) = Atomic(bool)(false)
 
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var done: Atomic(bool) = done
         # ... do work ...
         sys.sleep(100)
         done.store(true)
@@ -618,13 +667,13 @@ channel `recv` blocks naturally without polling.
 
 - **`Chan(T)`** is a thread-safe buffered channel: `send` blocks when full, `recv` blocks when empty, `close` signals end-of-stream
 - **`<-` sugar** — `ch <- v` sends; `v <- ch` receives; reads naturally for pipelines
-- **`sys.go(lambda)`** spawns a fire-and-forget thread; captures are copied at spawn time; **no join** (use a channel for completion)
+- **`sys.go(def() ...)`** spawns a fire-and-forget thread; outside variables must be declared in a `capture` block and are copied at spawn time; **no join** (use a channel for completion)
 - **`Atomic(T)`** (`T` = `int` or `bool`) is for shared counters, flags, and one-shot signals; never blocks
 - **Rule of thumb:** multiple writers → `Atomic`; producer/consumer → `Chan`
 - **`ThreadPool(n)`** is a bounded worker pool with `submit` / `wait`; natural backpressure; reusable
 - **`ThreadPool` + `Chan`** is the standard pattern for parallel computation with collected results
 - **Allocator caveat:** `Chan` and `ThreadPool` use the page allocator; declare them at function scope, not inside short-lived `allocate` blocks
-- **Capture loop variables explicitly** in `for i in 0..N: pool.submit(...)` — otherwise every task sees the final value of `i`
+- **Capture loop variables explicitly** in `for i in 0..N: pool.submit(...)` — using `i` without a `capture` block is a compile error, and the capture gives each task its own copy
 
 ---
 

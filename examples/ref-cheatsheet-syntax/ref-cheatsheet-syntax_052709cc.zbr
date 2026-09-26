@@ -1,0 +1,20 @@
+var text = "Hello, World!"
+
+# Properties & Methods
+text.len                                # length
+text.upper()                            # uppercase
+text.lower()                            # lowercase
+text.contains("World")                  # substring search
+text.startsWith("Hello")                # prefix check
+text.endsWith("!")                      # suffix check
+text.split(",")                         # split to List(str)
+text.replace("World", "Zebra")          # replace all occurrences
+text.trim()                             # remove whitespace
+text.indexOf("World")                   # find position (-1 if not found)
+text.reverse()                          # reverse string
+text.repeat(3)                          # repeat N times
+
+# Type conversion
+"42".toInt()                            # int (0 on bad input; "42".tryInt() is int?)
+"3.14".toFloat()                        # float (0.0 on bad input; tryFloat() is float?)
+42.toString()                           # "42"

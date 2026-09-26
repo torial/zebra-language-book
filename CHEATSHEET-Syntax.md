@@ -232,8 +232,8 @@ text.reverse()                          # reverse string
 text.repeat(3)                          # repeat N times
 
 # Type conversion
-"42".toInt()                            # int? (nullable)
-"3.14".toFloat()                        # float?
+"42".toInt()                            # int (0 on bad input; "42".tryInt() is int?)
+"3.14".toFloat()                        # float (0.0 on bad input; tryFloat() is float?)
 42.toString()                           # "42"
 ```
 
@@ -332,11 +332,10 @@ if File.exists("file.txt")
 ```zebra
 var pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
-pattern.matches("user@example.com")     # bool
-pattern.find(text)                      # str? (first match)
+pattern.match("user@example.com")       # bool (the WHOLE string must match)
+pattern.find(text)                      # str (first match, "" if none)
 pattern.findAll(text)                   # List(str) (all matches)
-pattern.replace(text, "X")              # str (replace first)
-pattern.replaceAll(text, "X")           # str (replace all)
+pattern.replace(text, "X")              # str (replaces every match)
 pattern.split(text)                     # List(str) (split by match)
 ```
 
@@ -415,7 +414,8 @@ class Counter
         count = count - n
 ```
 
-Pass `--turbo` to strip all contract checks for production builds.
+Pass `--turbo` to strip all contract checks. It is independent of `--release`
+(which optimises); a shipping build uses both: `zebra --release --turbo app.zbr`.
 See Chapter 14.
 
 ---
@@ -482,7 +482,7 @@ Scope-1 fields: int / float / bool / str.
 | `return` | Return from function |
 | `raise` | Signal an error |
 | `throws` | Mark function as fallible |
-| `try`, `catch` | Error handling |
+| `catch` | Error handling (`expr catch fallback`, method-level `catch`) |
 | `except` | Struct update copy |
 | `nil` | Null value |
 | `true`, `false` | Boolean literals |
@@ -496,8 +496,15 @@ Scope-1 fields: int / float / bool / str.
 | `result` | Return-value reference inside `ensure` |
 | `old` | Pre-call snapshot inside `ensure` |
 | `assert` | Inline sanity check |
-| `arena` | Bounded-scope memory block |
-| `to` | Numeric / unwrap operator (`x to int`, `x to!`) |
+| `allocate` | Bounded-scope memory block (`allocate Arena()`) |
+| `cue` | Method the compiler calls for you (`cue init`, `cue toString`, `cue equals`, ...) |
+| `yield` | Produce the next value in a generator (a `def` returning `Iter(T)`) |
+| `capture` | Per-closure persistent state, at the top of a lambda body |
+| `sig` | Named function type (`sig Predicate(item: str): bool`) |
+| `using` | Block scoped by a `begin()`/`end()` resource (`using g.vbox(...)` in GUIs) |
+| `with` | Contextual receiver (`with obj` → bare `x = 5` means `obj.x = 5`) |
+| `orelse` | Nil fallback (`maybe orelse 0`) |
+| `to` | Only as a method name, e.g. `for i in 0.to(10)`; there is no `x to T` conversion operator — use `.toInt()`, `.toFloat()`, `.toString()` |
 | `this` | Current object reference |
 | `use` | Import module |
 | `@reflectable` | Opt class into Tier-3 reflection (`Json.parseStrict`) |

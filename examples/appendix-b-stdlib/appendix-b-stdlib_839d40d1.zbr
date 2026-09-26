@@ -1,0 +1,7 @@
+if File.exists("data.txt")
+    var content = File.read("data.txt")
+    print(content)
+else
+    print("Error: data.txt not found")
+
+File.write("output.txt", "Hello")

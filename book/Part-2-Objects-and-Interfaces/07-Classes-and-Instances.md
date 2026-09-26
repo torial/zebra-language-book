@@ -216,38 +216,60 @@ layout containers (Chapter 14b).
 ## `@derive` — Auto-Generated Methods
 
 For `struct` declarations, `@derive(Debug, Eq, Hash)` instructs the
-compiler to auto-generate `toString`, `eql`, and `hash` based on the
-struct's fields:
+compiler to auto-generate the `toString`, `equals`, and `hash` cues based
+on the struct's fields:
 
 ```zebra
 @derive(Debug, Eq, Hash)
 struct Point
-    var x: float
-    var y: float
+    var x: int
+    var y: int
 
 def main()
-    var p = Point(x: 1.0, y: 2.0)
-    var q = Point(x: 1.0, y: 2.0)
-    print(p.toString())  # "Point(x=1.0, y=2.0)"
+    var p = Point(x: 1, y: 2)
+    var q = Point(x: 1, y: 2)
+    print(p.toString())  # Point(x=1, y=2)
     print(p.equals(q))  # true (and p == q routes through it)
     print(p.hash() == q.hash())  # true
 ```
 
 What each trait generates:
 
-| Trait | Method | Behaviour |
+| Trait | Cue | Behaviour |
 |---|---|---|
-| `Debug` | `def toString(): str` | `"TypeName(field=value, field=value, ...)"` |
-| `Eq` | `def eql(other: TypeName): bool` | Field-wise equality |
-| `Hash` | `def hash(): int` | Combines per-field hashes; consistent with `eql` |
+| `Debug` | `cue toString(): str` | `"TypeName(field=value, field=value, ...)"` |
+| `Eq` | `cue equals(other: TypeName): bool` | Field-wise equality; `==` / `!=` route through it |
+| `Hash` | `cue hash(): int` | Combines per-field hashes; consistent with `equals`. Every field must be hashable — a `float` field is not |
 
 The traits are independent — derive any subset. Without `@derive`, you'd
-write the methods by hand; with it, the compiler keeps them in sync as
-you add or remove fields.
+write the cues by hand; with it, the compiler keeps them in sync as
+you add or remove fields. A hand-written cue wins over the derived one.
 
-`@derive` is **struct-only**. For classes, write the methods explicitly
+These three are **cues** — methods the compiler calls by name (for
+`print`, string interpolation, `==`, and hashing) — so they are always
+spelled `cue`, never `def`. `def toString(): str` is refused with a
+message naming the `cue` form.
+
+`@derive` is **struct-only**. For classes, write the cues explicitly
 — class identity is reference-based and rarely matches the field-wise
-default.
+default:
+
+```zebra
+class Money
+    var cents: int
+    cue init(cents: int)
+        .cents = cents
+    cue toString(): str
+        return "${.cents / 100}.${.cents % 100}"
+    cue equals(other: Money): bool
+        return .cents == other.cents
+
+def main()
+    var a = Money(250)
+    print(a)                  # 2.50  (print calls toString)
+    print(a == Money(250))    # true  (== calls equals: value, not identity)
+    print(a == Money(99))     # false
+```
 
 ---
 

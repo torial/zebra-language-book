@@ -1,0 +1,24 @@
+def do_something(input: str): str throws
+    # 1. Validate input
+    if input.len == 0
+        raise "Input is empty"
+
+    # 2. Do work
+    var result = input.trim().upper()
+
+    # 3. Return success
+    return result
+
+def try_it()
+    var v = do_something("")?
+    print(v)
+catch |err|
+    print("Failed: ${err}")
+
+def main()
+    # Use catch for simple fallback
+    var value = do_something("data") catch "default"
+    print(value)                    # DATA
+
+    # Or a method-level catch clause for error details
+    try_it()                        # Failed: Input is empty

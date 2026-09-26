@@ -1,0 +1,19 @@
+def main()
+    var total: Atomic(int) = Atomic(int)(0)
+
+    sys.go(def()
+        capture
+            var total: Atomic(int) = total
+        var _ = total.add(1)
+    )
+    sys.go(def()
+        capture
+            var total: Atomic(int) = total
+        var _ = total.add(1)
+    )
+
+    # There is no join: poll until both increments have landed.
+    while total.load() < 2
+        sys.sleep(1)
+
+    print(total.load())  # 2

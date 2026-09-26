@@ -1,0 +1,3 @@
+sys.go(def()
+    print("hello from a thread")
+)

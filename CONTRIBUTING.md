@@ -42,7 +42,8 @@ cd zebra-language-book
 
 ### Step 2: Make Changes
 - Edit `.md` files in the appropriate chapter directory
-- Create example files in `examples/`
+- Write examples as ```` ```zebra ```` blocks in the chapter; `make extract` copies
+  each one to `examples/<chapter>/<file>.zbr` (don't edit `examples/` by hand)
 - Follow the chapter template (see below)
 
 ### Step 3: Validate
@@ -92,7 +93,7 @@ Every chapter should have this structure:
 
 ### Example: [Real scenario]
 ```zebra
-// Example code
+# Example code
 ```
 
 **What happened here:** [Explanation]
@@ -107,12 +108,12 @@ Every chapter should have this structure:
 
 ### Pattern 1: [Name]
 ```zebra
-// First pattern
+# First pattern
 ```
 
 ### Pattern 2: [Name]
 ```zebra
-// Second pattern
+# Second pattern
 ```
 
 ## Real World
@@ -147,7 +148,7 @@ Try these to solidify your understanding:
 <summary>Solution</summary>
 
 ```zebra
-// Solution code
+# Solution code
 ```
 
 **Why this works:** [Explanation]
@@ -161,7 +162,7 @@ Try these to solidify your understanding:
 <summary>Solution</summary>
 
 ```zebra
-// Solution code
+# Solution code
 ```
 
 </details>
@@ -183,18 +184,21 @@ Try these to solidify your understanding:
 
 Every code example should:
 
-1. **Have metadata as a comment:**
+1. **Have metadata as a comment** (Zebra comments start with `#`):
    ```zebra
-   // file: 02_hello.zbr
-   // teaches: hello world, print statements
-   // chapter: 01-Getting-Started
+   # file: hello.zbr
+   # teaches: hello world, the print function
+   # chapter: 01-Getting-Started
    ```
+   `make extract` names the extracted file after `# file:` (a project
+   chapter uses `# project:` instead of `# chapter:`).
 
 2. **Be complete and runnable:**
    ```bash
-   zebra examples/02_hello.zbr
+   zebra examples/01-getting-started/hello.zbr
    ```
-   Should produce output without errors.
+   Should produce output without errors — and any output written in a
+   `# comment` beside the code should be what it really prints.
 
 3. **Be simple enough to understand:**
    - Single concept per example
@@ -203,11 +207,11 @@ Every code example should:
 
 4. **Include comments explaining non-obvious parts:**
    ```zebra
-   // Don't do this:
+   # Don't do this:
    var x = 5 + 3
-   
-   // Do this:
-   var greeting_count = 5 + 3  // How many people to greet
+
+   # Do this:
+   var greeting_count = 5 + 3  # How many people to greet
    ```
 
 ## Style Guide

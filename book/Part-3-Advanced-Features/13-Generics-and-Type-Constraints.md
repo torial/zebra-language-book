@@ -232,22 +232,34 @@ def main()
 
 Here, `Printer.print_item` accepts **any type** that implements `Printable`. This is a **constraint**: "T must implement interface Printable".
 
-More advanced: constraints on generic methods:
+More advanced: a constraint on a generic class's type parameter. The
+interface itself takes a type parameter — `Comparable(T)` — which is how a
+class names itself in the signature (`Score implements Comparable(Score)`),
+and `where T implements Comparable(T)` is checked when the class is
+instantiated: `ComparableList(int)()` is refused, because a primitive
+cannot implement an interface.
 
 ```zebra
 # file: 13_generic_constraints_advanced.zbr
 # teaches: constraints in generic methods
 # chapter: 13-Generics-and-Type-Constraints
 
-interface Comparable
-    def compare_to(other: this): int
+interface Comparable(T)
+    def compareTo(other: T): int
 
-class ComparableList(T)
-    var items: List(T) = List()
-    
+class Score implements Comparable(Score)
+    var value: int
+    cue init(v: int)
+        value = v
+    def compareTo(other: Score): int
+        return value - other.value
+
+class ComparableList(T where T implements Comparable(T))
+    var items: List(T) = List(T)()
+
     def add(item: T)
         items.add(item)
-    
+
     def find_max(): T?
         if items.count() == 0
             return nil
@@ -255,20 +267,19 @@ class ComparableList(T)
         var i = 1
         while i < items.count()
             var item = items.at(i)
-            # Here, T must implement Comparable
-            if item.compare_to(max) > 0
+            # T implements Comparable(T), so compareTo is available
+            if item.compareTo(max) > 0
                 max = item
             i = i + 1
         return max
 
 def main()
-    var list = ComparableList()
-    list.add(10)
-    list.add(5)
-    list.add(20)
-    var max = list.find_max()
-    if max != nil
-        print("Max: ${max}")
+    var list = ComparableList(Score)()
+    list.add(Score(10))
+    list.add(Score(5))
+    list.add(Score(20))
+    if list.find_max() as max
+        print("Max: ${max.value}")  # Max: 20
 ```
 
 ---

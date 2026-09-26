@@ -61,9 +61,12 @@ def main()
     # Byte length (Unicode-aware count is below — see codePointCount)
     print(text.len)  # 13
 
-    # Character at index — text[i] returns a char, .toString() lifts it back to str
-    var first_char = text[0]
-    print(first_char.toString())  # H
+    # Indexing gives a BYTE, not a character: text[i] is the i-th byte of the UTF-8
+    # encoding, so it prints as a number. For text, take a slice (next) or iterate
+    # text.chars(), which yields whole characters even when they are multi-byte.
+    var first_byte = text[0]
+    print(first_byte.toString())  # 72  (the byte for "H")
+    print(text[0..1])             # H
 
     # Substring/slice
     var part: str = text[0..5]

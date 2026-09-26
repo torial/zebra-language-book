@@ -1,0 +1,2 @@
+assert x > 0, "x must be positive"
+assert items.count() > 0, "list must not be empty"

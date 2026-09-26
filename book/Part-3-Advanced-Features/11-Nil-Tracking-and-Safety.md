@@ -192,9 +192,9 @@ def main()
     else
         print("Unknown user")
 
-    # Option 2: if method exists, unwrapOr
-    # var safe_name = maybe_name.unwrapOr("Guest")
-    # print safe_name
+    # Option 2: `orelse` supplies a fallback when the value is nil
+    var safe_name = get_user_name(2) orelse "Guest"
+    print(safe_name)  # Guest
 ```
 
 ---
@@ -315,7 +315,7 @@ def process(data: str?)
 > ```zebra
 > var value: str? = get_value()
 > if value != nil
->     print(value)  # ✅ Safe, or use unwrapOr
+>     print(value)  # ✅ Safe — or use a fallback: print(value orelse "none")
 > ```
 
 > ❌ **Mistake:** Assigning nil to non-nullable
@@ -454,7 +454,7 @@ def main()
 
 ## Next Steps
 
-- → **12-Error-Handling** — Results for error cases
+- → **12-Error-Handling** — `throws`, `raise`, and `catch` for error cases
 - → **14-Contracts** — Enforce non-nil invariants
 - 🏋 **Project-2-HTTP-Server** — Handle nil API responses
 
@@ -471,4 +471,4 @@ def main()
 
 ---
 
-**Next:** Head to **12-Error-Handling** for Results and error propagation.
+**Next:** Head to **12-Error-Handling** for exceptions (`throws`/`raise`/`catch`) and error propagation.

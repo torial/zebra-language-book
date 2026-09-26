@@ -23,6 +23,13 @@ from pathlib import Path
 from typing import List, Dict, Tuple
 from collections import defaultdict
 
+try:  # a cp1252 Windows console cannot print the status glyphs: the linter CRASHED with
+    # exit 1 before writing lint-report.txt, which is why that report sat dated April.
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
 class ChapterLinter:
     def __init__(self, book_root: str = "."):
         self.book_root = Path(book_root)
@@ -104,29 +111,32 @@ class ChapterLinter:
 
         for i, match in enumerate(blocks):
             code = match.group(1)
-            has_file_tag = '// file:' in code
-            has_teaches_tag = '// teaches:' in code
-            has_chapter_tag = '// chapter:' in code
+            # Zebra comments are `#`. This linter checked only the Cobra-era `//` form, so
+            # every modern block "lacked" its tags and the report ran to ~1,100 warnings --
+            # noise that hid anything real. Both forms are accepted.
+            has_file_tag = '# file:' in code or '// file:' in code
+            has_teaches_tag = '# teaches:' in code or '// teaches:' in code
+            has_chapter_tag = '# chapter:' in code or '// chapter:' in code
 
             # Check for required metadata
             if not has_file_tag:
                 self._add_issue(
                     filepath,
-                    f"Code block #{i+1} missing '// file:' tag",
+                    f"Code block #{i+1} missing '# file:' tag",
                     'warning'
                 )
 
             if not has_teaches_tag:
                 self._add_issue(
                     filepath,
-                    f"Code block #{i+1} missing '// teaches:' tag",
+                    f"Code block #{i+1} missing '# teaches:' tag",
                     'warning'
                 )
 
             if not has_chapter_tag:
                 self._add_issue(
                     filepath,
-                    f"Code block #{i+1} missing '// chapter:' tag",
+                    f"Code block #{i+1} missing '# chapter:' tag",
                     'warning'
                 )
 

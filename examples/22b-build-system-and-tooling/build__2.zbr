@@ -1,0 +1,20 @@
+# file: build.zbr
+# teaches: imperative-style build script
+# chapter: 22b-Build-System-and-Tooling
+
+def main()
+    var b = Build.new()
+
+    # exe(name, entry_source) → BuildTarget
+    var app = b.exe("myapp", "src/main.zbr")
+    app.platform("x86_64-linux")       # cross-compilation target
+    app.option("optimize", "Debug")    # passed through to zig build-exe
+
+    # lib(name, entry_source) → BuildTarget (stub for now)
+    var support = b.lib("support", "src/support.zbr")
+
+    # linkLib records a dependency edge
+    app.linkLib(support)
+
+    # b.run() — compile all exe targets
+    b.run()

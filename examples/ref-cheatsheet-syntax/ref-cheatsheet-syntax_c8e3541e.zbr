@@ -1,0 +1,12 @@
+class Person
+    var name: str = ""
+    var age: int = 0
+
+    cue init(name: str, age: int)
+        this.name = name
+        this.age = age
+
+    def describe(): str
+        return "${name} is ${age}"
+
+var person = Person("Alice", 30)

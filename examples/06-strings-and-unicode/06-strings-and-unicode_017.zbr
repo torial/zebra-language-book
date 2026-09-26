@@ -1,3 +1,0 @@
-> var emoji = "👋"
-> print(emoji.codePointCount())  # ✅ Returns 1 (characters)
->

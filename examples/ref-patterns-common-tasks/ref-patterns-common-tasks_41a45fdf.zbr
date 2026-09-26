@@ -1,0 +1,10 @@
+def calculate(a_str: str, b_str: str): int throws
+    var a = a_str.toInt()
+    if a == nil
+        raise "Invalid first number"
+
+    var b = b_str.toInt()
+    if b == nil
+        raise "Invalid second number"
+
+    return a + b

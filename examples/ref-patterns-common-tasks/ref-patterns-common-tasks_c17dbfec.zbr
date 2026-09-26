@@ -1,0 +1,14 @@
+var items = List(str)()
+items.add("apple")
+items.add("banana")
+items.add("apple")
+items.add("cherry")
+
+var seen = HashMap(str, bool)()
+var unique = List(str)()
+for item in items
+    if not seen.contains(item)
+        seen.put(item, true)
+        unique.add(item)
+
+# unique has: apple, banana, cherry (duplicates removed)

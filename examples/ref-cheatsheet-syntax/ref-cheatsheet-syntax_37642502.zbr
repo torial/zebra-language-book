@@ -1,0 +1,7 @@
+var pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
+
+pattern.match("user@example.com")       # bool (the WHOLE string must match)
+pattern.find(text)                      # str (first match, "" if none)
+pattern.findAll(text)                   # List(str) (all matches)
+pattern.replace(text, "X")              # str (replaces every match)
+pattern.split(text)                     # List(str) (split by match)

@@ -241,8 +241,10 @@ class Math
             return q
 ```
 
-Like the contract clauses, `assert` panics on a false condition and is
-stripped by `--turbo`.  It's a more granular tool than `ensure` — useful
+Like the contract clauses, `assert` panics on a false condition — but
+unlike them it is **not** stripped by `--turbo`: a contract is an
+obligation on the caller, an `assert` is a check you wrote to run in every
+build.  It's a more granular tool than `ensure` — useful
 for checking intermediate values inside a method body.
 
 ---
@@ -260,14 +262,16 @@ guarantee), and `invariant` (always-true property):
 class SortedList
     var items: List(int)
 
-    cue init
+    cue init()
         items = List(int)()
 
     invariant
         # The list is always non-decreasing
         isSorted()
 
-    def isSorted(): bool
+    # private: the invariant is checked after every PUBLIC method, so a
+    # public isSorted() would re-trigger the invariant that calls it.
+    private def isSorted(): bool
         var i = 1
         while i < items.count()
             if items.at(i - 1) > items.at(i)
@@ -278,17 +282,17 @@ class SortedList
     def insert(value: int)
         ensure
             items.count() == old items.count() + 1
-        # Insert preserving sorted order.
+        # Find the first position whose element is not smaller than value.
         var i = 0
         while i < items.count() and items.at(i) < value
             i = i + 1
         items.add(value)
-        # Bubble the new value left into its sorted position.
+        # Shift the tail right by one, then drop value into its slot.
         var j = items.count() - 1
         while j > i
-            var tmp = items.at(j - 1)
-            items.add(items.at(j))
+            items.set(j, items.at(j - 1))
             j = j - 1
+        items.set(i, value)
 
     def smallest(): int
         require
@@ -312,17 +316,17 @@ mutation.
 
 ## `--turbo`: stripping contracts for production
 
-In normal builds, every `require`, `ensure`, `invariant`, and `assert`
-emits runtime check code.  These add safety during development but cost
+In normal builds, every `require`, `ensure`, and `invariant` emits
+runtime check code.  These add safety during development but cost
 cycles in hot paths.  Pass `--turbo` to the compiler to strip them
-entirely:
+entirely (`assert` statements are kept):
 
 ```bash
 zebra app.zbr              # contracts active — runtime checks emitted
 zebra --turbo app.zbr      # contracts stripped — same source, faster binary
 ```
 
-`--turbo` is the same source-to-binary toggle C/C++ get with `-DNDEBUG`.
+`--turbo` is, for contracts, the same source-to-binary toggle C/C++ get with `-DNDEBUG`.
 Use it for production releases; develop and test without it.
 
 > Don't put load-bearing logic inside contract clauses — anything you can't
@@ -469,7 +473,7 @@ Write a class that wraps a `List(int)` with bounds-checked access, using
 class SafeArray
     var items: List(int)
 
-    cue init
+    cue init()
         items = List(int)()
 
     def push(v: int)
@@ -512,7 +516,7 @@ class Stack
     var items: List(int)
     var size: int = 0
 
-    cue init
+    cue init()
         items = List(int)()
 
     invariant
@@ -530,11 +534,10 @@ class Stack
             size > 0
         ensure
             size == old size - 1
-        var top = items.at(size - 1)
-        # Remove the last element by clearing then re-adding all but one.
-        # (A real implementation would use list.removeLast(); this is illustrative.)
+        var last = items.at(size - 1)
+        items.remove(size - 1)      # remove by index, keeping the invariant true
         size = size - 1
-        return top
+        return last
 
     def top(): int
         require
@@ -569,7 +572,8 @@ broke the relationship between the count field and the underlying list.
   get the check for free everywhere.
 - **`assert` is the granular tool**: an inline sanity probe inside a
   method body.
-- **`--turbo` strips them all.**  Develop with contracts on; ship with
+- **`--turbo` strips the contract clauses** (`require`/`ensure`/`invariant`);
+  `assert` survives it.  Develop with contracts on; ship with
   contracts off.  Don't put side effects inside contract clauses.
 
 ---

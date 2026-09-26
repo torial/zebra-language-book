@@ -1,3 +1,0 @@
-> class Wallet
->     var balance: float           # default = public — leaks internal state
->

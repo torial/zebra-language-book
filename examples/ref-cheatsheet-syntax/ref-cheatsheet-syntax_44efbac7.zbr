@@ -1,0 +1,19 @@
+# List
+var numbers = List(int)()
+numbers.add(1)
+numbers.add(2)
+for num in numbers
+    print(num)
+numbers.count()
+numbers.at(0)
+numbers.contains(1)
+numbers.remove(1)
+
+# HashMap
+var map = HashMap(str, int)()
+map.put("a", 1)
+map.fetch("a")                        # retrieve value
+map.contains("a")
+map.remove("a")
+for key, value in map
+    print("${key}: ${value}")

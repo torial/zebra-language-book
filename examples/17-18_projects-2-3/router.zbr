@@ -1,84 +1,35 @@
 # file: router.zbr
-# teaches: request routing and dispatching
+# teaches: routing on method and path, path parameters, status codes
 # project: Project-2-HTTP-Server
 
-interface RequestHandler
-    def handle(request: HttpRequest): HttpResponse
+use user_store exposing addUser, findUser, allUsersJson
 
-class Router
-    var routes: HashMap(str, RequestHandler) = HashMap()
-    
-    def register(path: str, handler: RequestHandler)
-        routes.put(path, handler)
-    
-    def route_request(request: HttpRequest): HttpResponse throws
-        if routes.contains(request.path)
-            var handler = routes.fetch(request.path)
-            var response = handler.handle(request)
-            return response
-        
-        # Path not found
-        return HttpResponse.not_found()
-    
-    def list_routes: List(str)
-        var paths: List(str) = List()
-        for path in routes
-            paths.add(path)
-        return paths
+def route(req: HttpRequest): HttpResponse
+    if req.path == "/health"
+        return HttpResponse.ok("{\"status\": \"healthy\"}")
 
-class UserHandler
-    implements RequestHandler
-        static var users: HashMap(int, User) = HashMap()
-        static var next_id: int = 1
-        
-        def handle(request: HttpRequest): HttpResponse
-            if request.method == "GET"
-                return handle_get(request)
-            elif request.method == "POST"
-                return handle_post(request)
-            elif request.method == "PUT"
-                return handle_put(request)
-            elif request.method == "DELETE"
-                return handle_delete(request)
-            
-            return HttpResponse.bad_request("Method not allowed")
-        
-        def handle_get(request: HttpRequest): HttpResponse
-            # If path is /api/users, list all users
-            if request.path == "/api/users"
-                var response_body = "["
-                var first = true
-                for id, user in users
-                    if not first
-                        response_body = response_body.concat(",")
-                    response_body = response_body.concat(user.to_json())
-                    first = false
-                response_body = response_body.concat("]")
-                return HttpResponse.ok(response_body)
-            
-            return HttpResponse.not_found()
-        
-        def handle_post(request: HttpRequest): HttpResponse
-            # Create new user from JSON body
-            # Simplified: real impl would parse JSON properly
-            var user = User()
-            user.id = next_id
-            user.name = "User ${next_id}"
-            user.email = "user${next_id}@example.com"
-            
-            users.put(user.id, user)
-            next_id = next_id + 1
-            
-            return HttpResponse.created(user.to_json())
-        
-        def handle_put(request: HttpRequest): HttpResponse
-            return HttpResponse.bad_request("PUT not yet implemented")
-        
-        def handle_delete(request: HttpRequest): HttpResponse
-            return HttpResponse.bad_request("DELETE not yet implemented")
+    if req.path == "/api/users"
+        if req.method == "GET"
+            return HttpResponse.ok(allUsersJson())
+        if req.method == "POST"
+            return createUser(req.content)
+        return HttpResponse.new(405, "method not allowed")
 
-class HealthHandler
-    implements RequestHandler
-        def handle(request: HttpRequest): HttpResponse
-            var response = "{\"status\": \"healthy\"}"
-            return HttpResponse.ok(response)
+    # /api/users/<id> -- a path parameter
+    if req.path.startsWith("/api/users/") and req.method == "GET"
+        # "/api/users/2".split("/") is ["", "api", "users", "2"].
+        # Keep the ": str" -- without it, today's compiler mistypes the element.
+        var idText: str = req.path.split("/").at(3)
+        if findUser(idText.toInt()) as user
+            return HttpResponse.ok(user.toJson())
+        return HttpResponse.notFound("no user ${idText}")
+
+    return HttpResponse.notFound("no route for ${req.method} ${req.path}")
+
+def createUser(body: str): HttpResponse
+    # Expect a JSON body like {"name": "Ada"}
+    if Json.parse(body) as json
+        var name = json.getStr("name")
+        if name.len > 0
+            return HttpResponse.new(201, addUser(name).toJson())
+    return HttpResponse.new(400, "expected a JSON body like {\"name\": \"Ada\"}")

@@ -16,7 +16,7 @@ this book's source is at
 |---|---|
 | **Part 1: Foundations** | Installing the toolchain, values and types, collections, functions, control flow, strings. |
 | **Part 2: Objects and Interfaces** | Classes, structs and unions, interfaces, composition and mixins, properties, modules. |
-| **Part 3: Advanced Features** | Nil tracking, `Result`-based error handling, generics, contracts, memory and lifetimes, concurrency, pipelines. |
+| **Part 3: Advanced Features** | Nil tracking, exception-based error handling (`throws`, `raise`, `catch`), generics, contracts, memory and lifetimes, concurrency, pipelines. |
 | **Part 4: Practical Projects** | Three worked projects (a CLI tool, an HTTP server, a text-analysis tool) plus GUI applications. |
 | **Part 5: Ecosystem** | Standard library tour, file I/O, regular expressions, FFI, the build system, testing. |
 | **Appendices** | Grammar, standard library, troubleshooting, and attribute references. |

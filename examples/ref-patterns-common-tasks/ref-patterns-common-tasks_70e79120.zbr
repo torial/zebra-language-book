@@ -1,0 +1,6 @@
+for item in items
+    print(item)
+
+# With index
+for i in 0.to(items.count())
+    print("${i}: ${items.at(i)}")

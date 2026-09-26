@@ -1,0 +1,2 @@
+def get_age(): int
+    return 25    # ✅ Returning int

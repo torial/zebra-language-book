@@ -1,0 +1,14 @@
+class Money
+    var cents: int
+    cue init(cents: int)
+        .cents = cents
+    cue toString(): str
+        return "${.cents / 100}.${.cents % 100}"
+    cue equals(other: Money): bool
+        return .cents == other.cents
+
+def main()
+    var a = Money(250)
+    print(a)                  # 2.50  (print calls toString)
+    print(a == Money(250))    # true  (== calls equals: value, not identity)
+    print(a == Money(99))     # false

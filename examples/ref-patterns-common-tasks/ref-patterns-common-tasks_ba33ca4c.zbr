@@ -1,0 +1,9 @@
+def process_data() throws
+    # Step 1
+    var input = File.read("input.txt")
+
+    # Step 2: Process
+    var processed = input.upper()
+
+    # Step 3
+    File.write("output.txt", processed)

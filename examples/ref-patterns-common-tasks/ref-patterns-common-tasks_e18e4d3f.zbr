@@ -1,0 +1,4 @@
+var delimiter = Regex.compile("\\s+")  # One or more spaces
+var text = "one  two   three"
+var words = delimiter.split(text)
+# words = ["one", "two", "three"]

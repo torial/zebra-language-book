@@ -1,0 +1,16 @@
+class RegexOps
+    static
+        def matches(re: Regex, text: str): bool
+            return re.match(text)                # the WHOLE text must match
+
+        def find(re: Regex, text: str): str
+            return re.find(text)                 # "" when there is no match
+
+        def findAll(re: Regex, text: str): List(str)
+            return re.findAll(text)
+
+        def replace(re: Regex, text: str, replacement: str): str
+            return re.replace(text, replacement) # replaces every match
+
+        def split(re: Regex, text: str): List(str)
+            return re.split(text)

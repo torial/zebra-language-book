@@ -1,0 +1,17 @@
+class Counter
+    var count: int = 0
+
+    invariant
+        count >= 0
+
+    def increment(): int
+        ensure
+            result == old count + 1     # `result` = return value; `old expr` = pre-call snapshot
+        count = count + 1
+        return count
+
+    def decrement_by(n: int)
+        require
+            n > 0
+            n <= count
+        count = count - n

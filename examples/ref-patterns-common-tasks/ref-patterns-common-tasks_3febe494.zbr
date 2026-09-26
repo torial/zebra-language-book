@@ -1,0 +1,8 @@
+var numbers = Regex.compile("\\d+")
+var text = "I have 3 apples and 7 oranges"
+
+var matches = numbers.findAll(text)
+# matches = ["3", "7"]
+
+for match in matches
+    print(match)

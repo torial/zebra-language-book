@@ -1,4 +1,0 @@
-> var name: str? = nil
-> if name != nil
->     print(name.upper())  # Safe
->

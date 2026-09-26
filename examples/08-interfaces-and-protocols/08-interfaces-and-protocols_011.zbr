@@ -1,4 +1,0 @@
-> class CreditCard implements PaymentProcessor
->     def process(amount: float): bool  # ✅ Matches interface
->         return true
->

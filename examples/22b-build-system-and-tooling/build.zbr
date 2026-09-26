@@ -1,9 +1,6 @@
 # file: build.zbr
-# teaches: declarative-style build script
-# chapter: 22b-Build-System-and-Tooling
+# A minimal build script
 
 def main()
     var b = Build.new()
-    var t = b.exe("myapp", "src/main.zbr")
-    t.option("optimize", "ReleaseSafe")
-    # no b.run() needed — zebra build calls it automatically
+    b.exe("myapp", "src/main.zbr")

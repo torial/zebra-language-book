@@ -1,0 +1,11 @@
+var counter: Atomic(int) = Atomic(int)(0)
+sys.go(def()
+    capture
+        var counter: Atomic(int) = counter
+    var _ = counter.add(1)
+)
+sys.go(def()
+    capture
+        var counter: Atomic(int) = counter
+    var _ = counter.add(1)
+)

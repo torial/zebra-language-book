@@ -1,0 +1,8 @@
+var value = 42
+
+# Check if it's an int
+var as_str = value.toString()  # Force conversion
+
+# Check compatibility
+if value > 0
+    print("Positive")

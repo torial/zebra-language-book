@@ -8,21 +8,21 @@ class FileResult
 
 def process_file(path: str): FileResult
     var src = File.read(path)
-    var lines = src.split("\n")
+    var lines = src.lines()        # not split("\n"): that counts the empty piece after a final newline
     var r = FileResult()
     r.path = path
     r.line_count = lines.count()
     return r
 
 def main()
-    var paths = File.list_dir("./docs")
-    var ch: Chan(FileResult) = Chan(FileResult)(paths.count())
+    var names = File.listDir("./docs")        # entry names, not paths
+    var ch: Chan(FileResult) = Chan(FileResult)(names.count())
     var pool: ThreadPool = ThreadPool(4)
 
-    for p in paths
+    for name in names
         pool.submit(def()
             capture
-                var p: str = p
+                var p: str = Path.join("./docs", name)
                 var ch: Chan(FileResult) = ch
             ch.send(process_file(p))
         )

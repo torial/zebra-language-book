@@ -1,0 +1,5 @@
+var x = 5                       # Declare variable
+def func(): str               # Define function
+for item in list                # Loop over collection
+if x > 5                        # Conditional
+var v = risky() catch default   # Handle errors

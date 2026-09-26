@@ -1,0 +1,19 @@
+# Functions that can fail use throws
+def parse(text: str): int throws
+    if text.len == 0
+        raise "Empty input"
+    return 42
+
+# Catch expression (inline fallback)
+var value = parse("abc") catch 0
+
+# Method-level catch (there is no try/catch block; a catch clause
+# attaches to a def, at the same indent as def)
+def attempt()
+    var v = parse("")
+    print(v)
+catch |err|
+    print("Error: ${err.message}")
+
+# Catch expression fallback — no binding needed for a fixed value
+var result = parse("x") catch -1

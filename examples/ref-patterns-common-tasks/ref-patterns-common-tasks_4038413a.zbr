@@ -1,0 +1,2 @@
+var user_input = "  hello world  \n"
+var clean = user_input.trim()            # "hello world"

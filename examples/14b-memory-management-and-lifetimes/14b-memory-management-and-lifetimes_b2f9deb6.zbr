@@ -1,0 +1,9 @@
+def main()
+    var counts: List(int) = List()
+    for name in File.listDir("./logs")
+        var path = Path.join("./logs", name)
+        var n: int = 0
+        allocate Arena()
+            var src = File.read(path)
+            n <<- src.split("\n").count()
+        counts.add(n)

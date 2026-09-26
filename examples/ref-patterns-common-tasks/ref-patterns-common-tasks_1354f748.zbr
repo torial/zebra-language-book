@@ -1,0 +1,5 @@
+if not File.exists("data.txt")
+    print("Cannot read file")
+else
+    var content = File.read("data.txt")
+    print(content)

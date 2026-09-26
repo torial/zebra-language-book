@@ -28,7 +28,7 @@ Let's get your environment set up and run your first program.
 - **Compiled** — Zebra code compiles to Zig (which then compiles to machine code)
 - **Strongly typed** — Types are checked at compile time, preventing type mismatches
 - **Nil-safe** — You explicitly mark values that can be `nil`, preventing null pointer errors
-- **Error-aware** — Errors are values you handle, not exceptions you ignore
+- **Error-aware** — A function that can fail says so (`throws`); every caller either handles the error (`catch`) or passes it on explicitly (`?`), so a failure cannot be silently dropped
 - **Expressive** — Clear, readable syntax that emphasizes intent over cleverness
 
 **Who uses it:** People building systems where reliability matters (CLI tools, servers, data processing, embedded systems).
@@ -37,36 +37,65 @@ Let's get your environment set up and run your first program.
 
 ## Installation
 
-### macOS and Linux
+> **Which Zebra this book targets.** The book tracks the language as of Zebra
+> **0.9.0-rc3**. Anything older — including 0.9.0-rc1 and rc2 — lacks parts of what the
+> later chapters teach (the GUI chapter's toolbars, trees, `g.scope` and hotkeys, among
+> others), so install rc3 or newer. `zebra --version` tells you what you have.
 
-```bash
-# Install Zig first (Zebra compiles to Zig)
-# https://ziglang.org/download/
-# Then install Zebra (the installer bundles a pinned Zig, so this step is optional)
-# https://github.com/torial/zebra-language/releases
+A release is one folder: the `zebra` compiler, the Zig toolchain it was built and tested
+with, the language guide and the examples. **You do not need to install Zig
+separately** — Zebra compiles your program to Zig and builds it with the bundled copy.
 
-# Verify installation
+### Windows (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/torial/zebra-language/main/install/install.ps1 | iex
+```
+
+This installs to `%USERPROFILE%\.zebra\current` and adds it to your user `PATH`. Open a
+**new** terminal so the `PATH` change takes effect, then:
+
+```
 zebra --version
 ```
 
-### Windows
+### Linux and macOS
 
-```cmd
-# Download from: https://github.com/torial/zebra-language/releases
-# Extract to a directory
-# Add to PATH
-# Verify:
-zebra --version
+```sh
+curl -fsSL https://raw.githubusercontent.com/torial/zebra-language/main/install/install.sh | sh
 ```
 
-### From Source
+This installs to `~/.zebra/current` and prints the `export PATH=...` line to add to your
+shell profile (`~/.bashrc`, `~/.zshrc`). Add it, open a new terminal, then run
+`zebra --version`.
+
+### Updating
+
+```
+zebra up            # download the latest release, verify it, swap it in
+zebra up --check    # only report whether a newer release exists
+```
+
+### Manual install
+
+Download the archive for your platform from
+[the Releases page](https://github.com/torial/zebra-language/releases), unpack it anywhere,
+and put that folder on your `PATH`.
+
+### From source
+
+Building from source needs **Zig 0.16.0** on your `PATH` (other versions are not
+supported):
 
 ```bash
 git clone https://github.com/torial/zebra-language.git
 cd zebra-language
 zig build
-# Binary at: zig-out/bin/zebra
 ```
+
+The compiler is `zig-out/bin/zebra` (`zebra.exe` on Windows). Add `zig-out/bin` to your
+`PATH` so `zebra` works from any directory. A source build uses the Zig on your `PATH`
+to build your programs too.
 
 ---
 
@@ -193,15 +222,28 @@ As a Zebra programmer, you mostly ignore the Zig step. You write `.zbr`, run `ze
 # Compile and run
 zebra hello.zbr
 
-# Compile only (leaves hello.exe)
+# Fast check: parse and type-check only (~60 ms), no Zig build.
+# It can pass on a program that would still fail to build -- use --check-full for that.
 zebra -c hello.zbr
 
-# Run with debug output
-zebra -v=2 hello.zbr
+# Full check: everything short of running (the front end plus Zig's analysis)
+zebra --check-full hello.zbr
 
-# Keep intermediate Zig code for inspection
-zebra -kif hello.zbr
+# Optimised build (the default is a debug build)
+zebra --release hello.zbr
+
+# Run the def test_*() functions in a file
+zebra test hello.zbr
+
+# Keep the generated Zig for inspection
+zebra --emit-zig --output-dir out hello.zbr
+
+# Every command and flag
+zebra --help
 ```
+
+Flags are exact: whole words take two dashes (`--release`), single letters one (`-c`),
+and an unrecognised flag is an error rather than being ignored.
 
 ---
 
@@ -288,6 +330,9 @@ When your program spans multiple files, Zebra's `use` statement imports another 
 # file: math_utils.zbr
 def square(n: int): int
     return n * n
+
+def cube(n: int): int
+    return n * n * n
 ```
 
 ```zebra
@@ -299,14 +344,14 @@ def main()
     print(answer)  # 25
 ```
 
-> **Naming note:** `result` is a reserved keyword in Zebra (it binds the return value inside an `ensure` block — see Chapter 14). Pick another name like `answer` or `total` for ordinary locals.
+> **Naming note:** inside an `ensure` block (Chapter 14), `result` means the function's return value. Everywhere else it is an ordinary name, so `var result = ...` is fine — but avoid it in a function that has an `ensure`, where it would be ambiguous to a reader.
 
 ### Selective Imports with `exposing`
 
 `use math_utils` brings the module into scope as `math_utils.square(5)`. Adding `exposing square` lifts the name in directly so you can call `square(5)` without the prefix. You can expose multiple names at once:
 
 ```zebra
-use ast exposing Stmt, Expr, TypeRef, DeclVar
+use math_utils exposing square, cube
 ```
 
 This keeps your code clean when you use many names from a module. You'll see `use...exposing` extensively in later chapters.

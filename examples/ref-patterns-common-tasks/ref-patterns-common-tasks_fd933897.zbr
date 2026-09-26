@@ -1,0 +1,18 @@
+def divide(a: int, b: int): int throws
+    if b == 0
+        raise "Cannot divide by zero"
+    return a / b
+
+def attempt_divide()
+    var v = divide(10, 0)
+    print(v)
+catch |err|
+    print("Error: ${err.message}")
+
+class Main
+    static
+        def main
+            var value = divide(10, 2) catch 0
+            print("Result: ${value}")
+
+            attempt_divide()

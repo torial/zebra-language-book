@@ -1,0 +1,10 @@
+# file: deprecated_demo.zbr
+@deprecated("use addTwice instead")
+def addOld(a: int): int
+    return a + a
+
+def addTwice(a: int): int
+    return a * 2
+
+def main()
+    print(addOld(21))       # warning at this call; prints 42

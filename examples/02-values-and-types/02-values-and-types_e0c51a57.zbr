@@ -1,0 +1,1 @@
+var result = compute()  # What's the type?

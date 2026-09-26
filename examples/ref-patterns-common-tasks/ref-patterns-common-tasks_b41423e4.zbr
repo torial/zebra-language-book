@@ -1,0 +1,12 @@
+interface Shape
+    def area(): float
+
+class Circle implements Shape
+    var radius: float = 0.0
+    
+    def area(): float
+        return 3.14159 * radius * radius
+
+var circle = Circle()
+circle.radius = 5.0
+print(circle.area())

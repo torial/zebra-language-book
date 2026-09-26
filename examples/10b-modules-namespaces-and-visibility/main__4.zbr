@@ -1,0 +1,5 @@
+# file: main.zbr
+use helpers
+def main()
+    # var n = 5.double()    # ERROR — double() not visible here
+    pass

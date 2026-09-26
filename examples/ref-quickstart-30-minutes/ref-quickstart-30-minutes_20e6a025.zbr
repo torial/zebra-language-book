@@ -1,0 +1,6 @@
+var fruits = List(str)()        # Create list
+fruits.add("apple")
+fruits.add("banana")
+
+for fruit in fruits
+    print(fruit)

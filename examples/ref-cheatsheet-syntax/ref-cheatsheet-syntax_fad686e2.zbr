@@ -1,0 +1,6 @@
+var result = text -> .trim() -> .upper() -> .split(" ")
+
+# Equivalent to:
+var trimmed = text.trim()
+var upper = trimmed.upper()
+var parts = upper.split(" ")

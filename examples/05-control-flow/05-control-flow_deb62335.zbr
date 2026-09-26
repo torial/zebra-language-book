@@ -1,0 +1,3 @@
+for fruit in fruits
+    if fruit == "apple"
+        fruits.remove(0)  # ❌ Unsafe — modifying during iteration

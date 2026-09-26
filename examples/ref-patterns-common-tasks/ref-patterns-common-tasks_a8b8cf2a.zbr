@@ -1,0 +1,17 @@
+var items = List(str)()
+items.add("red")
+items.add("blue")
+items.add("red")
+items.add("blue")
+items.add("red")
+
+var counts = HashMap(str, int)()
+
+for item in items
+    var current = counts.fetch(item)
+    if current != nil
+        counts.put(item, current + 1)
+    else
+        counts.put(item, 1)
+
+# counts: red->3, blue->2

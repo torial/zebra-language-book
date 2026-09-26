@@ -1,0 +1,4 @@
+if scores.contains("Alice")
+    print("Alice found")
+else
+    print("Alice not found")

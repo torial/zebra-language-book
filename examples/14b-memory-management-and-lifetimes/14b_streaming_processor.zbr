@@ -1,5 +1,5 @@
 # file: 14b_streaming_processor.zbr
-# teaches: allocate + <- + using together
+# teaches: allocate + <<- + using together
 # chapter: 14b-Memory-Management-and-Lifetimes
 
 class Summary
@@ -14,7 +14,7 @@ def process_one(path: str): Summary
         var src = File.read(path)
         var words = src.split(" ")
         result.word_count = words.count()
-        result.top_word <- most_frequent(words)   # copy-out the single str
+        result.top_word <<- most_frequent(words)  # copy-out the single str
     # All of src + words freed here; result survives.
     return result
 
@@ -24,9 +24,8 @@ def most_frequent(words: List(str)): str
 
 def main()
     var summaries: List(Summary) = List()
-    var paths = File.list_dir("./docs")
-    for path in paths
-        var s = process_one(path)
+    for name in File.listDir("./docs")        # entry names, not paths
+        var s = process_one(Path.join("./docs", name))
         summaries.add(s)               # Summary itself is in the outer arena
 
     for s in summaries

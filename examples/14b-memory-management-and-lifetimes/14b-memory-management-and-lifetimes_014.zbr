@@ -1,5 +1,0 @@
-> var s: str
-> allocate Arena()
->     s = File.read("config.txt")      # s now points into the inner arena
-> # s is dangling here
->

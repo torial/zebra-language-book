@@ -1,0 +1,5 @@
+var user: User? = get_user()
+
+if user != nil
+    if user.address != nil
+        print(user.address)

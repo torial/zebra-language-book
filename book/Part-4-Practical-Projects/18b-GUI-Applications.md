@@ -5,6 +5,12 @@
 **Prerequisites:** 05-Control-Flow, 07-Classes-and-Instances, 07b-Structs-Unions-and-Value-Types
 **You'll learn:** The MVU (Model-View-Update) architecture, `Gui.run`, dispatching messages with `g.send`, laying out widgets with `using g.vbox`/`g.hbox`, the widget catalogue, forms, the native tree, drawing on a canvas, the embedded code editor, and how to test a GUI without ever opening a window
 
+> **Version note:** this chapter tracks Zebra **0.9.0-rc3 or newer**. Trees,
+> toolbars, `g.scope`, window-wide hotkeys (`g.hotkey`) and the `g.area` canvas all
+> landed after 0.9.0-rc2 and are not in the rc1 or rc2 releases. A compiler built
+> from the main branch after rc2 has them too, even though its `zebra --version`
+> may still say rc2.
+
 ---
 
 ## The Big Picture
@@ -144,8 +150,9 @@ way you would assert on any other output. It is also the fastest way to check
 that a layout change did what you meant before waiting on a full native build.
 
 > **Note:** the stub never fires an event, so a single stub frame
-> shows you the initial view. To exercise `update`, send a message unconditionally
-> in `view` (see *Testing your update function* below).
+> shows you the initial view. To exercise `update`, call it directly from a test
+> (see *Testing Your Update Function* below) — not by sending a message
+> unconditionally from `view`, which is a livelock (see *Common Mistakes*).
 
 ![The same program on the libui-ng backend (GTK shown; Windows and macOS draw their own native widgets): at start, and after three clicks on +.](../diagrams/18b-counter.png)
 
@@ -1086,17 +1093,21 @@ The rule of thumb:
 ordinary code, and you can test it without a GUI at all:
 
 ```zebra
-def testInc()
+def test_inc()
     var m = init()
     var m2 = update(m, Msg.inc)
     assert m2.count == 1
     var m3 = update(m2, Msg.inc)
     assert m3.count == 2
 
-def testReset()
+def test_reset()
     var m = update(Counter(count: 41), Msg.reset)
     assert m.count == 0
 ```
+
+Put the tests in the same file as `init` and `update` and run `zebra test
+counter.zbr`: it runs every `def test_*()` function (the `test_` prefix is how it
+finds them) and reports `2 passed, 0 failed`.
 
 This is the practical payoff of the MVU constraint. In a callback-based GUI, the
 logic that changes state is tangled into event handlers and can only be exercised
@@ -1244,14 +1255,16 @@ Model a list of tasks, each with a description and a done flag.
 - Every task's widgets need unique ids — derive them from the index, e.g.
   `"##done" + i.toString()`.
 
-Watch for the conditional-layout trap: the number of tasks changes between
-frames, and each task creates widgets. Run it on the stub backend first and read
-the widget tree.
+The number of tasks changes between renders, and each task creates widgets.
+That is fine: the runtime inserts and removes widgets as the view changes, so a
+conditional or growing layout needs no special handling. Run it on the stub
+backend first and read the widget tree.
 
 ### Exercise 3: Test It Without a Window
 
-Take your todo list and write `update` tests: add three tasks, toggle the second,
-remove the first, and assert the resulting model. Do not open a window.
+Take your todo list and write `update` tests — `def test_*()` functions, run
+with `zebra test` — that add three tasks, toggle the second, remove the first,
+and assert the resulting model. Do not open a window.
 
 If that felt easy, you have understood why MVU is worth the constraint.
 
@@ -1265,7 +1278,8 @@ If that felt easy, you have understood why MVU is worth the constraint.
 - **A `Msg` union** is the complete vocabulary of events in your program; it may
   mix payload and no-payload variants.
 - **Layout** is nested `using g.vbox` / `g.hbox`, with stable `##ids` and a
-  `stretch` flag. Layout must be identical on every frame.
+  `stretch` flag. Layout may change between renders — conditional rows and
+  boxes are inserted and removed for you.
 - **Stateful widgets** are driven by the model: pass the value in, and the `on`
   function names the message for a change. No widget returns a value.
 - **Forms** lay labels left and controls right; **the tree** is a single column

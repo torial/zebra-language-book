@@ -1,0 +1,6 @@
+interface PaymentProcessor
+    def process(amount: float): bool
+
+class CreditCard implements PaymentProcessor
+    def process(amount: int): bool  # ❌ int, not float
+        return true

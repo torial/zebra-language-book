@@ -1,0 +1,9 @@
+# Read file (File.read/write are not `throws`; guard with File.exists)
+var content = File.read("file.txt")
+
+# Write file
+File.write("output.txt", content)
+
+# Check existence
+if File.exists("file.txt")
+    print("File exists")

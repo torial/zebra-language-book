@@ -1,0 +1,4 @@
+var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
+
+if email_pattern.matches("user@example.com")
+    print("Valid email")

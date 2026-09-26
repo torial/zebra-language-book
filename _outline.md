@@ -28,25 +28,26 @@ PART 3: ADVANCED FEATURES (7 chapters, ~10 hours)
 ├─ 14c-Concurrency-Channels-and-Threads.md (requires: 04,14b)
 └─ 15-Pipelines-and-Function-Composition.md (requires: 04,05)
 
-PART 4: PRACTICAL PROJECTS (4 chapters, ~12 hours)
-├─ Project-1-CLI-Tool.md (requires: 01-06, 21)
-├─ Project-2-HTTP-Server.md (requires: 01-12, 20)
-├─ Project-3-Data-Analysis.md (requires: 01-06, 13)
+PART 4: PRACTICAL PROJECTS (3 chapters, ~12 hours)
+├─ 16-Project-1-CLI-Tool.md (requires: 01-06, 21)
+├─ 17-18_Projects-2-3.md — Project 2 HTTP Server (requires: 01-12, 20)
+│                          Project 3 Data Analysis (requires: 01-06, 13)
 └─ 18b-GUI-Applications.md (requires: 05,07,07b)
 
-PART 5: ECOSYSTEM (6 chapters, ~6 hours)
-├─ 16-Standard-Library-Tour.md (requires: 01-06)
-├─ 17-File-IO-and-System-Access.md (requires: 02,05,06)
-├─ 18-Regular-Expressions.md (requires: 06)
-├─ 19-FFI-and-Interop.md (requires: 02,07)
+PART 5: ECOSYSTEM (7 chapters, ~6 hours)
+├─ 19-Standard-Library-Tour.md (requires: 01-06)
+├─ 20-File-IO-and-System-Access.md (requires: 02,05,06)
+├─ 21-Regular-Expressions.md (requires: 06)
+├─ 22-FFI-and-Interop.md (requires: 02,07)
 ├─ 22b-Build-System-and-Tooling.md (requires: 01,04)
-└─ 22c-Testing-and-Validation.md (requires: 04,12,22b)
+├─ 22c-Testing-and-Validation.md (requires: 04,12,22b)
+└─ 19-22_Final-Chapters.md — Part 5 recap and where to go next
 
 APPENDICES (4 chapters, reference)
-├─ A-Grammar-Reference.md
-├─ B-Built-in-Functions.md
-├─ C-Troubleshooting.md
-└─ D-Attribute-Reference.md
+├─ Appendix-A-Grammar.md
+├─ Appendix-B-Stdlib.md
+├─ Appendix-C-Troubleshooting.md
+└─ Appendix-D-Attributes.md
 ```
 
 ## Reading Paths
@@ -61,9 +62,9 @@ APPENDICES (4 chapters, reference)
             ↓
             11 → 12 → 13 → 14 → 15
                            ↓
-                      (Projects 1-3)
+                      (Projects 1-3, 18b)
                            ↓
-                      16 → 17 → 18 → 19
+                      19 → 20 → 21 → 22 → 22b → 22c
 ```
 
 ### Path B: Quick Start to Shipping (focus on practical output)
@@ -72,7 +73,7 @@ APPENDICES (4 chapters, reference)
 ```
 01 → 02 → 03 → 04 → 05 → 06 → 07 → 11
               ↓
-              16 → 17 → Project-2-HTTP-Server
+              19 → 20 → Project-2-HTTP-Server
 ```
 
 ### Path C: Safety-First (understand Zebra's unique features)
@@ -84,7 +85,7 @@ APPENDICES (4 chapters, reference)
               13 (if you want generics too)
 ```
 
-### Path D: Object-Oriented Deep Dive (classes, inheritance, polymorphism)
+### Path D: Object-Oriented Deep Dive (classes, interfaces, mixins, polymorphism)
 **Duration:** 20-25 hours | **Best for:** OOP enthusiasts
 
 ```
@@ -97,7 +98,7 @@ APPENDICES (4 chapters, reference)
 **Duration:** 20-25 hours | **Best for:** Data analysis, system tools
 
 ```
-01 → 02 → 03 → 04 → 05 → 06 → 16 → 17 → 18
+01 → 02 → 03 → 04 → 05 → 06 → 19 → 20 → 21
               ↓
               Project-3-Data-Analysis
 ```
@@ -112,17 +113,17 @@ APPENDICES (4 chapters, reference)
 | **02** | Types (int, float, bool, str), variables, type inference | Simple values |
 | **03** | List, HashMap, Set, iteration, indexing | Collections |
 | **04** | Functions, parameters, return values, closures, captures | Utilities |
-| **05** | if/else, match, for, while, break, continue, guards | Control logic |
+| **05** | if/else, `branch` pattern matching, for, while, break, continue, early returns | Control logic |
 | **06** | String literals, interpolation, methods, Unicode, regex intro | Text processing |
 
 ### Part 2: Objects & Interfaces
 
 | Chapter | Covers | Projects |
 |---------|--------|----------|
-| **07** | Class definition, instantiation, methods, shared members | OOP basics |
+| **07** | Class definition, instantiation, methods, `static` members, `with`, `@derive` | OOP basics |
 | **07b** | Structs (value types), unions, `^T` heap indirection, `except`, `branch` | Value semantics |
 | **08** | Interface definition, protocol conformance, polymorphism | Contracts |
-| **09** | Inheritance, mixins, super, abstract methods | Hierarchies |
+| **09** | Why Zebra has no inheritance, mixins (`adds`), composition, polymorphism via interfaces | Reuse |
 | **10** | Properties, getters/setters, computed properties, lazy init | Encapsulation |
 | **10b** | Modules across files, `use`/`exposing`, visibility keywords, namespaces, `extend` | Code organization |
 
@@ -130,9 +131,9 @@ APPENDICES (4 chapters, reference)
 
 | Chapter | Covers | Projects |
 |---------|--------|----------|
-| **11** | Nilable types (?), nil checks, narrowing, to! operator | Safety |
-| **12** | Result type, ok/err, unwrapOr, error propagation | Error handling |
-| **13** | Generics, constraints, variance, type parameters | Reusability |
+| **11** | Nilable types (?), nil checks, narrowing, `if x as n`, `!` force-unwrap, `orelse` | Safety |
+| **12** | `throws` / `raise`, method-level `catch`, `catch` fallbacks, `?` propagation | Error handling |
+| **13** | Generic classes and methods, type parameters, constraints, type aliases, refinement types | Reusability |
 | **14** | Contracts (pre/post), assertions, invariants | Correctness |
 | **14b** | Arena allocator, scoped `allocate` blocks, `<-` copy-out, `using EXPR`, `^T` for recursive types | Memory |
 | **14c** | `Chan(T)`, `sys.go()`, `Atomic(T)`, `ThreadPool(n)` | Concurrency |
@@ -144,19 +145,19 @@ APPENDICES (4 chapters, reference)
 |---------|------|-------|
 | **1** | Build a file processor CLI (wc, grep-lite, csv tool) | Args, files, collections, control flow |
 | **2** | Build an HTTP server (JSON API, routing, error handling) | Networking, error handling, structs, interfaces |
-| **3** | Analyze data (n-grams, frequency, sorting, output) | Collections, regex, algorithms, results |
-| **4** | Build a GUI application (MVU, widgets, embedded code editor) | MVU architecture, unions as event vocabularies, layout, testing without a display |
+| **3** | Analyze data (n-grams, frequency, sorting, output) | Collections, algorithms, modules, error handling |
+| **18b** | Build a GUI application (MVU, widgets, embedded code editor) | MVU architecture, unions as event vocabularies, layout, testing without a display |
 
 ### Part 5: Ecosystem
 
 | Chapter | Covers | Projects |
 |---------|--------|----------|
-| **16** | String methods, List methods, HashMap methods, math | Practical stdlib |
-| **17** | File reading/writing, directories, system calls, args | I/O |
-| **18** | Thompson NFA regex, matching, groups, split, replace | Text |
-| **19** | C FFI, Zig FFI, calling native functions, callbacks | Systems |
+| **19** | String methods, List methods, HashMap methods, math | Practical stdlib |
+| **20** | File reading/writing, directories, system calls, args | I/O |
+| **21** | Thompson NFA regex, matching, groups, split, replace | Text |
+| **22** | C FFI, Zig FFI, calling native functions, callbacks | Systems |
 | **22b** | `zebra` subcommands, `zebra build` + `Build` module, REPL, dead-code analysis, DAP debugger | Tooling |
-| **22c** | `assert_*` statements, `zebra test` runner, `@tag` filtering, organizing tests | Testing |
+| **22c** | `def test_*()` functions with `assert`, `zebra test` runner, `@tag` filtering, organizing tests | Testing |
 
 ## Time Estimates
 
@@ -185,15 +186,15 @@ Every code example is:
 2. **In a file** under `examples/` (for running)
 3. **Tagged with metadata:**
    ```
-   // file: 02_hello.zbr
-   // teaches: hello world, print
-   // chapter: 01-Getting-Started
+   # file: hello.zbr
+   # teaches: hello world, the print function
+   # chapter: 01-Getting-Started
    ```
 4. **Validated by `make validate`** (must compile; see `BUILD.md` for the baseline-gate mechanism — there is no `make build` target)
 
 To run an example:
 ```bash
-zebra examples/01_hello.zbr
+zebra examples/01-getting-started/hello.zbr
 ```
 
 ## Notes on Iteration

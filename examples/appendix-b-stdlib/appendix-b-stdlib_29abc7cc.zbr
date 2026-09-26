@@ -1,0 +1,10 @@
+def load(path: str): str throws
+    if not File.exists(path)
+        raise "not found: ${path}"
+    return File.read(path)
+
+def show(path: str)
+    var content = load(path)
+    print(content)
+catch |err|
+    print("Error: ${err.message}")

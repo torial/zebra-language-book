@@ -32,11 +32,35 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Tuple
 
+QUICK_REFS = ("QUICKSTART-30-Minutes.md", "CHEATSHEET-Syntax.md", "PATTERNS-Common-Tasks.md")
+
+
+def strip_prefix(line: str, prefix: str) -> str:
+    """Remove a fence's blockquote/indent prefix from one body line. Blockquote markers
+    are matched loosely (`>` with or without its space); plain indentation is removed only
+    as far as the line actually has it."""
+    out = line
+    for ch_group in re.findall(r'\s*>', prefix):
+        m = re.match(r'\s*>\s?', out)
+        if not m:
+            return out
+        out = out[m.end():]
+    indent = len(prefix) - len(prefix.rstrip(' ')) if '>' not in prefix else 0
+    if indent:
+        k = 0
+        while k < indent and k < len(out) and out[k] == ' ':
+            k += 1
+        out = out[k:]
+    return out
+
+
 class ExampleExtractor:
     def __init__(self, book_root: str = "."):
         self.book_root = Path(book_root)
         self.examples_dir = self.book_root / "examples"
         self.examples = []
+        self.names_taken = {}
+        self.collisions = []
 
     def create_directories(self):
         """Create examples directory structure."""
@@ -69,17 +93,46 @@ class ExampleExtractor:
                 chapter_name = md_file.stem
                 chapters.append((chapter_name, md_file))
 
+        # The root quick references are the book's "In a hurry?" path (the introduction
+        # sends readers there), and until 2026-09-25 nothing extracted them, so their
+        # examples were never validated -- PATTERNS still taught a removed `unwrapOr`.
+        for name in QUICK_REFS:
+            md_file = self.book_root / name
+            if md_file.exists():
+                chapters.append(("ref-" + md_file.stem.lower(), md_file))
+
         return chapters
 
     def extract_code_blocks(self, chapter_name: str, content: str) -> List[Dict]:
-        """Extract all code blocks from markdown content."""
+        """Extract all code blocks from markdown content.
+
+        Line-based, because a fence can sit behind a PREFIX: a blockquote (`> ```zebra`)
+        or a list item's indentation. The old regex matched the fence anywhere and kept
+        the prefix on every captured line, so the 107 blocks inside blockquotes -- every
+        "Common Mistakes" example, including each "Better" fix -- were written out as
+        `> def main()` and could never compile. None of those fixes had ever been checked.
+        """
         code_blocks = []
-
-        # Match ```zebra ... ``` blocks
-        pattern = r'```zebra\n(.*?)```'
-
-        for match in re.finditer(pattern, content, re.DOTALL):
-            code = match.group(1).strip()
+        lines = content.replace('\r\n', '\n').split('\n')
+        fence = re.compile(r'^((?:\s*>)*\s*)```zebra\s*$')
+        i = 0
+        while i < len(lines):
+            m = fence.match(lines[i])
+            if not m:
+                i += 1
+                continue
+            prefix = m.group(1)
+            body = []
+            i += 1
+            while i < len(lines):
+                ln = lines[i]
+                stripped = strip_prefix(ln, prefix)
+                if stripped.strip() == '```':
+                    break
+                body.append(stripped)
+                i += 1
+            i += 1
+            code = '\n'.join(body).strip()
             if not code:
                 continue
 
@@ -111,7 +164,14 @@ class ExampleExtractor:
                 for key in ('file', 'teaches', 'project'):
                     marker = prefix + key + ':'
                     if marker in line:
-                        metadata[key] = line.split(marker)[1].strip()
+                        value = line.split(marker)[1].strip()
+                        # A file name is the first token: `# file: Wallet.zbr  (primary)`
+                        # used to become a file literally named "Wallet.zbr  (primary)",
+                        # which the validator's *.zbr glob never matched -- so it was
+                        # extracted and silently never checked.
+                        if key == 'file' and value:
+                            value = value.split()[0]
+                        metadata[key] = value
 
         return metadata
 
@@ -121,6 +181,11 @@ class ExampleExtractor:
         # 01-Getting-Started -> 01-getting-started
         chapter_dir = self.examples_dir / chapter_name.lower().replace(' ', '-')
         chapter_dir.mkdir(exist_ok=True)
+        # Remove what the previous extraction wrote. Blocks deleted from a chapter used to
+        # leave their files behind -- 14 orphans were still being compiled and counted as
+        # failures for code that no longer exists in the book.
+        for old in chapter_dir.glob('*.zbr'):
+            old.unlink()
         return chapter_dir
 
     def write_example(self, chapter_dir: Path, metadata: Dict) -> bool:
@@ -129,9 +194,32 @@ class ExampleExtractor:
             # No `file:` header -- synthesise a stable name rather than dropping the
             # block.  Silently discarding unnamed blocks is what made this tool report
             # zero examples per chapter while still exiting successfully.
+            # Named by a hash of the block's CONTENT, not its POSITION. Positional names
+            # (`<chapter>_008`) renamed every later unnamed block whenever one was inserted
+            # or removed, so the validator reported "regressions" that were renumberings --
+            # and could not tell a real one from them, because the same name then held
+            # different code. With a content name, one name means one piece of code.
+            import hashlib
             slug = metadata.get('chapter', 'block').lower().replace(' ', '-')
-            metadata['file'] = slug + '_' + str(metadata.get('index', 0)).zfill(3) + '.zbr'
+            digest = hashlib.sha1(metadata['content'].encode('utf-8')).hexdigest()[:8]
+            metadata['file'] = slug + '_' + digest + '.zbr'
 
+        # Two blocks in one chapter naming the same file used to OVERWRITE each other
+        # silently (10b wrote `main.zbr` four times), so only the last was ever checked.
+        # A repeat now gets a `__2`, `__3` suffix and is counted in the summary.
+        # Compared CASE-INSENSITIVELY: `wallet.zbr` and `Wallet.zbr` are two blocks in 10b but
+        # ONE file on Windows and macOS, so the second overwrote the first there while Linux
+        # kept both -- the same book extracted differently per platform.
+        name = metadata['file']
+        taken = self.names_taken.setdefault(chapter_dir, set())
+        if name.lower() in taken:
+            stem, dot, ext = name.rpartition('.')
+            k = 2
+            while f"{stem}__{k}.{ext}".lower() in taken:
+                k += 1
+            metadata['file'] = f"{stem}__{k}.{ext}"
+            self.collisions.append(f"{chapter_dir.name}/{name} -> {metadata['file']}")
+        taken.add(metadata['file'].lower())
         filepath = chapter_dir / metadata['file']
 
         try:
@@ -237,7 +325,9 @@ examples/
 
 ## Running Examples
 
-Each `.zbr` file is a complete, runnable program:
+Each `.zbr` file is one code block from the book. Many are complete programs; some are
+fragments illustrating one construct, one half of a two-module example, or a deliberate
+"common mistake". Run a complete one with:
 
 ```bash
 zebra examples/01-getting-started/01_hello_world.zbr
@@ -258,7 +348,10 @@ Run the validation script:
 python3 ../validate-examples.py
 ```
 
-This compiles and tests each example to ensure correctness.
+It checks each example with the compiler's front end (`zebra -c`: parse and type-check,
+no Zig build, no run) and fails when an example that used to pass stops passing. It does
+NOT prove an example builds or prints what its comments say -- `--full` adds a real
+build (`--check-full`) for the examples that have a `main`.
 
 ## By the Numbers
 
@@ -314,8 +407,21 @@ This compiles and tests each example to ensure correctness.
             print("\n✗ No examples extracted!")
             return False
 
+        # A chapter that was renamed or removed leaves its whole directory behind, which
+        # per-chapter clearing cannot reach. Remove directories nothing wrote this run.
+        produced = {Path(e['path']).parent.name for e in self.examples}
+        for d in sorted(p for p in self.examples_dir.iterdir() if p.is_dir()):
+            if d.name not in produced and list(d.glob('*.zbr')):
+                for old in d.glob('*.zbr'):
+                    old.unlink()
+                print(f"  removed stale directory contents: {d.name}/")
+
         print(f"\n{'=' * 60}")
         print(f"✓ Successfully extracted {total} examples!")
+        # Printed every run, zero included, so a count that starts climbing is visible.
+        print(f"  name collisions (renamed with __N, not overwritten): {len(self.collisions)}")
+        for c in self.collisions:
+            print(f"    {c}")
         print(f"{'=' * 60}\n")
 
         # Create manifest

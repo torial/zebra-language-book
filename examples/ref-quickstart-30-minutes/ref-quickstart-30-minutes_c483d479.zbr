@@ -1,0 +1,10 @@
+var x = 10
+
+if x > 5
+    print("Large")
+else
+    print("Small")
+
+while x > 0
+    print(x)
+    x = x - 1

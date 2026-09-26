@@ -370,7 +370,7 @@ else
 
 ```zebra
 var x: int? = get_value()
-var value = x.unwrapOr(0)  # Use 0 if nil
+var value = x orelse 0  # Use 0 if nil
 print(value)
 ```
 

@@ -1,0 +1,10 @@
+Math.PI                                 # 3.14159...
+Math.E                                  # 2.71828...
+Math.sin(x)                             # Trig functions
+Math.sqrt(x)                            # Square root
+Math.pow(x, y)                          # Power
+Math.abs(x)                             # Absolute value
+Math.min(a, b)                          # Minimum
+Math.max(a, b)                          # Maximum
+Math.floor(x)                           # Round down
+Math.ceil(x)                            # Round up

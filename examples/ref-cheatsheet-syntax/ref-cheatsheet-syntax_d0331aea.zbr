@@ -1,0 +1,30 @@
+# If/Else if/Else
+if x > 10
+    print("Large")
+else if x > 5
+    print("Medium")
+else
+    print("Small")
+
+# While loop
+var i = 0
+while i < 10
+    print(i)
+    i = i + 1
+
+# For loop
+for item in items
+    print(item)
+
+for i in 0..10
+    print(i)  # 0, 1, 2, ..., 9
+
+# Break & Continue
+while true
+    if x == 5
+        break
+    if x == 2
+        x = x + 1
+        continue
+    print(x)
+    x = x + 1

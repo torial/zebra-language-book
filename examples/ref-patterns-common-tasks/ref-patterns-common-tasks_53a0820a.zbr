@@ -1,0 +1,13 @@
+var numbers = List(int)()
+numbers.add(1)
+numbers.add(2)
+numbers.add(3)
+numbers.add(4)
+numbers.add(5)
+
+var evens = List(int)()
+for num in numbers
+    if num % 2 == 0
+        evens.add(num)
+
+# evens = [2, 4]

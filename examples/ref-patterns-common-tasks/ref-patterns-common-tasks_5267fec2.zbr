@@ -1,0 +1,3 @@
+def write_output()
+    File.write("output.txt", "File contents here")
+    print("File written successfully")

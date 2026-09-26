@@ -1,0 +1,3 @@
+def view(g: Gui, m: Model)
+    m.count = m.count + 1         # ❌ view must not change state
+    g.text("Count: ${m.count}")

@@ -1,0 +1,9 @@
+var scores = HashMap(str, int)()
+
+scores.put("Alice", 95)
+scores.put("Bob", 87)
+scores.put("Charlie", 92)
+
+var alice_score = scores.fetch("Alice")
+if alice_score != nil
+    print("Alice: ${alice_score}")

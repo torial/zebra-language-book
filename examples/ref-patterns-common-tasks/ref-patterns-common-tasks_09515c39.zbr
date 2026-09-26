@@ -1,0 +1,12 @@
+var text = "Hello World Hello"
+
+# Replace first occurrence
+var result1 = text.replace("Hello", "Hi")   # "Hi World Hello"
+
+# Replace all occurrences
+var result2 = text.replaceAll("Hello", "Hi")  # "Hi World Hi"
+
+# Find position
+var pos = text.indexOf("World")
+if pos >= 0
+    print("Found at position ${pos}")

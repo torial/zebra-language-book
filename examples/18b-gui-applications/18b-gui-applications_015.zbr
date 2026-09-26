@@ -1,4 +1,0 @@
-> def view(g: Gui, m: Model)
->     g.button("Add", Msg.inc)      # ✅
->     g.text("Count: ${m.count}")
->

@@ -1,3 +1,0 @@
-@derive(Debug)              # just toString
-@derive(Eq, Hash)           # equality + hashable
-@derive(Debug, Eq, Hash)    # all three

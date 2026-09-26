@@ -1,3 +1,0 @@
-sys.go(lambda
-    print("hello from a thread")
-)

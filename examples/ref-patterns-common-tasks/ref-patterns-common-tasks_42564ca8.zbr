@@ -1,0 +1,5 @@
+# Exit with status code
+sys.exit(1)
+
+# Use Arg for structured argument parsing
+var result = Arg.parse()

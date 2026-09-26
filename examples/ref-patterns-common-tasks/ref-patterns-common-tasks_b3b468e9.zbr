@@ -1,0 +1,4 @@
+var items = List(int)()
+items.add(1)
+items.add(2)
+print("Count: ${items.count()}")

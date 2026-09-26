@@ -1,0 +1,8 @@
+var x = 42                              # int (inferred)
+var s = "hello"                         # str
+var f = 3.14                            # float
+var b = true                            # bool
+var c = 'x'                             # char
+
+var x: int = 42                       # explicit type
+var y: int? = nil                     # nullable type

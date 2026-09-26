@@ -1,4 +1,0 @@
-@derive(Debug, Eq, Hash)
-struct Point
-    var x: float
-    var y: float

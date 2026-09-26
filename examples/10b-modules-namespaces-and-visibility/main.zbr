@@ -1,5 +1,7 @@
 # file: main.zbr
-use helpers
+use math_utils
+
 def main()
-    # var n = 5.double()    # ERROR — double() not visible here
-    pass
+    var n = math_utils.square(5)
+    var v = math_utils.Vec2(3.0, 4.0)
+    print(v.length())

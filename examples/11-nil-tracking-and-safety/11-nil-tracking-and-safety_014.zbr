@@ -1,4 +1,0 @@
-> var value: str? = get_value()
-> if value != nil
->     print(value)  # ✅ Safe, or use unwrapOr
->

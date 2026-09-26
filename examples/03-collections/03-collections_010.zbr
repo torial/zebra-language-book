@@ -1,3 +1,0 @@
-> for item in items
->     items.remove(item)  # ❌ Unsafe: modifying while iterating
->

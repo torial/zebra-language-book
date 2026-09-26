@@ -1,0 +1,11 @@
+var items = List(str)()
+items.add("apple")
+items.add("apple")
+items.add("banana")
+
+var count = 0
+for item in items
+    if item == "apple"
+        count = count + 1
+
+print(count)  # 2

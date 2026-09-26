@@ -1,0 +1,4 @@
+def parse_age(s: str): int throws
+    if s.len == 0
+        raise "empty input"
+    return 42

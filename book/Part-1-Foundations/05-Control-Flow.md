@@ -114,7 +114,8 @@ on the same line.
 
 ### If as an Expression
 
-`if` can also **produce a value** when used in expression position:
+To **produce a value** — to initialise a variable or pass an argument — use the
+three-argument form `if(condition, value_if_true, value_if_false)`:
 
 ```zebra
 # file: 05_if_expr.zbr
@@ -124,27 +125,28 @@ on the same line.
 def main()
     var score = 85
 
-    # Assign the result of an if-expression:
-    var result = if score >= 60: "pass" else: "fail"
-    print(result)  # pass
+    # Choose a value:
+    var verdict = if(score >= 60, "pass", "fail")
+    print(verdict)  # pass
 
-    # Use directly in a function call:
-    print(if score > 50: "pass" else: "fail")
+    # Use it directly as an argument:
+    print(if(score > 90, "excellent", "good"))  # good
 
-    # Compute absolute value:
+    # Absolute value:
     var n: int = -5
-    var abs_n: int = if n >= 0: n else: -n
+    var abs_n: int = if(n >= 0, n, -n)
     print(abs_n)  # 5
 ```
 
 **Rules for the expression form:**
-- An `else:` branch is **required** — both branches must produce a value.
-- Both branches must be the **same type** (compiler infers it).
-- The `else:` must appear on the **same line** as the `if`.
-- Chained `else if` is **not supported** in expression position — for multi-branch logic, use a block-form `if` with a temporary variable.
+- It takes **exactly three** arguments, and the two values must have the **same type**.
+- For more than two outcomes, nest it — `if(a, x, if(b, y, z))` — or use the statement
+  form above and assign inside each branch.
+- The colon form `if cond: a else: b` is a **statement only**: it runs one of two
+  statements, and it does not parse where a value is expected.
 
-> **Coming from Python?** This is like Python's `value_if_true if cond else value_if_false`,
-> but the condition comes *first* — same reading order as a regular `if`.
+> **Coming from Python?** This does the job of `value_if_true if cond else value_if_false`,
+> but reads condition-first, like a function call.
 
 ---
 

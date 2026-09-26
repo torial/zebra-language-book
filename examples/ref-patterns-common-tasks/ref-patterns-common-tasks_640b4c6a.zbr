@@ -1,0 +1,9 @@
+var content = File.read("file.txt")
+var lines = content.split("\n")
+
+for line in lines
+    if line.trim().len == 0
+        continue  # Skip empty lines
+
+    # Process line...
+    print(line)

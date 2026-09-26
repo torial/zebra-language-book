@@ -1,4 +1,0 @@
-> var x = 10
-> var y = 3.14
-> print(x + y)  # ❌ Can't add int + float
->

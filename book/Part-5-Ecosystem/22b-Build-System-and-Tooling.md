@@ -38,6 +38,8 @@ the full list; the everyday ones:
 | `zebra test file.zbr` | Run the test suite in `file.zbr` (see Chapter 22c) |
 | `zebra check file.zbr` | Dead-code analysis — unused functions and union arms |
 | `zebra debug file.zbr` | Launch under `lldb-dap` for breakpoint debugging |
+| `zebra fmt file.zbr` | Normalise formatting in place (`--check` to only report, `--print` to write to stdout) |
+| `zebra up` | Update an installed release (`--check` reports only; `--to VER` picks a version) |
 | `zebra --emit-zig file.zbr` | Emit the generated Zig source instead of compiling |
 
 The default subcommand (no flag) is "compile and run." Almost all your
@@ -90,20 +92,23 @@ Launch with `zebra repl`. Enter Zebra statements one at a time:
 
 ```
 $ zebra repl
-Zebra REPL 0.15 — type :help for commands
+Zebra REPL  (:help for commands, Ctrl-D to exit)
 >>> var x = 10 + 5
->>> print x
+>>> print(x)
 15
 >>> def double(n: int): int
 ...     return n * 2
->>> double(x)
+>>> print(double(x))
 30
 ```
 
+A bare expression such as `double(x)` is evaluated but not echoed — wrap it in
+`print(...)` to see its value.
+
 The REPL uses an **accumulation model** — each input is appended to a
-running session, recompiled, and re-run. Redefining a function or variable
-runs the redefined version, but doesn't remove the old line from history.
-Use `:clear` to start over.
+running session, recompiled, and re-run; only the new output is shown.
+Redefining a name is refused (the compiler reports the redeclaration), so
+use `:clear` to start over.
 
 ### REPL commands
 
@@ -111,30 +116,31 @@ All REPL commands begin with `:`.
 
 | Command | Action |
 |---|---|
-| `:help` | List all REPL commands |
+| `:help` (or `:h`) | List all REPL commands |
 | `:clear` | Reset the accumulated session — start fresh |
 | `:history` | Print everything entered so far |
-| `:load <file>` | Read a `.zbr` file into the REPL environment |
-| `:save <file>` | Save the current session to a file |
-| `:exit` (or Ctrl-D) | Quit |
+| `:save <file.zbr>` | Save the current session to a `.zbr` file |
+| `:quit` (or `:q`, or Ctrl-D) | Quit |
 
 ### Multi-line input
 
-When a line ends with an indent-starting construct (like `def`, `class`,
-`if`, `while`), the REPL switches to multi-line mode and shows `...`:
+A line that starts a declaration (`def`, `class`, `struct`, `interface`,
+`extend`) switches the REPL to continuation mode and shows `...`:
 
 ```
 >>> def factorial(n: int): int
-...     if n <= 1
-...         return 1
-...     return n * factorial(n - 1)
+...     var r = 1
+...     for i in 2..n + 1
+...         r = r * i
+...     return r
 ...
->>> factorial(6)
+>>> print(factorial(6))
 720
 ```
 
-End the block with a blank line, or with a dedented line that completes
-the parse.
+Finish a definition with an **empty line** — press Enter on a blank `...` line — and
+the REPL submits it. The body can be as long as you like. (Before Zebra 0.9.0-rc3 a
+definition was submitted after its first body line, so only one-line bodies worked.)
 
 ### When the REPL helps
 
@@ -290,16 +296,23 @@ project-build equivalent goes through `target.option(key, val)`.
 |---|---|
 | `--emit-zig` | Write generated Zig source to stdout instead of compiling |
 | `--output-dir DIR` | Write generated Zig files to `DIR/` (project-style output) |
-| `--turbo` | Strip all contract checks (`require`/`ensure`/`invariant`) — see Ch14 |
+| `--release` | Build optimised; contracts still fire |
+| `--turbo` | Strip all contract checks (`require`/`ensure`/`invariant`) — see Ch14; `assert` still fires |
+| `--coverage` | Write line coverage to `zebra-coverage.json` on exit (also `zebra test --coverage`) |
+| `--warnings-as-errors` | Fail the compile on any warning (e.g. a call to a `@deprecated` function) |
 | `--cpu=VALUE` | Pass `-mcpu=VALUE` to Zig (e.g. `native`, `x86_64+avx2`) |
 | `--gui-backend=libui_ng` | Use native OS controls (Win32/GTK3/Cocoa) |
 | `--gui-backend=tui` | Use the ZigZag terminal-UI backend |
-| `--gui-backend=glfw` | Use Dear ImGui (OpenGL + GLFW) |
-| `--zig-backend file.zbr` | Delegate to `zebra-bootstrap.exe` (Zig-implemented compiler) |
-| `--listen PORT` | Debug mode: expose DAP on `PORT` instead of launching the IDE |
 
-`--turbo` and `--gui-backend` are the two you'll touch most often. `--cpu`
-matters for SIMD (Chapter 19 covers SIMD vector types).
+`--release` and `--turbo` are **independent** and compose: `--release`
+optimises, `--turbo` strips contracts, and neither implies the other. A
+shipping build is `zebra --release --turbo app.zbr`. `--cpu` matters for SIMD
+(Chapter 19 covers SIMD vector types).
+
+Retired flags: `--gui-backend=glfw` (the Dear ImGui backend), `--zig-backend`,
+and `zebra debug --listen` were removed on 2026-09-15, and the Zig-implemented
+bootstrap compiler they delegated to (`zebra-bootstrap.exe`) was deleted the
+next day. `glfw` is refused by name; the other two are unrecognised flags.
 
 ---
 
@@ -335,8 +348,8 @@ Future versions may extend coverage.
 ## Debugging: `zebra debug`
 
 `zebra debug file.zbr` compiles the program and launches it under
-`lldb-dap`, exposing the Debug Adapter Protocol on a local socket. IDE
-clients connect to the socket for:
+`lldb-dap`, relaying the Debug Adapter Protocol over its own stdin/stdout.
+An IDE starts `zebra debug` as its debug adapter and gets:
 
 - **Breakpoints** at any `.zbr` source line
 - **Stepping** (step over / into / out)
@@ -368,15 +381,10 @@ automatically — see `docs/DEBUGGING.md` for full details.
 
 ### Standalone DAP
 
-If you want to connect from a custom tool, run:
-
-```bash
-zebra debug --listen 4711 src/main.zbr
-# Waits for a DAP client to connect to localhost:4711
-```
-
-The compiler will block until the connection arrives, then forward DAP
-messages between your client and lldb-dap.
+A custom tool drives the relay the same way an IDE does: start
+`zebra debug src/main.zbr` as a child process and speak DAP on its stdin and
+stdout. (An older `zebra debug --listen PORT` socket mode was removed on
+2026-09-15; the relay is stdio-only.)
 
 ### Prerequisites
 
@@ -585,7 +593,7 @@ memory for the REPL's accumulate-and-save loop. Try it.
 - **`zebra repl`** is for exploration, not production work; use `:save` to promote a session to a file
 - **`zebra check`** finds dead union arms and unreachable functions — run it before refactors
 - **`zebra debug`** launches under `lldb-dap` for breakpoint debugging with proper `.zbr` source mapping
-- **`--turbo` strips contract checks** for release builds; `--gui-backend` selects the GUI renderer; `--cpu` enables SIMD targets
+- **`--release` optimises and `--turbo` strips contract checks** — they are independent, and a shipping build uses both; `--gui-backend` selects the GUI renderer; `--cpu` enables SIMD targets
 
 ---
 

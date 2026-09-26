@@ -1,0 +1,4 @@
+def process_file(filename: str): int throws
+    var content = File.read(filename)
+    var line_count = content.split("\n").count()
+    return line_count

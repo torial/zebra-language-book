@@ -16,13 +16,13 @@ class SimilarityMetrics
                         intersection = intersection + 1
                         break
             
-            # Find union (crude approximation)
-            var union = words1.count() + words2.count() - intersection
+            # Size of the union (crude approximation)
+            var total = words1.count() + words2.count() - intersection
             
-            if union == 0
+            if total == 0
                 return 0.0
             
-            return intersection / union
+            return intersection.toFloat() / total.toFloat()
         
         def cosine_similarity(text1: str, text2: str): float
             # Simplified cosine similarity (not true cosine, but similar)
@@ -42,7 +42,7 @@ class SimilarityMetrics
                 return 0.0
             
             var denominator = len1 + len2
-            return (2.0 * common) / denominator
+            return (2.0 * common.toFloat()) / denominator.toFloat()
         
         def hamming_distance(text1: str, text2: str): int
             var words1 = text1.lower().split(" ")
@@ -55,8 +55,8 @@ class SimilarityMetrics
             var distance = 0
             var i = 0
             while i < max_len
-                var w1 = if i < words1.count() then words1.at(i) else ""
-                var w2 = if i < words2.count() then words2.at(i) else ""
+                var w1 = if(i < words1.count(), words1.at(i), "")
+                var w2 = if(i < words2.count(), words2.at(i), "")
                 
                 if w1 != w2
                     distance = distance + 1

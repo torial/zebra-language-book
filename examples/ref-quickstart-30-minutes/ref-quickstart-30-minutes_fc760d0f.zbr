@@ -1,0 +1,14 @@
+def main()
+    var filename = "input.txt"
+
+    # File.read is not `throws` (a missing file stops the program), so check first
+    if not File.exists(filename)
+        print("Error: could not find ${filename}")
+        sys.exit(1)
+
+    var content = File.read(filename)
+    var lines = content.split("\n")
+
+    print("File: ${filename}")
+    print("Lines: ${lines.count()}")
+    print("Total characters: ${content.len}")

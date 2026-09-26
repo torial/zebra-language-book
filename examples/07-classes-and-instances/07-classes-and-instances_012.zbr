@@ -1,3 +1,0 @@
-> class Person
->     var name: str = ""  # Has default
->

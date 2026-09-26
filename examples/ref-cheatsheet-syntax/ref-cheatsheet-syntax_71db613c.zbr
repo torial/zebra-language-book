@@ -1,0 +1,6 @@
+class MathUtils
+    static
+        def add(a: int, b: int): int
+            return a + b
+
+MathUtils.add(2, 3)                     # Call without instance

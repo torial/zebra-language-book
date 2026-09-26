@@ -5,14 +5,14 @@
 def main()
     var score = 85
 
-    # Assign the result of an if-expression:
-    var result = if score >= 60: "pass" else: "fail"
-    print(result)  # pass
+    # Choose a value:
+    var verdict = if(score >= 60, "pass", "fail")
+    print(verdict)  # pass
 
-    # Use directly in a function call:
-    print(if score > 50: "pass" else: "fail")
+    # Use it directly as an argument:
+    print(if(score > 90, "excellent", "good"))  # good
 
-    # Compute absolute value:
+    # Absolute value:
     var n: int = -5
-    var abs_n: int = if n >= 0: n else: -n
+    var abs_n: int = if(n >= 0, n, -n)
     print(abs_n)  # 5

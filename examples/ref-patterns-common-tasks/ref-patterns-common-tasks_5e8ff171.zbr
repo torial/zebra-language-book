@@ -1,0 +1,7 @@
+var parts = List(str)()
+parts.add("hello")
+parts.add("world")
+parts.add("from")
+parts.add("zebra")
+
+var message = parts.join(" ")      # "hello world from zebra"

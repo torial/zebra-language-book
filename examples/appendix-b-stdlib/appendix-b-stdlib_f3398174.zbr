@@ -1,0 +1,4 @@
+File.read(filename)         # str: read entire file (a missing file stops the program)
+File.write(filename, content)  # write file (creates or truncates); returns nothing
+File.exists(path)           # bool: file exists?
+File.delete(path)           # delete file (a no-op if it is missing)

@@ -6,7 +6,9 @@ def main()
     var ch: Chan(int) = Chan(int)(4)
 
     # Producer: send 1..5, then close
-    sys.go(lambda
+    sys.go(def()
+        capture
+            var ch: Chan(int) = ch
         for i in 1..5
             ch.send(i)
         ch.close()

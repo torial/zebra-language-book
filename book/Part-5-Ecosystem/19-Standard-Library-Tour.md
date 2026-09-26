@@ -41,7 +41,7 @@ Zebra ships with a comprehensive standard library organized into builtin modules
 | `Timer` | Timing and benchmarks |
 | `Reflect` | Runtime reflection |
 | `sys` | Process control (args, exit) |
-| `Gui` | UI toolkit (Dear ImGui backend) |
+| `Gui` | UI toolkit (MVU; `libui_ng` native, `tui` terminal, and `stub` test backends — Chapter 18b) |
 
 ---
 

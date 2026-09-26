@@ -23,7 +23,7 @@
 # Part 3: Advanced Features
 
 - [11: Nil Tracking and Safety](Part-3-Advanced-Features/11-Nil-Tracking-and-Safety.md)
-- [12: Error Handling with Results](Part-3-Advanced-Features/12-Error-Handling-with-Results.md)
+- [12: Error Handling](Part-3-Advanced-Features/12-Error-Handling-with-Results.md)
 - [13: Generics and Type Constraints](Part-3-Advanced-Features/13-Generics-and-Type-Constraints.md)
 - [14: Contracts and Assertions](Part-3-Advanced-Features/14-Contracts-and-Assertions.md)
 - [14b: Memory Management and Lifetimes](Part-3-Advanced-Features/14b-Memory-Management-and-Lifetimes.md)

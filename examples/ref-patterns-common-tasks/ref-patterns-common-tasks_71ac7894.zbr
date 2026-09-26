@@ -1,0 +1,8 @@
+for item in items
+    if item == target
+        print("Found!")
+        break
+
+while condition
+    if error_detected
+        break

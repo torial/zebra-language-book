@@ -46,19 +46,20 @@ Learning what exists prevents reinventing wheels.
 ```zebra
 class FileIO
     static
-        def read_file(path: str): str throws
-            # Read entire file
-            return "content"
-        
-        def write_file(path: str, content: str): bool throws
-            # Write file
-            return true
-        
+        def read_file(path: str): str
+            # File.read is not `throws`: a missing file stops the program
+            if not File.exists(path)
+                return ""
+            return File.read(path)
+
+        def write_file(path: str, content: str)
+            File.write(path, content)
+
         def file_exists(path: str): bool
-            return true
-        
-        def delete_file(path: str): bool throws
-            return true
+            return File.exists(path)
+
+        def delete_file(path: str)
+            File.delete(path)          # a no-op if the file is missing
 ```
 
 ### Line-by-Line Reading
@@ -66,9 +67,9 @@ class FileIO
 ```zebra
 class LineReader
     static
-        def process_lines(path: str): int throws
+        def process_lines(path: str): int
             var lines = 0
-            var content = read_file(path).unwrapOr("")
+            var content = if(File.exists(path), File.read(path), "")
             for line in content.split("\n")
                 if line.len > 0
                     lines = lines + 1
@@ -80,17 +81,14 @@ class LineReader
 ```zebra
 class System
     static
-        def args: List(str)
-            # Command-line arguments
-            return List()
-        
+        def args(): List(str)
+            return sys.args()          # args.at(0) is the program itself
+
         def env(name: str): str?
-            # Environment variables
-            return nil
-        
-        def cwd: str
-            # Current directory
-            return "."
+            return sys.getenv(name)    # nil if the variable is not set
+
+        def cwd(): str
+            return sys.cwd()
 ```
 
 ### Key Topics
@@ -151,20 +149,18 @@ var url_re = Regex.compile("https?://[a-z0-9]+\\.[a-z]+")
 ```zebra
 class RegexOps
     static
-        def match(re: Regex, text: str): bool
-            return re.match(text)
-        
-        def find(re: Regex, text: str): str?
-            return re.find(text)
-        
+        def matches(re: Regex, text: str): bool
+            return re.match(text)                # the WHOLE text must match
+
+        def find(re: Regex, text: str): str
+            return re.find(text)                 # "" when there is no match
+
         def findAll(re: Regex, text: str): List(str)
-            var results: List(str) = List()
-            # Collect all matches
-            return results
-        
+            return re.findAll(text)
+
         def replace(re: Regex, text: str, replacement: str): str
-            return re.replace(text, replacement)
-        
+            return re.replace(text, replacement) # replaces every match
+
         def split(re: Regex, text: str): List(str)
             return re.split(text)
 ```
@@ -204,7 +200,7 @@ class ZigInterop
             # Call Zig function
             return 0.0
         
-        def zig_random: int
+        def zig_random(): int
             # Call Zig's random
             return 0
 ```
@@ -212,9 +208,10 @@ class ZigInterop
 ### Type Marshaling
 
 ```zebra
+# Sketch -- c_func would be declared with `extern` (see Chapter 22).
 # C expects: int foo(const char* str, int* out_len)
 # Zebra code:
-def call_c_func(input: str)
+def call_c_func(input: str): int
     var out_len: int = 0
     var result = c_func(input, out_len)
     return out_len
@@ -242,21 +239,21 @@ def call_c_func(input: str)
 - Primitives: `int`, `float`, `bool`, `str`, `char`
 - Collections: `List(T)`, `HashMap(K,V)`, `Set(T)`
 - Nullable: `T?` (can be T or nil)
-- Result: `Result(T, E)`
+- Fallible functions: `def f(): T throws` (there is no `Result` type)
 
 **Classes:**
 ```zebra
 class Name
     var field: Type = default
     static
-        def shared_method
-    def instance_method
+        def static_method()
+    def instance_method()
 ```
 
 **Interfaces:**
 ```zebra
 interface Name
-    def method_signature
+    def method_signature()
 ```
 
 **Functions:**
@@ -276,8 +273,7 @@ def function_name(param: Type): ReturnType
 ### Appendix B: Built-in Functions and Stdlib
 
 **I/O:**
-- `print(value)` — output to console
-- `println(value)` — output with newline
+- `print(value)` — output to console, followed by a newline
 - `File.read(path)` — read file
 - `File.write(path, content)` — write file
 
@@ -310,7 +306,7 @@ def function_name(param: Type): ReturnType
 → Variable type isn't nullable. Use `T?` not `T` if it can be nil.
 
 **"error: cannot assign to immutable value"**
-→ Field is read-only. Create setter method or use `var` not `shared var`
+→ You assigned to something that cannot change (for example a `const`). Declare it with `var`, or add a setter method
 
 **"error: nil pointer"**
 → You force-unwrapped nil with `!`. Check before unwrapping: `if x != nil`
@@ -354,10 +350,9 @@ var value: str? = get_value()
 if value != nil
     print(value)
 
-# Handle errors
-var result = operation()
-if result.isErr()
-    print(result.errValue())
+# Handle errors (operation is a `throws` function)
+var result = operation() catch "fallback"
+print(result)
 ```
 
 ---

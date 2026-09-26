@@ -1,3 +1,0 @@
-> var value: str? = get_value()
-> print(value!)  # ❌ Crashes if value is nil
->

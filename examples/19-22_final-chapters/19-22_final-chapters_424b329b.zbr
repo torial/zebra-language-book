@@ -1,0 +1,10 @@
+class System
+    static
+        def args(): List(str)
+            return sys.args()          # args.at(0) is the program itself
+
+        def env(name: str): str?
+            return sys.getenv(name)    # nil if the variable is not set
+
+        def cwd(): str
+            return sys.cwd()

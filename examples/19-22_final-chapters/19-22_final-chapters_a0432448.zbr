@@ -1,0 +1,16 @@
+class FileIO
+    static
+        def read_file(path: str): str
+            # File.read is not `throws`: a missing file stops the program
+            if not File.exists(path)
+                return ""
+            return File.read(path)
+
+        def write_file(path: str, content: str)
+            File.write(path, content)
+
+        def file_exists(path: str): bool
+            return File.exists(path)
+
+        def delete_file(path: str)
+            File.delete(path)          # a no-op if the file is missing

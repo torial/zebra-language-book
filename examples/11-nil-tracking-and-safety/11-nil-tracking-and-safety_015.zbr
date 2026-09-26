@@ -1,2 +1,0 @@
-> var name: str = nil  # ❌ str can't be nil
->

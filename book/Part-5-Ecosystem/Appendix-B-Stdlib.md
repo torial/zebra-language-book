@@ -318,23 +318,24 @@ print("Current directory")
 ## File I/O
 
 ```zebra
-File.read(filename)         # Result(str, str): read entire file
-File.write(filename, content)  # Result(bool, str): write file
+File.read(filename)         # str: read entire file (a missing file stops the program)
+File.write(filename, content)  # write file (creates or truncates); returns nothing
 File.exists(path)           # bool: file exists?
-File.delete(path)           # Result(bool, str): delete file
+File.delete(path)           # delete file (a no-op if it is missing)
 ```
+
+None of these is `throws` and none returns a `Result` (Zebra has no `Result`
+type): guard a read with `File.exists`.
 
 **Example:**
 ```zebra
-var result = File.read("data.txt")
-
-if result.isOk()
-    var content = result.value()
+if File.exists("data.txt")
+    var content = File.read("data.txt")
     print(content)
 else
-    print("Error: ${result.error(}"))
+    print("Error: data.txt not found")
 
-var write_result = File.write("output.txt", "Hello")
+File.write("output.txt", "Hello")
 ```
 
 ---
@@ -521,13 +522,16 @@ else
 ### Error Handling
 
 ```zebra
-var result = File.read("file.txt")
+def load(path: str): str throws
+    if not File.exists(path)
+        raise "not found: ${path}"
+    return File.read(path)
 
-if result.isErr()
-    print("Error: ${result.error(}"))
-    return
-    
-var content = result.value()
+def show(path: str)
+    var content = load(path)
+    print(content)
+catch |err|
+    print("Error: ${err.message}")
 ```
 
 ### Iteration
@@ -545,7 +549,7 @@ for item in items
 
 ```zebra
 var num_str = "42"
-var num = num_str.toInt()
+var num = num_str.tryInt()      # int? -- nil if the text is not a number
 
 if num != nil
     print(num + 1)
@@ -557,7 +561,7 @@ if num != nil
 
 1. **Nullable Return Values** — Many functions return nullable types (e.g., `str?`, `int?`). Check with `if x != nil` before using.
 
-2. **Result Types** — File I/O and other operations return `Result(T, E)`. Check with `.isOk()` or `.isErr()`.
+2. **No Result Types** — Operations that can fail are `throws` functions: handle them with `expr catch fallback` or a method-level `catch`. File I/O is not `throws`; check `File.exists` first.
 
 3. **Collection Methods Return Nullable** — `HashMap.fetch()` returns `V?` (nullable value), not `V`.
 

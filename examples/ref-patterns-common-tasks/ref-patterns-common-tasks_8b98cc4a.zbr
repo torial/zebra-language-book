@@ -1,0 +1,11 @@
+class Main
+    static
+        def main
+            var args = sys.args()
+
+            if args.count() > 0
+                print("Arguments:")
+                for arg in args
+                    print("  - ${arg}")
+            else
+                print("No arguments provided")

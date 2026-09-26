@@ -3,7 +3,7 @@
 **Audience:** All — required for long-running services or bounded-memory work
 **Time:** 120 minutes
 **Prerequisites:** 07-Classes-and-Instances, 07b-Structs-Unions-and-Value-Types
-**You'll learn:** The default arena allocator, scoped `allocate` blocks, the `<-` copy-out operator, the `using EXPR` resource pattern, and `^T` heap-indirection for recursive types
+**You'll learn:** The default arena allocator, scoped `allocate` blocks, the `<<-` copy-out operator, the `using EXPR` resource pattern, and `^T` heap-indirection for recursive types
 
 ---
 
@@ -29,7 +29,7 @@ This model has two benefits worth naming:
    exactly where the memory is reclaimed.
 
 This chapter covers the default model, the scoped escape hatch, the
-`<-` copy-out operator for passing values past a scope boundary, and the
+`<<-` copy-out operator for passing values past a scope boundary, and the
 `^T` heap-indirection syntax for recursive types.
 
 ---
@@ -84,7 +84,7 @@ def main()
     allocate Arena()
         var src = File.read("big_file.txt")
         var parsed = parse(src)
-        summary <- summarise(parsed)        # copy result out (see below)
+        summary <<- summarise(parsed)       # copy result out (see below)
     # src, parsed, and all parse temporaries freed here.
     print(summary)
 ```
@@ -146,13 +146,13 @@ print(dangling)  # dangling slice — undefined behaviour
 ```
 
 The compiler can't always catch this — `dangling = src` looks like a
-normal assignment. The right pattern is the `<-` copy-out operator.
+normal assignment. The right pattern is the `<<-` copy-out operator.
 
 ---
 
-## `<-` Copy-Out
+## `<<-` Copy-Out
 
-The `<-` operator deep-copies a value from the inner allocator into the
+The `<<-` operator deep-copies a value from the inner allocator into the
 parent allocator and assigns it to an outer variable:
 
 ```zebra
@@ -160,14 +160,14 @@ var summary: str = ""
 allocate Arena()
     var src = File.read("big_file.txt")
     var s = process(src)
-    summary <- s                  # deep-copies s into the parent allocator
+    summary <<- s                 # deep-copies s into the parent allocator
 # src + s + temporaries freed; summary survives.
 print(summary)
 ```
 
-For each supported type, `<-` does the right thing:
+For each supported type, `<<-` does the right thing:
 
-| Type | What `<-` does |
+| Type | What `<<-` does |
 |---|---|
 | `str` | Duplicates the bytes into the parent allocator |
 | `List(T)` | Allocates a new ArrayList in the parent; deep-copies each element |
@@ -185,22 +185,22 @@ var out: HashMap(str, int) = HashMap(str, int)()
 allocate Arena()
     var tmp: HashMap(str, int) = HashMap(str, int)()
     populate(tmp)
-    # tmp <- out                                    # ERROR
+    # out <<- tmp                                   # ERROR
     for k, v in tmp                                 # iterate + rebuild
         out.set(k, v)                               # k and v are str/int — copy-out implicit
 ```
 
 ### Outside a scoped block
 
-`<-` is a normal assignment when used outside any scoped block (or
+`<<-` is a normal assignment when used outside any scoped block (or
 inside a non-scoped wrapper like `Page()`/`Smp()`/`C()`). You can write
-`<-` defensively in code that might or might not be inside `allocate`
+`<<-` defensively in code that might or might not be inside `allocate`
 — it's always safe.
 
 ```zebra
 def main()
     var x: str = ""
-    x <- "hello"                  # outside any allocate block — plain assignment
+    x <<- "hello"                 # outside any allocate block — plain assignment
 ```
 
 ---
@@ -231,13 +231,14 @@ def main()
 
 ### Desugaring
 
-`using EXPR { body }` expands to:
+A `using EXPR` block compiles to **Zig** of this shape (a sketch, not
+Zebra — `body...` stands for the block's statements):
 
-```zebra
+```zig
 {
-    const _resource = EXPR
-    _resource.begin()
-    defer _resource.end()
+    const _resource = EXPR;
+    _resource.begin();
+    defer _resource.end();
     body...
 }
 ```
@@ -344,14 +345,14 @@ This is exactly how Zebra's own compiler models its AST.
 
 `^T` allocations go through whatever `_allocator` is active. Inside an
 `allocate Arena()` block, the boxes live in the inner arena and are
-freed on block exit. The `<-` copy-out operator recursively follows
+freed on block exit. The `<<-` copy-out operator recursively follows
 `^T?` chains — copying out a linked list copies every node.
 
 ```zebra
 var head: ^Node? = nil
 allocate Arena()
     var n = Node(value: "a", next: Node(value: "b", next: nil))
-    head <- n              # recursively copies the entire chain into parent
+    head <<- n             # recursively copies the entire chain into parent
 # inner nodes freed; head's chain is intact in the parent arena.
 ```
 
@@ -365,7 +366,7 @@ result that survives each iteration:
 
 ```zebra
 # file: 14b_streaming_processor.zbr
-# teaches: allocate + <- + using together
+# teaches: allocate + <<- + using together
 # chapter: 14b-Memory-Management-and-Lifetimes
 
 class Summary
@@ -380,7 +381,7 @@ def process_one(path: str): Summary
         var src = File.read(path)
         var words = src.split(" ")
         result.word_count = words.count()
-        result.top_word <- most_frequent(words)   # copy-out the single str
+        result.top_word <<- most_frequent(words)  # copy-out the single str
     # All of src + words freed here; result survives.
     return result
 
@@ -390,9 +391,8 @@ def most_frequent(words: List(str)): str
 
 def main()
     var summaries: List(Summary) = List()
-    var paths = File.list_dir("./docs")
-    for path in paths
-        var s = process_one(path)
+    for name in File.listDir("./docs")        # entry names, not paths
+        var s = process_one(Path.join("./docs", name))
         summaries.add(s)               # Summary itself is in the outer arena
 
     for s in summaries
@@ -408,7 +408,7 @@ whether there are 10 files or 10,000.
 
 ## Common Mistakes
 
-> ❌ **Mistake:** Storing a value from inside an `allocate` block without `<-`
+> ❌ **Mistake:** Storing a value from inside an `allocate` block without `<<-`
 >
 > ```zebra
 > var s: str
@@ -422,7 +422,7 @@ whether there are 10 files or 10,000.
 > var s: str
 > allocate Arena()
 >     var tmp = File.read("config.txt")
->     s <- tmp                          # deep-copy into parent
+>     s <<- tmp                         # deep-copy into parent
 > ```
 
 > ❌ **Mistake:** Trying to copy out a HashMap
@@ -431,7 +431,7 @@ whether there are 10 files or 10,000.
 > var out: HashMap(str, int) = HashMap(str, int)()
 > allocate Arena()
 >     var tmp: HashMap(str, int) = HashMap(str, int)()
->     out <- tmp                        # ERROR: HashMap copy-out not supported
+>     out <<- tmp                       # ERROR: HashMap copy-out not supported
 > ```
 >
 > ✅ **Better:** iterate and rebuild outside:
@@ -478,9 +478,9 @@ Rewrite this loop so peak memory stays bounded at one file at a time:
 
 ```zebra
 def main()
-    var paths = File.list_dir("./logs")
     var counts: List(int) = List()
-    for path in paths
+    for name in File.listDir("./logs")
+        var path = Path.join("./logs", name)
         var src = File.read(path)        # accumulates across iterations
         counts.add(src.split("\n").count())
 ```
@@ -490,17 +490,17 @@ def main()
 
 ```zebra
 def main()
-    var paths = File.list_dir("./logs")
     var counts: List(int) = List()
-    for path in paths
+    for name in File.listDir("./logs")
+        var path = Path.join("./logs", name)
         var n: int = 0
         allocate Arena()
             var src = File.read(path)
-            n <- src.split("\n").count()
+            n <<- src.split("\n").count()
         counts.add(n)
 ```
 
-`int` is a primitive — `<-` is a plain assignment — but the `src`
+`int` is a primitive — `<<-` is a plain assignment — but the `src`
 buffer is freed before the next iteration reads its file.
 
 </details>
@@ -580,7 +580,7 @@ def main()
 - **Default model: arena allocator, no individual frees.** Allocations live until program exit; the OS reclaims the arena.
 - **`allocate <wrapper>` scopes the allocator** for a block; on exit, scoped wrappers free everything inside.
 - **Named wrappers** include `Arena()` (most common), `Debug()` (leak detection), `FixedBuffer(buf)`, `StackFallback(N)()`, `Pool(T)()`, and non-scoped singletons `Page()` / `Smp()` / `C()`.
-- **`<-` copy-out** deep-copies a value past a scope boundary — works for `str`, `List(T)`, classes/structs (incl. recursive `^T?` chains), and primitives; **HashMap is intentionally not supported** — iterate and rebuild.
+- **`<<-` copy-out** deep-copies a value past a scope boundary — works for `str`, `List(T)`, classes/structs (incl. recursive `^T?` chains), and primitives; **HashMap is intentionally not supported** — iterate and rebuild.
 - **`using EXPR` blocks** call `begin()` / `end()` around a body; any class with both methods works. Use for arbitrary cleanup; pair with `allocate` for memory.
 - **`^T` heap-indirection** is for recursive structs/unions only; auto-boxes, transparent in `branch` and for-loops; **`^ClassName` is illegal** (classes are already references).
 

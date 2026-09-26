@@ -1,0 +1,13 @@
+class Person
+    var name: str = ""
+    var age: int = 0
+    
+    def init(name: str, age: int)
+        this.name = name
+        this.age = age
+    
+    def describe(): str
+        return "${name} is ${age} years old"
+
+var person = Person("Alice", 30)
+print(person.describe())

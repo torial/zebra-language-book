@@ -1,4 +1,0 @@
-> var email: str? = get_email()
-> if email != nil
->     print(email.len)  # ✅ Safe
->

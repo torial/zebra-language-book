@@ -1,0 +1,6 @@
+var input = "  hello world  from zebra  "
+
+var result = input.trim().lower().split(" ")
+
+# result is a List(str); note double spaces in the input produce empty
+# elements between words, since split(" ") is a raw split

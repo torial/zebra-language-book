@@ -1,0 +1,6 @@
+var target = "apple"
+
+for item in items
+    if item == target
+        print("Found it!")
+        break

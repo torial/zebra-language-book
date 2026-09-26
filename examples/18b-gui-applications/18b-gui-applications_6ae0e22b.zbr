@@ -1,0 +1,3 @@
+def view(g: Gui, m: Model)
+    g.every(1000, Msg.tick)            # ✅ once a second, while the view says so
+    g.text("ticks: ${m.ticks}")

@@ -1,0 +1,1 @@
+var name: str? = nil  # ✅ Declares it can be nil

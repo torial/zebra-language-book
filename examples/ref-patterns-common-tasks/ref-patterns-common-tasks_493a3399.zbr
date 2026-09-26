@@ -1,0 +1,16 @@
+def count_words(filename: str): HashMap(str, int) throws
+    var content = File.read(filename)
+    var text = content.lower()
+    var words = text.split(" ")
+    var counts = HashMap(str, int)()
+
+    for word in words
+        var clean = word.trim()
+        if clean.len > 0
+            var current = counts.fetch(clean)
+            if current != nil
+                counts.put(clean, current + 1)
+            else
+                counts.put(clean, 1)
+
+    return counts

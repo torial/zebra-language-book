@@ -165,7 +165,7 @@ distclean: clean
 watch:
 	@echo "$(BLUE)👁️  Watching for changes (requires fswatch)...$(NC)"
 	@while true; do \
-		find Part-* -name "*.md" | fswatch -o | xargs -n1 -I {} bash -c 'clear; make lint'; \
+		find book -name "*.md" | fswatch -o | xargs -n1 -I {} bash -c 'clear; make lint'; \
 	done
 
 dev: extract

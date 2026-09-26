@@ -1,6 +1,0 @@
-{
-    const _resource = EXPR
-    _resource.begin()
-    defer _resource.end()
-    body...
-}

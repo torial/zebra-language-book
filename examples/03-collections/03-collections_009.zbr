@@ -1,2 +1,0 @@
-> var items = List(str)()  # Clear: list of strings
->

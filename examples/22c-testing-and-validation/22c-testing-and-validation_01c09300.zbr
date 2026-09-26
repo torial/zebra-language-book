@@ -1,0 +1,2 @@
+def addition_test()        # Wrong — runner doesn't see this
+    assert 1 + 1 == 2

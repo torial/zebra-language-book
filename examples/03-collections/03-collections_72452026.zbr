@@ -1,0 +1,9 @@
+var to_remove = List(str)()
+for item in items
+    if should_remove(item)
+        to_remove.add(item)
+for item in to_remove
+    for i in 0..items.count()
+        if items.at(i) == item
+            items.remove(i)
+            break

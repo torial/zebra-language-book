@@ -1,4 +1,0 @@
-> allocate Arena()
->     var src = File.read("huge.bin")
-> # src freed here
->

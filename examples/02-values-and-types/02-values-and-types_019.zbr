@@ -1,3 +1,0 @@
-> var name: str? = nil
-> print(name.upper())  # ❌ Error: nil doesn't have .upper()
->

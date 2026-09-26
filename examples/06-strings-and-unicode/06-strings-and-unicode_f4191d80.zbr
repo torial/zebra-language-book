@@ -1,0 +1,2 @@
+var text = "hello"
+var capitalized = "H".concat(text[1..])

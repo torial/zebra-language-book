@@ -2,74 +2,70 @@
 # teaches: combining analysis modules
 # project: Project-3-Data-Analysis
 
+use frequency_analysis exposing WordFrequency, FrequencyAnalyzer
+use ngram_analysis exposing NGram, NGramAnalyzer
+
 class TextAnalysisReport
-    var source_file: str
-    var word_count: int
-    var unique_words: int
-    var top_words: List(WordFrequency)
-    var bigrams: List(NGram)
-    var trigrams: List(NGram)
+    var source_file: str = ""
+    var word_count: int = 0
+    var unique_words: int = 0
+    var top_words: List(WordFrequency) = List(WordFrequency)()
+    var bigrams: List(NGram) = List(NGram)()
+    var trigrams: List(NGram) = List(NGram)()
 
 class AnalysisApplication
     static
         def analyze_file(filename: str): TextAnalysisReport throws
-            var content_result = File.read(filename)
-            
-            if content_result.len == 0
-                raise "File not found or empty"
-            
-            var content = content_result
+            # File.read is not `throws` -- a missing file stops the program --
+            # so check first and raise an error the caller can catch.
+            if not File.exists(filename)
+                raise "File not found: ${filename}"
+
+            var content = File.read(filename)
+            if content.len == 0
+                raise "File is empty: ${filename}"
+
             var words = content.split(" ")
             var unique_words_set: HashMap(str, int) = HashMap()
-            
+
             for word in words
                 var cleaned = word.lower().trim()
                 if cleaned.len > 0
                     unique_words_set.put(cleaned, 1)
-            
-            var freq_analyzer = FrequencyAnalyzer()
-            var top_words = freq_analyzer.top_words(content, 10)
-            
-            var bigram_analyzer = NGramAnalyzer()
-            var bigrams = bigram_analyzer.top_ngrams(content, 2, 5)
-            var trigrams = bigram_analyzer.top_ngrams(content, 3, 5)
-            
+
             var report = TextAnalysisReport()
             report.source_file = filename
             report.word_count = words.count()
             report.unique_words = unique_words_set.count()
-            report.top_words = top_words
-            report.bigrams = bigrams
-            report.trigrams = trigrams
-            
+            report.top_words = FrequencyAnalyzer.top_words(content, 10)
+            report.bigrams = NGramAnalyzer.top_ngrams(content, 2, 5)
+            report.trigrams = NGramAnalyzer.top_ngrams(content, 3, 5)
+
             return report
-        
+
         def print_report(report: TextAnalysisReport)
             print("==== Text Analysis Report ====")
             print("File: ${report.source_file}")
             print("Total words: ${report.word_count}")
             print("Unique words: ${report.unique_words}")
             print("")
-            
+
             print("Top 10 Words:")
             for wf in report.top_words
                 print("  ${wf.to_string()}")
             print("")
-            
+
             print("Top 5 Bigrams:")
             for bigram in report.bigrams
                 print("  ${bigram.gram} (${bigram.count})")
             print("")
-            
+
             print("Top 5 Trigrams:")
             for trigram in report.trigrams
                 print("  ${trigram.gram} (${trigram.count})")
 
 def main()
-    var result = AnalysisApplication.analyze_file("sample.txt")
-    
-    if result.isOk()
-        var report = result.okValue()
-        AnalysisApplication.print_report(report)
-    else
-        print("Error: ${result.errValue()}")
+    var report = AnalysisApplication.analyze_file("sample.txt")
+    AnalysisApplication.print_report(report)
+catch |err|
+    print("Error: ${err.message}")

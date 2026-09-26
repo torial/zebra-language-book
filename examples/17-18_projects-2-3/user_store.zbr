@@ -1,0 +1,39 @@
+# file: user_store.zbr
+# teaches: module-level state, a small data model, JSON output
+# project: Project-2-HTTP-Server
+
+class User
+    var id: int
+    var name: str
+
+    cue init(id: int, name: str)
+        this.id = id
+        this.name = name
+
+    def toJson(): str
+        var obj = Json.object()
+        obj.putInt("id", this.id)
+        obj.put("name", this.name)
+        return Json.stringify(obj)
+
+# One list shared by every function in this file (QUICKSTART §2.1).
+var users = List(User)()
+var next_id = 1
+
+def addUser(name: str): User
+    var user = User(next_id, name)
+    users.add(user)
+    next_id = next_id + 1
+    return user
+
+def findUser(id: int): User?
+    for user in users
+        if user.id == id
+            return user
+    return nil
+
+def allUsersJson(): str
+    var parts = List(str)()
+    for user in users
+        parts.add(user.toJson())
+    return "[" + parts.join(",") + "]"

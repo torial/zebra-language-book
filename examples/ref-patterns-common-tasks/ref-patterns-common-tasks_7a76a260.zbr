@@ -1,0 +1,5 @@
+for item in items
+    if item == skip_value
+        continue
+    
+    print(item)

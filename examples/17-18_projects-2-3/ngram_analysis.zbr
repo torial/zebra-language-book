@@ -59,8 +59,8 @@ class NGramAnalyzer
                     var next = results.at(j + 1)
                     if current.count < next.count
                         var temp = current
-                        results.at(j) = next
-                        results.at(j + 1) = temp
+                        results[j] = next
+                        results[j + 1] = temp
                     j = j + 1
                 i = i + 1
             

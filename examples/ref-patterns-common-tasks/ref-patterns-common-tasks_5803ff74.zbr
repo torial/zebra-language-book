@@ -1,0 +1,5 @@
+var text = "one two three four five"
+var words = text.split(" ")
+
+for word in words
+    print("Word: ${word}")

@@ -1,0 +1,13 @@
+# Generics are class-scoped in Zebra — there is no free top-level generic
+# function; a generic method lives on a generic class:
+class Box(T)
+    var item: T?
+
+    def store(value: T)
+        this.item = value
+
+    def retrieve(): T?
+        return this.item
+
+var box = Box(str)()
+box.store("hello")

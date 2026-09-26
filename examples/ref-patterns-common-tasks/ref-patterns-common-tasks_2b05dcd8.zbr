@@ -1,0 +1,15 @@
+class Main
+    static
+        def main
+            var args = sys.args()
+            var verbose = false
+            var input_file = ""
+
+            for arg in args
+                if arg == "-v" or arg == "--verbose"
+                    verbose = true
+                else if arg.startsWith("--input=")
+                    input_file = arg.substring(8, arg.len)
+
+            print("Verbose: ${verbose}")
+            print("Input: ${input_file}")

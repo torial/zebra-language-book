@@ -1,0 +1,3 @@
+def compute(): int
+    var result = 5 + 3
+    # Forgot return!

@@ -1,0 +1,5 @@
+for i in 0..8
+    pool.submit(def()
+        # capture missing — compile error: mutable 'i' not accessible
+        print(i)
+    )

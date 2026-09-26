@@ -1,0 +1,11 @@
+@derive(Debug, Eq, Hash)
+struct Point
+    var x: int
+    var y: int
+
+def main()
+    var p = Point(x: 1, y: 2)
+    var q = Point(x: 1, y: 2)
+    print(p.toString())  # Point(x=1, y=2)
+    print(p.equals(q))  # true (and p == q routes through it)
+    print(p.hash() == q.hash())  # true

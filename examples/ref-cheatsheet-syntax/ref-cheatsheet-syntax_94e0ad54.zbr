@@ -1,0 +1,6 @@
+var x: int? = 42                      # Can be int or nil
+var y: int? = nil                     # Explicitly nil
+
+# Safe check
+if x != nil
+    var safe_x = x + 1                  # Safe now

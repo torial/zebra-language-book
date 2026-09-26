@@ -1,0 +1,20 @@
+# Mixin — shared methods pulled into multiple classes:
+mixin Loggable
+    def log(message: str)
+        print("[log] ${message}")
+
+class UserService adds Loggable
+    cue init()
+        pass
+    # `log()` is now a method on UserService.
+
+# Composition — has-a, not is-a:
+class Storage
+    var path: str = ""
+
+class Report
+    var storage: Storage      # field-held helper
+
+    cue init(p: str)
+        storage = Storage()
+        storage.path = p

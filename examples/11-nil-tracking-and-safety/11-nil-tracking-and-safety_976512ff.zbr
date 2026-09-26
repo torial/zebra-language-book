@@ -1,0 +1,2 @@
+var email: str? = get_email()
+print(email.len)  # ❌ Crash if email is nil!

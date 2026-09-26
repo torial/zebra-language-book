@@ -1,0 +1,6 @@
+def function()
+    print("Start")
+    # ... code ...
+    print("After step 1")
+    # ... code ...
+    print("Done")

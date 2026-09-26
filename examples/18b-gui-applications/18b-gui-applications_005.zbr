@@ -1,4 +1,0 @@
-g.beginHBox("##row", false)
-    g.button("Left")
-    g.button("Right")
-g.endHBox()

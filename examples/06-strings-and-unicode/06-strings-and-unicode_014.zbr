@@ -1,3 +1,0 @@
-> var text = "hello"
-> text[0] = 'H'  # ❌ Can't modify
->

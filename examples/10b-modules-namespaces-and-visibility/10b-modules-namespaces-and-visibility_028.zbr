@@ -1,5 +1,0 @@
-> class Wallet
->     private var balance: float
->     public def get_balance(): float
->         return .balance
->

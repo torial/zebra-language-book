@@ -1,5 +1,0 @@
-var num_str = "42"
-var num = num_str.toInt()
-
-if num != nil
-    print(num + 1)

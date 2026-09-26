@@ -1,0 +1,2 @@
+var map = HashMap(str, int)()
+map.put("count", 100)  # ✅ Key is str

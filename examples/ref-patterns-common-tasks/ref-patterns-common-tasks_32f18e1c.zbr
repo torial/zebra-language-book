@@ -1,0 +1,3 @@
+var num = 42
+var text = num.toString()
+var message = "The answer is ${text}"

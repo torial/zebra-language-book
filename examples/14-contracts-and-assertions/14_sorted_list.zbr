@@ -5,14 +5,16 @@
 class SortedList
     var items: List(int)
 
-    cue init
+    cue init()
         items = List(int)()
 
     invariant
         # The list is always non-decreasing
         isSorted()
 
-    def isSorted(): bool
+    # private: the invariant is checked after every PUBLIC method, so a
+    # public isSorted() would re-trigger the invariant that calls it.
+    private def isSorted(): bool
         var i = 1
         while i < items.count()
             if items.at(i - 1) > items.at(i)
@@ -23,17 +25,17 @@ class SortedList
     def insert(value: int)
         ensure
             items.count() == old items.count() + 1
-        # Insert preserving sorted order.
+        # Find the first position whose element is not smaller than value.
         var i = 0
         while i < items.count() and items.at(i) < value
             i = i + 1
         items.add(value)
-        # Bubble the new value left into its sorted position.
+        # Shift the tail right by one, then drop value into its slot.
         var j = items.count() - 1
         while j > i
-            var tmp = items.at(j - 1)
-            items.add(items.at(j))
+            items.set(j, items.at(j - 1))
             j = j - 1
+        items.set(i, value)
 
     def smallest(): int
         require

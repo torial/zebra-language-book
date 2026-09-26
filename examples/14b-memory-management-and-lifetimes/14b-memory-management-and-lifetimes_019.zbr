@@ -1,3 +1,0 @@
-> class Tree
->     var left:  Tree?                  # plain reference; no ^ needed
->

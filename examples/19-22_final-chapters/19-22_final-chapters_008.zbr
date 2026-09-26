@@ -1,5 +1,0 @@
-class Name
-    var field: Type = default
-    static
-        def shared_method
-    def instance_method

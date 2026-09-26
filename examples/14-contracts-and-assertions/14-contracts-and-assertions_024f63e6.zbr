@@ -1,0 +1,40 @@
+class Stack
+    var items: List(int)
+    var size: int = 0
+
+    cue init()
+        items = List(int)()
+
+    invariant
+        size >= 0
+        size == items.count()
+
+    def push(v: int)
+        ensure
+            size == old size + 1
+        items.add(v)
+        size = size + 1
+
+    def pop(): int
+        require
+            size > 0
+        ensure
+            size == old size - 1
+        var last = items.at(size - 1)
+        items.remove(size - 1)      # remove by index, keeping the invariant true
+        size = size - 1
+        return last
+
+    def top(): int
+        require
+            size > 0
+        return items.at(size - 1)
+
+def main()
+    var s = Stack()
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    print(s.top())  # 3
+    print(s.pop())  # 3
+    print(s.top())  # 2

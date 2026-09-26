@@ -1,0 +1,4 @@
+class Person
+    var name: str  # No default value
+var p = Person()
+print(p.name)  # ❌ Uninitialized!

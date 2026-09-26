@@ -1,2 +1,0 @@
-g.button("Copy", Msg.copy)
-g.tooltip("Copy the text above to the system clipboard")

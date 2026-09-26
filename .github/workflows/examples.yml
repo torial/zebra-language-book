@@ -1,0 +1,46 @@
+# Check the book's code examples against the LATEST RELEASED Zebra compiler.
+#
+# Until 2026-09-25 nothing ran validate-examples.py automatically: the only workflow
+# built the website, so the examples were checked on the days someone remembered to --
+# and between two such days the book taught a removed flag, a removed type and a wrong
+# output, all of which a reader hit on their first attempt.
+#
+# WHY THE RELEASE and not the compiler's main branch: a reader installs the release,
+# with the same one-line installer chapter 1 teaches, and that is exactly what this
+# job does. So this goes red when the book starts teaching something the newest release
+# cannot do -- which is the signal to cut a release, or to say in the chapter which
+# version it needs.
+#
+# What it proves is `zebra -c` (front end: parse and type-check) against the baseline,
+# i.e. that no example which used to pass has stopped passing. It does not build or run
+# the examples; see validate-examples.py for what that leaves unchecked.
+name: Check book examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install the latest Zebra release (the reader's installer)
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/torial/zebra-language/main/install/install.sh | sh
+          echo "$HOME/.zebra/current" >> "$GITHUB_PATH"
+
+      - name: Which compiler
+        run: zebra --version
+
+      - name: Extract the examples from the chapters
+        run: python3 extract-examples.py
+
+      - name: Validate against the baseline
+        run: python3 validate-examples.py

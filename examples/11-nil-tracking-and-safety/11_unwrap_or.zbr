@@ -16,6 +16,6 @@ def main()
     else
         print("Unknown user")
 
-    # Option 2: if method exists, unwrapOr
-    # var safe_name = maybe_name.unwrapOr("Guest")
-    # print safe_name
+    # Option 2: `orelse` supplies a fallback when the value is nil
+    var safe_name = get_user_name(2) orelse "Guest"
+    print(safe_name)  # Guest

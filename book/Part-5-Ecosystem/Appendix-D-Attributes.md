@@ -12,9 +12,11 @@ The attributes:
 | `@once` | method | Cache first call's result on the instance | 07 |
 | `@profile` | method | Wrap body with `Profile.start/end` | 07 |
 | `@tag("label", ...)` | test method | Mark for `zebra test --tag` filtering | 22c |
-| `@derive(Debug, Eq, Hash)` | struct | Auto-generate `toString` / `eql` / `hash` | 07 |
+| `@derive(Debug, Eq, Hash)` | struct | Auto-generate the `toString` / `equals` / `hash` cues | 07 |
+| `@deprecated("message")` | `def`, method, `static def` | Warn at every call site | — |
 | `@reflectable` | class | Opt into Tier-3 reflection + typed JSON parse | 25 (QUICKSTART) |
 | `@export("symbol")` | class | Emit DynLib factory function | 22 |
+| `@node_export` | top-level `def`, or a method in a `static` block | Export to a Node.js native addon (`--target node-addon`) | QUICKSTART §45 |
 | `export def name(...)` | top-level fn | Emit C-callable `pub export fn` | 22 |
 
 ---
@@ -100,29 +102,30 @@ filter time — see Chapter 22c for the full filtering model.
 
 ## `@derive(Debug, Eq, Hash)` — Auto-Generated Methods
 
-Tells the compiler to generate `toString`, `eql`, and/or `hash` for a
-**struct** based on its fields:
+Tells the compiler to generate the `toString`, `equals`, and/or `hash` cues
+for a **struct** based on its fields:
 
 ```zebra
 @derive(Debug, Eq, Hash)
 struct Point
-    var x: float
-    var y: float
+    var x: int
+    var y: int
 ```
 
-Equivalent hand-written methods:
+Equivalent hand-written cues (they are cues, not ordinary methods — the
+compiler refuses `def toString()` and asks for `cue toString()`):
 
-| Trait | Generated method |
+| Trait | Generated cue |
 |---|---|
-| `Debug` | `def toString(): str` — `"Point(x=1.0, y=2.0)"` |
-| `Eq` | `def eql(other: Point): bool` — field-wise equality |
-| `Hash` | `def hash(): int` — combined per-field hash; consistent with `eql` |
+| `Debug` | `cue toString(): str` — `"Point(x=1, y=2)"` |
+| `Eq` | `cue equals(other: Point): bool` — field-wise equality; `==` and `!=` call it |
+| `Hash` | `cue hash(): int` — combined per-field hash; consistent with `equals` |
 
 **Combine any subset:**
 
 ```zebra
 @derive(Debug)              # just toString
-@derive(Eq, Hash)           # equality + hashable
+@derive(Eq, Hash)           # equality + hashable (a HashMap / Set key)
 @derive(Debug, Eq, Hash)    # all three
 ```
 
@@ -130,6 +133,8 @@ Equivalent hand-written methods:
 
 - **`@derive` is struct-only.** Classes have reference semantics; field-wise equality almost never matches what callers want for classes. For class methods, write them by hand.
 - The generated methods follow the field declaration order. Adding/removing fields automatically updates the generated implementations.
+- If you write your own `cue toString` / `cue equals` / `cue hash`, yours wins for that trait.
+- `Hash` needs every field to be hashable. A `float` field is not: calling `hash()` on such a struct fails to build (today with Zig's `unable to hash type f64`).
 - For unions (tagged unions), `@derive` is not supported; write the comparison logic by hand inside a `branch`.
 
 ---
@@ -198,6 +203,37 @@ the consumer loads with `DynLib.open("greeter.dll")` +
 
 ---
 
+## `@deprecated("message")` — Deprecation Warnings
+
+Marks a `def`, a method, or a `static def` as deprecated. Every call site gets a
+**warning** naming the replacement; the program still builds and runs:
+
+```zebra
+# file: deprecated_demo.zbr
+@deprecated("use addTwice instead")
+def addOld(a: int): int
+    return a + a
+
+def addTwice(a: int): int
+    return a * 2
+
+def main()
+    print(addOld(21))       # warning at this call; prints 42
+```
+
+```
+deprecated_demo.zbr:10:11: warning: 'addOld' is deprecated: use addTwice instead
+```
+
+**Notes:**
+
+- The message is optional: `@deprecated` alone also works.
+- The warning follows the function across `use` into other modules.
+- A warning never fails a build on its own. `zebra --warnings-as-errors file.zbr`
+  turns it into a failed compile (`error: 1 warning(s) with --warnings-as-errors`).
+
+---
+
 ## `export def` — C-Callable Function
 
 Not technically an `@`-attribute — `export` is a keyword — but
@@ -228,14 +264,13 @@ DynLib interface.
 
 ## Compatibility Notes
 
-These attributes are stable as of Zebra 1.0. Anything not listed here
-either does not exist or is not yet user-facing.
+These are the attributes this book covers, as accepted by the current compiler
+(the 0.9.0 pre-releases). Zebra has not reached 1.0, so the list can still
+change; `QUICKSTART.md` in the language repository is the authority on anything
+newer.
 
-**Reserved for future use** (don't use these names):
-
-- `@deprecated` — planned for the next milestone
-- `@inline` — planned, currently a hint not enforced
-- `@noinline` — same as above
+`@inline` and `@noinline` are **not** attributes: the compiler warns
+`unknown @-directive '@inline'; ignored` and carries on.
 
 When in doubt, the canonical reference is `QUICKSTART.md` §5
 (method modifiers), §25 (reflection), §43 (derive), §44 (DynLib).

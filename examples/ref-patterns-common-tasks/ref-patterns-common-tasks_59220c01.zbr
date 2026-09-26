@@ -1,0 +1,4 @@
+var text = "Hello, World!"
+
+var greeting = text.substring(0, 5)      # "Hello"
+var after_comma = text.substring(7, 12)  # "World"

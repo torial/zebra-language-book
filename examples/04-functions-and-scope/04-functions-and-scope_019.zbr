@@ -1,6 +1,0 @@
-> def process()
->     var data = fetch_data()
->
-> def use()
->     print(data)  # ❌ data doesn't exist here
->

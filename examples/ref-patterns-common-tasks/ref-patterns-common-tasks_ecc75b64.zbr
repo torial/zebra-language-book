@@ -1,0 +1,5 @@
+var pattern = Regex.compile("\\d+")
+var text = "Version 2.3.1"
+
+var replaced = pattern.replaceAll(text, "X")
+# replaced = "Version X.X.X"
