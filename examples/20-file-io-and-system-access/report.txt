@@ -1,0 +1,8 @@
+Sales Report
+======
+
+- Product A: $100
+- Product B: $100
+- Product C: $100
+
+Total: $300

@@ -1,0 +1,5 @@
+2025-03-15 14:30:00 [INFO] Application started
+2025-03-15 14:30:00 [INFO] Configuration loaded
+2025-03-15 14:30:00 [ERROR] Failed to connect to database
+2025-03-15 14:30:00 [INFO] Retrying connection...
+2025-03-15 14:30:00 [INFO] Connection successful

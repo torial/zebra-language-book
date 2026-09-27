@@ -25,10 +25,10 @@ class Account
 def main()
     var account = Account()
     account.deposit(100.0)
-    print(account.get_balance())  # 100
+    print(account.get_balance())  # 100.0
 
     account.withdraw(25.0)
-    print(account.get_balance())  # 75
+    print(account.get_balance())  # 75.0
 
     account.withdraw(100.0)  # Fails (not enough balance)
-    print(account.get_balance())  # 75 (unchanged)
+    print(account.get_balance())  # 75.0 (unchanged)
