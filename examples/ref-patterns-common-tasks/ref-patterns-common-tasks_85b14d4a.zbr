@@ -7,7 +7,7 @@ def count_words(filename: str): HashMap(str, int) throws
     for word in words
         var clean = word.trim()
         if clean.len > 0
-            var current = counts.fetch(clean)
+            var current = counts.get(clean)
             if current != nil
                 counts.put(clean, current + 1)
             else

@@ -1,12 +1,12 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-27T03:10:38.370950
+Generated: 2026-09-27T04:10:42.240797
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
 Total:  794
-Passed: 611
-Failed: 183
+Passed: 620
+Failed: 174
 
 FAILURES
 ----------------------------------------------------------------------
@@ -254,10 +254,6 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6055af66__asfragment.zbr:4:17: error: undefined name: 'items'
   appendix-b-stdlib/appendix-b-stdlib_6956a9fc.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6956a9fc__asfragment.zbr:4:5: error: undefined name: 'a'
-  appendix-b-stdlib/appendix-b-stdlib_6a325e69.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6a325e69__asfragment.zbr:6:21: error: undefined name: 'text'
-  appendix-b-stdlib/appendix-b-stdlib_70dc66d7.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_70dc66d7__asfragment.zbr:10:12: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryInt(
   appendix-b-stdlib/appendix-b-stdlib_78404d47.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_78404d47__asfragment.zbr:4:23: error: undefined name: 'map'
   appendix-b-stdlib/appendix-b-stdlib_7c27aa46.zbr
@@ -266,6 +262,8 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_81103174__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_872c287a.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_872c287a__asfragment.zbr:4:5: error: undefined name: 'map'
+  appendix-b-stdlib/appendix-b-stdlib_9100241f.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_9100241f__asfragment.zbr:6:19: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_93e2a037.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_93e2a037__asfragment.zbr:4:5: error: undefined name: 'value'
   appendix-b-stdlib/appendix-b-stdlib_a841398e.zbr
@@ -278,12 +276,8 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_bbbb70ce__asfragment.zbr:7:20: error: unexpected expression token: ')'
   appendix-b-stdlib/appendix-b-stdlib_c310bc80.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c310bc80__asfragment.zbr:4:13: error: undefined name: 'str_to_int'
-  appendix-b-stdlib/appendix-b-stdlib_c7d05958.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c7d05958__asfragment.zbr:5:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryInt()`
   appendix-b-stdlib/appendix-b-stdlib_d8e69aa3.zbr
       C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_d8e69aa3.zbr:15:13: error: undefined name: 'divide'
-  appendix-b-stdlib/appendix-b-stdlib_dd28b593.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_dd28b593__asfragment.zbr:6:22: error: 'Regex' has no method 'matches' (match/test/find/findAll/replace/split/groups)
   appendix-b-stdlib/appendix-b-stdlib_f3398174.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_f3398174__asfragment.zbr:4:15: error: undefined name: 'filename'
   appendix-c-troubleshooting/appendix-c-troubleshooting_026ab9c7.zbr
@@ -340,36 +334,24 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06__asfragment.zbr:4:11: error: unexpected expression token: ','
   ref-patterns-common-tasks/ref-patterns-common-tasks_106b9ef4.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4__asfragment.zbr:5:8: error: the constructor is written `cue init(...)`, not `def init` (a `def ini
-  ref-patterns-common-tasks/ref-patterns-common-tasks_3d67c5a4.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3d67c5a4__asfragment.zbr:6:22: error: 'Regex' has no method 'matches' (match/test/find/findAll/replace/spli
   ref-patterns-common-tasks/ref-patterns-common-tasks_3fddbb95.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95__asfragment.zbr:4:8: error: undefined name: 'scores'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_41a45fdf.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_41a45fdf.zbr:3:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryIn
   ref-patterns-common-tasks/ref-patterns-common-tasks_465b4d83.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_465b4d83__asfragment.zbr:4:19: error: undefined name: 'get_value'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_493a3399.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_493a3399.zbr:11:16: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.try
   ref-patterns-common-tasks/ref-patterns-common-tasks_52c699b3.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_52c699b3__asfragment.zbr:4:19: error: undefined name: 'get_value'
   ref-patterns-common-tasks/ref-patterns-common-tasks_70e79120.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_70e79120__asfragment.zbr:4:17: error: undefined name: 'items'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_713d12e0.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_713d12e0__asfragment.zbr:11:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with 
   ref-patterns-common-tasks/ref-patterns-common-tasks_71ac7894.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_71ac7894__asfragment.zbr:4:17: error: undefined name: 'items'
   ref-patterns-common-tasks/ref-patterns-common-tasks_7a76a260.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_7a76a260__asfragment.zbr:4:17: error: undefined name: 'items'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_a8b8cf2a.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_a8b8cf2a__asfragment.zbr:15:12: error: 'int' is never nil -- only an optional (`int?`) can be compared with
   ref-patterns-common-tasks/ref-patterns-common-tasks_b4a32c19.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b4a32c19__asfragment.zbr:4:12: error: undefined name: 'x'
   ref-patterns-common-tasks/ref-patterns-common-tasks_b5d6585f.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b5d6585f__asfragment.zbr:4:23: error: undefined name: 'fetch_data'
   ref-patterns-common-tasks/ref-patterns-common-tasks_bd8472bd.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_bd8472bd__asfragment.zbr:4:23: error: undefined name: 'get_user'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_d0fd31b1.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d0fd31b1__asfragment.zbr:7:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with n
   ref-patterns-common-tasks/ref-patterns-common-tasks_d8d73c0b.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d8d73c0b__asfragment.zbr:4:23: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_f57a1fad.zbr

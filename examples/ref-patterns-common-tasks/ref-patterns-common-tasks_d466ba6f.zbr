@@ -8,7 +8,7 @@ items.add("red")
 var counts = HashMap(str, int)()
 
 for item in items
-    var current = counts.fetch(item)
+    var current = counts.get(item)
     if current != nil
         counts.put(item, current + 1)
     else

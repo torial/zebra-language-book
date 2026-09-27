@@ -243,7 +243,7 @@ scores.put("Alice", 95)
 scores.put("Bob", 87)
 scores.put("Charlie", 92)
 
-var alice_score = scores.fetch("Alice")
+var alice_score = scores.get("Alice")
 if alice_score != nil
     print("Alice: ${alice_score}")
 ```
@@ -277,7 +277,7 @@ items.add("red")
 var counts = HashMap(str, int)()
 
 for item in items
-    var current = counts.fetch(item)
+    var current = counts.get(item)
     if current != nil
         counts.put(item, current + 1)
     else
@@ -326,11 +326,11 @@ def process_file(filename: str): int throws
 
 ```zebra
 def calculate(a_str: str, b_str: str): int throws
-    var a = a_str.toInt()
+    var a = a_str.tryInt()
     if a == nil
         raise "Invalid first number"
 
-    var b = b_str.toInt()
+    var b = b_str.tryInt()
     if b == nil
         raise "Invalid second number"
 
@@ -404,7 +404,7 @@ if data != nil
 
 ```zebra
 var num_str = "42"
-var num = num_str.toInt()
+var num = num_str.tryInt()
 
 if num != nil
     print(num + 1)
@@ -516,7 +516,7 @@ var result = Math.add(2, 3)  # 5
 ```zebra
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
-if email_pattern.matches("user@example.com")
+if email_pattern.match("user@example.com")
     print("Valid email")
 ```
 
@@ -692,7 +692,7 @@ def count_words(filename: str): HashMap(str, int) throws
     for word in words
         var clean = word.trim()
         if clean.len > 0
-            var current = counts.fetch(clean)
+            var current = counts.get(clean)
             if current != nil
                 counts.put(clean, current + 1)
             else

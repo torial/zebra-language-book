@@ -1,5 +1,5 @@
 var num_str = "42"
-var num = num_str.toInt()
+var num = num_str.tryInt()
 
 if num != nil
     print(num + 1)

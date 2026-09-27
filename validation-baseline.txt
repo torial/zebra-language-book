@@ -8,6 +8,8 @@
 # six fragments whose types live only in the surrounding prose -- User, ExprCall/
 # BinaryOp, Model, the `Type` placeholder, PluginContext, Node. They passed only because the
 # front end checked no type name; standalone they never compiled, so they are not gated.
+# Taken 2026-09-27 as the INTERSECTION of passes under the released rc4 (what CI runs) and
+# zebra-language main (the next release), so neither compiler can turn this gate red.
 01-getting-started/01-getting-started_18a99d1c.zbr
 01-getting-started/01-getting-started_1abdcdcc.zbr
 01-getting-started/01-getting-started_498a42ab.zbr
@@ -223,7 +225,6 @@
 12-error-handling-with-results/12_raise.zbr
 12-error-handling-with-results/12_throws_basic.zbr
 13-generics-and-type-constraints/13-generics-and-type-constraints_2b47179c.zbr
-13-generics-and-type-constraints/13-generics-and-type-constraints_8b342377.zbr
 13-generics-and-type-constraints/13-generics-and-type-constraints_a9621b9b.zbr
 13-generics-and-type-constraints/13-generics-and-type-constraints_c3dd165d.zbr
 13-generics-and-type-constraints/13-generics-and-type-constraints_fcf4cbb1.zbr
@@ -490,17 +491,20 @@ appendix-a-grammar/appendix-a-grammar_eecadf7e.zbr
 appendix-a-grammar/appendix-a-grammar_f34939d5.zbr
 appendix-b-stdlib/appendix-b-stdlib_03603019.zbr
 appendix-b-stdlib/appendix-b-stdlib_12df5116.zbr
+appendix-b-stdlib/appendix-b-stdlib_15b862f6.zbr
 appendix-b-stdlib/appendix-b-stdlib_178f2e9e.zbr
 appendix-b-stdlib/appendix-b-stdlib_1dab84c8.zbr
 appendix-b-stdlib/appendix-b-stdlib_1db03188.zbr
 appendix-b-stdlib/appendix-b-stdlib_266a0a77.zbr
 appendix-b-stdlib/appendix-b-stdlib_29abc7cc.zbr
+appendix-b-stdlib/appendix-b-stdlib_57ae1763.zbr
 appendix-b-stdlib/appendix-b-stdlib_63a6b799.zbr
 appendix-b-stdlib/appendix-b-stdlib_772fb9a5.zbr
 appendix-b-stdlib/appendix-b-stdlib_77582fa9.zbr
 appendix-b-stdlib/appendix-b-stdlib_7866898d.zbr
 appendix-b-stdlib/appendix-b-stdlib_7ba353c5.zbr
 appendix-b-stdlib/appendix-b-stdlib_839d40d1.zbr
+appendix-b-stdlib/appendix-b-stdlib_84c20f89.zbr
 appendix-b-stdlib/appendix-b-stdlib_9bdbcfcc.zbr
 appendix-b-stdlib/appendix-b-stdlib_b3fa2054.zbr
 appendix-b-stdlib/appendix-b-stdlib_c9ce7322.zbr
@@ -574,13 +578,16 @@ ref-cheatsheet-syntax/ref-cheatsheet-syntax_c8e3541e.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_e83232d8.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_ea3f3994.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_fad686e2.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_02c9595a.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_031d9f03.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_09515c39.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_1100158e.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_1354f748.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_226cd724.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_23861494.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_29b4bc32.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_2b05dcd8.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_2d49caa4.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_32f18e1c.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_3e3d5b28.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_3febe494.zbr
@@ -597,6 +604,7 @@ ref-patterns-common-tasks/ref-patterns-common-tasks_66dde561.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_713a5623.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_786694bb.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_7e020294.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_85b14d4a.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_8b98cc4a.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_8e9d44b3.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_9b784d59.zbr
@@ -605,12 +613,14 @@ ref-patterns-common-tasks/ref-patterns-common-tasks_b41423e4.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_ba33ca4c.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_bc649800.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_c17dbfec.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_d466ba6f.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_d77a0c1b.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_e18e4d3f.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_eb8664f9.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_ecc75b64.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_ef4d58a2.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_fd4ab8b6.zbr
+ref-patterns-common-tasks/ref-patterns-common-tasks_fd6a19cb.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_fd933897.zbr
 ref-quickstart-30-minutes/ref-quickstart-30-minutes_20e6a025.zbr
 ref-quickstart-30-minutes/ref-quickstart-30-minutes_22522988.zbr

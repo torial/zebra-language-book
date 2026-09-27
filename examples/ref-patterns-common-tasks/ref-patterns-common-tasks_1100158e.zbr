@@ -1,9 +1,9 @@
 def calculate(a_str: str, b_str: str): int throws
-    var a = a_str.toInt()
+    var a = a_str.tryInt()
     if a == nil
         raise "Invalid first number"
 
-    var b = b_str.toInt()
+    var b = b_str.tryInt()
     if b == nil
         raise "Invalid second number"
 

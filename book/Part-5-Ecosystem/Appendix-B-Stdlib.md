@@ -103,7 +103,7 @@ text.toFloat()              # float?: convert to float (nil if invalid)
 
 **Example:**
 ```zebra
-var num = "42".toInt()
+var num = "42".tryInt()
 if num != nil
     print(num + 1)
 ```
@@ -181,7 +181,7 @@ scores.put("Alice", 95)
 scores.put("Bob", 87)
 
 if scores.contains("Alice")
-    var score = scores.fetch("Alice")  # 95
+    var score = scores.get("Alice")  # 95
     if score != nil
         print("Alice: ${score}")
 ```
@@ -351,7 +351,7 @@ Regex.compile(pattern)      # Regex: compile pattern
 ```zebra
 var pattern = Regex.compile("\\d+")
 
-pattern.matches(text)       # bool: does text match pattern exactly?
+pattern.match(text)         # bool: does text match pattern exactly?
 pattern.find(text)          # str?: find first match
 pattern.findAll(text)       # List(str): find all matches
 pattern.replace(text, replacement)      # str: replace first match
@@ -363,7 +363,7 @@ pattern.split(text)         # List(str): split by matches
 ```zebra
 var email_pattern = Regex.compile("[a-z0-9]+@[a-z]+\\.[a-z]+")
 
-if email_pattern.matches("user@example.com")
+if email_pattern.match("user@example.com")
     print("Valid email")
 
 var numbers = Regex.compile("\\d+")
