@@ -1,47 +1,29 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-25T17:13:17.536926
-Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
+Generated: 2026-09-27T01:39:15.326613
+Compiler:  C:\Projects\zebra-n1-cache\c9c383cb1d81\zebra.EXE
 
 Total:  795
-Passed: 499
-Failed: 296
+Passed: 618
+Failed: 177
 
 FAILURES
 ----------------------------------------------------------------------
-  01-getting-started/01-getting-started_18a99d1c.zbr
-      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_18a99d1c.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct
-  01-getting-started/01-getting-started_57cf93e3.zbr
-      C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_57cf93e3.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct
   01-getting-started/01-getting-started_b069eac4.zbr
       C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_b069eac4.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
-  02-values-and-types/02-values-and-types_3be0afa8.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_3be0afa8.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, stru
-  02-values-and-types/02-values-and-types_6d68373c.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_6d68373c.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, stru
-  02-values-and-types/02-values-and-types_8821ebd1.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_8821ebd1.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, stru
-  02-values-and-types/02-values-and-types_91e9bda8.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_91e9bda8.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, stru
-  02-values-and-types/02-values-and-types_c6bd144c.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_c6bd144c.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct,
   02-values-and-types/02-values-and-types_ec972f5c.zbr
       C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_ec972f5c.zbr:1:14: error: type mismatch: expected int, found str
-  03-collections/03-collections_1e74492f.zbr
-      C:\Projects\zebra-language-book\examples\03-collections\03-collections_1e74492f.zbr:2:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var, c
   03-collections/03-collections_24998c4e.zbr
-      C:\Projects\zebra-language-book\examples\03-collections\03-collections_24998c4e.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\03-collections\03-collections_24998c4e__asfragment.zbr:4:17: error: undefined name: 'items'
   03-collections/03-collections_72452026.zbr
-      C:\Projects\zebra-language-book\examples\03-collections\03-collections_72452026.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, un
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\03-collections\03-collections_72452026__asfragment.zbr:5:17: error: undefined name: 'items'
   03-collections/03-collections_815f5ccf.zbr
       C:\Projects\zebra-language-book\examples\03-collections\03-collections_815f5ccf.zbr:1:13: error: 'List()' needs its type argument here: `List(int)()`, or annotate the binding (`var items: List(int) = 
-  03-collections/03-collections_f5bad3b8.zbr
-      C:\Projects\zebra-language-book\examples\03-collections\03-collections_f5bad3b8.zbr:2:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, var, c
   04-functions-and-scope/04-functions-and-scope_1d066557.zbr
       C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_1d066557.zbr:4:5: error: expected identifier, got 'use'
   04-functions-and-scope/04-functions-and-scope_20f27014.zbr
-      C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_20f27014.zbr:1:1: error: unexpected top-level token: 'log' — expected a declaration (def, class, struct, enum, un
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_20f27014__asfragment.zbr:4:5: error: undefined name: 'log'
   04-functions-and-scope/04-functions-and-scope_38b439c7.zbr
       `use callbacks`: module not found -- no callbacks.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_38b439c7.z
   04-functions-and-scope/04-functions-and-scope_a08f772f.zbr
@@ -53,51 +35,39 @@ FAILURES
   04-functions-and-scope/04_utilities.zbr
       C:\Projects\zebra-language-book\examples\04-functions-and-scope\04_utilities.zbr:14:34: error: unexpected expression token: '@as'
   05-control-flow/05-control-flow_165edb51.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_165edb51.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_165edb51__asfragment.zbr:6:18: error: undefined name: 'fruits'
   05-control-flow/05-control-flow_1a006f1a.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_1a006f1a.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_1a006f1a__asfragment.zbr:4:8: error: undefined name: 'x'
   05-control-flow/05-control-flow_39d3b13e.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_39d3b13e.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_39d3b13e__asfragment.zbr:4:8: error: undefined name: 'x'
   05-control-flow/05-control-flow_64c681e6.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_64c681e6.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_64c681e6__asfragment.zbr:4:8: error: undefined name: 'age'
   05-control-flow/05-control-flow_842f4539.zbr
       C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_842f4539.zbr:2:17: error: undefined name: 'fetch_order'
   05-control-flow/05-control-flow_d101b2ab.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_d101b2ab.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_d101b2ab__asfragment.zbr:4:17: error: undefined name: 'users'
   05-control-flow/05-control-flow_deb62335.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_deb62335.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_deb62335__asfragment.zbr:4:18: error: undefined name: 'fruits'
   05-control-flow/05-control-flow_e4036fa8.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_e4036fa8.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_e4036fa8__asfragment.zbr:4:8: error: undefined name: 'age'
   05-control-flow/05-control-flow_ed7fddf0.zbr
-      C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_ed7fddf0.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enum, u
-  06-strings-and-unicode/06-strings-and-unicode_0235037c.zbr
-      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_0235037c.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\05-control-flow\05-control-flow_ed7fddf0__asfragment.zbr:4:8: error: undefined name: 'age'
   06-strings-and-unicode/06-strings-and-unicode_2bf0ec41.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_2bf0ec41.zbr:4:30: unexpected character '$'
-  06-strings-and-unicode/06-strings-and-unicode_3a204be8.zbr
-      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_3a204be8.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, 
-  06-strings-and-unicode/06-strings-and-unicode_692f9664.zbr
-      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_692f9664.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class
   06-strings-and-unicode/06-strings-and-unicode_ccbfc266.zbr
-      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_ccbfc266.zbr:2:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, u
-  06-strings-and-unicode/06-strings-and-unicode_edc42ee7.zbr
-      C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_edc42ee7.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_ccbfc266__asfragment.zbr:5:5: error: strings are immutable -- 's[i] = ...' is not allowed; build a new string wit
   06-strings-and-unicode/06-strings-and-unicode_f4191d80.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_f4191d80.zbr:2:38: error: unexpected expression token: ']'
   06-strings-and-unicode/06_regex_intro.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06_regex_intro.zbr:15:22: error: `if x as n` requires an optional type, got 'str'
   07-classes-and-instances/07-classes-and-instances_206fd7cf.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_206fd7cf.zbr:13:20: error: undefined name: 'User'
-  07-classes-and-instances/07-classes-and-instances_6e8129f9.zbr
-      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_6e8129f9.zbr:1:1: error: 'with' is a statement and can't appear at the top level — only declarations (def, cl
   07-classes-and-instances/07-classes-and-instances_8f4af621.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_8f4af621.zbr:3:18: error: expected identifier, got 'to'
   07-classes-and-instances/07-classes-and-instances_999d2640.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_999d2640.zbr:7:29: error: unexpected expression token: '@as'
-  07-classes-and-instances/07-classes-and-instances_acd52f2c.zbr
-      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_acd52f2c.zbr:4:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, c
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_57becac2.zbr
-      C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2.zbr:1:1: error: 'branch' is a statement and can't appear at the top level — only
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2__asfragment.zbr:4:12: error: undefined name: 'color'
   08-interfaces-and-protocols/08_collection_interface.zbr
       C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
   08-interfaces-and-protocols/08_polymorphism.zbr
@@ -112,16 +82,12 @@ FAILURES
       C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_a62e5f38.zbr:2:5: error: undefined name: 'super'
   09-composition-and-mixins/09-composition-and-mixins_c3430bba.zbr
       C:\Projects\zebra-language-book\examples\09-composition-and-mixins\09-composition-and-mixins_c3430bba.zbr:9:9: error: undefined name: 'base_accelerate'
-  10-properties-and-computed-values/10-properties-and-computed-values_4a750d17.zbr
-      C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_4a750d17.zbr:4:1: error: unexpected top-level token: 'user' — expected a declaration (def, 
   10-properties-and-computed-values/10-properties-and-computed-values_c508b6ad.zbr
       C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_c508b6ad.zbr:11:16: error: type mismatch: expected int, got int? -- unwrap it: `x!`, `x ore
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_204aadbb.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_204aadbb.zbr:2:13: error: undefined name: 'math_utils'
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_37d7f8a5.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-vis
-  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_88d5cd55.zbr
-      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_88d5cd55.zbr:10:1: error: 'print' is a statement and can't appear at the top level 
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_954bbcd9.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_954bbcd9.zbr:1:12: error: extend 'str' must have a body
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_957755c7.zbr
@@ -137,31 +103,31 @@ FAILURES
   10b-modules-namespaces-and-visibility/colors.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\colors.zbr:9:16: error: undefined name: 'Rgb'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_20db6b3e.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_20db6b3e.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_20db6b3e__asfragment.zbr:4:23: error: undefined name: 'get_value'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_376ed26c.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_376ed26c.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_376ed26c__asfragment.zbr:4:23: error: undefined name: 'get_value'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_3f2cc56c.zbr
       C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_3f2cc56c.zbr:7:5: error: undefined name: 'do_work'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_4e2f6de0.zbr
       C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_4e2f6de0.zbr:1:17: error: 'name' is declared str and cannot hold nil -- declare it `str?` if it can be ab
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_4fa25bd5.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_4fa25bd5.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_4fa25bd5__asfragment.zbr:4:23: error: undefined name: 'get_email'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_50b4484d.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_50b4484d.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_50b4484d__asfragment.zbr:4:29: error: undefined name: 'lookup'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_9480165c.zbr
       C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_9480165c.zbr:2:16: error: undefined name: 'find_user'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_976512ff.zbr
-      C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_976512ff.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_976512ff__asfragment.zbr:4:23: error: undefined name: 'get_email'
   12-error-handling-with-results/12_catch_binding.zbr
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_catch_binding.zbr:6:17: error: undefined name: 'Validator'
   12-error-handling-with-results/12_method_catch.zbr
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_method_catch.zbr:6:17: error: undefined name: 'Validator'
   13-generics-and-type-constraints/13-generics-and-type-constraints_2c044550.zbr
-      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, cla
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550__asfragment.zbr:4:15: error: undefined name: 'Container'
   13-generics-and-type-constraints/13-generics-and-type-constraints_3c7724b9.zbr
       C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_3c7724b9.zbr:4:17: error: expected ':', got 'isa'
   13-generics-and-type-constraints/13-generics-and-type-constraints_77ff531d.zbr
-      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d.zbr:3:1: error: unexpected top-level token: 'box' — expected a declaration (def, cla
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d__asfragment.zbr:4:15: error: undefined name: 'Container'
   13-generics-and-type-constraints/13-generics-and-type-constraints_b13a66ab.zbr
       C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_b13a66ab.zbr:3:22: error: unexpected member: '->'
   14-contracts-and-assertions/14-contracts-and-assertions_2785b00d.zbr
@@ -172,78 +138,40 @@ FAILURES
       C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_65e55ff5.zbr:5:5: error: unexpected expression token: '..'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_096abb79.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_096abb79.zbr:2:8: error: '^Tree' is invalid — a class is already a reference; drop the 
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_0e543589.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_0e543589.zbr:3:1: error: unexpected top-level token: 'allocate' — expected a declaratio
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_10610e58.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_10610e58.zbr:1:1: error: unexpected top-level token: 'allocate' — expected a declaratio
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_177786cc.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_177786cc.zbr:6:16: error: unexpected expression token: ';'
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_235da576.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_235da576.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_295f4141.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only 
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_57c9399b.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_57c9399b.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_5cb23dd9.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_5cb23dd9.zbr:1:1: error: unexpected top-level token: 'allocate' — expected a declaratio
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_62f04674.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141__asfragment.zbr:4:17: error: undefined name: 'tmp'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_651c75c0.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_651c75c0.zbr:2:5: error: expected identifier, got 'num'
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_8f128a32.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_8f128a32.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_be3cf20d.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_be3cf20d.zbr:9:21: error: undefined name: 'Time'
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_ce9fd152.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_ce9fd152.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_e11c9eba.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_e11c9eba.zbr:2:1: error: unexpected top-level token: 'allocate' — expected a declaratio
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_edc3f51a.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_edc3f51a.zbr:1:1: error: unexpected top-level token: 'using' — expected a declaration (
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_23133e47.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_23133e47.zbr:2:1: error: unexpected top-level token: 'counter' — expected a declarati
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_54867e72.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_54867e72.zbr:2:1: error: unexpected top-level token: 'sys' — expected a declaration (
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5967e626.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626.zbr:1:1: error: unexpected top-level token: 'ch' — expected a declaration (d
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5af9a940.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5af9a940.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626__asfragment.zbr:4:5: error: undefined name: 'ch'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_75531924.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924.zbr:1:1: error: 'for' is a statement and can't appear at the top level — onl
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_785634a5.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_785634a5.zbr:1:1: error: 'for' is a statement and can't appear at the top level — onl
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_7fd29274.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_7fd29274.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_8684b53a.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_8684b53a.zbr:2:1: error: unexpected top-level token: 'sys' — expected a declaration (
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_872d3c5e.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_872d3c5e.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_bed5ba0b.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_bed5ba0b.zbr:1:1: error: 'for' is a statement and can't appear at the top level — onl
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924__asfragment.zbr:10:5: error: undefined name: 'ch'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_dcba6f55.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55.zbr:1:1: error: 'for' is a statement and can't appear at the top level — onl
-  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_ef8cbd87.zbr
-      C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_ef8cbd87.zbr:1:1: error: unexpected top-level token: 'ch' — expected a declaration (d
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55__asfragment.zbr:4:18: error: expected indent, got ':'
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_2ef32288.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_2ef32288.zbr:3:1: error: unexpected end of input at the top level
   18b-gui-applications/18b-gui-applications_34d6a6b9.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_34d6a6b9.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_34d6a6b9__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_3d7a47c8.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_3d7a47c8.zbr:2:21: error: undefined name: 'Msg'
   18b-gui-applications/18b-gui-applications_4a1ded9b.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_4a1ded9b.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_4a1ded9b__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_571561da.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_571561da.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_571561da__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_66d3f2a3.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_66d3f2a3.zbr:2:12: error: undefined name: 'Msg'
   18b-gui-applications/18b-gui-applications_6ae0e22b.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_6ae0e22b.zbr:2:19: error: undefined name: 'Msg'
   18b-gui-applications/18b-gui-applications_8f61992f.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_8f61992f.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_8f61992f__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_90ee5102.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_90ee5102.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_90ee5102__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_9904c184.zbr
-      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_9904c184.zbr:1:1: error: unexpected top-level token: 'g' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_9904c184__asfragment.zbr:5:1: error: unexpected end of input while parsing an expression
   18b-gui-applications/18b-gui-applications_f06072f8.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_f06072f8.zbr:2:13: error: undefined name: 'init'
   19-22_final-chapters/19-22_final-chapters_6b14ee37.zbr
@@ -251,13 +179,15 @@ FAILURES
   19-22_final-chapters/19-22_final-chapters_9f6e3064.zbr
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_9f6e3064.zbr:2:12: error: undefined name: 'value'
   19-22_final-chapters/19-22_final-chapters_b28cfe07.zbr
-      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_b28cfe07.zbr:8:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, stru
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_b28cfe07__asfragment.zbr:10:17: error: undefined name: 'items'
   22b-build-system-and-tooling/22b-build-system-and-tooling_8394c7ab.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_8394c7ab.z
   22b-build-system-and-tooling/22b-build-system-and-tooling_e6c57be2.zbr
-      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_e6c57be2.zbr:2:1: error: unexpected top-level token: 't' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_e6c57be2__asfragment.zbr:4:13: error: undefined name: 'b'
   22b-build-system-and-tooling/22b-build-system-and-tooling_eb7a15a6.zbr
-      C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_eb7a15a6.zbr:1:1: error: unexpected top-level token: 'b' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_eb7a15a6__asfragment.zbr:4:5: error: undefined name: 'b'
+  22b-build-system-and-tooling/22b-build-system-and-tooling_f9fd4f57.zbr
+      `use Build`: module not found -- module names are case-sensitive, and the file here is build.zbr; did you mean `use build`?
   22b-build-system-and-tooling/22b-build-system-and-tooling_fd52fc95.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_fd52fc95.z
   22c-testing-and-validation/22c-testing-and-validation_42b0f81c.zbr
@@ -268,337 +198,169 @@ FAILURES
       C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_b1a37953.zbr:5:16: error: undefined name: 'Calc'
   appendix-a-grammar/appendix-a-grammar_02ee5b82.zbr
       C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_02ee5b82.zbr:2:17: error: undefined name: 'divide'
-  appendix-a-grammar/appendix-a-grammar_054becd6.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_054becd6.zbr:3:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use
-  appendix-a-grammar/appendix-a-grammar_10c2d92a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_10c2d92a.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct
   appendix-a-grammar/appendix-a-grammar_16a8e466.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_16a8e466.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, us
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_16a8e466__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-a-grammar/appendix-a-grammar_1dac5543.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_1dac5543.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, 
-  appendix-a-grammar/appendix-a-grammar_2466cfde.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_2466cfde.zbr:11:1: error: unexpected top-level token: 'dog' — expected a declaration (def, class, struct, enum, union, us
-  appendix-a-grammar/appendix-a-grammar_2708d80c.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_2708d80c.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use,
-  appendix-a-grammar/appendix-a-grammar_288b174a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_288b174a.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, e
-  appendix-a-grammar/appendix-a-grammar_29e0b1f8.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_29e0b1f8.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, e
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_1dac5543__asfragment.zbr:4:12: error: undefined name: 'x'
   appendix-a-grammar/appendix-a-grammar_31e10b65.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_31e10b65.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, us
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_31e10b65__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-a-grammar/appendix-a-grammar_336d5d84.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_336d5d84.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, 
-  appendix-a-grammar/appendix-a-grammar_4450cb39.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_4450cb39.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, e
-  appendix-a-grammar/appendix-a-grammar_464c82aa.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_464c82aa.zbr:13:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struc
-  appendix-a-grammar/appendix-a-grammar_522f36d1.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_522f36d1.zbr:2:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, 
-  appendix-a-grammar/appendix-a-grammar_5d72f6ec.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_5d72f6ec.zbr:3:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, us
-  appendix-a-grammar/appendix-a-grammar_5fb8d51e.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_5fb8d51e.zbr:3:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_336d5d84__asfragment.zbr:4:17: error: undefined name: 'collection'
   appendix-a-grammar/appendix-a-grammar_5fe519b9.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_5fe519b9.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, 
-  appendix-a-grammar/appendix-a-grammar_60d04641.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_60d04641.zbr:1:1: error: unexpected top-level token: 'true' — expected a declaration (def, class, struct, enum, union, us
-  appendix-a-grammar/appendix-a-grammar_67e8a866.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_67e8a866.zbr:3:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, us
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_5fe519b9__asfragment.zbr:4:17: error: undefined name: 'collection'
   appendix-a-grammar/appendix-a-grammar_72c22ea2.zbr
       `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_72c22ea2.zbr
-  appendix-a-grammar/appendix-a-grammar_7dcc49cc.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_7dcc49cc.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct
-  appendix-a-grammar/appendix-a-grammar_7e0c726f.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_7e0c726f.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, e
   appendix-a-grammar/appendix-a-grammar_8322970c.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_8322970c.zbr:1:1: error: unexpected top-level token: '"hello"' — expected a declaration (def, class, struct, enum, union,
-  appendix-a-grammar/appendix-a-grammar_87d219df.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_87d219df.zbr:11:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, enum, union, us
-  appendix-a-grammar/appendix-a-grammar_881f3871.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_881f3871.zbr:7:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struc
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_8322970c__asfragment.zbr:5:8: error: undefined name: 'variable'
   appendix-a-grammar/appendix-a-grammar_88e0099c.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_88e0099c.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, e
-  appendix-a-grammar/appendix-a-grammar_ae0f9753.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_ae0f9753.zbr:1:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union, use,
-  appendix-a-grammar/appendix-a-grammar_e485c91a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_e485c91a.zbr:4:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union,
-  appendix-a-grammar/appendix-a-grammar_eb8664f9.zbr
-      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_eb8664f9.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def, class, struct
-  appendix-b-stdlib/appendix-b-stdlib_03603019.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_03603019.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, en
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_88e0099c__asfragment.zbr:4:8: error: undefined name: 'x'
   appendix-b-stdlib/appendix-b-stdlib_09913062.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_09913062.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_09913062__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_0a00b9d8.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_0a00b9d8.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, us
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_0a00b9d8__asfragment.zbr:4:12: error: undefined name: 'condition'
   appendix-b-stdlib/appendix-b-stdlib_0c11e627.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_0c11e627.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, va
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_0c11e627__asfragment.zbr:4:5: error: undefined name: 'a'
   appendix-b-stdlib/appendix-b-stdlib_10b9d6ab.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_10b9d6ab.zbr:1:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, va
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_10b9d6ab__asfragment.zbr:4:5: error: undefined name: 'a'
   appendix-b-stdlib/appendix-b-stdlib_10c9e73b.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_10c9e73b.zbr:3:1: error: unexpected top-level token: 'n' — expected a declaration (def, class, struct, enum, union, use, va
-  appendix-b-stdlib/appendix-b-stdlib_12df5116.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_12df5116.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_10c9e73b__asfragment.zbr:10:10: error: undefined name: 'end'
   appendix-b-stdlib/appendix-b-stdlib_16fefd06.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_16fefd06.zbr:1:1: error: unexpected top-level token: 'int_to_str' — expected a declaration (def, class, struct, enum, union
-  appendix-b-stdlib/appendix-b-stdlib_178f2e9e.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_178f2e9e.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_16fefd06__asfragment.zbr:4:5: error: undefined name: 'int_to_str'
   appendix-b-stdlib/appendix-b-stdlib_1b5021af.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_1b5021af.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
-  appendix-b-stdlib/appendix-b-stdlib_1db03188.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_1db03188.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_1b5021af__asfragment.zbr:4:8: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_22031907.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_22031907.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_22031907__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_24935b55.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_24935b55.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_24935b55__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_2739d3f3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_2739d3f3.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct, enum, union, us
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_2739d3f3__asfragment.zbr:4:12: error: undefined name: 'x'
   appendix-b-stdlib/appendix-b-stdlib_2ad30dcd.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_2ad30dcd.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_2ad30dcd__asfragment.zbr:8:35: error: unexpected expression token: '}'
   appendix-b-stdlib/appendix-b-stdlib_353d9e16.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_353d9e16.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_353d9e16__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_6055af66.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6055af66.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, en
-  appendix-b-stdlib/appendix-b-stdlib_63a6b799.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_63a6b799.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, en
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6055af66__asfragment.zbr:4:17: error: undefined name: 'items'
   appendix-b-stdlib/appendix-b-stdlib_6956a9fc.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6956a9fc.zbr:2:1: error: unexpected top-level token: 'a' — expected a declaration (def, class, struct, enum, union, use, va
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6956a9fc__asfragment.zbr:4:5: error: undefined name: 'a'
   appendix-b-stdlib/appendix-b-stdlib_6a325e69.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6a325e69.zbr:3:1: error: unexpected top-level token: 'pattern' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_6a325e69__asfragment.zbr:6:21: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_70dc66d7.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_70dc66d7.zbr:2:1: error: unexpected top-level token: 'scores' — expected a declaration (def, class, struct, enum, union, us
-  appendix-b-stdlib/appendix-b-stdlib_772fb9a5.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_772fb9a5.zbr:3:1: error: unexpected top-level token: 'x' — expected a declaration (def, class, struct, enum, union, use, va
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_70dc66d7__asfragment.zbr:10:12: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryInt(
   appendix-b-stdlib/appendix-b-stdlib_78404d47.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_78404d47.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, class, struct, en
-  appendix-b-stdlib/appendix-b-stdlib_7ba353c5.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_7ba353c5.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_78404d47__asfragment.zbr:4:23: error: undefined name: 'map'
   appendix-b-stdlib/appendix-b-stdlib_7c27aa46.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_7c27aa46.zbr:1:1: error: unexpected top-level token: 'Regex' — expected a declaration (def, class, struct, enum, union, use
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_7c27aa46__asfragment.zbr:4:19: error: undefined name: 'pattern'
   appendix-b-stdlib/appendix-b-stdlib_81103174.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_81103174.zbr:1:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, union, use,
-  appendix-b-stdlib/appendix-b-stdlib_839d40d1.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_839d40d1.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_81103174__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_872c287a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_872c287a.zbr:1:1: error: unexpected top-level token: 'map' — expected a declaration (def, class, struct, enum, union, use, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_872c287a__asfragment.zbr:4:5: error: undefined name: 'map'
   appendix-b-stdlib/appendix-b-stdlib_93e2a037.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_93e2a037.zbr:1:1: error: unexpected top-level token: 'value' — expected a declaration (def, class, struct, enum, union, use
-  appendix-b-stdlib/appendix-b-stdlib_9bdbcfcc.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_9bdbcfcc.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, union, u
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_93e2a037__asfragment.zbr:4:5: error: undefined name: 'value'
   appendix-b-stdlib/appendix-b-stdlib_a841398e.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_a841398e.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, struct, enum, union, use, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_a841398e__asfragment.zbr:5:13: error: undefined name: 'name'
   appendix-b-stdlib/appendix-b-stdlib_a8845bbc.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_a8845bbc.zbr:1:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, struct, 
-  appendix-b-stdlib/appendix-b-stdlib_b3fa2054.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_b3fa2054.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_a8845bbc__asfragment.zbr:4:11: error: undefined name: 'value'
   appendix-b-stdlib/appendix-b-stdlib_b8c47de1.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_b8c47de1.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, enum, union, use
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_b8c47de1__asfragment.zbr:4:5: error: undefined name: 'items'
   appendix-b-stdlib/appendix-b-stdlib_bbbb70ce.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_bbbb70ce.zbr:3:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class, struct,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_bbbb70ce__asfragment.zbr:7:20: error: unexpected expression token: ')'
   appendix-b-stdlib/appendix-b-stdlib_c310bc80.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c310bc80.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c310bc80__asfragment.zbr:4:13: error: undefined name: 'str_to_int'
   appendix-b-stdlib/appendix-b-stdlib_c7d05958.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c7d05958.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
-  appendix-b-stdlib/appendix-b-stdlib_c9ce7322.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c9ce7322.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c7d05958__asfragment.zbr:5:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryInt()`
   appendix-b-stdlib/appendix-b-stdlib_d8e69aa3.zbr
       C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_d8e69aa3.zbr:15:13: error: undefined name: 'divide'
   appendix-b-stdlib/appendix-b-stdlib_dd28b593.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_dd28b593.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, struct, enu
-  appendix-b-stdlib/appendix-b-stdlib_e1142187.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_e1142187.zbr:2:1: error: unexpected top-level token: 'seen' — expected a declaration (def, class, struct, enum, union, use,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_dd28b593__asfragment.zbr:6:22: error: 'Regex' has no method 'matches' (match/test/find/findAll/replace/split/groups)
   appendix-b-stdlib/appendix-b-stdlib_f3398174.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_f3398174.zbr:1:1: error: unexpected top-level token: 'File' — expected a declaration (def, class, struct, enum, union, use,
-  appendix-c-troubleshooting/appendix-c-troubleshooting_022873e6.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_022873e6.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_f3398174__asfragment.zbr:4:15: error: undefined name: 'filename'
   appendix-c-troubleshooting/appendix-c-troubleshooting_026ab9c7.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_026ab9c7.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_026ab9c7__asfragment.zbr:5:17: error: undefined name: 'list'
   appendix-c-troubleshooting/appendix-c-troubleshooting_0a9cf8b5.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_0a9cf8b5.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
-  appendix-c-troubleshooting/appendix-c-troubleshooting_0b7bb411.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_0b7bb411.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
-  appendix-c-troubleshooting/appendix-c-troubleshooting_23731487.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_23731487.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_0a9cf8b5__asfragment.zbr:4:17: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_2739d3f3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2739d3f3.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struc
-  appendix-c-troubleshooting/appendix-c-troubleshooting_294f51c0.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_294f51c0.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2739d3f3__asfragment.zbr:4:12: error: undefined name: 'x'
   appendix-c-troubleshooting/appendix-c-troubleshooting_2a1a28a5.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2a1a28a5.zbr:1:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct
-  appendix-c-troubleshooting/appendix-c-troubleshooting_2a9629c0.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2a9629c0.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_320af2a3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_320af2a3.zbr:6:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_37435856.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_37435856.zbr:6:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struc
-  appendix-c-troubleshooting/appendix-c-troubleshooting_37bec9af.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_37bec9af.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2a1a28a5__asfragment.zbr:4:5: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_40911c92.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_40911c92.zbr:10:8: error: undefined name: 'condition'
-  appendix-c-troubleshooting/appendix-c-troubleshooting_45e92fd4.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_45e92fd4.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
   appendix-c-troubleshooting/appendix-c-troubleshooting_5d638035.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_5d638035.zbr:4:14: error: type mismatch: expected int, found int? -- unwrap it: `x!`, `x orelse default`,
-  appendix-c-troubleshooting/appendix-c-troubleshooting_6081bf9a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6081bf9a.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
-  appendix-c-troubleshooting/appendix-c-troubleshooting_69057b3a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_69057b3a.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct
-  appendix-c-troubleshooting/appendix-c-troubleshooting_6a01f8b1.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6a01f8b1.zbr:5:1: error: unexpected top-level token: 'person' — expected a declaration (def, class, struc
   appendix-c-troubleshooting/appendix-c-troubleshooting_6acb55f4.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6acb55f4.zbr:2:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6acb55f4__asfragment.zbr:4:19: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_74e9d12a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_74e9d12a.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, stru
-  appendix-c-troubleshooting/appendix-c-troubleshooting_7b5b8464.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_7b5b8464.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, stru
-  appendix-c-troubleshooting/appendix-c-troubleshooting_80caa434.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_80caa434.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_74e9d12a__asfragment.zbr:6:17: error: type mismatch: expected int, got str
   appendix-c-troubleshooting/appendix-c-troubleshooting_826a10a3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_826a10a3.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_86fda4c8.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_86fda4c8.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_8ba6c2c4.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8ba6c2c4.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_826a10a3__asfragment.zbr:4:19: error: undefined name: 'get_value'
   appendix-c-troubleshooting/appendix-c-troubleshooting_8bbf5ba3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8bbf5ba3.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8bbf5ba3__asfragment.zbr:6:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use
   appendix-c-troubleshooting/appendix-c-troubleshooting_8fbea400.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8fbea400.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
-  appendix-c-troubleshooting/appendix-c-troubleshooting_8fe8810a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8fe8810a.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct
-  appendix-c-troubleshooting/appendix-c-troubleshooting_9c7a193e.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9c7a193e.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_9d9607fd.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9d9607fd.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (de
-  appendix-c-troubleshooting/appendix-c-troubleshooting_b074544d.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_b074544d.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8fbea400__asfragment.zbr:8:8: error: undefined name: 'condition'
   appendix-c-troubleshooting/appendix-c-troubleshooting_bf957a6d.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_bf957a6d.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_bf957a6d__asfragment.zbr:4:19: error: undefined name: 'get_value'
   appendix-c-troubleshooting/appendix-c-troubleshooting_c2996b84.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_c2996b84.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
-  appendix-c-troubleshooting/appendix-c-troubleshooting_cefd8fc4.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_cefd8fc4.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
-  appendix-c-troubleshooting/appendix-c-troubleshooting_d19cd133.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_d19cd133.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_c2996b84__asfragment.zbr:4:16: error: undefined name: 'big_list'
   appendix-c-troubleshooting/appendix-c-troubleshooting_e1f89631.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_e1f89631.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_e1f89631__asfragment.zbr:4:19: error: undefined name: 'get_value'
   appendix-c-troubleshooting/appendix-c-troubleshooting_e20b82c3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_e20b82c3.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_e20b82c3__asfragment.zbr:5:17: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_f1d52765.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_f1d52765.zbr:4:1: error: unexpected top-level token: 'greet' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_f1d52765__asfragment.zbr:5:11: error: type mismatch: expected str, got int
   appendix-d-attributes/appendix-d-attributes_13178587.zbr
       C:\Projects\zebra-language-book\examples\appendix-d-attributes\appendix-d-attributes_13178587.zbr:3:40: error: unexpected end of input at the top level
   appendix-d-attributes/appendix-d-attributes_c69af0d2.zbr
       C:\Projects\zebra-language-book\examples\appendix-d-attributes\appendix-d-attributes_c69af0d2.zbr:5:9: error: unexpected expression token: '..'
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_052709cc.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_052709cc.zbr:4:1: error: unexpected top-level token: 'text' — expected a declaration (def, class, struct, enum, uni
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_17c47e5a.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_17c47e5a.zbr:13:1: error: unexpected top-level token: 'box' — expected a declaration (def, class, struct, enum, uni
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_2a9eb0b7.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_2a9eb0b7.zbr:1:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, struct, enum, unio
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_2a9eb0b7__asfragment.zbr:5:14: error: undefined name: 'code'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_37642502.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_37642502.zbr:3:1: error: unexpected top-level token: 'pattern' — expected a declaration (def, class, struct, enum, 
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_41d4eb10.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_41d4eb10.zbr:5:1: error: unexpected top-level token: 'File' — expected a declaration (def, class, struct, enum, uni
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_44efbac7.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_44efbac7.zbr:3:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct, enum, 
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_71db613c.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_71db613c.zbr:6:1: error: unexpected top-level token: 'MathUtils' — expected a declaration (def, class, struct, enum
-  ref-cheatsheet-syntax/ref-cheatsheet-syntax_94e0ad54.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_94e0ad54.zbr:5:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, str
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_37642502__asfragment.zbr:7:18: error: undefined name: 'text'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_983ad7b7.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_983ad7b7.zbr:6:1: error: 'print' is a statement and can't appear at the top level — only declarations (def, class, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_983ad7b7__asfragment.zbr:12:29: error: undefined name: 'u'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_c7da2544.zbr
       `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_c7da2544.zbr
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_ca15e190.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_ca15e190.zbr:1:1: error: unexpected top-level token: 'Math' — expected a declaration (def, class, struct, enum, uni
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_ca15e190__asfragment.zbr:6:14: error: undefined name: 'x'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_d0331aea.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_d0331aea.zbr:2:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, class, str
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_d0331aea__asfragment.zbr:4:8: error: undefined name: 'x'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_f6cfe617.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f6cfe617.zbr:11:1: error: 'branch' is a statement and can't appear at the top level — only declarations (def, class
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f6cfe617__asfragment.zbr:13:12: error: undefined name: 'v'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_f9c0ad06.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06.zbr:2:1: error: unexpected top-level token: '10' — expected a declaration (def, class, struct, enum, union
-  ref-patterns-common-tasks/ref-patterns-common-tasks_031d9f03.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_031d9f03.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, 
-  ref-patterns-common-tasks/ref-patterns-common-tasks_09515c39.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_09515c39.zbr:11:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, c
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06__asfragment.zbr:4:11: error: unexpected expression token: ','
   ref-patterns-common-tasks/ref-patterns-common-tasks_106b9ef4.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4.zbr:13:1: error: 'print' is a statement and can't appear at the top level — only declarations (def
-  ref-patterns-common-tasks/ref-patterns-common-tasks_1354f748.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_1354f748.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
-  ref-patterns-common-tasks/ref-patterns-common-tasks_226cd724.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_226cd724.zbr:11:1: error: unexpected top-level token: 'dog' — expected a declaration (def, class, struct, e
-  ref-patterns-common-tasks/ref-patterns-common-tasks_29b4bc32.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_29b4bc32.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4__asfragment.zbr:5:8: error: the constructor is written `cue init(...)`, not `def init` (a `def ini
   ref-patterns-common-tasks/ref-patterns-common-tasks_3d67c5a4.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3d67c5a4.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3d67c5a4__asfragment.zbr:6:22: error: 'Regex' has no method 'matches' (match/test/find/findAll/replace/spli
   ref-patterns-common-tasks/ref-patterns-common-tasks_3fddbb95.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95.zbr:1:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
-  ref-patterns-common-tasks/ref-patterns-common-tasks_3febe494.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3febe494.zbr:7:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95__asfragment.zbr:4:8: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_41a45fdf.zbr
       C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_41a45fdf.zbr:3:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.tryIn
-  ref-patterns-common-tasks/ref-patterns-common-tasks_42564ca8.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_42564ca8.zbr:2:1: error: unexpected top-level token: 'sys' — expected a declaration (def, class, struct, en
   ref-patterns-common-tasks/ref-patterns-common-tasks_465b4d83.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_465b4d83.zbr:3:1: error: 'print' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_465b4d83__asfragment.zbr:4:19: error: undefined name: 'get_value'
   ref-patterns-common-tasks/ref-patterns-common-tasks_493a3399.zbr
       C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_493a3399.zbr:11:16: error: 'int' is never nil -- only an optional (`int?`) can be compared with nil; `s.try
   ref-patterns-common-tasks/ref-patterns-common-tasks_52c699b3.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_52c699b3.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
-  ref-patterns-common-tasks/ref-patterns-common-tasks_53a0820a.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_53a0820a.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct
-  ref-patterns-common-tasks/ref-patterns-common-tasks_5803ff74.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_5803ff74.zbr:4:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_5e8ff171.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_5e8ff171.zbr:2:1: error: unexpected top-level token: 'parts' — expected a declaration (def, class, struct, 
-  ref-patterns-common-tasks/ref-patterns-common-tasks_640b4c6a.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_640b4c6a.zbr:4:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_66dde561.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_66dde561.zbr:7:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_52c699b3__asfragment.zbr:4:19: error: undefined name: 'get_value'
   ref-patterns-common-tasks/ref-patterns-common-tasks_70e79120.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_70e79120.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_713a5623.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_713a5623.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_70e79120__asfragment.zbr:4:17: error: undefined name: 'items'
   ref-patterns-common-tasks/ref-patterns-common-tasks_713d12e0.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_713d12e0.zbr:3:1: error: unexpected top-level token: 'scores' — expected a declaration (def, class, struct,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_713d12e0__asfragment.zbr:11:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with 
   ref-patterns-common-tasks/ref-patterns-common-tasks_71ac7894.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_71ac7894.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_786694bb.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_786694bb.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_71ac7894__asfragment.zbr:4:17: error: undefined name: 'items'
   ref-patterns-common-tasks/ref-patterns-common-tasks_7a76a260.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_7a76a260.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_8e9d44b3.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_8e9d44b3.zbr:2:1: error: unexpected top-level token: 'numbers' — expected a declaration (def, class, struct
-  ref-patterns-common-tasks/ref-patterns-common-tasks_9b784d59.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_9b784d59.zbr:2:1: error: 'print' is a statement and can't appear at the top level — only declarations (def,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_7a76a260__asfragment.zbr:4:17: error: undefined name: 'items'
   ref-patterns-common-tasks/ref-patterns-common-tasks_a8b8cf2a.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_a8b8cf2a.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, 
-  ref-patterns-common-tasks/ref-patterns-common-tasks_b3b468e9.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b3b468e9.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, 
-  ref-patterns-common-tasks/ref-patterns-common-tasks_b41423e4.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b41423e4.zbr:11:1: error: unexpected top-level token: 'circle' — expected a declaration (def, class, struct
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_a8b8cf2a__asfragment.zbr:15:12: error: 'int' is never nil -- only an optional (`int?`) can be compared with
   ref-patterns-common-tasks/ref-patterns-common-tasks_b4a32c19.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b4a32c19.zbr:1:1: error: unexpected top-level token: 'assert' — expected a declaration (def, class, struct,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b4a32c19__asfragment.zbr:4:12: error: undefined name: 'x'
   ref-patterns-common-tasks/ref-patterns-common-tasks_b5d6585f.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b5d6585f.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_b5d6585f__asfragment.zbr:4:23: error: undefined name: 'fetch_data'
   ref-patterns-common-tasks/ref-patterns-common-tasks_bd8472bd.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_bd8472bd.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
-  ref-patterns-common-tasks/ref-patterns-common-tasks_c17dbfec.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_c17dbfec.zbr:2:1: error: unexpected top-level token: 'items' — expected a declaration (def, class, struct, 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_bd8472bd__asfragment.zbr:4:23: error: undefined name: 'get_user'
   ref-patterns-common-tasks/ref-patterns-common-tasks_d0fd31b1.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d0fd31b1.zbr:4:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
-  ref-patterns-common-tasks/ref-patterns-common-tasks_d77a0c1b.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d77a0c1b.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d0fd31b1__asfragment.zbr:7:8: error: 'int' is never nil -- only an optional (`int?`) can be compared with n
   ref-patterns-common-tasks/ref-patterns-common-tasks_d8d73c0b.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d8d73c0b.zbr:1:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-patterns-common-tasks/ref-patterns-common-tasks_eb8664f9.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_eb8664f9.zbr:2:1: error: 'while' is a statement and can't appear at the top level — only declarations (def,
-  ref-patterns-common-tasks/ref-patterns-common-tasks_ef4d58a2.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_ef4d58a2.zbr:5:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d8d73c0b__asfragment.zbr:4:23: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_f57a1fad.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_f57a1fad.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-quickstart-30-minutes/ref-quickstart-30-minutes_20e6a025.zbr
-      C:\Projects\zebra-language-book\examples\ref-quickstart-30-minutes\ref-quickstart-30-minutes_20e6a025.zbr:2:1: error: unexpected top-level token: 'fruits' — expected a declaration (def, class, struct,
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_f57a1fad__asfragment.zbr:6:17: error: undefined name: 'items'
   ref-quickstart-30-minutes/ref-quickstart-30-minutes_7c07b7c4.zbr
-      C:\Projects\zebra-language-book\examples\ref-quickstart-30-minutes\ref-quickstart-30-minutes_7c07b7c4.zbr:3:1: error: 'for' is a statement and can't appear at the top level — only declarations (def, c
-  ref-quickstart-30-minutes/ref-quickstart-30-minutes_c483d479.zbr
-      C:\Projects\zebra-language-book\examples\ref-quickstart-30-minutes\ref-quickstart-30-minutes_c483d479.zbr:3:1: error: 'if' is a statement and can't appear at the top level — only declarations (def, cl
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-quickstart-30-minutes\ref-quickstart-30-minutes_7c07b7c4__asfragment.zbr:6:5: error: expected indent, got 'if'

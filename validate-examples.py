@@ -113,6 +113,50 @@ def compile_example(zebra: Path, filepath: Path, full: bool = False):
     return False, (lines[-1][:200] if lines else "non-zero exit, no output")
 
 
+# ── FRAGMENTS (2026-09-26) ───────────────────────────────────────────────────────────
+# ~220 of the book's examples are FRAGMENTS -- statements shown at top level, the way a
+# chapter shows three lines to make a point -- and the compiler refuses them with "is a
+# statement and can't appear at the top level" before it checks anything else. So a
+# quarter of the book's code was never checked at all. A fragment is now retried with its
+# top-level STATEMENTS moved into a synthesized `def main()` (declarations stay at top
+# level), beside the original so `use` of a neighbouring module still resolves. A pass that
+# needed this is reported separately ("as a fragment"), never silently as a whole program.
+FRAGMENT_SIGNS = ("can't appear at the top level", "unexpected top-level token")
+DECL_WORDS = ("def ", "class ", "struct ", "union ", "enum ", "interface ", "mixin ",
+              "extend ", "namespace ", "sig ", "type ", "use ", "extern ", "@", "cue ")
+
+
+def wrap_fragment(text):
+    """Top-level statements -> body of a synthesized main(); None if nothing to wrap."""
+    if "def main(" in text:
+        return None
+    decls, body = [], []
+    target = decls
+    for ln in text.split("\n"):
+        top = ln and not ln[0].isspace()
+        if top and not ln.lstrip().startswith("#"):
+            target = decls if ln.startswith(DECL_WORDS) else body
+        (target.append(ln) if target is decls else target.append("    " + ln if ln.strip() else ""))
+    if not any(b.strip() and not b.strip().startswith("#") for b in body):
+        return None
+    return "\n".join(decls).rstrip() + "\n\ndef main()\n" + "\n".join(body).rstrip() + "\n"
+
+
+def compile_fragment(zebra, filepath, full):
+    wrapped = wrap_fragment(filepath.read_text(encoding='utf-8', errors='replace'))
+    if wrapped is None:
+        return None
+    tmp = filepath.with_name(filepath.stem + "__asfragment.zbr")
+    try:
+        tmp.write_text(wrapped, encoding='utf-8', newline='\n')
+        return compile_example(zebra, tmp, full)
+    finally:
+        try:
+            tmp.unlink()
+        except OSError:
+            pass
+
+
 def load_baseline(path):
     if not path.exists():
         return None
@@ -145,10 +189,20 @@ def main() -> int:
     print("examples: " + str(len(examples)) + "\n")
 
     passed, failed = [], []
+    as_fragment = []
     detail = {}
+    examples = [f for f in examples if not f.stem.endswith("__asfragment")]
     for i, f in enumerate(examples, 1):
         rel = f.relative_to(examples_dir).as_posix()
         ok, msg = compile_example(zebra, f, full)
+        if not ok and any(s in msg for s in FRAGMENT_SIGNS):
+            fr = compile_fragment(zebra, f, full)
+            if fr is not None:
+                ok, fmsg = fr
+                if ok:
+                    as_fragment.append(rel)
+                else:
+                    msg = "as a fragment inside main(): " + fmsg
         (passed if ok else failed).append(rel)
         if not ok:
             detail[rel] = msg
@@ -162,6 +216,7 @@ def main() -> int:
         "total": len(examples),
         "passed": len(passed),
         "failed": len(failed),
+        "passed_as_fragment": sorted(as_fragment),
         "failures": detail,
     }
     report_stem = "validation-report-full" if full else "validation-report"
@@ -184,7 +239,8 @@ def main() -> int:
         "\n".join(lines) + "\n", encoding='utf-8', newline='\n')
 
     print("\nTotal " + str(len(examples)) +
-          " | pass " + str(len(passed)) + " | fail " + str(len(failed)))
+          " | pass " + str(len(passed)) + " (" + str(len(as_fragment)) +
+          " only as a fragment inside a synthesized main) | fail " + str(len(failed)))
 
     if update:
         baseline_path.write_text(
