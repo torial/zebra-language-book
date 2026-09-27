@@ -103,24 +103,28 @@ You can also write **generic methods** within regular classes:
 
 class Utils
     static
-        def identity(value: T): T
+        def identity(T)(value: T): T
             return value
-        
-        def first_of_three(a: T, b: T, c: T): T
+
+        def first_of_three(T)(a: T, b: T, c: T): T
             return a
 
 def main()
-    var x = Utils.identity(42)
+    var x = Utils.identity(int)(42)
     print(x)  # Output: 42
-    
-    var y = Utils.identity("hello")
+
+    var y = Utils.identity(str)("hello")
     print(y)  # Output: hello
-    
-    var z = Utils.first_of_three(1, 2, 3)
+
+    var z = Utils.first_of_three(int)(1, 2, 3)
     print(z)  # Output: 1
 ```
 
-The type parameter `T` is inferred from the arguments you pass.
+A generic method declares its type parameters in their own parentheses before the value
+parameters -- `def identity(T)(value: T): T` -- and the caller passes the type first:
+`Utils.identity(int)(42)`. Zebra does **not** infer the type argument from the values;
+`Utils.identity(42)` is refused with a message showing the explicit form. Instance methods
+work the same way (`box.wrap(int)(7)`).
 
 ---
 
@@ -143,18 +147,20 @@ def first(T)(items: List(T)): T?
     return items.at(0)
 
 def main()
-    var n: int = identity(int)(42)         # explicit type
-    var s: str = identity("hello")          # inferred from arg
-    var first_num = first([1, 2, 3])        # inferred — List(int)
-    if first_num as n
-        print(n)  # 1
+    var n: int = identity(int)(42)
+    var s: str = identity(str)("hello")
+    var first_num: int? = first(int)([1, 2, 3])
+    if first_num as v
+        print(v)  # 1
+    print(s)      # hello
 ```
 
 **Rules:**
 
 - The type parameter list `(T)` (or `(T, U)` etc.) comes immediately after the function name.
 - Inside the body, `T` is a regular type — usable in annotations, casts, and return types.
-- At the call site you can write `identity(int)(42)` to be explicit, or `identity(42)` to let the compiler infer from the argument types.
+- At the call site the type argument is required: `identity(int)(42)`. A bare `identity(42)` is refused -- the type is not inferred from the arguments.
+- A type name that is declared nowhere (for example writing `def total(items: List(T))` without the `(T)`) is refused as `unknown type 'T'`, with the generic spelling as the hint.
 - Under the hood the compiler emits a `comptime T: type` parameter to Zig.
 
 When to use:
@@ -448,37 +454,38 @@ var box = Container(str)()
 box.store("hello")
 ```
 
-### Mistake 3: Using Constraints Incorrectly
+### Mistake 3: Forgetting to Declare the Type Parameter
 
 ```zebra
-# WRONG - method doesn't actually require Comparable
-def find_max(items: List(T)): T
-    var max = items.at(0)
-    var item = items.at(1)
-    if item > max  # Error: > not defined for all T
-        max = item
-    return max
-
-# CORRECT - either don't use >, or require Comparable interface
-def find_max(items: List(T)): T
+# WRONG - T is used but never declared
+def find_max(items: List(T)): T     # error: unknown type 'T'
     var max = items.at(0)
     for item in items
-        if item.toString() > max.toString()  # Convert to string for comparison
+        if item > max
             max = item
     return max
-```
 
-### Mistake 4: Type Erasure at Runtime
-
-```zebra
-# DANGER - at runtime, type information is lost
-def process(items: List(T))
+# CORRECT - declare T, and pass it at the call
+def find_max(T)(items: List(T)): T
+    var max = items.at(0)
     for item in items
-        if item isa int  # This may not work as expected
-            print(item + 10)
+        if item > max
+            max = item
+    return max
+
+# find_max(int)([3, 9, 4]) is 9
 ```
 
-In Zebra, type parameters are **erased** during code generation to Zig. Use interfaces to encode types you need at runtime.
+The body is checked for each type it is called with: `find_max(int)` and `find_max(str)`
+compile; a type with no `>` does not (today the error comes from Zig, not Zebra).
+
+### Mistake 4: Expecting Runtime Type Tests on `T`
+
+Type parameters are **not erased**. Each distinct type argument compiles its own copy of
+the function (Zig's `comptime` monomorphization), so inside `process(int)` the parameter
+simply *is* `int`, and there is nothing to test at runtime. Code that only makes sense for
+some types belongs behind an interface constraint (`T where T implements Comparable(T)`)
+or in a separate, non-generic function -- not behind a runtime check on `T`.
 
 ---
 

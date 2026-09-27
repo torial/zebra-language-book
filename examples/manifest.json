@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 795,
+  "total_examples": 794,
   "generated": "1790380721.5064442",
   "examples": [
     {
@@ -2007,17 +2007,10 @@
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",
-      "file": "13-generics-and-type-constraints_8b342377.zbr",
+      "file": "13-generics-and-type-constraints_61e197a7.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_8b342377.zbr"
-    },
-    {
-      "chapter": "13-Generics-and-Type-Constraints",
-      "file": "13-generics-and-type-constraints_3c7724b9.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_3c7724b9.zbr"
+      "path": "examples/13-generics-and-type-constraints/13-generics-and-type-constraints_61e197a7.zbr"
     },
     {
       "chapter": "13-Generics-and-Type-Constraints",

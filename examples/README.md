@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 795 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 794 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -47,7 +47,7 @@ build (`--check-full`) for the examples that have a `main`.
 
 ## By the Numbers
 
-- **Total Examples:** 795
+- **Total Examples:** 794
 - **Chapters Covered:** 36
 - **Topics:** 220
 
@@ -356,7 +356,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `12-error-handling-with-results_d274c687.zbr` — basic example
 - `12-error-handling-with-results_5e79caeb.zbr` — basic example
 
-### 13-Generics-and-Type-Constraints (19 examples)
+### 13-Generics-and-Type-Constraints (18 examples)
 - `13-generics-and-type-constraints_fcf4cbb1.zbr` — basic example
 - `13_generic_container.zbr` — generic class definition
 - `13_generic_pair.zbr` — multiple type parameters
@@ -371,8 +371,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `13_generic_cache.zbr` — realistic generic class
 - `13-generics-and-type-constraints_77ff531d.zbr` — basic example
 - `13-generics-and-type-constraints_2c044550.zbr` — basic example
-- `13-generics-and-type-constraints_8b342377.zbr` — basic example
-- `13-generics-and-type-constraints_3c7724b9.zbr` — basic example
+- `13-generics-and-type-constraints_61e197a7.zbr` — basic example
 - `13-generics-and-type-constraints_c3dd165d.zbr` — basic example
 - `13-generics-and-type-constraints_2b47179c.zbr` — basic example
 - `13-generics-and-type-constraints_b13a66ab.zbr` — basic example

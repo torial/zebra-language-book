@@ -1,0 +1,17 @@
+# WRONG - T is used but never declared
+def find_max(items: List(T)): T     # error: unknown type 'T'
+    var max = items.at(0)
+    for item in items
+        if item > max
+            max = item
+    return max
+
+# CORRECT - declare T, and pass it at the call
+def find_max(T)(items: List(T)): T
+    var max = items.at(0)
+    for item in items
+        if item > max
+            max = item
+    return max
+
+# find_max(int)([3, 9, 4]) is 9

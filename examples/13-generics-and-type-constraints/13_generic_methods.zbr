@@ -4,18 +4,18 @@
 
 class Utils
     static
-        def identity(value: T): T
+        def identity(T)(value: T): T
             return value
-        
-        def first_of_three(a: T, b: T, c: T): T
+
+        def first_of_three(T)(a: T, b: T, c: T): T
             return a
 
 def main()
-    var x = Utils.identity(42)
+    var x = Utils.identity(int)(42)
     print(x)  # Output: 42
-    
-    var y = Utils.identity("hello")
+
+    var y = Utils.identity(str)("hello")
     print(y)  # Output: hello
-    
-    var z = Utils.first_of_three(1, 2, 3)
+
+    var z = Utils.first_of_three(int)(1, 2, 3)
     print(z)  # Output: 1

@@ -1,17 +1,19 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-27T01:39:15.326613
-Compiler:  C:\Projects\zebra-n1-cache\c9c383cb1d81\zebra.EXE
+Generated: 2026-09-27T03:10:38.370950
+Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  795
-Passed: 618
-Failed: 177
+Total:  794
+Passed: 611
+Failed: 183
 
 FAILURES
 ----------------------------------------------------------------------
   01-getting-started/01-getting-started_b069eac4.zbr
       C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_b069eac4.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
+  02-values-and-types/02-values-and-types_7861a141.zbr
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_7861a141.zbr:4:1: error: unknown type 'User': not declared here, in a `use`d module, or as a type parameter in scope
   02-values-and-types/02-values-and-types_ec972f5c.zbr
       C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_ec972f5c.zbr:1:14: error: type mismatch: expected int, found str
   03-collections/03-collections_24998c4e.zbr
@@ -25,7 +27,7 @@ FAILURES
   04-functions-and-scope/04-functions-and-scope_20f27014.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_20f27014__asfragment.zbr:4:5: error: undefined name: 'log'
   04-functions-and-scope/04-functions-and-scope_38b439c7.zbr
-      `use callbacks`: module not found -- no callbacks.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_38b439c7.z
+      `use callbacks`: module not found -- no callbacks.zbr (or .c / .lib / .a / .so / .dylib, libcallbacks.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-func
   04-functions-and-scope/04-functions-and-scope_a08f772f.zbr
       C:\Projects\zebra-language-book\examples\04-functions-and-scope\04-functions-and-scope_a08f772f.zbr:2:12: error: type mismatch: expected int, got str
   04-functions-and-scope/04-functions-and-scope_c307c846.zbr
@@ -68,6 +70,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_999d2640.zbr:7:29: error: unexpected expression token: '@as'
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_57becac2.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2__asfragment.zbr:4:12: error: undefined name: 'color'
+  07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_c4ad853b.zbr
+      C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_c4ad853b.zbr:5:5: error: unknown type 'ExprCall': not declared here, in a `use`d module, 
   08-interfaces-and-protocols/08_collection_interface.zbr
       C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
   08-interfaces-and-protocols/08_polymorphism.zbr
@@ -87,19 +91,19 @@ FAILURES
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_204aadbb.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_204aadbb.zbr:2:13: error: undefined name: 'math_utils'
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_37d7f8a5.zbr
-      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-vis
+      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-module
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_954bbcd9.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_954bbcd9.zbr:1:12: error: extend 'str' must have a body
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_957755c7.zbr
-      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-vis
+      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-module
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_9ac03b78.zbr
-      `use geometry`: module not found -- no geometry.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespac
+      `use geometry`: module not found -- no geometry.zbr (or .c / .lib / .a / .so / .dylib, libgeometry.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibi
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_9db5d7b1.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_9db5d7b1.zbr:4:16: error: undefined name: 'Colors'
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_a21845dc.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_a21845dc.zbr:9:13: error: 'int' has no method 'is_prime' (to/toFloat/toFloat32/toBy
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_c0cfefd6.zbr
-      `use http`: module not found -- no http.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-v
+      `use http`: module not found -- no http.zbr (or .c / .lib / .a / .so / .dylib, libhttp.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-mod
   10b-modules-namespaces-and-visibility/colors.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\colors.zbr:9:16: error: undefined name: 'Rgb'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_20db6b3e.zbr
@@ -124,8 +128,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_method_catch.zbr:6:17: error: undefined name: 'Validator'
   13-generics-and-type-constraints/13-generics-and-type-constraints_2c044550.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550__asfragment.zbr:4:15: error: undefined name: 'Container'
-  13-generics-and-type-constraints/13-generics-and-type-constraints_3c7724b9.zbr
-      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_3c7724b9.zbr:4:17: error: expected ':', got 'isa'
+  13-generics-and-type-constraints/13-generics-and-type-constraints_61e197a7.zbr
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_61e197a7.zbr:2:4: error: unknown type 'T': not declared here, in a `use`d module, or as a typ
   13-generics-and-type-constraints/13-generics-and-type-constraints_77ff531d.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d__asfragment.zbr:4:15: error: undefined name: 'Container'
   13-generics-and-type-constraints/13-generics-and-type-constraints_b13a66ab.zbr
@@ -142,6 +146,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_177786cc.zbr:6:16: error: unexpected expression token: ';'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_295f4141.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141__asfragment.zbr:4:17: error: undefined name: 'tmp'
+  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_62f04674.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:4:5: error: unknown type 'Node': not declared here, in a `use`
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_651c75c0.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_651c75c0.zbr:2:5: error: expected identifier, got 'num'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_be3cf20d.zbr
@@ -154,6 +160,8 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55__asfragment.zbr:4:18: error: expected indent, got ':'
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_2ef32288.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_2ef32288.zbr:3:1: error: unexpected end of input at the top level
+  18b-gui-applications/18b-gui-applications_0cbfa83f.zbr
+      C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_0cbfa83f.zbr:1:4: error: unknown type 'Model': not declared here, in a `use`d module, or as a type parameter in scope
   18b-gui-applications/18b-gui-applications_34d6a6b9.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_34d6a6b9__asfragment.zbr:4:5: error: undefined name: 'g'
   18b-gui-applications/18b-gui-applications_3d7a47c8.zbr
@@ -178,10 +186,14 @@ FAILURES
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_6b14ee37.zbr:6:18: error: undefined name: 'c_func'
   19-22_final-chapters/19-22_final-chapters_9f6e3064.zbr
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_9f6e3064.zbr:2:12: error: undefined name: 'value'
+  19-22_final-chapters/19-22_final-chapters_a40b8bbd.zbr
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_a40b8bbd.zbr:2:8: error: unknown type 'Type': not declared here, in a `use`d module, or as a type parameter in scope
   19-22_final-chapters/19-22_final-chapters_b28cfe07.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_b28cfe07__asfragment.zbr:10:17: error: undefined name: 'items'
+  22-ffi-and-interop/22-ffi-and-interop_bf2cc6a9.zbr
+      C:\Projects\zebra-language-book\examples\22-ffi-and-interop\22-ffi-and-interop_bf2cc6a9.zbr:4:8: error: unknown type 'PluginContext': not declared here, in a `use`d module, or as a type parameter in s
   22b-build-system-and-tooling/22b-build-system-and-tooling_8394c7ab.zbr
-      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_8394c7ab.z
+      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-an
   22b-build-system-and-tooling/22b-build-system-and-tooling_e6c57be2.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_e6c57be2__asfragment.zbr:4:13: error: undefined name: 'b'
   22b-build-system-and-tooling/22b-build-system-and-tooling_eb7a15a6.zbr
@@ -189,9 +201,9 @@ FAILURES
   22b-build-system-and-tooling/22b-build-system-and-tooling_f9fd4f57.zbr
       `use Build`: module not found -- module names are case-sensitive, and the file here is build.zbr; did you mean `use build`?
   22b-build-system-and-tooling/22b-build-system-and-tooling_fd52fc95.zbr
-      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-and-tooling_fd52fc95.z
+      `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-an
   22c-testing-and-validation/22c-testing-and-validation_42b0f81c.zbr
-      `use calc`: module not found -- no calc.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_42b0f81c.zbr
+      `use calc`: module not found -- no calc.zbr (or .c / .lib / .a / .so / .dylib, libcalc.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-va
   22c-testing-and-validation/22c-testing-and-validation_67b791d4.zbr
       C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_67b791d4.zbr:5:20: error: undefined name: 'User'
   22c-testing-and-validation/22c-testing-and-validation_b1a37953.zbr
@@ -209,7 +221,7 @@ FAILURES
   appendix-a-grammar/appendix-a-grammar_5fe519b9.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_5fe519b9__asfragment.zbr:4:17: error: undefined name: 'collection'
   appendix-a-grammar/appendix-a-grammar_72c22ea2.zbr
-      `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_72c22ea2.zbr
+      `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib, libMathUtils.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-
   appendix-a-grammar/appendix-a-grammar_8322970c.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_8322970c__asfragment.zbr:5:8: error: undefined name: 'variable'
   appendix-a-grammar/appendix-a-grammar_88e0099c.zbr
@@ -317,7 +329,7 @@ FAILURES
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_983ad7b7.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_983ad7b7__asfragment.zbr:12:29: error: undefined name: 'u'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_c7da2544.zbr
-      `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib / .zig) beside C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_c7da2544.zbr
+      `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib, libMathUtils.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-chea
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_ca15e190.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_ca15e190__asfragment.zbr:6:14: error: undefined name: 'x'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_d0331aea.zbr

@@ -4,6 +4,10 @@
 # Take it on a CASE-SENSITIVE filesystem (Linux / CI): on Windows `use Build`
 # resolves to a neighbouring build.zbr, so an example can pass there and fail
 # everywhere else (zebra-language BUG-450, found by this repo's CI on its first run).
+# Removed 2026-09-27 (zebra-language BUG-446: undeclared type names are refused):
+# six fragments whose types live only in the surrounding prose -- User, ExprCall/
+# BinaryOp, Model, the `Type` placeholder, PluginContext, Node. They passed only because the
+# front end checked no type name; standalone they never compiled, so they are not gated.
 01-getting-started/01-getting-started_18a99d1c.zbr
 01-getting-started/01-getting-started_1abdcdcc.zbr
 01-getting-started/01-getting-started_498a42ab.zbr
@@ -23,7 +27,6 @@
 02-values-and-types/02-values-and-types_5fb1a5d4.zbr
 02-values-and-types/02-values-and-types_64a41368.zbr
 02-values-and-types/02-values-and-types_6d68373c.zbr
-02-values-and-types/02-values-and-types_7861a141.zbr
 02-values-and-types/02-values-and-types_8821ebd1.zbr
 02-values-and-types/02-values-and-types_91e9bda8.zbr
 02-values-and-types/02-values-and-types_9cd62d3c.zbr
@@ -123,7 +126,6 @@
 07-classes-and-instances/07_user_system.zbr
 07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_520cba8b.zbr
 07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_6dc357df.zbr
-07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_c4ad853b.zbr
 07b-structs-unions-and-value-types/07b_branch.zbr
 07b-structs-unions-and-value-types/07b_enum.zbr
 07b-structs-unions-and-value-types/07b_except.zbr
@@ -257,7 +259,6 @@
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_57c9399b.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_59263fa8.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_5cb23dd9.zbr
-14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_62f04674.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_70896cbb.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_7378df50.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_8d8bb072.zbr
@@ -323,7 +324,6 @@
 17-18_projects-2-3/router.zbr
 17-18_projects-2-3/similarity_analysis.zbr
 17-18_projects-2-3/user_store.zbr
-18b-gui-applications/18b-gui-applications_0cbfa83f.zbr
 18b-gui-applications/board.zbr
 18b-gui-applications/canvas.zbr
 18b-gui-applications/clipboard.zbr
@@ -340,7 +340,6 @@
 19-22_final-chapters/19-22_final-chapters_7d3e3913.zbr
 19-22_final-chapters/19-22_final-chapters_99ceb0b3.zbr
 19-22_final-chapters/19-22_final-chapters_a0432448.zbr
-19-22_final-chapters/19-22_final-chapters_a40b8bbd.zbr
 19-22_final-chapters/19-22_final-chapters_e3975313.zbr
 19-22_final-chapters/19-22_final-chapters_ebc1f62a.zbr
 19-22_final-chapters/19-22_final-chapters_eeba5bbf.zbr
@@ -402,7 +401,6 @@
 21-regular-expressions/regex-transform.zbr
 21-regular-expressions/regex-url.zbr
 22-ffi-and-interop/22-ffi-and-interop_a05611e2.zbr
-22-ffi-and-interop/22-ffi-and-interop_bf2cc6a9.zbr
 22-ffi-and-interop/ffi-batching.zbr
 22-ffi-and-interop/ffi-c-arrays.zbr
 22-ffi-and-interop/ffi-c-pointers.zbr

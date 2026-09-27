@@ -11,8 +11,9 @@ def first(T)(items: List(T)): T?
     return items.at(0)
 
 def main()
-    var n: int = identity(int)(42)         # explicit type
-    var s: str = identity("hello")          # inferred from arg
-    var first_num = first([1, 2, 3])        # inferred — List(int)
-    if first_num as n
-        print(n)  # 1
+    var n: int = identity(int)(42)
+    var s: str = identity(str)("hello")
+    var first_num: int? = first(int)([1, 2, 3])
+    if first_num as v
+        print(v)  # 1
+    print(s)      # hello
