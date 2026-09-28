@@ -789,7 +789,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `appendix-c-troubleshooting_23731487.zbr` — basic example
 - `appendix-c-troubleshooting_3fe87a98.zbr` — basic example
 - `appendix-c-troubleshooting_40911c92.zbr` — basic example
-- `appendix-c-troubleshooting_43f3ef30.zbr` — basic example
+- `appendix-c-troubleshooting_46c5d71d.zbr` — basic example
 - `appendix-c-troubleshooting_2548ab25.zbr` — basic example
 - `appendix-c-troubleshooting_6a01f8b1.zbr` — basic example
 - `appendix-c-troubleshooting_37435856.zbr` — basic example

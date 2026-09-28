@@ -185,7 +185,7 @@ class DataSet
     def average(): float
         if numbers.count() == 0
             return 0.0
-        return sum / numbers.count()
+        return sum() / numbers.count()
     
     def min_value(): int
         var min = numbers.at(0)

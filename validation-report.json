@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-09-27T12:45:47.861193",
+  "timestamp": "2026-09-28T15:06:04.047083",
   "compiler": "C:\\Projects\\zebra-language\\zig-out\\bin\\zebra.exe",
   "total": 794,
-  "passed": 620,
-  "failed": 174,
+  "passed": 619,
+  "failed": 175,
   "passed_as_fragment": [
     "01-getting-started/01-getting-started_18a99d1c.zbr",
     "01-getting-started/01-getting-started_57cf93e3.zbr",
@@ -273,6 +273,7 @@
     "appendix-c-troubleshooting/appendix-c-troubleshooting_2739d3f3.zbr": "as a fragment inside main(): C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_2739d3f3__asfragment.zbr:4:12: error: undefined name: 'x'",
     "appendix-c-troubleshooting/appendix-c-troubleshooting_2a1a28a5.zbr": "as a fragment inside main(): C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_2a1a28a5__asfragment.zbr:4:5: error: undefined name: 'items'",
     "appendix-c-troubleshooting/appendix-c-troubleshooting_40911c92.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_40911c92.zbr:10:8: error: undefined name: 'condition'",
+    "appendix-c-troubleshooting/appendix-c-troubleshooting_46c5d71d.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_46c5d71d.zbr:5: error: throws call needs '?' (auto error-propagation was removed; add '?')",
     "appendix-c-troubleshooting/appendix-c-troubleshooting_5d638035.zbr": "C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_5d638035.zbr:4:14: error: type mismatch: expected int, found int? -- unwrap it: `x!`, `x orelse default`,",
     "appendix-c-troubleshooting/appendix-c-troubleshooting_6acb55f4.zbr": "as a fragment inside main(): C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_6acb55f4__asfragment.zbr:4:19: error: undefined name: 'items'",
     "appendix-c-troubleshooting/appendix-c-troubleshooting_74e9d12a.zbr": "as a fragment inside main(): C:\\Projects\\zebra-language-book\\examples\\appendix-c-troubleshooting\\appendix-c-troubleshooting_74e9d12a__asfragment.zbr:6:17: error: type mismatch: expected int, got str",

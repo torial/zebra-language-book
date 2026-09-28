@@ -2,5 +2,5 @@ def operation(): int throws
     raise "fail"
 
 def main()
-    var value = operation()    # ERROR: unhandled `anyerror!int`
+    var value = operation()    # error: throws call needs '?'
     print(value)

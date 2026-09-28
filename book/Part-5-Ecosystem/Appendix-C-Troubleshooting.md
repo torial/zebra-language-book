@@ -439,7 +439,10 @@ Functions that can fail are declared `throws` and their errors
 propagate or get handled with `?`, `catch`, or a method-level `catch`
 clause.
 
-### "error: expected type 'T', found 'anyerror!T'"
+### "throws call needs '?'"
+
+(Compilers before 0.9.0-rc6 let this through to Zig, which said
+`expected type 'T', found 'anyerror!T'` or `error union is ignored`.)
 
 **What it means:** You called a `throws` function and used its result
 directly, without propagating or catching the possible error.
@@ -450,7 +453,7 @@ def operation(): int throws
     raise "fail"
 
 def main()
-    var value = operation()    # ERROR: unhandled `anyerror!int`
+    var value = operation()    # error: throws call needs '?'
     print(value)
 ```
 
