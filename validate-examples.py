@@ -104,13 +104,19 @@ def compile_example(zebra: Path, filepath: Path, full: bool = False):
     # Prefer the compiler's own `error:` line. The old rule took the first line mentioning
     # "error" anywhere, else the FIRST line -- which is the `compiling: <path>` banner, so
     # 15 failure records said nothing about why they failed.
+    # The WHOLE line is returned; only the report shortens it (DETAIL_WIDTH). The caller
+    # decides whether to retry as a fragment by searching this text, and a 200-char cut
+    # made that decision depend on how long the file's PATH is: on the Linux CI runner
+    # (/home/runner/work/...) six examples under the longest chapter directories lost
+    # "can't appear at the top level" to the cut, were never retried, and failed CI on
+    # every push from 2026-09-27 while passing on Windows.
     for ln in lines:
         if "error:" in ln:
-            return False, ln[:200]
+            return False, ln
     for ln in lines:
         if "error" in ln.lower() or "panic" in ln.lower():
-            return False, ln[:200]
-    return False, (lines[-1][:200] if lines else "non-zero exit, no output")
+            return False, ln
+    return False, (lines[-1] if lines else "non-zero exit, no output")
 
 
 # ── FRAGMENTS (2026-09-26) ───────────────────────────────────────────────────────────
@@ -121,6 +127,7 @@ def compile_example(zebra: Path, filepath: Path, full: bool = False):
 # top-level STATEMENTS moved into a synthesized `def main()` (declarations stay at top
 # level), beside the original so `use` of a neighbouring module still resolves. A pass that
 # needed this is reported separately ("as a fragment"), never silently as a whole program.
+DETAIL_WIDTH = 200    # report text only; never cut a message before it is classified
 FRAGMENT_SIGNS = ("can't appear at the top level", "unexpected top-level token")
 DECL_WORDS = ("def ", "class ", "struct ", "union ", "enum ", "interface ", "mixin ",
               "extend ", "namespace ", "sig ", "type ", "use ", "extern ", "@", "cue ")
@@ -205,7 +212,7 @@ def main() -> int:
                     msg = "as a fragment inside main(): " + fmsg
         (passed if ok else failed).append(rel)
         if not ok:
-            detail[rel] = msg
+            detail[rel] = msg[:DETAIL_WIDTH]
         if i % 50 == 0 or i == len(examples):
             print("  [" + str(i) + "/" + str(len(examples)) + "] " +
                   str(len(passed)) + " pass / " + str(len(failed)) + " fail")
