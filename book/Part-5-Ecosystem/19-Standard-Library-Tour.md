@@ -389,7 +389,10 @@ def main()
 
 Parse and generate JSON with the `Json` and `JsonValue` modules. `Json.parse`
 returns `JsonValue?` — printing it directly dumps the internal tagged-union
-representation, so unwrap it and pull out fields with the typed accessors:
+representation, so unwrap it and read fields out. A field the program *requires* is read
+with `v["key"]?`, which converts to the type the variable names and throws — naming the
+key — if it is missing or the wrong type. A field that *may* be absent is read with
+`tryStr` / `tryInt` / `tryFloat` / `tryBool` (or `get` / `has`), which answer `nil`:
 
 ```zebra
 # file: stdlib-json.zbr
@@ -400,8 +403,11 @@ def main()
     var text = "{\"name\": \"Alice\", \"age\": 30}"
     var parsed = Json.parse(text)
     if parsed as v
-        print(v.getStr("name"))
-        print(v.getInt("age"))
+        var name: str = v["name"]?                   # required: throws if absent
+        var age: int = v["age"]?
+        print(name)
+        print(age)
+        print(v.tryStr("nickname") orelse "(none)")  # optional: nil if absent
     else
         print("invalid JSON")
 ```

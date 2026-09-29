@@ -6,7 +6,10 @@ def main()
     var text = "{\"name\": \"Alice\", \"age\": 30}"
     var parsed = Json.parse(text)
     if parsed as v
-        print(v.getStr("name"))
-        print(v.getInt("age"))
+        var name: str = v["name"]?                   # required: throws if absent
+        var age: int = v["age"]?
+        print(name)
+        print(age)
+        print(v.tryStr("nickname") orelse "(none)")  # optional: nil if absent
     else
         print("invalid JSON")

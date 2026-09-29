@@ -120,7 +120,7 @@ def route(req: HttpRequest): HttpResponse
 def createUser(body: str): HttpResponse
     # Expect a JSON body like {"name": "Ada"}
     if Json.parse(body) as json
-        var name = json.getStr("name")
+        var name = json.tryStr("name") orelse ""
         if name.len > 0
             return HttpResponse.new(201, addUser(name).toJson())
     return HttpResponse.new(400, "expected a JSON body like {\"name\": \"Ada\"}")
