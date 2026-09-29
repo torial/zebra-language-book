@@ -290,7 +290,7 @@ built-in types like `str` and `int`:
 ```zebra
 extend str
     def shout(): str
-        return this.to_upper() + "!"
+        return this.upper() + "!"
 
     def word_count(): int
         return this.split(" ").len

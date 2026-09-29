@@ -298,7 +298,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `10b-modules-namespaces-and-visibility_9db5d7b1.zbr` — basic example
 - `10b-modules-namespaces-and-visibility_e10b63b7.zbr` — basic example
 - `10b-modules-namespaces-and-visibility_afbd02f8.zbr` — basic example
-- `10b-modules-namespaces-and-visibility_88d5cd55.zbr` — basic example
+- `10b-modules-namespaces-and-visibility_c18b5c93.zbr` — basic example
 - `10b-modules-namespaces-and-visibility_8ecdbb90.zbr` — basic example
 - `10b-modules-namespaces-and-visibility_954bbcd9.zbr` — basic example
 - `helpers.zbr` — basic example
