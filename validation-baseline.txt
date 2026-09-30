@@ -11,6 +11,12 @@
 # Removed 2026-09-30 (zebra-language 2f9574d: an operator on an optional is refused):
 # appendix-c 6081bf9a, `print(x + 1)` with `x: int?` -- the book's own example of the error,
 # which the front end now reports ("'x' may be nil here") instead of passing it to Zig.
+# Removed 2026-09-30 (zebra-language ef8256d: a MODULE-level var initializer is resolved and
+# type-checked; `-c` looked at none). Eleven examples it had passed: fragments naming
+# something defined elsewhere in the book (compute, makeConfig, Utils, Colors, text) and
+# deliberate error examples (appendix-c: x + 1 on an int?, add() arity, and-chain /
+# early-exit narrowing, which Zebra does not do). None ever built. Also dropped:
+# appendix-c 43f3ef30, which no longer exists (the block changed).
 # Taken 2026-09-27 as the INTERSECTION of passes under the released rc4 (what CI runs) and
 # zebra-language main (the next release), so neither compiler can turn this gate red.
 01-getting-started/01-getting-started_18a99d1c.zbr
@@ -36,8 +42,6 @@
 02-values-and-types/02-values-and-types_91e9bda8.zbr
 02-values-and-types/02-values-and-types_9cd62d3c.zbr
 02-values-and-types/02-values-and-types_c6bd144c.zbr
-02-values-and-types/02-values-and-types_e0c51a57.zbr
-02-values-and-types/02-values-and-types_f15b5132.zbr
 02-values-and-types/02_bools.zbr
 02-values-and-types/02_comparisons.zbr
 02-values-and-types/02_conversions.zbr
@@ -130,7 +134,6 @@
 07-classes-and-instances/07_static.zbr
 07-classes-and-instances/07_user_system.zbr
 07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_520cba8b.zbr
-07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_6dc357df.zbr
 07b-structs-unions-and-value-types/07b_branch.zbr
 07b-structs-unions-and-value-types/07b_enum.zbr
 07b-structs-unions-and-value-types/07b_except.zbr
@@ -183,7 +186,6 @@
 10-properties-and-computed-values/10_temperature.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_12af035b.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_2feef21c.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_36b894bc.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_38e75178.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_617af081.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_c18b5c93.zbr
@@ -296,7 +298,6 @@
 14c-concurrency-channels-and-threads/14c_pipeline.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_0ca524ae.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_2b11bfa8.zbr
-15-pipelines-and-function-composition/15-pipelines-and-function-composition_5edb027e.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_61e63207.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_7fd22695.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_8da91d38.zbr
@@ -530,11 +531,9 @@ appendix-c-troubleshooting/appendix-c-troubleshooting_37435856.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_37bec9af.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_3d14b543.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_3fe87a98.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_43f3ef30.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_45e92fd4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_47aba230.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_4c6c059d.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_54646699.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_62a324ff.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_69057b3a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_6a01f8b1.zbr
@@ -546,13 +545,10 @@ appendix-c-troubleshooting/appendix-c-troubleshooting_86fda4c8.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_8ba6c2c4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_8fe8810a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_936c1476.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_9478ea7a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_9c7a193e.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_9d9607fd.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_9f6ac354.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_b074544d.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_b3ba51b6.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_b5b1941f.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_c0d12aef.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_cefd8fc4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_d19cd133.zbr
@@ -579,11 +575,9 @@ ref-cheatsheet-syntax/ref-cheatsheet-syntax_a5d4ff3b.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_c8e3541e.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_e83232d8.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_ea3f3994.zbr
-ref-cheatsheet-syntax/ref-cheatsheet-syntax_fad686e2.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_02c9595a.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_031d9f03.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_09515c39.zbr
-ref-patterns-common-tasks/ref-patterns-common-tasks_1100158e.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_1354f748.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_226cd724.zbr
 ref-patterns-common-tasks/ref-patterns-common-tasks_23861494.zbr
