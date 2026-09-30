@@ -8,6 +8,9 @@
 # six fragments whose types live only in the surrounding prose -- User, ExprCall/
 # BinaryOp, Model, the `Type` placeholder, PluginContext, Node. They passed only because the
 # front end checked no type name; standalone they never compiled, so they are not gated.
+# Removed 2026-09-30 (zebra-language 2f9574d: an operator on an optional is refused):
+# appendix-c 6081bf9a, `print(x + 1)` with `x: int?` -- the book's own example of the error,
+# which the front end now reports ("'x' may be nil here") instead of passing it to Zig.
 # Taken 2026-09-27 as the INTERSECTION of passes under the released rc4 (what CI runs) and
 # zebra-language main (the next release), so neither compiler can turn this gate red.
 01-getting-started/01-getting-started_18a99d1c.zbr
@@ -532,7 +535,6 @@ appendix-c-troubleshooting/appendix-c-troubleshooting_45e92fd4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_47aba230.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_4c6c059d.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_54646699.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_6081bf9a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_62a324ff.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_69057b3a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_6a01f8b1.zbr
