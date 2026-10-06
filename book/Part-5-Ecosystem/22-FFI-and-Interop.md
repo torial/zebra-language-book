@@ -651,7 +651,7 @@ def main()
     print("separator: ${from_c_string(path_separator())}")
 ```
 
-Output on Windows (Linux prints `linux` and `/`; macOS prints `macos` and `/`):
+Output on Windows (other platforms print their own name and separator):
 
 ```text
 platform:  windows
