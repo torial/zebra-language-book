@@ -1,38 +1,28 @@
 # file: ffi-error-codes.zbr
-# teaches: handling C-style error codes
+# teaches: turning C error codes into Zebra errors
 # chapter: 22
 
-class CFile
-    static
-        # C fopen: FILE* fopen(const char* filename, const char* mode)
-        # Returns NULL on error
-        def open_file(filename: str, mode: str): int throws
-            # In real C, this returns FILE* (opaque pointer)
-            # For now, return 0 to indicate error
-            var file_handle = 0  # Attempt to open
-            
-            if file_handle == 0
-                raise "Cannot open file: ${filename}"
-            else
-                return file_handle
-        
-        # C close: int fclose(FILE* f)
-        # Returns 0 on success, EOF on error
-        def close_file(file_handle: int): bool throws
-            var status = 0  # Attempt to close
-            
-            if status == 0
-                return true
-            else
-                raise "Error closing file"
+use portparse
+
+extern def parse_port(s: ^byte): int32
+
+def to_c_string(s: str): ^byte
+    var z = s + "${0:c}"
+    return zig"@ptrCast(@constCast(z.ptr))"
+
+# The wrapper is the only place that knows the C convention. Callers see an
+# ordinary `throws` function: a port, or an error with a message.
+def port_from(text: str): int throws
+    var code = parse_port(to_c_string(text))
+    if code == -1
+        raise "not a number: ${text}"
+    if code == -2
+        raise "port out of range: ${text}"
+    return code
 
 def main()
-    # open_file/close_file are `throws` — the error is caught below, not
-    # branched on as a Result value.
-    var handle = CFile.open_file("data.txt", "r")
-    print("File opened: ${handle}")
-    
-    CFile.close_file(handle)
-    print("File closed")
+    print(port_from("8080"))
+    print(port_from("http"))
+    print("not reached")
 catch |e|
     print("Error: ${e.message}")

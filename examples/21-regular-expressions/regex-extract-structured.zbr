@@ -1,26 +1,23 @@
 # file: regex-extract-structured.zbr
-# teaches: extracting data from formatted text
+# teaches: extracting data from formatted text with capture groups
 # chapter: 21
 
 def extract_person_data(line: str): HashMap(str, str)?
     # Expected format: Name | Age | Email
-    var pattern = Regex.compile("^(.+)\\|(.+)\\|(.+)$")
-    
-    # Simplified: just split by |
-    var parts = line.split("|")
-    if parts.count() != 3
-        return nil
-    
+    var pattern = Regex.compile("^([^|]+)\\|\\s*(\\d+)\\s*\\|\\s*(\\S+)\\s*$")
+    var g = pattern.groups(line)
+    if g.count() != 3
+        return nil   # the line did not have the expected shape
+
     var data = HashMap(str, str)()
-    data.set("name", parts.at(0).trim())
-    data.set("age", parts.at(1).trim())
-    data.set("email", parts.at(2).trim())
-    
+    data.set("name", g.at(0).trim())
+    data.set("age", g.at(1))
+    data.set("email", g.at(2))
     return data
 
 def main()
     var record = "John Smith | 30 | john@example.com"
-    
+
     if extract_person_data(record) as extracted
         # .get() returns V? (str?) — a HashMap(str,str) lookup can miss, so
         # interpolating it needs an unwrap. orelse gives a fallback for a
@@ -28,3 +25,6 @@ def main()
         print("Name: ${extracted.get("name") orelse ""}")
         print("Age: ${extracted.get("age") orelse ""}")
         print("Email: ${extracted.get("email") orelse ""}")
+
+    if extract_person_data("John Smith | thirty | john@example.com") == nil
+        print("Rejected: age is not a number")

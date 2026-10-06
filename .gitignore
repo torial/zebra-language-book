@@ -28,6 +28,8 @@ Thumbs.db
 *.pdb
 *.obj
 *.zig
+# ...except a .zig an example `use`s as its source (ch22 calls Zig code)
+!examples/22-ffi-and-interop/*.zig
 *.pdf
 
 # mdBook output (built by .github/workflows/pages.yml; `mdbook build` locally)

@@ -1,0 +1,25 @@
+# file: ffi-c-handles.zbr
+# teaches: opaque C handles and who frees them
+# chapter: 22
+
+use stats
+
+# Zebra never looks inside a Stats; it only carries the pointer around.
+extern def stats_new(): ^byte
+extern def stats_add(s: ^byte, x: float64)
+extern def stats_count(s: ^byte): int64
+extern def stats_mean(s: ^byte): float64
+extern def stats_max(s: ^byte): float64
+extern def stats_free(s: ^byte)
+
+def main()
+    var s = stats_new()            # C allocates...
+
+    for reading in [12.5, 9.0, 17.25, 11.0]
+        stats_add(s, reading)
+
+    print("count: ${stats_count(s)}")   # count: 4
+    print("mean:  ${stats_mean(s)}")    # mean:  12.4375
+    print("max:   ${stats_max(s)}")     # max:   17.25
+
+    stats_free(s)                  # ...so C frees. s is dangling from here on.

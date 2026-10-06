@@ -8,9 +8,11 @@
 
 After this chapter, you will:
 - Understand Foreign Function Interface (FFI) concepts
-- Call C functions safely from Zebra
-- Marshal data between Zebra and C
-- Handle errors and exceptions across language boundaries
+- Call C functions — from the C library, your own `.c` files, and prebuilt libraries
+- Call Zig code directly
+- Marshal numbers, strings and pointers between Zebra and C
+- Turn C-style error codes into Zebra errors
+- Build Zebra plugins that other programs load at runtime
 - Know the performance and safety tradeoffs
 
 ---
@@ -22,225 +24,404 @@ Not all code is Zebra. Sometimes you need to call:
 - **Zig code** — for optimal control or performance
 - **Platform APIs** — Windows, Linux, macOS system functions
 
-FFI (Foreign Function Interface) lets you call these from Zebra. This chapter covers the patterns, safety considerations, and common pitfalls.
+FFI (Foreign Function Interface) lets you call these from Zebra. Every route goes through
+one of two pieces of syntax: **`extern def`**, which declares a function that lives
+outside Zebra, and **`use`**, which finds the file that supplies it and builds it into
+your program. There is no build script and no linker flag to write — one `zebra` command
+compiles the C, links the library and runs the result.
+
+| What you have | What you write |
+|---|---|
+| a function in the C standard library | `extern def` |
+| a `.c` file | `use name` + `extern def` for each function |
+| a `.c` file **with a `.h`** | `use name`, then call `name.function(...)` |
+| a prebuilt `.lib` / `.a` / `.so` | `use name` + `extern def` |
+| a `.zig` file | `use name`, then call `name.function(...)` |
+| a Zebra library to load at runtime | `DynLib` (end of chapter) |
+
+The supporting `.c`, `.h` and `.zig` files shown below sit beside the examples in
+`examples/22-ffi-and-interop/`, so every program here runs as written.
 
 ---
 
 ## Calling C Functions
 
-### Simple C Function Calls
+### C Standard Library Functions
 
-The simplest case: C functions with primitive types.
+The simplest case: a function the C library already provides.
 
 ```zebra
 # file: ffi-c-simple.zbr
-# teaches: calling basic C functions
+# teaches: calling C standard library functions with extern def
 # chapter: 22
 
-# Declare C function signature
-# Note: This example assumes the function is available at link time
-class Math
-    static
-        def sqrt(x: float): float
-            # This would be implemented in C
-            return 0.0
-        
-        def pow(base: float, exponent: float): float
-            # C function: double pow(double, double)
-            return 0.0
+# Declarations only: no body, and the C name IS the Zebra name.
+# The C library is always linked, so these need nothing else.
+extern def sqrt(x: float64): float64
+extern def pow(base: float64, exponent: float64): float64
+extern def abs(n: int32): int32
 
 def main()
-    var result = Math.sqrt(16.0)
-    print(result)  # 4.0
-    
-    var power = Math.pow(2.0, 8.0)
-    print(power)  # 256.0
+    print(sqrt(16.0))        # 4.0
+    print(pow(2.0, 8.0))     # 256.0
+    print(abs(0 - 42))       # 42
 ```
 
-### String Marshaling
+Output:
 
-Strings require special care because Zebra and C have different string representations.
-
-```zebra
-# file: ffi-c-strings.zbr
-# teaches: passing strings to C functions
-# chapter: 22
-
-class CString
-    static
-        # C strlen: int strlen(const char* s)
-        def strlen(s: str): int
-            # Native C implementation
-            return 0
-        
-        # C strcmp: int strcmp(const char* a, const char* b)
-        def strcmp(a: str, b: str): int
-            # Returns: 0 if equal, <0 if a<b, >0 if a>b
-            return 0
-        
-        # C strcpy: char* strcpy(char* dest, const char* src)
-        # WARNING: strcpy is dangerous! Buffer overflow risk!
-        # Better to use strncpy or avoid it entirely
-
-def main()
-    var text = "Hello, World!"
-    var length = CString.strlen(text)
-    print("Length: ${length}")
-    
-    var cmp = CString.strcmp("apple", "apple")
-    if cmp == 0
-        print("Strings are equal")
-    
-    cmp = CString.strcmp("apple", "banana")
-    if cmp < 0
-        print("apple comes before banana")
+```text
+4.0
+256.0
+42
 ```
 
-### Working with Arrays
+`extern def` has no body. The compiler emits a plain Zig `extern fn` and calls it
+directly — there is no wrapper or marshaling layer between your call and the C function.
 
-Arrays are commonly passed to C functions.
+### Your Own C File
 
-```zebra
-# file: ffi-c-arrays.zbr
-# teaches: passing arrays to C functions
-# chapter: 22
+Put a `.c` file beside your program and `use` it by name. The compiler finds
+`temperature.c`, hands it to `zig` to compile, and links the result:
 
-class CArray
-    static
-        # C qsort: void qsort(void* base, size_t nmemb, size_t size, int (*compar)(const void*, const void*))
-        # This is complex to use in Zebra—better to sort in Zebra
-        
-        # Example: sum array (simplified C function)
-        def sum_array(numbers: List(int)): int
-            # In real C: int sum_array(int* arr, int len)
-            var total = 0
-            for num in numbers
-                total = total + num
-            return total
-        
-        # Example: find maximum
-        def max_array(numbers: List(int)): int
-            var max_val = numbers.at(0)
-            for num in numbers
-                if num > max_val
-                    max_val = num
-            return max_val
+```c
+/* temperature.c -- no header, so the Zebra side declares each function */
 
-def main()
-    var numbers = List(int)()
-    numbers.add(10)
-    numbers.add(20)
-    numbers.add(15)
-    
-    var sum = CArray.sum_array(numbers)
-    print("Sum: ${sum}")  # 45
-    
-    var max_val = CArray.max_array(numbers)
-    print("Max: ${max_val}")  # 20
+double celsius_to_fahrenheit(double c) {
+    return c * 9.0 / 5.0 + 32.0;
+}
+
+int clamp_int(int value, int lo, int hi) {
+    if (value < lo) return lo;
+    if (value > hi) return hi;
+    return value;
+}
 ```
 
-### Pointers and Memory Management
-
-This is where FFI gets dangerous.
-
 ```zebra
-# file: ffi-c-pointers.zbr
-# teaches: handling pointers in FFI
+# file: ffi-c-source.zbr
+# teaches: compiling and calling your own C file
 # chapter: 22
 
-class CMemory
-    static
-        # C malloc: void* malloc(size_t size)
-        # C free: void free(void* ptr)
-        # These are low-level and error-prone
-        
-        # Better: allocate in Zebra, pass to C
-        def process_buffer(data: str): int throws
-            # Zebra owns the memory, C just reads it
-            # Safe! C cannot deallocate
-            return data.len
+# Finds temperature.c beside this file, compiles it with zig, and links it.
+use temperature
+
+extern def celsius_to_fahrenheit(c: float64): float64
+extern def clamp_int(value: int32, lo: int32, hi: int32): int32
 
 def main()
-    var my_data = "Important data"
-    
-    # Pass to C function for processing. process_buffer is `throws`, so it
-    # returns the value directly (not a Result) — catch handles the error.
-    var byte_count = CMemory.process_buffer(my_data)
-    print("Processed: ${byte_count} bytes")
-    
-    # Zebra's scoping ensures my_data is cleaned up automatically
-catch |e|
-    print("Error: ${e.message}")
+    print(celsius_to_fahrenheit(100.0))   # 212.0
+    print(celsius_to_fahrenheit(-40.0))   # -40.0
+    print(clamp_int(150, 0, 100))         # 100
+    print(clamp_int(0 - 5, 0, 100))       # 0
+```
+
+Output:
+
+```text
+212.0
+-40.0
+100
+0
+```
+
+### With a Header: No Declarations Needed
+
+If the C file has a matching `.h`, the compiler imports the header instead, and its
+functions are reached **through the module name** — no `extern def` lines at all:
+
+```c
+/* geometry.h -- the header makes `use geometry` import these declarations */
+#pragma once
+
+double hypotenuse(double a, double b);
+long long area_of_rect(long long w, long long h);
+```
+
+```c
+/* geometry.c -- compiled and linked by `use geometry` */
+#include <math.h>
+#include "geometry.h"
+
+double hypotenuse(double a, double b) {
+    return sqrt(a * a + b * b);
+}
+
+long long area_of_rect(long long w, long long h) {
+    return w * h;
+}
+```
+
+```zebra
+# file: ffi-c-header.zbr
+# teaches: a C file with a header -- no extern def needed
+# chapter: 22
+
+use geometry
+
+def main()
+    # The header's declarations are reached through the module name
+    print(geometry.hypotenuse(3.0, 4.0))     # 5.0
+    print(geometry.area_of_rect(6, 7))       # 42
+```
+
+Output:
+
+```text
+5.0
+42
+```
+
+The header route reads the C types from the header itself, so `long long` arrives as
+Zebra's 64-bit `int` and `double` as `float`. The `extern def` route trusts *your*
+declaration instead — which is why the next section matters.
+
+---
+
+## The ABI Rule: Use Sized Types
+
+**Zebra's `int` is 64-bit; C's `int` is 32-bit.** If those were allowed to meet, a call
+would link cleanly and then read half of its answer from the wrong place — a green build
+and a wrong program. So `extern def` refuses the ambiguous types and asks which one you
+meant. Declaring `extern def abs(n: int): int` gives:
+
+```text
+`int` is ambiguous in an `extern` signature (return type of `abs`): Zebra's `int` is 64-bit, C's `int` is 32-bit. Write `int32` for C `int`, or `int64` for C `long long`/`int64_t`.
+```
+
+Use the explicitly sized types, which map straight onto the C ones:
+
+| C | Zebra |
+|---|---|
+| `int` | `int32` |
+| `long long` / `int64_t` | `int64` |
+| `unsigned int` / `uint32_t` | `uint32` |
+| `unsigned char` | `uint8` |
+| `float` / `double` | `float32` / `float64` |
+| `char *` / `void *` / any pointer | `^byte` |
+
+`str` is refused the same way, because a Zebra `str` is a slice — a pointer **and** a
+length — and C has no such type. Declaring `extern def strlen(s: str): uint64` gives:
+
+```text
+`str` is not a C-ABI type in an `extern` signature (parameter `s` of `strlen`): Zebra's `str` is a slice (pointer + length) and C has no such type. Write `^byte` for a C `char*`, then `zig"std.mem.span(...)"` to read it back as a str.
 ```
 
 ---
 
-## Calling Zig Functions
+## Strings: `^byte`
 
-Zig is closer to Zebra, making interop more ergonomic.
+A C function that takes or returns a `char *` is declared with `^byte`. Converting
+between `^byte` and `str` takes one line of Zig each, through the `zig"…"` escape hatch
+(an expression written in Zig, whose value comes back into Zebra). Copy these two helpers
+into any program that talks to C strings:
 
-### Basic Zig Interop
+```c
+/* textlib.c -- C functions that take and return C strings (char*) */
 
-```zebra
-# file: ffi-zig-basic.zbr
-# teaches: calling Zig functions from Zebra
-# chapter: 22
+/* Count the vowels in a NUL-terminated string. */
+int count_vowels(const char *s) {
+    int n = 0;
+    for (; *s; s++) {
+        char c = *s;
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') n++;
+    }
+    return n;
+}
 
-class ZigMath
-    static
-        # Zig function: pub fn gcd(a: i64, b: i64) -> i64
-        def gcd(a: int, b: int): int
-            # Implementation in Zig
-            return 0
-        
-        # Zig function: pub fn is_prime(n: u64) -> bool
-        def is_prime(n: int): bool
-            return false
-
-def main()
-    var result = ZigMath.gcd(48, 18)
-    print(result)  # 6
-    
-    if ZigMath.is_prime(17)
-        print("17 is prime")
-    else
-        print("17 is not prime")
+/* Return a pointer to a static, NUL-terminated string. C owns it. */
+const char *library_name(void) {
+    return "textlib 1.0";
+}
 ```
 
-### Zig String Handling
-
-Zig's string handling is different from C's.
-
 ```zebra
-# file: ffi-zig-strings.zbr
-# teaches: Zig string interop
+# file: ffi-c-strings.zbr
+# teaches: passing strings to and from C with ^byte
 # chapter: 22
 
-class ZigString
-    static
-        # Zig function with slices
-        # pub fn string_length(s: []const u8) -> usize
-        def string_length(s: str): int
-            return 0
-        
-        # Case conversion
-        # pub fn to_uppercase(allocator: Allocator, s: []const u8) -> ![]u8
-        def to_uppercase(s: str): str
-            return ""
-        
-        # String validation
-        # pub fn is_valid_utf8(s: []const u8) -> bool
-        def is_valid_utf8(data: str): bool
-            return true
+use textlib
+
+extern def count_vowels(s: ^byte): int32
+extern def library_name(): ^byte
+
+# str -> char*. A Zebra str has a length but no terminator, so append a
+# NUL byte (${0:c}), then hand C a pointer to the first byte.
+def to_c_string(s: str): ^byte
+    var z = s + "${0:c}"
+    return zig"@ptrCast(@constCast(z.ptr))"
+
+# char* -> str. Measures up to the NUL; the bytes still belong to C.
+def from_c_string(p: ^byte): str
+    return zig"std.mem.span(@as([*:0]const u8, @ptrCast(p)))"
 
 def main()
-    var text = "Hello, Zig!"
-    var len = ZigString.string_length(text)
-    print("Length: ${len}")
-    
-    var upper = ZigString.to_uppercase(text)
-    print("Uppercase: ${upper}")
+    print(count_vowels(to_c_string("programming language")))   # 7
+    print(from_c_string(library_name()))                       # textlib 1.0
 ```
+
+Output:
+
+```text
+7
+textlib 1.0
+```
+
+Two ownership facts sit behind those helpers:
+
+- **`to_c_string` makes a copy** with the terminator on the end. The copy lives as long
+  as the rest of your program's strings, so C may read it during the call; C must not
+  free it, and should not keep the pointer for later.
+- **`from_c_string` does not copy.** The resulting `str` points at C's bytes. That is
+  right for a static string like `library_name()`'s; if C hands you a buffer it will
+  reuse or free, copy it into a Zebra string first — concatenation always builds a new
+  string, so `from_c_string(p) + ""` is enough.
+
+### Bytes With a Length
+
+Many C APIs take a pointer **and** a length instead of a terminated string. Then no copy
+is needed — a `str` already *is* a pointer and a length. This is a real CRC-32 in C,
+wrapped so Zebra callers never see a pointer:
+
+```c
+/* checksum.c -- a small C library: CRC-32 (the zlib/PNG polynomial) */
+
+/* The checksum of `len` bytes at `data`. The bytes need no terminator. */
+unsigned int crc32_bytes(const unsigned char *data, long long len) {
+    unsigned int crc = 0xFFFFFFFFu;
+    for (long long i = 0; i < len; i++) {
+        crc ^= data[i];
+        for (int k = 0; k < 8; k++)
+            crc = (crc >> 1) ^ (0xEDB88320u & (0u - (crc & 1u)));
+    }
+    return ~crc;
+}
+```
+
+```zebra
+# file: ffi-checksum.zbr
+# teaches: wrapping a C library function behind a Zebra function
+# chapter: 22
+
+use checksum
+
+extern def crc32_bytes(data: ^byte, len: int64): uint32
+
+# The Zebra-facing API: takes a str, hides the pointer and the length
+def crc32(text: str): uint32
+    var data: ^byte = zig"@ptrCast(@constCast(text.ptr))"
+    return crc32_bytes(data, text.len)
+
+def main()
+    var msg = "The quick brown fox jumps over the lazy dog"
+    print("${crc32(msg):08x}")    # 414fa339
+    print("${crc32(""):08x}")     # 00000000
+
+    # A changed byte changes the checksum
+    if crc32(msg) != crc32(msg.replace("dog", "cog"))
+        print("tampering detected")
+```
+
+Output:
+
+```text
+414fa339
+00000000
+tampering detected
+```
+
+(`414fa339` is the standard CRC-32 of that sentence, so the C code, the call and the
+string all line up.) The length is declared `int64` / `long long` on purpose, so that
+`text.len`, a Zebra `int`, passes straight through.
+
+> **Current limitation:** passing an `int` where an `extern def` declares `uint64` passes
+> `zebra -c` but fails to build ("expected type 'u64', found 'i64'"). Declare lengths as
+> `int64` on both sides, as here.
+
+---
+
+## Pointers and Ownership: Opaque Handles
+
+When C keeps state between calls, the usual C answer is an **opaque handle**: C allocates
+a struct, gives you a pointer, and you pass that pointer back to every function. Zebra
+carries it as a `^byte` and never looks inside:
+
+```c
+/* stats.c -- an opaque handle: C allocates the object, C frees it */
+#include <stdlib.h>
+
+typedef struct {
+    long long count;
+    double sum;
+    double min;
+    double max;
+} Stats;
+
+Stats *stats_new(void) {
+    Stats *s = malloc(sizeof(Stats));
+    if (s) { s->count = 0; s->sum = 0.0; s->min = 0.0; s->max = 0.0; }
+    return s;
+}
+
+void stats_add(Stats *s, double x) {
+    if (s->count == 0 || x < s->min) s->min = x;
+    if (s->count == 0 || x > s->max) s->max = x;
+    s->count++;
+    s->sum += x;
+}
+
+long long stats_count(const Stats *s) { return s->count; }
+double stats_mean(const Stats *s) { return s->count ? s->sum / s->count : 0.0; }
+double stats_max(const Stats *s) { return s->max; }
+
+void stats_free(Stats *s) { free(s); }
+```
+
+```zebra
+# file: ffi-c-handles.zbr
+# teaches: opaque C handles and who frees them
+# chapter: 22
+
+use stats
+
+# Zebra never looks inside a Stats; it only carries the pointer around.
+extern def stats_new(): ^byte
+extern def stats_add(s: ^byte, x: float64)
+extern def stats_count(s: ^byte): int64
+extern def stats_mean(s: ^byte): float64
+extern def stats_max(s: ^byte): float64
+extern def stats_free(s: ^byte)
+
+def main()
+    var s = stats_new()            # C allocates...
+
+    for reading in [12.5, 9.0, 17.25, 11.0]
+        stats_add(s, reading)
+
+    print("count: ${stats_count(s)}")   # count: 4
+    print("mean:  ${stats_mean(s)}")    # mean:  12.4375
+    print("max:   ${stats_max(s)}")     # max:   17.25
+
+    stats_free(s)                  # ...so C frees. s is dangling from here on.
+```
+
+Output:
+
+```text
+count: 4
+mean:  12.4375
+max:   17.25
+```
+
+The rules that keep this safe are the ones you would follow in C:
+
+- **Whoever allocates, frees.** `stats_new` allocates with `malloc`, so `stats_free`
+  frees with `free`. Zebra's memory management never touches the struct.
+- **One free, and nothing after it.** Zebra cannot tell that `s` is dangling after
+  `stats_free(s)`; calling `stats_add(s, ...)` there is undefined behaviour, exactly as
+  in C.
+- **A handle is not checked.** Passing a pointer from one library to another library's
+  function compiles fine. Keep each kind of handle inside a small Zebra wrapper class if
+  you pass them around a large program.
 
 ---
 
@@ -248,444 +429,269 @@ def main()
 
 ### Return Code Patterns
 
-Many C functions return error codes rather than throwing exceptions.
+C functions don't raise errors; they return codes. Wrap the call in a `throws` function
+that turns the codes into errors, and the rest of your program never sees the C
+convention:
+
+```c
+/* portparse.c -- C-style error reporting: the return value is the status */
+
+/* Parse a decimal TCP port.
+ * Returns the port (1..65535), or a negative error code:
+ *   -1  empty or not a number      -2  out of range */
+int parse_port(const char *s) {
+    if (*s == '\0') return -1;
+    long value = 0;
+    for (; *s; s++) {
+        if (*s < '0' || *s > '9') return -1;
+        value = value * 10 + (*s - '0');
+        if (value > 65535) return -2;
+    }
+    if (value == 0) return -2;
+    return (int)value;
+}
+```
 
 ```zebra
 # file: ffi-error-codes.zbr
-# teaches: handling C-style error codes
+# teaches: turning C error codes into Zebra errors
 # chapter: 22
 
-class CFile
-    static
-        # C fopen: FILE* fopen(const char* filename, const char* mode)
-        # Returns NULL on error
-        def open_file(filename: str, mode: str): int throws
-            # In real C, this returns FILE* (opaque pointer)
-            # For now, return 0 to indicate error
-            var file_handle = 0  # Attempt to open
-            
-            if file_handle == 0
-                raise "Cannot open file: ${filename}"
-            else
-                return file_handle
-        
-        # C close: int fclose(FILE* f)
-        # Returns 0 on success, EOF on error
-        def close_file(file_handle: int): bool throws
-            var status = 0  # Attempt to close
-            
-            if status == 0
-                return true
-            else
-                raise "Error closing file"
+use portparse
+
+extern def parse_port(s: ^byte): int32
+
+def to_c_string(s: str): ^byte
+    var z = s + "${0:c}"
+    return zig"@ptrCast(@constCast(z.ptr))"
+
+# The wrapper is the only place that knows the C convention. Callers see an
+# ordinary `throws` function: a port, or an error with a message.
+def port_from(text: str): int throws
+    var code = parse_port(to_c_string(text))
+    if code == -1
+        raise "not a number: ${text}"
+    if code == -2
+        raise "port out of range: ${text}"
+    return code
 
 def main()
-    # open_file/close_file are `throws` — the error is caught below, not
-    # branched on as a Result value.
-    var handle = CFile.open_file("data.txt", "r")
-    print("File opened: ${handle}")
-    
-    CFile.close_file(handle)
-    print("File closed")
+    print(port_from("8080"))
+    print(port_from("http"))
+    print("not reached")
 catch |e|
     print("Error: ${e.message}")
 ```
 
+Output:
+
+```text
+8080
+Error: not a number: http
+```
+
+The first call returns normally; the second raises, which skips the rest of `main` and
+lands in its `catch`.
+
 ### Exception-Like Patterns
 
-Some C libraries use setjmp/longjmp for exceptions. These are complex to use from Zebra—consider wrapping in a C shim.
-
-```zebra
-# file: ffi-error-wrapper.zbr
-# teaches: wrapping C error handling in Zebra
-# chapter: 22
-
-# Example: C library with exception-like behavior
-# Rather than exposing this complexity to Zebra code,
-# wrap it in a simpler Zebra interface
-
-class SafeLibrary
-    static
-        # C function might throw (via setjmp/longjmp)
-        def risky_operation(input: str): str throws
-            # Wrapper function (in C or Zig) handles exceptions
-            # and returns a Result to Zebra
-            raise "Operation failed"
-
-def main()
-    var result = SafeLibrary.risky_operation("data")
-    print(result)
-catch |e|
-    print("Operation failed safely: ${e.message}")
-```
+Some C libraries signal failure with `setjmp`/`longjmp`, or C++ libraries with
+exceptions. Neither may cross into Zebra: jumping or unwinding through Zebra frames is
+not supported. Write a small C (or C++) shim that catches the failure on its own side and
+returns a status code, then wrap the shim exactly as above.
 
 ---
 
-## Type Marshaling
+## Linking a Prebuilt Library
 
-### Numeric Types
+Most real dependencies are not source you compile — they are a binary someone else built.
+`use` finds those too: put `name.lib` (Windows), `libname.a` / `name.a`, or a `.so` /
+`.dylib` beside your program, or on `--module-path`, and it is linked in.
 
-Most numeric types map directly:
+To try it, turn `checksum.c` into a library in a separate directory, and copy only the
+library beside `ffi-checksum.zbr`:
 
-```zebra
-# file: ffi-numeric-types.zbr
-# teaches: numeric type marshaling
-# chapter: 22
-
-class Numeric
-    static
-        # Zebra int (64-bit) → C int32_t (32-bit)
-        # Be careful with overflow!
-        def c_int32_function(n: int): int
-            return 0
-        
-        # Zebra float → C float or double
-        def c_double_function(x: float): float
-            return 0.0
-        
-        # Boolean: Zebra bool → C bool (or int 0/1)
-        def c_bool_function(flag: bool): bool
-            return false
-
-def main()
-    # Small numbers are safe
-    var result = Numeric.c_int32_function(100)
-    print(result)
-    
-    # Large numbers may overflow in C int32
-    # Be careful!
-    var large_num = 2147483647 + 1  # Exceeds int32 max
-    # Don't pass to C int32 functions!
+```bash
+mkdir vendor app
+cp checksum.c vendor/
+cp ffi-checksum.zbr app/
+cd vendor
+zig build-lib checksum.c      # writes checksum.lib on Windows, libchecksum.a elsewhere
+cp checksum.lib ../app/       # (or libchecksum.a)
+cd ../app
+zebra ffi-checksum.zbr        # same program, same output: 414fa339 ...
 ```
 
-### Collections and Structures
+The Zebra program is unchanged — the same `use checksum` and the same `extern def` — and
+it prints the same three lines. Remove the library and the compiler names what it looked
+for:
 
-Collections require more care:
+```text
+`use checksum`: module not found -- no checksum.zbr (or .c / .lib / .a / .so / .dylib, libchecksum.a/.so/.dylib, .zig) in the current directory
+```
+
+If both `checksum.c` and `checksum.lib` are present, the `.c` source wins.
+
+---
+
+## Calling Zig Code
+
+Zig is closer to Zebra, making interop more ergonomic. A `.zig` file beside your program
+is imported by `use`, and every `pub fn` in it is callable through the module name. No
+`extern def` is needed, and **strings need no conversion**: a Zig `[]const u8` is exactly
+what a Zebra `str` is.
+
+```zig
+// zigmath.zig -- every `pub fn` is callable as zigmath.<name>(...) after `use zigmath`
+const std = @import("std");
+
+pub fn gcd(a: i64, b: i64) i64 {
+    var x = a;
+    var y = b;
+    while (y != 0) {
+        const t = @mod(x, y);
+        x = y;
+        y = t;
+    }
+    return x;
+}
+
+pub fn isPrime(n: i64) bool {
+    if (n < 2) return false;
+    var d: i64 = 2;
+    while (d * d <= n) : (d += 1) {
+        if (@mod(n, d) == 0) return false;
+    }
+    return true;
+}
+
+// A Zig []const u8 IS a Zebra str, so strings cross with no conversion.
+pub fn countOf(haystack: []const u8, needle: []const u8) i64 {
+    return @intCast(std.mem.count(u8, haystack, needle));
+}
+```
 
 ```zebra
-# file: ffi-structures.zbr
-# teaches: passing structures across FFI boundary
+# file: ffi-zig-basic.zbr
+# teaches: calling Zig functions from Zebra
 # chapter: 22
 
-class Point
-    var x: float
-    var y: float
-    
-    cue init(x: float, y: float)
-        .x = x
-        .y = y
-
-class Geometry
-    static
-        # C function: float distance(struct Point a, struct Point b)
-        # Assuming C expects Point with fields x, y
-        def distance(p1: Point, p2: Point): float
-            # Implementation
-            var dx = p2.x - p1.x
-            var dy = p2.y - p1.y
-            return 0.0  # sqrt(dx*dx + dy*dy)
+use zigmath
 
 def main()
-    var p1 = Point(0.0, 0.0)
-    var p2 = Point(3.0, 4.0)
-    
-    var dist = Geometry.distance(p1, p2)
-    print(dist)  # ~5.0 (3-4-5 triangle)
+    print(zigmath.gcd(48, 18))   # 6
+
+    if zigmath.isPrime(17)
+        print("17 is prime")
+    else
+        print("17 is not prime")
+
+    # str passes straight through as a Zig []const u8
+    print(zigmath.countOf("mississippi", "ss"))   # 2
 ```
+
+Output:
+
+```text
+6
+17 is prime
+2
+```
+
+Zebra's `int` is Zig's `i64` and `float` is `f64`, so a Zig function written with those
+types needs nothing on the Zebra side at all.
 
 ---
 
 ## Platform-Specific Code
 
-### Windows vs. Unix
+Different platforms have different APIs. Keep the difference on the C side, where the
+preprocessor can choose, and give Zebra one signature:
 
-Different platforms have different APIs.
+```c
+/* platform.c -- the platform difference lives in C, behind one signature */
+
+const char *platform_name(void) {
+#if defined(_WIN32)
+    return "windows";
+#elif defined(__APPLE__)
+    return "macos";
+#elif defined(__linux__)
+    return "linux";
+#else
+    return "unknown";
+#endif
+}
+
+const char *path_separator(void) {
+#if defined(_WIN32)
+    return "\\";
+#else
+    return "/";
+#endif
+}
+```
 
 ```zebra
 # file: ffi-platform-specific.zbr
-# teaches: handling platform differences
+# teaches: keeping platform differences on the C side
 # chapter: 22
 
-class Platform
-    static
-        # Windows: GetFileSize
-        # Unix: stat
-        def get_file_size(filename: str): int throws
-            # Implementation varies by platform
-            return 0
-        
-        def get_environment_variable(name: str): str?
-            # Implemented via getenv (Unix) or GetEnvironmentVariable (Windows)
-            return nil
-        
-        def sleep_milliseconds(ms: int)
-            # Windows: Sleep()
-            # Unix: usleep()
-            pass
+use platform
+
+extern def platform_name(): ^byte
+extern def path_separator(): ^byte
+
+def from_c_string(p: ^byte): str
+    return zig"std.mem.span(@as([*:0]const u8, @ptrCast(p)))"
 
 def main()
-    # get_file_size is `throws`, so catch the error rather than checking isOk.
-    var size = Platform.get_file_size("data.txt")
-    print("File size: ${size} bytes")
-catch |e|
-    print("Could not get file size: ${e.message}")
+    # One Zebra program; the C preprocessor picked the answer at build time
+    print("platform:  ${from_c_string(platform_name())}")
+    print("separator: ${from_c_string(path_separator())}")
 ```
 
-### Conditional Compilation
+Output on Windows (Linux prints `linux` and `/`; macOS prints `macos` and `/`):
 
-```zebra
-# file: ffi-conditional.zbr
-# teaches: platform-specific compilation
-# chapter: 22
-
-class OSSpecific
-    static
-        def platform_name(): str
-            # This might vary based on compilation target
-            return "Unknown"
-        
-        def file_separator(): str
-            # Windows: \, Unix: /
-            return "/"
-
-def main()
-    print("Platform: ${OSSpecific.platform_name()}")
-    print("Separator: ${OSSpecific.file_separator()}")
+```text
+platform:  windows
+separator: \
 ```
+
+Before reaching for C here, check the standard library: `sys` and `File` (Chapter 20)
+already cover environment variables, paths and file sizes on every platform.
 
 ---
 
-## Safety Considerations
+## What Does Not Cross the Boundary
 
-### Memory Safety
-
-The biggest FFI risk: memory management.
-
-```zebra
-# file: ffi-safety-memory.zbr
-# teaches: FFI memory safety
-# chapter: 22
-
-# SAFE: Zebra owns memory
-def safe_pattern(data: str): int
-    # Zebra created the string
-    # Pass it to C for reading only
-    # C should NOT modify or deallocate
-    return data.len
-
-# UNSAFE: C allocates memory Zebra must free
-# class Unsafe
-#     shared
-#         def allocate_buffer(): str
-#             # C allocates memory with malloc
-#             # Zebra must call free
-#             # This is error-prone! Don't do this.
-#             return ""
-
-# BETTER: Provide deallocation function
-class BetterAlloc
-    static
-        # C allocates
-        def create_buffer(size: int): int
-            return 0  # Returns opaque handle
-        
-        # Zebra must call this to free
-        def destroy_buffer(handle: int)
-            pass
-
-def main()
-    var buf = BetterAlloc.create_buffer(1024)
-    # Use buffer...
-    BetterAlloc.destroy_buffer(buf)
-    # buf is now invalid! Don't use it again.
-```
-
-### Type Safety
-
-Type mismatches can cause crashes.
-
-```zebra
-# file: ffi-safety-types.zbr
-# teaches: type safety across FFI boundaries
-# chapter: 22
-
-class TypeSafety
-    static
-        # C expects: void process_array(int* arr, int len)
-        def process_array(arr: List(int))
-            # Must match! List(str) would be wrong.
-            pass
-        
-        # C expects: int sum(float* values, int count)
-        def sum(values: List(float)): int
-            # Values must be floats, not ints
-            return 0
-
-def main()
-    # Correct usage
-    var ints = List(int)()
-    ints.add(1)
-    ints.add(2)
-    ints.add(3)
-    # process_array(ints)  # Would need implementation
-    
-    var floats = List(float)()
-    floats.add(1.5)
-    floats.add(2.5)
-    # var total = sum(floats)  # Correct
-    
-    # WRONG: Would cause problems
-    # var total = sum(ints)  # Type mismatch!
-```
-
-### Lifetime Issues
-
-Pointers can outlive their targets.
-
-```zebra
-# file: ffi-safety-lifetime.zbr
-# teaches: avoiding pointer lifetime issues
-# chapter: 22
-
-# UNSAFE: Reference to local variable
-# def dangerous(): int
-#     var local = 42
-#     var ptr = address_of(local)  # Get pointer
-#     # local goes out of scope here
-#     # ptr now points to garbage!
-#     return 0
-
-# SAFE: Return value, not reference
-def safe_return(n: int): int
-    var result = n * 2
-    # result is copied into return value
-    # No dangling pointers
-    return result
-
-# SAFE: Use parameters
-def safe_parameter(numbers: List(int)): int
-    # List is passed by reference, lives in caller's scope
-    # Safe to use while caller owns it
-    return numbers.at(0)
-
-def main()
-    var my_list = List(int)()
-    my_list.add(42)
-    
-    # Safe—my_list is still alive
-    var first = safe_parameter(my_list)
-    # After main returns, my_list is cleaned up
-```
-
----
-
-## Practical Example: Crypto Library Integration
-
-```zebra
-# file: ffi-crypto-example.zbr
-# teaches: practical FFI example with crypto
-# chapter: 22
-
-# NOTE: named CryptoLib rather than Crypto — `Crypto` is a reserved builtin
-# identifier in today's compiler (undocumented; it's not in QUICKSTART's
-# module list), and a user class of that exact name miscompiles.
-class CryptoLib
-    static
-        # OpenSSL/BoringSSL: compute SHA256
-        def sha256(input: str): str
-            # C function: 
-            # void SHA256(const unsigned char* d, size_t n, unsigned char* md)
-            return ""
-        
-        # Verify hash matches expected value
-        def verify_sha256(input: str, expected_hash: str): bool
-            var computed = sha256(input)
-            return computed == expected_hash
-
-def main()
-    var message = "Secret password"
-    var hash = CryptoLib.sha256(message)
-    print("SHA256: ${hash}")
-    
-    # Verify integrity
-    var stored_hash = "a665a45920422f9d417e4867efdc4fb8a04a1d3a4ff2d42bfa0f1db5e2ce9ba"
-    
-    if CryptoLib.verify_sha256(message, stored_hash)
-        print("Hash verified!")
-    else
-        print("Hash mismatch!")
-```
+- **No structs by value.** Pass a handle (above), or pass the fields as separate
+  arguments.
+- **No arrays or `List`s.** A `List` is not a C array. Keep the collection on one side —
+  build it in C behind a handle, as `stats.c` does, or loop in Zebra and pass one value
+  per call.
+- **No varargs.** `printf` and friends cannot be declared; write a fixed-argument C
+  wrapper.
+- **No renaming.** The C symbol name is the Zebra name, so a C function whose name is not
+  a legal Zebra identifier cannot be reached without a C wrapper.
+- **Libraries are found beside the source or on `--module-path`** — there is no system
+  library search path and no `-l` flag.
+- **`extern` applies to `def` only**, not to variables, types or classes.
 
 ---
 
 ## Performance Considerations
 
-### Call Overhead
+An `extern` call compiles to a direct call — the same cost as calling the function from C.
+What costs time is the **conversion around** the call:
 
-FFI calls have overhead:
-
-```zebra
-# file: ffi-performance.zbr
-# teaches: FFI performance tradeoffs
-# chapter: 22
-
-def main()
-    # FFI calls are expensive compared to Zebra calls
-    # If you're calling an FFI function in a tight loop,
-    # consider moving the loop into C
-    
-    # BAD: Loop in Zebra, FFI call per iteration
-    var sum = 0
-    for i in 0.to(1000000)
-        sum = sum + expensive_c_function(i)
-    
-    # BETTER: Pass the whole array to C
-    var nums = List(int)()
-    for i in 0.to(1000000)
-        nums.add(i)
-    
-    sum = sum_all(nums)  # Single FFI call
-
-def expensive_c_function(n: int): int
-    return n * 2
-
-def sum_all(nums: List(int)): int
-    var total = 0
-    for num in nums
-        total = total + num
-    return total
-```
-
-### Batching Operations
-
-```zebra
-# file: ffi-batching.zbr
-# teaches: batching FFI operations
-# chapter: 22
-
-class Batch
-    static
-        # Process one item (slow)
-        def process_item(item: str): str
-            return item.upper()
-        
-        # Process many items (fast)
-        def process_batch(items: List(str)): List(str)
-            # Single FFI call for all items
-            return items
-
-def main()
-    var items = List(str)()
-    for i in 0.to(100)
-        items.add("item-${i}")
-    
-    # GOOD: Batch processing
-    var results = Batch.process_batch(items)
-    
-    # BAD: Individual calls
-    # for item in items
-    #     var result = Batch.process_item(item)  # 100 FFI calls!
-```
+- `to_c_string` allocates and copies the whole string, every time. In a loop, convert
+  once and reuse the `^byte`.
+- A pointer-and-length API (`checksum.c`) needs no copy at all; prefer it when you write
+  the C side yourself.
+- A handle API lets C keep its data in its own format between calls, so nothing is
+  converted back and forth — `stats.c` never turns its running totals into Zebra values
+  until you ask for one.
 
 ---
 
@@ -751,6 +757,21 @@ fine; `str` is a Zig slice (not a C pointer), so `str` parameters and
 return types are not directly C-callable. Use `@export class` when you
 need richer types.
 
+Any language with a C FFI can call it. Built with `zebra --shared addone.zbr` and loaded
+from Python's `ctypes` (Zebra's `int` is a C `long long`):
+
+```python
+import ctypes, os
+lib = ctypes.CDLL(os.path.abspath("addone.dll"))
+lib.addOne.restype = ctypes.c_longlong
+lib.addOne.argtypes = [ctypes.c_longlong]
+print("addOne(41) via ctypes =", lib.addOne(41))
+```
+
+```text
+addOne(41) via ctypes = 42
+```
+
 ### Consumer: loading and calling the plugin
 
 The consumer declares the same interface and loads the library:
@@ -774,6 +795,13 @@ def main()
     lib.close()
 ```
 
+Run after `zebra --shared greeter.zbr` on Windows, it prints:
+
+```text
+Hello, World
+1
+```
+
 `lib.lookup(IFace, "sym")` looks up `sym` as a factory function `fn() *IFace`,
 calls it, and returns the resulting fat-pointer. From the consumer's
 perspective the returned value is just an `IGreeter` — call its methods
@@ -783,46 +811,17 @@ behind the interface.
 
 ### Real World: Extensible IDE
 
-A natural use: an IDE that loads syntax-highlighting extensions or
-custom panels at runtime. Each plugin is a separate `.zbr` file compiled
-with `--shared`; the IDE keeps a `List(*_DynLib)` of loaded plugins and
-calls their methods through a shared interface:
+A natural use: an IDE that loads syntax-highlighting extensions or custom panels at
+runtime. Every plugin implements one shared interface — say `IPlugin`, with `name()`,
+`on_load()` and `on_file_open(path)` — and is a separate `.zbr` file compiled with
+`--shared`. At startup the IDE lists its `plugins/` directory, calls `DynLib.open` on
+each library it finds, and calls `lib.lookup(IPlugin, symbol)` using a naming convention
+it documents (for example, the file name without its extension as the symbol). It keeps
+the returned `IPlugin` values in a list and calls their methods when files open.
 
-```zebra
-# Plugin interface — shared between IDE and plugins
-interface IPlugin
-    def name(): str
-    def on_load(ctx: PluginContext)
-    def on_file_open(path: str)
-
-# A plugin (compiled to plugins/highlighter.dll)
-@export("highlighter")
-class Highlighter implements IPlugin
-    def name(): str
-        return "Syntax Highlighter"
-
-    def on_load(ctx: PluginContext)
-        ctx.register_highlighter("zbr", .colorize_zbr)
-
-    def on_file_open(path: str)
-        # ...
-
-# IDE startup
-def load_plugins(dir: str): List(IPlugin)
-    var loaded: List(IPlugin) = List(IPlugin)()
-    var files = Dir.list(dir)
-    for f in files
-        if f.endsWith(".dll")
-            var lib = DynLib.open(Path.join(dir, f))
-            # convention: symbol name = filename without extension
-            var sym = Path.stem(f)
-            var p = lib.lookup(IPlugin, sym)
-            loaded.add(p)
-    return loaded
-```
-
-The IDE doesn't recompile to add a plugin — drop a new `.dll` into
-`plugins/`, restart, and the new behaviour appears.
+The IDE doesn't recompile to add a plugin — drop a new library into `plugins/`, restart,
+and the new behaviour appears. `greeter.zbr` and `greeter_host.zbr` above are the whole
+mechanism; a plugin system is that pair plus a loop over a directory.
 
 ### Notes and gotchas
 
@@ -843,17 +842,17 @@ The IDE doesn't recompile to add a plugin — drop a new `.dll` into
 
 ## Key Takeaways
 
-1. **Safety First** — Memory management is dangerous. Prefer Zebra ownership.
+1. **`extern def` + `use`** — Declare the function, `use` the file or library that supplies it; one command builds everything.
 
-2. **Use Result Types** — C errors become Zebra Result types automatically.
+2. **Sized Types at the Boundary** — `int32` for C `int`, `int64` for `long long`, `^byte` for any pointer. The compiler refuses `int` and `str` in an `extern` signature.
 
-3. **Type Carefully** — Type mismatches can cause crashes.
+3. **Wrap the C Convention** — Error codes become `raise` inside one `throws` wrapper; C errors do not turn into Zebra errors on their own.
 
-4. **Batch Calls** — Multiple small FFI calls are slower than one big call.
+4. **Document Ownership** — Who allocates frees. Handles go back to the library that made them.
 
-5. **Document Ownership** — Who owns allocated memory? Make it clear.
+5. **Zig Is the Easy Case** — `use` a `.zig` file and call its `pub fn`s; `str` passes straight through.
 
-6. **Test Thoroughly** — FFI bugs are subtle and platform-specific.
+6. **Test Thoroughly** — FFI bugs are subtle and platform-specific, and the compiler cannot check the C side of a declaration.
 
 ---
 
@@ -869,10 +868,10 @@ The IDE doesn't recompile to add a plugin — drop a new `.dll` into
 ## Exercises
 
 1. **Hash Function Wrapper** — Wrap OpenSSL's SHA256 safely
-2. **Random Number Generator** — Call system random via FFI
-3. **JSON Parser** — Integrate a C JSON library with error handling
-4. **Text Processing** — Call ICU for Unicode operations
-5. **System Information** — Retrieve CPU count, memory, etc. via platform APIs
+2. **Random Number Generator** — Call the C library's `rand`/`srand` via FFI and wrap it in a Zebra class
+3. **JSON Parser** — Integrate a C JSON library behind an opaque handle, with error codes turned into `raise`
+4. **Text Processing** — Write a C function that takes a pointer and a length (like `checksum.c`) and counts words
+5. **System Information** — Retrieve CPU count, memory, etc. via platform APIs, with the `#ifdef`s on the C side
 
 ---
 

@@ -1,32 +1,22 @@
 # file: ffi-c-strings.zbr
-# teaches: passing strings to C functions
+# teaches: passing strings to and from C with ^byte
 # chapter: 22
 
-class CString
-    static
-        # C strlen: int strlen(const char* s)
-        def strlen(s: str): int
-            # Native C implementation
-            return 0
-        
-        # C strcmp: int strcmp(const char* a, const char* b)
-        def strcmp(a: str, b: str): int
-            # Returns: 0 if equal, <0 if a<b, >0 if a>b
-            return 0
-        
-        # C strcpy: char* strcpy(char* dest, const char* src)
-        # WARNING: strcpy is dangerous! Buffer overflow risk!
-        # Better to use strncpy or avoid it entirely
+use textlib
+
+extern def count_vowels(s: ^byte): int32
+extern def library_name(): ^byte
+
+# str -> char*. A Zebra str has a length but no terminator, so append a
+# NUL byte (${0:c}), then hand C a pointer to the first byte.
+def to_c_string(s: str): ^byte
+    var z = s + "${0:c}"
+    return zig"@ptrCast(@constCast(z.ptr))"
+
+# char* -> str. Measures up to the NUL; the bytes still belong to C.
+def from_c_string(p: ^byte): str
+    return zig"std.mem.span(@as([*:0]const u8, @ptrCast(p)))"
 
 def main()
-    var text = "Hello, World!"
-    var length = CString.strlen(text)
-    print("Length: ${length}")
-    
-    var cmp = CString.strcmp("apple", "apple")
-    if cmp == 0
-        print("Strings are equal")
-    
-    cmp = CString.strcmp("apple", "banana")
-    if cmp < 0
-        print("apple comes before banana")
+    print(count_vowels(to_c_string("programming language")))   # 7
+    print(from_c_string(library_name()))                       # textlib 1.0

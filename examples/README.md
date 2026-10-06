@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 794 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 787 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -47,9 +47,9 @@ build (`--check-full`) for the examples that have a `main`.
 
 ## By the Numbers
 
-- **Total Examples:** 794
+- **Total Examples:** 787
 - **Chapters Covered:** 36
-- **Topics:** 220
+- **Topics:** 214
 
 ## Quick Reference
 
@@ -570,7 +570,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `file-logging.zbr` — generating timestamped log files
 - `file-data-import.zbr` — importing and exporting structured data
 
-### 21-Regular-Expressions (17 examples)
+### 21-Regular-Expressions (20 examples)
 - `regex-literals.zbr` — basic regex literal matching
 - `regex-dot.zbr` — dot wildcard in regex patterns
 - `regex-character-classes.zbr` — character classes and ranges
@@ -578,40 +578,33 @@ build (`--check-full`) for the examples that have a `main`.
 - `regex-quantifiers.zbr` — repetition quantifiers
 - `regex-anchors.zbr` — position anchors in regex
 - `regex-groups.zbr` — grouping and alternation patterns
+- `regex-capture.zbr` — capture groups with groups()
+- `regex-capture-all.zbr` — capture groups from every match (findAll + groups)
 - `regex-email.zbr` — email validation pattern (simplified)
 - `regex-phone.zbr` — phone number pattern matching
-- `regex-url.zbr` — URL pattern matching
+- `regex-url.zbr` — URL pattern matching and splitting a URL with groups
 - `regex-finding.zbr` — finding matches within text
-- `regex-extract-structured.zbr` — extracting data from formatted text
+- `regex-extract-structured.zbr` — extracting data from formatted text with capture groups
 - `regex-replace.zbr` — pattern-based text replacement
 - `regex-transform.zbr` — using regex for data transformation
-- `regex-greedy.zbr` — understanding greedy matching
+- `regex-greedy.zbr` — greedy, specific, and lazy matching
 - `regex-escaping.zbr` — escaping special characters
+- `regex-flags.zbr` — compile flags (i, m, s)
 - `regex-log-analysis.zbr` — using regex for real log analysis
 
-### 22-FFI-and-Interop (22 examples)
-- `ffi-c-simple.zbr` — calling basic C functions
-- `ffi-c-strings.zbr` — passing strings to C functions
-- `ffi-c-arrays.zbr` — passing arrays to C functions
-- `ffi-c-pointers.zbr` — handling pointers in FFI
+### 22-FFI-and-Interop (12 examples)
+- `ffi-c-simple.zbr` — calling C standard library functions with extern def
+- `ffi-c-source.zbr` — compiling and calling your own C file
+- `ffi-c-header.zbr` — a C file with a header -- no extern def needed
+- `ffi-c-strings.zbr` — passing strings to and from C with ^byte
+- `ffi-checksum.zbr` — wrapping a C library function behind a Zebra function
+- `ffi-c-handles.zbr` — opaque C handles and who frees them
+- `ffi-error-codes.zbr` — turning C error codes into Zebra errors
 - `ffi-zig-basic.zbr` — calling Zig functions from Zebra
-- `ffi-zig-strings.zbr` — Zig string interop
-- `ffi-error-codes.zbr` — handling C-style error codes
-- `ffi-error-wrapper.zbr` — wrapping C error handling in Zebra
-- `ffi-numeric-types.zbr` — numeric type marshaling
-- `ffi-structures.zbr` — passing structures across FFI boundary
-- `ffi-platform-specific.zbr` — handling platform differences
-- `ffi-conditional.zbr` — platform-specific compilation
-- `ffi-safety-memory.zbr` — FFI memory safety
-- `ffi-safety-types.zbr` — type safety across FFI boundaries
-- `ffi-safety-lifetime.zbr` — avoiding pointer lifetime issues
-- `ffi-crypto-example.zbr` — practical FFI example with crypto
-- `ffi-performance.zbr` — FFI performance tradeoffs
-- `ffi-batching.zbr` — batching FFI operations
+- `ffi-platform-specific.zbr` — keeping platform differences on the C side
 - `greeter.zbr` — @export class for DynLib plugins
 - `22-ffi-and-interop_a05611e2.zbr` — basic example
 - `greeter_host.zbr` — DynLib.open + lookup
-- `22-ffi-and-interop_bf2cc6a9.zbr` — basic example
 
 ### 22b-Build-System-and-Tooling (14 examples)
 - `build.zbr` — basic example

@@ -1,0 +1,25 @@
+# file: regex-capture.zbr
+# teaches: capture groups with groups()
+# chapter: 21
+
+def main()
+    var date_re = Regex.compile("(\\d{4})-(\\d{2})-(\\d{2})")
+    var text = "Released 2026-10-05, patched 2026-11-02"
+
+    # groups() finds the FIRST match and returns its capture groups, in order
+    var parts = date_re.groups(text)
+    print(parts.count())   # 3
+    print(parts.at(0))     # 2026
+    print(parts.at(1))     # 10
+    print(parts.at(2))     # 05
+
+    # Element 0 is the first group, not the whole match — use find() for that
+    print(date_re.find(text))   # 2026-10-05
+
+    # No match: an empty list
+    var none = date_re.groups("no date here")
+    print(none.count())    # 0
+
+    # (?:...) groups without capturing
+    var setting = Regex.compile("(?:name|title)=(\\w+)")
+    print(setting.groups("title=Zebra"))   # ["Zebra"]

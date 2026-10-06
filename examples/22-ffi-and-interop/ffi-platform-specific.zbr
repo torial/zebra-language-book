@@ -1,27 +1,16 @@
 # file: ffi-platform-specific.zbr
-# teaches: handling platform differences
+# teaches: keeping platform differences on the C side
 # chapter: 22
 
-class Platform
-    static
-        # Windows: GetFileSize
-        # Unix: stat
-        def get_file_size(filename: str): int throws
-            # Implementation varies by platform
-            return 0
-        
-        def get_environment_variable(name: str): str?
-            # Implemented via getenv (Unix) or GetEnvironmentVariable (Windows)
-            return nil
-        
-        def sleep_milliseconds(ms: int)
-            # Windows: Sleep()
-            # Unix: usleep()
-            pass
+use platform
+
+extern def platform_name(): ^byte
+extern def path_separator(): ^byte
+
+def from_c_string(p: ^byte): str
+    return zig"std.mem.span(@as([*:0]const u8, @ptrCast(p)))"
 
 def main()
-    # get_file_size is `throws`, so catch the error rather than checking isOk.
-    var size = Platform.get_file_size("data.txt")
-    print("File size: ${size} bytes")
-catch |e|
-    print("Could not get file size: ${e.message}")
+    # One Zebra program; the C preprocessor picked the answer at build time
+    print("platform:  ${from_c_string(platform_name())}")
+    print("separator: ${from_c_string(path_separator())}")

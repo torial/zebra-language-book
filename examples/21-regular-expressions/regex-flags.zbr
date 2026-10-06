@@ -1,0 +1,20 @@
+# file: regex-flags.zbr
+# teaches: compile flags (i, m, s)
+# chapter: 21
+
+def main()
+    # i: ignore case
+    var hello = Regex.compile("hello", "i")
+    print(hello.match("HeLLo"))   # true
+
+    # m: ^ and $ match at every line, not just the ends of the string
+    var lines = "alpha\nbeta\ngamma"
+    print(Regex.compile("^\\w+$").findAll(lines))        # []
+    print(Regex.compile("^\\w+$", "m").findAll(lines))   # ["alpha", "beta", "gamma"]
+
+    # s: . also matches a newline
+    print(Regex.compile("a.b").match("a\nb"))        # false
+    print(Regex.compile("a.b", "s").match("a\nb"))   # true
+
+    # Flags combine
+    print(Regex.compile("^B\\w+", "im").find(lines))   # beta

@@ -4,42 +4,22 @@
 
 def main()
     var text = "The prices are: $10, $25, and $100"
-    
-    # Find prices (simple pattern)
     var price_pattern = Regex.compile("\\$\\d+")
-    
-    # Find first match
-    if price_pattern.match(text)
-        print("Contains price pattern")
-    
-    # Extract all prices
-    var prices: List(str) = []
-    
-    # Manual extraction (since full regex API varies). indexOf takes one
-    # argument — to search from an offset, use indexOfFrom, which returns int?
-    var search_start = 0
-    while search_start < text.len
-        var dollar_pos = text.indexOfFrom("$", search_start)
-        if dollar_pos == nil
-            break
-        var dp = dollar_pos!
-        
-        var num_start = dp + 1
-        var num_end = num_start
-        
-        while num_end < text.len
-            # charAt returns a byte, not a str — format it with :c to get a
-            # 1-character str Regex.match can take.
-            var digit_char = "${text.charAt(num_end):c}"
-            if Regex.compile("\\d").match(digit_char)
-                num_end = num_end + 1
-            else
-                break
-        
-        var price = text.substring(dp, num_end)
-        prices.add(price)
-        search_start = num_end
-    
-    print("Found prices:")
+
+    # Does it occur anywhere? (.match would demand the WHOLE string be a price)
+    if price_pattern.find(text) != ""
+        print("Contains a price")
+
+    # The first match
+    print(price_pattern.find(text))   # $10
+
+    # Every match, left to right
+    var prices = price_pattern.findAll(text)
+    print("Found ${prices.count()} prices:")
     for price in prices
         print("  ${price}")
+
+    # The text BETWEEN matches
+    var comma = Regex.compile(",\\s*")
+    var fields = comma.split("red, green,blue,  yellow")
+    print(fields)   # ["red", "green", "blue", "yellow"]

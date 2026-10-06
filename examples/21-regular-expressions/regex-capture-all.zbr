@@ -1,0 +1,12 @@
+# file: regex-capture-all.zbr
+# teaches: capture groups from every match (findAll + groups)
+# chapter: 21
+
+def main()
+    var pair_re = Regex.compile("(\\w+)=(\\d+)")
+    var config = "width=80, height=24, depth=3"
+
+    # findAll returns each matching substring; groups() on each one splits it up
+    for pair in pair_re.findAll(config)
+        var g = pair_re.groups(pair)
+        print("${g.at(0)} -> ${g.at(1)}")

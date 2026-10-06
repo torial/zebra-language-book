@@ -2,22 +2,15 @@
 # teaches: calling Zig functions from Zebra
 # chapter: 22
 
-class ZigMath
-    static
-        # Zig function: pub fn gcd(a: i64, b: i64) -> i64
-        def gcd(a: int, b: int): int
-            # Implementation in Zig
-            return 0
-        
-        # Zig function: pub fn is_prime(n: u64) -> bool
-        def is_prime(n: int): bool
-            return false
+use zigmath
 
 def main()
-    var result = ZigMath.gcd(48, 18)
-    print(result)  # 6
-    
-    if ZigMath.is_prime(17)
+    print(zigmath.gcd(48, 18))   # 6
+
+    if zigmath.isPrime(17)
         print("17 is prime")
     else
         print("17 is not prime")
+
+    # str passes straight through as a Zig []const u8
+    print(zigmath.countOf("mississippi", "ss"))   # 2

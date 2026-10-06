@@ -1,0 +1,21 @@
+# file: ffi-checksum.zbr
+# teaches: wrapping a C library function behind a Zebra function
+# chapter: 22
+
+use checksum
+
+extern def crc32_bytes(data: ^byte, len: int64): uint32
+
+# The Zebra-facing API: takes a str, hides the pointer and the length
+def crc32(text: str): uint32
+    var data: ^byte = zig"@ptrCast(@constCast(text.ptr))"
+    return crc32_bytes(data, text.len)
+
+def main()
+    var msg = "The quick brown fox jumps over the lazy dog"
+    print("${crc32(msg):08x}")    # 414fa339
+    print("${crc32(""):08x}")     # 00000000
+
+    # A changed byte changes the checksum
+    if crc32(msg) != crc32(msg.replace("dog", "cog"))
+        print("tampering detected")

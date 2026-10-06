@@ -2,6 +2,14 @@
 # teaches: using regex for data transformation
 # chapter: 21
 
+def us_to_iso(date: str): str?
+    # MM/DD/YYYY -> YYYY-MM-DD
+    var us_date = Regex.compile("^(\\d{2})/(\\d{2})/(\\d{4})$")
+    var g = us_date.groups(date)
+    if g.count() != 3
+        return nil
+    return "${g.at(2)}-${g.at(0)}-${g.at(1)}"
+
 def escape_html(text: str): str
     var escaped = text.replace("&", "&amp;")
     escaped = escaped.replace("<", "&lt;")
@@ -11,18 +19,16 @@ def escape_html(text: str): str
     return escaped
 
 def main()
-    # Convert dates from MM/DD/YYYY to YYYY-MM-DD
-    var date = "03/15/2025"
-    
-    var parts = date.split("/")
-    if parts.count() == 3
-        var month = parts.at(0)
-        var day = parts.at(1)
-        var year = parts.at(2)
-        
-        var iso_date = "${year}-${month}-${day}"
-        print(iso_date)  # 2025-03-15
-    
-    # Escape special characters (top-level def, see regex-email.zbr note)
+    print(us_to_iso("03/15/2025") orelse "not a date")   # 2025-03-15
+    print(us_to_iso("15.03.2025") orelse "not a date")   # not a date
+
+    # Rewrite every date in a sentence: findAll, then groups on each match
+    var date_re = Regex.compile("(\\d{2})/(\\d{2})/(\\d{4})")
+    var note = "Shipped 03/15/2025, delivered 03/18/2025."
+    for d in date_re.findAll(note)
+        note = note.replace(d, us_to_iso(d) orelse d)
+    print(note)   # Shipped 2025-03-15, delivered 2025-03-18.
+
+    # Escaping is plain str.replace — no regex needed
     var html_unsafe = "<script>alert('XSS')</script>"
     print(escape_html(html_unsafe))

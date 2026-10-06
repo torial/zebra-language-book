@@ -4,14 +4,21 @@
 
 def main()
     var text = "The cat sat on the mat"
-    
+
     # re.replace(s, repl) replaces EVERY match — there's no separate
     # single-replacement or `.replaceAll` on Regex (that name exists on `str`,
     # not on `Regex`).
     var pattern = Regex.compile("at")
-    var replaced = pattern.replace(text, "AT")
-    print(replaced)  # "The cAT sAT on the mAT"
-    
-    # Case-insensitive replacement (if supported)
-    var case_insensitive = text.lower().replace("cat", "dog")
-    # Note: this loses original case
+    print(pattern.replace(text, "AT"))   # The cAT sAT on the mAT
+
+    # Collapse runs of whitespace
+    var spaces = Regex.compile("\\s+")
+    print(spaces.replace("too    many   spaces", " "))   # too many spaces
+
+    # Case-insensitive: pass "i" as the second argument to compile
+    var cat_any_case = Regex.compile("cat", "i")
+    print(cat_any_case.replace("Cat, CAT and cat", "dog"))   # dog, dog and dog
+
+    # The replacement is inserted literally — there are no $1-style references
+    var digits = Regex.compile("(\\d+)")
+    print(digits.replace("order 42", "#$1"))   # order #$1

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 794,
+  "total_examples": 787,
   "generated": "1790380721.5064442",
   "examples": [
     {
@@ -3302,6 +3302,20 @@
     },
     {
       "chapter": "21-Regular-Expressions",
+      "file": "regex-capture.zbr",
+      "teaches": "capture groups with groups()",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-capture.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-capture-all.zbr",
+      "teaches": "capture groups from every match (findAll + groups)",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-capture-all.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
       "file": "regex-email.zbr",
       "teaches": "email validation pattern (simplified)",
       "project": null,
@@ -3317,7 +3331,7 @@
     {
       "chapter": "21-Regular-Expressions",
       "file": "regex-url.zbr",
-      "teaches": "URL pattern matching",
+      "teaches": "URL pattern matching and splitting a URL with groups",
       "project": null,
       "path": "examples/21-regular-expressions/regex-url.zbr"
     },
@@ -3331,7 +3345,7 @@
     {
       "chapter": "21-Regular-Expressions",
       "file": "regex-extract-structured.zbr",
-      "teaches": "extracting data from formatted text",
+      "teaches": "extracting data from formatted text with capture groups",
       "project": null,
       "path": "examples/21-regular-expressions/regex-extract-structured.zbr"
     },
@@ -3352,7 +3366,7 @@
     {
       "chapter": "21-Regular-Expressions",
       "file": "regex-greedy.zbr",
-      "teaches": "understanding greedy matching",
+      "teaches": "greedy, specific, and lazy matching",
       "project": null,
       "path": "examples/21-regular-expressions/regex-greedy.zbr"
     },
@@ -3365,6 +3379,13 @@
     },
     {
       "chapter": "21-Regular-Expressions",
+      "file": "regex-flags.zbr",
+      "teaches": "compile flags (i, m, s)",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-flags.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
       "file": "regex-log-analysis.zbr",
       "teaches": "using regex for real log analysis",
       "project": null,
@@ -3373,30 +3394,51 @@
     {
       "chapter": "22-FFI-and-Interop",
       "file": "ffi-c-simple.zbr",
-      "teaches": "calling basic C functions",
+      "teaches": "calling C standard library functions with extern def",
       "project": null,
       "path": "examples/22-ffi-and-interop/ffi-c-simple.zbr"
     },
     {
       "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-source.zbr",
+      "teaches": "compiling and calling your own C file",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-source.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-c-header.zbr",
+      "teaches": "a C file with a header -- no extern def needed",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-c-header.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
       "file": "ffi-c-strings.zbr",
-      "teaches": "passing strings to C functions",
+      "teaches": "passing strings to and from C with ^byte",
       "project": null,
       "path": "examples/22-ffi-and-interop/ffi-c-strings.zbr"
     },
     {
       "chapter": "22-FFI-and-Interop",
-      "file": "ffi-c-arrays.zbr",
-      "teaches": "passing arrays to C functions",
+      "file": "ffi-checksum.zbr",
+      "teaches": "wrapping a C library function behind a Zebra function",
       "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-c-arrays.zbr"
+      "path": "examples/22-ffi-and-interop/ffi-checksum.zbr"
     },
     {
       "chapter": "22-FFI-and-Interop",
-      "file": "ffi-c-pointers.zbr",
-      "teaches": "handling pointers in FFI",
+      "file": "ffi-c-handles.zbr",
+      "teaches": "opaque C handles and who frees them",
       "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-c-pointers.zbr"
+      "path": "examples/22-ffi-and-interop/ffi-c-handles.zbr"
+    },
+    {
+      "chapter": "22-FFI-and-Interop",
+      "file": "ffi-error-codes.zbr",
+      "teaches": "turning C error codes into Zebra errors",
+      "project": null,
+      "path": "examples/22-ffi-and-interop/ffi-error-codes.zbr"
     },
     {
       "chapter": "22-FFI-and-Interop",
@@ -3407,94 +3449,10 @@
     },
     {
       "chapter": "22-FFI-and-Interop",
-      "file": "ffi-zig-strings.zbr",
-      "teaches": "Zig string interop",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-zig-strings.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-error-codes.zbr",
-      "teaches": "handling C-style error codes",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-error-codes.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-error-wrapper.zbr",
-      "teaches": "wrapping C error handling in Zebra",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-error-wrapper.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-numeric-types.zbr",
-      "teaches": "numeric type marshaling",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-numeric-types.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-structures.zbr",
-      "teaches": "passing structures across FFI boundary",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-structures.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
       "file": "ffi-platform-specific.zbr",
-      "teaches": "handling platform differences",
+      "teaches": "keeping platform differences on the C side",
       "project": null,
       "path": "examples/22-ffi-and-interop/ffi-platform-specific.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-conditional.zbr",
-      "teaches": "platform-specific compilation",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-conditional.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-safety-memory.zbr",
-      "teaches": "FFI memory safety",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-safety-memory.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-safety-types.zbr",
-      "teaches": "type safety across FFI boundaries",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-safety-types.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-safety-lifetime.zbr",
-      "teaches": "avoiding pointer lifetime issues",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-safety-lifetime.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-crypto-example.zbr",
-      "teaches": "practical FFI example with crypto",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-crypto-example.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-performance.zbr",
-      "teaches": "FFI performance tradeoffs",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-performance.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "ffi-batching.zbr",
-      "teaches": "batching FFI operations",
-      "project": null,
-      "path": "examples/22-ffi-and-interop/ffi-batching.zbr"
     },
     {
       "chapter": "22-FFI-and-Interop",
@@ -3516,13 +3474,6 @@
       "teaches": "DynLib.open + lookup",
       "project": null,
       "path": "examples/22-ffi-and-interop/greeter_host.zbr"
-    },
-    {
-      "chapter": "22-FFI-and-Interop",
-      "file": "22-ffi-and-interop_bf2cc6a9.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/22-ffi-and-interop/22-ffi-and-interop_bf2cc6a9.zbr"
     },
     {
       "chapter": "22b-Build-System-and-Tooling",

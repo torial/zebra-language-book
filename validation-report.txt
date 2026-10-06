@@ -1,21 +1,25 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-09-28T15:06:04.047083
+Generated: 2026-10-05T21:17:08.755891
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  794
-Passed: 619
-Failed: 175
+Total:  787
+Passed: 596
+Failed: 191
 
 FAILURES
 ----------------------------------------------------------------------
   01-getting-started/01-getting-started_b069eac4.zbr
       C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_b069eac4.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
   02-values-and-types/02-values-and-types_7861a141.zbr
-      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_7861a141.zbr:4:1: error: unknown type 'User': not declared here, in a `use`d module, or as a type parameter in scope
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_7861a141.zbr:2:29: error: undefined name: 'compute_total'
+  02-values-and-types/02-values-and-types_e0c51a57.zbr
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_e0c51a57.zbr:1:14: error: undefined name: 'compute'
   02-values-and-types/02-values-and-types_ec972f5c.zbr
       C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_ec972f5c.zbr:1:14: error: type mismatch: expected int, found str
+  02-values-and-types/02-values-and-types_f15b5132.zbr
+      C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_f15b5132.zbr:1:19: error: undefined name: 'compute'
   03-collections/03-collections_24998c4e.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\03-collections\03-collections_24998c4e__asfragment.zbr:4:17: error: undefined name: 'items'
   03-collections/03-collections_72452026.zbr
@@ -57,7 +61,7 @@ FAILURES
   06-strings-and-unicode/06-strings-and-unicode_2bf0ec41.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_2bf0ec41.zbr:4:30: unexpected character '$'
   06-strings-and-unicode/06-strings-and-unicode_ccbfc266.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_ccbfc266__asfragment.zbr:5:5: error: strings are immutable -- 's[i] = ...' is not allowed; build a new string wit
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_ccbfc266__asfragment.zbr:5:5: error: strings are immutable -- 's[i] = ...' is not al
   06-strings-and-unicode/06-strings-and-unicode_f4191d80.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_f4191d80.zbr:2:38: error: unexpected expression token: ']'
   06-strings-and-unicode/06_regex_intro.zbr
@@ -69,7 +73,9 @@ FAILURES
   07-classes-and-instances/07-classes-and-instances_999d2640.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_999d2640.zbr:7:29: error: unexpected expression token: '@as'
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_57becac2.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2__asfragment.zbr:4:12: error: undefined name: 'color'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2__asfragment.zbr:4:12: error: undefined name: 'color
+  07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_6dc357df.zbr
+      C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_6dc357df.zbr:5:10: error: undefined name: 'makeConfig'
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_c4ad853b.zbr
       C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_c4ad853b.zbr:5:5: error: unknown type 'ExprCall': not declared here, in a `use`d module, 
   08-interfaces-and-protocols/08_collection_interface.zbr
@@ -90,6 +96,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\10-properties-and-computed-values\10-properties-and-computed-values_c508b6ad.zbr:11:16: error: type mismatch: expected int, got int? -- unwrap it: `x!`, `x ore
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_204aadbb.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_204aadbb.zbr:2:13: error: undefined name: 'math_utils'
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_36b894bc.zbr
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_36b894bc.zbr:1:9: error: undefined name: 'Colors'
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_37d7f8a5.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-module
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_954bbcd9.zbr
@@ -104,6 +112,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_a21845dc.zbr:9:13: error: 'int' has no method 'is_prime' (to/toFloat/toFloat32/toBy
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_c0cfefd6.zbr
       `use http`: module not found -- no http.zbr (or .c / .lib / .a / .so / .dylib, libhttp.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-mod
+  10b-modules-namespaces-and-visibility/Wallet.transactions.zbr
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\Wallet.transactions.zbr:4:21: error: cannot infer the type of `....balance`, an operand of `+` -- `+` joins strings and a
   10b-modules-namespaces-and-visibility/colors.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\colors.zbr:9:16: error: undefined name: 'Rgb'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_20db6b3e.zbr
@@ -127,11 +137,11 @@ FAILURES
   12-error-handling-with-results/12_method_catch.zbr
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_method_catch.zbr:6:17: error: undefined name: 'Validator'
   13-generics-and-type-constraints/13-generics-and-type-constraints_2c044550.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550__asfragment.zbr:4:15: error: undefined name: 'Container'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550__asfragment.zbr:4:15: error: undefined name: 'Container
   13-generics-and-type-constraints/13-generics-and-type-constraints_61e197a7.zbr
       C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_61e197a7.zbr:2:4: error: unknown type 'T': not declared here, in a `use`d module, or as a typ
   13-generics-and-type-constraints/13-generics-and-type-constraints_77ff531d.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d__asfragment.zbr:4:15: error: undefined name: 'Container'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d__asfragment.zbr:4:15: error: undefined name: 'Container
   13-generics-and-type-constraints/13-generics-and-type-constraints_b13a66ab.zbr
       C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_b13a66ab.zbr:3:22: error: unexpected member: '->'
   14-contracts-and-assertions/14-contracts-and-assertions_2785b00d.zbr
@@ -145,21 +155,29 @@ FAILURES
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_177786cc.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_177786cc.zbr:6:16: error: unexpected expression token: ';'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_295f4141.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141__asfragment.zbr:4:17: error: undefined name: 'tmp'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141__asfragment.zbr:4:17: error: undefined name: 'tmp
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_62f04674.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:4:5: error: unknown type 'Node': not declared here, in a `use`
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:4:5: error: unknown type 'Node': 
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_651c75c0.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_651c75c0.zbr:2:5: error: expected identifier, got 'num'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_be3cf20d.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_be3cf20d.zbr:9:21: error: undefined name: 'Time'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5967e626.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626__asfragment.zbr:4:5: error: undefined name: 'ch'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626__asfragment.zbr:4:5: error: undefined name: 'ch
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_75531924.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924__asfragment.zbr:10:5: error: undefined name: 'ch'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924__asfragment.zbr:10:5: error: undefined name: 'c
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_dcba6f55.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55__asfragment.zbr:4:18: error: expected indent, got ':'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55__asfragment.zbr:4:18: error: expected indent, g
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_2ef32288.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_2ef32288.zbr:3:1: error: unexpected end of input at the top level
+  15-pipelines-and-function-composition/15-pipelines-and-function-composition_5edb027e.zbr
+      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_5edb027e.zbr:5:14: error: undefined name: 'Utils'
+  15-pipelines-and-function-composition/15-pipelines-and-function-composition_61e63207.zbr
+      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_61e63207.zbr:8:14: error: cannot infer the type of `lowered`, so `.len` cannot be r
+  16-project-1-cli-tool/16-project-1-cli-tool_40411c20.zbr
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_40411c20.zbr:10:20: error: cannot infer the type of `line`, so `.len` cannot be resolved -- annotate it (`var x: Li
+  16-project-1-cli-tool/16-project-1-cli-tool_acd8f0d1.zbr
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_acd8f0d1.zbr:12:51: error: cannot infer the type of `stats.lines`, an operand of `+` -- `+` joins strings and adds 
   18b-gui-applications/18b-gui-applications_0cbfa83f.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_0cbfa83f.zbr:1:4: error: unknown type 'Model': not declared here, in a `use`d module, or as a type parameter in scope
   18b-gui-applications/18b-gui-applications_34d6a6b9.zbr
@@ -190,8 +208,6 @@ FAILURES
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_a40b8bbd.zbr:2:8: error: unknown type 'Type': not declared here, in a `use`d module, or as a type parameter in scope
   19-22_final-chapters/19-22_final-chapters_b28cfe07.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_b28cfe07__asfragment.zbr:10:17: error: undefined name: 'items'
-  22-ffi-and-interop/22-ffi-and-interop_bf2cc6a9.zbr
-      C:\Projects\zebra-language-book\examples\22-ffi-and-interop\22-ffi-and-interop_bf2cc6a9.zbr:4:8: error: unknown type 'PluginContext': not declared here, in a `use`d module, or as a type parameter in s
   22b-build-system-and-tooling/22b-build-system-and-tooling_8394c7ab.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-an
   22b-build-system-and-tooling/22b-build-system-and-tooling_e6c57be2.zbr
@@ -280,6 +296,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_d8e69aa3.zbr:15:13: error: undefined name: 'divide'
   appendix-b-stdlib/appendix-b-stdlib_f3398174.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_f3398174__asfragment.zbr:4:15: error: undefined name: 'filename'
+  appendix-c-troubleshooting/appendix-c-troubleshooting_01f7bac9.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_01f7bac9.zbr:4:14: error: arithmetic '-' requires numeric operands, got 'str'
   appendix-c-troubleshooting/appendix-c-troubleshooting_026ab9c7.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_026ab9c7__asfragment.zbr:5:17: error: undefined name: 'list'
   appendix-c-troubleshooting/appendix-c-troubleshooting_0a9cf8b5.zbr
@@ -292,8 +310,12 @@ FAILURES
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_40911c92.zbr:10:8: error: undefined name: 'condition'
   appendix-c-troubleshooting/appendix-c-troubleshooting_46c5d71d.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_46c5d71d.zbr:5: error: throws call needs '?' (auto error-propagation was removed; add '?')
+  appendix-c-troubleshooting/appendix-c-troubleshooting_54646699.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_54646699.zbr:2:14: error: 'x' may be nil here, so it cannot be used with this operator -- check it first 
   appendix-c-troubleshooting/appendix-c-troubleshooting_5d638035.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_5d638035.zbr:4:14: error: type mismatch: expected int, found int? -- unwrap it: `x!`, `x orelse default`,
+  appendix-c-troubleshooting/appendix-c-troubleshooting_6081bf9a.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6081bf9a__asfragment.zbr:5:11: error: 'x' may be nil here, so it cannot be u
   appendix-c-troubleshooting/appendix-c-troubleshooting_6acb55f4.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6acb55f4__asfragment.zbr:4:19: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_74e9d12a.zbr
@@ -301,11 +323,17 @@ FAILURES
   appendix-c-troubleshooting/appendix-c-troubleshooting_826a10a3.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_826a10a3__asfragment.zbr:4:19: error: undefined name: 'get_value'
   appendix-c-troubleshooting/appendix-c-troubleshooting_8bbf5ba3.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8bbf5ba3__asfragment.zbr:6:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8bbf5ba3__asfragment.zbr:6:11: error: cannot concatenate 'str' and 'int' — c
   appendix-c-troubleshooting/appendix-c-troubleshooting_8fbea400.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8fbea400__asfragment.zbr:8:8: error: undefined name: 'condition'
+  appendix-c-troubleshooting/appendix-c-troubleshooting_9478ea7a.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9478ea7a.zbr:4:11: error: too few arguments to 'add': expected 2, found 1
+  appendix-c-troubleshooting/appendix-c-troubleshooting_b5b1941f.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_b5b1941f.zbr:6:14: error: 'num' may be nil here, so it cannot be used with this operator -- check it firs
   appendix-c-troubleshooting/appendix-c-troubleshooting_bf957a6d.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_bf957a6d__asfragment.zbr:4:19: error: undefined name: 'get_value'
+  appendix-c-troubleshooting/appendix-c-troubleshooting_c0d12aef.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_c0d12aef.zbr:2:15: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string inte
   appendix-c-troubleshooting/appendix-c-troubleshooting_c2996b84.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_c2996b84__asfragment.zbr:4:16: error: undefined name: 'big_list'
   appendix-c-troubleshooting/appendix-c-troubleshooting_e1f89631.zbr
@@ -334,8 +362,10 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f6cfe617__asfragment.zbr:13:12: error: undefined name: 'v'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_f9c0ad06.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06__asfragment.zbr:4:11: error: unexpected expression token: ','
+  ref-cheatsheet-syntax/ref-cheatsheet-syntax_fad686e2.zbr
+      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_fad686e2.zbr:4:15: error: undefined name: 'text'
   ref-patterns-common-tasks/ref-patterns-common-tasks_106b9ef4.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4__asfragment.zbr:5:8: error: the constructor is written `cue init(...)`, not `def init` (a `def ini
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4__asfragment.zbr:5:8: error: the constructor is written `cue init(...)
   ref-patterns-common-tasks/ref-patterns-common-tasks_3fddbb95.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95__asfragment.zbr:4:8: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_465b4d83.zbr
@@ -356,6 +386,8 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_bd8472bd__asfragment.zbr:4:23: error: undefined name: 'get_user'
   ref-patterns-common-tasks/ref-patterns-common-tasks_d8d73c0b.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d8d73c0b__asfragment.zbr:4:23: error: undefined name: 'scores'
+  ref-patterns-common-tasks/ref-patterns-common-tasks_ecc75b64.zbr
+      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_ecc75b64.zbr:4:24: error: 'Regex' has no method 'replaceAll' (match/test/find/findAll/replace/split/groups)
   ref-patterns-common-tasks/ref-patterns-common-tasks_f57a1fad.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_f57a1fad__asfragment.zbr:6:17: error: undefined name: 'items'
   ref-quickstart-30-minutes/ref-quickstart-30-minutes_7c07b7c4.zbr

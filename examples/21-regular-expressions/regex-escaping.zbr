@@ -5,21 +5,26 @@
 def main()
     # These characters have special meaning:
     # . ^ $ * + ? { } [ ] \ | ( )
-    
+
     # To match a literal dot
     var file_extension = Regex.compile("\\.txt$")
-    
-    if file_extension.match("document.txt")
+
+    if file_extension.find("document.txt") != ""
         print("Matches text file")
-    
+
     # To match a literal dollar sign
     var price_pattern = Regex.compile("\\$[0-9]+")
-    
+
     if price_pattern.match("$50")
         print("Matches price")
-    
+
     # To match a literal backslash
     var path_pattern = Regex.compile("C:\\\\Users")  # Note: double backslash
-    
+
     if path_pattern.match("C:\\Users")
         print("Matches Windows path")
+
+    # A raw string keeps backslashes literal, so the pattern reads as written
+    var raw_path = Regex.compile(r"C:\\Users")
+    if raw_path.match("C:\\Users")
+        print("Raw-string pattern matches too")

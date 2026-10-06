@@ -1,18 +1,23 @@
 # file: regex-greedy.zbr
-# teaches: understanding greedy matching
+# teaches: greedy, specific, and lazy matching
 # chapter: 21
 
 def main()
-    # Greedy: matches as much as possible
     var text = "<name>John</name> and <name>Jane</name>"
-    
-    # This is too greedy!
+
+    # Greedy: .* runs as far as it can, swallowing both tags
     var greedy = Regex.compile("<name>.*</name>")
-    # Matches: <name>John</name> and <name>Jane</name> (TOO MUCH!)
-    
-    # Better: be more specific
+    print(greedy.find(text))      # <name>John</name> and <name>Jane</name>
+
+    # Specific: [^<]+ cannot cross into the next tag
     var specific = Regex.compile("<name>[^<]+</name>")
-    # Matches: <name>John</name> or <name>Jane</name> (correctly)
-    
-    # For non-greedy, many regex engines use .*? (with ?)
-    # Check Zebra's specific syntax for your version
+    print(specific.findAll(text)) # ["<name>John</name>", "<name>Jane</name>"]
+
+    # Lazy: .*? takes as little as it can
+    var lazy = Regex.compile("<name>.*?</name>")
+    print(lazy.findAll(text))     # ["<name>John</name>", "<name>Jane</name>"]
+
+    # Pull out just the names
+    var name_re = Regex.compile("<name>([^<]+)</name>")
+    for tag in name_re.findAll(text)
+        print(name_re.groups(tag).at(0))
