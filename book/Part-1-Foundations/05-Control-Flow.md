@@ -384,7 +384,8 @@ The rules:
 - Generators are top-level `def`s. A method cannot `yield` (yet).
 - A `yield` inside `branch`, `try`, `with`, `using` or `allocate` is
   refused by name; restructure with an `if` chain. A `for` that yields
-  can walk a `List`, a range, or another iterable (a generator included).
+  can walk a `List`, a range, or another iterable (a generator included),
+  with one loop variable and no `if` filter on the loop.
 
 > **Under the hood:** the compiler turns a generator into a class with
 > `cue next`, the same shape you would write by hand in Chapter 07, with
