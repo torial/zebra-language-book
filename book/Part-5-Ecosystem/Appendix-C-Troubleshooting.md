@@ -582,9 +582,10 @@ var circle = Circle()  # OK
 
 ## Cue Errors
 
-Cues are the seven methods the compiler calls for you: `init`,
-`toString`, `equals`, `hash`, `compare`, `iter`, `next` (Chapter 07,
-"Cues"). Their names and shapes are checked where you declare them.
+Cues are the nine methods the compiler calls for you: `init`,
+`toString`, `equals`, `hash`, `compare`, `iter`, `next`, `begin`, `end`
+(Chapter 07, "Cues"). Their names and shapes are checked where you
+declare them.
 
 ### "`toString` is a cue -- ... so it is written `cue toString(): str`, not `def`"
 
@@ -599,14 +600,14 @@ don't make a type iterable; see below.)
 
 ---
 
-### "unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next"
+### "unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next, begin, end"
 
-**What it means:** the name after `cue` is not one of the seven. The set
+**What it means:** the name after `cue` is not one of the nine. The set
 is closed. `deinit` in particular is not a cue: Zebra 1.0 has no
 destructor.
 
 **Solution:** write an ordinary `def`. For cleanup at the end of a block,
-give the type `def begin()` and `def end()` and use `using` (Chapter 14b).
+give the type `cue begin()` and `cue end()` and use `using` (Chapter 14b).
 
 ---
 
@@ -621,13 +622,41 @@ the hash uses.
 
 ---
 
+### "`cue compare` needs `cue equals` on the same type (otherwise `a <= b` and `a >= b` can both hold while `a == b` is false)"
+
+**What it means:** the type orders its values but has no `equals`, so
+`==` would still compare identity (on a class) and could disagree with
+`<=` and `>=`.
+
+**Solution:** add `cue equals(other: T): bool` that compares the same
+fields `compare` does. On a struct, `@derive(Eq)` also satisfies it.
+
+---
+
+### "type 'Section' used in 'using' declares begin/end with `def`; they are cues now"
+
+This one is a **warning**, not an error: the program still builds and
+runs. The full text ends "write `cue begin()` and `cue end()` (`def` is
+deprecated here and will be refused)".
+
+**What it means:** the class used in `using` spells its hooks
+`def begin()` / `def end()`, the spelling from before they became cues.
+
+**Solution:** change both to `cue begin()` and `cue end()`.
+
+---
+
 ### "`cue compare` takes the other value and returns int (negative, zero, positive)"
 
 **What it means:** the cue's signature does not have the required shape.
 The message ends with the shape to write, e.g.
 `cue compare(other: Money): int`. Its siblings read the same way:
 "`cue toString` takes no parameters and returns str", "`cue iter` takes
-no parameters and returns a type that declares `cue next(): T?`".
+no parameters and returns a type that declares `cue next(): T?`". The
+parameter of `equals` and `compare` must be the declaring type itself:
+`cue equals(other: int): bool` on a class `Ver` is refused with
+"`cue equals` takes the other value and returns bool:
+`cue equals(other: Ver): bool`".
 
 **Solution:** match the shape in the message. For `compare`, return
 `.field - other.field` rather than a `bool`.
@@ -642,8 +671,9 @@ by Zebra's front end, so it names the generated type (`main` is the
 module, `Money` the class) and points into `zebra_rt.zig`. The same shape with `==` (`operator == not allowed for
 type 'Point'`) means a **struct** with no `equals`.
 
-**Solution:** give the type `cue compare(other: T): int` (or, for `==` on
-a struct, `cue equals` or `@derive(Eq)`). To sort a list once without
+**Solution:** give the type `cue compare(other: T): int` together with
+`cue equals(other: T): bool`, which `compare` requires (or, for `==` on a
+struct, `cue equals` or `@derive(Eq)`). To sort a list once without
 changing the class, pass a comparator: `xs.sort(def(a: T, b: T) = a.n < b.n)`.
 
 ---

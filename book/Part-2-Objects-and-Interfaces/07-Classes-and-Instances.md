@@ -219,7 +219,7 @@ You have already written one cue: `cue init`, the constructor. The word
 `cue` marks a method that the **compiler** calls for you, at a place the
 language defines. A `def` is a method that *your* code calls.
 
-The set of cues is **closed**. There are exactly seven, and each one has
+The set of cues is **closed**. There are exactly nine, and each one has
 a call site:
 
 | Cue | Shape | The compiler calls it for |
@@ -228,9 +228,14 @@ a call site:
 | `cue toString(): str` | no parameters | `print(x)` and `"${x}"` |
 | `cue equals(other: T): bool` | one parameter | `x == y`, `x != y` |
 | `cue hash(): int` | no parameters; needs `cue equals` | `x` as a `HashMap(T, V)` key or a `Set(T)` element |
-| `cue compare(other: T): int` | negative, zero, or positive | `<` `<=` `>` `>=`, and `list.sort()` |
+| `cue compare(other: T): int` | negative, zero, or positive; needs `cue equals` | `<` `<=` `>` `>=`, and `list.sort()` |
 | `cue iter(): I` | `I` is a type that declares `cue next` | `for x in obj` |
 | `cue next(): E?` | returns `nil` when there is nothing left | `for x in obj`, on `obj` itself or on what `iter()` returned |
+| `cue begin()` / `cue end()` | no parameters, no return value | `using obj`: `begin` on entry to the block, `end` on the way out (Chapter 14b) |
+
+`T` in `equals` and `compare` is the declaring type: `==` and `<` hand
+the cue another value of the same type, so `cue equals(other: int)` is
+refused where you write it.
 
 A cue is still a method, so you can call it yourself (`a.equals(b)`,
 `x.toString()`, `it.next()`). The `cue` keyword adds two things: the
@@ -240,7 +245,9 @@ against the shape in the table when you declare it, not later.
 ### If you know Python
 > Cues are Python's dunder methods without the underscores: `__init__`,
 > `__str__`, `__eq__`, `__hash__`, `__lt__` and friends, `__iter__`,
-> `__next__`. Two differences. The set is closed, so you cannot invent a
+> `__next__`, and `__enter__` / `__exit__`, which Python's `with` statement
+> calls (Zebra's `using`, not its `with`).
+> Two differences. The set is closed, so you cannot invent a
 > cue the way you can invent `__frobnicate__`. And one `compare` returning
 > negative/zero/positive stands in for all four ordering operators.
 
@@ -364,34 +371,41 @@ and `sort()` on a class without `cue compare` do not build.
 
 ### Keep the cues consistent
 
-The compiler checks each cue's *shape*. It cannot check that your cues
-agree with each other, so that part is up to you:
+The compiler checks each cue's *shape*, and it checks that the cues which
+depend on each other come together: `cue hash` without `cue equals` is
+refused, and so is `cue compare` without `cue equals`. What it cannot
+check is that your cues *agree* with each other, so that part is up to
+you:
 
 - **Equal values must hash equally.** If `a == b`, then `a.hash()` must
   equal `b.hash()`, or a `HashMap` will look in the wrong slot and miss a
   key it holds. The safe rule: hash only fields that `equals` compares.
-  The compiler enforces half of this: `cue hash` without `cue equals` is
-  refused.
 - **`compare` returns 0 exactly when `equals` is true.** Otherwise the
-  operators disagree. A class with `compare` but no `equals`:
+  operators disagree. Here `equals` looks at the student and the score,
+  while `compare` looks only at the score:
 
 ```zebra
 # file: 07_cues_consistency.zbr
-# teaches: compare and equals must agree
+# teaches: compare and equals must agree -- the compiler checks that both exist, not that they agree
 # chapter: 07-Classes-and-Instances
 
 class Grade
+    var student: str
     var score: int
 
-    cue init(score: int)
+    cue init(student: str, score: int)
+        .student = student
         .score = score
+
+    cue equals(other: Grade): bool
+        return .student == other.student and .score == other.score
 
     cue compare(other: Grade): int
         return .score - other.score
 
 def main()
-    var a = Grade(90)
-    var b = Grade(90)
+    var a = Grade("Ann", 90)
+    var b = Grade("Bob", 90)
     print(a <= b)
     print(a >= b)
     print(a == b)
@@ -404,10 +418,10 @@ true
 false
 ```
 
-`a <= b` and `a >= b` both hold, yet `a == b` is false, because without
-`cue equals`, `==` is still asking whether `a` and `b` are the same
-object. Give `Grade` a `cue equals` that compares `score` and all three
-agree.
+`a <= b` and `a >= b` both hold, yet `a == b` is false: `compare` says
+the two grades tie, and `equals` says they differ. Make them tell the
+same story. Either have `compare` break a tie on the student's name, or
+have `equals` compare only `score`.
 
 ### Iteration: `cue iter` and `cue next`
 
@@ -511,10 +525,15 @@ values with `yield`, is compiled into a class with `cue next` for you.
 
 ### What is not a cue
 
-- **`using` and `allocate` call ordinary `def`s.** `using x` calls
-  `def begin()` and `def end()` (Chapter 14b), and `allocate` uses an
-  allocator source's `def allocator()` and `def deinit()`. Those are
-  spelled `def`; `cue begin` is refused as an unknown cue.
+- **`allocate` calls ordinary `def`s.** `allocate` uses an allocator
+  source's `def allocator()` and `def deinit()` (Chapter 14b). Those are
+  spelled `def`, and `cue deinit` is refused as an unknown cue. (`using`
+  is different: its `begin` and `end` *are* cues, in the table above.)
+- **A `def begin()` no `using` reaches is just a method.** Like
+  `def next()`, a `def begin()` or `def end()` is an ordinary method until
+  a `using` block meets it. Older code that spells a `using` resource's
+  hooks `def begin()` / `def end()` still compiles in this release, with a
+  deprecation warning at each `using`; a later release will refuse it.
 - **There is no destructor.** Zebra 1.0 has no `cue deinit`; the compiler
   refuses it. Memory is reclaimed by the arena that owns it (Chapter 14b),
   and anything with a release step (a file, a lock, a layout group) goes
@@ -761,6 +780,8 @@ class UserBuilder
 >     var n: int
 >     cue init(n: int)
 >         .n = n
+>     cue equals(other: Ver): bool
+>         return .n == other.n
 >     cue compare(other: Ver): bool    # "is this less?" -- the wrong question
 >         return .n < other.n
 > ```
@@ -775,6 +796,28 @@ class UserBuilder
 >
 > ✅ **Better:** `return .n - other.n` from a `cue compare(other: Ver): int`.
 
+> ❌ **Mistake:** A `compare` with no `equals`
+>
+> ```zebra
+> class Score
+>     var n: int
+>     cue init(n: int)
+>         .n = n
+>     cue compare(other: Score): int
+>         return .n - other.n
+> ```
+>
+> 💡 **Why it's wrong:** with no `equals`, `==` would still mean "the same object",
+> so two scores could be neither less nor greater than each other and still not
+> equal. The compiler refuses the pair at the declaration:
+>
+> ```
+> error: `cue compare` needs `cue equals` on the same type (otherwise `a <= b` and `a >= b` can both hold while `a == b` is false)
+> ```
+>
+> ✅ **Better:** add `cue equals(other: Score): bool` comparing the same fields as
+> `compare` (on a struct, `@derive(Eq)` counts).
+
 > ❌ **Mistake:** Inventing a cue (or looking for a destructor)
 >
 > ```zebra
@@ -784,15 +827,39 @@ class UserBuilder
 >         .open = false
 > ```
 >
-> 💡 **Why it's wrong:** the seven cues are the whole set. Anything else is refused,
+> 💡 **Why it's wrong:** the nine cues are the whole set. Anything else is refused,
 > `deinit` included:
 >
 > ```
-> error: unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next (a method the compiler calls for you; anything else is a `def`)
+> error: unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next, begin, end (a method the compiler calls for you; anything else is a `def`)
 > ```
 >
-> ✅ **Better:** for a release step, give the class `def begin()` / `def end()` and
+> ✅ **Better:** for a release step, give the class `cue begin()` / `cue end()` and
 > use it in a `using` block (Chapter 14b). For any other method, write `def`.
+
+> ❌ **Mistake:** `using` hooks written as `def`
+>
+> ```zebra
+> class Section
+>     def begin()
+>         print("start")
+>     def end()
+>         print("stop")
+>
+> def main()
+>     using Section()
+>         print("work")
+> ```
+>
+> 💡 **Why it's wrong:** `using` calls `begin` and `end` for you, so they are cues.
+> Code written before they were still builds and runs, but every `using` that
+> reaches the `def` pair prints a warning, and a later release will refuse it:
+>
+> ```
+> warning: type 'Section' used in 'using' declares begin/end with `def`; they are cues now -- write `cue begin()` and `cue end()` (`def` is deprecated here and will be refused)
+> ```
+>
+> ✅ **Better:** `cue begin()` and `cue end()`.
 
 ---
 
@@ -897,8 +964,8 @@ def main()
 
 - **Classes group data and behavior** — Fields + methods
 - **Instances are references** — Each `Person()` is a new object, but `var b = a` gives the *same* object a second name
-- **Cues are the methods the compiler calls** — `init`, `toString`, `equals`, `hash`, `compare`, `iter`, `next`; the set is closed, and there is no `cue deinit`
-- **`==` on a class is identity** unless the class has `cue equals`; a `HashMap` key needs `cue hash` *and* `cue equals`, and they must agree
+- **Cues are the methods the compiler calls** — `init`, `toString`, `equals`, `hash`, `compare`, `iter`, `next`, and `begin` / `end` for `using`; the set is closed, and there is no `cue deinit`
+- **`==` on a class is identity** unless the class has `cue equals`; a `HashMap` key needs `cue hash` *and* `cue equals`, ordering needs `cue compare` *and* `cue equals`, and they must agree
 - **Instance methods** work on specific objects
 - **Shared methods** belong to the class, not instances
 - **Initialize fields** — Don't leave them undefined

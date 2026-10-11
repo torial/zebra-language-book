@@ -121,7 +121,8 @@ mallory
 All four reorder the list in place. Numbers and strings know
 their own order. A list of your own class sorts with plain `sort()` once
 the class declares `cue compare`, the method `sort()` and `<` call to
-order two values (Chapter 07, "Cues"). Until then, pass a comparator or
+order two values, together with the `cue equals` it requires (Chapter 07,
+"Cues"). Until then, pass a comparator or
 a key.
 
 ### Iteration Patterns

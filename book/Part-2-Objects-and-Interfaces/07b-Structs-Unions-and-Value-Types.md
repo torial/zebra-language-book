@@ -121,7 +121,9 @@ true
 
 `@derive(Debug, Eq, Hash)` (Chapter 07) writes `toString`, `equals` and
 `hash` field by field. It does not write `compare`; write that one
-yourself, as `Version` does. A hand-written cue wins over a derived one,
+yourself, as `Version` does. `compare` needs an `equals` on the same type,
+and a derived one counts, so `@derive(Eq)` plus a hand-written
+`cue compare` is enough. A hand-written cue wins over a derived one,
 so you can derive `Eq, Hash` and still write your own `toString`.
 
 ---
@@ -439,7 +441,7 @@ Extend the mini AST to support multiplication. Add a `mul` variant and handle it
 ## Key Takeaways
 
 - **`struct`** = value type; assignment copies the whole value
-- **Cues work on structs by value** — `==` on a struct needs `equals` (hand-written or `@derive(Eq)`); `compare` is always hand-written
+- **Cues work on structs by value** — `==` on a struct needs `equals` (hand-written or `@derive(Eq)`); `compare` is always hand-written and needs an `equals` beside it
 - **`union`** = tagged union; holds one variant at a time
 - **`branch`** = pattern matching on unions, enums, and strings
 - **`except`** = create a struct copy with specific fields overridden

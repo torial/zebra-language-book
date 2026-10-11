@@ -1,0 +1,24 @@
+# file: 07_cues_consistency.zbr
+# teaches: compare and equals must agree -- the compiler checks that both exist, not that they agree
+# chapter: 07-Classes-and-Instances
+
+class Grade
+    var student: str
+    var score: int
+
+    cue init(student: str, score: int)
+        .student = student
+        .score = score
+
+    cue equals(other: Grade): bool
+        return .student == other.student and .score == other.score
+
+    cue compare(other: Grade): int
+        return .score - other.score
+
+def main()
+    var a = Grade("Ann", 90)
+    var b = Grade("Bob", 90)
+    print(a <= b)
+    print(a >= b)
+    print(a == b)

@@ -1,0 +1,6 @@
+class Score
+    var n: int
+    cue init(n: int)
+        .n = n
+    cue compare(other: Score): int
+        return .n - other.n

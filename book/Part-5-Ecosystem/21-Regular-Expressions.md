@@ -35,7 +35,7 @@ search:
 | `re.match(s)` | `bool` | `true` only if the pattern matches **all** of `s` (both ends anchored) |
 | `re.find(s)` | `str` | the first matching substring, or `""` if there is none |
 | `re.findAll(s)` | `List(str)` | every non-overlapping match, left to right |
-| `re.groups(s)` | `List(str)` | the capture groups of the first match (see [Capture Groups](#capture-groups-pulling-pieces-out)) |
+| `re.groups(s)` | `List(str?)` | the capture groups of the first match, one entry per group; `nil` for a group that took no part (see [Capture Groups](#capture-groups-pulling-pieces-out)) |
 | `re.replace(s, repl)` | `str` | `s` with **every** match replaced by `repl` |
 | `re.split(s)` | `List(str)` | the pieces of `s` between matches |
 
@@ -400,7 +400,7 @@ def main()
 ### Capture Groups: Pulling Pieces Out
 
 Parentheses do a second job: each `(...)` **captures** the text it matched. `re.groups(s)`
-finds the first match in `s` and returns what each group captured, as a `List(str)` in
+finds the first match in `s` and returns what each group captured, as a `List(str?)` in
 the order the opening parentheses appear:
 
 ```zebra
@@ -443,12 +443,19 @@ Output:
 ["Zebra"]
 ```
 
-Three things to know about the list `groups()` returns:
+Four things to know about the list `groups()` returns:
 
 - **Element 0 is the first group**, not the whole match. If you want the whole match,
   call `find()`.
 - **No match gives an empty list**, so `g.count()` is the check: compare it with the
-  number of groups you wrote before reading any element.
+  number of groups you wrote before reading any element. A match always gives one
+  entry per group.
+- **Each element is a `str?`.** A group that took no part in the match is `nil` (see
+  [Groups That Take No Part](#groups-that-take-no-part) below). `print` and `"${...}"`
+  accept a `str?` as it is, so the examples above print their groups directly. To use
+  one *as* a `str` (pass it to a function, call `.trim()` on it, use it as a key),
+  unwrap it first: `if g.at(0) as v`, `g.at(0) orelse ""`, or `g.at(0)!` when every
+  group in the pattern is required, so a match fills them all.
 - **It describes the first match only.** For the groups of every match, combine it with
   `findAll()` — each substring `findAll` returns is itself a match, so `groups()` on it
   succeeds:
@@ -476,11 +483,64 @@ height -> 24
 depth -> 3
 ```
 
-> **Current limitation:** a group that does not take part in the match — an optional
-> `(...)?` that was skipped, or the losing side of `(a)|(b)` — ends the list early, so
-> the groups after it are missing too (`(a)?(b)` on `"b"` gives `[]`). Write patterns
-> whose groups always participate: put the alternation *inside* one group, as in
-> `(ERROR|WARN|INFO)`, rather than across several.
+### Groups That Take No Part
+
+A group can be skipped by a match that still succeeds: an optional `(...)?` that
+matched nothing, or the losing side of an alternation written across groups,
+`(cat)|(dog)`. Its entry is `nil`, and it keeps its place, so the groups after it stay
+at their own index. A group that matched an *empty* string is `""`, not `nil`:
+
+```zebra
+# file: regex-capture-optional.zbr
+# teaches: a group that takes no part in the match is nil; unwrap before use
+# chapter: 21
+
+def main()
+    # (x)? is optional: "ab" matches with the middle group skipped
+    var re = Regex.compile("(a)(x)?(b)")
+    var g = re.groups("ab")
+    print(g.count())       # 3 -- one entry per group, matched or not
+    print(g)               # ["a", nil, "b"]
+
+    # Interpolating a skipped group prints the word nil
+    print("${g.at(0)}-${g.at(1)}-${g.at(2)}")   # a-nil-b
+
+    # Unwrap each element before using it as a str
+    for part in g
+        if part as text
+            print("matched: ${text}")
+        else
+            print("took no part")
+
+    # A group that matched the empty string is "", not nil
+    var empty_re = Regex.compile("(a)(x*)(b)")
+    print(empty_re.groups("ab"))   # ["a", "", "b"]
+
+    # Alternation across groups: the losing side is nil
+    var pet_re = Regex.compile("(cat)|(dog)")
+    var pet = pet_re.groups("dog")
+    print(pet)                     # [nil, "dog"]
+    if pet.at(1) as dog
+        print("found a ${dog}")
+```
+
+Output:
+
+```text
+3
+["a", nil, "b"]
+a-nil-b
+matched: a
+took no part
+matched: b
+["a", "", "b"]
+[nil, "dog"]
+found a dog
+```
+
+When every group in a pattern is required, as in the date and log patterns in this
+chapter, a match fills them all and none of them is `nil`; `!` says so where a `str` is
+needed.
 
 ---
 
@@ -689,10 +749,12 @@ def extract_person_data(line: str): HashMap(str, str)?
     if g.count() != 3
         return nil   # the line did not have the expected shape
 
+    # All three groups are required, so a match fills every one: `!` unwraps
+    # each str? where a str is needed
     var data = HashMap(str, str)()
-    data.set("name", g.at(0).trim())
-    data.set("age", g.at(1))
-    data.set("email", g.at(2))
+    data.set("name", g.at(0)!.trim())
+    data.set("age", g.at(1)!)
+    data.set("email", g.at(2)!)
     return data
 
 def main()
@@ -988,7 +1050,7 @@ def analyze_logs(content: str)
         if g.count() != 3
             unparsed = unparsed + 1
             continue
-        var level = g.at(1)
+        var level = g.at(1)!   # a required group: never nil on a match
         counts.set(level, (counts.get(level) orelse 0) + 1)
         if level == "ERROR"
             errors.add("${g.at(0)}  ${g.at(2)}")
@@ -1030,7 +1092,7 @@ Errors:
 
 2. **`match` vs. `find`** — `match` asks whether the whole string fits; `find` asks whether the pattern occurs anywhere.
 
-3. **Groups Do the Extraction** — `groups()` returns what each `(...)` captured; check `count()` before reading.
+3. **Groups Do the Extraction** — `groups()` returns what each `(...)` captured, as a `List(str?)`; check `count()` before reading, and unwrap an element before using it as a `str` (a group that took no part is `nil`).
 
 4. **Not for Parsing** — Use a real parser for JSON, XML, structured formats.
 

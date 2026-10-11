@@ -5,11 +5,11 @@ STATISTICS
 ----------------------------------------------------------------------
 Files scanned:     33
 Chapters:          33
-Code blocks:       707
+Code blocks:       712
 Diagram refs:      0
-Link checks:       25
+Link checks:       28
 Errors:            0
-Warnings:          1460
+Warnings:          1469
 
 ISSUES
 ----------------------------------------------------------------------
@@ -95,9 +95,6 @@ book\Part-1-Foundations\02-Values-and-Types.md
   ⚠️ WARNING: Code block #24 missing '# chapter:' tag
 
 book\Part-1-Foundations\03-Collections.md
-  ⚠️ WARNING: Code block #9 missing '# file:' tag
-  ⚠️ WARNING: Code block #9 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #9 missing '# chapter:' tag
   ⚠️ WARNING: Code block #10 missing '# file:' tag
   ⚠️ WARNING: Code block #10 missing '# teaches:' tag
   ⚠️ WARNING: Code block #10 missing '# chapter:' tag
@@ -122,6 +119,9 @@ book\Part-1-Foundations\03-Collections.md
   ⚠️ WARNING: Code block #17 missing '# file:' tag
   ⚠️ WARNING: Code block #17 missing '# teaches:' tag
   ⚠️ WARNING: Code block #17 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #18 missing '# file:' tag
+  ⚠️ WARNING: Code block #18 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #18 missing '# chapter:' tag
 
 book\Part-1-Foundations\04-Functions-and-Scope.md
   ⚠️ WARNING: Code block #5 missing '# file:' tag
@@ -168,9 +168,6 @@ book\Part-1-Foundations\04-Functions-and-Scope.md
   ⚠️ WARNING: Code block #26 missing '# chapter:' tag
 
 book\Part-1-Foundations\05-Control-Flow.md
-  ⚠️ WARNING: Code block #13 missing '# file:' tag
-  ⚠️ WARNING: Code block #13 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #13 missing '# chapter:' tag
   ⚠️ WARNING: Code block #14 missing '# file:' tag
   ⚠️ WARNING: Code block #14 missing '# teaches:' tag
   ⚠️ WARNING: Code block #14 missing '# chapter:' tag
@@ -204,6 +201,9 @@ book\Part-1-Foundations\05-Control-Flow.md
   ⚠️ WARNING: Code block #24 missing '# file:' tag
   ⚠️ WARNING: Code block #24 missing '# teaches:' tag
   ⚠️ WARNING: Code block #24 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #25 missing '# file:' tag
+  ⚠️ WARNING: Code block #25 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #25 missing '# chapter:' tag
 
 book\Part-1-Foundations\06-Strings-and-Unicode.md
   ⚠️ WARNING: Code block #12 missing '# file:' tag
@@ -250,21 +250,9 @@ book\Part-2-Objects-and-Interfaces\07-Classes-and-Instances.md
   ⚠️ WARNING: Code block #6 missing '# file:' tag
   ⚠️ WARNING: Code block #6 missing '# teaches:' tag
   ⚠️ WARNING: Code block #6 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #7 missing '# file:' tag
-  ⚠️ WARNING: Code block #7 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #7 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #8 missing '# file:' tag
-  ⚠️ WARNING: Code block #8 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #8 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #10 missing '# file:' tag
-  ⚠️ WARNING: Code block #10 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #10 missing '# chapter:' tag
   ⚠️ WARNING: Code block #11 missing '# file:' tag
   ⚠️ WARNING: Code block #11 missing '# teaches:' tag
   ⚠️ WARNING: Code block #11 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #12 missing '# file:' tag
-  ⚠️ WARNING: Code block #12 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #12 missing '# chapter:' tag
   ⚠️ WARNING: Code block #13 missing '# file:' tag
   ⚠️ WARNING: Code block #13 missing '# teaches:' tag
   ⚠️ WARNING: Code block #13 missing '# chapter:' tag
@@ -283,20 +271,47 @@ book\Part-2-Objects-and-Interfaces\07-Classes-and-Instances.md
   ⚠️ WARNING: Code block #18 missing '# file:' tag
   ⚠️ WARNING: Code block #18 missing '# teaches:' tag
   ⚠️ WARNING: Code block #18 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #19 missing '# file:' tag
+  ⚠️ WARNING: Code block #19 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #19 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #20 missing '# file:' tag
+  ⚠️ WARNING: Code block #20 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #20 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #21 missing '# file:' tag
+  ⚠️ WARNING: Code block #21 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #21 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #22 missing '# file:' tag
+  ⚠️ WARNING: Code block #22 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #22 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #23 missing '# file:' tag
+  ⚠️ WARNING: Code block #23 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #23 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #24 missing '# file:' tag
+  ⚠️ WARNING: Code block #24 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #24 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #25 missing '# file:' tag
+  ⚠️ WARNING: Code block #25 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #25 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #26 missing '# file:' tag
+  ⚠️ WARNING: Code block #26 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #26 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #27 missing '# file:' tag
+  ⚠️ WARNING: Code block #27 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #27 missing '# chapter:' tag
 
 book\Part-2-Objects-and-Interfaces\07b-Structs-Unions-and-Value-Types.md
-  ⚠️ WARNING: Code block #3 missing '# file:' tag
-  ⚠️ WARNING: Code block #3 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #3 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #7 missing '# file:' tag
-  ⚠️ WARNING: Code block #7 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #7 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #9 missing '# file:' tag
-  ⚠️ WARNING: Code block #9 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #9 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #11 missing '# file:' tag
-  ⚠️ WARNING: Code block #11 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #11 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #4 missing '# file:' tag
+  ⚠️ WARNING: Code block #4 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #4 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #8 missing '# file:' tag
+  ⚠️ WARNING: Code block #8 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #8 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #10 missing '# file:' tag
+  ⚠️ WARNING: Code block #10 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #10 missing '# chapter:' tag
+  ⚠️ WARNING: Code block #12 missing '# file:' tag
+  ⚠️ WARNING: Code block #12 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #12 missing '# chapter:' tag
 
 book\Part-2-Objects-and-Interfaces\08-Interfaces-and-Protocols.md
   ⚠️ WARNING: Code block #6 missing '# file:' tag
@@ -577,9 +592,6 @@ book\Part-3-Advanced-Features\13-Generics-and-Type-Constraints.md
   ⚠️ WARNING: Code block #18 missing '# file:' tag
   ⚠️ WARNING: Code block #18 missing '# teaches:' tag
   ⚠️ WARNING: Code block #18 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #19 missing '# file:' tag
-  ⚠️ WARNING: Code block #19 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #19 missing '# chapter:' tag
 
 book\Part-3-Advanced-Features\14-Contracts-and-Assertions.md
   ⚠️ WARNING: Code block #1 missing '# file:' tag
@@ -927,13 +939,9 @@ book\Part-5-Ecosystem\20-File-IO-and-System-Access.md
   ⚠️ WARNING: Code block #16 missing '# chapter:' tag
 
 book\Part-5-Ecosystem\22-FFI-and-Interop.md
-  ⚠️ WARNING: Code block #20 missing '# file:' tag
-  ⚠️ WARNING: Code block #20 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #20 missing '# chapter:' tag
-  ⚠️ WARNING: Code block #22 missing '# file:' tag
-  ⚠️ WARNING: Code block #22 missing '# teaches:' tag
-  ⚠️ WARNING: Code block #22 missing '# chapter:' tag
-  ⚠️ INFO: Should use Result(T, E) notation
+  ⚠️ WARNING: Code block #11 missing '# file:' tag
+  ⚠️ WARNING: Code block #11 missing '# teaches:' tag
+  ⚠️ WARNING: Code block #11 missing '# chapter:' tag
 
 book\Part-5-Ecosystem\22b-Build-System-and-Tooling.md
   ⚠️ WARNING: Code block #1 missing '# teaches:' tag

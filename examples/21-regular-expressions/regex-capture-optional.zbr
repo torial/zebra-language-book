@@ -1,0 +1,31 @@
+# file: regex-capture-optional.zbr
+# teaches: a group that takes no part in the match is nil; unwrap before use
+# chapter: 21
+
+def main()
+    # (x)? is optional: "ab" matches with the middle group skipped
+    var re = Regex.compile("(a)(x)?(b)")
+    var g = re.groups("ab")
+    print(g.count())       # 3 -- one entry per group, matched or not
+    print(g)               # ["a", nil, "b"]
+
+    # Interpolating a skipped group prints the word nil
+    print("${g.at(0)}-${g.at(1)}-${g.at(2)}")   # a-nil-b
+
+    # Unwrap each element before using it as a str
+    for part in g
+        if part as text
+            print("matched: ${text}")
+        else
+            print("took no part")
+
+    # A group that matched the empty string is "", not nil
+    var empty_re = Regex.compile("(a)(x*)(b)")
+    print(empty_re.groups("ab"))   # ["a", "", "b"]
+
+    # Alternation across groups: the losing side is nil
+    var pet_re = Regex.compile("(cat)|(dog)")
+    var pet = pet_re.groups("dog")
+    print(pet)                     # [nil, "dog"]
+    if pet.at(1) as dog
+        print("found a ${dog}")

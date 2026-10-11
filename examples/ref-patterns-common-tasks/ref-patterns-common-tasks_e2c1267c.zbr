@@ -1,0 +1,10 @@
+def readTokens(text: str): Iter(str)
+    var parts: List(str) = text.split(",")
+    for p in parts
+        var t = p.trim()
+        if t.len > 0
+            yield t
+
+def main()
+    for tok in readTokens("a, b,, c")
+        print(tok)                     # a, b, c (one per line)

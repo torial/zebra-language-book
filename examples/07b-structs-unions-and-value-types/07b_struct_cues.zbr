@@ -1,0 +1,42 @@
+# file: 07b_struct_cues.zbr
+# teaches: cues on a struct -- toString, equals, hash, compare, by value
+# chapter: 07b-Structs-Unions
+
+struct Version
+    var major: int
+    var minor: int
+
+    cue toString(): str
+        return "v${.major}.${.minor}"
+
+    cue equals(other: Version): bool
+        return .major == other.major and .minor == other.minor
+
+    cue hash(): int
+        return .major * 1000 + .minor
+
+    cue compare(other: Version): int
+        if .major != other.major
+            return .major - other.major
+        return .minor - other.minor
+
+def main()
+    var installed = Version(major: 1, minor: 10)
+    var wanted = Version(major: 1, minor: 2)
+    print(installed)
+    print(installed > wanted)          # compare: 10 > 2, not "1.10" < "1.2"
+
+    var releases = List(Version)()
+    releases.add(installed)
+    releases.add(wanted)
+    releases.add(Version(major: 0, minor: 9))
+    releases.sort()
+    for r in releases
+        print(r)
+
+    var copy = installed               # a struct copy...
+    print(copy == installed)           # ...is equal by value
+    var seen: Set(Version) = Set()
+    seen.add(installed)
+    seen.add(copy)
+    print(seen.count())

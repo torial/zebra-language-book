@@ -1,0 +1,8 @@
+class Ver
+    var n: int
+    cue init(n: int)
+        .n = n
+    cue equals(other: Ver): bool
+        return .n == other.n
+    cue compare(other: Ver): bool    # "is this less?" -- the wrong question
+        return .n < other.n

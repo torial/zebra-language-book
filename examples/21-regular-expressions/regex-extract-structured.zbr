@@ -9,10 +9,12 @@ def extract_person_data(line: str): HashMap(str, str)?
     if g.count() != 3
         return nil   # the line did not have the expected shape
 
+    # All three groups are required, so a match fills every one: `!` unwraps
+    # each str? where a str is needed
     var data = HashMap(str, str)()
-    data.set("name", g.at(0).trim())
-    data.set("age", g.at(1))
-    data.set("email", g.at(2))
+    data.set("name", g.at(0)!.trim())
+    data.set("age", g.at(1)!)
+    data.set("email", g.at(2)!)
     return data
 
 def main()

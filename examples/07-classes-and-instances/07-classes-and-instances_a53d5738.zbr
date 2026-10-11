@@ -1,0 +1,6 @@
+class Widget
+    var n: int
+    cue init(n: int)
+        .n = n
+    def toString(): str
+        return "Widget(${.n})"

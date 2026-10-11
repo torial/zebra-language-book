@@ -2,7 +2,7 @@ class Person
     var name: str = ""
     var age: int = 0
     
-    def init(name: str, age: int)
+    cue init(name: str, age: int)
         this.name = name
         this.age = age
     

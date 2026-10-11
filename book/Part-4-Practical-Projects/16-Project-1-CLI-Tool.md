@@ -384,7 +384,7 @@ Add a new `longest` command that finds and displays the longest line:
 class FileProcessor
     static
         def find_longest_line(filename: str): str throws
-            var content = read_file(filename)?
+            var content: str = read_file(filename)?
             var lines = content.split("\n")
             var longest = ""
             var max_len = 0

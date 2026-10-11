@@ -54,10 +54,11 @@ var person = Person("Alice", 30)
 
 ## Cues (methods the compiler calls)
 
-Seven, and only seven: `init`, `toString`, `equals`, `hash`, `compare`,
-`iter`, `next`. Anything else is a `def`. There is no `cue deinit`; use
-`using` for a release step. Writing a cue as `def` (`def toString`) is
-refused. Full story: Chapter 07, "Cues".
+Nine, and only nine: `init`, `toString`, `equals`, `hash`, `compare`,
+`iter`, `next`, `begin`, `end`. Anything else is a `def`. There is no
+`cue deinit`; use `using` (and `cue begin` / `cue end`) for a release
+step. Writing a cue as `def` (`def toString`) is refused. Full story:
+Chapter 07, "Cues".
 
 ```zebra
 class Money
@@ -70,7 +71,7 @@ class Money
         return .cents == other.cents
     cue hash(): int                     # HashMap key / Set element (needs equals)
         return .cents
-    cue compare(other: Money): int      # < <= > >=, list.sort()
+    cue compare(other: Money): int      # < <= > >=, list.sort() (needs equals)
         return .cents - other.cents
 
 class Count3
@@ -80,6 +81,15 @@ class Count3
         .n = .n - 1
         return .n + 1
     # cue iter(): I -- return an object whose type has `cue next` (fresh per loop)
+
+class Section
+    var name: str
+    cue init(name: str)
+        .name = name
+    cue begin()                         # using obj: on entry
+        print("<${.name}>")
+    cue end()                           # using obj: on exit
+        print("</${.name}>")
 
 def evens(limit: int): Iter(int)        # generator: the compiler writes `cue next`
     var i = 0
@@ -93,6 +103,8 @@ def main()
         print(x)                        # 3 2 1
     for e in evens(5)
         print(e)                        # 0 2 4
+    using Section("p")
+        print("hi")                     # <p> hi </p>
 ```
 
 Without `equals`, `==` on a class is identity. Without `compare`, `<` and
@@ -550,7 +562,7 @@ Scope-1 fields: int / float / bool / str.
 | `yield` | Produce the next value in a generator (a `def` returning `Iter(T)`) |
 | `capture` | Per-closure persistent state, at the top of a lambda body |
 | `sig` | Named function type (`sig Predicate(item: str): bool`) |
-| `using` | Block scoped by a `begin()`/`end()` resource (`using g.vbox(...)` in GUIs) |
+| `using` | Block scoped by a resource with `cue begin()` / `cue end()` (`using g.vbox(...)` in GUIs) |
 | `with` | Contextual receiver (`with obj` → bare `x = 5` means `obj.x = 5`) |
 | `orelse` | Nil fallback (`maybe orelse 0`) |
 | `to` | Only as a method name, e.g. `for i in 0.to(10)`; there is no `x to T` conversion operator — use `.toInt()`, `.toFloat()`, `.toString()` |

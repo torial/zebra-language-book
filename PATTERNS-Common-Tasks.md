@@ -90,10 +90,8 @@ var message = parts.join(" ")      # "hello world from zebra"
 ```zebra
 var text = "Hello World Hello"
 
-# Replace first occurrence
-var result1 = text.replace("Hello", "Hi")   # "Hi World Hello"
-
-# Replace all occurrences
+# Replace every occurrence (replaceAll is the same call, spelled out)
+var result1 = text.replace("Hello", "Hi")     # "Hi World Hi"
 var result2 = text.replaceAll("Hello", "Hi")  # "Hi World Hi"
 
 # Find position
@@ -587,7 +585,7 @@ var words = delimiter.split(text)
 var pattern = Regex.compile("\\d+")
 var text = "Version 2.3.1"
 
-var replaced = pattern.replaceAll(text, "X")
+var replaced = pattern.replace(text, "X")   # every match
 # replaced = "Version X.X.X"
 ```
 

@@ -208,18 +208,19 @@ def main()
 ## `using EXPR` — Resource Scope Blocks
 
 The `using EXPR` block runs a body with a resource that has a
-`begin()` / `end()` lifecycle. Any object with both methods works — no
-interface declaration required:
+`begin()` / `end()` lifecycle. The compiler calls those two methods for
+you, so they are **cues** (Chapter 07, "Cues"): any class that declares
+`cue begin()` and `cue end()` works — no interface declaration required:
 
 ```zebra
 class CountGroup
     var entered: int = 0
     var exited: int = 0
 
-    def begin()
+    cue begin()
         .entered = .entered + 1
 
-    def end()
+    cue end()
         .exited = .exited + 1
 
 def main()
@@ -283,8 +284,13 @@ the scope it was made in (stored in a list, returned, captured), so
 "end of scope" is not "end of the object". The two constructs above
 cover the two jobs a destructor does elsewhere. The arena reclaims
 memory, and `using` runs a release step at a point you can see in the
-source. `begin()` and `end()` are ordinary `def`s, not cues (Chapter 07,
-"What is not a cue").
+source. `begin()` and `end()` are the two cues `using` calls; there is no
+third one for the end of a scope.
+
+> **Older code:** before `begin` and `end` became cues they were written
+> `def begin()` / `def end()`. That spelling still builds in this release,
+> but each `using` that reaches it prints a warning ("declares begin/end
+> with `def`; they are cues now") and a later release will refuse it.
 
 ---
 
@@ -547,32 +553,33 @@ def main()
 
 ### Exercise 3: A `using` Resource
 
-Write a `Timer` class with `begin()` recording the start time and `end()`
-printing the elapsed milliseconds. Use it with `using` to time a block.
+Write a `BlockTimer` class whose `cue begin()` starts a clock and whose `cue end()`
+prints the elapsed milliseconds. Use it with `using` to time a block. (The standard
+library's `Timer.start()` is the clock; `t.elapsed()` gives milliseconds as a `float`.)
 
 <details>
 <summary>Solution</summary>
 
 ```zebra
-class Timer
+class BlockTimer
     var label: str
-    var start_ms: int = 0
+    var clock: Timer
 
     cue init(label: str)
         .label = label
+        .clock = Timer.start()
 
-    def begin()
-        .start_ms = Time.monotonic_ms()
+    cue begin()
+        .clock = Timer.start()
 
-    def end()
-        var elapsed = Time.monotonic_ms() - .start_ms
-        print("${.label}: ${elapsed} ms")
+    cue end()
+        print("${.label}: ${.clock.elapsed()} ms")
 
 def main()
-    using Timer("file read")
-        var src = File.read("big.txt")
+    using BlockTimer("nap")
+        sys.sleep(20)
         # ... work ...
-    # Prints "file read: NN ms" when the block exits
+    # Prints "nap: NN ms" when the block exits
 ```
 
 </details>
@@ -593,7 +600,7 @@ def main()
 - **`allocate <wrapper>` scopes the allocator** for a block; on exit, scoped wrappers free everything inside.
 - **Named wrappers** include `Arena()` (most common), `Debug()` (leak detection), `FixedBuffer(buf)`, `StackFallback(N)()`, `Pool(T)()`, and non-scoped singletons `Page()` / `Smp()` / `C()`.
 - **`<<-` copy-out** deep-copies a value past a scope boundary — works for `str`, `List(T)`, classes/structs (incl. recursive `^T?` chains), and primitives; **HashMap is intentionally not supported** — iterate and rebuild.
-- **`using EXPR` blocks** call `begin()` / `end()` around a body; any class with both methods works. Use for arbitrary cleanup; pair with `allocate` for memory.
+- **`using EXPR` blocks** call the `begin()` / `end()` cues around a body; any class that declares `cue begin()` and `cue end()` works. Use for arbitrary cleanup; pair with `allocate` for memory.
 - **`^T` heap-indirection** is for recursive structs/unions only; auto-boxes, transparent in `branch` and for-loops; **`^ClassName` is illegal** (classes are already references).
 
 ---

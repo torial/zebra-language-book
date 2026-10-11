@@ -1,0 +1,55 @@
+# file: 07_cues_iter.zbr
+# teaches: cue iter and cue next -- making a type work in `for x in obj`
+# chapter: 07-Classes-and-Instances
+
+class Countdown
+    var start: int
+
+    cue init(start: int)
+        .start = start
+
+    cue iter(): CountdownIter          # a fresh iterator for each `for`
+        return CountdownIter(.start)
+
+class CountdownIter
+    var n: int
+
+    cue init(n: int)
+        .n = n
+
+    cue next(): int?                   # nil means "no more"
+        if .n <= 0
+            return nil
+        .n = .n - 1
+        return .n + 1
+
+class Ticker                           # its own iterator: `cue next`, no `cue iter`
+    var left: int
+
+    cue init(left: int)
+        .left = left
+
+    cue next(): int?
+        if .left <= 0
+            return nil
+        .left = .left - 1
+        return .left + 1
+
+def main()
+    var launch = Countdown(3)
+    for n in launch
+        print("launch ${n}")
+    for n in launch                    # iter() runs again: a fresh countdown
+        print("again ${n}")
+
+    var t = Ticker(2)
+    for n in t
+        print("tick ${n}")
+    for n in t                         # t is used up: the body never runs
+        print("never ${n}")
+    else
+        print("ticker exhausted")
+
+    var manual = Ticker(1)
+    print(manual.next()!)              # next() is callable by hand, too
+    print(manual.next() == nil)

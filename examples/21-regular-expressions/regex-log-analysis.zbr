@@ -15,7 +15,7 @@ def analyze_logs(content: str)
         if g.count() != 3
             unparsed = unparsed + 1
             continue
-        var level = g.at(1)
+        var level = g.at(1)!   # a required group: never nil on a match
         counts.set(level, (counts.get(level) orelse 0) + 1)
         if level == "ERROR"
             errors.add("${g.at(0)}  ${g.at(2)}")

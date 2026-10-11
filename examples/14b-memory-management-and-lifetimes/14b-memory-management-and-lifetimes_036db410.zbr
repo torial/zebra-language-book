@@ -1,0 +1,19 @@
+class BlockTimer
+    var label: str
+    var clock: Timer
+
+    cue init(label: str)
+        .label = label
+        .clock = Timer.start()
+
+    cue begin()
+        .clock = Timer.start()
+
+    cue end()
+        print("${.label}: ${.clock.elapsed()} ms")
+
+def main()
+    using BlockTimer("nap")
+        sys.sleep(20)
+        # ... work ...
+    # Prints "nap: NN ms" when the block exits

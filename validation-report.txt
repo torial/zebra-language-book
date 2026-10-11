@@ -1,12 +1,12 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-10-05T21:17:08.755891
+Generated: 2026-10-11T07:49:46.352860
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
-Total:  787
-Passed: 596
-Failed: 191
+Total:  803
+Passed: 611
+Failed: 192
 
 FAILURES
 ----------------------------------------------------------------------
@@ -66,12 +66,22 @@ FAILURES
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06-strings-and-unicode_f4191d80.zbr:2:38: error: unexpected expression token: ']'
   06-strings-and-unicode/06_regex_intro.zbr
       C:\Projects\zebra-language-book\examples\06-strings-and-unicode\06_regex_intro.zbr:15:22: error: `if x as n` requires an optional type, got 'str'
+  07-classes-and-instances/07-classes-and-instances_0f5c703a.zbr
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_0f5c703a.zbr:5:8: error: `cue hash` needs `cue equals` on the same type (a HashMap key is looked up by hash, 
   07-classes-and-instances/07-classes-and-instances_206fd7cf.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_206fd7cf.zbr:13:20: error: undefined name: 'User'
   07-classes-and-instances/07-classes-and-instances_8f4af621.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_8f4af621.zbr:3:18: error: expected identifier, got 'to'
   07-classes-and-instances/07-classes-and-instances_999d2640.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_999d2640.zbr:7:29: error: unexpected expression token: '@as'
+  07-classes-and-instances/07-classes-and-instances_a53d5738.zbr
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_a53d5738.zbr:5:8: error: `toString` is a cue -- the compiler calls it for print and string interpolation -- s
+  07-classes-and-instances/07-classes-and-instances_ab0af392.zbr
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_ab0af392.zbr:5:8: error: `cue compare` needs `cue equals` on the same type (otherwise `a <= b` and `a >= b` c
+  07-classes-and-instances/07-classes-and-instances_aebc2574.zbr
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_aebc2574.zbr:3:5: error: unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next
+  07-classes-and-instances/07-classes-and-instances_c61cee68.zbr
+      C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_c61cee68.zbr:7:8: error: `cue compare` takes the other value and returns int (negative, zero, positive): `cue
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_57becac2.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_57becac2__asfragment.zbr:4:12: error: undefined name: 'color
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_6dc357df.zbr
@@ -160,8 +170,6 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:4:5: error: unknown type 'Node': 
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_651c75c0.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_651c75c0.zbr:2:5: error: expected identifier, got 'num'
-  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_be3cf20d.zbr
-      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_be3cf20d.zbr:9:21: error: undefined name: 'Time'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5967e626.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626__asfragment.zbr:4:5: error: undefined name: 'ch
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_75531924.zbr
@@ -174,8 +182,6 @@ FAILURES
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_5edb027e.zbr:5:14: error: undefined name: 'Utils'
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_61e63207.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_61e63207.zbr:8:14: error: cannot infer the type of `lowered`, so `.len` cannot be r
-  16-project-1-cli-tool/16-project-1-cli-tool_40411c20.zbr
-      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_40411c20.zbr:10:20: error: cannot infer the type of `line`, so `.len` cannot be resolved -- annotate it (`var x: Li
   16-project-1-cli-tool/16-project-1-cli-tool_acd8f0d1.zbr
       C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_acd8f0d1.zbr:12:51: error: cannot infer the type of `stats.lines`, an operand of `+` -- `+` joins strings and adds 
   18b-gui-applications/18b-gui-applications_0cbfa83f.zbr
@@ -364,8 +370,6 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06__asfragment.zbr:4:11: error: unexpected expression token: ','
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_fad686e2.zbr
       C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_fad686e2.zbr:4:15: error: undefined name: 'text'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_106b9ef4.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_106b9ef4__asfragment.zbr:5:8: error: the constructor is written `cue init(...)
   ref-patterns-common-tasks/ref-patterns-common-tasks_3fddbb95.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95__asfragment.zbr:4:8: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_465b4d83.zbr
@@ -386,8 +390,6 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_bd8472bd__asfragment.zbr:4:23: error: undefined name: 'get_user'
   ref-patterns-common-tasks/ref-patterns-common-tasks_d8d73c0b.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_d8d73c0b__asfragment.zbr:4:23: error: undefined name: 'scores'
-  ref-patterns-common-tasks/ref-patterns-common-tasks_ecc75b64.zbr
-      C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_ecc75b64.zbr:4:24: error: 'Regex' has no method 'replaceAll' (match/test/find/findAll/replace/split/groups)
   ref-patterns-common-tasks/ref-patterns-common-tasks_f57a1fad.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_f57a1fad__asfragment.zbr:6:17: error: undefined name: 'items'
   ref-quickstart-30-minutes/ref-quickstart-30-minutes_7c07b7c4.zbr

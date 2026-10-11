@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 787 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 803 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -47,9 +47,9 @@ build (`--check-full`) for the examples that have a `main`.
 
 ## By the Numbers
 
-- **Total Examples:** 787
+- **Total Examples:** 803
 - **Chapters Covered:** 36
-- **Topics:** 214
+- **Topics:** 222
 
 ## Quick Reference
 
@@ -97,9 +97,10 @@ build (`--check-full`) for the examples that have a `main`.
 - `02-values-and-types_44d051d9.zbr` — basic example
 - `02-values-and-types_64a41368.zbr` — basic example
 
-### 03-Collections (17 examples)
+### 03-Collections (18 examples)
 - `03_lists.zbr` — list creation and access
 - `03_list_ops.zbr` — list manipulation
+- `03_sorting.zbr` — sort, sort with a comparator, sortBy, reverse
 - `03_iteration.zbr` — different iteration styles
 - `03_hashmaps.zbr` — hashmap creation and access
 - `03_hashmap_ops.zbr` — hashmap manipulation
@@ -144,7 +145,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `04-functions-and-scope_1b6405a4.zbr` — basic example
 - `04-functions-and-scope_7a99a107.zbr` — basic example
 
-### 05-Control-Flow (24 examples)
+### 05-Control-Flow (25 examples)
 - `05_if.zbr` — conditional execution
 - `05_if_else.zbr` — if-else branching
 - `05_conditions.zbr` — boolean logic
@@ -155,6 +156,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `05_for.zbr` — for loop iteration
 - `05_while.zbr` — while loop
 - `05_break_continue.zbr` — loop control
+- `05_generators.zbr` — generators -- a def returning Iter(T) that produces values with yield
 - `05_guards.zbr` — guard conditions
 - `05_validation.zbr` — practical control flow
 - `05-control-flow_842f4539.zbr` — basic example
@@ -195,15 +197,18 @@ build (`--check-full`) for the examples that have a `main`.
 - `06-strings-and-unicode_0ee1576d.zbr` — basic example
 - `06-strings-and-unicode_2e9caf9b.zbr` — basic example
 
-### 07-Classes-and-Instances (18 examples)
+### 07-Classes-and-Instances (27 examples)
 - `07_class_basic.zbr` — class definition, cue init
 - `07_init.zbr` — field defaults vs. explicit init
 - `07_methods.zbr` — instance methods
 - `07_static.zbr` — static (class-level) methods
 - `07-classes-and-instances_14ca828c.zbr` — basic example
 - `07-classes-and-instances_6e8129f9.zbr` — basic example
+- `07_cues_money.zbr` — the toString, equals, hash and compare cues, and where the compiler calls them
+- `07_cues_identity.zbr` — what == and HashMap keys mean for a class with no cues
+- `07_cues_consistency.zbr` — compare and equals must agree -- the compiler checks that both exist, not that they agree
+- `07_cues_iter.zbr` — cue iter and cue next -- making a type work in `for x in obj`
 - `07-classes-and-instances_5bbcf3df.zbr` — basic example
-- `07-classes-and-instances_2bda6c7b.zbr` — basic example
 - `07_user_system.zbr` — realistic class design
 - `07-classes-and-instances_b7847e8f.zbr` — basic example
 - `07-classes-and-instances_8f4af621.zbr` — basic example
@@ -212,11 +217,18 @@ build (`--check-full`) for the examples that have a `main`.
 - `07-classes-and-instances_80f4a214.zbr` — basic example
 - `07-classes-and-instances_0fd5c6ea.zbr` — basic example
 - `07-classes-and-instances_f4d84292.zbr` — basic example
+- `07-classes-and-instances_a53d5738.zbr` — basic example
+- `07-classes-and-instances_0f5c703a.zbr` — basic example
+- `07-classes-and-instances_c61cee68.zbr` — basic example
+- `07-classes-and-instances_ab0af392.zbr` — basic example
+- `07-classes-and-instances_aebc2574.zbr` — basic example
+- `07-classes-and-instances_a5cd9e0c.zbr` — basic example
 - `07-classes-and-instances_5df57d66.zbr` — basic example
 - `07-classes-and-instances_999d2640.zbr` — basic example
 
-### 07b-Structs-Unions-and-Value-Types (11 examples)
+### 07b-Structs-Unions-and-Value-Types (12 examples)
 - `07b_struct_basic.zbr` — struct definition and value semantics
+- `07b_struct_cues.zbr` — cues on a struct -- toString, equals, hash, compare, by value
 - `07b_except.zbr` — except struct update syntax
 - `07b-structs-unions-and-value-types_6dc357df.zbr` — basic example
 - `07b_enum.zbr` — enum types
@@ -401,7 +413,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `14b-memory-management-and-lifetimes_8f128a32.zbr` — basic example
 - `14b-memory-management-and-lifetimes_57c9399b.zbr` — basic example
 - `14b-memory-management-and-lifetimes_2911730e.zbr` — basic example
-- `14b-memory-management-and-lifetimes_e8865ebd.zbr` — basic example
+- `14b-memory-management-and-lifetimes_5bb5bfcb.zbr` — basic example
 - `14b-memory-management-and-lifetimes_edc3f51a.zbr` — basic example
 - `14b-memory-management-and-lifetimes_8d8bb072.zbr` — basic example
 - `14b-memory-management-and-lifetimes_25265c25.zbr` — basic example
@@ -419,7 +431,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `14b-memory-management-and-lifetimes_40d1cec3.zbr` — basic example
 - `14b-memory-management-and-lifetimes_b2f9deb6.zbr` — basic example
 - `14b-memory-management-and-lifetimes_7378df50.zbr` — basic example
-- `14b-memory-management-and-lifetimes_be3cf20d.zbr` — basic example
+- `14b-memory-management-and-lifetimes_036db410.zbr` — basic example
 
 ### 14c-Concurrency-Channels-and-Threads (24 examples)
 - `14c-concurrency-channels-and-threads_dea2f875.zbr` — basic example
@@ -472,7 +484,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `project1_main.zbr` — orchestrating modules
 - `16-project-1-cli-tool_7d59bc64.zbr` — basic example
 - `16-project-1-cli-tool_d6c2d473.zbr` — basic example
-- `16-project-1-cli-tool_40411c20.zbr` — basic example
+- `16-project-1-cli-tool_a519a91d.zbr` — basic example
 - `16-project-1-cli-tool_4391557c.zbr` — basic example
 - `16-project-1-cli-tool_1e39043c.zbr` — basic example
 - `16-project-1-cli-tool_acd8f0d1.zbr` — basic example
@@ -570,7 +582,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `file-logging.zbr` — generating timestamped log files
 - `file-data-import.zbr` — importing and exporting structured data
 
-### 21-Regular-Expressions (20 examples)
+### 21-Regular-Expressions (21 examples)
 - `regex-literals.zbr` — basic regex literal matching
 - `regex-dot.zbr` — dot wildcard in regex patterns
 - `regex-character-classes.zbr` — character classes and ranges
@@ -580,6 +592,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `regex-groups.zbr` — grouping and alternation patterns
 - `regex-capture.zbr` — capture groups with groups()
 - `regex-capture-all.zbr` — capture groups from every match (findAll + groups)
+- `regex-capture-optional.zbr` — a group that takes no part in the match is nil; unwrap before use
 - `regex-email.zbr` — email validation pattern (simplified)
 - `regex-phone.zbr` — phone number pattern matching
 - `regex-url.zbr` — URL pattern matching and splitting a URL with groups
@@ -821,10 +834,11 @@ build (`--check-full`) for the examples that have a `main`.
 - `deprecated_demo.zbr` — basic example
 - `appendix-d-attributes_a05611e2.zbr` — basic example
 
-### ref-cheatsheet-syntax (23 examples)
+### ref-cheatsheet-syntax (24 examples)
 - `ref-cheatsheet-syntax_519f6869.zbr` — basic example
 - `ref-cheatsheet-syntax_59798476.zbr` — basic example
 - `ref-cheatsheet-syntax_c8e3541e.zbr` — basic example
+- `ref-cheatsheet-syntax_c641226a.zbr` — basic example
 - `ref-cheatsheet-syntax_a5d4ff3b.zbr` — basic example
 - `ref-cheatsheet-syntax_f6cfe617.zbr` — basic example
 - `ref-cheatsheet-syntax_4ef11683.zbr` — basic example
@@ -846,14 +860,14 @@ build (`--check-full`) for the examples that have a `main`.
 - `ref-cheatsheet-syntax_983ad7b7.zbr` — basic example
 - `ref-cheatsheet-syntax_0e61ca98.zbr` — basic example
 
-### ref-patterns-common-tasks (56 examples)
+### ref-patterns-common-tasks (58 examples)
 - `ref-patterns-common-tasks_1354f748.zbr` — basic example
 - `ref-patterns-common-tasks_5267fec2.zbr` — basic example
 - `ref-patterns-common-tasks_640b4c6a.zbr` — basic example
 - `ref-patterns-common-tasks_ef4d58a2.zbr` — basic example
 - `ref-patterns-common-tasks_5803ff74.zbr` — basic example
 - `ref-patterns-common-tasks_5e8ff171.zbr` — basic example
-- `ref-patterns-common-tasks_09515c39.zbr` — basic example
+- `ref-patterns-common-tasks_b88e7957.zbr` — basic example
 - `ref-patterns-common-tasks_59220c01.zbr` — basic example
 - `ref-patterns-common-tasks_4038413a.zbr` — basic example
 - `ref-patterns-common-tasks_bc649800.zbr` — basic example
@@ -880,14 +894,15 @@ build (`--check-full`) for the examples that have a `main`.
 - `ref-patterns-common-tasks_32f18e1c.zbr` — basic example
 - `ref-patterns-common-tasks_9b784d59.zbr` — basic example
 - `ref-patterns-common-tasks_66dde561.zbr` — basic example
-- `ref-patterns-common-tasks_106b9ef4.zbr` — basic example
+- `ref-patterns-common-tasks_464c82aa.zbr` — basic example
 - `ref-patterns-common-tasks_226cd724.zbr` — basic example
 - `ref-patterns-common-tasks_b41423e4.zbr` — basic example
 - `ref-patterns-common-tasks_3e3d5b28.zbr` — basic example
+- `ref-patterns-common-tasks_4c9b2942.zbr` — basic example
 - `ref-patterns-common-tasks_fd6a19cb.zbr` — basic example
 - `ref-patterns-common-tasks_3febe494.zbr` — basic example
 - `ref-patterns-common-tasks_e18e4d3f.zbr` — basic example
-- `ref-patterns-common-tasks_ecc75b64.zbr` — basic example
+- `ref-patterns-common-tasks_ecfe4d30.zbr` — basic example
 - `ref-patterns-common-tasks_8b98cc4a.zbr` — basic example
 - `ref-patterns-common-tasks_2b05dcd8.zbr` — basic example
 - `ref-patterns-common-tasks_42564ca8.zbr` — basic example
@@ -896,6 +911,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `ref-patterns-common-tasks_713a5623.zbr` — basic example
 - `ref-patterns-common-tasks_71ac7894.zbr` — basic example
 - `ref-patterns-common-tasks_7a76a260.zbr` — basic example
+- `ref-patterns-common-tasks_e2c1267c.zbr` — basic example
 - `ref-patterns-common-tasks_7e020294.zbr` — basic example
 - `ref-patterns-common-tasks_85b14d4a.zbr` — basic example
 - `ref-patterns-common-tasks_57c2b54b.zbr` — basic example

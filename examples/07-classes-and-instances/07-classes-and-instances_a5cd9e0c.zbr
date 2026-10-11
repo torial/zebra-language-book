@@ -1,0 +1,9 @@
+class Section
+    def begin()
+        print("start")
+    def end()
+        print("stop")
+
+def main()
+    using Section()
+        print("work")

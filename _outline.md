@@ -120,7 +120,7 @@ APPENDICES (4 chapters, reference)
 
 | Chapter | Covers | Projects |
 |---------|--------|----------|
-| **07** | Class definition, instantiation, methods, `static` members, `with`, cues (`toString`, `equals`, `hash`, `compare`, `iter`, `next`), `@derive` | OOP basics |
+| **07** | Class definition, instantiation, methods, `static` members, `with`, cues (`toString`, `equals`, `hash`, `compare`, `iter`, `next`, `begin`/`end`), `@derive` | OOP basics |
 | **07b** | Structs (value types), unions, `^T` heap indirection, `except`, `branch` | Value semantics |
 | **08** | Interface definition, protocol conformance, polymorphism | Contracts |
 | **09** | Why Zebra has no inheritance, mixins (`adds`), composition, polymorphism via interfaces | Reuse |

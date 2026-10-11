@@ -1,9 +1,7 @@
 var text = "Hello World Hello"
 
-# Replace first occurrence
-var result1 = text.replace("Hello", "Hi")   # "Hi World Hello"
-
-# Replace all occurrences
+# Replace every occurrence (replaceAll is the same call, spelled out)
+var result1 = text.replace("Hello", "Hi")     # "Hi World Hi"
 var result2 = text.replaceAll("Hello", "Hi")  # "Hi World Hi"
 
 # Find position

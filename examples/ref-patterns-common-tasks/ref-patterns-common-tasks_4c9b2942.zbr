@@ -1,0 +1,30 @@
+class Point
+    var x: int
+    var y: int
+
+    cue init(x: int, y: int)
+        .x = x
+        .y = y
+
+    cue toString(): str
+        return "(${.x}, ${.y})"
+
+    cue equals(other: Point): bool
+        return .x == other.x and .y == other.y
+
+    cue hash(): int                    # hash the fields equals compares
+        return .x * 31 + .y
+
+    cue compare(other: Point): int     # by x, then by y
+        if .x != other.x
+            return .x - other.x
+        return .y - other.y
+
+def main()
+    var visited: Set(Point) = Set()
+    visited.add(Point(1, 2))
+    visited.add(Point(1, 2))
+    print(visited.count())             # 1
+    var path = [Point(3, 0), Point(1, 2), Point(1, 1)]
+    path.sort()
+    print(path.at(0))                  # (1, 1)

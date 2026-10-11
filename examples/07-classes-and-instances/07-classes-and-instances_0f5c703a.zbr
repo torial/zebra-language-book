@@ -1,0 +1,6 @@
+class Key
+    var id: int
+    cue init(id: int)
+        .id = id
+    cue hash(): int
+        return .id

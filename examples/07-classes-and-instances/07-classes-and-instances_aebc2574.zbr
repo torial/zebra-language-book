@@ -1,0 +1,4 @@
+class Connection
+    var open: bool = true
+    cue deinit()
+        .open = false

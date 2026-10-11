@@ -294,7 +294,8 @@ def main()
 > "Cues"): `<`, `<=`, `>`, `>=` and `list.sort()` call `cue compare`, and
 > they do not look at `compareTo`. `Score(1) < Score(2)` does not build
 > with only the interface. If you want both, give the class both; the
-> cue's body can simply `return .compareTo(other)`.
+> cue's body can simply `return .compareTo(other)`. Like every
+> `cue compare`, it needs a `cue equals` on the same class.
 
 ---
 

@@ -1,0 +1,38 @@
+# file: 05_generators.zbr
+# teaches: generators -- a def returning Iter(T) that produces values with yield
+# chapter: 05-Control-Flow
+
+def evens(limit: int): Iter(int)
+    var i = 0
+    while i < limit
+        yield i
+        i = i + 2
+
+def longWords(words: List(str), n: int): Iter(str)
+    for w in words
+        if w.len > n
+            yield w
+
+def naturals(): Iter(int)              # never finishes on its own
+    var n = 1
+    while true
+        yield n
+        n = n + 1
+
+def main()
+    for x in evens(7)
+        print(x)
+
+    var words = ["generator", "is", "lazy", "iteration"]
+    for w in longWords(words, 4)
+        print(w)
+
+    for n in naturals()                # the consumer decides when to stop
+        if n > 3
+            break
+        print("n = ${n}")
+
+    var it = evens(4)                  # next() by hand: one value per call
+    print(it.next()!)
+    print(it.next()!)
+    print(it.next() == nil)            # finished

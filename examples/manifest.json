@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 787,
+  "total_examples": 803,
   "generated": "1790380721.5064442",
   "examples": [
     {
@@ -275,6 +275,13 @@
       "teaches": "list manipulation",
       "project": null,
       "path": "examples/03-collections/03_list_ops.zbr"
+    },
+    {
+      "chapter": "03-Collections",
+      "file": "03_sorting.zbr",
+      "teaches": "sort, sort with a comparator, sortBy, reverse",
+      "project": null,
+      "path": "examples/03-collections/03_sorting.zbr"
     },
     {
       "chapter": "03-Collections",
@@ -635,6 +642,13 @@
     },
     {
       "chapter": "05-Control-Flow",
+      "file": "05_generators.zbr",
+      "teaches": "generators -- a def returning Iter(T) that produces values with yield",
+      "project": null,
+      "path": "examples/05-control-flow/05_generators.zbr"
+    },
+    {
+      "chapter": "05-Control-Flow",
       "file": "05_guards.zbr",
       "teaches": "guard conditions",
       "project": null,
@@ -936,17 +950,38 @@
     },
     {
       "chapter": "07-Classes-and-Instances",
+      "file": "07_cues_money.zbr",
+      "teaches": "the toString, equals, hash and compare cues, and where the compiler calls them",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_cues_money.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_cues_identity.zbr",
+      "teaches": "what == and HashMap keys mean for a class with no cues",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_cues_identity.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_cues_consistency.zbr",
+      "teaches": "compare and equals must agree -- the compiler checks that both exist, not that they agree",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_cues_consistency.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07_cues_iter.zbr",
+      "teaches": "cue iter and cue next -- making a type work in `for x in obj`",
+      "project": null,
+      "path": "examples/07-classes-and-instances/07_cues_iter.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
       "file": "07-classes-and-instances_5bbcf3df.zbr",
       "teaches": null,
       "project": null,
       "path": "examples/07-classes-and-instances/07-classes-and-instances_5bbcf3df.zbr"
-    },
-    {
-      "chapter": "07-Classes-and-Instances",
-      "file": "07-classes-and-instances_2bda6c7b.zbr",
-      "teaches": null,
-      "project": null,
-      "path": "examples/07-classes-and-instances/07-classes-and-instances_2bda6c7b.zbr"
     },
     {
       "chapter": "07-Classes-and-Instances",
@@ -1006,6 +1041,48 @@
     },
     {
       "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_a53d5738.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_a53d5738.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_0f5c703a.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_0f5c703a.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_c61cee68.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_c61cee68.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_ab0af392.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_ab0af392.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_aebc2574.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_aebc2574.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
+      "file": "07-classes-and-instances_a5cd9e0c.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/07-classes-and-instances/07-classes-and-instances_a5cd9e0c.zbr"
+    },
+    {
+      "chapter": "07-Classes-and-Instances",
       "file": "07-classes-and-instances_5df57d66.zbr",
       "teaches": null,
       "project": null,
@@ -1024,6 +1101,13 @@
       "teaches": "struct definition and value semantics",
       "project": null,
       "path": "examples/07b-structs-unions-and-value-types/07b_struct_basic.zbr"
+    },
+    {
+      "chapter": "07b-Structs-Unions-and-Value-Types",
+      "file": "07b_struct_cues.zbr",
+      "teaches": "cues on a struct -- toString, equals, hash, compare, by value",
+      "project": null,
+      "path": "examples/07b-structs-unions-and-value-types/07b_struct_cues.zbr"
     },
     {
       "chapter": "07b-Structs-Unions-and-Value-Types",
@@ -2189,10 +2273,10 @@
     },
     {
       "chapter": "14b-Memory-Management-and-Lifetimes",
-      "file": "14b-memory-management-and-lifetimes_e8865ebd.zbr",
+      "file": "14b-memory-management-and-lifetimes_5bb5bfcb.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_e8865ebd.zbr"
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_5bb5bfcb.zbr"
     },
     {
       "chapter": "14b-Memory-Management-and-Lifetimes",
@@ -2315,10 +2399,10 @@
     },
     {
       "chapter": "14b-Memory-Management-and-Lifetimes",
-      "file": "14b-memory-management-and-lifetimes_be3cf20d.zbr",
+      "file": "14b-memory-management-and-lifetimes_036db410.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_be3cf20d.zbr"
+      "path": "examples/14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_036db410.zbr"
     },
     {
       "chapter": "14c-Concurrency-Channels-and-Threads",
@@ -2644,10 +2728,10 @@
     },
     {
       "chapter": "16-Project-1-CLI-Tool",
-      "file": "16-project-1-cli-tool_40411c20.zbr",
+      "file": "16-project-1-cli-tool_a519a91d.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_40411c20.zbr"
+      "path": "examples/16-project-1-cli-tool/16-project-1-cli-tool_a519a91d.zbr"
     },
     {
       "chapter": "16-Project-1-CLI-Tool",
@@ -3313,6 +3397,13 @@
       "teaches": "capture groups from every match (findAll + groups)",
       "project": null,
       "path": "examples/21-regular-expressions/regex-capture-all.zbr"
+    },
+    {
+      "chapter": "21-Regular-Expressions",
+      "file": "regex-capture-optional.zbr",
+      "teaches": "a group that takes no part in the match is nil; unwrap before use",
+      "project": null,
+      "path": "examples/21-regular-expressions/regex-capture-optional.zbr"
     },
     {
       "chapter": "21-Regular-Expressions",
@@ -4982,6 +5073,13 @@
     },
     {
       "chapter": "ref-cheatsheet-syntax",
+      "file": "ref-cheatsheet-syntax_c641226a.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/ref-cheatsheet-syntax/ref-cheatsheet-syntax_c641226a.zbr"
+    },
+    {
+      "chapter": "ref-cheatsheet-syntax",
       "file": "ref-cheatsheet-syntax_a5d4ff3b.zbr",
       "teaches": null,
       "project": null,
@@ -5164,10 +5262,10 @@
     },
     {
       "chapter": "ref-patterns-common-tasks",
-      "file": "ref-patterns-common-tasks_09515c39.zbr",
+      "file": "ref-patterns-common-tasks_b88e7957.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_09515c39.zbr"
+      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_b88e7957.zbr"
     },
     {
       "chapter": "ref-patterns-common-tasks",
@@ -5353,10 +5451,10 @@
     },
     {
       "chapter": "ref-patterns-common-tasks",
-      "file": "ref-patterns-common-tasks_106b9ef4.zbr",
+      "file": "ref-patterns-common-tasks_464c82aa.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_106b9ef4.zbr"
+      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_464c82aa.zbr"
     },
     {
       "chapter": "ref-patterns-common-tasks",
@@ -5381,6 +5479,13 @@
     },
     {
       "chapter": "ref-patterns-common-tasks",
+      "file": "ref-patterns-common-tasks_4c9b2942.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_4c9b2942.zbr"
+    },
+    {
+      "chapter": "ref-patterns-common-tasks",
       "file": "ref-patterns-common-tasks_fd6a19cb.zbr",
       "teaches": null,
       "project": null,
@@ -5402,10 +5507,10 @@
     },
     {
       "chapter": "ref-patterns-common-tasks",
-      "file": "ref-patterns-common-tasks_ecc75b64.zbr",
+      "file": "ref-patterns-common-tasks_ecfe4d30.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_ecc75b64.zbr"
+      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_ecfe4d30.zbr"
     },
     {
       "chapter": "ref-patterns-common-tasks",
@@ -5462,6 +5567,13 @@
       "teaches": null,
       "project": null,
       "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_7a76a260.zbr"
+    },
+    {
+      "chapter": "ref-patterns-common-tasks",
+      "file": "ref-patterns-common-tasks_e2c1267c.zbr",
+      "teaches": null,
+      "project": null,
+      "path": "examples/ref-patterns-common-tasks/ref-patterns-common-tasks_e2c1267c.zbr"
     },
     {
       "chapter": "ref-patterns-common-tasks",

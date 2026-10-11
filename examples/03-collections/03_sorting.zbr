@@ -1,0 +1,20 @@
+# file: 03_sorting.zbr
+# teaches: sort, sort with a comparator, sortBy, reverse
+# chapter: 03-Collections
+
+def main()
+    var nums = [42, 7, 19, 3]
+    nums.sort()                            # ascending, in place
+    print(nums.at(0))
+    print(nums.at(3))
+
+    nums.sort(def(a: int, b: int) = a > b) # comparator: true when a goes first
+    print(nums.at(0))
+
+    var names = ["mallory", "bob", "alice"]
+    names.sort()                           # strings: lexicographic
+    print(names.at(0))
+    names.sortBy(def(s: str) = s.len)      # one-argument key: shortest first
+    print(names.at(0))
+    names.reverse()
+    print(names.at(0))

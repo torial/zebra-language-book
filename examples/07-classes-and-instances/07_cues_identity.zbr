@@ -1,0 +1,20 @@
+# file: 07_cues_identity.zbr
+# teaches: what == and HashMap keys mean for a class with no cues
+# chapter: 07-Classes-and-Instances
+
+class Ticket
+    var seat: int
+
+    cue init(seat: int)
+        .seat = seat
+
+def main()
+    var a = Ticket(12)
+    var b = Ticket(12)
+    var c = a
+    print(a == b)                      # two objects
+    print(a == c)                      # one object, two names
+    var holders: HashMap(Ticket, str) = HashMap()
+    holders.put(a, "Ann")
+    holders.put(b, "Bob")
+    print(holders.count())             # keyed by identity

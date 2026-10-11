@@ -1,0 +1,48 @@
+# file: 07_cues_money.zbr
+# teaches: the toString, equals, hash and compare cues, and where the compiler calls them
+# chapter: 07-Classes-and-Instances
+
+class Money
+    var cents: int
+
+    cue init(cents: int)
+        .cents = cents
+
+    cue toString(): str
+        var c = .cents % 100
+        var pad = if(c < 10, "0", "")
+        return "${.cents / 100}.${pad}${c}"
+
+    cue equals(other: Money): bool
+        return .cents == other.cents
+
+    cue hash(): int
+        return .cents
+
+    cue compare(other: Money): int
+        return .cents - other.cents
+
+def main()
+    var price = Money(1505)
+    print(price)                       # toString
+    print("Total: ${price}")           # toString again, inside ${}
+
+    var same = Money(1505)
+    print(price == same)               # equals: same value, two objects
+    print(price != Money(99))
+
+    print(price < Money(2000))         # compare
+    var prices = List(Money)()
+    prices.add(Money(2000))
+    prices.add(price)
+    prices.add(Money(5))
+    prices.sort()                      # compare, once per comparison
+    print(prices.at(0))
+
+    var notes: HashMap(Money, str) = HashMap()
+    notes.put(price, "lunch")
+    print(notes.get(same)!)            # hash finds the slot, equals confirms it
+    var seen: Set(Money) = Set()
+    seen.add(price)
+    seen.add(same)
+    print(seen.count())
