@@ -451,7 +451,7 @@ class Person
     var name: str = ""
     var age: int = 0
     
-    def init(name: str, age: int)
+    cue init(name: str, age: int)
         this.name = name
         this.age = age
     
@@ -505,6 +505,45 @@ class Math
             return a + b
 
 var result = Math.add(2, 3)  # 5
+```
+
+### Make a Class a Value (print, `==`, keys, sort)
+
+Cues are the methods the compiler calls (Chapter 07, "Cues"). Without
+them, `==` on a class is identity, a `Set` or `HashMap` keys it by
+identity, and `sort()` does not build.
+
+```zebra
+class Point
+    var x: int
+    var y: int
+
+    cue init(x: int, y: int)
+        .x = x
+        .y = y
+
+    cue toString(): str
+        return "(${.x}, ${.y})"
+
+    cue equals(other: Point): bool
+        return .x == other.x and .y == other.y
+
+    cue hash(): int                    # hash the fields equals compares
+        return .x * 31 + .y
+
+    cue compare(other: Point): int     # by x, then by y
+        if .x != other.x
+            return .x - other.x
+        return .y - other.y
+
+def main()
+    var visited: Set(Point) = Set()
+    visited.add(Point(1, 2))
+    visited.add(Point(1, 2))
+    print(visited.count())             # 1
+    var path = [Point(3, 0), Point(1, 2), Point(1, 1)]
+    path.sort()
+    print(path.at(0))                  # (1, 1)
 ```
 
 ---
@@ -656,6 +695,26 @@ for item in items
         continue
     
     print(item)
+```
+
+### Lazy Sequence (Generator)
+
+A `def` returning `Iter(T)` produces values one `yield` at a time, so the
+caller can stop early and nothing is collected first (Chapter 05,
+"Generators"). For your own iterable class, see `cue iter` / `cue next`
+in Chapter 07.
+
+```zebra
+def readTokens(text: str): Iter(str)
+    var parts: List(str) = text.split(",")
+    for p in parts
+        var t = p.trim()
+        if t.len > 0
+            yield t
+
+def main()
+    for tok in readTokens("a, b,, c")
+        print(tok)                     # a, b, c (one per line)
 ```
 
 ---

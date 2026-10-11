@@ -3,7 +3,7 @@
 **Audience:** All (with beginner sidebar)  
 **Time:** 120 minutes  
 **Prerequisites:** 01-06  
-**You'll learn:** Define classes, instantiate objects, instance methods, fields, initialization
+**You'll learn:** Define classes, instantiate objects, instance methods, fields, initialization, cues (the methods the compiler calls for printing, `==`, hashing, ordering and `for`)
 
 ---
 
@@ -213,6 +213,321 @@ layout containers (Chapter 14b).
 
 ---
 
+## Cues — Methods the Compiler Calls
+
+You have already written one cue: `cue init`, the constructor. The word
+`cue` marks a method that the **compiler** calls for you, at a place the
+language defines. A `def` is a method that *your* code calls.
+
+The set of cues is **closed**. There are exactly seven, and each one has
+a call site:
+
+| Cue | Shape | The compiler calls it for |
+|---|---|---|
+| `cue init(...)` | any parameters, no return type | `T(...)` (construction) |
+| `cue toString(): str` | no parameters | `print(x)` and `"${x}"` |
+| `cue equals(other: T): bool` | one parameter | `x == y`, `x != y` |
+| `cue hash(): int` | no parameters; needs `cue equals` | `x` as a `HashMap(T, V)` key or a `Set(T)` element |
+| `cue compare(other: T): int` | negative, zero, or positive | `<` `<=` `>` `>=`, and `list.sort()` |
+| `cue iter(): I` | `I` is a type that declares `cue next` | `for x in obj` |
+| `cue next(): E?` | returns `nil` when there is nothing left | `for x in obj`, on `obj` itself or on what `iter()` returned |
+
+A cue is still a method, so you can call it yourself (`a.equals(b)`,
+`x.toString()`, `it.next()`). The `cue` keyword adds two things: the
+compiler promises to call it at that site, and it checks the signature
+against the shape in the table when you declare it, not later.
+
+### If you know Python
+> Cues are Python's dunder methods without the underscores: `__init__`,
+> `__str__`, `__eq__`, `__hash__`, `__lt__` and friends, `__iter__`,
+> `__next__`. Two differences. The set is closed, so you cannot invent a
+> cue the way you can invent `__frobnicate__`. And one `compare` returning
+> negative/zero/positive stands in for all four ordering operators.
+
+### Printing, equality, hashing, ordering
+
+```zebra
+# file: 07_cues_money.zbr
+# teaches: the toString, equals, hash and compare cues, and where the compiler calls them
+# chapter: 07-Classes-and-Instances
+
+class Money
+    var cents: int
+
+    cue init(cents: int)
+        .cents = cents
+
+    cue toString(): str
+        var c = .cents % 100
+        var pad = if(c < 10, "0", "")
+        return "${.cents / 100}.${pad}${c}"
+
+    cue equals(other: Money): bool
+        return .cents == other.cents
+
+    cue hash(): int
+        return .cents
+
+    cue compare(other: Money): int
+        return .cents - other.cents
+
+def main()
+    var price = Money(1505)
+    print(price)                       # toString
+    print("Total: ${price}")           # toString again, inside ${}
+
+    var same = Money(1505)
+    print(price == same)               # equals: same value, two objects
+    print(price != Money(99))
+
+    print(price < Money(2000))         # compare
+    var prices = List(Money)()
+    prices.add(Money(2000))
+    prices.add(price)
+    prices.add(Money(5))
+    prices.sort()                      # compare, once per comparison
+    print(prices.at(0))
+
+    var notes: HashMap(Money, str) = HashMap()
+    notes.put(price, "lunch")
+    print(notes.get(same)!)            # hash finds the slot, equals confirms it
+    var seen: Set(Money) = Set()
+    seen.add(price)
+    seen.add(same)
+    print(seen.count())
+```
+
+**Output:**
+```
+15.05
+Total: 15.05
+true
+true
+true
+0.05
+lunch
+1
+```
+
+**What happened here:**
+- `print(price)` and `"Total: ${price}"` both called `toString`.
+- `price == same` called `equals`. `price` and `same` are two separate
+  objects, and they compare equal because their *values* match.
+- `<` and `sort()` called `compare`. A negative result means "this one
+  comes first", so `sort()` puts the smallest amount at index 0.
+- The `HashMap` called `hash` to find the slot and `equals` to confirm
+  the key. That is why `notes.get(same)` finds the entry stored under
+  `price`, and why the `Set` ends up holding one element, not two.
+
+### Without cues, a class has identity
+
+A class is a reference type: a variable holds a reference to an object,
+and `var c = a` gives the same object a second name. With no
+`cue equals`, `==` asks whether two names refer to the **same object**.
+With no `cue hash`, a `HashMap` keys a class by identity too.
+
+```zebra
+# file: 07_cues_identity.zbr
+# teaches: what == and HashMap keys mean for a class with no cues
+# chapter: 07-Classes-and-Instances
+
+class Ticket
+    var seat: int
+
+    cue init(seat: int)
+        .seat = seat
+
+def main()
+    var a = Ticket(12)
+    var b = Ticket(12)
+    var c = a
+    print(a == b)                      # two objects
+    print(a == c)                      # one object, two names
+    var holders: HashMap(Ticket, str) = HashMap()
+    holders.put(a, "Ann")
+    holders.put(b, "Bob")
+    print(holders.count())             # keyed by identity
+```
+
+**Output:**
+```
+false
+true
+2
+```
+
+Identity is often what you want for an object that *is* something: a
+connection, a service, a game entity. Add `equals` (and `hash`, if it will
+be a key) when two separate objects with the same contents should count
+as the same value, as `Money` does. Ordering has no default at all: `<`
+and `sort()` on a class without `cue compare` do not build.
+
+### Keep the cues consistent
+
+The compiler checks each cue's *shape*. It cannot check that your cues
+agree with each other, so that part is up to you:
+
+- **Equal values must hash equally.** If `a == b`, then `a.hash()` must
+  equal `b.hash()`, or a `HashMap` will look in the wrong slot and miss a
+  key it holds. The safe rule: hash only fields that `equals` compares.
+  The compiler enforces half of this: `cue hash` without `cue equals` is
+  refused.
+- **`compare` returns 0 exactly when `equals` is true.** Otherwise the
+  operators disagree. A class with `compare` but no `equals`:
+
+```zebra
+# file: 07_cues_consistency.zbr
+# teaches: compare and equals must agree
+# chapter: 07-Classes-and-Instances
+
+class Grade
+    var score: int
+
+    cue init(score: int)
+        .score = score
+
+    cue compare(other: Grade): int
+        return .score - other.score
+
+def main()
+    var a = Grade(90)
+    var b = Grade(90)
+    print(a <= b)
+    print(a >= b)
+    print(a == b)
+```
+
+**Output:**
+```
+true
+true
+false
+```
+
+`a <= b` and `a >= b` both hold, yet `a == b` is false, because without
+`cue equals`, `==` is still asking whether `a` and `b` are the same
+object. Give `Grade` a `cue equals` that compares `score` and all three
+agree.
+
+### Iteration: `cue iter` and `cue next`
+
+`for x in obj` works on lists, ranges and maps (Chapters 03 and 05), and
+on any type that declares these cues:
+
+- `cue next(): E?` hands out the next element, or `nil` when there are no
+  more. A type with `cue next` is its own iterator.
+- `cue iter(): I` returns a separate iterator object, whose type `I`
+  declares `cue next`. Each `for` loop calls `iter()` again and gets a
+  fresh one.
+
+```zebra
+# file: 07_cues_iter.zbr
+# teaches: cue iter and cue next -- making a type work in `for x in obj`
+# chapter: 07-Classes-and-Instances
+
+class Countdown
+    var start: int
+
+    cue init(start: int)
+        .start = start
+
+    cue iter(): CountdownIter          # a fresh iterator for each `for`
+        return CountdownIter(.start)
+
+class CountdownIter
+    var n: int
+
+    cue init(n: int)
+        .n = n
+
+    cue next(): int?                   # nil means "no more"
+        if .n <= 0
+            return nil
+        .n = .n - 1
+        return .n + 1
+
+class Ticker                           # its own iterator: `cue next`, no `cue iter`
+    var left: int
+
+    cue init(left: int)
+        .left = left
+
+    cue next(): int?
+        if .left <= 0
+            return nil
+        .left = .left - 1
+        return .left + 1
+
+def main()
+    var launch = Countdown(3)
+    for n in launch
+        print("launch ${n}")
+    for n in launch                    # iter() runs again: a fresh countdown
+        print("again ${n}")
+
+    var t = Ticker(2)
+    for n in t
+        print("tick ${n}")
+    for n in t                         # t is used up: the body never runs
+        print("never ${n}")
+    else
+        print("ticker exhausted")
+
+    var manual = Ticker(1)
+    print(manual.next()!)              # next() is callable by hand, too
+    print(manual.next() == nil)
+```
+
+**Output:**
+```
+launch 3
+launch 2
+launch 1
+again 3
+again 2
+again 1
+tick 2
+tick 1
+ticker exhausted
+1
+true
+```
+
+The two shapes behave differently the second time round. `Countdown`
+can be walked any number of times, because each loop asks it for a new
+iterator. `Ticker` is used up after one pass, because the loop consumes
+the object itself. Use `cue iter` for something that *holds* its
+elements (a collection), and a lone `cue next` for something that
+*produces* them once (a stream of tokens, lines from a reader).
+
+Only the `cue` spelling makes a type iterable: a `def next()` or
+`def iter()` is an ordinary method that `for` does not look at. (A
+debugger client's `next()` is a command, not an iterator, which is why
+the two spellings are kept apart.)
+
+For most lazy sequences you will not write the iterator class at all. A
+**generator** (Chapter 05), a `def` that returns `Iter(T)` and produces
+values with `yield`, is compiled into a class with `cue next` for you.
+
+### What is not a cue
+
+- **`using` and `allocate` call ordinary `def`s.** `using x` calls
+  `def begin()` and `def end()` (Chapter 14b), and `allocate` uses an
+  allocator source's `def allocator()` and `def deinit()`. Those are
+  spelled `def`; `cue begin` is refused as an unknown cue.
+- **There is no destructor.** Zebra 1.0 has no `cue deinit`; the compiler
+  refuses it. Memory is reclaimed by the arena that owns it (Chapter 14b),
+  and anything with a release step (a file, a lock, a layout group) goes
+  in a `using` block.
+- **`len` and `contains` are not cues.** A `def len(): int` on your type
+  is an ordinary method; nothing in the language calls it for you.
+- **There is no operator overloading.** `equals` gives you `==`, and
+  `compare` gives you `<` `<=` `>` `>=`; nothing gives you `+`, `*`, or
+  indexing with `obj[i]` on your own types. Write a named method
+  (`a.plus(b)`, `bag.at(i)`).
+
+---
+
 ## `@derive` — Auto-Generated Methods
 
 For `struct` declarations, `@derive(Debug, Eq, Hash)` instructs the
@@ -245,31 +560,13 @@ The traits are independent — derive any subset. Without `@derive`, you'd
 write the cues by hand; with it, the compiler keeps them in sync as
 you add or remove fields. A hand-written cue wins over the derived one.
 
-These three are **cues** — methods the compiler calls by name (for
-`print`, string interpolation, `==`, and hashing) — so they are always
-spelled `cue`, never `def`. `def toString(): str` is refused with a
-message naming the `cue` form.
+These three are the `toString`, `equals` and `hash` cues from the
+previous section, written for you. `@derive` does not write `compare`,
+`iter` or `next`; write those by hand.
 
-`@derive` is **struct-only**. For classes, write the cues explicitly
-— class identity is reference-based and rarely matches the field-wise
-default:
-
-```zebra
-class Money
-    var cents: int
-    cue init(cents: int)
-        .cents = cents
-    cue toString(): str
-        return "${.cents / 100}.${.cents % 100}"
-    cue equals(other: Money): bool
-        return .cents == other.cents
-
-def main()
-    var a = Money(250)
-    print(a)                  # 2.50  (print calls toString)
-    print(a == Money(250))    # true  (== calls equals: value, not identity)
-    print(a == Money(99))     # false
-```
+`@derive` is **struct-only**. For a class, write the cues explicitly, as
+`Money` does above. A class has identity, and the field-by-field
+default is rarely what its equality should mean.
 
 ---
 
@@ -412,6 +709,91 @@ class UserBuilder
 >         count = 0  # Only this instance
 > ```
 
+> ❌ **Mistake:** Writing a cue as a `def`
+>
+> ```zebra
+> class Widget
+>     var n: int
+>     cue init(n: int)
+>         .n = n
+>     def toString(): str
+>         return "Widget(${.n})"
+> ```
+>
+> 💡 **Why it's wrong:** `toString`, `equals`, `hash` and `compare` are found by
+> name, so there is one spelling for each. The compiler refuses the `def` and names
+> the fix:
+>
+> ```
+> error: `toString` is a cue -- the compiler calls it for print and string interpolation -- so it is written `cue toString(): str`, not `def`
+> ```
+>
+> The constructor is the same: `def init(...)` is refused with "the constructor is
+> written `cue init(...)`, not `def init`".
+>
+> ✅ **Better:** `cue toString(): str`
+
+> ❌ **Mistake:** A `hash` with no `equals`
+>
+> ```zebra
+> class Key
+>     var id: int
+>     cue init(id: int)
+>         .id = id
+>     cue hash(): int
+>         return .id
+> ```
+>
+> 💡 **Why it's wrong:** a key is *found* by its hash and *confirmed* by `equals`. On
+> its own, the hash would quietly leave the key compared by identity:
+>
+> ```
+> error: `cue hash` needs `cue equals` on the same type (a HashMap key is looked up by hash, then confirmed by equals)
+> ```
+>
+> ✅ **Better:** add `cue equals(other: Key): bool` comparing the same fields the
+> hash uses.
+
+> ❌ **Mistake:** A cue with the wrong shape
+>
+> ```zebra
+> class Ver
+>     var n: int
+>     cue init(n: int)
+>         .n = n
+>     cue compare(other: Ver): bool    # "is this less?" -- the wrong question
+>         return .n < other.n
+> ```
+>
+> 💡 **Why it's wrong:** `compare` answers "before, same, or after" with one int, so
+> one cue can drive all four operators and `sort()`. The shape is checked where you
+> declare it:
+>
+> ```
+> error: `cue compare` takes the other value and returns int (negative, zero, positive): `cue compare(other: Ver): int`
+> ```
+>
+> ✅ **Better:** `return .n - other.n` from a `cue compare(other: Ver): int`.
+
+> ❌ **Mistake:** Inventing a cue (or looking for a destructor)
+>
+> ```zebra
+> class Connection
+>     var open: bool = true
+>     cue deinit()
+>         .open = false
+> ```
+>
+> 💡 **Why it's wrong:** the seven cues are the whole set. Anything else is refused,
+> `deinit` included:
+>
+> ```
+> error: unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next (a method the compiler calls for you; anything else is a `def`)
+> ```
+>
+> ✅ **Better:** for a release step, give the class `def begin()` / `def end()` and
+> use it in a `using` block (Chapter 14b). For any other method, write `def`.
+
 ---
 
 ## Exercises
@@ -514,7 +896,9 @@ def main()
 ## Key Takeaways
 
 - **Classes group data and behavior** — Fields + methods
-- **Instances are copies** — Each `Person()` is independent
+- **Instances are references** — Each `Person()` is a new object, but `var b = a` gives the *same* object a second name
+- **Cues are the methods the compiler calls** — `init`, `toString`, `equals`, `hash`, `compare`, `iter`, `next`; the set is closed, and there is no `cue deinit`
+- **`==` on a class is identity** unless the class has `cue equals`; a `HashMap` key needs `cue hash` *and* `cue equals`, and they must agree
 - **Instance methods** work on specific objects
 - **Shared methods** belong to the class, not instances
 - **Initialize fields** — Don't leave them undefined

@@ -131,7 +131,8 @@ compiler refuses `def toString()` and asks for `cue toString()`):
 
 **Notes:**
 
-- **`@derive` is struct-only.** Classes have reference semantics; field-wise equality almost never matches what callers want for classes. For class methods, write them by hand.
+- **`@derive` is struct-only.** Classes have reference semantics; field-wise equality almost never matches what callers want for classes. For a class, write the cues by hand (Chapter 07, "Cues").
+- `@derive` never writes `compare`, `iter` or `next`; those cues are always hand-written.
 - The generated methods follow the field declaration order. Adding/removing fields automatically updates the generated implementations.
 - If you write your own `cue toString` / `cue equals` / `cue hash`, yours wins for that trait.
 - `Hash` needs every field to be hashable. A `float` field is not: calling `hash()` on such a struct fails to build (today with Zig's `unable to hash type f64`).

@@ -580,6 +580,84 @@ var circle = Circle()  # OK
 
 ---
 
+## Cue Errors
+
+Cues are the seven methods the compiler calls for you: `init`,
+`toString`, `equals`, `hash`, `compare`, `iter`, `next` (Chapter 07,
+"Cues"). Their names and shapes are checked where you declare them.
+
+### "`toString` is a cue -- ... so it is written `cue toString(): str`, not `def`"
+
+**What it means:** you declared a cue with `def`. `toString`, `equals`,
+`hash` and `compare` are found by name, so each has one spelling. The
+constructor has the same rule: "the constructor is written
+`cue init(...)`, not `def init`".
+
+**Solution:** change `def` to `cue`. (`def next` and `def iter` are *not*
+refused, because they are legitimate ordinary method names. They just
+don't make a type iterable; see below.)
+
+---
+
+### "unknown cue 'deinit': the cues are init, toString, equals, hash, compare, iter, next"
+
+**What it means:** the name after `cue` is not one of the seven. The set
+is closed. `deinit` in particular is not a cue: Zebra 1.0 has no
+destructor.
+
+**Solution:** write an ordinary `def`. For cleanup at the end of a block,
+give the type `def begin()` and `def end()` and use `using` (Chapter 14b).
+
+---
+
+### "`cue hash` needs `cue equals` on the same type"
+
+**What it means:** a `HashMap` key or `Set` element is found by its hash
+and *confirmed* by `equals`. A hash on its own would leave the key
+compared by identity.
+
+**Solution:** add `cue equals(other: T): bool`, comparing the same fields
+the hash uses.
+
+---
+
+### "`cue compare` takes the other value and returns int (negative, zero, positive)"
+
+**What it means:** the cue's signature does not have the required shape.
+The message ends with the shape to write, e.g.
+`cue compare(other: Money): int`. Its siblings read the same way:
+"`cue toString` takes no parameters and returns str", "`cue iter` takes
+no parameters and returns a type that declares `cue next(): T?`".
+
+**Solution:** match the shape in the message. For `compare`, return
+`.field - other.field` rather than a `bool`.
+
+---
+
+### `operator < not allowed for type '*main._zbr_ty_Money'`
+
+**What it means:** you used `<`, `<=`, `>`, `>=` or `list.sort()` on a
+class with no `cue compare`. This one is reported by the Zig build, not
+by Zebra's front end, so it names the generated type (`main` is the
+module, `Money` the class) and points into `zebra_rt.zig`. The same shape with `==` (`operator == not allowed for
+type 'Point'`) means a **struct** with no `equals`.
+
+**Solution:** give the type `cue compare(other: T): int` (or, for `==` on
+a struct, `cue equals` or `@derive(Eq)`). To sort a list once without
+changing the class, pass a comparator: `xs.sort(def(a: T, b: T) = a.n < b.n)`.
+
+---
+
+### `no field named 'items' in struct 'Ticker'` on a `for` line
+
+**What it means:** `for x in obj` was given a type whose `next` or `iter`
+is a `def`. Only `cue next` / `cue iter` make a type iterable, so the
+loop treated `obj` as a list. This is also reported by the Zig build.
+
+**Solution:** spell them `cue next(): E?` and `cue iter(): I`.
+
+---
+
 ## File I/O Errors
 
 ### `thread N panic: File.read error`

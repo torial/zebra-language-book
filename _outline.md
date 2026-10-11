@@ -111,16 +111,16 @@ APPENDICES (4 chapters, reference)
 |---------|--------|----------|
 | **01** | Installation, tooling, first program | None |
 | **02** | Types (int, float, bool, str), variables, type inference | Simple values |
-| **03** | List, HashMap, Set, iteration, indexing | Collections |
+| **03** | List, HashMap, Set, iteration, indexing, sorting | Collections |
 | **04** | Functions, parameters, return values, closures, captures | Utilities |
-| **05** | if/else, `branch` pattern matching, for, while, break, continue, early returns | Control logic |
+| **05** | if/else, `branch` pattern matching, for, while, break, continue, generators (`yield`), early returns | Control logic |
 | **06** | String literals, interpolation, methods, Unicode, regex intro | Text processing |
 
 ### Part 2: Objects & Interfaces
 
 | Chapter | Covers | Projects |
 |---------|--------|----------|
-| **07** | Class definition, instantiation, methods, `static` members, `with`, `@derive` | OOP basics |
+| **07** | Class definition, instantiation, methods, `static` members, `with`, cues (`toString`, `equals`, `hash`, `compare`, `iter`, `next`), `@derive` | OOP basics |
 | **07b** | Structs (value types), unions, `^T` heap indirection, `except`, `branch` | Value semantics |
 | **08** | Interface definition, protocol conformance, polymorphism | Contracts |
 | **09** | Why Zebra has no inheritance, mixins (`adds`), composition, polymorphism via interfaces | Reuse |

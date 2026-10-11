@@ -296,6 +296,100 @@ def main()
         print(num)  # Prints odd numbers only
 ```
 
+`for` walks lists, ranges and maps. It also walks any type of your own
+that declares the iteration cues, `cue iter` / `cue next`; Chapter 07
+("Cues") shows how. The quickest way to get such a type is to let the
+compiler write it, with a generator.
+
+### Generators: Lazy Sequences with `yield`
+
+A top-level `def` whose return type is `Iter(T)` is a **generator**. Its
+body does not run when you call it. It runs a step at a time as the
+caller asks for values: each `yield v` hands one value to the loop and
+pauses, and the next request resumes the body just after the `yield`.
+Nothing is collected into a list first.
+
+```zebra
+# file: 05_generators.zbr
+# teaches: generators -- a def returning Iter(T) that produces values with yield
+# chapter: 05-Control-Flow
+
+def evens(limit: int): Iter(int)
+    var i = 0
+    while i < limit
+        yield i
+        i = i + 2
+
+def longWords(words: List(str), n: int): Iter(str)
+    for w in words
+        if w.len > n
+            yield w
+
+def naturals(): Iter(int)              # never finishes on its own
+    var n = 1
+    while true
+        yield n
+        n = n + 1
+
+def main()
+    for x in evens(7)
+        print(x)
+
+    var words = ["generator", "is", "lazy", "iteration"]
+    for w in longWords(words, 4)
+        print(w)
+
+    for n in naturals()                # the consumer decides when to stop
+        if n > 3
+            break
+        print("n = ${n}")
+
+    var it = evens(4)                  # next() by hand: one value per call
+    print(it.next()!)
+    print(it.next()!)
+    print(it.next() == nil)            # finished
+```
+
+**Output:**
+```
+0
+2
+4
+6
+generator
+iteration
+n = 1
+n = 2
+n = 3
+0
+2
+true
+```
+
+**What happened here:**
+- `evens(7)` produced 0, 2, 4, 6 one at a time; the loop's `i` lives
+  across the pauses.
+- `naturals()` would run forever on its own. It is safe because the
+  caller stops asking (`break`), and the generator never computes a value
+  nobody asked for.
+- A generator is an iterator, so `it.next()` gives the next value, and
+  `nil` once the body has finished.
+
+The rules:
+- `yield v` produces a value. A bare `return` finishes early; a generator
+  cannot `return` a value ("a generator finishes with a bare `return`; it
+  produces values with `yield`").
+- `Iter(T)` is only a **return type**. Bind the call (`var it = evens(4)`)
+  and let the type be inferred; `var it: Iter(int) = ...` is refused.
+- Generators are top-level `def`s. A method cannot `yield` (yet).
+- A `yield` inside `branch`, `try`, `with`, `using` or `allocate` is
+  refused by name; restructure with an `if` chain. A `for` that yields
+  can walk a `List`, a range, or another iterable (a generator included).
+
+> **Under the hood:** the compiler turns a generator into a class with
+> `cue next`, the same shape you would write by hand in Chapter 07, with
+> the function's locals as fields.
+
 ---
 
 ## Guards
@@ -593,7 +687,8 @@ def main()
 - **Inline if** (`if cond: stmt`) compresses a simple branch to one line
 - **If-expression** (`var x = if cond: a else: b`) produces a value — `else:` required; chained `else if` not supported in expression position
 - **match** (branch) is better for many cases
-- **for** loops iterate over collections
+- **for** loops iterate over collections, ranges, and anything with `cue iter` / `cue next`
+- **Generators** (`def f(): Iter(T)` with `yield`) produce a sequence lazily, one value per request
 - **while** loops repeat based on conditions
 - **break** exits loops, **continue** skips iterations
 - **Early return** makes functions clearer

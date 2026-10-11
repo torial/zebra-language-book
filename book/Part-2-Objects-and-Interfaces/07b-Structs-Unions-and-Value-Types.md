@@ -55,6 +55,75 @@ def main()
 
 Rule of thumb: if you'd never ask "is this the *same* object?", use a struct.
 
+### Cues on structs
+
+A struct takes the same cues as a class (Chapter 07, "Cues"): `toString`
+for printing, `equals` for `==`, `hash` for use as a key, `compare` for
+`<` and `sort()`, `iter` / `next` for `for`. They work **by value**.
+There is no identity to fall back on, so `==` on a struct needs an
+`equals`, written by hand or by `@derive(Eq)`.
+
+```zebra
+# file: 07b_struct_cues.zbr
+# teaches: cues on a struct -- toString, equals, hash, compare, by value
+# chapter: 07b-Structs-Unions
+
+struct Version
+    var major: int
+    var minor: int
+
+    cue toString(): str
+        return "v${.major}.${.minor}"
+
+    cue equals(other: Version): bool
+        return .major == other.major and .minor == other.minor
+
+    cue hash(): int
+        return .major * 1000 + .minor
+
+    cue compare(other: Version): int
+        if .major != other.major
+            return .major - other.major
+        return .minor - other.minor
+
+def main()
+    var installed = Version(major: 1, minor: 10)
+    var wanted = Version(major: 1, minor: 2)
+    print(installed)
+    print(installed > wanted)          # compare: 10 > 2, not "1.10" < "1.2"
+
+    var releases = List(Version)()
+    releases.add(installed)
+    releases.add(wanted)
+    releases.add(Version(major: 0, minor: 9))
+    releases.sort()
+    for r in releases
+        print(r)
+
+    var copy = installed               # a struct copy...
+    print(copy == installed)           # ...is equal by value
+    var seen: Set(Version) = Set()
+    seen.add(installed)
+    seen.add(copy)
+    print(seen.count())
+```
+
+**Output:**
+```
+v1.10
+true
+v0.9
+v1.2
+v1.10
+true
+1
+```
+
+`@derive(Debug, Eq, Hash)` (Chapter 07) writes `toString`, `equals` and
+`hash` field by field. It does not write `compare`; write that one
+yourself, as `Version` does. A hand-written cue wins over a derived one,
+so you can derive `Eq, Hash` and still write your own `toString`.
+
 ---
 
 ## `except` — Struct Update Copies
@@ -370,6 +439,7 @@ Extend the mini AST to support multiplication. Add a `mul` variant and handle it
 ## Key Takeaways
 
 - **`struct`** = value type; assignment copies the whole value
+- **Cues work on structs by value** — `==` on a struct needs `equals` (hand-written or `@derive(Eq)`); `compare` is always hand-written
 - **`union`** = tagged union; holds one variant at a time
 - **`branch`** = pattern matching on unions, enums, and strings
 - **`except`** = create a struct copy with specific fields overridden

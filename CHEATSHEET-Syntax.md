@@ -52,6 +52,55 @@ var person = Person("Alice", 30)
 
 ---
 
+## Cues (methods the compiler calls)
+
+Seven, and only seven: `init`, `toString`, `equals`, `hash`, `compare`,
+`iter`, `next`. Anything else is a `def`. There is no `cue deinit`; use
+`using` for a release step. Writing a cue as `def` (`def toString`) is
+refused. Full story: Chapter 07, "Cues".
+
+```zebra
+class Money
+    var cents: int
+    cue init(cents: int)                # Money(5)
+        .cents = cents
+    cue toString(): str                 # print(m), "${m}"
+        return "${.cents}c"
+    cue equals(other: Money): bool      # ==, !=
+        return .cents == other.cents
+    cue hash(): int                     # HashMap key / Set element (needs equals)
+        return .cents
+    cue compare(other: Money): int      # < <= > >=, list.sort()
+        return .cents - other.cents
+
+class Count3
+    var n: int = 3
+    cue next(): int?                    # for x in obj; nil = done
+        if .n == 0: return nil
+        .n = .n - 1
+        return .n + 1
+    # cue iter(): I -- return an object whose type has `cue next` (fresh per loop)
+
+def evens(limit: int): Iter(int)        # generator: the compiler writes `cue next`
+    var i = 0
+    while i < limit
+        yield i
+        i = i + 2
+
+def main()
+    print(Money(5) < Money(7))          # true
+    for x in Count3()
+        print(x)                        # 3 2 1
+    for e in evens(5)
+        print(e)                        # 0 2 4
+```
+
+Without `equals`, `==` on a class is identity. Without `compare`, `<` and
+`sort()` on a class do not build. Structs take the same cues, by value;
+`@derive(Debug, Eq, Hash)` writes the first three.
+
+---
+
 ## Interfaces
 
 ```zebra

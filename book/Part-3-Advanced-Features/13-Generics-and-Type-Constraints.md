@@ -288,6 +288,14 @@ def main()
         print("Max: ${max.value}")  # Max: 20
 ```
 
+> **`Comparable(T)` is not `cue compare`.** The interface above is a
+> constraint *you* declare and *you* call (`item.compareTo(max)`). The
+> language's own ordering protocol is the `compare` cue (Chapter 07,
+> "Cues"): `<`, `<=`, `>`, `>=` and `list.sort()` call `cue compare`, and
+> they do not look at `compareTo`. `Score(1) < Score(2)` does not build
+> with only the interface. If you want both, give the class both; the
+> cue's body can simply `return .compareTo(other)`.
+
 ---
 
 ## Type Aliases and Refinement Types

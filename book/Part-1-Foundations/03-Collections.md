@@ -83,6 +83,47 @@ def main()
     print(nums.count())  # 0
 ```
 
+### Sorting
+
+```zebra
+# file: 03_sorting.zbr
+# teaches: sort, sort with a comparator, sortBy, reverse
+# chapter: 03-Collections
+
+def main()
+    var nums = [42, 7, 19, 3]
+    nums.sort()                            # ascending, in place
+    print(nums.at(0))
+    print(nums.at(3))
+
+    nums.sort(def(a: int, b: int) = a > b) # comparator: true when a goes first
+    print(nums.at(0))
+
+    var names = ["mallory", "bob", "alice"]
+    names.sort()                           # strings: lexicographic
+    print(names.at(0))
+    names.sortBy(def(s: str) = s.len)      # one-argument key: shortest first
+    print(names.at(0))
+    names.reverse()
+    print(names.at(0))
+```
+
+**Output:**
+```
+3
+42
+42
+alice
+bob
+mallory
+```
+
+All four reorder the list in place. Numbers and strings know
+their own order. A list of your own class sorts with plain `sort()` once
+the class declares `cue compare`, the method `sort()` and `<` call to
+order two values (Chapter 07, "Cues"). Until then, pass a comparator or
+a key.
+
 ### Iteration Patterns
 
 ```zebra
@@ -171,6 +212,13 @@ def main()
 ```
 
 > **A note on the API:** `.put()`/`.fetch()` are older HashMap method names that still work; `.set()`/`.get()` are the canonical forms used by QUICKSTART. `.fetch()` returns the value directly and panics on missing keys; `.get()` returns an optional — the safer pattern.
+
+> **Your own types as keys.** `str`, `int` and the other built-ins work as
+> `HashMap` keys and `Set` elements out of the box. A class of your own
+> can be one too, and it is then compared by **identity**: two separate
+> objects with the same contents are two different keys. To key by
+> contents, give the class `cue hash` and `cue equals` (Chapter 07,
+> "Cues"); a struct can get both from `@derive(Eq, Hash)` (Chapter 07b).
 
 ### HashMap Operations
 

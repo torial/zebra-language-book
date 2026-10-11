@@ -274,6 +274,18 @@ container.
 They compose. A program can have `using` blocks inside `allocate`
 blocks and vice versa.
 
+### No destructors
+
+Zebra has no destructor: there is no `cue deinit` in 1.0, and the
+compiler refuses one ("unknown cue 'deinit'"). A destructor would run at
+the end of a scope, and a class instance is a reference that can outlive
+the scope it was made in (stored in a list, returned, captured), so
+"end of scope" is not "end of the object". The two constructs above
+cover the two jobs a destructor does elsewhere. The arena reclaims
+memory, and `using` runs a release step at a point you can see in the
+source. `begin()` and `end()` are ordinary `def`s, not cues (Chapter 07,
+"What is not a cue").
+
 ---
 
 ## `^T` — Heap Indirection for Recursive Types
