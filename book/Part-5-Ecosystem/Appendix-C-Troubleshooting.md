@@ -663,13 +663,18 @@ parameter of `equals` and `compare` must be the declaring type itself:
 
 ---
 
-### `operator < not allowed for type '*main._zbr_ty_Money'`
+### "'Money' has no ordering: `<`, `<=`, `>` and `>=` need a `cue compare(other: Money): int` on it"
 
-**What it means:** you used `<`, `<=`, `>`, `>=` or `list.sort()` on a
-class with no `cue compare`. This one is reported by the Zig build, not
-by Zebra's front end, so it names the generated type (`main` is the
-module, `Money` the class) and points into `zebra_rt.zig`. The same shape with `==` (`operator == not allowed for
-type 'Point'`) means a **struct** with no `equals`.
+**What it means:** you used `<`, `<=`, `>` or `>=` on a class or struct
+with no `cue compare`. Its siblings read the same way:
+"'Money' has no ordering: `.sort()` needs a `cue compare(other: Money): int`
+on it, or a comparator" for a bare `list.sort()`, and "struct 'Point' has
+no equality: `==` and `!=` need a `cue equals(other: Point): bool` on it, or
+`@derive(Eq)`" for `==` on a **struct**. (`==` on a class compares identity
+and needs no cue.) Older compilers did not catch these; the Zig build
+reported them instead, as `operator < not allowed for type
+'*main._zbr_ty_Money'` or `operator == not allowed for type 'Point'`,
+pointing into `zebra_rt.zig`.
 
 **Solution:** give the type `cue compare(other: T): int` together with
 `cue equals(other: T): bool`, which `compare` requires (or, for `==` on a
@@ -678,11 +683,13 @@ changing the class, pass a comparator: `xs.sort(def(a: T, b: T) = a.n < b.n)`.
 
 ---
 
-### `no field named 'items' in struct 'Ticker'` on a `for` line
+### "'Ticker' is not iterable: its `def next` is an ordinary method -- declare it `cue next` instead"
 
 **What it means:** `for x in obj` was given a type whose `next` or `iter`
-is a `def`. Only `cue next` / `cue iter` make a type iterable, so the
-loop treated `obj` as a list. This is also reported by the Zig build.
+is a `def`. Only `cue next` / `cue iter` make a type iterable. A type with
+neither is refused as "not iterable" with the shape to add. Older
+compilers let this through to the Zig build, which reported
+`no field named 'items' in struct 'Ticker'` on the `for` line.
 
 **Solution:** spell them `cue next(): E?` and `cue iter(): I`.
 

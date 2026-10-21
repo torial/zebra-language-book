@@ -92,9 +92,10 @@ sys.go(def()
 
 The function takes no parameters. Every variable from the enclosing
 scope that the body uses must be declared in a `capture` block at the
-top of the body — there is no implicit capture, and using an outside
-variable without declaring it is a compile error (`'<name>' not accessible
-from inner function`). Re-declaring under the same name
+top of the body. An ordinary lambda captures what it reads on its own; a
+thread closure does not, and using an outside variable without declaring
+it is refused ("a `sys.go` closure names what it uses in a `capture`
+block"). Re-declaring under the same name
 (`var ch: Chan(int) = ch`) is the usual idiom. Captured values are
 copied into the thread closure at spawn time, so the spawning function
 can return immediately without leaving dangling references.
@@ -500,7 +501,7 @@ most other batch I/O patterns.
 > ```zebra
 > var counter: int = 0
 > sys.go(def()
->     counter = counter + 1       # compile error: no implicit capture ("cannot assign to constant")
+>     counter = counter + 1       # refused: a `sys.go` closure names what it uses in a `capture` block
 > )
 > ```
 >
