@@ -1,0 +1,4 @@
+var counter: int = 0
+sys.go(def()
+    counter = counter + 1       # refused: a `sys.go` closure names what it uses in a `capture` block
+)

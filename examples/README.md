@@ -451,7 +451,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `14c-concurrency-channels-and-threads_5967e626.zbr` — basic example
 - `14c-concurrency-channels-and-threads_75531924.zbr` — basic example
 - `14c-concurrency-channels-and-threads_dcba6f55.zbr` — basic example
-- `14c-concurrency-channels-and-threads_54867e72.zbr` — basic example
+- `14c-concurrency-channels-and-threads_f4fc7653.zbr` — basic example
 - `14c-concurrency-channels-and-threads_8684b53a.zbr` — basic example
 - `14c-concurrency-channels-and-threads_bed5ba0b.zbr` — basic example
 - `14c-concurrency-channels-and-threads_785634a5.zbr` — basic example

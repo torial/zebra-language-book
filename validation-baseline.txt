@@ -4,21 +4,6 @@
 # Take it on a CASE-SENSITIVE filesystem (Linux / CI): on Windows `use Build`
 # resolves to a neighbouring build.zbr, so an example can pass there and fail
 # everywhere else (zebra-language BUG-450, found by this repo's CI on its first run).
-# Removed 2026-09-27 (zebra-language BUG-446: undeclared type names are refused):
-# six fragments whose types live only in the surrounding prose -- User, ExprCall/
-# BinaryOp, Model, the `Type` placeholder, PluginContext, Node. They passed only because the
-# front end checked no type name; standalone they never compiled, so they are not gated.
-# Removed 2026-09-30 (zebra-language 2f9574d: an operator on an optional is refused):
-# appendix-c 6081bf9a, `print(x + 1)` with `x: int?` -- the book's own example of the error,
-# which the front end now reports ("'x' may be nil here") instead of passing it to Zig.
-# Removed 2026-09-30 (zebra-language ef8256d: a MODULE-level var initializer is resolved and
-# type-checked; `-c` looked at none). Eleven examples it had passed: fragments naming
-# something defined elsewhere in the book (compute, makeConfig, Utils, Colors, text) and
-# deliberate error examples (appendix-c: x + 1 on an int?, add() arity, and-chain /
-# early-exit narrowing, which Zebra does not do). None ever built. Also dropped:
-# appendix-c 43f3ef30, which no longer exists (the block changed).
-# Taken 2026-09-27 as the INTERSECTION of passes under the released rc4 (what CI runs) and
-# zebra-language main (the next release), so neither compiler can turn this gate red.
 01-getting-started/01-getting-started_18a99d1c.zbr
 01-getting-started/01-getting-started_1abdcdcc.zbr
 01-getting-started/01-getting-started_498a42ab.zbr
@@ -37,7 +22,6 @@
 02-values-and-types/02-values-and-types_58d14b38.zbr
 02-values-and-types/02-values-and-types_5fb1a5d4.zbr
 02-values-and-types/02-values-and-types_64a41368.zbr
-02-values-and-types/02-values-and-types_6d68373c.zbr
 02-values-and-types/02-values-and-types_8821ebd1.zbr
 02-values-and-types/02-values-and-types_91e9bda8.zbr
 02-values-and-types/02-values-and-types_9cd62d3c.zbr
@@ -124,7 +108,6 @@
 07-classes-and-instances/07-classes-and-instances_14ca828c.zbr
 07-classes-and-instances/07-classes-and-instances_5bbcf3df.zbr
 07-classes-and-instances/07-classes-and-instances_5df57d66.zbr
-07-classes-and-instances/07-classes-and-instances_6e8129f9.zbr
 07-classes-and-instances/07-classes-and-instances_80f4a214.zbr
 07-classes-and-instances/07-classes-and-instances_a5cd9e0c.zbr
 07-classes-and-instances/07-classes-and-instances_acd52f2c.zbr
@@ -196,6 +179,7 @@
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_38e75178.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_617af081.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_8ecdbb90.zbr
+10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_a21845dc.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_afbd02f8.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_bf1dca5c.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_bf9e70d6.zbr
@@ -207,7 +191,6 @@
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_e30ee4d2.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_e574ce18.zbr
 10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_e996c51f.zbr
-10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_ecdd924b.zbr
 10b-modules-namespaces-and-visibility/Wallet__2.zbr
 10b-modules-namespaces-and-visibility/helpers.zbr
 10b-modules-namespaces-and-visibility/main.zbr
@@ -231,7 +214,6 @@
 12-error-handling-with-results/12-error-handling-with-results_5e79caeb.zbr
 12-error-handling-with-results/12-error-handling-with-results_d274c687.zbr
 12-error-handling-with-results/12_api_client.zbr
-12-error-handling-with-results/12_catch_expr.zbr
 12-error-handling-with-results/12_propagation.zbr
 12-error-handling-with-results/12_raise.zbr
 12-error-handling-with-results/12_throws_basic.zbr
@@ -269,37 +251,27 @@
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_25265c25.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_2911730e.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_40d1cec3.zbr
-14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_57c9399b.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_59263fa8.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_5bb5bfcb.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_5cb23dd9.zbr
-14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_70896cbb.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_7378df50.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_8d8bb072.zbr
-14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_8f128a32.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_b2f9deb6.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_ce9fd152.zbr
 14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_e11c9eba.zbr
-14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_edc3f51a.zbr
 14b-memory-management-and-lifetimes/14b_streaming_processor.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_0440916c.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_23133e47.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_2cd63d75.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_54867e72.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5af9a940.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5e59ccbf.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_6cb4cf2a.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_785634a5.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_7fd29274.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_8684b53a.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_872d3c5e.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_8a69f176.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_8e61a283.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_bbfa879b.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_bed5ba0b.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_c557f7ab.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_dea2f875.zbr
-14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_ef8cbd87.zbr
 14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_fad2e03c.zbr
 14c-concurrency-channels-and-threads/14c_parallel_files.zbr
 14c-concurrency-channels-and-threads/14c_pipeline.zbr
@@ -307,7 +279,6 @@
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_2b11bfa8.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_7fd22695.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_8da91d38.zbr
-15-pipelines-and-function-composition/15-pipelines-and-function-composition_a1d66172.zbr
 15-pipelines-and-function-composition/15-pipelines-and-function-composition_cfcc4560.zbr
 15-pipelines-and-function-composition/15_function_composition.zbr
 15-pipelines-and-function-composition/15_pipeline_basics.zbr
@@ -374,9 +345,7 @@
 19-standard-library-tour/stdlib-string-trim.zbr
 19-standard-library-tour/stdlib-sys-args.zbr
 19-standard-library-tour/stdlib-type-conversions.zbr
-20-file-io-and-system-access/20-file-io-and-system-access_a6fab3da.zbr
 20-file-io-and-system-access/20-file-io-and-system-access_e14125ea.zbr
-20-file-io-and-system-access/20-file-io-and-system-access_eb2bdbc3.zbr
 20-file-io-and-system-access/20-file-io-and-system-access_f46780c7.zbr
 20-file-io-and-system-access/file-analyze.zbr
 20-file-io-and-system-access/file-append.zbr
@@ -483,11 +452,8 @@ appendix-a-grammar/appendix-a-grammar_950af8e5.zbr
 appendix-a-grammar/appendix-a-grammar_ae0f9753.zbr
 appendix-a-grammar/appendix-a-grammar_aeb8e866.zbr
 appendix-a-grammar/appendix-a-grammar_b17568a0.zbr
-appendix-a-grammar/appendix-a-grammar_bac37d13.zbr
-appendix-a-grammar/appendix-a-grammar_c5243692.zbr
 appendix-a-grammar/appendix-a-grammar_d0bb8dab.zbr
 appendix-a-grammar/appendix-a-grammar_e0643ed8.zbr
-appendix-a-grammar/appendix-a-grammar_e2592b3e.zbr
 appendix-a-grammar/appendix-a-grammar_e485c91a.zbr
 appendix-a-grammar/appendix-a-grammar_e6198bb8.zbr
 appendix-a-grammar/appendix-a-grammar_eb8664f9.zbr
@@ -518,7 +484,6 @@ appendix-b-stdlib/appendix-b-stdlib_e6198bb8.zbr
 appendix-b-stdlib/appendix-b-stdlib_f0b71348.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_022873e6.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_0312a1dd.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_097011e4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_0b7bb411.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_0f5b1537.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_23731487.zbr
@@ -536,19 +501,15 @@ appendix-c-troubleshooting/appendix-c-troubleshooting_4c6c059d.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_62a324ff.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_69057b3a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_6a01f8b1.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_763918fd.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_7b5b8464.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_80caa434.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_82a9e1bc.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_86fda4c8.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_8ba6c2c4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_8fe8810a.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_936c1476.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_9c7a193e.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_9d9607fd.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_9f6ac354.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_b074544d.zbr
-appendix-c-troubleshooting/appendix-c-troubleshooting_b3ba51b6.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_cefd8fc4.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_d19cd133.zbr
 appendix-c-troubleshooting/appendix-c-troubleshooting_da67e718.zbr
@@ -566,7 +527,6 @@ ref-cheatsheet-syntax/ref-cheatsheet-syntax_17c47e5a.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_41d4eb10.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_44efbac7.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_4ef11683.zbr
-ref-cheatsheet-syntax/ref-cheatsheet-syntax_519f6869.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_59798476.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_71db613c.zbr
 ref-cheatsheet-syntax/ref-cheatsheet-syntax_94e0ad54.zbr

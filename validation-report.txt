@@ -1,17 +1,19 @@
 ZEBRA PROGRAMMING BOOK - EXAMPLE VALIDATION REPORT
 ======================================================================
 
-Generated: 2026-10-11T07:49:46.352860
+Generated: 2026-10-22T10:36:37.838042
 Compiler:  C:\Projects\zebra-language\zig-out\bin\zebra.exe
 
 Total:  803
-Passed: 611
-Failed: 192
+Passed: 586
+Failed: 217
 
 FAILURES
 ----------------------------------------------------------------------
   01-getting-started/01-getting-started_b069eac4.zbr
       C:\Projects\zebra-language-book\examples\01-getting-started\01-getting-started_b069eac4.zbr:3:11: error: cannot concatenate 'str' and 'int' — call .toString() on it, or use string interpolation
+  02-values-and-types/02-values-and-types_6d68373c.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_6d68373c__asfragment.zbr:5:11: error: 'name' may be nil here, so `.upper()` cannot be call
   02-values-and-types/02-values-and-types_7861a141.zbr
       C:\Projects\zebra-language-book\examples\02-values-and-types\02-values-and-types_7861a141.zbr:2:29: error: undefined name: 'compute_total'
   02-values-and-types/02-values-and-types_e0c51a57.zbr
@@ -70,6 +72,8 @@ FAILURES
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_0f5c703a.zbr:5:8: error: `cue hash` needs `cue equals` on the same type (a HashMap key is looked up by hash, 
   07-classes-and-instances/07-classes-and-instances_206fd7cf.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_206fd7cf.zbr:13:20: error: undefined name: 'User'
+  07-classes-and-instances/07-classes-and-instances_6e8129f9.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_6e8129f9__asfragment.zbr:4:10: error: undefined name: 'g'
   07-classes-and-instances/07-classes-and-instances_8f4af621.zbr
       C:\Projects\zebra-language-book\examples\07-classes-and-instances\07-classes-and-instances_8f4af621.zbr:3:18: error: expected identifier, got 'to'
   07-classes-and-instances/07-classes-and-instances_999d2640.zbr
@@ -89,7 +93,7 @@ FAILURES
   07b-structs-unions-and-value-types/07b-structs-unions-and-value-types_c4ad853b.zbr
       C:\Projects\zebra-language-book\examples\07b-structs-unions-and-value-types\07b-structs-unions-and-value-types_c4ad853b.zbr:5:5: error: unknown type 'ExprCall': not declared here, in a `use`d module, 
   08-interfaces-and-protocols/08_collection_interface.zbr
-      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_collection_interface.zbr:21:20: error: undefined name: 'Dog'
+      C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_collection_interface.zbr:6:38: error: undefined name: 'Animal'
   08-interfaces-and-protocols/08_polymorphism.zbr
       C:\Projects\zebra-language-book\examples\08-interfaces-and-protocols\08_polymorphism.zbr:12:24: error: undefined name: 'CreditCardProcessor'
   09-composition-and-mixins/09-composition-and-mixins_5791e66f.zbr
@@ -118,12 +122,12 @@ FAILURES
       `use geometry`: module not found -- no geometry.zbr (or .c / .lib / .a / .so / .dylib, libgeometry.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibi
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_9db5d7b1.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_9db5d7b1.zbr:4:16: error: undefined name: 'Colors'
-  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_a21845dc.zbr
-      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_a21845dc.zbr:9:13: error: 'int' has no method 'is_prime' (to/toFloat/toFloat32/toBy
   10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_c0cfefd6.zbr
       `use http`: module not found -- no http.zbr (or .c / .lib / .a / .so / .dylib, libhttp.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-mod
+  10b-modules-namespaces-and-visibility/10b-modules-namespaces-and-visibility_ecdd924b.zbr
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\10b-modules-namespaces-and-visibility_ecdd924b.zbr:6:1: error: `v` is already declared at the top of this module (line 2)
   10b-modules-namespaces-and-visibility/Wallet.transactions.zbr
-      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\Wallet.transactions.zbr:4:21: error: cannot infer the type of `....balance`, an operand of `+` -- `+` joins strings and a
+      C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\Wallet.transactions.zbr:4:21: error: 'Wallet' has no field 'balance'
   10b-modules-namespaces-and-visibility/colors.zbr
       C:\Projects\zebra-language-book\examples\10b-modules-namespaces-and-visibility\colors.zbr:9:16: error: undefined name: 'Rgb'
   11-nil-tracking-and-safety/11-nil-tracking-and-safety_20db6b3e.zbr
@@ -144,18 +148,20 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\11-nil-tracking-and-safety\11-nil-tracking-and-safety_976512ff__asfragment.zbr:4:23: error: undefined name: 'get_email'
   12-error-handling-with-results/12_catch_binding.zbr
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_catch_binding.zbr:6:17: error: undefined name: 'Validator'
+  12-error-handling-with-results/12_catch_expr.zbr
+      C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_catch_expr.zbr:7:17: error: undefined name: 'Validator'
   12-error-handling-with-results/12_method_catch.zbr
       C:\Projects\zebra-language-book\examples\12-error-handling-with-results\12_method_catch.zbr:6:17: error: undefined name: 'Validator'
   13-generics-and-type-constraints/13-generics-and-type-constraints_2c044550.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_2c044550__asfragment.zbr:4:15: error: undefined name: 'Container
   13-generics-and-type-constraints/13-generics-and-type-constraints_61e197a7.zbr
-      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_61e197a7.zbr:2:4: error: unknown type 'T': not declared here, in a `use`d module, or as a typ
+      C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_61e197a7.zbr:10:4: error: `find_max` is already declared at the top of this module (line 2) -
   13-generics-and-type-constraints/13-generics-and-type-constraints_77ff531d.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_77ff531d__asfragment.zbr:4:15: error: undefined name: 'Container
   13-generics-and-type-constraints/13-generics-and-type-constraints_b13a66ab.zbr
       C:\Projects\zebra-language-book\examples\13-generics-and-type-constraints\13-generics-and-type-constraints_b13a66ab.zbr:3:22: error: unexpected member: '->'
   14-contracts-and-assertions/14-contracts-and-assertions_2785b00d.zbr
-      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_2785b00d.zbr:7:5: error: undefined name: 'balance'
+      C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_2785b00d.zbr:4:19: error: undefined name: 'balance'
   14-contracts-and-assertions/14-contracts-and-assertions_5adeef34.zbr
       C:\Projects\zebra-language-book\examples\14-contracts-and-assertions\14-contracts-and-assertions_5adeef34.zbr:2:12: error: undefined name: 'result'
   14-contracts-and-assertions/14-contracts-and-assertions_65e55ff5.zbr
@@ -166,24 +172,46 @@ FAILURES
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_177786cc.zbr:6:16: error: unexpected expression token: ';'
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_295f4141.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_295f4141__asfragment.zbr:4:17: error: undefined name: 'tmp
+  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_57c9399b.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_57c9399b__asfragment.zbr:7:9: error: undefined name: 'popu
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_62f04674.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:4:5: error: unknown type 'Node': 
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_62f04674__asfragment.zbr:6:17: error: undefined name: 'Nod
   14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_651c75c0.zbr
       C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_651c75c0.zbr:2:5: error: expected identifier, got 'num'
+  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_70896cbb.zbr
+      C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_70896cbb.zbr:5:22: error: undefined name: 'parse'
+  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_8f128a32.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_8f128a32__asfragment.zbr:7:17: error: undefined name: 'pro
+  14b-memory-management-and-lifetimes/14b-memory-management-and-lifetimes_edc3f51a.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14b-memory-management-and-lifetimes\14b-memory-management-and-lifetimes_edc3f51a__asfragment.zbr:4:11: error: undefined name: 'g'
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_5967e626.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_5967e626__asfragment.zbr:4:5: error: undefined name: 'ch
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_75531924.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924__asfragment.zbr:10:5: error: undefined name: 'c
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_75531924__asfragment.zbr:5:9: error: undefined name: 'po
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_785634a5.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_785634a5__asfragment.zbr:5:9: error: undefined name: 'po
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_7fd29274.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_7fd29274__asfragment.zbr:6:33: error: undefined name: 'c
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_872d3c5e.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_872d3c5e__asfragment.zbr:6:33: error: undefined name: 'c
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_bed5ba0b.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_bed5ba0b__asfragment.zbr:5:9: error: undefined name: 'po
   14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_dcba6f55.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_dcba6f55__asfragment.zbr:4:18: error: expected indent, g
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_ef8cbd87.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_ef8cbd87__asfragment.zbr:4:5: error: undefined name: 'ch
+  14c-concurrency-channels-and-threads/14c-concurrency-channels-and-threads_f4fc7653.zbr
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\14c-concurrency-channels-and-threads\14c-concurrency-channels-and-threads_f4fc7653__asfragment.zbr:6:9: error: a `sys.go` closure 
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_2ef32288.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_2ef32288.zbr:3:1: error: unexpected end of input at the top level
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_5edb027e.zbr
       C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_5edb027e.zbr:5:14: error: undefined name: 'Utils'
   15-pipelines-and-function-composition/15-pipelines-and-function-composition_61e63207.zbr
-      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_61e63207.zbr:8:14: error: cannot infer the type of `lowered`, so `.len` cannot be r
+      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_61e63207.zbr:4:8: error: `-> .len` reads a field, and the right side of `->` must b
+  15-pipelines-and-function-composition/15-pipelines-and-function-composition_a1d66172.zbr
+      C:\Projects\zebra-language-book\examples\15-pipelines-and-function-composition\15-pipelines-and-function-composition_a1d66172.zbr:8:8: error: undefined name: 'Filter'
   16-project-1-cli-tool/16-project-1-cli-tool_acd8f0d1.zbr
-      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_acd8f0d1.zbr:12:51: error: cannot infer the type of `stats.lines`, an operand of `+` -- `+` joins strings and adds 
+      C:\Projects\zebra-language-book\examples\16-project-1-cli-tool\16-project-1-cli-tool_acd8f0d1.zbr:10:21: error: undefined name: 'FileProcessor'
   18b-gui-applications/18b-gui-applications_0cbfa83f.zbr
       C:\Projects\zebra-language-book\examples\18b-gui-applications\18b-gui-applications_0cbfa83f.zbr:1:4: error: unknown type 'Model': not declared here, in a `use`d module, or as a type parameter in scope
   18b-gui-applications/18b-gui-applications_34d6a6b9.zbr
@@ -211,9 +239,13 @@ FAILURES
   19-22_final-chapters/19-22_final-chapters_9f6e3064.zbr
       C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_9f6e3064.zbr:2:12: error: undefined name: 'value'
   19-22_final-chapters/19-22_final-chapters_a40b8bbd.zbr
-      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_a40b8bbd.zbr:2:8: error: unknown type 'Type': not declared here, in a `use`d module, or as a type parameter in scope
+      C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_a40b8bbd.zbr:2:23: error: undefined name: 'default'
   19-22_final-chapters/19-22_final-chapters_b28cfe07.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\19-22_final-chapters\19-22_final-chapters_b28cfe07__asfragment.zbr:10:17: error: undefined name: 'items'
+  20-file-io-and-system-access/20-file-io-and-system-access_a6fab3da.zbr
+      C:\Projects\zebra-language-book\examples\20-file-io-and-system-access\20-file-io-and-system-access_a6fab3da.zbr:11:4: error: `main` is already declared at the top of this module (line 2) -- two declar
+  20-file-io-and-system-access/20-file-io-and-system-access_eb2bdbc3.zbr
+      C:\Projects\zebra-language-book\examples\20-file-io-and-system-access\20-file-io-and-system-access_eb2bdbc3.zbr:10:4: error: `main` is already declared at the top of this module (line 2) -- two declar
   22b-build-system-and-tooling/22b-build-system-and-tooling_8394c7ab.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-an
   22b-build-system-and-tooling/22b-build-system-and-tooling_e6c57be2.zbr
@@ -225,7 +257,7 @@ FAILURES
   22b-build-system-and-tooling/22b-build-system-and-tooling_fd52fc95.zbr
       `use cli`: module not found -- no cli.zbr (or .c / .lib / .a / .so / .dylib, libcli.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22b-build-system-and-tooling\22b-build-system-an
   22c-testing-and-validation/22c-testing-and-validation_42b0f81c.zbr
-      `use calc`: module not found -- no calc.zbr (or .c / .lib / .a / .so / .dylib, libcalc.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-va
+      C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_42b0f81c.zbr:4:13: error: undefined name: 'Calc'
   22c-testing-and-validation/22c-testing-and-validation_67b791d4.zbr
       C:\Projects\zebra-language-book\examples\22c-testing-and-validation\22c-testing-and-validation_67b791d4.zbr:5:20: error: undefined name: 'User'
   22c-testing-and-validation/22c-testing-and-validation_b1a37953.zbr
@@ -248,6 +280,12 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_8322970c__asfragment.zbr:5:8: error: undefined name: 'variable'
   appendix-a-grammar/appendix-a-grammar_88e0099c.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_88e0099c__asfragment.zbr:4:8: error: undefined name: 'x'
+  appendix-a-grammar/appendix-a-grammar_bac37d13.zbr
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_bac37d13.zbr:2:13: error: undefined name: 'divide'
+  appendix-a-grammar/appendix-a-grammar_c5243692.zbr
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_c5243692.zbr:14:1: error: `str` is already declared at the top of this module (line 11) -- two declarations cannot share 
+  appendix-a-grammar/appendix-a-grammar_e2592b3e.zbr
+      C:\Projects\zebra-language-book\examples\appendix-a-grammar\appendix-a-grammar_e2592b3e.zbr:2:1: error: `x` is already declared at the top of this module (line 1) -- two declarations cannot share a na
   appendix-b-stdlib/appendix-b-stdlib_09913062.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_09913062__asfragment.zbr:4:5: error: undefined name: 'text'
   appendix-b-stdlib/appendix-b-stdlib_0a00b9d8.zbr
@@ -299,13 +337,15 @@ FAILURES
   appendix-b-stdlib/appendix-b-stdlib_c310bc80.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_c310bc80__asfragment.zbr:4:13: error: undefined name: 'str_to_int'
   appendix-b-stdlib/appendix-b-stdlib_d8e69aa3.zbr
-      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_d8e69aa3.zbr:15:13: error: undefined name: 'divide'
+      C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_d8e69aa3.zbr:2:13: error: undefined name: 'divide'
   appendix-b-stdlib/appendix-b-stdlib_f3398174.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-b-stdlib\appendix-b-stdlib_f3398174__asfragment.zbr:4:15: error: undefined name: 'filename'
   appendix-c-troubleshooting/appendix-c-troubleshooting_01f7bac9.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_01f7bac9.zbr:4:14: error: arithmetic '-' requires numeric operands, got 'str'
   appendix-c-troubleshooting/appendix-c-troubleshooting_026ab9c7.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_026ab9c7__asfragment.zbr:5:17: error: undefined name: 'list'
+  appendix-c-troubleshooting/appendix-c-troubleshooting_097011e4.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_097011e4.zbr:7:1: error: `message` is already declared at the top of this module (line 4) -- two declarat
   appendix-c-troubleshooting/appendix-c-troubleshooting_0a9cf8b5.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_0a9cf8b5__asfragment.zbr:4:17: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_2739d3f3.zbr
@@ -313,7 +353,7 @@ FAILURES
   appendix-c-troubleshooting/appendix-c-troubleshooting_2a1a28a5.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_2a1a28a5__asfragment.zbr:4:5: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_40911c92.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_40911c92.zbr:10:8: error: undefined name: 'condition'
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_40911c92.zbr:8:4: error: `get_value` is already declared at the top of this module (line 1) -- two declar
   appendix-c-troubleshooting/appendix-c-troubleshooting_46c5d71d.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_46c5d71d.zbr:5: error: throws call needs '?' (auto error-propagation was removed; add '?')
   appendix-c-troubleshooting/appendix-c-troubleshooting_54646699.zbr
@@ -326,14 +366,22 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_6acb55f4__asfragment.zbr:4:19: error: undefined name: 'items'
   appendix-c-troubleshooting/appendix-c-troubleshooting_74e9d12a.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_74e9d12a__asfragment.zbr:6:17: error: type mismatch: expected int, got str
+  appendix-c-troubleshooting/appendix-c-troubleshooting_763918fd.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_763918fd.zbr:2:1: error: `pattern` is already declared at the top of this module (line 1) -- two declarat
   appendix-c-troubleshooting/appendix-c-troubleshooting_826a10a3.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_826a10a3__asfragment.zbr:4:19: error: undefined name: 'get_value'
+  appendix-c-troubleshooting/appendix-c-troubleshooting_82a9e1bc.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_82a9e1bc.zbr:3:1: error: `part` is already declared at the top of this module (line 2) -- two declaration
   appendix-c-troubleshooting/appendix-c-troubleshooting_8bbf5ba3.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8bbf5ba3__asfragment.zbr:6:11: error: cannot concatenate 'str' and 'int' — c
   appendix-c-troubleshooting/appendix-c-troubleshooting_8fbea400.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_8fbea400__asfragment.zbr:8:8: error: undefined name: 'condition'
   appendix-c-troubleshooting/appendix-c-troubleshooting_9478ea7a.zbr
-      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9478ea7a.zbr:4:11: error: too few arguments to 'add': expected 2, found 1
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9478ea7a.zbr:5:1: error: `sum` is already declared at the top of this module (line 4) -- two declarations
+  appendix-c-troubleshooting/appendix-c-troubleshooting_9f6ac354.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_9f6ac354.zbr:2:1: error: `pattern` is already declared at the top of this module (line 1) -- two declarat
+  appendix-c-troubleshooting/appendix-c-troubleshooting_b3ba51b6.zbr
+      C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_b3ba51b6.zbr:2:1: error: `pattern` is already declared at the top of this module (line 1) -- two declarat
   appendix-c-troubleshooting/appendix-c-troubleshooting_b5b1941f.zbr
       C:\Projects\zebra-language-book\examples\appendix-c-troubleshooting\appendix-c-troubleshooting_b5b1941f.zbr:6:14: error: 'num' may be nil here, so it cannot be used with this operator -- check it firs
   appendix-c-troubleshooting/appendix-c-troubleshooting_bf957a6d.zbr
@@ -356,8 +404,10 @@ FAILURES
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_2a9eb0b7__asfragment.zbr:5:14: error: undefined name: 'code'
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_37642502.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_37642502__asfragment.zbr:7:18: error: undefined name: 'text'
+  ref-cheatsheet-syntax/ref-cheatsheet-syntax_519f6869.zbr
+      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_519f6869.zbr:7:1: error: `x` is already declared at the top of this module (line 1) -- two declarations cannot shar
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_983ad7b7.zbr
-      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_983ad7b7__asfragment.zbr:12:29: error: undefined name: 'u'
+      as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_983ad7b7__asfragment.zbr:7:6: error: `User` is already declared at the top of this mod
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_c7da2544.zbr
       `use MathUtils`: module not found -- no MathUtils.zbr (or .c / .lib / .a / .so / .dylib, libMathUtils.a/.so/.dylib, .zig) beside C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-chea
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_ca15e190.zbr
@@ -369,7 +419,7 @@ FAILURES
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_f9c0ad06.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_f9c0ad06__asfragment.zbr:4:11: error: unexpected expression token: ','
   ref-cheatsheet-syntax/ref-cheatsheet-syntax_fad686e2.zbr
-      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_fad686e2.zbr:4:15: error: undefined name: 'text'
+      C:\Projects\zebra-language-book\examples\ref-cheatsheet-syntax\ref-cheatsheet-syntax_fad686e2.zbr:1:14: error: undefined name: 'text'
   ref-patterns-common-tasks/ref-patterns-common-tasks_3fddbb95.zbr
       as a fragment inside main(): C:\Projects\zebra-language-book\examples\ref-patterns-common-tasks\ref-patterns-common-tasks_3fddbb95__asfragment.zbr:4:8: error: undefined name: 'scores'
   ref-patterns-common-tasks/ref-patterns-common-tasks_465b4d83.zbr
