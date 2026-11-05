@@ -95,6 +95,73 @@ names.add("hello")
 
 ---
 
+## Integer Errors
+
+These come from the integer rules in Chapter 2 (*When a Result Doesn't Fit*, *Mixing Integer
+Types*, *Literal Suffixes*, *Narrowing*).
+
+### `thread N panic: integer overflow`
+
+**What it means:** `+`, `-` or `*` produced a value outside its type's range — 250 + 10 in
+a `byte`, say. The program stops rather than continue with a wrong number, in every build,
+`--release` included.
+
+**Solution:** if the value should fit, widen the type (`int` instead of `byte`). If wrapping
+or clamping is what you mean, say so: `b +% 10` wraps around, `b +| 10` clamps at 255.
+
+---
+
+### "error: 300 does not fit in 'byte' (0..255), the type of the other operand of '+'"
+
+**What it means:** a literal beside a sized integer takes that integer's type, and this one
+does not fit it. The check is by value, so a constant expression is judged by its result:
+`k + 100 * 3` is 300 and is refused; `k + (300 - 200)` is 100 and is fine.
+
+**Solution:** make the other operand wider (`k.toInt() + 300`), or use a value that fits.
+
+---
+
+### "error: type mismatch: expected byte, found int -- an int does not narrow to a byte on its own; use `.toByte()` (low 8 bits)"
+
+**What it means:** `b = b + n` with a byte `b` and an int `n` — the result is an int, and an
+int does not go back into a byte silently.
+
+**Solution:** narrow it yourself, choosing what happens to a value that does not fit:
+`(b + n).toUint8()` stops the program if it does not fit; `(b + n).toByte()` keeps the low
+8 bits.
+
+---
+
+### "error: cannot mix 'uint' and 'int' in arithmetic: no signed type holds every uint value"
+
+**What it means:** a `uint` (or `uint64`) met a signed integer. No signed type can hold every
+`uint` value, so there is no safe type to compute in.
+
+**Solution:** convert one side first — `u.toInt()` (checked: it stops the program if `u` is
+too large for an `int`).
+
+---
+
+### "error: '5_i7' has no type: an integer suffix is _i or _u, alone or with 8, 16, 32, 64 or 128 bits"
+
+**What it means:** a literal suffix that names no Zebra type. The same check refuses a suffixed
+literal that does not fit its own type: "300_u8 does not fit in 'byte' (0..255), the type its
+suffix gives it".
+
+**Solution:** use one of the widths listed, and a value inside its range.
+
+---
+
+### `thread N panic: integer conversion out of range: 300 does not fit in byte`
+
+**What it means:** a checked conversion — `toInt8()` … `toUint64()` — was given a value its
+target cannot hold.
+
+**Solution:** check the range before converting, or use `toByte()` if keeping the low 8 bits
+is what you want.
+
+---
+
 ## Nil and Null Errors
 
 ### "error: cannot use nil value as int"

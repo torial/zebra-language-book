@@ -920,11 +920,16 @@ John
 Jane
 ```
 
-The lazy forms are `*?`, `+?` and `??`. One caveat specific to this engine: laziness
-applies to the **whole pattern**, not to the one quantifier you wrote it on — a single `?`
-suffix makes every match the shortest possible. If you need a greedy part and a lazy
-part in one pattern, prefer a specific character class like `[^<]+`, which says what
-you mean and behaves the same either way.
+The lazy forms are `*?`, `+?`, `??` and `{m,n}?`. Each quantifier decides for itself, so
+one pattern can mix a greedy part and a lazy part: `<.*?>.*>` finds all of `"<a>b>c>"`.
+Matching is **leftmost-first**, as in Python, Perl and JavaScript — of the matches that
+start at the leftmost position, the one the pattern prefers wins, and `|` prefers its left
+side (`a|ab` finds `"a"` in `"ab"`). A specific character class like `[^<]+` is still often
+the clearer choice: it says what you mean rather than how much to take.
+
+> **Changed in 0.9.0-rc9.** Before rc9 a lazy quantifier made the *whole pattern* lazy, and
+> `|` picked its longest alternative. If an older program relied on either, check its
+> matches.
 
 ### Special Characters Need Escaping
 

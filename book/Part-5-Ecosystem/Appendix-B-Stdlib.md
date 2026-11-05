@@ -294,7 +294,7 @@ not a                       # Logical NOT
 
 ```zebra
 sys.args()               # List(str): command-line arguments
-sys.env(name)            # str?: get environment variable (nil if not set)
+sys.getenv(name)         # str?: get environment variable (nil if not set)
 sys.cwd()                # str: current working directory
 sys.exit(code)           # Exit program with code
 sys.errln(message)       # Print to standard error
@@ -306,7 +306,7 @@ var args = sys.args()
 for arg in args
     print("Argument: ${arg}")
 
-var home = sys.env("HOME")
+var home = sys.getenv("HOME")
 if home != nil
     print("Home: ${home}")
 

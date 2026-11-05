@@ -1,0 +1,11 @@
+# file: 02_mixing_ints.zbr
+# teaches: how two integer types combine
+# chapter: 02-Values-and-Types
+
+def main()
+    var b: byte = 250
+    var n: int = 1000
+    var t: int8 = -5
+    print(b + n)       # 1250 -- byte with int is an int
+    print(b + t)       # 245  -- byte with int8 is an int16 (a signed type that holds both)
+    print(b + 3)       # 253  -- a plain literal takes the other side's type

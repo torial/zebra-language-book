@@ -1,0 +1,11 @@
+# file: 02_overflow_trap.zbr
+# teaches: integer overflow stops the program
+# chapter: 02-Values-and-Types
+
+def add_ten(b: byte): byte
+    return b + 10
+
+def main()
+    print(add_ten(100))    # 110
+    print(add_ten(250))    # 260 does not fit in a byte: the program stops here
+    print("not reached")

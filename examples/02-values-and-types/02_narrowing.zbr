@@ -1,0 +1,10 @@
+# file: 02_narrowing.zbr
+# teaches: checked vs truncating narrowing
+# chapter: 02-Values-and-Types
+
+def main()
+    var n = 300
+    print(n.toByte())      # 44  -- toByte() keeps the low 8 bits
+    var small = 200
+    print(small.toUint8()) # 200 -- fits, so the checked form returns it
+    print(n.toUint8())     # 300 does not fit: the program stops here

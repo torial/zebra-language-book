@@ -1,0 +1,15 @@
+# file: 02_literal_suffixes.zbr
+# teaches: typed literals
+# chapter: 02-Values-and-Types
+
+def main()
+    var a = 300_i16        # an int16
+    var b = 5_u8           # a byte (uint8)
+    var c = 7u             # a uint -- the underscore is optional
+    var mask = 0xFF_u8     # hex works the same way
+    var f = 1.5_f32        # a float32
+    print(a)               # 300
+    print(b +% 255_u8)     # 4 -- b really is a byte, so this wraps at 255
+    print(c)               # 7
+    print(mask)            # 255
+    print(f)               # 1.5

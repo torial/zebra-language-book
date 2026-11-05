@@ -169,7 +169,35 @@ def main()
 2. `double = ...` stores that function in a variable
 3. `double(5)` calls it: 5 * 2 = 10
 
-The `capture` block explicitly captures `factor` from the outer scope.
+A lambda can read its enclosing function's parameters and locals directly. The `capture`
+block does something more specific: it gives *each closure* its own private copy of
+`factor`, kept for as long as the closure lives — per-closure state, shown next.
+
+### Closures Share, They Don't Copy
+
+A `var` local that a lambda writes is **shared** with the function that declared it, as in
+C#: a write through the closure is seen outside, and every closure naming the variable sees
+the same one.
+
+```zebra
+# file: 04_shared_capture.zbr
+# teaches: closures share the variables they write
+# chapter: 04-Functions-and-Scope
+
+def main()
+    var count = 0
+    var bump = def()
+        count += 1
+    bump()
+    bump()
+    print(count)    # 2 -- the closure and main share `count`
+```
+
+Parameters, loop variables and `as` bindings are read as a copy made when the closure is
+created, so a closure made in a loop sees that iteration's value; changing one of them
+after a closure has read it is refused, with the fix (copy it into a `var` first). And a
+closure *value* is a reference, like a C# delegate: pass it to a function or store it in a
+field, and every holder calls the same closure, with the same `capture` state.
 
 ### Capture Syntax
 

@@ -376,6 +376,31 @@ allocate Arena()
 
 ---
 
+## Where the Memory Goes: `--census`
+
+When a long-running program grows, the question is *which line* is allocating. Build and
+run it with `--census` and every allocation is counted under the source line that made it:
+
+```bash
+zebra --census prog.zbr                       # report on stderr at exit
+ZEBRA_CENSUS_OUT=out.json zebra --census prog.zbr
+```
+
+At exit — including through `sys.exit` — the program prints a report on stderr and writes
+`zebra-census.json`. It lists the totals (allocations, bytes requested, bytes freed, peak),
+then each site: the file and line, what allocated there (a runtime helper such as
+`_str_concat`, a constructor, your own function), how many allocations and bytes it
+requested, and how many bytes it still **keeps** at the end. The ranking by bytes kept is
+the one that shows a leak or an unbounded cache. Without the flag nothing is counted, and
+`sys.memStats()` reports the census fields as `-1` (not measured) rather than `0`.
+
+A program embedded in a host (`--library-mode`) can be built with `--census=host`: the
+census is compiled in but not started, and the host calls `_zbr_cens_install()` when the
+window it wants to measure begins — after start-up, say, so the report covers the steady
+state only. A census build costs time per allocation, so use it to investigate, not to ship.
+
+---
+
 ## Real World: Streaming File Processor
 
 A pattern that benefits from every primitive in this chapter — a loop

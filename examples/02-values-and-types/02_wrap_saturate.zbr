@@ -1,0 +1,11 @@
+# file: 02_wrap_saturate.zbr
+# teaches: wrapping (+% -% *%) and saturating (+| -| *|) arithmetic
+# chapter: 02-Values-and-Types
+
+def main()
+    var b: byte = 250
+    print(b +% 10)     # 4    -- wraps around past 255
+    print(b +| 10)     # 255  -- saturates: clamps at the top
+    var s: int8 = -128
+    print(s -| 1)      # -128 -- clamps at the bottom
+    print(-%s)         # -128 -- wrapping negation

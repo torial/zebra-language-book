@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "total_examples": 803,
+  "total_examples": 809,
   "generated": "1790380721.5064442",
   "examples": [
     {
@@ -110,6 +110,34 @@
     },
     {
       "chapter": "02-Values-and-Types",
+      "file": "02_overflow_trap.zbr",
+      "teaches": "integer overflow stops the program",
+      "project": null,
+      "path": "examples/02-values-and-types/02_overflow_trap.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_wrap_saturate.zbr",
+      "teaches": "wrapping (+% -% *%) and saturating (+| -| *|) arithmetic",
+      "project": null,
+      "path": "examples/02-values-and-types/02_wrap_saturate.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_mixing_ints.zbr",
+      "teaches": "how two integer types combine",
+      "project": null,
+      "path": "examples/02-values-and-types/02_mixing_ints.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_literal_suffixes.zbr",
+      "teaches": "typed literals",
+      "project": null,
+      "path": "examples/02-values-and-types/02_literal_suffixes.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
       "file": "02_floats.zbr",
       "teaches": "float types, precision",
       "project": null,
@@ -170,6 +198,13 @@
       "teaches": null,
       "project": null,
       "path": "examples/02-values-and-types/02-values-and-types_9cd62d3c.zbr"
+    },
+    {
+      "chapter": "02-Values-and-Types",
+      "file": "02_narrowing.zbr",
+      "teaches": "checked vs truncating narrowing",
+      "project": null,
+      "path": "examples/02-values-and-types/02_narrowing.zbr"
     },
     {
       "chapter": "02-Values-and-Types",
@@ -429,6 +464,13 @@
       "teaches": "closures and variable capture",
       "project": null,
       "path": "examples/04-functions-and-scope/04_closures.zbr"
+    },
+    {
+      "chapter": "04-Functions-and-Scope",
+      "file": "04_shared_capture.zbr",
+      "teaches": "closures share the variables they write",
+      "project": null,
+      "path": "examples/04-functions-and-scope/04_shared_capture.zbr"
     },
     {
       "chapter": "04-Functions-and-Scope",
@@ -4352,17 +4394,17 @@
     },
     {
       "chapter": "Appendix-B-Stdlib",
-      "file": "appendix-b-stdlib_a841398e.zbr",
+      "file": "appendix-b-stdlib_db78f560.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_a841398e.zbr"
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_db78f560.zbr"
     },
     {
       "chapter": "Appendix-B-Stdlib",
-      "file": "appendix-b-stdlib_03603019.zbr",
+      "file": "appendix-b-stdlib_86162722.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_03603019.zbr"
+      "path": "examples/appendix-b-stdlib/appendix-b-stdlib_86162722.zbr"
     },
     {
       "chapter": "Appendix-B-Stdlib",
@@ -5108,10 +5150,10 @@
     },
     {
       "chapter": "ref-cheatsheet-syntax",
-      "file": "ref-cheatsheet-syntax_f9c0ad06.zbr",
+      "file": "ref-cheatsheet-syntax_cba12282.zbr",
       "teaches": null,
       "project": null,
-      "path": "examples/ref-cheatsheet-syntax/ref-cheatsheet-syntax_f9c0ad06.zbr"
+      "path": "examples/ref-cheatsheet-syntax/ref-cheatsheet-syntax_cba12282.zbr"
     },
     {
       "chapter": "ref-cheatsheet-syntax",

@@ -58,6 +58,120 @@ print(x / y)  # 3 (integer division)
 print(x % y)  # 1 (remainder)
 ```
 
+### When a Result Doesn't Fit: Overflow
+
+Every integer type has a range — a `byte` holds 0 to 255, an `int8` holds -128 to 127, an
+`int` holds about ±9.2 × 10¹⁸. If `+`, `-` or `*` produces a value outside the range, the
+program **stops** rather than carry on with a wrong number:
+
+```zebra
+# file: 02_overflow_trap.zbr
+# teaches: integer overflow stops the program
+# chapter: 02-Values-and-Types
+
+def add_ten(b: byte): byte
+    return b + 10
+
+def main()
+    print(add_ten(100))    # 110
+    print(add_ten(250))    # 260 does not fit in a byte: the program stops here
+    print("not reached")
+```
+
+```text
+110
+thread 20484 panic: integer overflow
+```
+
+This holds in every build, including `zebra --release` — an optimised program does not
+quietly wrap. When wrapping or clamping is what you *want* (hashes, checksums, colour
+channels, counters that roll over), say so with an operator:
+
+```zebra
+# file: 02_wrap_saturate.zbr
+# teaches: wrapping (+% -% *%) and saturating (+| -| *|) arithmetic
+# chapter: 02-Values-and-Types
+
+def main()
+    var b: byte = 250
+    print(b +% 10)     # 4    -- wraps around past 255
+    print(b +| 10)     # 255  -- saturates: clamps at the top
+    var s: int8 = -128
+    print(s -| 1)      # -128 -- clamps at the bottom
+    print(-%s)         # -128 -- wrapping negation
+```
+
+| | wraps around | clamps at the bounds |
+|---|---|---|
+| add, subtract, multiply | `+%` `-%` `*%` | `+\|` `-\|` `*\|` |
+| negate / shift left | `-%x` | `<<\|` |
+| compound forms | `+%=` `-%=` `*%=` | `+\|=` `-\|=` `*\|=` `<<\|=` |
+
+They are Zig's operators with Zig's spelling, and they work on integers only.
+
+### Mixing Integer Types
+
+When two different integer types meet in arithmetic, the result is the **wider** type —
+the same rule for `+ - * / %`, for `& | ^`, and for the wrapping and saturating forms:
+
+```zebra
+# file: 02_mixing_ints.zbr
+# teaches: how two integer types combine
+# chapter: 02-Values-and-Types
+
+def main()
+    var b: byte = 250
+    var n: int = 1000
+    var t: int8 = -5
+    print(b + n)       # 1250 -- byte with int is an int
+    print(b + t)       # 245  -- byte with int8 is an int16 (a signed type that holds both)
+    print(b + 3)       # 253  -- a plain literal takes the other side's type
+```
+
+Three things the compiler refuses, each with a message naming the fix:
+
+- **A literal that does not fit the other side.** `k + 300` with a `byte` `k` — 300 is not a
+  byte. The check is by value, so `k + (300 - 200)` is fine and `k + 100 * 3` is not.
+- **A result that would have to narrow on its own.** `b = b + n` with a byte `b` and an int
+  `n` produces an int, and an int does not fit back into a byte silently. Convert it
+  yourself (see *Narrowing* below).
+- **`uint` beside a signed type.** No signed type holds every `uint` value, so `u + n` asks
+  you to convert one side first.
+
+```text
+error: 300 does not fit in 'byte' (0..255), the type of the other operand of '+'
+error: type mismatch: expected byte, found int -- an int does not narrow to a byte on its own; use `.toByte()` (low 8 bits)
+error: cannot mix 'uint' and 'int' in arithmetic: no signed type holds every uint value -- convert one side first (`.toInt()` on the uint, checked)
+```
+
+### Literal Suffixes
+
+A suffix gives a literal its type, and the variable it initialises takes that type too:
+
+```zebra
+# file: 02_literal_suffixes.zbr
+# teaches: typed literals
+# chapter: 02-Values-and-Types
+
+def main()
+    var a = 300_i16        # an int16
+    var b = 5_u8           # a byte (uint8)
+    var c = 7u             # a uint -- the underscore is optional
+    var mask = 0xFF_u8     # hex works the same way
+    var f = 1.5_f32        # a float32
+    print(a)               # 300
+    print(b +% 255_u8)     # 4 -- b really is a byte, so this wraps at 255
+    print(c)               # 7
+    print(mask)            # 255
+    print(f)               # 1.5
+```
+
+Integer suffixes are `_i` and `_u` (the 64-bit `int` and `uint`) or either with a width —
+8, 16, 32, 64 or 128. The literal must fit its type: `300_u8` and `128_i8` are refused
+(`-128_i8`, int8's minimum, is fine). Two spellings look alike and are not: in a decimal
+number a bare `_16` is a **digit separator** (`300_16` is 30016), while in hex a bare size
+is the **signed type** (`0xFF_32` is 255 as an `int32`).
+
 ### Floating Point
 
 ```zebra
@@ -253,6 +367,34 @@ def main()
 var small: int8 = 100
 var big: int = small  # ✅ Fine: int8 → int is always safe
 ```
+
+### Narrowing: Choosing What Happens to Values That Don't Fit
+
+Going from a wider integer to a narrower one is always explicit, and there are two ways to
+do it — decide which one you mean:
+
+```zebra
+# file: 02_narrowing.zbr
+# teaches: checked vs truncating narrowing
+# chapter: 02-Values-and-Types
+
+def main()
+    var n = 300
+    print(n.toByte())      # 44  -- toByte() keeps the low 8 bits
+    var small = 200
+    print(small.toUint8()) # 200 -- fits, so the checked form returns it
+    print(n.toUint8())     # 300 does not fit: the program stops here
+```
+
+```text
+44
+200
+thread 24072 panic: integer conversion out of range: 300 does not fit in byte
+```
+
+`toInt8()`, `toInt16()`, `toInt32()`, `toInt64()`, `toUint8()` … `toUint64()` are
+**checked**: they return the value when it fits and stop the program when it does not.
+`toByte()` is the one that deliberately keeps the low bits.
 
 ### Explicit Conversion
 

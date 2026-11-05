@@ -1,6 +1,6 @@
 # Zebra Programming Book - Code Examples
 
-This directory contains 803 runnable code examples extracted from the Zebra Programming Book.
+This directory contains 809 runnable code examples extracted from the Zebra Programming Book.
 
 ## Organization
 
@@ -47,9 +47,9 @@ build (`--check-full`) for the examples that have a `main`.
 
 ## By the Numbers
 
-- **Total Examples:** 803
+- **Total Examples:** 809
 - **Chapters Covered:** 36
-- **Topics:** 222
+- **Topics:** 228
 
 ## Quick Reference
 
@@ -71,9 +71,13 @@ build (`--check-full`) for the examples that have a `main`.
 - `01-getting-started_dc5bda7c.zbr` — basic example
 - `01-getting-started_1abdcdcc.zbr` — basic example
 
-### 02-Values-and-Types (24 examples)
+### 02-Values-and-Types (29 examples)
 - `02_integers.zbr` — integer types, arithmetic
 - `02-values-and-types_8821ebd1.zbr` — basic example
+- `02_overflow_trap.zbr` — integer overflow stops the program
+- `02_wrap_saturate.zbr` — wrapping (+% -% *%) and saturating (+| -| *|) arithmetic
+- `02_mixing_ints.zbr` — how two integer types combine
+- `02_literal_suffixes.zbr` — typed literals
 - `02_floats.zbr` — float types, precision
 - `02_bools.zbr` — boolean values, logic
 - `02_strings.zbr` — string type, string operations
@@ -83,6 +87,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `02-values-and-types_5fb1a5d4.zbr` — basic example
 - `02_comparisons.zbr` — comparison operators
 - `02-values-and-types_9cd62d3c.zbr` — basic example
+- `02_narrowing.zbr` — checked vs truncating narrowing
 - `02_conversions.zbr` — type conversion
 - `02_nullables.zbr` — nullable types introduction
 - `02-values-and-types_ec972f5c.zbr` — basic example
@@ -117,13 +122,14 @@ build (`--check-full`) for the examples that have a `main`.
 - `03-collections_a14c856b.zbr` — basic example
 - `03-collections_d0aa4532.zbr` — basic example
 
-### 04-Functions-and-Scope (26 examples)
+### 04-Functions-and-Scope (27 examples)
 - `04_functions.zbr` — function definition and calling
 - `04_multi_params.zbr` — multiple parameters
 - `04_void.zbr` — functions that don't return values
 - `04_scope.zbr` — variable scope
 - `04-functions-and-scope_ad9fd5bf.zbr` — basic example
 - `04_closures.zbr` — closures and variable capture
+- `04_shared_capture.zbr` — closures share the variables they write
 - `04_capture.zbr` — capture blocks
 - `04_utilities.zbr` — practical function use
 - `04_patterns.zbr` — early return pattern
@@ -738,8 +744,8 @@ build (`--check-full`) for the examples that have a `main`.
 - `appendix-b-stdlib_6956a9fc.zbr` — basic example
 - `appendix-b-stdlib_10b9d6ab.zbr` — basic example
 - `appendix-b-stdlib_0c11e627.zbr` — basic example
-- `appendix-b-stdlib_a841398e.zbr` — basic example
-- `appendix-b-stdlib_03603019.zbr` — basic example
+- `appendix-b-stdlib_db78f560.zbr` — basic example
+- `appendix-b-stdlib_86162722.zbr` — basic example
 - `appendix-b-stdlib_f3398174.zbr` — basic example
 - `appendix-b-stdlib_839d40d1.zbr` — basic example
 - `appendix-b-stdlib_7c27aa46.zbr` — basic example
@@ -843,7 +849,7 @@ build (`--check-full`) for the examples that have a `main`.
 - `ref-cheatsheet-syntax_f6cfe617.zbr` — basic example
 - `ref-cheatsheet-syntax_4ef11683.zbr` — basic example
 - `ref-cheatsheet-syntax_d0331aea.zbr` — basic example
-- `ref-cheatsheet-syntax_f9c0ad06.zbr` — basic example
+- `ref-cheatsheet-syntax_cba12282.zbr` — basic example
 - `ref-cheatsheet-syntax_44efbac7.zbr` — basic example
 - `ref-cheatsheet-syntax_052709cc.zbr` — basic example
 - `ref-cheatsheet-syntax_ea3f3994.zbr` — basic example

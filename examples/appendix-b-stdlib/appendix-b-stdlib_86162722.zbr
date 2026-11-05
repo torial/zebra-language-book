@@ -2,7 +2,7 @@ var args = sys.args()
 for arg in args
     print("Argument: ${arg}")
 
-var home = sys.env("HOME")
+var home = sys.getenv("HOME")
 if home != nil
     print("Home: ${home}")
 

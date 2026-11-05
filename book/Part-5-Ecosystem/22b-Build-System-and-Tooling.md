@@ -299,10 +299,13 @@ project-build equivalent goes through `target.option(key, val)`.
 | `--release` | Build optimised; contracts still fire |
 | `--turbo` | Strip all contract checks (`require`/`ensure`/`invariant`) — see Ch14; `assert` still fires |
 | `--coverage` | Write line coverage to `zebra-coverage.json` on exit (also `zebra test --coverage`) |
+| `--census` | Count every allocation by source line; report on stderr and in `zebra-census.json` at exit (Chapter 14b) |
+| `--census=host` | The census compiled in but not started: the program or its embedding host calls `_zbr_cens_install()` to open the window |
+| `-c --strict` | Front-end check that also reports what the editor reports (an annotated local whose initialiser has no inferable type) |
+| `--source-root DIR` | Spell source paths in the generated Zig relative to `DIR`, so builds on two machines produce the same text |
 | `--warnings-as-errors` | Fail the compile on any warning (e.g. a call to a `@deprecated` function) |
 | `--cpu=VALUE` | Pass `-mcpu=VALUE` to Zig (e.g. `native`, `x86_64+avx2`) |
 | `--gui-backend=libui_ng` | Use native OS controls (Win32/GTK3/Cocoa) |
-| `--gui-backend=tui` | Use the ZigZag terminal-UI backend |
 
 `--release` and `--turbo` are **independent** and compose: `--release`
 optimises, `--turbo` strips contracts, and neither implies the other. A
@@ -313,6 +316,8 @@ Retired flags: `--gui-backend=glfw` (the Dear ImGui backend), `--zig-backend`,
 and `zebra debug --listen` were removed on 2026-09-15, and the Zig-implemented
 bootstrap compiler they delegated to (`zebra-bootstrap.exe`) was deleted the
 next day. `glfw` is refused by name; the other two are unrecognised flags.
+`--gui-backend=tui` is refused by name on Zig 0.17: the terminal-UI backend is built on
+ZigZag, which does not support 0.17 yet.
 
 ---
 

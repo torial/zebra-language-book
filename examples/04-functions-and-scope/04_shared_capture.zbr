@@ -1,0 +1,11 @@
+# file: 04_shared_capture.zbr
+# teaches: closures share the variables they write
+# chapter: 04-Functions-and-Scope
+
+def main()
+    var count = 0
+    var bump = def()
+        count += 1
+    bump()
+    bump()
+    print(count)    # 2 -- the closure and main share `count`

@@ -121,9 +121,13 @@ the program does not change:
 
 ```bash
 zebra --gui-backend=libui_ng counter.zbr   # native OS controls (recommended)
-zebra --gui-backend=tui      counter.zbr   # terminal UI, no GPU, no dependencies
 zebra counter.zbr                          # stub backend — see below
 ```
+
+> **The terminal backend (`--gui-backend=tui`) is unavailable in current releases.** It is
+> built on the ZigZag library, which does not support Zig 0.17 yet, and the compiler refuses
+> the flag by name, saying so. The notes on the TUI later in this chapter describe that
+> backend for when it returns.
 
 The compiler scaffolds a `zig build` project next to your source
 (`counter_gui_libui_ng/`) and builds it. The first build fetches and compiles the
@@ -1291,5 +1295,5 @@ If that felt easy, you have understood why MVU is worth the constraint.
   `class`, not a `struct`.
 - **The stub backend** prints the widget tree and exits, which makes GUI programs
   testable without a display.
-- The same source runs on native controls, in a terminal, or on the stub — chosen
-  by a command-line flag.
+- The same source runs on native controls or on the stub — chosen by a command-line
+  flag (the terminal backend returns when its library supports Zig 0.17).

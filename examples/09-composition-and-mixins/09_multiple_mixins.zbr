@@ -6,7 +6,7 @@ mixin Timestamped
     var created_at_ms: int = 0
 
     def stamp_now()
-        this.created_at_ms = DateTime.now().epochMs
+        this.created_at_ms = DateTime.now().toEpoch()
 
 mixin Tagged
     var tags: List(str)

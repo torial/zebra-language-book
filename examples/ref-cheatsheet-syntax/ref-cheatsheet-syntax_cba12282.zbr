@@ -1,0 +1,22 @@
+# Arithmetic (integer overflow stops the program, in every build)
+10 + 5, 10 - 5, 10 * 5, 10 / 5, 10 % 3
+
+# Wrapping / saturating integer arithmetic
+b +% 10, b -% 10, b *% 2, -%b             # wrap around the type's range
+b +| 10, b -| 10, b *| 2, b <<| 1         # clamp at the type's bounds
+
+# Typed literals
+300_i16, 5_u8, 7u, 0xFF_u8, 1.5_f32
+
+# Comparison
+10 > 5, 10 < 5, 10 >= 5, 10 <= 5
+10 == 5, 10 != 5
+
+# Logical
+true and false
+true or false
+not true
+
+# String
+"hello" + " world"
+"Value: ${x}"                           # interpolation
